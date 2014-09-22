@@ -1,0 +1,44 @@
+<ons-page ng-controller="listsRSS">
+	<ons-toolbar>
+		<div class="left">
+			<ons-toolbar-button ng-click="menu.toggle()">
+				<ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
+			</ons-toolbar-button>
+		</div>
+		<div class="center">
+			Insert new feed
+		</div>
+		<div class="right">
+			<ons-toolbar-button ng-click="menu.setMainPage('feedInsert.html')">
+				<ons-icon icon="ion-plus-round" fixed-width="false"></ons-icon>
+			</ons-toolbar-button>
+		</div>
+	</ons-toolbar>
+
+	<ons-row>
+		<ons-list ng-if='listsRSS.length > 0' style="width: 100%;">
+		  	<ons-list-item ng-repeat="list in listsRSS" left-button-icon="fa fa-bars">
+
+			  	<div style="float: left;">
+					<ons-icon icon="fa-times" ng-click="deleteItemRss(list.id)" fixed-width="false" style="margin-right:10px; color:red;"></ons-icon>
+				</div>
+
+				<div style="float: left;">{{list.text}}</div>
+
+				<div style="float: right; padding-right: 16px;">
+				  	<div ng-if="list.checked == 'true'">
+				  		<ons-icon icon="fa-check-circle" ng-click="setCheckedItemRss(list.id)" style="color:green;"></ons-icon>
+				  	</div>
+
+				  	<div ng-if="list.checked == ''">
+					  	<ons-icon icon="fa-circle-o" ng-click="setCheckedItemRss(list.id)"></ons-icon>
+					</div>
+				</div>
+
+		  	</ons-list-item>
+		</ons-list>
+	</ons-row>
+
+</ons-page>
+
+
