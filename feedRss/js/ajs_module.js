@@ -48,10 +48,12 @@ module.controller('insertItemRSS', function($scope){
 	$scope.saveItemRss = function() {
 		console.log('saveItemRss');	
 
-		var text = $('#Feed').val();
-    	if (text != '') {
+        var TitleFeed = $('#TitleFeed').val();
+		var UrlFeed   = $('#UrlFeed').val();
+
+    	if (TitleFeed != '' && UrlFeed != '') {
         	// Save to local storage
-        	addFeed(text);
+        	addFeed(TitleFeed,UrlFeed);
     	}
 	};
 });
@@ -64,10 +66,10 @@ function refresh() {
 }
 
 ///// Add feed
-function addFeed(text) {
+function addFeed(TitleFeed,UrlFeed) {
 	var list = getFeedList();
 	var time = new Date().getTime();
-	list.push({ id: time, time: time, text: text, checked: ''});
+	list.push({ id: time, time: time, title: TitleFeed, text: UrlFeed, checked: ''});
 	saveFeedList(list);
 
     // Clear form

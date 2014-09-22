@@ -16,7 +16,10 @@
 	</ons-toolbar>
 
 	<ons-row style="margin-top: 20px;padding:25px;">
-  		<textarea id="Feed" class="textarea" rows="3" placeholder="Insert new feed" style="width:100%"></textarea>
+		<input type="text" id="TitleFeed" class="input" rows="3" placeholder="Title new feed" style="width:100%;padding: 10px;" />
+	</ons-row>
+	<ons-row style="padding:25px;">
+		<textarea id="UrlFeed" class="textarea" rows="3" placeholder="Url new feed" style="width:100%;padding: 10px;"></textarea>
 	</ons-row>
 	<ons-row style="padding:25px;">
   		<button class="button button--large" ng-click="saveItemRss()">
