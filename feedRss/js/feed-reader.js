@@ -41,6 +41,7 @@ var Feed = Feed || {
       },
       error : function() {
         $('#error-message').text('Failed to load RSS.');
+        $('#error-message').show();
       },
       complete : function() {
         $('#mask').hide();

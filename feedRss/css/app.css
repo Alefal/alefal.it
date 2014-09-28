@@ -90,7 +90,13 @@ body {
 
 #error-message {
 	padding: 20px;
-	color: red;
+	color: white;
+	width: 98%;
+	background: red;
+	margin: 25px;
+	font-weight: bold;
+	text-align: center;
+	display: none;
 }
 
 .page--menu-page__content {

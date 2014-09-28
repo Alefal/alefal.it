@@ -16,14 +16,14 @@
 	</ons-toolbar>
 
 	<ons-row style="margin-top: 20px;padding:25px;">
-		<input type="text" id="TitleFeed" class="input" rows="3" placeholder="Title new feed" style="width:100%;padding: 10px;" />
+		<input type="text" id="TitleFeed" class="input" rows="3" placeholder="Title new feed" style="width:100%;padding: 10px;" value="{{feedTitle}}" />
 	</ons-row>
 	<ons-row style="padding:25px;">
-		<textarea id="UrlFeed" class="textarea" rows="3" placeholder="Url new feed" style="width:100%;padding: 10px;"></textarea>
+		<textarea id="UrlFeed" class="textarea" rows="3" placeholder="Url new feed" style="width:100%;padding: 10px;">{{feedUrl}}</textarea>
 	</ons-row>
 	<ons-row style="padding:25px;">
   		<button class="button button--large" ng-click="saveItemRss()">
-        	<ons-icon icon="ion-loop"></ons-icon> Insert
+        	<ons-icon icon="ion-loop"></ons-icon> {{feedOperationText}}
         </button>
 	</ons-row>
 

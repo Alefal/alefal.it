@@ -9,7 +9,7 @@
 			Insert new feed
 		</div>
 		<div class="right">
-			<ons-toolbar-button ng-click="menu.setMainPage('feedInsert.html')">
+			<ons-toolbar-button ng-click="goPageItemRss()">
 				<ons-icon icon="ion-plus-round" fixed-width="false"></ons-icon>
 			</ons-toolbar-button>
 		</div>
@@ -28,10 +28,12 @@
 				<div style="float: right; padding-right: 16px;">
 				  	<div ng-if="list.checked == 'true'">
 				  		<ons-icon icon="fa-check-circle" ng-click="setCheckedItemRss(list.id)" style="color:green;"></ons-icon>
+				  		<ons-icon icon="fa-edit" ng-click="editItemRss(list.id)"></ons-icon>
 				  	</div>
 
 				  	<div ng-if="list.checked == ''">
 					  	<ons-icon icon="fa-circle-o" ng-click="setCheckedItemRss(list.id)"></ons-icon>
+					  	<ons-icon icon="fa-edit" ng-click="editItemRss(list.id)"></ons-icon>
 					</div>
 				</div>
 
