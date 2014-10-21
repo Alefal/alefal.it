@@ -21,6 +21,23 @@ class itemsModel extends CI_Model {
         return $query->result();
     }
 
+    function getAllJoin()
+    {
+        //$query = $this->db->get('items');
+        //return $query->result();
+
+        $this->db->select('items.id AS iId, items.name AS iName, price, quantity');
+        $this->db->select('category.id AS cId, category.name AS cName');
+        $this->db->from('items');
+        $this->db->join('category', 'items.categoryId = category.id');
+
+        $query = $this->db->get();
+        //print_r($query->result());
+        //die;
+
+        return $query->result();
+    }
+
     function getById($id)
     {
         $this->db->where('id', $id);
@@ -40,13 +57,15 @@ class itemsModel extends CI_Model {
 
     function updateEntry($idItem,$itemName,$itemPrice,$updateQnt,$itemCatId)
     {
-        $this->id 		    = $idItem;
-        $this->name         = $itemName;
-        $this->price        = $itemPrice;
-        $this->quantity     = $updateQnt;
-        $this->categoryId   = $itemCatId;;
+        $data = array(
+            'name' => $itemName,
+            'price' => $itemPrice,
+            'quantity' => $updateQnt,
+            'categoryId' => $itemCatId
+        );
 
-        $this->db->update('items', $this);
+        $this->db->where('id', $idItem);
+        $this->db->update('items', $data); 
     }
 
     function deleteEntry($id)

@@ -12,7 +12,6 @@ class Guests extends Main_Controller {
 
    	public function index()
 	{
-		//$data['results'] = $this->helloModel->getAll();
 		$data['results'] = $this->guestsModel->getAll();
 		
 		$this->load->view('include/header');
@@ -27,7 +26,8 @@ class Guests extends Main_Controller {
 		$guestCity = $this->input->post('guestCity');
 		$this->guestsModel->insertEntry($guestName,$guestAddress,$guestCity);
 
-		$this->index();
+		redirect('guests','refresh');
+		//$this->index();
 	}
 
 	public function update()
@@ -36,7 +36,8 @@ class Guests extends Main_Controller {
 		$categoryName 	= $this->input->post('category');
 		$this->guestsModel->updateEntry($categoryId,$categoryName);
 
-		$this->index();
+		redirect('guests','refresh');
+		//$this->index();
 	}
 
 	public function delete()
@@ -44,10 +45,8 @@ class Guests extends Main_Controller {
 		$idGuest = $this->input->get('idGuest');
 		$this->guestsModel->deleteEntry($idGuest);
 
-		$this->index();
+		redirect('guests','refresh');
+		//$this->index();
 	}
    
-}
-
-/* End of file frontpage.php */
-/* Location: ./application/controllers/frontpage.php */	
+}	

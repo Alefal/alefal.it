@@ -16,18 +16,15 @@ class Orders extends Main_Controller {
 
    	public function index()
 	{
-		//$data['results'] = $this->helloModel->getAll();
 		$data['items'] = $this->itemsModel->getAll();
 		$data['guests'] = $this->guestsModel->getAll();
 		$data['state'] = $this->stateModel->getAll();
 
-		$data['results'] = $this->ordersModel->getAll();
+		$data['results'] = $this->ordersModel->getAllJoin();
 		
 		$this->load->view('include/header');
       	$this->load->view('orders', $data);
       	$this->load->view('include/footer');
-
-      	//REST call: http://localhost/alefal.it/CodeIgniter-Bootstrap/index.php/CategoryREST/items
 	}
 
 	public function insert()
@@ -55,7 +52,8 @@ class Orders extends Main_Controller {
 
 		$this->ordersModel->insertEntry($idItem,$idGuest,$idState,$quantity,$total);
 
-		$this->index();
+		redirect('orders','refresh');
+		//$this->index();
 	}
 
 	public function update()
@@ -64,7 +62,8 @@ class Orders extends Main_Controller {
 		$categoryName 	= $this->input->post('category');
 		$this->ordersModel->updateEntry($categoryId,$categoryName);
 
-		$this->index();
+		redirect('orders','refresh');
+		//$this->index();
 	}
 
 	public function delete()
@@ -72,10 +71,8 @@ class Orders extends Main_Controller {
 		$idOrder = $this->input->get('idOrder');
 		$this->ordersModel->deleteEntry($idOrder);
 
-		$this->index();
+		redirect('orders','refresh');
+		//$this->index();
 	}
    
 }
-
-/* End of file frontpage.php */
-/* Location: ./application/controllers/frontpage.php */	

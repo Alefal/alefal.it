@@ -12,14 +12,15 @@ class Category extends Main_Controller {
 
    	public function index()
 	{
-		//$data['results'] = $this->helloModel->getAll();
 		$data['results'] = $this->categoryModel->getAll();
 		
 		$this->load->view('include/header');
       	$this->load->view('category', $data);
       	$this->load->view('include/footer');
 
-      	//REST call: http://localhost/alefal.it/CodeIgniter-Bootstrap/index.php/CategoryREST/items
+      	//REST call: 
+      	//	http://localhost/alefal.it/CodeIgniter-Bootstrap/index.php/CategoryREST/items
+      	//	http://localhost/alefal.it/CodeIgniter-Bootstrap/index.php/CategoryREST/items/format/json
 	}
 
 	public function insert()
@@ -27,7 +28,8 @@ class Category extends Main_Controller {
 		$categoryName = $this->input->post('category');
 		$this->categoryModel->insertEntry($categoryName);
 
-		$this->index();
+		redirect('category','refresh');
+		//$this->index();
 	}
 
 	public function update()
@@ -36,7 +38,8 @@ class Category extends Main_Controller {
 		$categoryName 	= $this->input->post('category');
 		$this->categoryModel->updateEntry($categoryId,$categoryName);
 
-		$this->index();
+		redirect('category','refresh');
+		//$this->index();
 	}
 
 	public function delete()
@@ -44,10 +47,7 @@ class Category extends Main_Controller {
 		$categoryId = $this->input->get('idCategory');
 		$this->categoryModel->deleteEntry($categoryId);
 
-		$this->index();
+		redirect('category','refresh');
+		//$this->index();
 	}
-   
 }
-
-/* End of file frontpage.php */
-/* Location: ./application/controllers/frontpage.php */	

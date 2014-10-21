@@ -12,14 +12,11 @@ class State extends Main_Controller {
 
    	public function index()
 	{
-		//$data['results'] = $this->helloModel->getAll();
 		$data['results'] = $this->stateModel->getAll();
 		
 		$this->load->view('include/header');
       	$this->load->view('state', $data);
       	$this->load->view('include/footer');
-
-      	//REST call: http://localhost/alefal.it/CodeIgniter-Bootstrap/index.php/CategoryREST/items
 	}
 
 	public function insert()
@@ -27,7 +24,8 @@ class State extends Main_Controller {
 		$stateType = $this->input->post('stateType');
 		$this->stateModel->insertEntry($stateType);
 
-		$this->index();
+		redirect('state','refresh');
+		//$this->index();
 	}
 
 	public function delete()
@@ -35,10 +33,8 @@ class State extends Main_Controller {
 		$idState = $this->input->get('idState');
 		$this->stateModel->deleteEntry($idState);
 
-		$this->index();
+		redirect('state','refresh');
+		//$this->index();
 	}
    
-}
-
-/* End of file frontpage.php */
-/* Location: ./application/controllers/frontpage.php */	
+}	

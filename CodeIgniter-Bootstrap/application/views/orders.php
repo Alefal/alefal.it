@@ -21,9 +21,9 @@
               <th>#</th>
               <th>Prodotto</th>
               <th>Cliente</th>
+              <th>Stato</th>
               <th>Quantità</th>
               <th>Totale</th>
-              <th>Stato</th>
               <th>&nbsp;</th>
             </tr>
           </thead>
@@ -31,13 +31,13 @@
             <?php
             foreach($results as $row) {
               echo '<tr>';
-              echo '<td>'.$row->id.'</td>';
-              echo '<td>'.$row->idItem.'</td>';
-              echo '<td>'.$row->idGuest.'</td>';
-              echo '<td>'.$row->idState.'</td>';
-              echo '<td>'.$row->quantity.'</td>';
-              echo '<td>'.$row->total.'</td>';
-              echo '<td align="right"><span class="glyphicon glyphicon-pencil" onclick="alert(\'Modifica...\');"></span> <a href="'.base_url().'index.php/orders/delete?idOrder='.$row->id.'" onclick="return confirm(\'Are you sure ?\')"><span class="glyphicon glyphicon-remove"></span></a></td>';
+              echo '<td>'.$row->oId.'</td>';
+              echo '<td>'.$row->iName.'</td>';
+              echo '<td>'.$row->gName.'</td>';
+              echo '<td>'.$row->sType.'</td>';
+              echo '<td>'.$row->oQuantity.'</td>';
+              echo '<td>'.$row->oTotal.'</td>';
+              echo '<td align="right"><span class="glyphicon glyphicon-pencil" onclick="alert(\'Modifica...\');"></span> <a href="'.base_url().'index.php/orders/delete?idOrder='.$row->oId.'" onclick="return confirm(\'Are you sure ?\')"><span class="glyphicon glyphicon-remove"></span></a></td>';
               echo '<tr>';
             }
             ?>

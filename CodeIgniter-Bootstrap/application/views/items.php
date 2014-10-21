@@ -14,6 +14,8 @@
         <button class="btn btn-primary" data-toggle="modal" data-target="#modalCategory">Aggiungi prodotto</button>
       </div>
 
+      <br style="clear:both" />
+
       <div class="table-responsive">
         <table class="table table-striped">
           <thead>
@@ -29,13 +31,19 @@
           <tbody>
             <?php
             foreach($results as $row) {
+              $classColor = '';
+              if($row->quantity > 0 && $row->quantity < 10) {
+                $classColor = 'warning';
+              } else if($row->quantity  <= 0) {
+                $classColor = 'danger';
+              }
               echo '<tr>';
-              echo '<td>'.$row->id.'</td>';
-              echo '<td>'.$row->name.'</td>';
+              echo '<td>'.$row->iId.'</td>';
+              echo '<td>'.$row->iName.'</td>';
               echo '<td>'.$row->price.'</td>';
-              echo '<td>'.$row->quantity.'</td>';
-              echo '<td>'.$row->categoryId.'</td>';
-              echo '<td align="right"><span class="glyphicon glyphicon-pencil" onclick="alert(\'Modifica...\');"></span> <a href="'.base_url().'index.php/items/delete?idItem='.$row->id.'" onclick="return confirm(\'Are you sure ?\')"><span class="glyphicon glyphicon-remove"></span></a></td>';
+              echo '<td class="'.$classColor.'">'.$row->quantity.'</td>';
+              echo '<td>'.$row->cName.'</td>';
+              echo '<td align="right"><span class="glyphicon glyphicon-pencil" onclick="alert(\'Modifica...\');"></span> <a href="'.base_url().'index.php/items/delete?idItem='.$row->iId.'" onclick="return confirm(\'Are you sure ?\')"><span class="glyphicon glyphicon-remove"></span></a></td>';
               echo '<tr>';
             }
             ?>

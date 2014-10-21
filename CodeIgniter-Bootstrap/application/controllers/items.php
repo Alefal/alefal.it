@@ -13,16 +13,14 @@ class Items extends Main_Controller {
 
    	public function index()
 	{
-		//$data['results'] = $this->helloModel->getAll();
 		$data['category'] = $this->categoryModel->getAll();
-		$data['results'] = $this->itemsModel->getAll();
+		$data['results'] = $this->itemsModel->getAllJoin();
 		
 		$this->load->view('include/header');
       	$this->load->view('items', $data);
       	$this->load->view('include/footer');
 
-      	//REST call: http://localhost/alefal.it/CodeIgniter-Bootstrap/index.php/CategoryREST/items
-	}
+ 	}
 
 	public function insert()
 	{
@@ -32,7 +30,8 @@ class Items extends Main_Controller {
 		$itemCategoryId = $this->input->post('itemCategoryId');
 		$this->itemsModel->insertEntry($itemName,$itemPrice,$itemQuantity,$itemCategoryId);
 
-		$this->index();
+		redirect('items','refresh');
+		//$this->index();
 	}
 
 	public function update()
@@ -41,7 +40,8 @@ class Items extends Main_Controller {
 		$categoryName 	= $this->input->post('category');
 		$this->itemsModel->updateEntry($categoryId,$categoryName);
 
-		$this->index();
+		redirect('items','refresh');
+		//$this->index();
 	}
 
 	public function delete()
@@ -49,10 +49,7 @@ class Items extends Main_Controller {
 		$itemId = $this->input->get('idItem');
 		$this->itemsModel->deleteEntry($itemId);
 
-		$this->index();
-	}
-   
-}
-
-/* End of file frontpage.php */
-/* Location: ./application/controllers/frontpage.php */	
+		redirect('items','refresh');
+		//$this->index();
+	} 
+}	
