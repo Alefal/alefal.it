@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.7.1
+-- version 4.1.12
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Ott 21, 2014 alle 00:08
--- Versione del server: 5.6.20
--- PHP Version: 5.5.15
+-- Generation Time: Ott 21, 2014 alle 16:53
+-- Versione del server: 5.6.16
+-- PHP Version: 5.5.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -27,9 +27,10 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `category` (
-`id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
 
 --
 -- Dump dei dati per la tabella `category`
@@ -48,11 +49,12 @@ INSERT INTO `category` (`id`, `name`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `guests` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `address` varchar(255) NOT NULL,
-  `city` varchar(255) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+  `city` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dump dei dati per la tabella `guests`
@@ -70,21 +72,23 @@ INSERT INTO `guests` (`id`, `name`, `address`, `city`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `items` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `price` double NOT NULL,
   `quantity` int(11) NOT NULL,
-  `categoryId` int(11) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+  `categoryId` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 --
 -- Dump dei dati per la tabella `items`
 --
 
 INSERT INTO `items` (`id`, `name`, `price`, `quantity`, `categoryId`) VALUES
-(4, 'Marlot', 25, 100, 22),
-(6, 'Brunello di Montalcino', 55.8, 50, 22),
-(12, 'Cinzano', 12, 122, 23);
+(4, 'Marlot', 25, 6, 22),
+(6, 'Brunello di Montalcino', 55.8, -20, 22),
+(13, 'Aglianico', 34, 90, 22),
+(14, 'Cinzano', 21, 67, 23);
 
 -- --------------------------------------------------------
 
@@ -93,13 +97,26 @@ INSERT INTO `items` (`id`, `name`, `price`, `quantity`, `categoryId`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `orders` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `idItem` int(11) NOT NULL,
   `idGuest` int(11) NOT NULL,
   `idState` int(11) NOT NULL,
   `quantity` double NOT NULL,
-  `total` double DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+  `total` double DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+
+--
+-- Dump dei dati per la tabella `orders`
+--
+
+INSERT INTO `orders` (`id`, `idItem`, `idGuest`, `idState`, `quantity`, `total`) VALUES
+(5, 4, 1, 1, 12, 1),
+(6, 4, 1, 1, 1, 1),
+(8, 14, 5, 4, 33, 0),
+(9, 4, 1, 1, 3, 0),
+(12, 6, 1, 1, 70, 0),
+(13, 4, 1, 1, 90, 0);
 
 -- --------------------------------------------------------
 
@@ -108,9 +125,10 @@ CREATE TABLE IF NOT EXISTS `orders` (
 --
 
 CREATE TABLE IF NOT EXISTS `state` (
-`id` int(11) NOT NULL,
-  `type` varchar(255) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dump dei dati per la tabella `state`
@@ -120,69 +138,26 @@ INSERT INTO `state` (`id`, `type`) VALUES
 (1, 'bozza'),
 (4, 'evaso');
 
---
--- Indexes for dumped tables
---
+-- --------------------------------------------------------
 
 --
--- Indexes for table `category`
---
-ALTER TABLE `category`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `guests`
---
-ALTER TABLE `guests`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `items`
---
-ALTER TABLE `items`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `orders`
---
-ALTER TABLE `orders`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `state`
---
-ALTER TABLE `state`
- ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
+-- Struttura della tabella `users`
 --
 
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` tinyint(4) NOT NULL AUTO_INCREMENT,
+  `username` varchar(10) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
 --
--- AUTO_INCREMENT for table `category`
+-- Dump dei dati per la tabella `users`
 --
-ALTER TABLE `category`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=27;
---
--- AUTO_INCREMENT for table `guests`
---
-ALTER TABLE `guests`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT for table `items`
---
-ALTER TABLE `items`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
---
--- AUTO_INCREMENT for table `orders`
---
-ALTER TABLE `orders`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `state`
---
-ALTER TABLE `state`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+
+INSERT INTO `users` (`id`, `username`, `password`) VALUES
+(1, 'demo', 'demo');
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
