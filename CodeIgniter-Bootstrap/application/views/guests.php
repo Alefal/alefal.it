@@ -55,15 +55,15 @@
         </div>
         <div class="modal-body">
             <div class="form-group">
-              <input type="text" name="guestName" id="guestName" class="form-control" placeholder="Nome Cliente">
+              <input type="text" name="guestName" id="guestName" class="form-control" placeholder="Nome Cliente" required />
             </div>
 
             <div class="form-group">
-              <input type="text" name="guestAddress" id="guestAddress" class="form-control" placeholder="Indirizzo">
+              <input type="text" name="guestAddress" id="guestAddress" class="form-control" placeholder="Indirizzo" required />
             </div>
 
             <div class="form-group">
-              <input type="text" name="guestCity" id="guestCity" class="form-control" placeholder="Città">
+              <input type="text" name="guestCity" id="guestCity" class="form-control" placeholder="Città" required />
             </div>
 
         </div>

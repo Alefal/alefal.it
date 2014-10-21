@@ -55,14 +55,15 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-          <h4 class="modal-title" id="modalCategoryLabel">Cliente</h4>
+          <h4 class="modal-title" id="modalCategoryLabel">Ordini</h4>
         </div>
         <div class="modal-body">
+
             <div class="form-group">
               <strong>Prodotto:</strong>
               <select class="form-control" name="idItem" id="idItem">
                 <?php
-                foreach($items as $row) {
+                foreach($itemsList as $row) {
                   echo '<option value="'.$row->id.'">'.$row->name.'</option>';
                 }
                 ?>
@@ -73,7 +74,7 @@
               <strong>Cliente:</strong>
               <select class="form-control" name="idGuest" id="idGuest">
                 <?php
-                foreach($guests as $row) {
+                foreach($guestsList as $row) {
                   echo '<option value="'.$row->id.'">'.$row->name.'</option>';
                 }
                 ?>
@@ -84,7 +85,7 @@
               <strong>Stato Ordine:</strong>
               <select class="form-control" name="idState" id="idState">
                 <?php
-                foreach($state as $row) {
+                foreach($stateList as $row) {
                   echo '<option value="'.$row->id.'">'.$row->type.'</option>';
                 }
                 ?>
@@ -92,11 +93,7 @@
             </div>
 
             <div class="form-group">
-              <input type="text" name="quantity" id="quantity" class="form-control" placeholder="Quantità">
-            </div>
-
-            <div class="form-group">
-              <input type="text" name="total" id="total" class="form-control" placeholder="Totale">
+              <input type="number" min="1" name="quantity" id="quantity" class="form-control" placeholder="Quantità" required />
             </div>
 
         </div>

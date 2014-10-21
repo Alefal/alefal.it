@@ -29,7 +29,7 @@
               echo '<tr>';
               echo '<td>'.$row->id.'</td>';
               echo '<td>'.$row->type.'</td>';
-              echo '<td align="right"><a href="'.base_url().'index.php/state/delete?idState='.$row->id.'" onclick="return confirm(\'Are you sure ?\')"><span class="glyphicon glyphicon-remove"></span></a></td>';
+              echo '<td align="right"><span class="glyphicon glyphicon-pencil" onclick="alert(\'Modifica...\');"></span> <a href="'.base_url().'index.php/state/delete?idState='.$row->id.'" onclick="return confirm(\'Are you sure ?\')"><span class="glyphicon glyphicon-remove"></span></a></td>';
               echo '<tr>';
             }
             ?>
@@ -51,7 +51,7 @@
         </div>
         <div class="modal-body">
             <div class="form-group">
-              <input type="text" name="stateType" id="stateType" class="form-control" placeholder="Tipo stato">
+              <input type="text" name="stateType" id="stateType" class="form-control" placeholder="Tipo stato" required />
             </div>
 
         </div>

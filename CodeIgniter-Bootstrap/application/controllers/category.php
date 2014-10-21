@@ -8,10 +8,14 @@ class Category extends Main_Controller {
         $this->load->helper('url');
         $this->load->helper('form');
 		$this->load->model('categoryModel');
+
+		$this->load->library('../controllers/home');
     }
 
    	public function index()
 	{
+		$this->home->checkUserLogged();
+
 		$data['results'] = $this->categoryModel->getAll();
 		
 		$this->load->view('include/header');

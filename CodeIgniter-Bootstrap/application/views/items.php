@@ -65,25 +65,25 @@
         </div>
         <div class="modal-body">
             <div class="form-group">
-              <input type="text" name="itemName" id="itemName" class="form-control" placeholder="Nome Prodotto">
+              <input type="text" name="itemName" id="itemName" class="form-control" placeholder="Nome Prodotto" required />
             </div>
 
             <div class="form-group">
               <div class="input-group">
                 <div class="input-group-addon">&euro;</div>
-                <input type="text" class="form-control" name="itemPrice" id="itemPrice" placeholder="Prezzo">
+                <input type="number" step="any" class="form-control" name="itemPrice" id="itemPrice" placeholder="Prezzo" required />
               </div>
             </div>
 
             <div class="form-group">
-              <input type="text" name="itemQuantity" id="itemQuantity" class="form-control" placeholder="Quantità">
+              <input type="number" min="1" name="itemQuantity" id="itemQuantity" class="form-control" placeholder="Quantità" required />
             </div>
 
             <div class="form-group">
               Categoria:
               <select class="form-control" name="itemCategoryId" id="itemCategoryId">
                 <?php
-                foreach($category as $row) {
+                foreach($categoryList as $row) {
                   echo '<option value="'.$row->id.'">'.$row->name.'</option>';
                 }
                 ?>

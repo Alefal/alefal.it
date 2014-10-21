@@ -7,7 +7,7 @@
    <meta name="keywords" content="">
    <meta name="author" content="">
 
-   <title>CodeIgniter Bootstrap</title>
+   <title>Stock Magazine</title>
 
    <link href="<?php echo base_url('assets/css/bootstrap.min.css') ?>" rel="stylesheet">
    <link href="<?php echo base_url('assets/css/font-awesome.css') ?>" rel="stylesheet">
@@ -28,12 +28,10 @@
          <a class="navbar-brand" href="#">Stock Magazine</a>
       </div>
       <div class="navbar-collapse collapse">
-         <!--
          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Configurazioni</a></li>
-            <li><a href="#">Help</a></li>
+            <li><a href="home/logout">Logout</a></li>
          </ul>
+         <!--
          <form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Search...">
          </form>

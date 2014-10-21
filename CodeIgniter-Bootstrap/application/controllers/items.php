@@ -9,11 +9,15 @@ class Items extends Main_Controller {
         $this->load->helper('form');
 		$this->load->model('categoryModel');
 		$this->load->model('itemsModel');
+
+		$this->load->library('../controllers/home');
     }
 
    	public function index()
 	{
-		$data['category'] = $this->categoryModel->getAll();
+		$this->home->checkUserLogged();
+
+		$data['categoryList'] = $this->categoryModel->getAll();
 		$data['results'] = $this->itemsModel->getAllJoin();
 		
 		$this->load->view('include/header');

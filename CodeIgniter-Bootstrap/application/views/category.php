@@ -50,7 +50,7 @@
           <h4 class="modal-title" id="modalCategoryLabel">Categoria</h4>
         </div>
         <div class="modal-body">
-            <input type="text" name="category" id="category" class="form-control" placeholder="Nome Categoria">
+            <input type="text" name="category" id="category" class="form-control" placeholder="Nome Categoria" required />
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>

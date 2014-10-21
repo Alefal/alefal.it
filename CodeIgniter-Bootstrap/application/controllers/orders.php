@@ -12,13 +12,17 @@ class Orders extends Main_Controller {
         $this->load->model('itemsModel');
         $this->load->model('guestsModel');
         $this->load->model('stateModel');
+
+        $this->load->library('../controllers/home');
     }
 
    	public function index()
 	{
-		$data['items'] = $this->itemsModel->getAll();
-		$data['guests'] = $this->guestsModel->getAll();
-		$data['state'] = $this->stateModel->getAll();
+		$this->home->checkUserLogged();
+
+		$data['itemsList'] = $this->itemsModel->getAll();
+		$data['guestsList'] = $this->guestsModel->getAll();
+		$data['stateList'] = $this->stateModel->getAll();
 
 		$data['results'] = $this->ordersModel->getAllJoin();
 		
@@ -49,11 +53,9 @@ class Orders extends Main_Controller {
         $updateQnt = intval($itemQnt)-intval($quantity);
 
         $this->itemsModel->updateEntry($idItem,$itemName,$itemPrice,$updateQnt,$itemCatId);
-
 		$this->ordersModel->insertEntry($idItem,$idGuest,$idState,$quantity,$total);
 
 		redirect('orders','refresh');
-		//$this->index();
 	}
 
 	public function update()

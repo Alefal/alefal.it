@@ -8,10 +8,14 @@ class State extends Main_Controller {
         $this->load->helper('url');
         $this->load->helper('form');
         $this->load->model('stateModel');
+
+        $this->load->library('../controllers/home');
     }
 
    	public function index()
 	{
+		$this->home->checkUserLogged();
+
 		$data['results'] = $this->stateModel->getAll();
 		
 		$this->load->view('include/header');
