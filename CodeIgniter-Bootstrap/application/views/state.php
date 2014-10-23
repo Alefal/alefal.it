@@ -42,7 +42,7 @@
     </div>
   </div>
 
-  <div id="modalState" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div id="modalState" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-sm">
       <?php echo form_open('state/insertUpdate'); ?>
 

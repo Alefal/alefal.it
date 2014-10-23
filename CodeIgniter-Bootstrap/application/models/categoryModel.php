@@ -32,12 +32,13 @@ class categoryModel extends CI_Model {
         $this->db->insert('category', $this);
     }
 
-    function updateEntry($id,$category)
+    function updateEntry($categoryId,$categoryName)
     {
-        $this->id 		= $id;
-        $this->name   	= $category;
-
-        $this->db->update('category', $this, array('id' => $id));
+        $data = array(
+           'name' => $categoryName
+        );
+        $this->db->where('id', $categoryId);
+        $this->db->update('category', $data);
     }
 
     function deleteEntry($id)

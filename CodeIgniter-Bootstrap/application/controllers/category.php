@@ -27,21 +27,17 @@ class Category extends Main_Controller {
       	//	http://localhost/alefal.it/CodeIgniter-Bootstrap/index.php/CategoryREST/items/format/json
 	}
 
-	public function insert()
+	public function insertUpdate()
 	{
-		$categoryName = $this->input->post('category');
-		$this->categoryModel->insertEntry($categoryName);
+		$categoryId = $this->input->post('categoryId');
+		$categoryName = $this->input->post('categoryName');
 
-		redirect('category','refresh');
-		//$this->index();
-	}
-
-	public function update()
-	{
-		$categoryId 	= $this->input->post('idCategory');
-		$categoryName 	= $this->input->post('category');
-		$this->categoryModel->updateEntry($categoryId,$categoryName);
-
+		if($categoryId != '') {
+			$this->categoryModel->updateEntry($categoryId,$categoryName);
+		} else {
+			$this->categoryModel->insertEntry($categoryName);
+		}
+	
 		redirect('category','refresh');
 		//$this->index();
 	}

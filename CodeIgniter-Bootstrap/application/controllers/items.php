@@ -26,24 +26,21 @@ class Items extends Main_Controller {
 
  	}
 
-	public function insert()
+	public function insertUpdate()
 	{
+		$itemId = $this->input->post('itemId');
 		$itemName = $this->input->post('itemName');
 		$itemPrice = $this->input->post('itemPrice');
 		$itemQuantity = $this->input->post('itemQuantity');
 		$itemCategoryId = $this->input->post('itemCategoryId');
-		$this->itemsModel->insertEntry($itemName,$itemPrice,$itemQuantity,$itemCategoryId);
+		
 
-		redirect('items','refresh');
-		//$this->index();
-	}
-
-	public function update()
-	{
-		$categoryId 	= $this->input->post('idCategory');
-		$categoryName 	= $this->input->post('category');
-		$this->itemsModel->updateEntry($categoryId,$categoryName);
-
+		if($itemId != '') {
+			$this->itemsModel->updateEntry($itemId,$itemName,$itemPrice,$itemQuantity,$itemCategoryId);
+		} else {
+			$this->itemsModel->insertEntry($itemName,$itemPrice,$itemQuantity,$itemCategoryId);
+		}
+	
 		redirect('items','refresh');
 		//$this->index();
 	}

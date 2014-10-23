@@ -36,12 +36,15 @@ class guestsModel extends CI_Model {
         $this->db->insert('guests', $this);
     }
 
-    function updateEntry($id,$category)
+    function updateEntry($guestId,$guestName,$guestAddress,$guestCity)
     {
-        $this->id 		= $id;
-        $this->name   	= $category;
-
-        $this->db->update('category', $this, array('id' => $id));
+        $data = array(
+           'name' => $guestName,
+           'address' => $guestAddress,
+           'city' => $guestCity
+        );
+        $this->db->where('id', $guestId);
+        $this->db->update('guests', $data);
     }
 
     function deleteEntry($id)

@@ -23,23 +23,20 @@ class Guests extends Main_Controller {
       	$this->load->view('include/footer');
 	}
 
-	public function insert()
+	public function insertUpdate()
 	{
+		$guestId = $this->input->post('guestId');
 		$guestName = $this->input->post('guestName');
 		$guestAddress = $this->input->post('guestAddress');
 		$guestCity = $this->input->post('guestCity');
-		$this->guestsModel->insertEntry($guestName,$guestAddress,$guestCity);
+		
 
-		redirect('guests','refresh');
-		//$this->index();
-	}
-
-	public function update()
-	{
-		$categoryId 	= $this->input->post('idCategory');
-		$categoryName 	= $this->input->post('category');
-		$this->guestsModel->updateEntry($categoryId,$categoryName);
-
+		if($guestId != '') {
+			$this->guestsModel->updateEntry($guestId,$guestName,$guestAddress,$guestCity);
+		} else {
+			$this->guestsModel->insertEntry($guestName,$guestAddress,$guestCity);
+		}
+	
 		redirect('guests','refresh');
 		//$this->index();
 	}
