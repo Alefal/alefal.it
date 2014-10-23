@@ -23,11 +23,17 @@ class State extends Main_Controller {
       	$this->load->view('include/footer');
 	}
 
-	public function insert()
+	public function insertUpdate()
 	{
+		$stateId = $this->input->post('stateId');
 		$stateType = $this->input->post('stateType');
-		$this->stateModel->insertEntry($stateType);
 
+		if($stateId != '') {
+			$this->stateModel->updateEntry($stateId,$stateType);
+		} else {
+			$this->stateModel->insertEntry($stateType);
+		}
+	
 		redirect('state','refresh');
 		//$this->index();
 	}

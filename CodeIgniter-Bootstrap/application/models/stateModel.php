@@ -32,6 +32,15 @@ class stateModel extends CI_Model {
         $this->db->insert('state', $this);
     }
 
+    function updateEntry($stateid,$statetype)
+    {
+        $data = array(
+           'type' => $statetype
+        );
+        $this->db->where('id', $stateid);
+        $this->db->update('state', $data);
+    }
+
     function deleteEntry($id)
     {
         $this->id = $id;
