@@ -50,4 +50,9 @@ class Category extends Main_Controller {
 		redirect('category','refresh');
 		//$this->index();
 	}
+
+	public function getAll()
+	{
+		print_r($this->categoryModel->getAll());
+	}
 }

@@ -84,6 +84,12 @@
 
               <div class="form-group">
                 Categoria:
+                <!--
+                <select ng-repeat="category in listCategoryAjax">
+                  <option value="{{category.id}}">{{category.name}}</option>
+                </select>
+                -->
+                {{listCategoryAjax}}
                 <select class="form-control" name="itemCategoryId" id="itemCategoryId" value="{{itemCategoryId}}">
                   <?php
                   foreach($categoryList as $row) {

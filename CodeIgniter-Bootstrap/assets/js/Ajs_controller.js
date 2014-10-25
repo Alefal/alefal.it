@@ -4,7 +4,7 @@ stockmagazine.controller('MasterController', function ($scope,sharedFunctions) {
 });
 
 /***** Item Controller ****/
-stockmagazine.controller('ItemsController', function ($scope,sharedFunctions) {
+stockmagazine.controller('ItemsController', function ($scope,$http,sharedFunctions) {
   $scope.openModal = function() {
     $scope.itemId = '';
     $scope.itemName = '';
@@ -23,6 +23,15 @@ stockmagazine.controller('ItemsController', function ($scope,sharedFunctions) {
     $scope.itemPrice = price;
     $scope.itemQuantity = qnt;
     $scope.itemCategoryId = catId;
+
+    var responsePromise = $http.get('http://localhost/alefal.it/CodeIgniter-Bootstrap/index.php/category/getAll');
+
+    responsePromise.success(function(data, status, headers, config) {
+      $scope.listCategoryAjax = data;
+    });
+    responsePromise.error(function(data, status, headers, config) {
+        console.loh('error...');
+    });
 
     $('#modalCategory').modal('show'); 
   };
