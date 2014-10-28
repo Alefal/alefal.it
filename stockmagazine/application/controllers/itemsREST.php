@@ -7,12 +7,12 @@ class ItemsREST extends REST_Controller {
     {
         // Call the Model constructor
         parent::__construct();
-        $this->load->model('itemsModel');
+        $this->load->model('itemsmodel');
     }
 
     function items_get()
     {
-        $items = $this->itemsModel->getAll();
+        $items = $this->itemsmodel->getAll();
          
         if($items) {
             $this->response($items, 200); // 200 being the HTTP response code

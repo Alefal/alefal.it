@@ -7,12 +7,12 @@ class CategoryREST extends REST_Controller {
     {
         // Call the Model constructor
         parent::__construct();
-        $this->load->model('categoryModel');
+        $this->load->model('categorymodel');
     }
 
     function items_get()
     {
-        $items = $this->categoryModel->getAll();
+        $items = $this->categorymodel->getAll();
          
         if($items) {
             $this->response($items, 200); // 200 being the HTTP response code

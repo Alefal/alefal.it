@@ -14,8 +14,8 @@
 | path to your installation.
 |
 */
-//$config['base_url']	= 'http://localhost/alefal.it/stockmagazine/';
-$config['base_url']	= 'http://www.amalficoastapp.it/comingsoon/stockmagazine/';
+$config['base_url']	= 'http://localhost/alefal.it/stockmagazine/';
+//$config['base_url']	= 'http://www.amalficoastapp.it/comingsoon/stockmagazine/';
 
 /*
 |--------------------------------------------------------------------------

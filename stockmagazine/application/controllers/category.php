@@ -7,7 +7,7 @@ class Category extends Main_Controller {
         parent::__construct();
         $this->load->helper('url');
         $this->load->helper('form');
-		$this->load->model('categoryModel');
+		$this->load->model('categorymodel');
 
 		$this->load->library('../controllers/home');
     }
@@ -16,7 +16,7 @@ class Category extends Main_Controller {
 	{
 		$this->home->checkUserLogged();
 
-		$data['results'] = $this->categoryModel->getAll();
+		$data['results'] = $this->categorymodel->getAll();
 		
 		$this->load->view('include/header');
       	$this->load->view('category', $data);
@@ -33,9 +33,9 @@ class Category extends Main_Controller {
 		$categoryName = $this->input->post('categoryName');
 
 		if($categoryId != '') {
-			$this->categoryModel->updateEntry($categoryId,$categoryName);
+			$this->categorymodel->updateEntry($categoryId,$categoryName);
 		} else {
-			$this->categoryModel->insertEntry($categoryName);
+			$this->categorymodel->insertEntry($categoryName);
 		}
 	
 		redirect('category','refresh');
@@ -45,7 +45,7 @@ class Category extends Main_Controller {
 	public function delete()
 	{
 		$categoryId = $this->input->get('idCategory');
-		$this->categoryModel->deleteEntry($categoryId);
+		$this->categorymodel->deleteEntry($categoryId);
 
 		redirect('category','refresh');
 		//$this->index();

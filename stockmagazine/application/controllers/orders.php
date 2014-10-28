@@ -7,11 +7,11 @@ class Orders extends Main_Controller {
         parent::__construct();
         $this->load->helper('url');
         $this->load->helper('form');
-        $this->load->model('ordersModel');
+        $this->load->model('ordersmodel');
 
-        $this->load->model('itemsModel');
-        $this->load->model('guestsModel');
-        $this->load->model('stateModel');
+        $this->load->model('itemsmodel');
+        $this->load->model('guestsmodel');
+        $this->load->model('statemodel');
 
         $this->load->library('../controllers/home');
     }
@@ -20,11 +20,11 @@ class Orders extends Main_Controller {
 	{
 		$this->home->checkUserLogged();
 
-		$data['itemsList'] = $this->itemsModel->getAll();
-		$data['guestsList'] = $this->guestsModel->getAll();
-		$data['stateList'] = $this->stateModel->getAll();
+		$data['itemsList'] = $this->itemsmodel->getAll();
+		$data['guestsList'] = $this->guestsmodel->getAll();
+		$data['stateList'] = $this->statemodel->getAll();
 
-		$data['results'] = $this->ordersModel->getAllJoin();
+		$data['results'] = $this->ordersmodel->getAllJoin();
 		
 		$this->load->view('include/header');
       	$this->load->view('orders', $data);
@@ -43,7 +43,7 @@ class Orders extends Main_Controller {
 		$itemPrice 	= 0;
 		$itemQnt 	= 0;
 		$itemCatId 	= 0;
-		$item = $this->itemsModel->getById($idItem);
+		$item = $this->itemsmodel->getById($idItem);
 		foreach($item as $row) {
 			$itemName = $row->name;
 			$itemPrice = $row->price;
@@ -54,20 +54,20 @@ class Orders extends Main_Controller {
 		$total = $itemPrice * $quantity;
 
 		$stateType 	= '';
-		$state = $this->stateModel->getById($idState);
+		$state = $this->statemodel->getById($idState);
 		foreach($state as $row) {
 			$stateType = $row->type;
         }
 
         //Si deve fare solo se ordine è EVASO
         if($stateType == 'evaso') {
-			$this->itemsModel->updateEntry($idItem,$itemName,$itemPrice,$updateQnt,$itemCatId);
+			$this->itemsmodel->updateEntry($idItem,$itemName,$itemPrice,$updateQnt,$itemCatId);
         }
 
         if($idOrder != '') {
-			$this->ordersModel->updateEntry($idOrder,$idItem,$idGuest,$idState,$quantity,$total);
+			$this->ordersmodel->updateEntry($idOrder,$idItem,$idGuest,$idState,$quantity,$total);
 		} else {
-			$this->ordersModel->insertEntry($idItem,$idGuest,$idState,$quantity,$total);
+			$this->ordersmodel->insertEntry($idItem,$idGuest,$idState,$quantity,$total);
 		}
 	
 		redirect('orders','refresh');
@@ -76,7 +76,7 @@ class Orders extends Main_Controller {
 	public function delete()
 	{
 		$idOrder = $this->input->get('idOrder');
-		$this->ordersModel->deleteEntry($idOrder);
+		$this->ordersmodel->deleteEntry($idOrder);
 
 		redirect('orders','refresh');
 	}

@@ -7,7 +7,7 @@ class State extends Main_Controller {
         parent::__construct();
         $this->load->helper('url');
         $this->load->helper('form');
-        $this->load->model('stateModel');
+        $this->load->model('statemodel');
 
         $this->load->library('../controllers/home');
     }
@@ -16,7 +16,7 @@ class State extends Main_Controller {
 	{
 		$this->home->checkUserLogged();
 
-		$data['results'] = $this->stateModel->getAll();
+		$data['results'] = $this->statemodel->getAll();
 		
 		$this->load->view('include/header');
       	$this->load->view('state', $data);
@@ -29,9 +29,9 @@ class State extends Main_Controller {
 		$stateType = $this->input->post('stateType');
 
 		if($stateId != '') {
-			$this->stateModel->updateEntry($stateId,$stateType);
+			$this->statemodel->updateEntry($stateId,$stateType);
 		} else {
-			$this->stateModel->insertEntry($stateType);
+			$this->statemodel->insertEntry($stateType);
 		}
 	
 		redirect('state','refresh');
@@ -41,7 +41,7 @@ class State extends Main_Controller {
 	public function delete()
 	{
 		$idState = $this->input->get('idState');
-		$this->stateModel->deleteEntry($idState);
+		$this->statemodel->deleteEntry($idState);
 
 		redirect('state','refresh');
 		//$this->index();

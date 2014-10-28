@@ -7,7 +7,7 @@ class Guests extends Main_Controller {
         parent::__construct();
         $this->load->helper('url');
         $this->load->helper('form');
-		$this->load->model('guestsModel');
+		$this->load->model('guestsmodel');
 
 		$this->load->library('../controllers/home');
     }
@@ -16,7 +16,7 @@ class Guests extends Main_Controller {
 	{
 		$this->home->checkUserLogged();
 
-		$data['results'] = $this->guestsModel->getAll();
+		$data['results'] = $this->guestsmodel->getAll();
 		
 		$this->load->view('include/header');
       	$this->load->view('guests', $data);
@@ -32,9 +32,9 @@ class Guests extends Main_Controller {
 		
 
 		if($guestId != '') {
-			$this->guestsModel->updateEntry($guestId,$guestName,$guestAddress,$guestCity);
+			$this->guestsmodel->updateEntry($guestId,$guestName,$guestAddress,$guestCity);
 		} else {
-			$this->guestsModel->insertEntry($guestName,$guestAddress,$guestCity);
+			$this->guestsmodel->insertEntry($guestName,$guestAddress,$guestCity);
 		}
 	
 		redirect('guests','refresh');
@@ -44,7 +44,7 @@ class Guests extends Main_Controller {
 	public function delete()
 	{
 		$idGuest = $this->input->get('idGuest');
-		$this->guestsModel->deleteEntry($idGuest);
+		$this->guestsmodel->deleteEntry($idGuest);
 
 		redirect('guests','refresh');
 		//$this->index();
