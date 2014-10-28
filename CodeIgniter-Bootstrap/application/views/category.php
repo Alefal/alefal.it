@@ -52,6 +52,8 @@
             <h4 class="modal-title" id="modalCategoryLabel">Categoria</h4>
           </div>
           <div class="modal-body">
+              <strong>Nome Categoria:</strong>
+              <br />
               <input type="hidden" name="categoryId" id="categoryId"  value="{{categoryId}}" />
                 <input type="text" name="categoryName" id="categoryName" value="{{categoryName}}" class="form-control" placeholder="Nome Categoria" required />
           </div>

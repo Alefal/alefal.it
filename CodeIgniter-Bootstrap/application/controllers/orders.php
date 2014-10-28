@@ -31,13 +31,13 @@ class Orders extends Main_Controller {
       	$this->load->view('include/footer');
 	}
 
-	public function insert()
+	public function insertUpdate()
 	{
+		$idOrder = $this->input->post('idOrder');
 		$idItem = $this->input->post('idItem');
 		$idGuest = $this->input->post('idGuest');
 		$idState = $this->input->post('idState');
 		$quantity = $this->input->post('quantity');
-		$total = $this->input->post('total');
 		
 		$itemName 	= '';
 		$itemPrice 	= 0;
@@ -51,21 +51,26 @@ class Orders extends Main_Controller {
 			$itemCatId = $row->categoryId;
         }
         $updateQnt = intval($itemQnt)-intval($quantity);
+		$total = $itemPrice * $quantity;
 
-        $this->itemsModel->updateEntry($idItem,$itemName,$itemPrice,$updateQnt,$itemCatId);
-		$this->ordersModel->insertEntry($idItem,$idGuest,$idState,$quantity,$total);
+		$stateType 	= '';
+		$state = $this->stateModel->getById($idState);
+		foreach($state as $row) {
+			$stateType = $row->type;
+        }
 
+        //Si deve fare solo se ordine è EVASO
+        if($stateType == 'evaso') {
+			$this->itemsModel->updateEntry($idItem,$itemName,$itemPrice,$updateQnt,$itemCatId);
+        }
+
+        if($idOrder != '') {
+			$this->ordersModel->updateEntry($idOrder,$idItem,$idGuest,$idState,$quantity,$total);
+		} else {
+			$this->ordersModel->insertEntry($idItem,$idGuest,$idState,$quantity,$total);
+		}
+	
 		redirect('orders','refresh');
-	}
-
-	public function update()
-	{
-		$categoryId 	= $this->input->post('idCategory');
-		$categoryName 	= $this->input->post('category');
-		$this->ordersModel->updateEntry($categoryId,$categoryName);
-
-		redirect('orders','refresh');
-		//$this->index();
 	}
 
 	public function delete()
@@ -74,7 +79,6 @@ class Orders extends Main_Controller {
 		$this->ordersModel->deleteEntry($idOrder);
 
 		redirect('orders','refresh');
-		//$this->index();
 	}
    
 }

@@ -53,6 +53,8 @@
           </div>
           <div class="modal-body">
               <div class="form-group">
+                <strong>Tipo:</strong>
+                <br />
                 <input type="hidden" name="stateId" id="stateId"  value="{{stateId}}" />
                 <input type="text" name="stateType" id="stateType" value="{{stateType}}" class="form-control" placeholder="Tipo stato" required />
               </div>

@@ -61,15 +61,21 @@
           </div>
           <div class="modal-body">
               <div class="form-group">
+                <strong>Nome Cliente:</strong>
+                <br />
                 <input type="hidden" name="guestId" id="guestId" value="{{guestId}}" />
                 <input type="text" name="guestName" id="guestName" value="{{guestName}}" class="form-control" placeholder="Nome Cliente" required />
               </div>
 
               <div class="form-group">
+                <strong>Indirizzo:</strong>
+                <br />
                 <input type="text" name="guestAddress" id="guestAddress" value="{{guestAddress}}" class="form-control" placeholder="Indirizzo" required />
               </div>
 
               <div class="form-group">
+                <strong>Città:</strong>
+                <br />
                 <input type="text" name="guestCity" id="guestCity" value="{{guestCity}}" class="form-control" placeholder="Città" required />
               </div>
 

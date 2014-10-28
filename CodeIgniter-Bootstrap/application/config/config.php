@@ -14,6 +14,7 @@
 | path to your installation.
 |
 */
+//$config['base_url']	= 'http://localhost/alefal.it/CodeIgniter-Bootstrap/';
 $config['base_url']	= 'http://localhost/alefal.it/CodeIgniter-Bootstrap/';
 
 /*

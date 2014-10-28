@@ -61,6 +61,21 @@ class ordersModel extends CI_Model {
         $this->db->insert('orders', $this);
     }
 
+    function updateEntry($idOrder,$idItem,$idGuest,$idState,$quantity,$total)
+    {
+        $data = array(
+            'id' => $idOrder,
+            'idItem' => $idItem,
+            'idGuest' => $idGuest,
+            'idState' => $idState,
+            'quantity' => $quantity,
+            'total' => $total
+        );
+
+        $this->db->where('id', $idOrder);
+        $this->db->update('orders', $data); 
+    }
+
     function deleteEntry($id)
     {
         $this->id = $id;

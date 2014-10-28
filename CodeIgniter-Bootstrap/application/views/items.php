@@ -24,7 +24,7 @@
               <tr>
                 <th>#</th>
                 <th>Nome</th>
-                <th>Prezzo</th>
+                <th>Prezzo (&euro;)</th>
                 <th>Quantità</th>
                 <th>Categoria</th>
                 <th>&nbsp;</th>
@@ -67,11 +67,15 @@
           </div>
           <div class="modal-body">
               <div class="form-group">
+                <strong>Nome:</strong>
+                <br />
                 <input type="hidden" name="itemId" id="itemId" value="{{itemId}}" />
                 <input type="text" name="itemName" id="itemName" value="{{itemName}}" class="form-control" placeholder="Nome Prodotto" required />
               </div>
 
               <div class="form-group">
+                <strong>Prezzo:</strong>
+                <br />
                 <div class="input-group">
                   <div class="input-group-addon">&euro;</div>
                   <input type="number" step="any" name="itemPrice" id="itemPrice" value="{{itemPrice}}" class="form-control" placeholder="Prezzo" required />
@@ -79,23 +83,20 @@
               </div>
 
               <div class="form-group">
+                <strong>Quantità:</strong>
+                <br />
                 <input type="number" min="1" name="itemQuantity" id="itemQuantity" value="{{itemQuantity}}" class="form-control" placeholder="Quantità" required />
               </div>
 
               <div class="form-group">
-                Categoria:
-                <!--
-                <select ng-repeat="category in listCategoryAjax">
-                  <option value="{{category.id}}">{{category.name}}</option>
-                </select>
-                -->
-                {{listCategoryAjax}}
-                <select class="form-control" name="itemCategoryId" id="itemCategoryId" value="{{itemCategoryId}}">
-                  <?php
-                  foreach($categoryList as $row) {
-                    echo '<option value="'.$row->id.'">'.$row->name.'</option>';
-                  }
-                  ?>
+                <strong>Categoria:</strong>
+                <br />
+                <select class="form-control" name="itemCategoryId" id="itemCategoryId">
+                  <option 
+                      ng-selected="{{itemCategoryId == category.id}}"
+                      ng-repeat="category in listCategoryAjax" value="{{category.id}}">
+                    {{category.name}}
+                  </option>
                 </select>
               </div>
 

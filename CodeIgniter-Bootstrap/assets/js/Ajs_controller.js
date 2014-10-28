@@ -3,37 +3,76 @@ stockmagazine.controller('MasterController', function ($scope,sharedFunctions) {
   //
 });
 
-/***** Item Controller ****/
-stockmagazine.controller('ItemsController', function ($scope,$http,sharedFunctions) {
+/***** Orders Controller ****/
+stockmagazine.controller('OrdersController', function ($scope,$http,sharedFunctions,ajaxCallServices) {
   $scope.openModal = function() {
-    $scope.itemId = '';
-    $scope.itemName = '';
-    $scope.itemPrice = '';
-    $scope.itemQuantity = '';
-    $scope.itemCategoryId = '';
+    $scope.idOrder = '';
+    $scope.idItem = '';
+    $scope.idGuest = '';
+    $scope.idState = '';
+    $scope.quantity = '';
 
-    $('#modalCategory').modal();
+    ajaxCallServices.getItems()
+      .success(function (items) {
+        //console.log('getItems - success: '+items);
+        $scope.listItems = items;
+      }).error(function (error) {
+        console.log('getItems - error: '+error);
+      });
+
+    ajaxCallServices.getGuests()
+      .success(function (guests) {
+        //console.log('getGuests - success: '+guests);
+        $scope.listGuests = guests;
+      }).error(function (error) {
+        console.log('getGuests - error: '+error);
+      });
+
+    ajaxCallServices.getState()
+      .success(function (state) {
+        //console.log('getState - success: '+state);
+        $scope.listState = state;
+      }).error(function (error) {
+        console.log('getState - error: '+error);
+      });
+
+    $('#modalOrders').modal();
   };
 
-  $scope.editItem = function(id,name,price,qnt,catId) {
-    console.log('editItem: '+id+' | '+name+' | '+price+' | '+qnt+' | '+catId);  
+  $scope.editItem = function(id,itemId,guestId,stateId,qnt) {
+    console.log('editItem: '+id+' | '+itemId+' | '+guestId+' | '+stateId+' | '+qnt);  
 
-    $scope.itemId = id;
-    $scope.itemName = name;
-    $scope.itemPrice = price;
-    $scope.itemQuantity = qnt;
-    $scope.itemCategoryId = catId;
+    $scope.idOrder= id;
+    $scope.idItem = itemId;
+    $scope.idGuest = guestId;
+    $scope.idState = stateId;
+    $scope.quantity = qnt;
 
-    var responsePromise = $http.get('http://localhost/alefal.it/CodeIgniter-Bootstrap/index.php/category/getAll');
+    ajaxCallServices.getItems()
+      .success(function (items) {
+        //console.log('getItems - success: '+items);
+        $scope.listItems = items;
+      }).error(function (error) {
+        console.log('getItems - error: '+error);
+      });
 
-    responsePromise.success(function(data, status, headers, config) {
-      $scope.listCategoryAjax = data;
-    });
-    responsePromise.error(function(data, status, headers, config) {
-        console.loh('error...');
-    });
+    ajaxCallServices.getGuests()
+      .success(function (guests) {
+        //console.log('getGuests - success: '+guests);
+        $scope.listGuests = guests;
+      }).error(function (error) {
+        console.log('getGuests - error: '+error);
+      });
 
-    $('#modalCategory').modal('show'); 
+    ajaxCallServices.getState()
+      .success(function (state) {
+        //console.log('getState - success: '+state);
+        $scope.listState = state;
+      }).error(function (error) {
+        console.log('getState - error: '+error);
+      });
+
+    $('#modalOrders').modal('show'); 
   };
 });
 
@@ -50,6 +89,47 @@ stockmagazine.controller('CategoryController', function ($scope,sharedFunctions)
 
     $scope.categoryId = id;
     $scope.categoryName = name;
+
+    $('#modalCategory').modal('show'); 
+  };
+});
+
+/***** Items Controller ****/
+stockmagazine.controller('ItemsController', function ($scope,$http,sharedFunctions,ajaxCallServices) {
+  $scope.openModal = function() {
+    $scope.itemId = '';
+    $scope.itemName = '';
+    $scope.itemPrice = '';
+    $scope.itemQuantity = '';
+    $scope.itemCategoryId = '';
+
+    ajaxCallServices.getCategory()
+      .success(function (categorie) {
+        //console.log('categoryList - success: '+categorie);
+        $scope.listCategoryAjax = categorie;
+      }).error(function (error) {
+        console.log('categoryList - error: '+error);
+      });
+
+    $('#modalCategory').modal();
+  };
+
+  $scope.editItem = function(id,name,price,qnt,catId) {
+    console.log('editItem: '+id+' | '+name+' | '+price+' | '+qnt+' | '+catId);  
+
+    $scope.itemId = id;
+    $scope.itemName = name;
+    $scope.itemPrice = price;
+    $scope.itemQuantity = qnt;
+    $scope.itemCategoryId = catId;
+
+    ajaxCallServices.getCategory()
+      .success(function (categorie) {
+        //console.log('categoryList - success: '+categorie);
+        $scope.listCategoryAjax = categorie;
+      }).error(function (error) {
+        console.log('categoryList - error: '+error);
+      });
 
     $('#modalCategory').modal('show'); 
   };

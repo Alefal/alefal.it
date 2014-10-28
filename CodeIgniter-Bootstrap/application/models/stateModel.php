@@ -20,7 +20,7 @@ class stateModel extends CI_Model {
 
     function getById($id)
     {
-        $this->db->where('id', 1);
+        $this->db->where('id', $id);
         $query = $this->db->get('state');
 
         return $query->result();
