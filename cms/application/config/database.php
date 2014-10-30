@@ -52,7 +52,7 @@ $active_record = TRUE;
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
 $db['default']['password'] = '';
-$db['default']['database'] = 'stockmagazine';
+$db['default']['database'] = 'cms';
 
 /* REMOTE  
 $db['default']['hostname'] = '62.149.150.219';
