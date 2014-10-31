@@ -14,7 +14,7 @@ class Home extends CI_Controller {
       $session_data = $this->session->userdata('logged_in');
       $data['username'] = $session_data['username'];
       
-      redirect('orders', 'refresh');
+      redirect('categories', 'refresh');
     } else {
       //If no session, redirect to login page
       redirect('login', 'refresh');

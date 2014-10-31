@@ -1,5 +1,5 @@
 <?php if (!defined('BASEPATH')) die();
-class Category extends Main_Controller {
+class Categories extends Main_Controller {
 
 	function __construct()
     {
@@ -7,7 +7,7 @@ class Category extends Main_Controller {
         parent::__construct();
         $this->load->helper('url');
         $this->load->helper('form');
-		$this->load->model('categorymodel');
+		$this->load->model('categoriesmodel');
 
 		$this->load->library('../controllers/home');
     }
@@ -16,10 +16,11 @@ class Category extends Main_Controller {
 	{
 		$this->home->checkUserLogged();
 
-		$data['results'] = $this->categorymodel->getAll();
+		$data['results'] = $this->categoriesmodel->getAll();
+		//$data['results'] = $this->categoriesmodel->getAllJoin();
 		
 		$this->load->view('include/header');
-      	$this->load->view('category', $data);
+      	$this->load->view('categories', $data);
       	$this->load->view('include/footer');
 
       	//REST call: 
@@ -33,21 +34,21 @@ class Category extends Main_Controller {
 		$categoryName = $this->input->post('categoryName');
 
 		if($categoryId != '') {
-			$this->categorymodel->updateEntry($categoryId,$categoryName);
+			$this->categoriesmodel->updateEntry($categoryId,$categoryName);
 		} else {
-			$this->categorymodel->insertEntry($categoryName);
+			$this->categoriesmodel->insertEntry($categoryName);
 		}
 	
-		redirect('category','refresh');
+		redirect('categories','refresh');
 		//$this->index();
 	}
 
 	public function delete()
 	{
 		$categoryId = $this->input->get('idCategory');
-		$this->categorymodel->deleteEntry($categoryId);
+		$this->categoriesmodel->deleteEntry($categoryId);
 
-		redirect('category','refresh');
+		redirect('categories','refresh');
 		//$this->index();
 	}
 	

@@ -2,17 +2,17 @@
 
 require(APPPATH.'/libraries/REST_Controller.php');
 
-class StateREST extends REST_Controller {
+class TagsREST extends REST_Controller {
 	function __construct()
     {
         // Call the Model constructor
         parent::__construct();
-        $this->load->model('statemodel');
+        $this->load->model('tagsmodel');
     }
 
     function items_get()
     {
-        $items = $this->statemodel->getAll();
+        $items = $this->tagsmodel->getAll();
          
         if($items) {
             $this->response($items, 200); // 200 being the HTTP response code

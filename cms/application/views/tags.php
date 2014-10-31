@@ -1,14 +1,14 @@
-<div ng-controller="StateController">
+<div ng-controller="TagsController">
 
   <div class="container-fluid">
     <div class="row">
       <div class="col-sm-12 main">
         
         <div class="col-sm-9">
-          <h2 class="sub-header">Stati Ordini</h2>
+          <h2 class="sub-header">Tags</h2>
         </div>
         <div class="col-sm-3" align="right">
-          <button class="btn btn-primary" ng-click="openModal()">Aggiungi tipologia</button>
+          <button class="btn btn-primary" ng-click="openModal()">Aggiungi tag</button>
         </div>
 
         <div class="table-responsive">
@@ -16,7 +16,7 @@
             <thead>
               <tr>
                 <th>#</th>
-                <th>Tipo</th>
+                <th>Nome</th>
                 <th>&nbsp;</th>
               </tr>
             </thead>
@@ -25,8 +25,8 @@
               foreach($results as $row) {
                 echo '<tr>';
                 echo '<td>'.$row->id.'</td>';
-                echo '<td>'.$row->type.'</td>';
-                echo '<td align="right"><span class="glyphicon glyphicon-pencil" ng-click="editItem(\''.$row->id.'\',\''.$row->type.'\')"></span> <a href="'.base_url().'index.php/state/delete?idState='.$row->id.'" onclick="return confirm(\'Are you sure ?\')"><span class="glyphicon glyphicon-remove"></span></a></td>';
+                echo '<td>'.$row->name.'</td>';
+                echo '<td align="right"><span class="glyphicon glyphicon-pencil" ng-click="editItem(\''.$row->id.'\',\''.$row->name.'\')"></span> <a href="'.base_url().'index.php/tags/delete?idTags='.$row->id.'" onclick="return confirm(\'Are you sure ?\')"><span class="glyphicon glyphicon-remove"></span></a></td>';
                 echo '<tr>';
               }
               ?>
@@ -39,19 +39,19 @@
 
   <div id="modalState" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-sm">
-      <?php echo form_open('state/insertUpdate'); ?>
+      <?php echo form_open('tags/insertUpdate'); ?>
 
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <h4 class="modal-title" id="modalCategoryLabel">Stati</h4>
+            <h4 class="modal-title" id="modalCategoryLabel">Tag</h4>
           </div>
           <div class="modal-body">
               <div class="form-group">
-                <strong>Tipo:</strong>
+                <strong>Nome:</strong>
                 <br />
-                <input type="hidden" name="stateId" id="stateId"  value="{{stateId}}" />
-                <input type="text" name="stateType" id="stateType" value="{{stateType}}" class="form-control" placeholder="Tipo stato" required />
+                <input type="hidden" name="tagsId" id="tagsId"  value="{{tagsId}}" />
+                <input type="text" name="tagsName" id="tagsName" value="{{tagsName}}" class="form-control" placeholder="Nome tag" required />
               </div>
 
           </div>

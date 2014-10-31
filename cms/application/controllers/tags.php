@@ -1,5 +1,5 @@
 <?php if (!defined('BASEPATH')) die();
-class State extends Main_Controller {
+class Tags extends Main_Controller {
 
 	function __construct()
     {
@@ -7,7 +7,7 @@ class State extends Main_Controller {
         parent::__construct();
         $this->load->helper('url');
         $this->load->helper('form');
-        $this->load->model('statemodel');
+        $this->load->model('tagsmodel');
 
         $this->load->library('../controllers/home');
     }
@@ -16,34 +16,34 @@ class State extends Main_Controller {
 	{
 		$this->home->checkUserLogged();
 
-		$data['results'] = $this->statemodel->getAll();
+		$data['results'] = $this->tagsmodel->getAll();
 		
 		$this->load->view('include/header');
-      	$this->load->view('state', $data);
+      	$this->load->view('tags', $data);
       	$this->load->view('include/footer');
 	}
 
 	public function insertUpdate()
 	{
-		$stateId = $this->input->post('stateId');
-		$stateType = $this->input->post('stateType');
+		$tagsId = $this->input->post('tagsId');
+		$tagsName = $this->input->post('tagsName');
 
-		if($stateId != '') {
-			$this->statemodel->updateEntry($stateId,$stateType);
+		if($tagsId != '') {
+			$this->tagsmodel->updateEntry($tagsId,$tagsName);
 		} else {
-			$this->statemodel->insertEntry($stateType);
+			$this->tagsmodel->insertEntry($tagsName);
 		}
 	
-		redirect('state','refresh');
+		redirect('tags','refresh');
 		//$this->index();
 	}
 
 	public function delete()
 	{
-		$idState = $this->input->get('idState');
-		$this->statemodel->deleteEntry($idState);
+		$idTags = $this->input->get('idTags');
+		$this->tagsmodel->deleteEntry($idTags);
 
-		redirect('state','refresh');
+		redirect('tags','refresh');
 		//$this->index();
 	}
    

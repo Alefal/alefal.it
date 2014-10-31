@@ -3,81 +3,19 @@ stockmagazine.controller('MasterController', function ($scope,sharedFunctions) {
   //
 });
 
-/***** Orders Controller ****/
-stockmagazine.controller('OrdersController', function ($scope,$http,sharedFunctions,ajaxCallServices) {
-  $scope.openModal = function() {
-    $scope.idOrder = '';
-    $scope.idItem = '';
-    $scope.idGuest = '';
-    $scope.idState = '';
-    $scope.quantity = '';
-
-    ajaxCallServices.getItems()
-      .success(function (items) {
-        //console.log('getItems - success: '+items);
-        $scope.listItems = items;
-      }).error(function (error) {
-        console.log('getItems - error: '+error);
-      });
-
-    ajaxCallServices.getGuests()
-      .success(function (guests) {
-        //console.log('getGuests - success: '+guests);
-        $scope.listGuests = guests;
-      }).error(function (error) {
-        console.log('getGuests - error: '+error);
-      });
-
-    ajaxCallServices.getState()
-      .success(function (state) {
-        //console.log('getState - success: '+state);
-        $scope.listState = state;
-      }).error(function (error) {
-        console.log('getState - error: '+error);
-      });
-
-    $('#modalOrders').modal();
-  };
-
-  $scope.editItem = function(id,itemId,guestId,stateId,qnt) {
-    console.log('editItem: '+id+' | '+itemId+' | '+guestId+' | '+stateId+' | '+qnt);  
-
-    $scope.idOrder= id;
-    $scope.idItem = itemId;
-    $scope.idGuest = guestId;
-    $scope.idState = stateId;
-    $scope.quantity = qnt;
-
-    ajaxCallServices.getItems()
-      .success(function (items) {
-        //console.log('getItems - success: '+items);
-        $scope.listItems = items;
-      }).error(function (error) {
-        console.log('getItems - error: '+error);
-      });
-
-    ajaxCallServices.getGuests()
-      .success(function (guests) {
-        //console.log('getGuests - success: '+guests);
-        $scope.listGuests = guests;
-      }).error(function (error) {
-        console.log('getGuests - error: '+error);
-      });
-
-    ajaxCallServices.getState()
-      .success(function (state) {
-        //console.log('getState - success: '+state);
-        $scope.listState = state;
-      }).error(function (error) {
-        console.log('getState - error: '+error);
-      });
-
-    $('#modalOrders').modal('show'); 
-  };
-});
-
 /***** Category Controller ****/
-stockmagazine.controller('CategoryController', function ($scope,sharedFunctions) {
+stockmagazine.controller('CategoriesController', function ($scope,sharedFunctions,ajaxCallServices) {
+
+  ajaxCallServices.getCategories()
+    .success(function (listCategories) {
+      console.log('getSubCategoryList - success: '+JSON.stringify(listCategories));
+
+      $scope.listCategories = listCategories;
+
+    }).error(function (error) {
+      console.log('getSubCategoryList - error: '+error);
+    });
+
   $scope.openModal = function() {
     $scope.categoryId = '';
     $scope.categoryName = '';
@@ -92,85 +30,37 @@ stockmagazine.controller('CategoryController', function ($scope,sharedFunctions)
 
     $('#modalCategory').modal('show'); 
   };
-});
 
-/***** Items Controller ****/
-stockmagazine.controller('ItemsController', function ($scope,$http,sharedFunctions,ajaxCallServices) {
-  $scope.openModal = function() {
-    $scope.itemId = '';
-    $scope.itemName = '';
-    $scope.itemPrice = '';
-    $scope.itemQuantity = '';
-    $scope.itemCategoryId = '';
+  $scope.getSubCategoryList = function(id) {
 
-    ajaxCallServices.getCategory()
-      .success(function (categorie) {
-        //console.log('categoryList - success: '+categorie);
-        $scope.listCategoryAjax = categorie;
+    console.log('getSubCategoryList - id: '+id);
+
+    ajaxCallServices.getSubCategoryList(id)
+      .success(function (subcategory) {
+        console.log('getSubCategoryList - success: '+JSON.stringify(subcategory));
+
+        $scope.listSubCategory = subcategory;;
+
       }).error(function (error) {
-        console.log('categoryList - error: '+error);
+        console.log('getSubCategoryList - error: '+error);
       });
 
-    $('#modalCategory').modal();
-  };
-
-  $scope.editItem = function(id,name,price,qnt,catId) {
-    console.log('editItem: '+id+' | '+name+' | '+price+' | '+qnt+' | '+catId);  
-
-    $scope.itemId = id;
-    $scope.itemName = name;
-    $scope.itemPrice = price;
-    $scope.itemQuantity = qnt;
-    $scope.itemCategoryId = catId;
-
-    ajaxCallServices.getCategory()
-      .success(function (categorie) {
-        //console.log('categoryList - success: '+categorie);
-        $scope.listCategoryAjax = categorie;
-      }).error(function (error) {
-        console.log('categoryList - error: '+error);
-      });
-
-    $('#modalCategory').modal('show'); 
   };
 });
 
-/***** Guests Controller ****/
-stockmagazine.controller('GuestsController', function ($scope,sharedFunctions) {
+/***** Tags Controller ****/
+stockmagazine.controller('TagsController', function ($scope,sharedFunctions) {
   $scope.openModal = function() {
-    $scope.guestId = '';
-    $scope.guestName = '';
-    $scope.guestAddress = '';
-    $scope.guestCity = '';
-
-    $('#modalGuests').modal();
-  };
-
-  $scope.editItem = function(id,name,address,city) {
-    console.log('editItem: '+id+' | '+name+' | '+address+' | '+city);  
-
-    $scope.guestId = id;
-    $scope.guestName = name;
-    $scope.guestAddress = address;
-    $scope.guestCity = city;
-
-    $('#modalGuests').modal('show'); 
-  };
-});
-
-/***** State Controller ****/
-stockmagazine.controller('StateController', function ($scope,sharedFunctions) {
-  $scope.openModal = function() {
-    $scope.stateId = '';
-    $scope.stateType = '';
+    $scope.tagsId = '';
+    $scope.tagsName = '';
     $('#modalState').modal();
   };
 
-  $scope.editItem = function(id,type) {
-    console.log('editItem: '+id+' | '+type);  
+  $scope.editItem = function(id,name) {
+    console.log('editItem: '+id+' | '+name);  
 
-    $scope.stateId = id;
-    $scope.stateType = type;
+    $scope.tagsId = id;
+    $scope.tagsName = name;
 
     $('#modalState').modal('show'); 
   };

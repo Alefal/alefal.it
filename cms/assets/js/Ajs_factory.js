@@ -1,28 +1,22 @@
 stockmagazine.factory('ajaxCallServices', function($http) {
 
-    var urlBase = 'http://localhost/alefal.it/stockmagazine';
+    var urlBase = 'http://localhost/alefal.it/cms';
     //var urlBase = 'http://www.amalficoastapp.it/comingsoon/stockmagazine';
     var ajaxCallServices = {};
 
-    /***** getCategory ****/
-    ajaxCallServices.getCategory = function () {
-        return $http.get(urlBase+ '/index.php/categoryREST/items/format/json');
+    /***** getSubCategory ****/
+    ajaxCallServices.getCategories = function () {
+        return $http.get(urlBase+ '/index.php/categoriesREST/items/format/json');
     };
-    /***** getGuests ****/
-    ajaxCallServices.getGuests = function () {
-        return $http.get(urlBase+ '/index.php/guestsREST/items/format/json');
+
+    /***** getSubCategory ****/
+    ajaxCallServices.getSubCategory = function (id) {
+        return $http.get(urlBase+ '/index.php/categoriesREST/subcategory/format/json?id='+id);
     };
-    /***** getItems ****/
-    ajaxCallServices.getItems = function () {
-        return $http.get(urlBase+ '/index.php/itemsREST/items/format/json');
-    };
-    /***** getOrders ****/
-    ajaxCallServices.getOrders = function () {
-        return $http.get(urlBase+ '/index.php/ordersREST/items/format/json');
-    };
-    /***** getState ****/
-    ajaxCallServices.getState = function () {
-        return $http.get(urlBase+ '/index.php/stateREST/items/format/json');
+
+    /***** getSubCategoryList ****/
+    ajaxCallServices.getSubCategoryList = function (id) {
+        return $http.get(urlBase+ '/index.php/categoriesREST/subcategorylist/format/json?id='+id);
     };
 
     return ajaxCallServices;

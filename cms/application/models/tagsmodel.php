@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class categoryModel extends CI_Model {
+class tagsModel extends CI_Model {
 
     var $id   = '';
     var $name = '';
@@ -14,38 +14,38 @@ class categoryModel extends CI_Model {
     
     function getAll()
     {
-        $query = $this->db->get('category');
+        $query = $this->db->get('tags');
         return $query->result();
     }
 
     function getById($id)
     {
-        $this->db->where('id', 1);
-        $query = $this->db->get('category');
+        $this->db->where('id', $id);
+        $query = $this->db->get('tags');
 
         return $query->result();
     }
 
-    function insertEntry($categoryName)
+    function insertEntry($tagsname)
     {
-        $this->name = $categoryName; // please read the below note
-        $this->db->insert('category', $this);
+        $this->name = $tagsname; // please read the below note
+        $this->db->insert('tags', $this);
     }
 
-    function updateEntry($categoryId,$categoryName)
+    function updateEntry($tagsid,$tagsname)
     {
         $data = array(
-           'name' => $categoryName
+           'name' => $tagsname
         );
-        $this->db->where('id', $categoryId);
-        $this->db->update('category', $data);
+        $this->db->where('id', $tagsid);
+        $this->db->update('tags', $data);
     }
 
     function deleteEntry($id)
     {
         $this->id = $id;
         $this->db->where('id', $id);
-        $this->db->delete('category');
+        $this->db->delete('tags');
     }
 
 }
