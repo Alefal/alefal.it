@@ -9,6 +9,11 @@ stockmagazine.factory('ajaxCallServices', function($http) {
         return $http.get(urlBase+ '/index.php/categoriesREST/items/format/json');
     };
 
+    /***** getParentCategories ****/
+    ajaxCallServices.getParentCategories = function (id) {
+        return $http.get(urlBase+ '/index.php/CategoriesREST/parentcategories/format/json?id='+id);
+    };
+
     /***** getSubCategory ****/
     ajaxCallServices.getSubCategory = function (id) {
         return $http.get(urlBase+ '/index.php/categoriesREST/subcategory/format/json?id='+id);

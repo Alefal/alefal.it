@@ -23,11 +23,23 @@ stockmagazine.controller('CategoriesController', function ($scope,sharedFunction
     $('#modalCategory').modal();
   };
 
-  $scope.editItem = function(id,name) {
-    console.log('editItem: '+id+' | '+name);  
+  $scope.editItem = function(id,name,parentId) {
+    console.log('editItem: '+id+' | '+name+' | '+parentId);  
+
+    ajaxCallServices.getParentCategories(id)
+      .success(function (parentcategories) {
+        console.log('getParentCategories - success: '+JSON.stringify(parentcategories));
+
+        $scope.listParentCategories = parentcategories;
+
+      }).error(function (error) {
+        console.log('getParentCategories - error: '+error);
+      });
+
 
     $scope.categoryId = id;
     $scope.categoryName = name;
+    $scope.categoryParentId = parentId;
 
     $('#modalCategory').modal('show'); 
   };
@@ -42,7 +54,7 @@ stockmagazine.controller('CategoriesController', function ($scope,sharedFunction
       .success(function (subcategory) {
         console.log('getSubCategoryList - success: '+JSON.stringify(subcategory));
 
-        $scope.listSubCategory = subcategory;;
+        $scope.listSubCategory = subcategory;
 
       }).error(function (error) {
         console.log('getSubCategoryList - error: '+error);

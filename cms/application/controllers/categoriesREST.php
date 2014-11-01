@@ -22,6 +22,20 @@ class CategoriesREST extends REST_Controller {
         }
     }
 
+    function parentcategories_get()
+    {
+        $id = $this->input->get('id');
+        $items = $this->categoriesmodel->getParentCategories($id);
+         
+        if($items) {
+            $this->response($items, 200); // 200 being the HTTP response code
+        } 
+        else
+        {
+            $this->response(NULL, 404);
+        }
+    }
+
     function subcategory_get()
     {
         $id = $this->input->get('id');

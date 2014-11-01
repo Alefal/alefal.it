@@ -58,6 +58,15 @@ class categoriesModel extends CI_Model {
         return $query->result();
     }
 
+    function getParentCategories($id)
+    {
+        $this->db->where('parentId', null);
+        $this->db->where('id !=', $id);
+        $query = $this->db->get('categories');
+
+        return $query->result();
+    }
+
     function insertEntry($categoryName)
     {
         $this->name = $categoryName; // please read the below note

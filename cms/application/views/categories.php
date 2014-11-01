@@ -20,11 +20,15 @@
         </div>
 
         <div class="row rowItem" ng-repeat="category in listCategories" ng-class-odd="'odd'" ng-class-even="'even'">
-          <div class="col-xs-3 col-md-3"><span class="glyphicon glyphicon-chevron-right" ng-click="getSubCategoryList(category.id)"></span></div>
+          <div class="col-xs-3 col-md-3"><span class="glyphicon glyphicon-chevron-right"></span></div>
           <div class="col-xs-6 col-md-6">
             <h4><span class="label label-default">{{category.name}}</span></h4>
           </div>
-          <div class="col-xs-3 col-md-3" align="right"><span class="glyphicon glyphicon-pencil" ng-click="editItem(category.id,category.name)"></span> <a href="index.php/categories/delete?idCategory={{category.id}}" onclick="return confirm(\'Are you sure ?\')"><span class="glyphicon glyphicon-remove"></span></a></div>
+          <div class="col-xs-3 col-md-3" align="right">
+            <span class="glyphicon glyphicon-sort-by-attributes" ng-click="getSubCategoryList(category.id)"></span> 
+            <span class="glyphicon glyphicon-pencil" ng-click="editItem(category.id,category.name,category.parentId)"></span> 
+            <a href="index.php/categories/delete?idCategory={{category.id}}" onclick="return confirm(\'Are you sure ?\')"><span class="glyphicon glyphicon-remove"></span></a>
+        </div>
         </div>
 
         <h4 class="rowItemSubTitle">{{titleSubcategory}}</h4>
@@ -33,7 +37,7 @@
           <div class="col-xs-6 col-md-6">
             <h4><span class="label label-primary">{{subcategory.name}}</span></h4>
           </div>
-          <div class="col-xs-3 col-md-3" align="right"><span class="glyphicon glyphicon-pencil" ng-click="editItem(subcategory.id,subcategory.name)"></span> <a href="index.php/categories/delete?idCategory={{subcategory.id}}" onclick="return confirm(\'Are you sure ?\')"><span class="glyphicon glyphicon-remove"></span></a></div>
+          <div class="col-xs-3 col-md-3" align="right"><span class="glyphicon glyphicon-pencil" ng-click="editItem(subcategory.id,subcategory.name,subcategory.parentId)"></span> <a href="index.php/categories/delete?idCategory={{subcategory.id}}" onclick="return confirm(\'Are you sure ?\')"><span class="glyphicon glyphicon-remove"></span></a></div>
         </div>
 
 
@@ -104,10 +108,26 @@
             <h4 class="modal-title" id="modalCategoryLabel">Categoria</h4>
           </div>
           <div class="modal-body">
+            <div class="form-group">
               <strong>Nome Categoria:</strong>
               <br />
               <input type="hidden" name="categoryId" id="categoryId"  value="{{categoryId}}" />
-                <input type="text" name="categoryName" id="categoryName" value="{{categoryName}}" class="form-control" placeholder="Nome Categoria" required />
+            <input type="text" name="categoryName" id="categoryName" value="{{categoryName}}" class="form-control" placeholder="Nome Categoria" required />
+            </div>
+
+            <div class="form-group">
+              <strong>Categoria:</strong>
+              <br />
+              <select class="form-control" name="parentCategoryId" id="parentCategoryId">
+                
+                <option 
+                    ng-selected="{{categoryParentId == parentcategories.parentId}}"
+                    ng-repeat="category in listParentCategories" value="{{category.id}}">
+                  {{category.name}}
+                </option>
+              </select>
+            </div>
+
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
