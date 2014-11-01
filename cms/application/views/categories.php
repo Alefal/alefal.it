@@ -14,24 +14,27 @@
         </div>
         
         <div class="row">
-          <div class="col-xs-3 col-md-3"><h4>#</h4></div>
-          <div class="col-xs-6 col-md-6"><h4>Category</h4></div>
+          <div class="col-xs-3 col-md-3">&nbsp;</div>
+          <div class="col-xs-6 col-md-6"><h4>Nome</h4></div>
           <div class="col-xs-3 col-md-3">&nbsp;</div>
         </div>
 
-        <div class="row" ng-repeat="category in listCategories">
-          <div class="col-xs-3 col-md-3"><span class="glyphicon glyphicon-plus" ng-click="getSubCategoryList(category.id)"></span></div>
-          <div class="col-xs-6 col-md-6">{{category.name}}</div>
-          <div class="col-xs-3 col-md-3"><span class="glyphicon glyphicon-pencil" ng-click="editItem(category.id,category.name)"></span> <a href="index.php/categories/delete?idCategory={{category.id}}" onclick="return confirm(\'Are you sure ?\')"><span class="glyphicon glyphicon-remove"></span></a></div>
+        <div class="row rowItem" ng-repeat="category in listCategories" ng-class-odd="'odd'" ng-class-even="'even'">
+          <div class="col-xs-3 col-md-3"><span class="glyphicon glyphicon-chevron-right" ng-click="getSubCategoryList(category.id)"></span></div>
+          <div class="col-xs-6 col-md-6">
+            <h4><span class="label label-default">{{category.name}}</span></h4>
+          </div>
+          <div class="col-xs-3 col-md-3" align="right"><span class="glyphicon glyphicon-pencil" ng-click="editItem(category.id,category.name)"></span> <a href="index.php/categories/delete?idCategory={{category.id}}" onclick="return confirm(\'Are you sure ?\')"><span class="glyphicon glyphicon-remove"></span></a></div>
         </div>
 
-          <div class="row" ng-repeat="subcategory in listSubCategory">
-            <div class="col-xs-3 col-md-3"></div>
-            <div class="col-xs-6 col-md-6">{{subcategory.name}}</div>
-            <div class="col-xs-3 col-md-3"><span class="glyphicon glyphicon-pencil" ng-click="editItem(subcategory.id,subcategory.name)"></span> <a href="index.php/categories/delete?idCategory={{subcategory.id}}" onclick="return confirm(\'Are you sure ?\')"><span class="glyphicon glyphicon-remove"></span></a></div>
+        <h4 class="rowItemSubTitle">{{titleSubcategory}}</h4>
+        <div class="row rowItemSub" ng-repeat="subcategory in listSubCategory"  ng-class-odd="'odd'" ng-class-even="'even'">
+          <div class="col-xs-3 col-md-3"></div>
+          <div class="col-xs-6 col-md-6">
+            <h4><span class="label label-primary">{{subcategory.name}}</span></h4>
           </div>
-
-
+          <div class="col-xs-3 col-md-3" align="right"><span class="glyphicon glyphicon-pencil" ng-click="editItem(subcategory.id,subcategory.name)"></span> <a href="index.php/categories/delete?idCategory={{subcategory.id}}" onclick="return confirm(\'Are you sure ?\')"><span class="glyphicon glyphicon-remove"></span></a></div>
+        </div>
 
 
           <?php

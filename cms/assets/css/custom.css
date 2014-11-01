@@ -9,3 +9,22 @@ body {
 .glyphicon {
 	font-size: 30px;
 }
+.rowItem {
+	border: 1px solid #cccccc;
+	padding: 10px;
+}
+.rowItemSub {
+	border: 1px solid #cccccc;
+	padding: 10px;
+	margin-left: 25px;
+}
+.rowItemSubTitle {
+	padding: 10px;
+	margin-left: 25px;
+}
+.odd {
+	background: #f4f4f4;
+}
+.even {
+	background: #fff;
+}

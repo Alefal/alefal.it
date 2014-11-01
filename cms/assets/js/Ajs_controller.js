@@ -6,6 +6,7 @@ stockmagazine.controller('MasterController', function ($scope,sharedFunctions) {
 /***** Category Controller ****/
 stockmagazine.controller('CategoriesController', function ($scope,sharedFunctions,ajaxCallServices) {
 
+  //Lista categorie
   ajaxCallServices.getCategories()
     .success(function (listCategories) {
       console.log('getSubCategoryList - success: '+JSON.stringify(listCategories));
@@ -34,6 +35,8 @@ stockmagazine.controller('CategoriesController', function ($scope,sharedFunction
   $scope.getSubCategoryList = function(id) {
 
     console.log('getSubCategoryList - id: '+id);
+
+    $scope.titleSubcategory = 'Sotto Categorie';
 
     ajaxCallServices.getSubCategoryList(id)
       .success(function (subcategory) {
