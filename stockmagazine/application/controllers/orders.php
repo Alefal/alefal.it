@@ -33,11 +33,24 @@ class Orders extends Main_Controller {
 
 	public function insertUpdate()
 	{
+
+		//get all input
+		$data = $this->input->post(NULL, TRUE);
+
+		foreach ($data as $key => $value) {
+    		if(substr( $key, 0, 2 ) === '__') {
+    			//Items
+    			echo "Key: $key; Value: $value<br />\n";
+    		}
+		}
+
+		//echo '<pre>'; var_dump($postForm); echo '</pre>';
+
 		$idOrder = $this->input->post('idOrder');
-		$idItem = $this->input->post('idItem');
 		$idGuest = $this->input->post('idGuest');
 		$idState = $this->input->post('idState');
-		$quantity = $this->input->post('quantity');
+		echo $idOrder.'|'.$idGuest.'|'.$idState;
+		die;
 		
 		$itemName 	= '';
 		$itemPrice 	= 0;

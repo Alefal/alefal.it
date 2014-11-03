@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Ott 21, 2014 alle 16:53
+-- Generation Time: Nov 03, 2014 alle 20:13
 -- Versione del server: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
 
 --
 -- Dump dei dati per la tabella `category`
@@ -38,8 +38,6 @@ CREATE TABLE IF NOT EXISTS `category` (
 
 INSERT INTO `category` (`id`, `name`) VALUES
 (21, 'Vino bianco'),
-(22, 'Vino rosso'),
-(23, 'Spumante'),
 (26, 'Champagne');
 
 -- --------------------------------------------------------
@@ -54,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `guests` (
   `address` varchar(255) NOT NULL,
   `city` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dump dei dati per la tabella `guests`
@@ -77,7 +75,8 @@ CREATE TABLE IF NOT EXISTS `items` (
   `price` double NOT NULL,
   `quantity` int(11) NOT NULL,
   `categoryId` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `category` (`categoryId`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 --
@@ -85,10 +84,28 @@ CREATE TABLE IF NOT EXISTS `items` (
 --
 
 INSERT INTO `items` (`id`, `name`, `price`, `quantity`, `categoryId`) VALUES
-(4, 'Marlot', 25, 6, 22),
-(6, 'Brunello di Montalcino', 55.8, -20, 22),
-(13, 'Aglianico', 34, 90, 22),
-(14, 'Cinzano', 21, 67, 23);
+(4, 'Marlot', 25, 200, 21),
+(6, 'Brunello di Montalcino', 55.8, 100, 21),
+(13, 'Aglianico', 34, 100, 21),
+(14, 'Cinzano', 21, 70, 26),
+(15, 'Aglianico', 1, 60, 21);
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `orderline`
+--
+
+CREATE TABLE IF NOT EXISTS `orderline` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `idOrder` int(11) NOT NULL,
+  `idItem` int(11) NOT NULL,
+  `quantity` double NOT NULL,
+  `total` double NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `IndexOrder` (`idOrder`),
+  UNIQUE KEY `IndexItem` (`idItem`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -98,25 +115,13 @@ INSERT INTO `items` (`id`, `name`, `price`, `quantity`, `categoryId`) VALUES
 
 CREATE TABLE IF NOT EXISTS `orders` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `idItem` int(11) NOT NULL,
   `idGuest` int(11) NOT NULL,
   `idState` int(11) NOT NULL,
-  `quantity` double NOT NULL,
   `total` double DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
-
---
--- Dump dei dati per la tabella `orders`
---
-
-INSERT INTO `orders` (`id`, `idItem`, `idGuest`, `idState`, `quantity`, `total`) VALUES
-(5, 4, 1, 1, 12, 1),
-(6, 4, 1, 1, 1, 1),
-(8, 14, 5, 4, 33, 0),
-(9, 4, 1, 1, 3, 0),
-(12, 6, 1, 1, 70, 0),
-(13, 4, 1, 1, 90, 0);
+  `numFattura` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `numFattura` (`numFattura`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
 -- --------------------------------------------------------
 
@@ -128,7 +133,7 @@ CREATE TABLE IF NOT EXISTS `state` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dump dei dati per la tabella `state`
@@ -156,7 +161,18 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`) VALUES
-(1, 'demo', 'demo');
+(1, 'demo', 'fe01ce2a7fbac8fafaed7c982a04e229');
+
+--
+-- Limiti per le tabelle scaricate
+--
+
+--
+-- Limiti per la tabella `orderline`
+--
+ALTER TABLE `orderline`
+  ADD CONSTRAINT `orderline_ibfk_2` FOREIGN KEY (`idItem`) REFERENCES `items` (`id`),
+  ADD CONSTRAINT `orderline_ibfk_1` FOREIGN KEY (`idOrder`) REFERENCES `orders` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

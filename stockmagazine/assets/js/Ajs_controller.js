@@ -5,12 +5,22 @@ stockmagazine.controller('MasterController', function ($scope,sharedFunctions) {
 
 /***** Orders Controller ****/
 stockmagazine.controller('OrdersController', function ($scope,$http,sharedFunctions,ajaxCallServices) {
+  var itemsDynamic = [
+    { 
+      id : '1',
+      name: '',
+      quantity: ''
+    }
+  ]; 
+
   $scope.openModal = function() {
     $scope.idOrder = '';
-    $scope.idItem = '';
     $scope.idGuest = '';
     $scope.idState = '';
-    $scope.quantity = '';
+
+    // assign this data to an object to store all our form data
+    $scope.formData = {};
+    $scope.formData.items = itemsDynamic;
 
     ajaxCallServices.getItems()
       .success(function (items) {
@@ -39,14 +49,26 @@ stockmagazine.controller('OrdersController', function ($scope,$http,sharedFuncti
     $('#modalOrders').modal();
   };
 
-  $scope.editItem = function(id,itemId,guestId,stateId,qnt) {
-    console.log('editItem: '+id+' | '+itemId+' | '+guestId+' | '+stateId+' | '+qnt);  
+  $scope.addItemForProduct = function(id) {
+    var newId = parseInt(id) + 1;
+    var newObj = { 
+      id: newId, 
+      name: '', 
+      quantity:''
+    };
+
+    itemsDynamic.push(newObj);
+
+    $scope.formData = {};
+    $scope.formData.items = itemsDynamic;
+  };
+
+  $scope.editItem = function(id,guestId,stateId) {
+    console.log('editItem: '+id+' | '+guestId+' | '+stateId);  
 
     $scope.idOrder= id;
-    $scope.idItem = itemId;
     $scope.idGuest = guestId;
     $scope.idState = stateId;
-    $scope.quantity = qnt;
 
     ajaxCallServices.getItems()
       .success(function (items) {

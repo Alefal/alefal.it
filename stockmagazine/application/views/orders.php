@@ -18,10 +18,9 @@
             <thead>
               <tr>
                 <th>#</th>
-                <th>Prodotto</th>
+                <th>Fattura</th>
                 <th>Cliente</th>
                 <th>Stato</th>
-                <th>Quantità</th>
                 <th>Totale (&euro;)</th>
                 <th>&nbsp;</th>
               </tr>
@@ -31,12 +30,11 @@
               foreach($results as $row) {
                 echo '<tr>';
                 echo '<td>'.$row->oId.'</td>';
-                echo '<td>'.$row->iName.'</td>';
+                echo '<td>'.$row->oFattura.'</td>';
                 echo '<td>'.$row->gName.'</td>';
                 echo '<td>'.$row->sType.'</td>';
-                echo '<td>'.$row->oQuantity.'</td>';
                 echo '<td>'.$row->oTotal.'</td>';
-                echo '<td align="right"><span class="glyphicon glyphicon-pencil" ng-click="editItem(\''.$row->oId.'\',\''.$row->iId.'\',\''.$row->gId.'\',\''.$row->sId.'\',\''.$row->oQuantity.'\')"></span> <a href="'.base_url().'index.php/orders/delete?idOrder='.$row->oId.'" onclick="return confirm(\'Are you sure ?\')"><span class="glyphicon glyphicon-remove"></span></a></td>';
+                echo '<td align="right"><span class="glyphicon glyphicon-pencil" ng-click="editItem()"></span> <a href="'.base_url().'index.php/orders/delete?idOrder='.$row->oId.'" onclick="return confirm(\'Are you sure ?\')"><span class="glyphicon glyphicon-remove"></span></a></td>';
                 echo '<tr>';
               }
               ?>
@@ -71,12 +69,14 @@
                 </select>
               </div>
 
-              <div class="row" id="listItemsOrder">
+              <!-- START: line order -->
+              <div class="row" id="listItemsOrder" ng-repeat="itemDynamic in formData.items">
+
                 <div class="col-sm-5">
                   <div class="form-group">
                   <strong>Prodotto:</strong>
                   <br />
-                  <select class="form-control" name="idItem" id="idItem">
+                  <select class="form-control" name="__{{itemDynamic.id}}__item" id="__{{itemDynamic.id}}__item">
                     <option 
                         ng-selected="{{idItem == item.id}}"
                         ng-repeat="item in listItems" value="{{item.id}}">
@@ -89,13 +89,14 @@
                   <div class="form-group">
                     <strong>Quantità:</strong>
                     <br />
-                    <input type="number" min="1" name="quantity" id="quantity" value="{{quantity}}" class="form-control" placeholder="Quantità" required />
+                    <input type="number" min="1" name="__{{itemDynamic.id}}__quantity" id="__{{itemDynamic.id}}__quantity" value="{{quantity}}" class="form-control" placeholder="Quantità" required />
                   </div>
                 </div>
-                <div class="col-sm-2">
-                  <span class="glyphicon glyphicon-plus">&nbsp;</span>
+                <div class="col-sm-2" style="margin-top: 15px;" ng-if="$last">
+                  <span class="glyphicon glyphicon-plus" ng-click="addItemForProduct(itemDynamic.id)">&nbsp;</span>
                 </div>
               </div>
+              <!-- END: line order -->
 
               <div class="form-group">
                 <strong>Stato Ordine:</strong>
