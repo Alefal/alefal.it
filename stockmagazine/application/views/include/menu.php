@@ -6,6 +6,7 @@ $category = '';
 $items = '';
 $guests = '';
 $state = '';
+$stock = '';
 
 if($pagename == 'orders') {
     $orders = 'active';
@@ -17,6 +18,8 @@ if($pagename == 'orders') {
     $guests = 'active';
 } else if($pagename == 'state') {
     $state = 'active';
+} else if($pagename == 'stock') {
+    $stock = 'active';
 }
 ?>
 
@@ -27,5 +30,6 @@ if($pagename == 'orders') {
         <li class="<?=$items?>"><a href="<?php echo base_url(); ?>index.php/items">Prodotti</a></li>
         <li class="<?=$guests?>"><a href="<?php echo base_url(); ?>index.php/guests">Clienti</a></li>
         <li class="<?=$state?>"><a href="<?php echo base_url(); ?>index.php/state">Stati ordine</a></li>
+        <li class="<?=$stock?>"><a href="<?php echo base_url(); ?>index.php/stock">Magazzino</a></li>
     </ul>
 </div>

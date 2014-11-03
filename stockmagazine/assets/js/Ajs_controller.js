@@ -175,3 +175,18 @@ stockmagazine.controller('StateController', function ($scope,sharedFunctions) {
     $('#modalState').modal('show'); 
   };
 });
+
+/***** Stock Controller ****/
+stockmagazine.controller('StockController', function ($scope) {
+  $scope.addQntItemStock = function(id,name,price,quantity,categoryId) {
+    //console.log('addQntItemStock: '+id+' | '+name);  
+
+    $scope.itemId = id;
+    $scope.itemName = name;
+    $scope.itemPrice = price;
+    $scope.itemQuantity = quantity;
+    $scope.itemCategoryId = categoryId;
+
+    $('#modalStock').modal('show'); 
+  };
+});
