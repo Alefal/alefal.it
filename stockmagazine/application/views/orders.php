@@ -60,18 +60,6 @@
           <div class="modal-body">
 
               <div class="form-group">
-                <strong>Prodotto:</strong>
-                <br />
-                <select class="form-control" name="idItem" id="idItem">
-                  <option 
-                      ng-selected="{{idItem == item.id}}"
-                      ng-repeat="item in listItems" value="{{item.id}}">
-                    {{item.name}}
-                  </option>
-                </select>
-              </div>
-
-              <div class="form-group">
                 <strong>Cliente:</strong>
                 <br />
                 <select class="form-control" name="idGuest" id="idGuest">
@@ -81,6 +69,32 @@
                     {{guest.name}}
                   </option>
                 </select>
+              </div>
+
+              <div class="row" id="listItemsOrder">
+                <div class="col-sm-5">
+                  <div class="form-group">
+                  <strong>Prodotto:</strong>
+                  <br />
+                  <select class="form-control" name="idItem" id="idItem">
+                    <option 
+                        ng-selected="{{idItem == item.id}}"
+                        ng-repeat="item in listItems" value="{{item.id}}">
+                      {{item.name}}
+                    </option>
+                  </select>
+                </div>
+                </div>
+                <div class="col-sm-5">
+                  <div class="form-group">
+                    <strong>Quantità:</strong>
+                    <br />
+                    <input type="number" min="1" name="quantity" id="quantity" value="{{quantity}}" class="form-control" placeholder="Quantità" required />
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <span class="glyphicon glyphicon-plus">&nbsp;</span>
+                </div>
               </div>
 
               <div class="form-group">
@@ -93,12 +107,6 @@
                     {{state.type}}
                   </option>
                 </select>
-              </div>
-
-              <div class="form-group">
-                <strong>Quantità:</strong>
-                <br />
-                <input type="number" min="1" name="quantity" id="quantity" value="{{quantity}}" class="form-control" placeholder="Quantità" required />
               </div>
 
           </div>
