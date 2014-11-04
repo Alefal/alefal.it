@@ -59,6 +59,7 @@
 
               <div class="form-group">
                 <strong>Numero Fattura:</strong>
+                {{itemsInputLine}}
                 <br />
                 <input type="text" name="numFattura" id="numFattura" value="{{numFattura}}" class="form-control" placeholder="Numero Fattura" required />
               </div>
@@ -79,11 +80,12 @@
               <!-- START: line order -->
               <div class="row" id="listItemsOrder" ng-repeat="itemDynamic in formData.items">
 
+                
                 <div class="col-sm-5">
                   <div class="form-group">
                   <strong>Prodotto:</strong>
                   <br />
-                  <select class="form-control" name="__{{itemDynamic.id}}__item" id="__{{itemDynamic.id}}__item">
+                  <select class="form-control" name="{{itemDynamic.id}}__itemIdModel" id="{{itemDynamic.id}}__itemIdModel" ng-model="itemIdModel">
                     <option 
                         ng-selected="{{idItem == item.id}}"
                         ng-repeat="item in listItems" value="{{item.id}}">
@@ -96,11 +98,11 @@
                   <div class="form-group">
                     <strong>Quantità:</strong>
                     <br />
-                    <input type="number" min="1" name="__{{itemDynamic.id}}__quantity" id="__{{itemDynamic.id}}__quantity" value="{{quantity}}" class="form-control" placeholder="Quantità" required />
+                    <input type="number" min="1" name="{{itemDynamic.id}}__itemQntModel" id="{{itemDynamic.id}}__itemQntModel" ng-model="itemQntModel" class="form-control" placeholder="Quantità" required />
                   </div>
                 </div>
                 <div class="col-sm-2" style="margin-top: 15px;" ng-if="$last">
-                  <span class="glyphicon glyphicon-plus" ng-click="addItemForProduct(itemDynamic.id)">&nbsp;</span>
+                  <span class="glyphicon glyphicon-plus" ng-click="addItemForProduct(itemIdModel,itemQntModel)">&nbsp;</span>
                 </div>
               </div>
               <!-- END: line order -->

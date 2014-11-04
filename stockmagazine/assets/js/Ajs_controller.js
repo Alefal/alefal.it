@@ -7,8 +7,7 @@ stockmagazine.controller('MasterController', function ($scope,sharedFunctions) {
 stockmagazine.controller('OrdersController', function ($scope,$http,sharedFunctions,ajaxCallServices) {
   var itemsDynamic = [
     { 
-      id : '1',
-      name: '',
+      id : '',
       quantity: ''
     }
   ]; 
@@ -49,11 +48,15 @@ stockmagazine.controller('OrdersController', function ($scope,$http,sharedFuncti
     $('#modalOrders').modal();
   };
 
-  $scope.addItemForProduct = function(id) {
-    var newId = parseInt(id) + 1;
+  $scope.addItemForProduct = function(id,qnt) {
+    console.log('-> '+id+' | '+qnt);
+
+    if(typeof id === 'undefined' || typeof qnt === 'undefined') {
+      return;
+    }
+
     var newObj = { 
-      id: newId, 
-      name: '', 
+      id: '', 
       quantity:''
     };
 
@@ -61,6 +64,8 @@ stockmagazine.controller('OrdersController', function ($scope,$http,sharedFuncti
 
     $scope.formData = {};
     $scope.formData.items = itemsDynamic;
+
+    $scope.itemsInputLine = itemsDynamic;
   };
 
   $scope.editItem = function(id,guestId,stateId) {
