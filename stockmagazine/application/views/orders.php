@@ -17,9 +17,10 @@
           <table class="table table-striped">
             <thead>
               <tr>
-                <th>#</th>
                 <th>Fattura</th>
+                <!--
                 <th>Cliente</th>
+                -->
                 <th>Stato</th>
                 <th>Totale (&euro;)</th>
                 <th>&nbsp;</th>
@@ -29,9 +30,8 @@
               <?php
               foreach($results as $row) {
                 echo '<tr>';
-                echo '<td>'.$row->oId.'</td>';
                 echo '<td>'.$row->oFattura.'</td>';
-                echo '<td>'.$row->gName.'</td>';
+                //echo '<td>'.$row->gName.'</td>';
                 echo '<td>'.$row->sType.'</td>';
                 echo '<td>'.$row->oTotal.'</td>';
                 echo '<td align="right"><span class="glyphicon glyphicon-pencil" ng-click="editItem()"></span> <a href="'.base_url().'index.php/orders/delete?idOrder='.$row->oId.'" onclick="return confirm(\'Are you sure ?\')"><span class="glyphicon glyphicon-remove"></span></a></td>';
@@ -58,9 +58,16 @@
           <div class="modal-body">
 
               <div class="form-group">
+                <strong>Numero Fattura:</strong>
+                <br />
+                <input type="text" name="numFattura" id="numFattura" value="{{numFattura}}" class="form-control" placeholder="Numero Fattura" required />
+              </div>
+
+              <div class="form-group">
                 <strong>Cliente:</strong>
                 <br />
                 <select class="form-control" name="idGuest" id="idGuest">
+                  <option>---</option>
                   <option 
                       ng-selected="{{idGuest == guest.id}}"
                       ng-repeat="guest in listGuests" value="{{guest.id}}">

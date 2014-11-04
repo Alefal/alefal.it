@@ -3,11 +3,10 @@
 class ordersmodel extends CI_Model {
 
     var $id   = '';
-    var $idItem = '';
     var $idGuest = '';
     var $idState = '';
-    var $quantity = '';
     var $total = '';
+    var $numFattura = '';
 
     function __construct()
     {
@@ -25,14 +24,15 @@ class ordersmodel extends CI_Model {
     function getAllJoin()
     {
         $this->db->select('orders.id AS oId, orders.numFattura AS oFattura, orders.total AS oTotal');
-        $this->db->select('guests.id AS gId, guests.name AS gName');
+        //$this->db->select('guests.id AS gId, guests.name AS gName');
         $this->db->select('state.id AS sId, state.type AS sType');
         $this->db->from('orders');
-        $this->db->join('guests', 'orders.idGuest = guests.id');
+        //$this->db->join('guests', 'orders.idGuest = guests.id');
         $this->db->join('state', 'orders.idState = state.id');
 
+
         $query = $this->db->get();
-        //print_r($query->result());
+        //print_r($this->db->last_query());
         //die;
 
         return $query->result();
@@ -63,31 +63,29 @@ class ordersmodel extends CI_Model {
 
     function getById($id)
     {
-        $this->db->where('id', 1);
+        $this->db->where('id', $id);
         $query = $this->db->get('orders');
 
         return $query->result();
     }
 
-    function insertEntry($idItem,$idGuest,$idState,$quantity,$total)
+    function insertEntry($idGuest,$idState,$total,$numFattura)
     {
-        $this->idItem = $idItem; // please read the below note
         $this->idGuest = $idGuest; // please read the below note
         $this->idState = $idState; // please read the below note
-        $this->quantity = $quantity; // please read the below note
         $this->total = $total; // please read the below note
+        $this->numFattura = $numFattura; // please read the below note
         $this->db->insert('orders', $this);
     }
 
-    function updateEntry($idOrder,$idItem,$idGuest,$idState,$quantity,$total)
+    function updateEntry($idOrder,$idGuest,$idState,$total,$numFattura)
     {
         $data = array(
             'id' => $idOrder,
-            'idItem' => $idItem,
             'idGuest' => $idGuest,
             'idState' => $idState,
-            'quantity' => $quantity,
-            'total' => $total
+            'total' => $total,
+            'numFattura' => $numFattura,
         );
 
         $this->db->where('id', $idOrder);

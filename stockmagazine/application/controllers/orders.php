@@ -8,11 +8,13 @@ class Orders extends Main_Controller {
         $this->load->helper('url');
         $this->load->helper('form');
         $this->load->model('ordersmodel');
+        $this->load->model('orderlinemodel');
 
         $this->load->model('itemsmodel');
         $this->load->model('guestsmodel');
         $this->load->model('statemodel');
 
+        $this->load->library('../models/itembean.php');
         $this->load->library('../controllers/home');
     }
 
@@ -36,22 +38,45 @@ class Orders extends Main_Controller {
 
 		//get all input
 		$data = $this->input->post(NULL, TRUE);
+		//echo '<pre>'; var_dump($data); echo '</pre>';
 
+		//INSERT into ORDERS
+		$idOrder = $this->input->post('idOrder');
+		$idGuest = $this->input->post('idGuest');
+		$idState = $this->input->post('idState');
+		$total = 0; //aggiornare in base a orderline
+		$numFattura = $this->input->post('numFattura');
+		
+		if($idOrder != '') {
+			$this->ordersmodel->updateEntry($idOrder,$idGuest,$idState,$total,$numFattura);
+		} else {
+			$this->ordersmodel->insertEntry($idGuest,$idState,$total,$numFattura);
+		}
+
+		/*
+		$orderlineArr = array();
+
+		//INSERT into LINEORDER
 		foreach ($data as $key => $value) {
     		if(substr( $key, 0, 2 ) === '__') {
+    			$orderlineObj = new ItemBean();
+
+    			if (strpos($key,'item') !== false) {
+    				$orderlineObj->setitemid($value);
+				}
+				if (strpos($key,'quantity') !== false) {
+    				$orderlineObj->setitemid($value);
+				}
     			//Items
     			echo "Key: $key; Value: $value<br />\n";
     		}
 		}
-
-		//echo '<pre>'; var_dump($postForm); echo '</pre>';
-
-		$idOrder = $this->input->post('idOrder');
-		$idGuest = $this->input->post('idGuest');
-		$idState = $this->input->post('idState');
-		echo $idOrder.'|'.$idGuest.'|'.$idState;
-		die;
 		
+		die;
+		*/
+
+		
+		/*
 		$itemName 	= '';
 		$itemPrice 	= 0;
 		$itemQnt 	= 0;
@@ -82,7 +107,7 @@ class Orders extends Main_Controller {
 		} else {
 			$this->ordersmodel->insertEntry($idItem,$idGuest,$idState,$quantity,$total);
 		}
-	
+		*/
 		redirect('orders','refresh');
 	}
 
