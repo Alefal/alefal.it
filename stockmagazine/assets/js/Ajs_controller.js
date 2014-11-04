@@ -5,12 +5,12 @@ stockmagazine.controller('MasterController', function ($scope,sharedFunctions) {
 
 /***** Orders Controller ****/
 stockmagazine.controller('OrdersController', function ($scope,$http,sharedFunctions,ajaxCallServices) {
-  var itemsDynamic = [
-    { 
-      id : '',
-      quantity: ''
-    }
-  ]; 
+  var listItems = [];
+
+  var itemsDynamic = [{ 
+    id: '', 
+    quantity: ''
+  }]; 
 
   $scope.openModal = function() {
     $scope.idOrder = '';
@@ -55,17 +55,18 @@ stockmagazine.controller('OrdersController', function ($scope,$http,sharedFuncti
       return;
     }
 
-    var newObj = { 
-      id: '', 
-      quantity:''
+    var newItem = { 
+      id: id, 
+      quantity: qnt
     };
-
-    itemsDynamic.push(newObj);
+    listItems.push(newItem);
+    $scope.itemsInputLine = listItems;
+    
+    itemsDynamic.push(newItem);
 
     $scope.formData = {};
     $scope.formData.items = itemsDynamic;
 
-    $scope.itemsInputLine = itemsDynamic;
   };
 
   $scope.editItem = function(id,guestId,stateId) {

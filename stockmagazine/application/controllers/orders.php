@@ -53,6 +53,10 @@ class Orders extends Main_Controller {
 			$this->ordersmodel->insertEntry($idGuest,$idState,$total,$numFattura);
 		}
 
+		$listItemsForOrder = $this->input->post('listItemsForOrder');
+		echo $listItemsForOrder;
+		die;
+
 		/*
 		$orderlineArr = array();
 

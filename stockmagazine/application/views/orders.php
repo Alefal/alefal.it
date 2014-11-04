@@ -59,8 +59,8 @@
 
               <div class="form-group">
                 <strong>Numero Fattura:</strong>
-                {{itemsInputLine}}
                 <br />
+                <input type="text" name="listItemsForOrder" id="listItemsForOrder" ng-model="itemsInputLine" />
                 <input type="text" name="numFattura" id="numFattura" value="{{numFattura}}" class="form-control" placeholder="Numero Fattura" required />
               </div>
 
