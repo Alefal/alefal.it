@@ -18,9 +18,7 @@
             <thead>
               <tr>
                 <th>Fattura</th>
-                <!--
                 <th>Cliente</th>
-                -->
                 <th>Stato</th>
                 <th>Totale (&euro;)</th>
                 <th>&nbsp;</th>
@@ -28,10 +26,10 @@
             </thead>
             <tbody>
               <?php
-              foreach($results as $row) {
+              foreach($resultOrders as $row) {
                 echo '<tr>';
                 echo '<td>'.$row->oFattura.'</td>';
-                //echo '<td>'.$row->gName.'</td>';
+                echo '<td>'.$row->gName.'</td>';
                 echo '<td>'.$row->sType.'</td>';
                 echo '<td>'.$row->oTotal.'</td>';
                 echo '<td align="right"><span class="glyphicon glyphicon-pencil" ng-click="editItem()"></span> <a href="'.base_url().'index.php/orders/delete?idOrder='.$row->oId.'" onclick="return confirm(\'Are you sure ?\')"><span class="glyphicon glyphicon-remove"></span></a></td>';
@@ -60,7 +58,7 @@
               <div class="form-group">
                 <strong>Numero Fattura:</strong>
                 <br />
-                <input type="text" name="listItemsForOrder" id="listItemsForOrder" ng-model="itemsInputLine" />
+                <input type="text" name="listItemsForOrder" id="listItemsForOrder" ng-model="itemsInputLine" style="display:none" />
                 <input type="text" name="numFattura" id="numFattura" value="{{numFattura}}" class="form-control" placeholder="Numero Fattura" required />
               </div>
 
@@ -85,7 +83,7 @@
                   <div class="form-group">
                   <strong>Prodotto:</strong>
                   <br />
-                  <select class="form-control" name="{{itemDynamic.id}}__itemIdModel" id="{{itemDynamic.id}}__itemIdModel" ng-model="itemIdModel">
+                  <select class="form-control" ng-model="itemIdModel">
                     <option 
                         ng-selected="{{idItem == item.id}}"
                         ng-repeat="item in listItems" value="{{item.id}}">
@@ -98,7 +96,7 @@
                   <div class="form-group">
                     <strong>Quantità:</strong>
                     <br />
-                    <input type="number" min="1" name="{{itemDynamic.id}}__itemQntModel" id="{{itemDynamic.id}}__itemQntModel" ng-model="itemQntModel" class="form-control" placeholder="Quantità" required />
+                    <input type="number" min="1" ng-model="itemQntModel" class="form-control" placeholder="Quantità" />
                   </div>
                 </div>
                 <div class="col-sm-2" style="margin-top: 15px;" ng-if="$last">

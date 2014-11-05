@@ -59,9 +59,10 @@ stockmagazine.controller('OrdersController', function ($scope,$http,sharedFuncti
       id: id, 
       quantity: qnt
     };
-    listItems.push(newItem);
-    $scope.itemsInputLine = listItems;
     
+    listItems.push(angular.fromJson(angular.toJson(newItem)));
+    $scope.itemsInputLine = JSON.stringify(listItems);
+
     itemsDynamic.push(newItem);
 
     $scope.formData = {};

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 03, 2014 alle 20:13
+-- Generation Time: Nov 05, 2014 alle 13:06
 -- Versione del server: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -98,14 +98,28 @@ INSERT INTO `items` (`id`, `name`, `price`, `quantity`, `categoryId`) VALUES
 
 CREATE TABLE IF NOT EXISTS `orderline` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `idOrder` int(11) NOT NULL,
+  `numFattura` varchar(255) NOT NULL,
   `idItem` int(11) NOT NULL,
   `quantity` double NOT NULL,
   `total` double NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `IndexOrder` (`idOrder`),
-  UNIQUE KEY `IndexItem` (`idItem`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  KEY `IndexNumFattura` (`numFattura`),
+  KEY `IndexItem` (`idItem`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+
+--
+-- Dump dei dati per la tabella `orderline`
+--
+
+INSERT INTO `orderline` (`id`, `numFattura`, `idItem`, `quantity`, `total`) VALUES
+(7, '1', 4, 1, 25),
+(8, '1', 6, 2, 111.6),
+(9, '1', 13, 3, 102),
+(11, '2', 4, 1, 25),
+(12, '2', 6, 2, 111.6),
+(13, '3', 4, 3, 75),
+(14, '3', 6, 3, 167.4),
+(17, '4', 4, 4, 100);
 
 -- --------------------------------------------------------
 
@@ -121,7 +135,17 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `numFattura` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `numFattura` (`numFattura`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=38 ;
+
+--
+-- Dump dei dati per la tabella `orders`
+--
+
+INSERT INTO `orders` (`id`, `idGuest`, `idState`, `total`, `numFattura`) VALUES
+(19, 1, 1, 0, '1'),
+(35, 0, 1, 0, '2'),
+(36, 0, 1, 0, '3'),
+(37, 0, 1, 0, '4');
 
 -- --------------------------------------------------------
 
@@ -172,7 +196,7 @@ INSERT INTO `users` (`id`, `username`, `password`) VALUES
 --
 ALTER TABLE `orderline`
   ADD CONSTRAINT `orderline_ibfk_2` FOREIGN KEY (`idItem`) REFERENCES `items` (`id`),
-  ADD CONSTRAINT `orderline_ibfk_1` FOREIGN KEY (`idOrder`) REFERENCES `orders` (`id`);
+  ADD CONSTRAINT `orderline_ibfk_3` FOREIGN KEY (`numFattura`) REFERENCES `orders` (`numFattura`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

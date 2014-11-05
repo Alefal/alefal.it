@@ -14,7 +14,6 @@ class Orders extends Main_Controller {
         $this->load->model('guestsmodel');
         $this->load->model('statemodel');
 
-        $this->load->library('../models/itembean.php');
         $this->load->library('../controllers/home');
     }
 
@@ -26,7 +25,7 @@ class Orders extends Main_Controller {
 		$data['guestsList'] = $this->guestsmodel->getAll();
 		$data['stateList'] = $this->statemodel->getAll();
 
-		$data['results'] = $this->ordersmodel->getAllJoin();
+		$data['resultOrders'] = $this->ordersmodel->getAllJoin();
 		
 		$this->load->view('include/header');
       	$this->load->view('orders', $data);
@@ -37,49 +36,50 @@ class Orders extends Main_Controller {
 	{
 
 		//get all input
-		$data = $this->input->post(NULL, TRUE);
+		//$data = $this->input->post(NULL, TRUE);
 		//echo '<pre>'; var_dump($data); echo '</pre>';
 
 		//INSERT into ORDERS
 		$idOrder = $this->input->post('idOrder');
 		$idGuest = $this->input->post('idGuest');
 		$idState = $this->input->post('idState');
-		$total = 0; //aggiornare in base a orderline
+		$totalOrder = 0; //aggiornare in base a orderline
 		$numFattura = $this->input->post('numFattura');
 		
 		if($idOrder != '') {
-			$this->ordersmodel->updateEntry($idOrder,$idGuest,$idState,$total,$numFattura);
+			$this->ordersmodel->updateEntry($idOrder,$idGuest,$idState,$totalOrder,$numFattura);
 		} else {
-			$this->ordersmodel->insertEntry($idGuest,$idState,$total,$numFattura);
+			$this->ordersmodel->insertEntry($idGuest,$idState,$totalOrder,$numFattura);
 		}
-
+		
+		//INSERT into LINE ORDER
 		$listItemsForOrder = $this->input->post('listItemsForOrder');
-		echo $listItemsForOrder;
-		die;
+		//print_r($listItemsForOrder);
+		$data = json_decode($listItemsForOrder);
+		foreach ($data as $item) {
+			//echo($numFattura.' | '.$item->id.' | '.$item->quantity.'<br />');
 
-		/*
-		$orderlineArr = array();
+			// Per ogni linea d'ordine si deve:
+			// - calcolare il TOTALE 						-> OK
+			// - sommare il totale a quello dell'ordine 	-> si potrebbe togliere dall'ordine
+			$itemName 	= '';
+			$itemPrice 	= 0;
+			$itemQnt 	= 0;
+			$itemCatId 	= 0;
+			$itemFound = $this->itemsmodel->getById($item->id);
+			foreach($itemFound as $row) {
+				$itemName = $row->name;
+				$itemPrice = $row->price;
+				$itemQnt = $row->quantity;
+				$itemCatId = $row->categoryId;
+	        }
 
-		//INSERT into LINEORDER
-		foreach ($data as $key => $value) {
-    		if(substr( $key, 0, 2 ) === '__') {
-    			$orderlineObj = new ItemBean();
+	        $totalLineOrder = $itemPrice * $item->quantity;
+			$this->orderlinemodel->insertEntry($numFattura,$item->id,$item->quantity,$totalLineOrder);
 
-    			if (strpos($key,'item') !== false) {
-    				$orderlineObj->setitemid($value);
-				}
-				if (strpos($key,'quantity') !== false) {
-    				$orderlineObj->setitemid($value);
-				}
-    			//Items
-    			echo "Key: $key; Value: $value<br />\n";
-    		}
+			$totalOrder += $totalLineOrder;
 		}
-		
-		die;
-		*/
 
-		
 		/*
 		$itemName 	= '';
 		$itemPrice 	= 0;
