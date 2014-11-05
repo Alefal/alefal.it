@@ -32,7 +32,14 @@
                 echo '<td>'.$row->gName.'</td>';
                 echo '<td>'.$row->sType.'</td>';
                 echo '<td>'.$row->oTotal.'</td>';
-                echo '<td align="right"><span class="glyphicon glyphicon-pencil" ng-click="editItem()"></span> <a href="'.base_url().'index.php/orders/delete?idOrder='.$row->oId.'" onclick="return confirm(\'Are you sure ?\')"><span class="glyphicon glyphicon-remove"></span></a></td>';
+                echo '<td align="right" class="toolbar">'.
+                        '<span class="glyphicon glyphicon-th-list" ng-click=""></span>'.
+                        '<span class="glyphicon glyphicon-check" ng-click=""></span>'.
+                        '<span class="glyphicon glyphicon-pencil" ng-click="editItem()"></span>'.
+                        '<a href="'.base_url().'index.php/orders/delete?idOrder='.$row->oId.'" onclick="return confirm(\'Are you sure ?\')">'.
+                          '<span class="glyphicon glyphicon-remove"></span>'.
+                        '</a>'.
+                      '</td>';
                 echo '<tr>';
               }
               ?>
@@ -108,6 +115,8 @@
               <div class="form-group">
                 <strong>Stato Ordine:</strong>
                 <br />
+                <input type="text" name="idState" id="idState" class="form-control" value="bozza" required readonly="readonly" />
+                <!--
                 <select class="form-control" name="idState" id="idState">
                   <option 
                       ng-selected="{{idState == state.id}}"
@@ -115,6 +124,7 @@
                     {{state.type}}
                   </option>
                 </select>
+                -->
               </div>
 
           </div>

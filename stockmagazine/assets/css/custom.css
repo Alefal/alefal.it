@@ -9,3 +9,7 @@ body {
 .glyphicon {
 	font-size: 30px;
 }
+.toolbar span {
+	margin-right: 10px;
+	cursor: pointer;
+}
