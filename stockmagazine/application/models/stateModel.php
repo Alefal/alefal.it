@@ -26,6 +26,14 @@ class stateModel extends CI_Model {
         return $query->result();
     }
 
+    function getIdByType($type)
+    {
+        $this->db->where('type', $type);
+        $query = $this->db->get('state');
+
+        return $query->result();
+    }
+
     function insertEntry($statetype)
     {
         $this->type = $statetype; // please read the below note

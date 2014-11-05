@@ -50,34 +50,34 @@ class Orders extends Main_Controller {
 			$this->ordersmodel->updateEntry($idOrder,$idGuest,$idState,$totalOrder,$numFattura);
 		} else {
 			$this->ordersmodel->insertEntry($idGuest,$idState,$totalOrder,$numFattura);
-		}
 		
-		//INSERT into LINE ORDER
-		$listItemsForOrder = $this->input->post('listItemsForOrder');
-		//print_r($listItemsForOrder);
-		$data = json_decode($listItemsForOrder);
-		foreach ($data as $item) {
-			//echo($numFattura.' | '.$item->id.' | '.$item->quantity.'<br />');
+			//INSERT into LINE ORDER
+			$listItemsForOrder = $this->input->post('listItemsForOrder');
+			//print_r($listItemsForOrder);
+			$data = json_decode($listItemsForOrder);
+			foreach ($data as $item) {
+				//echo($numFattura.' | '.$item->id.' | '.$item->quantity.'<br />');
 
-			// Per ogni linea d'ordine si deve:
-			// - calcolare il TOTALE 						-> OK
-			// - sommare il totale a quello dell'ordine 	-> si potrebbe togliere dall'ordine
-			$itemName 	= '';
-			$itemPrice 	= 0;
-			$itemQnt 	= 0;
-			$itemCatId 	= 0;
-			$itemFound = $this->itemsmodel->getById($item->id);
-			foreach($itemFound as $row) {
-				$itemName = $row->name;
-				$itemPrice = $row->price;
-				$itemQnt = $row->quantity;
-				$itemCatId = $row->categoryId;
-	        }
+				// Per ogni linea d'ordine si deve:
+				// - calcolare il TOTALE 						-> OK
+				// - sommare il totale a quello dell'ordine 	-> si potrebbe togliere dall'ordine
+				$itemName 	= '';
+				$itemPrice 	= 0;
+				$itemQnt 	= 0;
+				$itemCatId 	= 0;
+				$itemFound = $this->itemsmodel->getById($item->id);
+				foreach($itemFound as $row) {
+					$itemName = $row->name;
+					$itemPrice = $row->price;
+					$itemQnt = $row->quantity;
+					$itemCatId = $row->categoryId;
+		        }
 
-	        $totalLineOrder = $itemPrice * $item->quantity;
-			$this->orderlinemodel->insertEntry($numFattura,$item->id,$item->quantity,$totalLineOrder);
+		        $totalLineOrder = $itemPrice * $item->quantity;
+				$this->orderlinemodel->insertEntry($numFattura,$item->id,$item->quantity,$totalLineOrder);
 
-			$totalOrder += $totalLineOrder;
+				$totalOrder += $totalLineOrder;
+			}
 		}
 
 		/*
@@ -122,5 +122,21 @@ class Orders extends Main_Controller {
 
 		redirect('orders','refresh');
 	}
+
+	public function setState()
+	{
+		$idStateType 	= '';
+		$state = $this->statemodel->getIdByType('evaso');
+		foreach($state as $row) {
+			$idStateType = $row->id;
+        }
+
+		$idOrder = $this->input->get('idOrder');
+		$this->ordersmodel->updateStateOrder($idOrder,$idStateType);
+
+		redirect('orders','refresh');
+	}
+
+	
    
 }

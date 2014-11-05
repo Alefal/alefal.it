@@ -21,6 +21,14 @@ class orderlinemodel extends CI_Model {
         return $query->result();
     }
 
+    function getByNumFattura($numfattura)
+    {
+        $this->db->where('numfattura', $numfattura);
+        $query = $this->db->get('orderline');
+
+        return $query->result();
+    }
+
     function getById($id)
     {
         $this->db->where('id', $id);

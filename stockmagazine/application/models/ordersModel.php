@@ -92,6 +92,17 @@ class ordersmodel extends CI_Model {
         $this->db->update('orders', $data); 
     }
 
+    function updateStateOrder($idOrder,$idStateType)
+    {
+        $data = array(
+            'id' => $idOrder,
+            'idState' => $idStateType
+        );
+
+        $this->db->where('id', $idOrder);
+        $this->db->update('orders', $data); 
+    }
+
     function deleteEntry($id)
     {
         $this->id = $id;

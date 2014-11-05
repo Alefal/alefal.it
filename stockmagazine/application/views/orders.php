@@ -32,14 +32,26 @@
                 echo '<td>'.$row->gName.'</td>';
                 echo '<td>'.$row->sType.'</td>';
                 echo '<td>'.$row->oTotal.'</td>';
-                echo '<td align="right" class="toolbar">'.
-                        '<span class="glyphicon glyphicon-th-list" ng-click=""></span>'.
-                        '<span class="glyphicon glyphicon-check" ng-click=""></span>'.
-                        '<span class="glyphicon glyphicon-pencil" ng-click="editItem()"></span>'.
-                        '<a href="'.base_url().'index.php/orders/delete?idOrder='.$row->oId.'" onclick="return confirm(\'Are you sure ?\')">'.
-                          '<span class="glyphicon glyphicon-remove"></span>'.
-                        '</a>'.
-                      '</td>';
+
+                if($row->sType == 'bozza') {
+                  echo '<td align="right" class="toolbar">'.
+                          '<span title="Visualizza prodotti" class="glyphicon glyphicon-th-list" ng-click="viewItem(\''.$row->oFattura.'\')"></span>'.
+                          '<a href="'.base_url().'index.php/orders/setState?idOrder='.$row->oId.'" onclick="return confirm(\'Are you sure ?\')">'.
+                            '<span title="Evadi ordine" class="glyphicon glyphicon-check"></span>'.
+                          '</a>'.
+                          '<span title="Modifica ordine" class="glyphicon glyphicon-pencil" ng-click="editItem(\''.$row->oId.'\',\''.$row->oFattura.'\',\''.$row->gId.'\',\''.$row->sId.'\')"></span>'.
+                          '<a href="'.base_url().'index.php/orders/delete?idOrder='.$row->oId.'" onclick="return confirm(\'Are you sure ?\')">'.
+                            '<span title="Cancella ordine" class="glyphicon glyphicon-remove"></span>'.
+                          '</a>'.
+                        '</td>';
+                } else {
+                  echo '<td align="right" class="toolbar">'.
+                          '<span class="glyphicon glyphicon-th-list" ng-click="viewItem(\''.$row->oFattura.'\')"></span>'.
+                          '<a href="'.base_url().'index.php/orders/delete?idOrder='.$row->oId.'" onclick="return confirm(\'Are you sure ?\')">'.
+                            '<span class="glyphicon glyphicon-remove"></span>'.
+                          '</a>'.
+                        '</td>';
+                }
                 echo '<tr>';
               }
               ?>
@@ -50,6 +62,7 @@
     </div>
   </div>
 
+  <!-- ORDERS -->
   <div id="modalOrders" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-sm">
       <?php echo form_open('orders/insertUpdate'); ?>
@@ -73,7 +86,6 @@
                 <strong>Cliente:</strong>
                 <br />
                 <select class="form-control" name="idGuest" id="idGuest">
-                  <option>---</option>
                   <option 
                       ng-selected="{{idGuest == guest.id}}"
                       ng-repeat="guest in listGuests" value="{{guest.id}}">
@@ -115,8 +127,6 @@
               <div class="form-group">
                 <strong>Stato Ordine:</strong>
                 <br />
-                <input type="text" name="idState" id="idState" class="form-control" value="bozza" required readonly="readonly" />
-                <!--
                 <select class="form-control" name="idState" id="idState">
                   <option 
                       ng-selected="{{idState == state.id}}"
@@ -124,7 +134,6 @@
                     {{state.type}}
                   </option>
                 </select>
-                -->
               </div>
 
           </div>
@@ -134,6 +143,27 @@
           </div>
         </div>
       <?php echo form_close(); ?>
+    </div>
+  </div>
+
+  <!-- LINE ORDER -->
+  <div id="modalLineOrder" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm">
+      
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h4 class="modal-title" id="modalCategoryLabel">Linee Ordine</h4>
+        </div>
+        <div class="modal-body">
+
+            {{listOrderLine}}
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
+        </div>
+      </div>
     </div>
   </div>
 

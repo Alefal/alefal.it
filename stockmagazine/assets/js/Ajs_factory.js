@@ -18,7 +18,11 @@ stockmagazine.factory('ajaxCallServices', function($http) {
     };
     /***** getOrders ****/
     ajaxCallServices.getOrders = function () {
-        return $http.get(urlBase+ '/index.php/ordersREST/items/format/json');
+        return $http.get(urlBase+ '/index.php/ordersREST/orders/format/json');
+    };
+    /***** getOrderLine ****/
+    ajaxCallServices.getOrderLine = function (numFattura) {
+        return $http.get(urlBase+ '/index.php/ordersREST/orderline/format/json?numFattura='+numFattura);
     };
     /***** getState ****/
     ajaxCallServices.getState = function () {

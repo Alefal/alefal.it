@@ -67,13 +67,13 @@ stockmagazine.controller('OrdersController', function ($scope,$http,sharedFuncti
 
     $scope.formData = {};
     $scope.formData.items = itemsDynamic;
-
   };
 
-  $scope.editItem = function(id,guestId,stateId) {
-    console.log('editItem: '+id+' | '+guestId+' | '+stateId);  
+  $scope.editItem = function(id,numFattura,guestId,stateId) {
+    console.log('editItem: '+id+' | '+numFattura+' | '+guestId+' | '+stateId);  
 
     $scope.idOrder= id;
+    $scope.numFattura= numFattura;
     $scope.idGuest = guestId;
     $scope.idState = stateId;
 
@@ -103,6 +103,22 @@ stockmagazine.controller('OrdersController', function ($scope,$http,sharedFuncti
 
     $('#modalOrders').modal('show'); 
   };
+
+  $scope.viewItem = function(numFattura) {
+    console.log('-> '+numFattura);
+
+    ajaxCallServices.getOrderLine(numFattura)
+      .success(function (orderline) {
+        console.log('getOrderLine - success: '+orderline);
+        $scope.listOrderLine = orderline;
+      }).error(function (error) {
+        console.log('getOrderLine - error: '+error);
+      });
+
+    $('#modalLineOrder').modal();
+
+  };
+
 });
 
 /***** Category Controller ****/
