@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.12
+-- version 4.2.7.1
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 05, 2014 alle 13:06
--- Versione del server: 5.6.16
--- PHP Version: 5.5.11
+-- Generation Time: Nov 08, 2014 alle 14:45
+-- Versione del server: 5.6.20
+-- PHP Version: 5.5.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -27,10 +27,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `category` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
+`id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
 
 --
 -- Dump dei dati per la tabella `category`
@@ -38,7 +37,9 @@ CREATE TABLE IF NOT EXISTS `category` (
 
 INSERT INTO `category` (`id`, `name`) VALUES
 (21, 'Vino bianco'),
-(26, 'Champagne');
+(26, 'Champagne'),
+(28, 'Vino rosso'),
+(30, 'Prosecco');
 
 -- --------------------------------------------------------
 
@@ -47,21 +48,24 @@ INSERT INTO `category` (`id`, `name`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `guests` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `address` varchar(255) NOT NULL,
   `city` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+  `type` varchar(255) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dump dei dati per la tabella `guests`
 --
 
-INSERT INTO `guests` (`id`, `name`, `address`, `city`) VALUES
-(1, 'Al pesce d''oro', 'Via SS 163, 10 ', 'Amalfi'),
-(2, 'La Piccola California', 'Via Senite, 10', 'Scala (SA)'),
-(5, 'Lo Straniero', 'Via Senite, 5', 'Scala (SA)');
+INSERT INTO `guests` (`id`, `name`, `address`, `city`, `type`) VALUES
+(1, 'Al pesce d''oro', 'Via SS 163, 10 ', 'Amalfi', 'cliente'),
+(2, 'La Piccola California', 'Via Senite, 10', 'Scala (SA)', 'cliente'),
+(5, 'Lo Straniero', 'Via Senite, 5', 'Scala (SA)', 'cliente'),
+(6, 'Iovene', 'Via delle Repubbliche, 10', 'Gragnano', 'fornitore'),
+(7, 'Altro', 'xxx', 'aaa', 'cliente'),
+(8, 'bbb', 'bbb', 'bbb', 'fornitore');
 
 -- --------------------------------------------------------
 
@@ -70,25 +74,21 @@ INSERT INTO `guests` (`id`, `name`, `address`, `city`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `items` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `price` double NOT NULL,
   `quantity` int(11) NOT NULL,
-  `categoryId` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `category` (`categoryId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+  `categoryId` int(11) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
 
 --
 -- Dump dei dati per la tabella `items`
 --
 
-INSERT INTO `items` (`id`, `name`, `price`, `quantity`, `categoryId`) VALUES
-(4, 'Marlot', 25, 200, 21),
-(6, 'Brunello di Montalcino', 55.8, 100, 21),
-(13, 'Aglianico', 34, 100, 21),
-(14, 'Cinzano', 21, 70, 26),
-(15, 'Aglianico', 1, 60, 21);
+INSERT INTO `items` (`id`, `name`, `quantity`, `categoryId`) VALUES
+(17, 'Prosecchino', 50, 29),
+(18, 'Aglianico', 50, 28),
+(19, 'Falanghina', 20, 21),
+(20, 'Prosecchino', 50, 0);
 
 -- --------------------------------------------------------
 
@@ -97,29 +97,12 @@ INSERT INTO `items` (`id`, `name`, `price`, `quantity`, `categoryId`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `orderline` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `numFattura` varchar(255) NOT NULL,
   `idItem` int(11) NOT NULL,
   `quantity` double NOT NULL,
-  `total` double NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `IndexNumFattura` (`numFattura`),
-  KEY `IndexItem` (`idItem`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
-
---
--- Dump dei dati per la tabella `orderline`
---
-
-INSERT INTO `orderline` (`id`, `numFattura`, `idItem`, `quantity`, `total`) VALUES
-(7, '1', 4, 1, 25),
-(8, '1', 6, 2, 111.6),
-(9, '1', 13, 3, 102),
-(11, '2', 4, 1, 25),
-(12, '2', 6, 2, 111.6),
-(13, '3', 4, 3, 75),
-(14, '3', 6, 3, 167.4),
-(17, '4', 4, 4, 100);
+  `total` double NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
 
 -- --------------------------------------------------------
 
@@ -128,24 +111,20 @@ INSERT INTO `orderline` (`id`, `numFattura`, `idItem`, `quantity`, `total`) VALU
 --
 
 CREATE TABLE IF NOT EXISTS `orders` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `idGuest` int(11) NOT NULL,
   `idState` int(11) NOT NULL,
   `total` double DEFAULT NULL,
-  `numFattura` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `numFattura` (`numFattura`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=38 ;
+  `numFattura` varchar(255) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=42 ;
 
 --
 -- Dump dei dati per la tabella `orders`
 --
 
 INSERT INTO `orders` (`id`, `idGuest`, `idState`, `total`, `numFattura`) VALUES
-(19, 1, 1, 0, '1'),
-(35, 0, 1, 0, '2'),
-(36, 0, 1, 0, '3'),
-(37, 0, 1, 0, '4');
+(40, 1, 1, 0, '1'),
+(41, 2, 1, 0, '2');
 
 -- --------------------------------------------------------
 
@@ -154,9 +133,8 @@ INSERT INTO `orders` (`id`, `idGuest`, `idState`, `total`, `numFattura`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `state` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `type` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
+`id` int(11) NOT NULL,
+  `type` varchar(255) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
@@ -174,10 +152,9 @@ INSERT INTO `state` (`id`, `type`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
-  `id` tinyint(4) NOT NULL AUTO_INCREMENT,
+`id` tinyint(4) NOT NULL,
   `username` varchar(10) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
+  `password` varchar(100) NOT NULL
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
@@ -188,6 +165,91 @@ INSERT INTO `users` (`id`, `username`, `password`) VALUES
 (1, 'demo', 'fe01ce2a7fbac8fafaed7c982a04e229');
 
 --
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `category`
+--
+ALTER TABLE `category`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `guests`
+--
+ALTER TABLE `guests`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `items`
+--
+ALTER TABLE `items`
+ ADD PRIMARY KEY (`id`), ADD KEY `category` (`categoryId`);
+
+--
+-- Indexes for table `orderline`
+--
+ALTER TABLE `orderline`
+ ADD PRIMARY KEY (`id`), ADD KEY `IndexNumFattura` (`numFattura`), ADD KEY `IndexItem` (`idItem`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `numFattura` (`numFattura`);
+
+--
+-- Indexes for table `state`
+--
+ALTER TABLE `state`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `category`
+--
+ALTER TABLE `category`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
+--
+-- AUTO_INCREMENT for table `guests`
+--
+ALTER TABLE `guests`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `items`
+--
+ALTER TABLE `items`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
+--
+-- AUTO_INCREMENT for table `orderline`
+--
+ALTER TABLE `orderline`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=28;
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=42;
+--
+-- AUTO_INCREMENT for table `state`
+--
+ALTER TABLE `state`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
 -- Limiti per le tabelle scaricate
 --
 
@@ -195,8 +257,8 @@ INSERT INTO `users` (`id`, `username`, `password`) VALUES
 -- Limiti per la tabella `orderline`
 --
 ALTER TABLE `orderline`
-  ADD CONSTRAINT `orderline_ibfk_2` FOREIGN KEY (`idItem`) REFERENCES `items` (`id`),
-  ADD CONSTRAINT `orderline_ibfk_3` FOREIGN KEY (`numFattura`) REFERENCES `orders` (`numFattura`);
+ADD CONSTRAINT `orderline_ibfk_2` FOREIGN KEY (`idItem`) REFERENCES `items` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+ADD CONSTRAINT `orderline_ibfk_3` FOREIGN KEY (`numFattura`) REFERENCES `orders` (`numFattura`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
