@@ -29,12 +29,13 @@ class Guests extends Main_Controller {
 		$guestName = $this->input->post('guestName');
 		$guestAddress = $this->input->post('guestAddress');
 		$guestCity = $this->input->post('guestCity');
+		$guestType = $this->input->post('guestType');
 		
 
 		if($guestId != '') {
-			$this->guestsmodel->updateEntry($guestId,$guestName,$guestAddress,$guestCity);
+			$this->guestsmodel->updateEntry($guestId,$guestName,$guestAddress,$guestCity,$guestType);
 		} else {
-			$this->guestsmodel->insertEntry($guestName,$guestAddress,$guestCity);
+			$this->guestsmodel->insertEntry($guestName,$guestAddress,$guestCity,$guestType);
 		}
 	
 		redirect('guests','refresh');

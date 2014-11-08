@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class guestsModel extends CI_Model {
+class vendorModel extends CI_Model {
 
     var $id   = '';
     var $name = '';
@@ -17,7 +17,7 @@ class guestsModel extends CI_Model {
     
     function getAll()
     {
-        $this->db->where('type', 'cliente');
+        $this->db->where('type', 'fornitore');
         $query = $this->db->get('guests');
         return $query->result();
     }

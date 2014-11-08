@@ -1,14 +1,14 @@
-<div ng-controller="GuestsController">
+<div ng-controller="VendorController">
 
   <div class="container-fluid">
     <div class="row">
       <div class="col-sm-12 main">
         
         <div class="col-sm-9">
-          <h2 class="sub-header">Clienti</h2>
+          <h2 class="sub-header">Fornitori</h2>
         </div>
         <div class="col-sm-3" align="right">
-          <button class="btn btn-primary" ng-click="openModal()">Aggiungi Cliente</button>
+          <button class="btn btn-primary" ng-click="openModal()">Aggiungi Fornitore</button>
         </div>
 
         <div class="table-responsive">
@@ -32,7 +32,7 @@
                 echo '<td>'.$row->name.'</td>';
                 echo '<td>'.$row->address.'</td>';
                 echo '<td>'.$row->city.'</td>';
-                echo '<td align="right"><span class="glyphicon glyphicon-pencil" ng-click="editItem(\''.$row->id.'\',\''.$nameEl.'\',\''.$addressEl.'\',\''.$cityEl.'\',\''.$row->type.'\')"></span> <a href="'.base_url().'index.php/guests/delete?idGuest='.$row->id.'" onclick="return confirm(\'Are you sure ?\')"><span class="glyphicon glyphicon-remove"></span></a></td>';
+                echo '<td align="right"><span class="glyphicon glyphicon-pencil" ng-click="editItem(\''.$row->id.'\',\''.$nameEl.'\',\''.$addressEl.'\',\''.$cityEl.'\',\''.$row->type.'\')"></span> <a href="'.base_url().'index.php/vendor/delete?idGuest='.$row->id.'" onclick="return confirm(\'Are you sure ?\')"><span class="glyphicon glyphicon-remove"></span></a></td>';
                 echo '<tr>';
               }
               ?>
@@ -43,34 +43,34 @@
     </div>
   </div>
 
-  <div id="modalGuests" class="modal fade" tabindex="-1" role="dialog">
+  <div id="modalVendor" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-sm">
-      <?php echo form_open('guests/insertUpdate'); ?>
+      <?php echo form_open('vendor/insertUpdate'); ?>
 
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <h4 class="modal-title" id="modalCategoryLabel">Cliente</h4>
+            <h4 class="modal-title" id="modalCategoryLabel">Fornitore</h4>
           </div>
           <div class="modal-body">
               <div class="form-group">
-                <strong>Nome Cliente:</strong>
+                <strong>Nome Fornitore:</strong>
                 <br />
-                <input type="hidden" name="guestId" id="guestId" value="{{guestId}}" />
-                <input type="hidden" name="guestType" id="guestType" value="cliente" />
-                <input type="text" name="guestName" id="guestName" value="{{guestName}}" class="form-control" placeholder="Nome Cliente" required />
+                <input type="hidden" name="vendorId" id="vendorId" value="{{vendorId}}" />
+                <input type="hidden" name="vendorType" id="vendorType" value="fornitore" />
+                <input type="text" name="vendorName" id="vendorName" value="{{vendorName}}" class="form-control" placeholder="Nome Fornitore" required />
               </div>
 
               <div class="form-group">
                 <strong>Indirizzo:</strong>
                 <br />
-                <input type="text" name="guestAddress" id="guestAddress" value="{{guestAddress}}" class="form-control" placeholder="Indirizzo" required />
+                <input type="text" name="vendorAddress" id="vendorAddress" value="{{vendorAddress}}" class="form-control" placeholder="Indirizzo" required />
               </div>
 
               <div class="form-group">
                 <strong>Città:</strong>
                 <br />
-                <input type="text" name="guestCity" id="guestCity" value="{{guestCity}}" class="form-control" placeholder="Città" required />
+                <input type="text" name="vendorCity" id="vendorCity" value="{{vendorCity}}" class="form-control" placeholder="Città" required />
               </div>
 
           </div>

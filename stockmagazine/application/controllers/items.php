@@ -30,15 +30,14 @@ class Items extends Main_Controller {
 	{
 		$itemId = $this->input->post('itemId');
 		$itemName = $this->input->post('itemName');
-		$itemPrice = $this->input->post('itemPrice');
 		$itemQuantity = $this->input->post('itemQuantity');
 		$itemCategoryId = $this->input->post('itemCategoryId');
 		
 
 		if($itemId != '') {
-			$this->itemsmodel->updateEntry($itemId,$itemName,$itemPrice,$itemQuantity,$itemCategoryId);
+			$this->itemsmodel->updateEntry($itemId,$itemName,$itemQuantity,$itemCategoryId);
 		} else {
-			$this->itemsmodel->insertEntry($itemName,$itemPrice,$itemQuantity,$itemCategoryId);
+			$this->itemsmodel->insertEntry($itemName,$itemQuantity,$itemCategoryId);
 		}
 	
 		redirect('items','refresh');

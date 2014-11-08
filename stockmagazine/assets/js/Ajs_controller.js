@@ -144,7 +144,6 @@ stockmagazine.controller('ItemsController', function ($scope,$http,sharedFunctio
   $scope.openModal = function() {
     $scope.itemId = '';
     $scope.itemName = '';
-    $scope.itemPrice = '';
     $scope.itemQuantity = '';
     $scope.itemCategoryId = '';
 
@@ -159,12 +158,11 @@ stockmagazine.controller('ItemsController', function ($scope,$http,sharedFunctio
     $('#modalCategory').modal();
   };
 
-  $scope.editItem = function(id,name,price,qnt,catId) {
-    console.log('editItem: '+id+' | '+name+' | '+price+' | '+qnt+' | '+catId);  
+  $scope.editItem = function(id,name,qnt,catId) {
+    console.log('editItem: '+id+' | '+name+' | '+qnt+' | '+catId);  
 
     $scope.itemId = id;
     $scope.itemName = name;
-    $scope.itemPrice = price;
     $scope.itemQuantity = qnt;
     $scope.itemCategoryId = catId;
 
@@ -203,6 +201,29 @@ stockmagazine.controller('GuestsController', function ($scope,sharedFunctions) {
   };
 });
 
+/***** Vendor Controller ****/
+stockmagazine.controller('VendorController', function ($scope,sharedFunctions) {
+  $scope.openModal = function() {
+    $scope.vendorId = '';
+    $scope.vendorName = '';
+    $scope.vendorAddress = '';
+    $scope.vendorCity = '';
+
+    $('#modalVendor').modal();
+  };
+
+  $scope.editItem = function(id,name,address,city) {
+    console.log('editItem: '+id+' | '+name+' | '+address+' | '+city);  
+
+    $scope.vendorId = id;
+    $scope.vendorName = name;
+    $scope.vendorAddress = address;
+    $scope.vendorCity = city;
+
+    $('#modalVendor').modal('show'); 
+  };
+});
+
 /***** State Controller ****/
 stockmagazine.controller('StateController', function ($scope,sharedFunctions) {
   $scope.openModal = function() {
@@ -223,12 +244,11 @@ stockmagazine.controller('StateController', function ($scope,sharedFunctions) {
 
 /***** Stock Controller ****/
 stockmagazine.controller('StockController', function ($scope) {
-  $scope.addQntItemStock = function(id,name,price,quantity,categoryId) {
+  $scope.addQntItemStock = function(id,name,quantity,categoryId) {
     //console.log('addQntItemStock: '+id+' | '+name);  
 
     $scope.itemId = id;
     $scope.itemName = name;
-    $scope.itemPrice = price;
     $scope.itemQuantity = quantity;
     $scope.itemCategoryId = categoryId;
 

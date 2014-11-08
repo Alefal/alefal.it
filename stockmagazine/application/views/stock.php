@@ -29,7 +29,7 @@
                 echo '<tr>';
                 echo '<td>'.$row->name.'</td>';
                 echo '<td class="'.$classColor.'">'.$row->quantity.'</td>';
-                echo '<td align="right"><span class="glyphicon glyphicon-plus" ng-click="addQntItemStock(\''.$row->id.'\',\''.$row->name.'\',\''.$row->price.'\',\''.$row->quantity.'\',\''.$row->categoryId.'\')"></span></td>';
+                echo '<td align="right"><span class="glyphicon glyphicon-plus" ng-click="addQntItemStock(\''.$row->id.'\',\''.$row->name.'\',\''.$row->quantity.'\',\''.$row->categoryId.'\')"></span></td>';
                 echo '<tr>';
               }
               ?>
@@ -54,7 +54,6 @@
                 <h3>{{itemName}}</h3>
                 <input type="hidden" name="itemId" id="itemId" value="{{itemId}}" />
                 <input type="hidden" name="itemName" id="itemName" value="{{itemName}}" />
-                <input type="hidden" name="itemPrice" id="itemPrice" value="{{itemPrice}}" />
                 <input type="hidden" name="itemQuantity" id="itemQuantity" value="{{itemQuantity}}" />
                 <input type="hidden" name="itemCategoryId" id="itemCategoryId" value="{{itemCategoryId}}" />
               </div>

@@ -27,14 +27,13 @@ class Stock extends Main_Controller {
 	{
 		$itemId = $this->input->post('itemId');
 		$itemName = $this->input->post('itemName');
-		$itemPrice = $this->input->post('itemPrice');
 		$itemQuantity = $this->input->post('itemQuantity');
 		$itemCategoryId = $this->input->post('itemCategoryId');
 
 		$itemQuantityUpdate = $this->input->post('itemQuantityUpdate');
 		$itemNewQuantity = $itemQuantity + $itemQuantityUpdate;
 
-		$this->itemsmodel->updateEntry($itemId,$itemName,$itemPrice,$itemNewQuantity,$itemCategoryId);
+		$this->itemsmodel->updateEntry($itemId,$itemName,$itemNewQuantity,$itemCategoryId);
 
 		redirect('stock','refresh');
 		//$this->index();

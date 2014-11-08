@@ -17,9 +17,7 @@
           <table class="table table-striped">
             <thead>
               <tr>
-                <th>#</th>
                 <th>Nome</th>
-                <th>Prezzo (&euro;)</th>
                 <th>Quantità</th>
                 <th>Categoria</th>
                 <th>&nbsp;</th>
@@ -35,12 +33,10 @@
                   $classColor = 'danger';
                 }
                 echo '<tr>';
-                echo '<td>'.$row->iId.'</td>';
                 echo '<td>'.$row->iName.'</td>';
-                echo '<td>'.$row->price.'</td>';
                 echo '<td class="'.$classColor.'">'.$row->quantity.'</td>';
                 echo '<td>'.$row->cName.'</td>';
-                echo '<td align="right"><span class="glyphicon glyphicon-pencil" ng-click="editItem(\''.$row->iId.'\',\''.$row->iName.'\',\''.$row->price.'\',\''.$row->quantity.'\',\''.$row->cId.'\')"></span> <a href="'.base_url().'index.php/items/delete?idItem='.$row->iId.'" onclick="return confirm(\'Are you sure ?\')"><span class="glyphicon glyphicon-remove"></span></a></td>';
+                echo '<td align="right"><span class="glyphicon glyphicon-pencil" ng-click="editItem(\''.$row->iId.'\',\''.$row->iName.'\',\''.$row->quantity.'\',\''.$row->cId.'\')"></span> <a href="'.base_url().'index.php/items/delete?idItem='.$row->iId.'" onclick="return confirm(\'Are you sure ?\')"><span class="glyphicon glyphicon-remove"></span></a></td>';
                 echo '<tr>';
               }
               ?>
@@ -66,15 +62,6 @@
                 <br />
                 <input type="hidden" name="itemId" id="itemId" value="{{itemId}}" />
                 <input type="text" name="itemName" id="itemName" value="{{itemName}}" class="form-control" placeholder="Nome Prodotto" required />
-              </div>
-
-              <div class="form-group">
-                <strong>Prezzo:</strong>
-                <br />
-                <div class="input-group">
-                  <div class="input-group-addon">&euro;</div>
-                  <input type="number" step="any" name="itemPrice" id="itemPrice" value="{{itemPrice}}" class="form-control" placeholder="Prezzo" required />
-                </div>
               </div>
 
               <div class="form-group">
