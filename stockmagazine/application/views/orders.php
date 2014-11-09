@@ -5,10 +5,10 @@
       <div class="col-sm-12 main">
         
         <div class="col-sm-9">
-          <h2 class="sub-header">Ordini</h2>
+          <h2 class="sub-header">Scarico Magazzino</h2>
         </div>
         <div class="col-sm-3" align="right">
-          <button class="btn btn-primary" ng-click="openModal()">Aggiungi ordine</button>
+          <button class="btn btn-primary" ng-click="openModal()">Scarica fattura</button>
         </div>
 
         <br style="clear:both" />
@@ -19,9 +19,12 @@
               <tr>
                 <th>Fattura</th>
                 <th>Cliente</th>
-                <th>Stato</th>
+                <th>Pagato</th>
+                <th>Tipo pagamento</th>
+                <th>Data pagamento</th>
                 <th>Totale (&euro;)</th>
-                <th>&nbsp;</th>
+                <th width="300px">Note</th>
+                <th width="150px">&nbsp;</th>
               </tr>
             </thead>
             <tbody>
@@ -30,29 +33,26 @@
                 echo '<tr>';
                 echo '<td>'.$row->oFattura.'</td>';
                 echo '<td>'.$row->gName.'</td>';
-                echo '<td>'.$row->sType.'</td>';
-                echo '<td>'.$row->oTotal.'</td>';
+                echo '<td>'.$row->oPagato.'</td>';
+                echo '<td>'.$row->oTipoPag.'</td>';
 
-                if($row->sType == 'bozza') {
-                  echo '<td align="right" class="toolbar">'.
-                          '<span title="Visualizza prodotti" class="glyphicon glyphicon-th-list" ng-click="viewItem(\''.$row->oFattura.'\')"></span>'.
-                          '<a href="'.base_url().'index.php/orders/setState?idOrder='.$row->oId.'" onclick="return confirm(\'Are you sure ?\')">'.
-                            '<span title="Evadi ordine" class="glyphicon glyphicon-check"></span>'.
-                          '</a>'.
-                          '<span title="Modifica ordine" class="glyphicon glyphicon-pencil" ng-click="editItem(\''.$row->oId.'\',\''.$row->oFattura.'\',\''.$row->gId.'\',\''.$row->sId.'\')"></span>'.
-                          '<a href="'.base_url().'index.php/orders/delete?idOrder='.$row->oId.'" onclick="return confirm(\'Are you sure ?\')">'.
-                            '<span title="Cancella ordine" class="glyphicon glyphicon-remove"></span>'.
-                          '</a>'.
-                        '</td>';
+                if($row->oDataPag == '00/00/0000') {
+                  echo '<td></td>';
                 } else {
-                  echo '<td align="right" class="toolbar">'.
-                          '<span class="glyphicon glyphicon-th-list" ng-click="viewItem(\''.$row->oFattura.'\')"></span>'.
-                          '<a href="'.base_url().'index.php/orders/delete?idOrder='.$row->oId.'" onclick="return confirm(\'Are you sure ?\')">'.
-                            '<span class="glyphicon glyphicon-remove"></span>'.
-                          '</a>'.
-                        '</td>';
+                  echo '<td>'.$row->oDataPag.'</td>';
                 }
-                echo '<tr>';
+
+                echo '<td>'.$row->oTotal.'</td>';
+                echo '<td>'.$row->oNote.'</td>';
+
+                echo '<td align="right" class="toolbar">'.
+                        '<span title="Visualizza prodotti" class="glyphicon glyphicon-th-list" ng-click="viewItem(\''.$row->oFattura.'\')"></span>'.
+                        '<span title="Modifica scarico" class="glyphicon glyphicon-pencil" ng-click="editItem(\''.$row->oId.'\',\''.$row->oFattura.'\',\''.$row->gId.'\',\''.$row->oPagato.'\',\''.$row->oTipoPag.'\',\''.$row->oDataPag.'\',\''.$row->oTotal.'\',\''.$row->oNote.'\')"></span>'.
+                        '<a href="'.base_url().'index.php/orders/delete?idOrder='.$row->oId.'" onclick="return confirm(\'Vuoi cancellare lo scarico ?\')">'.
+                          '<span title="Cancella scarico" class="glyphicon glyphicon-remove"></span>'.
+                        '</a>'.
+                      '</td>';
+               echo '<tr>';
               }
               ?>
             </tbody>
@@ -125,15 +125,44 @@
               <!-- END: line order -->
 
               <div class="form-group">
-                <strong>Stato Ordine:</strong>
+                <strong>Pagato:</strong>
                 <br />
-                <select class="form-control" name="idState" id="idState">
+                <select class="form-control" name="pagato" id="pagato">
                   <option 
-                      ng-selected="{{idState == state.id}}"
-                      ng-repeat="state in listState" value="{{state.id}}">
-                    {{state.type}}
+                      ng-selected="{{pagato == pagatoTmp.value}}"
+                      ng-repeat="pagatoTmp in pagatoObj" value="{{pagatoTmp.value}}">
+                    {{pagatoTmp.name}}
                   </option>
                 </select>
+              </div>
+              <div class="form-group">
+                <strong>Data pagamento:</strong>
+                <br />
+                <input type="date" class="form-control" name="datapagamento" id="datapagamento" ng-model="datapagamento" ng-init="datapagamento" />
+
+              </div>
+              <div class="form-group">
+                <strong>Tipo pagamento:</strong>
+                <br />
+                <select class="form-control" name="tipopagamento" id="tipopagamento">
+                  <option 
+                      ng-selected="{{tipopagamento == tipopagamentoTmp.value}}"
+                      ng-repeat="tipopagamentoTmp in tipopagamentoObj" value="{{tipopagamentoTmp.value}}">
+                    {{tipopagamentoTmp.name}}
+                  </option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <strong>Totale:</strong>
+                <br />
+                <input type="number" class="form-control" step="any" name="totale" id="totale" value="{{totale}}" />
+              </div>
+
+              <div class="form-group">
+                <strong>Note:</strong>
+                <br />
+                <textarea class="form-control" rows="3" name="note" id="note">{{note}}</textarea>
               </div>
 
           </div>
@@ -145,7 +174,7 @@
       <?php echo form_close(); ?>
     </div>
   </div>
-
+  
   <!-- LINE ORDER -->
   <div id="modalLineOrder" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-sm">

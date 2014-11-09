@@ -32,7 +32,7 @@ class Vendor extends Main_Controller {
 		$vendorType = $this->input->post('vendorType');
 		
 
-		if($guestId != '') {
+		if($vendorId != '') {
 			$this->vendormodel->updateEntry($vendorId,$vendorName,$vendorAddress,$vendorCity,$vendorType);
 		} else {
 			$this->vendormodel->insertEntry($vendorName,$vendorAddress,$vendorCity,$vendorType);

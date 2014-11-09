@@ -14,8 +14,25 @@ stockmagazine.controller('OrdersController', function ($scope,$http,sharedFuncti
 
   $scope.openModal = function() {
     $scope.idOrder = '';
+    $scope.numFattura = '';
     $scope.idGuest = '';
-    $scope.idState = '';
+    $scope.pagato = '';
+    $scope.tipopagamento = '';
+    $scope.datapagamento = '';
+    $scope.totale = '';
+    $scope.note = '';
+
+    $scope.pagatoObj = [
+      { value: 'si', name: 'SI' },
+      { value: 'no', name: 'NO' }
+    ];
+    $scope.tipopagamentoObj = [
+      { value: '', name: '---' },
+      { value: 'assegno', name: 'Assegno' },
+      { value: 'bonifico', name: 'Bonifico' },
+      { value: 'contanti', name: 'Contanti' },
+      { value: 'altro', name: 'Altro' }
+    ];
 
     // assign this data to an object to store all our form data
     $scope.formData = {};
@@ -35,14 +52,6 @@ stockmagazine.controller('OrdersController', function ($scope,$http,sharedFuncti
         $scope.listGuests = guests;
       }).error(function (error) {
         console.log('getGuests - error: '+error);
-      });
-
-    ajaxCallServices.getState()
-      .success(function (state) {
-        //console.log('getState - success: '+state);
-        $scope.listState = state;
-      }).error(function (error) {
-        console.log('getState - error: '+error);
       });
 
     $('#modalOrders').modal();
@@ -69,13 +78,37 @@ stockmagazine.controller('OrdersController', function ($scope,$http,sharedFuncti
     $scope.formData.items = itemsDynamic;
   };
 
-  $scope.editItem = function(id,numFattura,guestId,stateId) {
-    console.log('editItem: '+id+' | '+numFattura+' | '+guestId+' | '+stateId);  
+  $scope.editItem = function(id,numFattura,guestId,pagato,tipopagamento,datapagamento,totale,note) {
+    console.log('editItem: '+id+' | '+numFattura+' | '+guestId+' | '+pagato+' | '+tipopagamento+' | '+datapagamento+' | '+totale+' | '+note);  
 
     $scope.idOrder= id;
     $scope.numFattura= numFattura;
     $scope.idGuest = guestId;
-    $scope.idState = stateId;
+    $scope.pagato = pagato;
+    $scope.tipopagamento = tipopagamento;
+
+    //Problema con dd < 10
+    var dt1   = parseInt(datapagamento.substring(0,2));
+    var mon1  = parseInt(datapagamento.substring(3,5));
+    var yr1   = parseInt(datapagamento.substring(6,10));
+    var dateFormatted = yr1+'-'+mon1+'-'+dt1
+
+    $scope.datapagamento = dateFormatted;
+
+    $scope.totale = totale;
+    $scope.note = note;
+
+    $scope.pagatoObj = [
+      { value: 'si', name: 'SI' },
+      { value: 'no', name: 'NO' }
+    ];
+    $scope.tipopagamentoObj = [
+      { value: '', name: '---' },
+      { value: 'assegno', name: 'Assegno' },
+      { value: 'bonifico', name: 'Bonifico' },
+      { value: 'contanti', name: 'Contanti' },
+      { value: 'altro', name: 'Altro' }
+    ];
 
     ajaxCallServices.getItems()
       .success(function (items) {
@@ -91,14 +124,6 @@ stockmagazine.controller('OrdersController', function ($scope,$http,sharedFuncti
         $scope.listGuests = guests;
       }).error(function (error) {
         console.log('getGuests - error: '+error);
-      });
-
-    ajaxCallServices.getState()
-      .success(function (state) {
-        //console.log('getState - success: '+state);
-        $scope.listState = state;
-      }).error(function (error) {
-        console.log('getState - error: '+error);
       });
 
     $('#modalOrders').modal('show'); 
@@ -221,24 +246,6 @@ stockmagazine.controller('VendorController', function ($scope,sharedFunctions) {
     $scope.vendorCity = city;
 
     $('#modalVendor').modal('show'); 
-  };
-});
-
-/***** State Controller ****/
-stockmagazine.controller('StateController', function ($scope,sharedFunctions) {
-  $scope.openModal = function() {
-    $scope.stateId = '';
-    $scope.stateType = '';
-    $('#modalState').modal();
-  };
-
-  $scope.editItem = function(id,type) {
-    console.log('editItem: '+id+' | '+type);  
-
-    $scope.stateId = id;
-    $scope.stateType = type;
-
-    $('#modalState').modal('show'); 
   };
 });
 

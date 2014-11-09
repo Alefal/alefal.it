@@ -12,7 +12,6 @@ class Orders extends Main_Controller {
 
         $this->load->model('itemsmodel');
         $this->load->model('guestsmodel');
-        $this->load->model('statemodel');
 
         $this->load->library('../controllers/home');
     }
@@ -23,7 +22,6 @@ class Orders extends Main_Controller {
 
 		$data['itemsList'] = $this->itemsmodel->getAll();
 		$data['guestsList'] = $this->guestsmodel->getAll();
-		$data['stateList'] = $this->statemodel->getAll();
 
 		$data['resultOrders'] = $this->ordersmodel->getAllJoin();
 		
@@ -40,17 +38,21 @@ class Orders extends Main_Controller {
 		//echo '<pre>'; var_dump($data); echo '</pre>';
 
 		//INSERT into ORDERS
-		$idOrder = $this->input->post('idOrder');
-		$idGuest = $this->input->post('idGuest');
-		$idState = $this->input->post('idState');
-		$totalOrder = 0; //aggiornare in base a orderline
-		$numFattura = $this->input->post('numFattura');
+		$idOrder 		= $this->input->post('idOrder');
+		$idGuest 		= $this->input->post('idGuest');
+		$totalOrder 	= $this->input->post('totale');
+		$numFattura 	= $this->input->post('numFattura');
+		$pagato 		= $this->input->post('pagato');
+		$datapagamento 	= $this->input->post('datapagamento');
+		$tipopagamento 	= $this->input->post('tipopagamento');
+		$note 			= $this->input->post('note');
 		
 		if($idOrder != '') {
-			$this->ordersmodel->updateEntry($idOrder,$idGuest,$idState,$totalOrder,$numFattura);
+			$this->ordersmodel->updateEntry($idOrder,$idGuest,$totalOrder,$numFattura,$pagato,$datapagamento,$tipopagamento,$note);
 		} else {
-			$this->ordersmodel->insertEntry($idGuest,$idState,$totalOrder,$numFattura);
+			$this->ordersmodel->insertEntry($idGuest,$totalOrder,$numFattura,$pagato,$datapagamento,$tipopagamento,$note);
 		
+			/**********
 			//INSERT into LINE ORDER
 			$listItemsForOrder = $this->input->post('listItemsForOrder');
 			//print_r($listItemsForOrder);
@@ -78,6 +80,7 @@ class Orders extends Main_Controller {
 
 				$totalOrder += $totalLineOrder;
 			}
+			**********/
 		}
 
 		/*
@@ -122,21 +125,6 @@ class Orders extends Main_Controller {
 
 		redirect('orders','refresh');
 	}
-
-	public function setState()
-	{
-		$idStateType 	= '';
-		$state = $this->statemodel->getIdByType('evaso');
-		foreach($state as $row) {
-			$idStateType = $row->id;
-        }
-
-		$idOrder = $this->input->get('idOrder');
-		$this->ordersmodel->updateStateOrder($idOrder,$idStateType);
-
-		redirect('orders','refresh');
-	}
-
 	
    
 }

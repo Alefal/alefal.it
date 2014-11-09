@@ -15,10 +15,10 @@
           <table class="table table-striped">
             <thead>
               <tr>
-                <th>Nome</th>
-                <th>Indirizzo</th>
-                <th>Città</th>
-                <th>&nbsp;</th>
+                <th width="30%">Nome</th>
+                <th width="30%">Indirizzo</th>
+                <th width="30%">Città</th>
+                <th width="10%">&nbsp;</th>
               </tr>
             </thead>
             <tbody>
@@ -32,7 +32,7 @@
                 echo '<td>'.$row->name.'</td>';
                 echo '<td>'.$row->address.'</td>';
                 echo '<td>'.$row->city.'</td>';
-                echo '<td align="right"><span class="glyphicon glyphicon-pencil" ng-click="editItem(\''.$row->id.'\',\''.$nameEl.'\',\''.$addressEl.'\',\''.$cityEl.'\',\''.$row->type.'\')"></span> <a href="'.base_url().'index.php/vendor/delete?idGuest='.$row->id.'" onclick="return confirm(\'Are you sure ?\')"><span class="glyphicon glyphicon-remove"></span></a></td>';
+                echo '<td align="right"><span class="glyphicon glyphicon-pencil" ng-click="editItem(\''.$row->id.'\',\''.$nameEl.'\',\''.$addressEl.'\',\''.$cityEl.'\',\''.$row->type.'\')"></span> <a href="'.base_url().'index.php/vendor/delete?idGuest='.$row->id.'" onclick="return confirm(\'Vuoi cancellare il fornitore ?\')"><span class="glyphicon glyphicon-remove"></span></a></td>';
                 echo '<tr>';
               }
               ?>

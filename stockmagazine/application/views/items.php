@@ -36,7 +36,7 @@
                 echo '<td>'.$row->iName.'</td>';
                 echo '<td class="'.$classColor.'">'.$row->quantity.'</td>';
                 echo '<td>'.$row->cName.'</td>';
-                echo '<td align="right"><span class="glyphicon glyphicon-pencil" ng-click="editItem(\''.$row->iId.'\',\''.$row->iName.'\',\''.$row->quantity.'\',\''.$row->cId.'\')"></span> <a href="'.base_url().'index.php/items/delete?idItem='.$row->iId.'" onclick="return confirm(\'Are you sure ?\')"><span class="glyphicon glyphicon-remove"></span></a></td>';
+                echo '<td align="right"><span class="glyphicon glyphicon-pencil" ng-click="editItem(\''.$row->iId.'\',\''.$row->iName.'\',\''.$row->quantity.'\',\''.$row->cId.'\')"></span> <a href="'.base_url().'index.php/items/delete?idItem='.$row->iId.'" onclick="return confirm(\'Vuoi cancellare il prodotto ?\')"><span class="glyphicon glyphicon-remove"></span></a></td>';
                 echo '<tr>';
               }
               ?>

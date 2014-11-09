@@ -24,7 +24,7 @@
               foreach($results as $row) {
                 echo '<tr>';
                 echo '<td>'.$row->name.'</td>';
-                echo '<td align="right"><span class="glyphicon glyphicon-pencil"  ng-click="editItem(\''.$row->id.'\',\''.$row->name.'\')"></span> <a href="'.base_url().'index.php/category/delete?idCategory='.$row->id.'" onclick="return confirm(\'Are you sure ?\')"><span class="glyphicon glyphicon-remove"></span></a></td>';
+                echo '<td align="right"><span class="glyphicon glyphicon-pencil"  ng-click="editItem(\''.$row->id.'\',\''.$row->name.'\')"></span> <a href="'.base_url().'index.php/category/delete?idCategory='.$row->id.'" onclick="return confirm(\'Vuoi cancellare la categoria ?\')"><span class="glyphicon glyphicon-remove"></span></a></td>';
                 echo '<tr>';
               }
               ?>

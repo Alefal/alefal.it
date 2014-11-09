@@ -4,7 +4,6 @@ class ordersmodel extends CI_Model {
 
     var $id   = '';
     var $idGuest = '';
-    var $idState = '';
     var $total = '';
     var $numFattura = '';
 
@@ -23,12 +22,17 @@ class ordersmodel extends CI_Model {
 
     function getAllJoin()
     {
-        $this->db->select('orders.id AS oId, orders.numFattura AS oFattura, orders.total AS oTotal');
+        $this->db->select('orders.id AS oId, 
+            orders.numFattura AS oFattura, 
+            orders.total AS oTotal, 
+            orders.pagato AS oPagato, 
+            orders.tipopagamento AS oTipoPag, 
+            orders.note AS oNote');
+        $this->db->select('DATE_FORMAT(orders.datapagamento, \'%d/%m/%Y\') AS oDataPag', FALSE);
         $this->db->select('guests.id AS gId, guests.name AS gName');
-        $this->db->select('state.id AS sId, state.type AS sType');
         $this->db->from('orders');
         $this->db->join('guests', 'orders.idGuest = guests.id');
-        $this->db->join('state', 'orders.idState = state.id');
+        $this->db->order_by('oFattura', 'desc'); 
 
 
         $query = $this->db->get();
@@ -69,34 +73,30 @@ class ordersmodel extends CI_Model {
         return $query->result();
     }
 
-    function insertEntry($idGuest,$idState,$total,$numFattura)
+    function insertEntry($idGuest,$total,$numFattura,$pagato,$datapagamento,$tipopagamento,$note)
     {
         $this->idGuest = $idGuest; // please read the below note
-        $this->idState = $idState; // please read the below note
         $this->total = $total; // please read the below note
         $this->numFattura = $numFattura; // please read the below note
+        $this->pagato = $pagato; // please read the below note
+        $this->datapagamento = $datapagamento; // please read the below note
+        $this->tipopagamento = $tipopagamento; // please read the below note
+        $this->note = $note; // please read the below note
+
         $this->db->insert('orders', $this);
     }
 
-    function updateEntry($idOrder,$idGuest,$idState,$total,$numFattura)
+    function updateEntry($idOrder,$idGuest,$total,$numFattura,$pagato,$datapagamento,$tipopagamento,$note)
     {
         $data = array(
             'id' => $idOrder,
             'idGuest' => $idGuest,
-            'idState' => $idState,
             'total' => $total,
             'numFattura' => $numFattura,
-        );
-
-        $this->db->where('id', $idOrder);
-        $this->db->update('orders', $data); 
-    }
-
-    function updateStateOrder($idOrder,$idStateType)
-    {
-        $data = array(
-            'id' => $idOrder,
-            'idState' => $idStateType
+            'pagato' => $pagato,
+            'datapagamento' => $datapagamento,
+            'tipopagamento' => $tipopagamento,
+            'note' => $note
         );
 
         $this->db->where('id', $idOrder);

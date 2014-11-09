@@ -6,7 +6,6 @@ class orderlinemodel extends CI_Model {
     var $numFattura = '';
     var $idItem = '';
     var $quantity = '';
-    var $total = '';
 
     function __construct()
     {
@@ -37,23 +36,21 @@ class orderlinemodel extends CI_Model {
         return $query->result();
     }
 
-    function insertEntry($numFattura,$idItem,$quantity,$total)
+    function insertEntry($numFattura,$idItem,$quantity)
     {
         $this->numFattura = $numFattura; // please read the below note
         $this->idItem = $idItem; // please read the below note
         $this->quantity = $quantity; // please read the below note
-        $this->total = $total; // please read the below note
         $this->db->insert('orderline', $this);
     }
 
-    function updateEntry($idLineOrder,$numFattura,$idItem,$quantity,$total)
+    function updateEntry($idLineOrder,$numFattura,$idItem,$quantity)
     {
         $data = array(
             'id' => $idLineOrder,
             'numFattura' => $numFattura,
             'idItem' => $idItem,
-            'quantity' => $quantity,
-            'total' => $total,
+            'quantity' => $quantity
         );
 
         $this->db->where('id', $idOrder);
