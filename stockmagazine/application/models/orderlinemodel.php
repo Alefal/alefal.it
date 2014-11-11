@@ -57,11 +57,13 @@ class orderlinemodel extends CI_Model {
         $this->db->update('orderline', $data); 
     }
 
-    function deleteEntry($id)
+    function deleteEntry($id,$numFattura)
     {
         $this->id = $id;
         $this->db->where('id', $id);
         $this->db->delete('orderline');
+
+        $this->orderlinemodel->getById($id);
     }
 
 }

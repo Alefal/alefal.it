@@ -52,35 +52,32 @@ class Orders extends Main_Controller {
 		} else {
 			$this->ordersmodel->insertEntry($idGuest,$totalOrder,$numFattura,$pagato,$datapagamento,$tipopagamento,$note);
 		
-			/**********
 			//INSERT into LINE ORDER
 			$listItemsForOrder = $this->input->post('listItemsForOrder');
 			//print_r($listItemsForOrder);
 			$data = json_decode($listItemsForOrder);
+
 			foreach ($data as $item) {
 				//echo($numFattura.' | '.$item->id.' | '.$item->quantity.'<br />');
 
-				// Per ogni linea d'ordine si deve:
-				// - calcolare il TOTALE 						-> OK
-				// - sommare il totale a quello dell'ordine 	-> si potrebbe togliere dall'ordine
+				//LINE ORDER
+		        $this->orderlinemodel->insertEntry($numFattura,$item->id,$item->quantity);
+
 				$itemName 	= '';
-				$itemPrice 	= 0;
 				$itemQnt 	= 0;
 				$itemCatId 	= 0;
 				$itemFound = $this->itemsmodel->getById($item->id);
+
 				foreach($itemFound as $row) {
 					$itemName = $row->name;
-					$itemPrice = $row->price;
 					$itemQnt = $row->quantity;
 					$itemCatId = $row->categoryId;
 		        }
 
-		        $totalLineOrder = $itemPrice * $item->quantity;
-				$this->orderlinemodel->insertEntry($numFattura,$item->id,$item->quantity,$totalLineOrder);
-
-				$totalOrder += $totalLineOrder;
+		        //UPDATE ITEM QUANTITY
+		        $updateQnt = intval($itemQnt)-intval($item->quantity);
+		        $this->itemsmodel->updateEntry($item->id,$itemName,$updateQnt,$itemCatId);
 			}
-			**********/
 		}
 
 		/*

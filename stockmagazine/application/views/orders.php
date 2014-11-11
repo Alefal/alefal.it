@@ -97,7 +97,6 @@
               <!-- START: line order -->
               <div class="row" id="listItemsOrder" ng-repeat="itemDynamic in formData.items">
 
-                
                 <div class="col-sm-5">
                   <div class="form-group">
                   <strong>Prodotto:</strong>
@@ -121,6 +120,7 @@
                 <div class="col-sm-2" style="margin-top: 15px;" ng-if="$last">
                   <span class="glyphicon glyphicon-plus" ng-click="addItemForProduct(itemIdModel,itemQntModel)">&nbsp;</span>
                 </div>
+
               </div>
               <!-- END: line order -->
 
@@ -186,7 +186,69 @@
         </div>
         <div class="modal-body">
 
-            {{listOrderLine}}
+          <h3>Aggiungi prodotto:</h3>
+
+          <!-- START: line order -->
+          <div class="row" id="listItemsOrder" ng-repeat="itemDynamicLineOrder in formData.itemsLineOrder">
+
+            <div class="col-sm-5">
+              <div class="form-group">
+              <strong>Prodotto:</strong>
+              <br />
+              <select class="form-control" ng-model="itemIdModel">
+                <option 
+                    ng-selected="{{idItem == item.id}}"
+                    ng-repeat="item in listItems" value="{{item.id}}">
+                  {{item.name}}
+                </option>
+              </select>
+            </div>
+            </div>
+            <div class="col-sm-5">
+              <div class="form-group">
+                <strong>Quantità:</strong>
+                <br />
+                <input type="number" min="1" ng-model="itemQntModel" class="form-control" placeholder="Quantità" />
+              </div>
+            </div>
+            <div class="col-sm-2" style="margin-top: 30px;" ng-if="$last">
+              <span class="glyphicon glyphicon-plus" ng-click="addItemLineOrder(itemIdModel,itemQntModel)">&nbsp;</span>
+            </div>
+
+          </div>
+          <!-- END: line order -->
+
+          <h3>Lista prodotti inseriti:</h3>
+
+          <div class="row">
+  
+            <div class="col-sm-5">
+              <h4>Prodotto</h4>
+            </div>
+            <div class="col-sm-5">
+              <h4>Quantit&agrave;</h4>
+            </div>
+            <div class="col-sm-2">&nbsp;</div>
+          </div>
+
+          <div class="row">
+            <div ng-repeat="orderline in listOrderLine">
+              <div class="col-sm-5">
+
+                <div ng-repeat="item in listItems">
+                  <div ng-if="item.id == orderline.idItem">
+                    {{item.name}}    
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-5">
+                <div>{{orderline.quantity}}</div>    
+              </div>
+              <div class="col-sm-2">
+                <span class="glyphicon glyphicon-minus" ng-click="deleteOrderItem(orderline.id,orderline.numFattura)">&nbsp;</span> 
+              </div>
+            </div>
+          </div>
 
         </div>
         <div class="modal-footer">

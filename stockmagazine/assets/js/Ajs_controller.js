@@ -6,11 +6,17 @@ stockmagazine.controller('MasterController', function ($scope,sharedFunctions) {
 /***** Orders Controller ****/
 stockmagazine.controller('OrdersController', function ($scope,$http,sharedFunctions,ajaxCallServices) {
   var listItems = [];
+  var listItemsLineOrder = [];
 
   var itemsDynamic = [{ 
     id: '', 
     quantity: ''
   }]; 
+
+  var itemsDynamicLineOrder = [{ 
+    id: '', 
+    quantity: ''
+  }];
 
   $scope.openModal = function() {
     $scope.idOrder = '';
@@ -78,6 +84,27 @@ stockmagazine.controller('OrdersController', function ($scope,$http,sharedFuncti
     $scope.formData.items = itemsDynamic;
   };
 
+  $scope.addItemLineOrder = function(id,qnt) {
+    console.log('-> '+id+' | '+qnt);
+
+    if(typeof id === 'undefined' || typeof qnt === 'undefined') {
+      return;
+    }
+
+    var newItemLineOrder = { 
+      id: id, 
+      quantity: qnt
+    };
+    
+    listItemsLineOrder.push(angular.fromJson(angular.toJson(newItemLineOrder)));
+    $scope.itemsInputLine = JSON.stringify(listItemsLineOrder);
+
+    itemsDynamicLineOrder.push(newItemLineOrder);
+
+    $scope.formData = {};
+    $scope.formData.itemsLineOrder = itemsDynamicLineOrder;
+  };
+
   $scope.editItem = function(id,numFattura,guestId,pagato,tipopagamento,datapagamento,totale,note) {
     console.log('editItem: '+id+' | '+numFattura+' | '+guestId+' | '+pagato+' | '+tipopagamento+' | '+datapagamento+' | '+totale+' | '+note);  
 
@@ -132,18 +159,39 @@ stockmagazine.controller('OrdersController', function ($scope,$http,sharedFuncti
   $scope.viewItem = function(numFattura) {
     console.log('-> '+numFattura);
 
+    $scope.formData = {};
+    $scope.formData.itemsLineOrder = itemsDynamicLineOrder;
+
+    ajaxCallServices.getItems()
+      .success(function (items) {
+        //console.log('getItems - success: '+items);
+        $scope.listItems = items;
+      }).error(function (error) {
+        console.log('getItems - error: '+error);
+      });
+
     ajaxCallServices.getOrderLine(numFattura)
       .success(function (orderline) {
-        console.log('getOrderLine - success: '+orderline);
+        console.log('getOrderLine - success: '+JSON.stringify(orderline));
         $scope.listOrderLine = orderline;
       }).error(function (error) {
         console.log('getOrderLine - error: '+error);
       });
 
     $('#modalLineOrder').modal();
-
   };
 
+  $scope.deleteOrderItem = function(id,numFattura) {
+   console.log('-> '+id+' | '+numFattura);
+
+    ajaxCallServices.deleteOrderLine(id,numFattura)
+      .success(function (orderline) {
+        console.log('deleteOrderLine - success: '+JSON.stringify(orderline));
+        $scope.listOrderLine = orderline;
+      }).error(function (error) {
+        console.log('deleteOrderLine - error: '+error);
+      });
+  };
 });
 
 /***** Category Controller ****/

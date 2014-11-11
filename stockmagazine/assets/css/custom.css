@@ -13,3 +13,7 @@ body {
 	margin-right: 10px;
 	cursor: pointer;
 }
+#modalLineOrder .col-sm-5, 
+#modalLineOrder .col-sm-5 {
+	padding: 10px;
+}

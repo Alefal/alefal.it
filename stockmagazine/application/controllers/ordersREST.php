@@ -35,4 +35,18 @@ class OrdersREST extends REST_Controller {
             $this->response(NULL, 404);
         }
     }
+
+    function deleteorderline_get()
+    {
+        $id = $this->get('id');
+        $numFattura = $this->get('numFattura');
+        $orderline = $this->orderlinemodel->deleteEntry($id,$numFattura);
+         
+        if($orderline) {
+            $this->response($orderline, 200); // 200 being the HTTP response code
+        } else
+        {
+            $this->response(NULL, 404);
+        }
+    }
 }
