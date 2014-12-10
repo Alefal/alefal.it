@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class vendorModel extends CI_Model {
+class vendormodel extends CI_Model {
 
     var $id   = '';
     var $name = '';

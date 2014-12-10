@@ -4,6 +4,48 @@ stockmagazine.controller('MasterController', function ($scope,sharedFunctions) {
 });
 
 /***** Orders Controller ****/
+stockmagazine.controller('DocumentsController', function ($scope,$http,sharedFunctions,ajaxCallServices) {
+ 
+  $scope.openModal = function() {
+    $scope.idOrder = '';
+    $scope.numFattura = '';
+    $scope.idGuest = '';
+    $scope.pagato = '';
+    $scope.tipopagamento = '';
+    $scope.datapagamento = '';
+    $scope.totale = '';
+    $scope.note = '';
+
+    $scope.pagatoObj = [
+      { value: 'si', name: 'SI' },
+      { value: 'no', name: 'NO' }
+    ];
+    $scope.tipopagamentoObj = [
+      { value: '', name: '---' },
+      { value: 'assegno', name: 'Assegno' },
+      { value: 'bonifico', name: 'Bonifico' },
+      { value: 'contanti', name: 'Contanti' },
+      { value: 'altro', name: 'Altro' }
+    ];
+
+    // assign this data to an object to store all our form data
+    $scope.formData = {};
+    $scope.formData.items = itemsDynamic;
+
+     ajaxCallServices.getGuests()
+      .success(function (guests) {
+        //console.log('getGuests - success: '+guests);
+        $scope.listGuests = guests;
+      }).error(function (error) {
+        console.log('getGuests - error: '+error);
+      });
+
+    $('#modalDocuments').modal();
+  };
+
+});
+
+/***** Orders Controller ****/
 stockmagazine.controller('OrdersController', function ($scope,$http,sharedFunctions,ajaxCallServices) {
   var listItems = [];
   var listItemsLineOrder = [];
