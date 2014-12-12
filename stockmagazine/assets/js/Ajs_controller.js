@@ -7,13 +7,14 @@ stockmagazine.controller('MasterController', function ($scope,sharedFunctions) {
 stockmagazine.controller('DocumentsController', function ($scope,$http,sharedFunctions,ajaxCallServices) {
  
   $scope.openModal = function() {
-    $scope.idOrder = '';
-    $scope.numFattura = '';
+    $scope.idDocument = '';
     $scope.idGuest = '';
+    $scope.numFattura = '';
+    $scope.dataFattura = '';
+    $scope.importoFattura = '';
+    $scope.dataCaricoMagazzino = '';
     $scope.pagato = '';
-    $scope.tipopagamento = '';
-    $scope.datapagamento = '';
-    $scope.totale = '';
+    $scope.tipoPagamento = '';
     $scope.note = '';
 
     $scope.pagatoObj = [
@@ -28,14 +29,10 @@ stockmagazine.controller('DocumentsController', function ($scope,$http,sharedFun
       { value: 'altro', name: 'Altro' }
     ];
 
-    // assign this data to an object to store all our form data
-    $scope.formData = {};
-    $scope.formData.items = itemsDynamic;
-
-     ajaxCallServices.getGuests()
-      .success(function (guests) {
-        //console.log('getGuests - success: '+guests);
-        $scope.listGuests = guests;
+    ajaxCallServices.getVendor()
+      .success(function (vendor) {
+        //console.log('getGuests - success: '+vendor);
+        $scope.listVendor = vendor;
       }).error(function (error) {
         console.log('getGuests - error: '+error);
       });

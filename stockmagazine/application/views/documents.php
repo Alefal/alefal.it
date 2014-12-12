@@ -69,8 +69,8 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <h4 class="modal-title" id="modalCategoryLabel">Ordini</h4>
-            <input type="hidden" name="idOrder" id="idOrder" value="{{idOrder}}" />
+            <h4 class="modal-title" id="modalCategoryLabel">Documenti</h4>
+            <input type="hidden" name="idDocument" id="idDocument" value="{{idDocument}}" />
           </div>
           <div class="modal-body">
 
@@ -87,7 +87,7 @@
                 <select class="form-control" name="idGuest" id="idGuest">
                   <option 
                       ng-selected="{{idGuest == guest.id}}"
-                      ng-repeat="guest in listGuests" value="{{guest.id}}">
+                      ng-repeat="guest in listVendor" value="{{guest.id}}">
                     {{guest.name}}
                   </option>
                 </select>

@@ -93,10 +93,10 @@ class documentsmodel extends CI_Model {
         $this->db->insert('documents', $this);
     }
 
-    function updateEntry($idOrder,$idGuest,$numFattura,$dataFattura,$importoFattura,$dataCaricoMagazzino,$pagato,$tipopagamento,$note)
+    function updateEntry($idDocument,$idGuest,$numFattura,$dataFattura,$importoFattura,$dataCaricoMagazzino,$pagato,$tipopagamento,$note)
     {
         $data = array(
-            'id' => $idOrder,
+            'id' => $idDocument,
             'idGuest' => $idGuest,
             'numFattura' => $numFattura,
             'dataFattura' => $dataFattura,
@@ -107,7 +107,7 @@ class documentsmodel extends CI_Model {
             'note' => $note
         );
 
-        $this->db->where('id', $idOrder);
+        $this->db->where('id', $idDocument);
         $this->db->update('documents', $data); 
     }
 

@@ -12,6 +12,10 @@ stockmagazine.factory('ajaxCallServices', function($http) {
     ajaxCallServices.getGuests = function () {
         return $http.get(urlBase+ '/index.php/guestsREST/items/format/json');
     };
+    /***** getVendor ****/
+    ajaxCallServices.getVendor = function () {
+        return $http.get(urlBase+ '/index.php/vendorREST/items/format/json');
+    };
     /***** getItems ****/
     ajaxCallServices.getItems = function () {
         return $http.get(urlBase+ '/index.php/itemsREST/items/format/json');

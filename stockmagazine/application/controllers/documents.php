@@ -35,7 +35,7 @@ class Documents extends Main_Controller {
 		//echo '<pre>'; var_dump($data); echo '</pre>';
 
 		//INSERT into ORDERS
-		$idOrder 		= $this->input->post('idOrder');
+		$idDocument 	= $this->input->post('idDocument');
 		$idGuest 		= $this->input->post('idGuest');
 		$totalOrder 	= $this->input->post('totale');
 		$numFattura 	= $this->input->post('numFattura');
@@ -44,80 +44,21 @@ class Documents extends Main_Controller {
 		$tipopagamento 	= $this->input->post('tipopagamento');
 		$note 			= $this->input->post('note');
 		
-		if($idOrder != '') {
-			$this->ordersmodel->updateEntry($idOrder,$idGuest,$totalOrder,$numFattura,$pagato,$datapagamento,$tipopagamento,$note);
+		if($idDocument != '') {
+			$this->documentsmodel->updateEntry($idDocument,$idGuest,$numFattura,$dataFattura,$importoFattura,$dataCaricoMagazzino,$pagato,$tipopagamento,$note);
 		} else {
-			$this->ordersmodel->insertEntry($idGuest,$totalOrder,$numFattura,$pagato,$datapagamento,$tipopagamento,$note);
-		
-			//INSERT into LINE ORDER
-			$listItemsForOrder = $this->input->post('listItemsForOrder');
-			//print_r($listItemsForOrder);
-			$data = json_decode($listItemsForOrder);
-
-			foreach ($data as $item) {
-				//echo($numFattura.' | '.$item->id.' | '.$item->quantity.'<br />');
-
-				//LINE ORDER
-		        $this->orderlinemodel->insertEntry($numFattura,$item->id,$item->quantity);
-
-				$itemName 	= '';
-				$itemQnt 	= 0;
-				$itemCatId 	= 0;
-				$itemFound = $this->itemsmodel->getById($item->id);
-
-				foreach($itemFound as $row) {
-					$itemName = $row->name;
-					$itemQnt = $row->quantity;
-					$itemCatId = $row->categoryId;
-		        }
-
-		        //UPDATE ITEM QUANTITY
-		        $updateQnt = intval($itemQnt)-intval($item->quantity);
-		        $this->itemsmodel->updateEntry($item->id,$itemName,$updateQnt,$itemCatId);
-			}
+			$this->documentsmodel->insertEntry($idGuest,$numFattura,$dataFattura,$importoFattura,$dataCaricoMagazzino,$pagato,$tipopagamento,$note);
 		}
 
-		/*
-		$itemName 	= '';
-		$itemPrice 	= 0;
-		$itemQnt 	= 0;
-		$itemCatId 	= 0;
-		$item = $this->itemsmodel->getById($idItem);
-		foreach($item as $row) {
-			$itemName = $row->name;
-			$itemPrice = $row->price;
-			$itemQnt = $row->quantity;
-			$itemCatId = $row->categoryId;
-        }
-        $updateQnt = intval($itemQnt)-intval($quantity);
-		$total = $itemPrice * $quantity;
-
-		$stateType 	= '';
-		$state = $this->statemodel->getById($idState);
-		foreach($state as $row) {
-			$stateType = $row->type;
-        }
-
-        //Si deve fare solo se ordine è EVASO
-        if($stateType == 'evaso') {
-			$this->itemsmodel->updateEntry($idItem,$itemName,$itemPrice,$updateQnt,$itemCatId);
-        }
-
-        if($idOrder != '') {
-			$this->ordersmodel->updateEntry($idOrder,$idItem,$idGuest,$idState,$quantity,$total);
-		} else {
-			$this->ordersmodel->insertEntry($idItem,$idGuest,$idState,$quantity,$total);
-		}
-		*/
-		redirect('orders','refresh');
+		redirect('documents','refresh');
 	}
 
 	public function delete()
 	{
-		$idOrder = $this->input->get('idOrder');
-		$this->ordersmodel->deleteEntry($idOrder);
+		$idDocument = $this->input->get('idDocument');
+		$this->documentsmodel->deleteEntry($idDocument);
 
-		redirect('orders','refresh');
+		redirect('documents','refresh');
 	}
 	
    
