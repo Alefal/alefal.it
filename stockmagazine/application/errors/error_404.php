@@ -57,6 +57,7 @@ p {
 	<div id="container">
 		<h1><?php echo $heading; ?></h1>
 		<?php echo $message; ?>
+		<p><a href="javascript:history.back();">Back to home</a></p>
 	</div>
 </body>
 </html>

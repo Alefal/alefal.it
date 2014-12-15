@@ -182,13 +182,13 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-          <h4 class="modal-title" id="modalCategoryLabel">Linee Ordine</h4>
+          <h4 class="modal-title" id="modalCategoryLabel">Lista prodotti inseriti</h4>
         </div>
         <div class="modal-body">
 
+          <!-- START: line order 
           <h3>Aggiungi prodotto:</h3>
 
-          <!-- START: line order -->
           <div class="row" id="listItemsOrder" ng-repeat="itemDynamicLineOrder in formData.itemsLineOrder">
 
             <div class="col-sm-5">
@@ -218,8 +218,6 @@
           </div>
           <!-- END: line order -->
 
-          <h3>Lista prodotti inseriti:</h3>
-
           <div class="row">
   
             <div class="col-sm-5">
@@ -244,9 +242,11 @@
               <div class="col-sm-5">
                 <div>{{orderline.quantity}}</div>    
               </div>
+              <!--
               <div class="col-sm-2">
                 <span class="glyphicon glyphicon-minus" ng-click="deleteOrderItem(orderline.id,orderline.numFattura)">&nbsp;</span> 
               </div>
+              -->
             </div>
           </div>
 

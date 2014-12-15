@@ -48,29 +48,6 @@ class documentsmodel extends CI_Model {
         return $query->result();
     }
 
-    /*
-    function getAllJoin()
-    {
-        //$query = $this->db->get('items');
-        //return $query->result();
-
-        $this->db->select('orders.id AS oId, orders.quantity AS oQuantity, orders.total AS oTotal');
-        $this->db->select('items.id AS iId, items.name AS iName');
-        $this->db->select('guests.id AS gId, guests.name AS gName');
-        $this->db->select('state.id AS sId, state.type AS sType');
-        $this->db->from('orders');
-        $this->db->join('items', 'orders.idItem = items.id');
-        $this->db->join('guests', 'orders.idGuest = guests.id');
-        $this->db->join('state', 'orders.idState = state.id');
-
-        $query = $this->db->get();
-        //print_r($query->result());
-        //die;
-
-        return $query->result();
-    }
-    */
-
     function getById($id)
     {
         $this->db->where('id', $id);
@@ -79,21 +56,27 @@ class documentsmodel extends CI_Model {
         return $query->result();
     }
 
-    function insertEntry($idGuest,$numFattura,$dataFattura,$importoFattura,$dataCaricoMagazzino,$pagato,$tipopagamento,$note)
+    function insertEntry($idGuest,$numFattura,$dataFattura,$importoFattura,$dataCaricoMagazzino,$pagato,$tipoPagamento,$note)
     {
+        //echo $tipoPagamento;
+        //echo '<pre>'; var_dump($this); echo '</pre>';
+
         $this->idGuest = $idGuest; // please read the below note
         $this->numFattura = $numFattura; // please read the below note
         $this->dataFattura = $dataFattura; // please read the below note
         $this->importoFattura = $importoFattura; // please read the below note
         $this->dataCaricoMagazzino = $dataCaricoMagazzino; // please read the below note
         $this->pagato = $pagato; // please read the below note
-        $this->tipopagamento = $tipopagamento; // please read the below note
+        $this->tipoPagamento = $tipoPagamento; // please read the below note
         $this->note = $note; // please read the below note
+
+        //echo '<pre>'; var_dump($this); echo '</pre>';
+        //die();
 
         $this->db->insert('documents', $this);
     }
 
-    function updateEntry($idDocument,$idGuest,$numFattura,$dataFattura,$importoFattura,$dataCaricoMagazzino,$pagato,$tipopagamento,$note)
+    function updateEntry($idDocument,$idGuest,$numFattura,$dataFattura,$importoFattura,$dataCaricoMagazzino,$pagato,$tipoPagamento,$note)
     {
         $data = array(
             'id' => $idDocument,
@@ -103,7 +86,7 @@ class documentsmodel extends CI_Model {
             'importoFattura' => $importoFattura,
             'dataCaricoMagazzino' => $dataCaricoMagazzino,
             'pagato' => $pagato,
-            'tipopagamento' => $tipopagamento,
+            'tipoPagamento' => $tipoPagamento,
             'note' => $note
         );
 

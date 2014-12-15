@@ -55,8 +55,13 @@ p {
 </head>
 <body>
 	<div id="container">
-		<h1><?php echo $heading; ?></h1>
+		<h1>
+			<?//php echo $heading; ?>
+			Errore
+		</h1>
+		<p>Non &egrave; possibile effettuare l'operazione richiesta!</p>
 		<?php echo $message; ?>
+		<p><a href="javascript:history.back();">Torna alla pagina</a></p>
 	</div>
 </body>
 </html>

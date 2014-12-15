@@ -9,7 +9,7 @@ class Documents extends Main_Controller {
         $this->load->helper('form');
        
         $this->load->model('documentsmodel');
-        $this->load->model('guestsmodel');
+        //$this->load->model('guestsmodel');
 
         $this->load->library('../controllers/home');
     }
@@ -18,8 +18,7 @@ class Documents extends Main_Controller {
 	{
 		$this->home->checkUserLogged();
 
-		$data['guestsList'] = $this->guestsmodel->getAll();
-
+		//$data['guestsList'] = $this->guestsmodel->getAll();
 		$data['resultDocuments'] = $this->documentsmodel->getAllJoin();
 		
 		$this->load->view('include/header');
@@ -33,21 +32,23 @@ class Documents extends Main_Controller {
 		//get all input
 		//$data = $this->input->post(NULL, TRUE);
 		//echo '<pre>'; var_dump($data); echo '</pre>';
+		//die();
 
 		//INSERT into ORDERS
-		$idDocument 	= $this->input->post('idDocument');
-		$idGuest 		= $this->input->post('idGuest');
-		$totalOrder 	= $this->input->post('totale');
-		$numFattura 	= $this->input->post('numFattura');
-		$pagato 		= $this->input->post('pagato');
-		$datapagamento 	= $this->input->post('datapagamento');
-		$tipopagamento 	= $this->input->post('tipopagamento');
-		$note 			= $this->input->post('note');
+		$idDocument 			= $this->input->post('idDocument');
+		$idGuest 				= $this->input->post('idGuest');
+		$numFattura 			= $this->input->post('numFattura');
+		$dataFattura 			= $this->input->post('dataFattura');
+		$importoFattura 		= $this->input->post('importoFattura');
+		$dataCaricoMagazzino 	= $this->input->post('dataCaricoMagazzino');
+		$pagato 				= $this->input->post('pagato');
+		$tipoPagamento 			= $this->input->post('tipoPagamento');
+		$note 					= $this->input->post('note');
 		
 		if($idDocument != '') {
-			$this->documentsmodel->updateEntry($idDocument,$idGuest,$numFattura,$dataFattura,$importoFattura,$dataCaricoMagazzino,$pagato,$tipopagamento,$note);
+			$this->documentsmodel->updateEntry($idDocument,$idGuest,$numFattura,$dataFattura,$importoFattura,$dataCaricoMagazzino,$pagato,$tipoPagamento,$note);
 		} else {
-			$this->documentsmodel->insertEntry($idGuest,$numFattura,$dataFattura,$importoFattura,$dataCaricoMagazzino,$pagato,$tipopagamento,$note);
+			$this->documentsmodel->insertEntry($idGuest,$numFattura,$dataFattura,$importoFattura,$dataCaricoMagazzino,$pagato,$tipoPagamento,$note);
 		}
 
 		redirect('documents','refresh');

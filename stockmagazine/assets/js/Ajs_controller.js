@@ -40,6 +40,42 @@ stockmagazine.controller('DocumentsController', function ($scope,$http,sharedFun
     $('#modalDocuments').modal();
   };
 
+  $scope.editItem = function(idDocument,idGuest,numFattura,dataFattura,importoFattura,dataCaricoMagazzino,pagato,tipoPagamento,note) {
+    console.log('editItem: '+idDocument+' | '+idGuest+' | '+numFattura+' | '+dataFattura+' | '+importoFattura+' | '+dataCaricoMagazzino+' | '+pagato+' | '+tipoPagamento+' | '+note);  
+
+    $scope.idDocument = idDocument;
+    $scope.idGuest = idGuest;
+    $scope.numFattura = numFattura;
+    $scope.dataFattura = dataFattura;
+    $scope.importoFattura = importoFattura;
+    $scope.dataCaricoMagazzino = dataCaricoMagazzino;
+    $scope.pagato = pagato;
+    $scope.tipoPagamento = tipoPagamento;
+    $scope.note = note;
+
+    $scope.pagatoObj = [
+      { value: 'si', name: 'SI' },
+      { value: 'no', name: 'NO' }
+    ];
+    $scope.tipopagamentoObj = [
+      { value: '', name: '---' },
+      { value: 'assegno', name: 'Assegno' },
+      { value: 'bonifico', name: 'Bonifico' },
+      { value: 'contanti', name: 'Contanti' },
+      { value: 'altro', name: 'Altro' }
+    ];
+
+    ajaxCallServices.getVendor()
+      .success(function (vendor) {
+        //console.log('getGuests - success: '+vendor);
+        $scope.listVendor = vendor;
+      }).error(function (error) {
+        console.log('getGuests - error: '+error);
+      });
+
+    $('#modalDocuments').modal('show'); 
+  };
+
 });
 
 /***** Orders Controller ****/

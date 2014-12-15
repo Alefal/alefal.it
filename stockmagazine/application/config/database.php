@@ -54,7 +54,7 @@ $db['default']['username'] = 'root';
 $db['default']['password'] = '';
 $db['default']['database'] = 'stockmagazine';
 
-/* REMOTE  
+/* REMOTE 
 $db['default']['hostname'] = '62.149.150.219';
 $db['default']['username'] = 'Sql777406';
 $db['default']['password'] = 'xjzxwh1o6c';
