@@ -8,19 +8,22 @@
           <h2 class="sub-header">Documenti</h2>
         </div>
         <div class="col-sm-3" align="right">
-          <button class="btn btn-primary" ng-click="openModal()">Aggiungi documento</button>
+          <button class="btn btn-primary" ng-click="exportData()">
+            <i class="fa fa-download fa-5"></i> Export</button>
+          <button class="btn btn-primary" ng-click="openModal()">
+            <i class="fa fa-plus-circle fa-4"></i> Aggiungi documento</button>
         </div>
 
         <br style="clear:both" />
 
-        <div class="table-responsive">
+        <div class="table-responsive" id="exportable">
           <table class="table table-striped">
             <thead>
               <tr>
                 <th>Fattura</th>
                 <th>Fornitore</th>
                 <th>Data Fattura</th>
-                <th>Importo (&euro;)</th>
+                <th>Importo</th>
                 <th>Data carico magazzino</th>
                 <th>Pagato</th>
                 <th>Tipo pagamento</th>

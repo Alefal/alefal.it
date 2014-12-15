@@ -4,16 +4,22 @@
     <div class="row">
       <div class="col-sm-12 main">
         
-        <div class="col-sm-12">
+        <div class="col-sm-9">
           <h2 class="sub-header">Carica Magazzino</h2>
         </div>
+        <div class="col-sm-3" align="right">
+          <button class="btn btn-primary" ng-click="exportData()">
+            <i class="fa fa-download fa-5"></i> Export</button>
+        </div>
 
-        <div class="table-responsive">
+        <br style="clear:both" />
+
+        <div class="table-responsive" id="exportable">
           <table class="table table-striped">
             <thead>
               <tr>
                 <th>Nome</th>
-                <th>Quantità</th>
+                <th>Quantita'</th>
                 <th>&nbsp;</th>
               </tr>
             </thead>
@@ -47,11 +53,10 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <h4 class="modal-title" id="modalCategoryLabel">Carica quantità prodotto</h4>
+            <h4 class="modal-title" id="modalCategoryLabel">{{itemName}}</h4>
           </div>
           <div class="modal-body">
               <div class="form-group">
-                <h3>{{itemName}}</h3>
                 <input type="hidden" name="itemId" id="itemId" value="{{itemId}}" />
                 <input type="hidden" name="itemName" id="itemName" value="{{itemName}}" />
                 <input type="hidden" name="itemQuantity" id="itemQuantity" value="{{itemQuantity}}" />
@@ -59,7 +64,7 @@
               </div>
 
               <div class="form-group">
-                <strong>Inserisci quantità da caricare:</strong>
+                <strong>Inserisci quantit&agrave; da caricare:</strong>
                 <br />
                 <input type="number" min="1" name="itemQuantityUpdate" id="itemQuantityUpdate" class="form-control" placeholder="Quantità" required />
               </div>

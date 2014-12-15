@@ -8,17 +8,20 @@
           <h2 class="sub-header">Prodotti</h2>
         </div>
         <div class="col-sm-3" align="right">
-          <button class="btn btn-primary" ng-click="openModal()">Aggiungi prodotto</button>
+          <button class="btn btn-primary" ng-click="exportData()">
+            <i class="fa fa-download fa-5"></i> Export</button>
+          <button class="btn btn-primary" ng-click="openModal()">
+            <i class="fa fa-plus-circle fa-4"></i> Aggiungi prodotto</button>
         </div>
 
         <br style="clear:both" />
 
-        <div class="table-responsive">
+        <div class="table-responsive" id="exportable">
           <table class="table table-striped">
             <thead>
               <tr>
                 <th>Nome</th>
-                <th>Quantità</th>
+                <th>Quantita'</th>
                 <th>Categoria</th>
                 <th>&nbsp;</th>
               </tr>

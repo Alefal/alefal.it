@@ -8,10 +8,13 @@
           <h2 class="sub-header">Categorie</h2>
         </div>
         <div class="col-sm-3" align="right">
-          <button class="btn btn-primary" data-toggle="modal" data-target="#modalCategory">Aggiungi categoria</button>
+          <button class="btn btn-primary" ng-click="exportData()">
+            <i class="fa fa-download fa-5"></i> Export</button>
+          <button class="btn btn-primary" ng-click="openModal()">
+            <i class="fa fa-plus-circle fa-4"></i> Aggiungi categoria</button>
         </div>
 
-        <div class="table-responsive">
+        <div class="table-responsive" id="exportable">
           <table class="table table-striped">
             <thead>
               <tr>

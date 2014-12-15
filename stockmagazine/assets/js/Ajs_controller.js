@@ -5,7 +5,14 @@ stockmagazine.controller('MasterController', function ($scope,sharedFunctions) {
 
 /***** Orders Controller ****/
 stockmagazine.controller('DocumentsController', function ($scope,$http,sharedFunctions,ajaxCallServices) {
- 
+  $scope.exportData = function () {
+    var blob = new Blob([document.getElementById('exportable').innerHTML], {
+      //type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8'
+      type: 'application/vnd.ms-excel;charset=utf-8'
+    });
+    saveAs(blob, 'DocumentsReport.xls');
+  };
+
   $scope.openModal = function() {
     $scope.idDocument = '';
     $scope.idGuest = '';
@@ -75,7 +82,6 @@ stockmagazine.controller('DocumentsController', function ($scope,$http,sharedFun
 
     $('#modalDocuments').modal('show'); 
   };
-
 });
 
 /***** Orders Controller ****/
@@ -87,6 +93,13 @@ stockmagazine.controller('OrdersController', function ($scope,$http,sharedFuncti
     id: '', 
     quantity: ''
   }]; 
+
+  $scope.exportData = function () {
+    var blob = new Blob([document.getElementById('exportable').innerHTML], {
+      type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8'
+    });
+    saveAs(blob, 'OrdersReport.xls');
+  };
 
   var itemsDynamicLineOrder = [{ 
     id: '', 
@@ -271,6 +284,13 @@ stockmagazine.controller('OrdersController', function ($scope,$http,sharedFuncti
 
 /***** Category Controller ****/
 stockmagazine.controller('CategoryController', function ($scope,sharedFunctions) {
+  $scope.exportData = function () {
+    var blob = new Blob([document.getElementById('exportable').innerHTML], {
+      type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8'
+    });
+    saveAs(blob, 'CategoryReport.xls');
+  };
+
   $scope.openModal = function() {
     $scope.categoryId = '';
     $scope.categoryName = '';
@@ -289,6 +309,13 @@ stockmagazine.controller('CategoryController', function ($scope,sharedFunctions)
 
 /***** Items Controller ****/
 stockmagazine.controller('ItemsController', function ($scope,$http,sharedFunctions,ajaxCallServices) {
+  $scope.exportData = function () {
+    var blob = new Blob([document.getElementById('exportable').innerHTML], {
+      type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8'
+    });
+    saveAs(blob, 'ItemsReport.xls');
+  };
+
   $scope.openModal = function() {
     $scope.itemId = '';
     $scope.itemName = '';
@@ -328,6 +355,13 @@ stockmagazine.controller('ItemsController', function ($scope,$http,sharedFunctio
 
 /***** Guests Controller ****/
 stockmagazine.controller('GuestsController', function ($scope,sharedFunctions) {
+  $scope.exportData = function () {
+    var blob = new Blob([document.getElementById('exportable').innerHTML], {
+      type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8'
+    });
+    saveAs(blob, 'GuestsReport.xls');
+  };
+
   $scope.openModal = function() {
     $scope.guestId = '';
     $scope.guestName = '';
@@ -351,6 +385,13 @@ stockmagazine.controller('GuestsController', function ($scope,sharedFunctions) {
 
 /***** Vendor Controller ****/
 stockmagazine.controller('VendorController', function ($scope,sharedFunctions) {
+  $scope.exportData = function () {
+    var blob = new Blob([document.getElementById('exportable').innerHTML], {
+      type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8'
+    });
+    saveAs(blob, 'VendorReport.xls');
+  };
+
   $scope.openModal = function() {
     $scope.vendorId = '';
     $scope.vendorName = '';
@@ -374,6 +415,13 @@ stockmagazine.controller('VendorController', function ($scope,sharedFunctions) {
 
 /***** Stock Controller ****/
 stockmagazine.controller('StockController', function ($scope) {
+  $scope.exportData = function () {
+    var blob = new Blob([document.getElementById('exportable').innerHTML], {
+      type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8'
+    });
+    saveAs(blob, 'StockReport.xls');
+  };
+
   $scope.addQntItemStock = function(id,name,quantity,categoryId) {
     //console.log('addQntItemStock: '+id+' | '+name);  
 
