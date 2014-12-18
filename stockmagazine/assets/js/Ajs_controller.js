@@ -257,7 +257,7 @@ stockmagazine.controller('OrdersController', function ($scope,$http,sharedFuncti
       }).error(function (error) {
         console.log('getItems - error: '+error);
       });
-
+    
     ajaxCallServices.getOrderLine(numFattura)
       .success(function (orderline) {
         console.log('getOrderLine - success: '+JSON.stringify(orderline));

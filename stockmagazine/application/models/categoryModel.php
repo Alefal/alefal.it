@@ -14,6 +14,7 @@ class categorymodel extends CI_Model {
     
     function getAll()
     {
+        $this->db->order_by('name', 'asc');
         $query = $this->db->get('category');
         return $query->result();
     }

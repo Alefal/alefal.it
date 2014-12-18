@@ -16,6 +16,7 @@ class itemsmodel extends CI_Model {
     
     function getAll()
     {
+        $this->db->order_by('name', 'asc');
         $query = $this->db->get('items');
         return $query->result();
     }
@@ -29,6 +30,7 @@ class itemsmodel extends CI_Model {
         $this->db->select('category.id AS cId, category.name AS cName');
         $this->db->from('items');
         $this->db->join('category', 'items.categoryId = category.id');
+        $this->db->order_by('items.name', 'asc');
 
         $query = $this->db->get();
         //print_r($query->result());

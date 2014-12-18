@@ -16,6 +16,7 @@ class orderlinemodel extends CI_Model {
     
     function getAll()
     {
+        $this->db->order_by('items.name', 'asc');
         $query = $this->db->get('orderline');
         return $query->result();
     }

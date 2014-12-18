@@ -18,6 +18,7 @@ class guestsmodel extends CI_Model {
     function getAll()
     {
         $this->db->where('type', 'cliente');
+        $this->db->order_by('name', 'asc');
         $query = $this->db->get('guests');
         return $query->result();
     }

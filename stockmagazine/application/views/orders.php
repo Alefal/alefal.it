@@ -223,34 +223,31 @@
 
           <div class="row">
   
-            <div class="col-sm-5">
+            <div class="col-sm-6">
               <h4>Prodotto</h4>
             </div>
-            <div class="col-sm-5">
+            <div class="col-sm-6">
               <h4>Quantit&agrave;</h4>
             </div>
-            <div class="col-sm-2">&nbsp;</div>
           </div>
 
-          <div class="row">
-            <div ng-repeat="orderline in listOrderLine">
-              <div class="col-sm-5">
+          <div class="row" ng-repeat="orderline in listOrderLine">
+            <div class="col-sm-6">
 
-                <div ng-repeat="item in listItems">
-                  <div ng-if="item.id == orderline.idItem">
-                    {{item.name}}    
-                  </div>
+              <div ng-repeat="item in listItems">
+                <div ng-if="item.id == orderline.idItem">
+                  {{item.name}}    
                 </div>
               </div>
-              <div class="col-sm-5">
-                <div>{{orderline.quantity}}</div>    
-              </div>
-              <!--
-              <div class="col-sm-2">
-                <span class="glyphicon glyphicon-minus" ng-click="deleteOrderItem(orderline.id,orderline.numFattura)">&nbsp;</span> 
-              </div>
-              -->
             </div>
+            <div class="col-sm-6">
+              <div>{{orderline.quantity}}</div>    
+            </div>
+            <!--
+            <div class="col-sm-2">
+              <span class="glyphicon glyphicon-minus" ng-click="deleteOrderItem(orderline.id,orderline.numFattura)">&nbsp;</span> 
+            </div>
+            -->
           </div>
 
         </div>

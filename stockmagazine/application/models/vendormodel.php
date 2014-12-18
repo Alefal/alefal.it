@@ -18,6 +18,7 @@ class vendormodel extends CI_Model {
     function getAll()
     {
         $this->db->where('type', 'fornitore');
+        $this->db->order_by('name', 'asc');
         $query = $this->db->get('guests');
         return $query->result();
     }

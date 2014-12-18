@@ -38,7 +38,7 @@ class documentsmodel extends CI_Model {
         $this->db->select('guests.id AS gId, guests.name AS gName');
         $this->db->from('documents');
         $this->db->join('guests', 'documents.idGuest = guests.id');
-        $this->db->order_by('dNumFattura', 'desc'); 
+        $this->db->order_by('documents.numFattura', 'desc'); 
 
 
         $query = $this->db->get();
