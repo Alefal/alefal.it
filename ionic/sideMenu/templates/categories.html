@@ -1,0 +1,14 @@
+<ion-view view-title="Categories">
+  	<ion-content ng-controller="RefreshController">
+		<ion-refresher
+	    	pulling-text="Pull to refresh..."
+	    	on-refresh="doRefresh()">
+	  	</ion-refresher>
+
+	  	<ion-list>
+      		<ion-item ng-repeat="category in categories" href="#/app/categories/{{category.id}}">
+        		{{category.title}}
+      		</ion-item>
+    	</ion-list>
+  	</ion-content>
+</ion-view>
