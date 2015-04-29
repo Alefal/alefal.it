@@ -1,0 +1,59 @@
+{
+	"id":"9",
+ 	"name":"Palazzo Avino",
+ 	"introtext":"<p>Descrizione Palazzo Avino<\/p>",
+ 	"fulltext":"",
+ 	"categoryName":"Hotels",
+ 	"featured":"0",
+ 	"image":"img\/ionic.png",
+ 	"gallery":[],
+ 	"tags":[],
+ 	"votingPercentage":0,
+ 	"numOfvotes":"(0 votes)",
+ 	"numOfComments":"0",
+    "extra_fields":{
+        "0":{
+           "id":"6",
+           "name":"Stelle",
+           "value":"5",
+           "alias":"stars"
+
+        },
+        "1":{
+           "id":"7",
+           "name":"Latitude",
+           "value":"40.651699",
+           "alias":"latitude"
+        },
+        "2":{
+           "id":"8",
+           "name":"Longitude",
+           "value":"14.612878",
+           "alias":"longitude"
+        },
+        "3":{
+           "id":"9",
+           "name":"Servizi",
+           "value":"Ristorante, Piscina, Snack Bar, Ascensore",
+           "alias":"services"
+        },
+        "4":{
+           "id":"10",
+           "name":"Telefono",
+           "value":"089858585",
+           "alias":"phone"
+        },
+        "5":{
+           "id":"12",
+           "name":"Email",
+           "value":"info@palazzoavino.it",
+           "alias":"email"
+        },
+        "6":{
+           "id":"13",
+           "name":"Web",
+           "value":"http:\/\/www.palazzoavino.it",
+           "alias":"web"
+        }
+    }
+}

@@ -4,6 +4,75 @@ angular.module('starter.controllers', [])
   // Form data for the login modal
   $scope.loginData = {};
 
+  ////////////////////////////////////////
+    // Layout Methods
+    ////////////////////////////////////////
+
+    $scope.hideNavBar = function() {
+        document.getElementsByTagName('ion-nav-bar')[0].style.display = 'none';
+    };
+
+    $scope.showNavBar = function() {
+        document.getElementsByTagName('ion-nav-bar')[0].style.display = 'block';
+    };
+
+    $scope.noHeader = function() {
+        var content = document.getElementsByTagName('ion-content');
+        for (var i = 0; i < content.length; i++) {
+            if (content[i].classList.contains('has-header')) {
+                content[i].classList.toggle('has-header');
+            }
+        }
+    };
+
+    $scope.setExpanded = function(bool) {
+        $scope.isExpanded = bool;
+    };
+
+    $scope.setHeaderFab = function(location) {
+        var hasHeaderFabLeft = false;
+        var hasHeaderFabRight = false;
+
+        switch (location) {
+            case 'left':
+                hasHeaderFabLeft = true;
+                break;
+            case 'right':
+                hasHeaderFabRight = true;
+                break;
+        }
+
+        $scope.hasHeaderFabLeft = hasHeaderFabLeft;
+        $scope.hasHeaderFabRight = hasHeaderFabRight;
+    };
+
+    $scope.hasHeader = function() {
+        var content = document.getElementsByTagName('ion-content');
+        for (var i = 0; i < content.length; i++) {
+            if (!content[i].classList.contains('has-header')) {
+                content[i].classList.toggle('has-header');
+            }
+        }
+
+    };
+
+    $scope.hideHeader = function() {
+        $scope.hideNavBar();
+        $scope.noHeader();
+    };
+
+    $scope.showHeader = function() {
+        $scope.showNavBar();
+        $scope.hasHeader();
+    };
+
+    $scope.clearFabs = function() {
+        var fabs = document.getElementsByClassName('button-fab');
+        if (fabs.length && fabs.length >= 1) {
+            fabs[0].remove();
+        }
+    };
+
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
     scope: $scope
@@ -71,17 +140,6 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('CategoriesCtrl', function($scope, $ionicLoading) {
-  $scope.categories = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
-  
-})
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 })
@@ -190,6 +248,9 @@ $scope.showPopup = function() {
 
 .controller('MapController', function($scope, $ionicLoading) {
 
+    $ionicLoading.show({
+    template: 'Loading...'
+  });
     console.log('MapController1');
     
     //google.maps.event.addDomListener(window, 'load', function() {
@@ -211,6 +272,8 @@ $scope.showPopup = function() {
                 map: map,
                 title: "My Location"
             });
+
+            $ionicLoading.hide();
         });
 
         $scope.map = map;
@@ -218,18 +281,151 @@ $scope.showPopup = function() {
 
 })
 
-.controller('ListsCategory', function ($scope,$ionicLoading,ajaxCallServices) {
+.controller('CategoriesCtrl', function ($scope,$ionicLoading,ajaxCallServices,$stateParams,$timeout) {
   
   $ionicLoading.show({
     template: 'Loading...'
   });
 
-  ajaxCallServices.getCategorie()
-    .success(function (categoria) {
-      $scope.categorie = categoria;
+  console.log('categoryId -> %o',$stateParams);
+  var categoryId;
+
+  if(typeof $stateParams.categoryId === 'undefined') {
+    categoryId = 0;
+  } else {
+    categoryId = $stateParams.categoryId;
+  }
+
+  console.log('CategoriesCtrl: categoryId -> '+categoryId);
+
+  ajaxCallServices.getCategories(categoryId)
+    .success(function (listCategories) {
+      $scope.listCategories = listCategories;
+
+      console.log('1 ->'+listCategories.categories.length);
+      console.log('2 ->'+listCategories.items.length);
+
+
+      // Set Header
+    $scope.$parent.showHeader();
+    //$scope.$parent.clearFabs();
+    $scope.$parent.setHeaderFab('left');
+
+    $scope.isExpanded = false;
+    $scope.$parent.setExpanded(false);
+
+    //$scope.$parent.setHeaderFab(false);
+
+// Set Ink
+    ionic.material.ink.displayEffect();
+
 
       $ionicLoading.hide();
     }).error(function (error) {
       $scope.status = 'Unable to load customer data: ' + error.message;
     });
+})
+
+.controller('ItemCtrl', function ($scope,$ionicLoading,ajaxCallServices,$stateParams,sharedFunctions,$timeout) {
+  $ionicLoading.show({
+    template: 'Loading...'
+  });
+
+
+/********************
+// Set Header
+    $scope.$parent.showHeader();
+    $scope.$parent.clearFabs();
+    //$scope.$parent.setHeaderFab('left');
+
+    // Delay expansion
+    $timeout(function() {
+        $scope.isExpanded = true;
+        $scope.$parent.setExpanded(true);
+    }, 300);
+
+    // Set Motion
+    ionic.material.motion.fadeSlideInRight();
+
+    // Set Ink
+    ionic.material.ink.displayEffect();
+
+****************/
+
+
+
+   
+
+
+  console.log('itemId -> %o',$stateParams);
+  var itemId = $stateParams.categoryId;
+  
+  ajaxCallServices.getItem(itemId)
+    .success(function (item) {
+      console.log('item -> %o',item);
+
+      $scope.item = item;
+
+      sharedFunctions.getExtraField($scope,item);
+
+      console.log($scope.latitudeCoord);
+      console.log($scope.longitudeCoord);
+      console.log($scope.exFieldEmail);
+
+      var itemLatlng = new google.maps.LatLng($scope.latitudeCoord, $scope.longitudeCoord);
+
+      var mapOptions = {
+          center: itemLatlng,
+          zoom: 16,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+
+      var mapDetail = new google.maps.Map(document.getElementById('mapDetail'), mapOptions);
+
+      mapDetail.setCenter(itemLatlng);
+      var myLocation = new google.maps.Marker({
+          position: itemLatlng,
+          map: mapDetail,
+          title: 'Item'
+      });
+
+      $scope.mapDetail = mapDetail;
+
+
+       $scope.$parent.clearFabs();
+    // Activate ink for controller
+    ionic.material.ink.displayEffect();
+
+      $ionicLoading.hide();
+    }).error(function (error) {
+      $scope.status = 'Unable to load customer data: ' + error.message;
+    });
+
+  $scope.clickToolbarButton = function(section) {
+    console.log('clickToolbarButton -> '+section);
+
+    if(section == 'navigator') {
+      var lat = $scope.latitudeCoord;
+      var lon = $scope.longitudeCoord;
+      console.log('navigator: '+lat+' | '+lon);
+
+      location.href = 'google.navigation:q='+lat+','+lon;
+
+    } else if(section == 'phone') {
+      console.log('phone: '+$scope.exFieldTelefono);
+      location.href = 'tel:'+$scope.exFieldTelefono;
+     
+    } else if(section == 'email') {
+      console.log('email: '+$scope.exFieldEmail);
+      location.href = 'mailto:'+$scope.exFieldEmail;
+     
+    } else if(section == 'site') {
+      console.log('site: '+$scope.exFieldWeb);
+      window.open($scope.exFieldWeb, '_blank', 'location=yes');
+     
+    } else {
+      //nothing
+    }
+
+  };  
 });

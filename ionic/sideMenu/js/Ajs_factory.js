@@ -2,26 +2,32 @@ angular.module('starter.factory', [])
 
 .factory('ajaxCallServices', function($http) {
 
-    var urlBase = 'http://127.0.0.1/amalficoastapp.it';                   //TODO: commentare per APP
-    //var urlBase = 'http://www.amalficoastapp.it';     //TODO: decommentare per APP
+    //var urlBase = 'http://127.0.0.1/amalficoastapp.it';
+    
+    var urlBase = 'http://10.80.18.107/alefal.it/ionic/sideMenu/json';
     var ajaxCallServices = {};
 
-    /***** getCategorie ****/
-    ajaxCallServices.getCategorie = function () {
+    /***** getCategories ****/
+    ajaxCallServices.getCategories = function (categoryId) {
         var language = 'it';
         var languageExt = ''
+
+        console.log('getCategories: categoryId ->'+categoryId);
           
         //var language = 'en';
         //var languageExt = '-uk'
 
-        return $http.get(urlBase+ '/backend/index.php/'+language+'/categorie'+languageExt+'?format=json');
+        if(categoryId == 0)
+          return $http.get(urlBase+ '/categories.json');
+        else
+          return $http.get(urlBase+ '/category'+categoryId+'.json');
+
         //return $http.get('http://localhost/amalficoastapp.it/app/onsenui/tmp/categories.json');
     };
 
     /***** getElement ****/
-    ajaxCallServices.getElement = function (elementLink) {
-        return $http.get(urlBase+ ''+elementLink+'?format=json');
-        //return $http.get('http://localhost/amalficoastapp.it/app/onsenui/tmp/subcategory3.json');
+    ajaxCallServices.getItem = function (itemId) {
+        return $http.get(urlBase+ '/item.json');
     };
 
     return ajaxCallServices;
@@ -79,33 +85,25 @@ angular.module('starter.factory', [])
             }
             return icon;
         },
-        getExtraField: function($scope,subCategoria) {
-            var category = subCategoria.item.category.alias;
+        getExtraField: function($scope,item) {
+            angular.forEach(item.extra_fields, function(value, key) {
+                if(value.name == 'Latitude')
+                    $scope.latitudeCoord = value.value;
+                if(value.name == 'Longitude')
+                    $scope.longitudeCoord = value.value;
+                if(value.name == 'Servizi')
+                    $scope.exFieldServizi = value.value; 
+                if(value.name == 'Stelle')
+                    $scope.exFieldStelle = value.value;
+                if(value.name == 'Telefono')
+                    $scope.exFieldTelefono = value.value;
+                if(value.name == 'Email')
+                    $scope.exFieldEmail = value.value;
+                if(value.name == 'Web')
+                    $scope.exFieldWeb = value.value;
 
-            if(category !== 'undefined' && category != null && category != '') {
-
-                angular.forEach(subCategoria.item.extra_fields, function(value, key) {
-                    if(value.name == 'Latitude')
-                        $scope.latitudeCoord = value.value;
-                    if(value.name == 'Longitude')
-                        $scope.longitudeCoord = value.value;
-                    if(value.name == 'Servizi')
-                        $scope.exFieldServizi = value.value; 
-                    if(value.name == 'Stelle')
-                        $scope.exFieldStelle = value.value;
-                    if(value.name == 'Telefono')
-                        $scope.exFieldTelefono = value.value;
-                    if(value.name == 'Email')
-                        $scope.exFieldEmail = value.value;
-                    if(value.name == 'Web')
-                        $scope.exFieldWeb = value.value;
-
-                  //console.log(key + ': ' + value.value);
-                });
-
-            } else {
-                console.log('...');
-            }
+              //console.log(key + ': ' + value.value);
+            });
         }
     };
 });

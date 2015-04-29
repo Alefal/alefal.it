@@ -1,14 +1,53 @@
 <ion-view view-title="Categories">
   	<ion-content ng-controller="RefreshController">
-		<ion-refresher
+		  <ion-refresher
 	    	pulling-text="Pull to refresh..."
 	    	on-refresh="doRefresh()">
 	  	</ion-refresher>
 
-	  	<ion-list>
-      		<ion-item ng-repeat="category in categories" href="#/app/categories/{{category.id}}">
-        		{{category.title}}
-      		</ion-item>
-    	</ion-list>
+      <ion-list ng-controller="CategoriesCtrl">
+
+        <div ng-if="listCategories.categories.length > 0" style="width:100%">
+          <ion-item class="item item-avatar" ng-repeat="category in listCategories.categories" href="#/app/categories/{{category.id}}">
+
+            <img ng-src="{{ category.image }}">
+            <h2>{{ category.name }}</h2>
+            <h4 ng-bind-html='category.introtext'>&nbsp;</h4>
+
+            <span class="badge badge-assertive">{{ category.numOfItems }}</span>
+
+          </ion-item>
+        </div>
+
+        <div ng-if="listCategories.items.length > 0" style="width:100%">
+
+          <ion-item class="item item-avatar" ng-repeat="item in listCategories.items" href="#/app/items/{{item.id}}">
+
+            <!--
+            <img ng-src="{{ item.image }}">
+            <strong>{{ item.name }}</strong>
+            <br />
+            <span ng-bind-html='item.introtext'>&nbsp;</span>
+
+            <span class="item-note">
+              <i class="icon ion-android-star-half"></i> {{ item.numOfvotes }}
+              <i class="icon ion-android-chat"></i> {{ item.numOfComments }}
+            </span>
+            -->
+
+            <img ng-src="{{ item.image }}">
+            <h2>{{ item.name }}</h2>
+
+            <div ng-repeat="extraFields in item.extra_fields">
+              <h4 ng-if="extraFields.alias == 'stars'">
+                <i ng-repeat="star in _.range(extraFields.value)" class="icon ion-android-star" style="font-size: 24px;color: orange;"></i>
+              </h4>
+            </div>
+
+          </ion-item>
+        </div>
+
+      </ion-list>
+
   	</ion-content>
 </ion-view>
