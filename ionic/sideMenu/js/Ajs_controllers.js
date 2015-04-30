@@ -287,8 +287,10 @@ $scope.showPopup = function() {
     template: 'Loading...'
   });
 
-  console.log('categoryId -> %o',$stateParams);
+  console.log('categoryId -> ',$stateParams.categoryId);
+  console.log('parentId -> ',$stateParams.parentId);
   var categoryId;
+  var parentId;
 
   if(typeof $stateParams.categoryId === 'undefined') {
     categoryId = 0;
@@ -296,14 +298,20 @@ $scope.showPopup = function() {
     categoryId = $stateParams.categoryId;
   }
 
-  console.log('CategoriesCtrl: categoryId -> '+categoryId);
+  if(typeof $stateParams.parentId === 'undefined') {
+    parentId = '';
+  } else {
+    parentId = $stateParams.parentId;
+  }
 
-  ajaxCallServices.getCategories(categoryId)
+  console.log('CategoriesCtrl: categoryId -> '+categoryId+' | '+'parentId -> '+parentId);
+
+  ajaxCallServices.getCategoriesRest(categoryId,$stateParams.parentId)
     .success(function (listCategories) {
       $scope.listCategories = listCategories;
 
-      console.log('1 ->'+listCategories.categories.length);
-      console.log('2 ->'+listCategories.items.length);
+      //console.log('1 ->'+listCategories.categories.length);
+      //console.log('2 ->'+listCategories.items.length);
 
 
       // Set Header
@@ -358,15 +366,15 @@ $scope.showPopup = function() {
 
 
   console.log('itemId -> %o',$stateParams);
-  var itemId = $stateParams.categoryId;
+  var itemId = $stateParams.itemId;
   
   ajaxCallServices.getItem(itemId)
     .success(function (item) {
       console.log('item -> %o',item);
 
-      $scope.item = item;
+      $scope.item = item.item[0];
 
-      sharedFunctions.getExtraField($scope,item);
+      sharedFunctions.getExtraField($scope,item.extra);
 
       console.log($scope.latitudeCoord);
       console.log($scope.longitudeCoord);

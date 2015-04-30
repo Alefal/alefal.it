@@ -130,7 +130,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.factory', 'n
     }
   }).state('app.category', {
     cache: false,
-    url: "/categories/:categoryId",
+    url: "/categories/:categoryId/:parentId",
     views: {
       'menuContent': {
         templateUrl: "templates/categories.html",

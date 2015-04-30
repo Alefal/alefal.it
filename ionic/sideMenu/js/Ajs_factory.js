@@ -4,8 +4,15 @@ angular.module('starter.factory', [])
 
     //var urlBase = 'http://127.0.0.1/amalficoastapp.it';
     
-    var urlBase = 'http://10.80.18.107/alefal.it/ionic/sideMenu/json';
+    //var urlBase = 'http://10.80.18.107/alefal.it/ionic/sideMenu/json';
     var ajaxCallServices = {};
+
+    var urlBase = 'http://10.80.18.107/alefal.it/cms';
+
+    /***** getSubCategory ****/
+    ajaxCallServices.getCategoriesRest = function (id,parentId) {
+        return $http.get(urlBase+ '/index.php/categoriesREST/items/format/json?id='+id+'&parentId='+parentId);
+    };
 
     /***** getCategories ****/
     ajaxCallServices.getCategories = function (categoryId) {
@@ -26,8 +33,9 @@ angular.module('starter.factory', [])
     };
 
     /***** getElement ****/
-    ajaxCallServices.getItem = function (itemId) {
-        return $http.get(urlBase+ '/item.json');
+    ajaxCallServices.getItem = function (id) {
+        //return $http.get(urlBase+ '/item.json');
+        return $http.get(urlBase+ '/index.php/itemsREST/item/format/json?id='+id);
     };
 
     return ajaxCallServices;
@@ -86,24 +94,26 @@ angular.module('starter.factory', [])
             return icon;
         },
         getExtraField: function($scope,item) {
-            angular.forEach(item.extra_fields, function(value, key) {
-                if(value.name == 'Latitude')
-                    $scope.latitudeCoord = value.value;
-                if(value.name == 'Longitude')
-                    $scope.longitudeCoord = value.value;
-                if(value.name == 'Servizi')
-                    $scope.exFieldServizi = value.value; 
-                if(value.name == 'Stelle')
-                    $scope.exFieldStelle = value.value;
-                if(value.name == 'Telefono')
-                    $scope.exFieldTelefono = value.value;
-                if(value.name == 'Email')
-                    $scope.exFieldEmail = value.value;
-                if(value.name == 'Web')
-                    $scope.exFieldWeb = value.value;
 
-              //console.log(key + ': ' + value.value);
+            angular.forEach(item, function(obj, key) {
+                //console.log(key + '::: ' + obj.alias);
+
+                if(obj.alias == 'latitude')
+                    $scope.latitudeCoord = obj.extraFieldsValue;
+                if(obj.alias == 'longitude')
+                    $scope.longitudeCoord = obj.extraFieldsValue;
+                if(obj.alias == 'services')
+                    $scope.exFieldServizi = obj.extraFieldsValue; 
+                if(obj.alias == 'stars')
+                    $scope.exFieldStelle = obj.extraFieldsValue;
+                if(obj.alias == 'phone')
+                    $scope.exFieldTelefono = obj.extraFieldsValue;
+                if(obj.alias == 'email')
+                    $scope.exFieldEmail = obj.extraFieldsValue;
+                if(obj.alias == 'web')
+                    $scope.exFieldWeb = obj.extraFieldsValue;
             });
+
         }
     };
 });

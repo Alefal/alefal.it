@@ -8,14 +8,40 @@ class CategoriesREST extends REST_Controller {
         // Call the Model constructor
         parent::__construct();
         $this->load->model('categoriesmodel');
+        $this->load->model('itemsmodel');
     }
 
     function items_get()
     {
-        $items = $this->categoriesmodel->getAll();
-         
-        if($items) {
-            $this->response($items, 200); // 200 being the HTTP response code
+        $id         = $this->input->get('id');
+        $parentId   = $this->input->get('parentId');
+
+        //echo $id.' | '.$parentId;
+
+        if($id == 0) {
+            $items = $this->categoriesmodel->getAll();
+            
+            $listCategories = array(
+                'categories' => $items,
+                'items' => array());
+        } else {
+            if($parentId == null) {
+                $items = $this->categoriesmodel->getSubCategoryList($id);
+            
+                $listCategories = array(
+                'categories' => $items,
+                'items' => array());
+            } else {
+                $items = $this->itemsmodel->getItemsListByCategory($id); //TODO
+            
+                $listCategories = array(
+                    'categories' => array(),
+                    'items' => $items);
+            }
+        }
+
+        if($listCategories) {
+            $this->response($listCategories, 200); // 200 being the HTTP response code
         } else
         {
             $this->response(NULL, 404);

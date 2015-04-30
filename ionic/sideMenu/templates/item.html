@@ -7,16 +7,20 @@
 
       <div ng-controller="ItemCtrl" class="padding">
 
+          <!--
+          <div style="background-image: url('{{ item.bgimage }}');background-size: 100% 350px;background-repeat: no-repeat;" align="center"></div>
+          -->
+
           <div class="row">
             <div class="col">
-              <img ng-src="{{ item.image }}">
+              <img ng-src="{{ item.logo }}">
             </div>
             <div class="col">
               <h2>{{ item.name }}</h2>
               <i ng-repeat="star in _.range(exFieldStelle)" class="icon ion-android-star" style="font-size: 24px;color: orange;"></i>
             </div>
           </div>
-          
+
           <h5>{{ exFieldServizi }}</h5>
           <p ng-bind-html="item.introtext"></p>
 
