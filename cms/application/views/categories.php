@@ -14,23 +14,23 @@
         </div>
         
         <div class="row">
-          <div class="col-xs-2 col-md-2">&nbsp;</div>
+          <div class="col-xs-1 col-md-1">&nbsp;</div>
           <div class="col-xs-2 col-md-2"><h4>Nome</h4></div>
-          <div class="col-xs-2 col-md-2"><h4>Descrizione</h4></div>
+          <div class="col-xs-3 col-md-3"><h4>Descrizione</h4></div>
           <div class="col-xs-2 col-md-2"><h4>Immagine</h4></div>
           <div class="col-xs-4 col-md-4">&nbsp;</div>
         </div>
 
         <div class="row rowItem" ng-repeat="category in listCategories.categories" ng-class-odd="'odd'" ng-class-even="'even'">
-          <div class="col-xs-2 col-md-2"><span class="glyphicon glyphicon-chevron-right"></span></div>
+          <div class="col-xs-1 col-md-1"><span class="glyphicon glyphicon-chevron-right"></span></div>
           <div class="col-xs-2 col-md-2">
             <h4><span class="label label-default">{{category.name}}</span></h4>
           </div>
-          <div class="col-xs-2 col-md-2">
-            <h4><span class="label label-default">{{category.introtext}}</span></h4>
+          <div class="col-xs-3 col-md-3">
+            <span>{{category.introtext}}</span>
           </div>
           <div class="col-xs-2 col-md-2">
-            <h4><span class="label label-default">{{category.image}}</span></h4>
+            <span>{{category.image}}</span>
           </div>
           <div class="col-xs-4 col-md-4" align="right">
             <span class="glyphicon glyphicon-sort-by-attributes" ng-click="getSubCategoryList(category.id)"></span> 

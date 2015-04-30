@@ -15,6 +15,7 @@ class categoriesModel extends CI_Model {
     function getAll()
     {
         $this->db->where('parentId',null);
+        $this->db->order_by('order'); 
         $query = $this->db->get('categories');
 
         return $query->result();
@@ -53,6 +54,7 @@ class categoriesModel extends CI_Model {
     function getSubCategoryList($id)
     {
         $this->db->where('parentId', $id);
+        $this->db->order_by('order'); 
         $query = $this->db->get('categories');
 
         return $query->result();

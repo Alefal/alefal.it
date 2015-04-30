@@ -11,7 +11,7 @@
           <ion-item class="item item-avatar" ng-repeat="category in listCategories.categories" href="#/app/categories/{{category.id}}/{{category.parentId}}">
 
             <img ng-src="{{ category.image }}">
-            <h2>{{ category.name }} - {{ category.parentId }}</h2>
+            <h2>{{ category.name }}</h2>
             <h4 ng-bind-html='category.introtext'>&nbsp;</h4>
 
             <span class="badge badge-assertive">{{ category.numOfItems }}</span>

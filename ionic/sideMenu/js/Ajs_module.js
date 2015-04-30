@@ -147,6 +147,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.factory', 'n
     }
 
   }).state('app.item', {
+    cache: false,
     url: "/items/:itemId",
     views: {
       'menuContent': {
