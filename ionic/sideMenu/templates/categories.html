@@ -11,9 +11,10 @@
           <ion-item class="item item-avatar" ng-repeat="category in listCategories.categories" href="#/app/categories/{{category.id}}/{{category.parentId}}">
 
             <img ng-src="{{ category.image }}">
-            <h2>{{ category.name }}</h2>
-            <h4 ng-bind-html='category.introtext'>&nbsp;</h4>
 
+            <h2>{{language == 'it' ? category.name : category.name_en}}</h2>
+            <h4>{{language == 'it' ? category.introtext : category.introtext_en}}</h4>
+           
             <span class="badge badge-assertive">{{ category.numOfItems }}</span>
 
           </ion-item>
@@ -35,13 +36,11 @@
             </span>
             -->
 
-            <img ng-src="{{ item.image }}">
-            <h2>{{ item.name }}</h2>
+            <img ng-src="{{ item.logo }}">
+            <h2>{{language == 'it' ? item.name : item.name_en}}</h2>
 
-            <div ng-repeat="extraFields in item.extra_fields">
-              <h4 ng-if="extraFields.alias == 'stars'">
-                <i ng-repeat="star in _.range(extraFields.value)" class="icon ion-android-star" style="font-size: 24px;color: orange;"></i>
-              </h4>
+            <div ng-repeat="extraFields in item.extraFieldsValue">
+              <h4><i ng-repeat="star in _.range(extraFields)" class="icon ion-android-star" style="font-size: 24px;color: orange;"></i></h4>
             </div>
 
           </ion-item>

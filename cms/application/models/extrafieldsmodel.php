@@ -27,6 +27,7 @@ class extrafieldsModel extends CI_Model {
             ON ex.id = ip.extraFieldsId
         WHERE it.id = 2
         */
+
         $this->db->select('ex.name,ex.alias,ip.extraFieldsValue');
         $this->db->from('items it');
         $this->db->join('items_pivot ip', 'it.id = ip.itemId', 'left');

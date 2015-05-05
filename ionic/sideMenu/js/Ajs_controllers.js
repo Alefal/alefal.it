@@ -3,6 +3,7 @@ angular.module('starter.controllers', [])
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, sharedItems, sharedFunctions) {
   // Form data for the login modal
   $scope.loginData = {};
+  $scope.language = 'it'; //TODO: Apache Cordova Globalization
 
   ////////////////////////////////////////
     // Layout Methods
@@ -304,9 +305,9 @@ $scope.showPopup = function() {
     parentId = $stateParams.parentId;
   }
 
-  console.log('CategoriesCtrl: categoryId -> '+categoryId+' | '+'parentId -> '+parentId);
+  console.log('CategoriesCtrl: categoryId -> '+categoryId+' | '+'parentId -> '+parentId+' | '+'language -> '+$scope.language);
 
-  ajaxCallServices.getCategoriesRest(categoryId,$stateParams.parentId)
+  ajaxCallServices.getCategoriesRest(categoryId,$stateParams.parentId,$scope.language)
     .success(function (listCategories) {
       $scope.listCategories = listCategories;
 
