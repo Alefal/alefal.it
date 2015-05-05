@@ -85,6 +85,20 @@ class itemsModel extends CI_Model {
             (ex.alias = 'latitude' OR ex.alias = 'longitude')
         GROUP BY ip.itemId
     	*/
+
+    	$this->db->select("it.id,it.name,it.categoryName,it.introText, it.name_en, GROUP_CONCAT(ip.extraFieldsValue SEPARATOR '|') AS coords");
+        $this->db->from('items it');
+        $this->db->join('items_pivot ip', 'it.id = ip.itemId');
+        $this->db->join('extra_fields ex', 'ex.id = ip.extraFieldsId');
+
+        $where = "(ex.alias = 'latitude' OR ex.alias = 'longitude')";
+
+        $this->db->where($where);
+        $this->db->group_by('ip.itemId'); 
+
+        $query = $this->db->get();
+        
+        return $query->result();
     }
 
 

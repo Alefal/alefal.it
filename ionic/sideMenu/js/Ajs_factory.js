@@ -38,6 +38,12 @@ angular.module('starter.factory', [])
         return $http.get(urlBase+ '/index.php/itemsREST/item/format/json?id='+id);
     };
 
+    /***** getAllCoords ****/
+    ajaxCallServices.getAllCoords = function () {
+        //return $http.get(urlBase+ '/item.json');
+        return $http.get(urlBase+ '/index.php/itemsREST/allCoords/format/json');
+    };
+
     return ajaxCallServices;
 })
 
@@ -79,7 +85,7 @@ angular.module('starter.factory', [])
 
                 if(category == 'sport') {
                     icon = 'img/icons/soccer.png';
-                } else if(category == 'hotel') {
+                } else if(category == 'hotels') {
                     icon = 'img/icons/hotel.png';
                 } else if(category == 'monumenti') {
                     icon = 'img/icons/church-2.png';

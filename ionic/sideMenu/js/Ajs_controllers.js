@@ -74,6 +74,10 @@ angular.module('starter.controllers', [])
         }
     };
 
+    $scope.openNavMaps = function() {
+        location.href = '#/app/maps';
+    };
+
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
     scope: $scope
@@ -247,38 +251,104 @@ $scope.showPopup = function() {
 })
 
 
-.controller('MapController', function($scope, $ionicLoading) {
+.controller('MapController', function($scope, $ionicLoading,ajaxCallServices,sharedFunctions) {
 
-    $ionicLoading.show({
+  $ionicLoading.show({
     template: 'Loading...'
   });
-    console.log('MapController1');
+
+  console.log('MapController1');
+  
+
+  /*************************
+  //google.maps.event.addDomListener(window, 'load', function() {
+  console.log('MapController2');
+  var myLatlng = new google.maps.LatLng(37.3000, -120.4833);
+
+  var mapOptions = {
+      center: myLatlng,
+      zoom: 16,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+
+  var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+  navigator.geolocation.getCurrentPosition(function(pos) {
+      map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+      var myLocation = new google.maps.Marker({
+          position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
+          map: map,
+          title: "My Location"
+      });
+
+      $ionicLoading.hide();
+  });
+
+  $scope.map = map;
+  //});
+  *************************/
+
+  var mapOptions = {
+    zoom: 11,
+    center: new google.maps.LatLng(40.634733, 14.610158),
+    mapTypeId: google.maps.MapTypeId.ROADMAP 
+  };
+
+  $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+  var infoWindow = new google.maps.InfoWindow();
+
+  var createMarker = function (item,lat,lon) {
     
-    //google.maps.event.addDomListener(window, 'load', function() {
-        console.log('MapController2');
-        var myLatlng = new google.maps.LatLng(37.3000, -120.4833);
+    var marker = new google.maps.Marker({
+      map: $scope.map,
+      position: new google.maps.LatLng(lat, lon),
+      title: item.name,
+      icon: sharedFunctions.getMarkerIcon(item.categoryName),
+      descr: item.introtext,
+      link: '#/app/items/'+item.id
+    });
+    
+    google.maps.event.addListener(marker, 'click', function(){
+      infoWindow.setContent('<h5 class="titleInfoWindow">' + marker.title + '</h5>'+
+        '<a href="'+marker.link+'">Detail</a>'+
+        '<br />'+
+        '<a href="geo:'+lat+','+lon+';u=35">Geolocation</a>'+
+        '<br />'+
+        '<a href="google.navigation:q='+lat+','+lon+'">Navigation to '+item.name+'</a></p>');
+      infoWindow.open($scope.map, marker);
+    });
 
-        var mapOptions = {
-            center: myLatlng,
-            zoom: 16,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
+  };  
 
-        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+  /*
+  google.maps.event.addListener(infoWindow,'domready',function() {
+    var itemDetail  = document.getElementById('itemDetail');
+    var itemlink    = $('#itemDetail').attr('data-link');
+    
+    google.maps.event.addDomListener(itemDetail,'click',function() {
+      sharedFunctions.goToLink($scope,sharedItems,itemlink,'details');
+    });
 
-        navigator.geolocation.getCurrentPosition(function(pos) {
-            map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-            var myLocation = new google.maps.Marker({
-                position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
-                map: map,
-                title: "My Location"
-            });
+  });
+  */
 
-            $ionicLoading.hide();
-        });
+  ajaxCallServices.getAllCoords()
+    .success(function (items) {
 
-        $scope.map = map;
-    //});
+      //$scope.bgImage = categoria.category.image;
+      console.log(items);
+      angular.forEach(items, function(item, key) {
+        var latitudeCoord = item.coords.split('|')[0];
+        var longitudeCoord = item.coords.split('|')[1];        
+
+        createMarker(item, latitudeCoord, longitudeCoord);
+      });
+
+      $ionicLoading.hide();
+
+    }).error(function (error) {
+      $scope.status = 'Unable to load customer data: ' + error.message;
+    });
 
 })
 

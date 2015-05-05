@@ -63,6 +63,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.factory', 'n
   })
 
   .state('app.maps', {
+      cache: false,
       url: "/maps",
       views: {
         'menuContent': {
@@ -120,10 +121,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.factory', 'n
         controller: 'CategoriesCtrl'
       },
       'fabContent': {
-        template: '<button id="fab-friends" class="button button-fab button-fab-bottom-right expanded button-positive-900 spin"><i class="icon ion-gear-b"></i></button>',
+        template: '<button ng-click="openNavMaps()" id="navCat" class="button button-fab button-fab-bottom-right expanded button-positive-900 spin"><i class="icon ion-android-compass"></i></button>',
         controller: function ($timeout) {
           $timeout(function () {
-              document.getElementById('fab-friends').classList.toggle('on');
+              document.getElementById('navCat').classList.toggle('on');
           }, 900);
         }
       }
@@ -137,10 +138,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.factory', 'n
         controller: 'CategoriesCtrl'
       },
       'fabContent': {
-        template: '<button id="fab-friends" class="button button-fab button-fab-bottom-right expanded button-positive-900 spin"><i class="icon ion-gear-b"></i></button>',
+        template: '<button ng-click="openNavMaps()" id="navCat" class="button button-fab button-fab-bottom-right expanded button-positive-900 spin"><i class="icon ion-android-compass"></i></button>',
         controller: function ($timeout) {
           $timeout(function () {
-              document.getElementById('fab-friends').classList.toggle('on');
+              document.getElementById('navCat').classList.toggle('on');
           }, 900);
         }
       }

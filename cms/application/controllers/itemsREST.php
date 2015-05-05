@@ -41,4 +41,16 @@ class ItemsREST extends REST_Controller {
             $this->response(NULL, 404);
         }
     }
+
+    function allCoords_get()
+    {
+        $items = $this->itemsmodel->getAllCoords();
+         
+        if($items) {
+            $this->response($items, 200); // 200 being the HTTP response code
+        } else
+        {
+            $this->response(NULL, 404);
+        }
+    }
 }
