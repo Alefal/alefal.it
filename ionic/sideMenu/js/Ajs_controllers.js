@@ -120,9 +120,9 @@ angular.module('starter.controllers', [])
     $scope.modal.hide();
   };
 
-  $scope.globalLink = function(link,section) {
+  $scope.globalLink = function(link) {
       //console.log('globalLink: '+link+' | '+section);  
-      sharedFunctions.goToLink($scope,sharedItems,link,section);
+      sharedFunctions.goToLink(link);
   };
 
 
@@ -471,9 +471,9 @@ $scope.showPopup = function() {
       $scope.mapDetail = mapDetail;
 
 
-       $scope.$parent.clearFabs();
-    // Activate ink for controller
-    ionic.material.ink.displayEffect();
+      //$scope.$parent.clearFabs();
+      // Activate ink for controller
+      ionic.material.ink.displayEffect();
 
       $ionicLoading.hide();
     }).error(function (error) {
@@ -507,4 +507,33 @@ $scope.showPopup = function() {
     }
 
   };  
+})
+
+.controller('GalleryCtrl', function($scope,$ionicLoading,ajaxCallServices,$stateParams,$timeout) {
+
+  /*
+  $scope.images = [];
+ 
+    $scope.loadImages = function() {
+        for(var i = 0; i < 100; i++) {
+            $scope.images.push({id: i, src: "http://placehold.it/50x50"});
+        }
+    }
+
+    */
+
+    var itemId = $stateParams.itemId;
+    
+    ajaxCallServices.getGallery(itemId)
+    .success(function (gallery) {
+      $scope.gallery = gallery;
+
+
+
+      $ionicLoading.hide();
+    }).error(function (error) {
+      $scope.status = 'Unable to load customer data: ' + error.message;
+    });
+  
+
 });

@@ -25,6 +25,7 @@ class ItemsREST extends REST_Controller {
 
     function item_get($id)
     {
+
         $id = $this->input->get('id');
 
         $item = $this->itemsmodel->getById($id);
@@ -45,6 +46,19 @@ class ItemsREST extends REST_Controller {
     function allCoords_get()
     {
         $items = $this->itemsmodel->getAllCoords();
+         
+        if($items) {
+            $this->response($items, 200); // 200 being the HTTP response code
+        } else
+        {
+            $this->response(NULL, 404);
+        }
+    }
+
+    function gallery_get()
+    {
+        $itemId = $this->input->get('itemId');
+        $items = $this->itemsmodel->getGallery($itemId);
          
         if($items) {
             $this->response($items, 200); // 200 being the HTTP response code

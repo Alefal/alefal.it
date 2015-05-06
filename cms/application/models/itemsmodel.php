@@ -44,7 +44,7 @@ class itemsModel extends CI_Model {
         WHERE `it`.`categoryId` = '42' AND `ex`.`alias` = 'stars'
         */
 
-    	$this->db->select('it.id, it.logo, it.name, it.name_en, ip.extraFieldsValue');
+    	$this->db->select('it.id, it.logo,it.bgImage, it.numOfvotes, it.numOfComments, it.name,it.address,it.cap,it.city, it.name_en, ip.extraFieldsValue');
         $this->db->from('items it');
         $this->db->join('items_pivot ip', 'it.id = ip.itemId', 'left');
         $this->db->join('extra_fields ex', 'ex.id = ip.extraFieldsId', 'left');
@@ -99,6 +99,26 @@ class itemsModel extends CI_Model {
         $query = $this->db->get();
         
         return $query->result();
+    }
+
+    function getGallery($itemId) {
+    	/*
+    	SELECT * 
+		FROM photos p 
+		JOIN photos_albums pa ON p.albumId = pa.id
+		WHERE itemId = 1
+		*/
+
+		$this->db->select('*');
+        $this->db->from('photos p');
+        $this->db->join('photos_albums pa', 'p.albumId = pa.id');
+
+        $this->db->where('itemId',$itemId); 
+
+        $query = $this->db->get();
+        
+        return $query->result();
+
     }
 
 

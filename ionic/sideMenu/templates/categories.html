@@ -5,6 +5,64 @@
 	    	on-refresh="doRefresh()">
 	  	</ion-refresher>
 
+      <div ng-controller="CategoriesCtrl">
+
+        <div ng-if="listCategories.categories.length > 0" style="width:100%">
+          <div class="item card-item" ng-repeat="category in listCategories.categories">
+            <div ng-click="globalLink('#/app/categories/{{category.id}}/{{category.parentId}}')" class="card light-bg ink ink-dark">
+              <div class="item item-avatar item-text-wrap">
+                <span class="avatar" style="background-image: url('{{ category.image }}');"></span>
+                <strong>{{language == 'it' ? category.name : category.name_en}}</strong> 
+                <br />
+                {{language == 'it' ? category.introtext : category.introtext_en}}
+
+                <span class="badge badge-calm">{{ category.numOfItems }}</span>
+
+                <!--
+                <div class="card-footer text-right">
+                  <i class="icon ion-chatbubbles positive"></i> 6
+                  <i class="icon ion-heart assertive"></i> {{ category.numOfItems }}
+                  <div class="pull-left">
+                    <i class="icon ion-clock"></i> just now
+                  </div>
+                </div>
+                -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div ng-if="listCategories.items.length > 0" style="width:100%">
+          <div class="item card-item" ng-repeat="item in listCategories.items">
+            <div ng-click="globalLink('#/app/items/{{item.id}}')" class="card stable-bg ink ink-dark">
+              <div class="item item-avatar item-text-wrap">
+                <span class="avatar" style="background-image: url('{{ item.logo }}');"></span>
+
+                <div class="row">
+                  <div class="col col-50">
+                    <strong>{{language == 'it' ? item.name : item.name_en}}</strong> 
+                    {{ item.address }}
+                    {{ item.cap }} - {{ item.city }}
+                  </div>
+                  <div class="col" align="right">
+                    <i ng-if="item.numOfvotes != 0" class="icon ion-chatbubbles positive"> {{ item.numOfvotes }} </i> 
+                    <i ng-if="item.numOfComments != 0" class="icon ion-heart assertive"> {{ item.numOfComments }} </i>
+                  </div>
+                </div>
+
+                <div class="row">
+                    <div ng-repeat="extraFields in item.extraFieldsValue">
+                      <i ng-repeat="star in _.range(extraFields)" class="icon ion-android-star" style="font-size: 16px;color: orange;padding-left: 2px;"></i>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!--
       <ion-list ng-controller="CategoriesCtrl">
 
         <div ng-if="listCategories.categories.length > 0" style="width:100%">
@@ -24,18 +82,6 @@
 
           <ion-item class="item item-avatar" ng-repeat="item in listCategories.items" href="#/app/items/{{item.id}}">
 
-            <!--
-            <img ng-src="{{ item.image }}">
-            <strong>{{ item.name }}</strong>
-            <br />
-            <span ng-bind-html='item.introtext'>&nbsp;</span>
-
-            <span class="item-note">
-              <i class="icon ion-android-star-half"></i> {{ item.numOfvotes }}
-              <i class="icon ion-android-chat"></i> {{ item.numOfComments }}
-            </span>
-            -->
-
             <img ng-src="{{ item.logo }}">
             <h2>{{language == 'it' ? item.name : item.name_en}}</h2>
 
@@ -47,6 +93,7 @@
         </div>
 
       </ion-list>
+      -->
 
   	</ion-content>
 </ion-view>

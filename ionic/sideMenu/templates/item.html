@@ -1,4 +1,5 @@
 <ion-view view-title="Item">
+
   	<ion-content ng-controller="RefreshController">
 		  <ion-refresher
 	    	pulling-text="Pull to refresh..."
@@ -7,11 +8,17 @@
 
       <div ng-controller="ItemCtrl" class="padding">
 
+          <h2>{{ item.name }}</h2>
+          <i ng-repeat="star in _.range(exFieldStelle)" class="icon ion-android-star" style="font-size: 24px;color: orange;"></i>
+          <h4>{{ item.address }} - {{ item.cap }} - {{ item.city }}</h4>
+
           <!--
           <div style="background-image: url('{{ item.bgimage }}');background-size: 100% 350px;background-repeat: no-repeat;" align="center"></div>
           -->
 
+          <!--
           <div class="row">
+
             <div class="col">
               <img ng-src="{{ item.logo }}">
             </div>
@@ -20,22 +27,34 @@
               <i ng-repeat="star in _.range(exFieldStelle)" class="icon ion-android-star" style="font-size: 24px;color: orange;"></i>
             </div>
           </div>
+          -->
 
-          <h5>{{ exFieldServizi }}</h5>
-          <p ng-bind-html="item.introtext"></p>
+          <div class="card">
+            <div class="item item-text-wrap">
+              {{ exFieldServizi }}
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="item item-text-wrap">
+              <p ng-bind-html="item.introtext"></p>
+            </div>
+          </div>
 
           <br />
           <div align="center">
-            <i ng-if="exFieldTelefono != ''" class="button button-calm icon ion-android-call" ng-click="clickToolbarButton('phone')"></i>
-            <i ng-if="exFieldEmail != ''" class="button button-assertive icon ion-android-mail" ng-click="clickToolbarButton('email')"></i>
-            <i ng-if="exFieldWeb != ''" class="button button-dark icon ion-android-share-alt" ng-click="clickToolbarButton('site')"></i>
-            <i ng-if="latitudeCoord != ''" class="button button-balanced icon ion-android-navigate" ng-click="clickToolbarButton('navigator')"></i>
+            <button ng-if="exFieldTelefono != ''" class="button button-fab button-calm icon ion-android-call" ng-click="clickToolbarButton('phone')"></button>
+            <button ng-if="exFieldEmail != ''" class="button button-fab button-assertive icon ion-android-mail" ng-click="clickToolbarButton('email')"></button>
+            <button ng-if="exFieldWeb != ''" class="button button-fab button-dark icon ion-android-share-alt" ng-click="clickToolbarButton('site')"></button>
           </div>
           <br />
 
           <!--
           <button class="button button-royal button-raised icon-right ion-ios-color-wand" data-ink-color="#CD3385" data-ink-opacity=".8">Activate Unicorn Juice</button>
           -->
+{{ item.id }}
+          <button class="button button-fab button-fab-top-right button-calm icon ion-images" ng-click="globalLink('#/app/gallery/{{ item.id }}')"></button>
+          <button ng-if="latitudeCoord != ''" class="button button-fab button-fab-bottom-left button-balanced icon ion-android-navigate" ng-click="clickToolbarButton('navigator')"></button>
 
           <div id="mapDetail" data-tap-disabled="true"></div>
 

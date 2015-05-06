@@ -160,6 +160,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.factory', 'n
       }
     }
 
+  }).state('app.gallery', {
+    cache: false,
+    url: "/gallery/:itemId",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/gallery.html"
+      },
+      'fabContent': {
+        template: ''
+      }
+    }
+
   });
 
   // if none of the above states are matched, use this as the fallback

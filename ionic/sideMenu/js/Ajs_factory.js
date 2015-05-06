@@ -44,6 +44,12 @@ angular.module('starter.factory', [])
         return $http.get(urlBase+ '/index.php/itemsREST/allCoords/format/json');
     };
 
+    /***** getGallery ****/
+    ajaxCallServices.getGallery = function (itemId) {
+        //return $http.get(urlBase+ '/item.json');
+        return $http.get(urlBase+ '/index.php/itemsREST/gallery/format/json?itemId='+itemId);
+    };
+
     return ajaxCallServices;
 })
 
@@ -58,14 +64,11 @@ angular.module('starter.factory', [])
 
 .factory('sharedFunctions', function() {
     return {
-        goToLink: function($scope,sharedItems,link,section) {
+        goToLink: function(link) {
             if(typeof link !== 'undefined') {
-                console.log('link: '+link);  
-                sharedItems.data.link = link;
-
-                location.href = '#/app/categories';
-                //$scope.ons.navigator.pushPage('include/'+section+'.html', {closeMenu: true});
-                //menu.setMainPage('include/'+section+'.html', {closeMenu: true})
+                //console.log('link: '+link);  
+                
+                location.href = link;
             }
         },
         goToDetailFromGlobalMap: function($scope,sharedItems,link,section) {
