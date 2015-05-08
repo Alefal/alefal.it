@@ -28,12 +28,14 @@ class ItemsREST extends REST_Controller {
 
         $id = $this->input->get('id');
 
-        $item = $this->itemsmodel->getById($id);
-        $extra = $this->extrafieldsmodel->getByItemId($id);
+        $item       = $this->itemsmodel->getById($id);
+        $extra      = $this->extrafieldsmodel->getByItemId($id);
+        $gallery    = $this->itemsmodel->getGallery($id);
 
         $itemComplete = array(
                 'item' => $item,
-                'extra' => $extra);
+                'extra' => $extra,
+                'gallery' => $gallery);
 
         if($itemComplete) {
             $this->response($itemComplete, 200); // 200 being the HTTP response code

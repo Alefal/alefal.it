@@ -444,6 +444,7 @@ $scope.showPopup = function() {
       console.log('item -> %o',item);
 
       $scope.item = item.item[0];
+      $scope.gallery = item.gallery;
 
       sharedFunctions.getExtraField($scope,item.extra);
 

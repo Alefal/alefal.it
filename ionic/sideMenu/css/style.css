@@ -14,17 +14,6 @@
     border: 5px solid #ccc;
 }
 
-
-
-
-
-
-
-
-
-
-
-
 /* General
 ==================================*/
 h1 {
@@ -32,7 +21,6 @@ h1 {
     text-shadow: 0 1px 0px #000;
     font-size: 42px;
 }
-
 
 /* Utilities
 ==================================*/
@@ -87,7 +75,6 @@ p {
     content: "\f2ca";
 }
 
-
 /* Login
 ==================================*/
 .app-icon {
@@ -103,4 +90,10 @@ p {
 .social-login {
     position: fixed;
     bottom: 0;
+}
+
+/* Slider
+==================================*/
+.slider-slide, .slider-slide img {
+  height: 250px;
 }

@@ -12,6 +12,12 @@
           <i ng-repeat="star in _.range(exFieldStelle)" class="icon ion-android-star" style="font-size: 24px;color: orange;"></i>
           <h4>{{ item.address }} - {{ item.cap }} - {{ item.city }}</h4>
 
+          <ion-slide-box show-pager="true" does-continue="true" on-slide-changed="slideHasChanged($index)" style="border:10px solid black">
+              <ion-slide ng-repeat="photo in gallery">
+                  <img ng-src="{{photo.image}}" />
+              </ion-slide>
+          </ion-slide-box>
+
           <!--
           <div style="background-image: url('{{ item.bgimage }}');background-size: 100% 350px;background-repeat: no-repeat;" align="center"></div>
           -->
@@ -52,9 +58,8 @@
           <!--
           <button class="button button-royal button-raised icon-right ion-ios-color-wand" data-ink-color="#CD3385" data-ink-opacity=".8">Activate Unicorn Juice</button>
           -->
-{{ item.id }}
-          <button class="button button-fab button-fab-top-right button-calm icon ion-images" ng-click="globalLink('#/app/gallery/{{ item.id }}')"></button>
-          <button ng-if="latitudeCoord != ''" class="button button-fab button-fab-bottom-left button-balanced icon ion-android-navigate" ng-click="clickToolbarButton('navigator')"></button>
+
+          <button ng-if="latitudeCoord != ''" class="button button-fab button-fab-top-right button-balanced icon ion-android-navigate" ng-click="clickToolbarButton('navigator')"></button>
 
           <div id="mapDetail" data-tap-disabled="true"></div>
 

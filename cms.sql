@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mag 08, 2015 alle 11:35
+-- Generation Time: Mag 08, 2015 alle 15:30
 -- Versione del server: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -165,15 +165,16 @@ CREATE TABLE IF NOT EXISTS `photos` (
   `albumId` int(11) NOT NULL,
   `image` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dump dei dati per la tabella `photos`
 --
 
 INSERT INTO `photos` (`id`, `albumId`, `image`) VALUES
-(1, 1, 'http://placehold.it/50x50'),
-(2, 1, 'http://placehold.it/50x50');
+(1, 1, 'http://www.palazzoavino.com/sites/default/files/media-db/media_img/hotel/palazzo-avino-palazzo-sasso-6-facade-92.jpg'),
+(2, 1, 'http://www.palazzoavino.com/sites/default/files/media-db/media_img/dining/terrazza-belvedere/palazzo-avino-1-tb-299.jpg'),
+(3, 1, 'http://images.kuoni.co.uk/73/palazzo-avino-29252368-1412942143-ImageGalleryLightbox.jpg');
 
 -- --------------------------------------------------------
 
