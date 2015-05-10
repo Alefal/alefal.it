@@ -1,7 +1,7 @@
 stockmagazine.factory('ajaxCallServices', function($http) {
 
-    var urlBase = 'http://10.80.18.107/alefal.it/cms';
-    //var urlBase = 'http://www.amalficoastapp.it/comingsoon/stockmagazine';
+    //var urlBase = 'http://localhost/alefal.it/cms';
+    var urlBase = 'http://www.amalficoastapp.it/cms';
     var ajaxCallServices = {};
 
     /***** getSubCategory ****/

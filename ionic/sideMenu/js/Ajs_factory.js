@@ -2,12 +2,11 @@ angular.module('starter.factory', [])
 
 .factory('ajaxCallServices', function($http) {
 
-    //var urlBase = 'http://127.0.0.1/amalficoastapp.it';
-    
-    //var urlBase = 'http://10.80.18.107/alefal.it/ionic/sideMenu/json';
     var ajaxCallServices = {};
 
-    var urlBase = 'http://10.80.18.107/alefal.it/cms';
+    //var urlBase = 'http://10.80.18.107/alefal.it/ionic/sideMenu/json';
+    //var urlBase = 'http://localhost/alefal.it/cms';
+    var urlBase = 'http://www.amalficoastapp.it/cms';
 
     /***** getSubCategory ****/
     ajaxCallServices.getCategoriesRest = function (id,parentId) {

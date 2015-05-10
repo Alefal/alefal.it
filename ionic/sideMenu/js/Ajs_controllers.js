@@ -489,7 +489,8 @@ $scope.showPopup = function() {
       var lon = $scope.longitudeCoord;
       console.log('navigator: '+lat+' | '+lon);
 
-      location.href = 'google.navigation:q='+lat+','+lon;
+      //location.href = 'google.navigation:q='+lat+','+lon;
+      location.href = 'geo:'+lat+','+lon;
 
     } else if(section == 'phone') {
       console.log('phone: '+$scope.exFieldTelefono);
