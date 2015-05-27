@@ -1,7 +1,7 @@
 stockmagazine.factory('ajaxCallServices', function($http) {
 
-    //var urlBase = 'http://localhost/alefal.it/cms';
-    var urlBase = 'http://www.amalficoastapp.it/cms';
+    var urlBase = 'http://10.80.18.107/alefal.it/cms';
+    //var urlBase = 'http://www.amalficoastapp.it/cms';
     var ajaxCallServices = {};
 
     /***** getSubCategory ****/
@@ -11,7 +11,7 @@ stockmagazine.factory('ajaxCallServices', function($http) {
 
     /***** getParentCategories ****/
     ajaxCallServices.getParentCategories = function (id) {
-        return $http.get(urlBase+ '/index.php/CategoriesREST/parentcategories/format/json?id='+id);
+        return $http.get(urlBase+ '/index.php/categoriesREST/parentcategories/format/json?id='+id);
     };
 
     /***** getSubCategory ****/

@@ -14,8 +14,8 @@
 | path to your installation.
 |
 */
-//$config['base_url']	= 'http://localhost/alefal.it/cms/';
-$config['base_url']	= 'http://www.amalficoastapp.it/cms/';
+$config['base_url']	= 'http://10.80.18.107/alefal.it/cms/';
+//$config['base_url']	= 'http://www.amalficoastapp.it/cms/';
 
 /*
 |--------------------------------------------------------------------------

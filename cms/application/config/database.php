@@ -48,21 +48,22 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-/* LOCALE 
+/* LOCALE */
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
 $db['default']['password'] = '';
 $db['default']['database'] = 'cms';
-*/
+$db['default']['dbdriver'] = 'mysqli';
 
-/* REMOTE */  
+
+/* REMOTE   
 $db['default']['hostname'] = '62.149.150.219';
 $db['default']['username'] = 'Sql777406';
 $db['default']['password'] = 'xjzxwh1o6c';
 $db['default']['database'] = 'Sql777406_3';
 $db['default']['dbdriver'] = 'mysql';
+*/
 
-#$db['default']['dbdriver'] = 'mysqli';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
 $db['default']['db_debug'] = TRUE;

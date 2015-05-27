@@ -30,6 +30,39 @@
 
   <body ng-controller="MasterController">
 
+    <div class="navbar navbar-inverse navbar-default navbar-fixed-top" role="navigation">
+          <div class="container-fluid">
+             <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><img src="" /></a>
+</div>
+
+            <div id="menuContainer" class="navbar-collapse collapse"> 
+
+          <ul class="nav navbar-nav">
+            <li id="home"><a href="${pageContext.request.contextPath}/bo/home.html">aaa</a></li>
+            <li id="tasks" class=""><a href="">bbb</a></li>
+            <li id="ruoteReperibilitaMenu"><a href="">ccc</a>
+            <li id="sitiSensibili" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">ddd<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li id="sitiSensibili_visualizza"><a href="">eee</a></li>
+                <li id="sitiSensibili_inserisci"><a href="">fff</a></li>
+                <li id="sitiSensibili_inserisciFasceInaccessibilita"><a href="">hhh</a></li>
+              </ul>
+            </li>
+             <li id="logout"><a href="javascript:void(0)" onclick='$("#formLogout").submit();'>logout</a>
+          </ul>
+</div>
+          </div>
+        </div>
+
+<!--
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -53,7 +86,7 @@
         </div>
       </div>
     </div>
-
+-->
     <div class="container-fluid" ng-controller="ListsOrders">
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
