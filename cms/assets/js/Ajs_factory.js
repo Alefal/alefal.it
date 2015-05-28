@@ -1,12 +1,17 @@
-stockmagazine.factory('ajaxCallServices', function($http) {
+cms.factory('ajaxCallServices', function($http) {
 
     var urlBase = 'http://10.80.18.107/alefal.it/cms';
     //var urlBase = 'http://www.amalficoastapp.it/cms';
     var ajaxCallServices = {};
 
-    /***** getSubCategory ****/
+    /***** getCategories ****/
     ajaxCallServices.getCategories = function () {
         return $http.get(urlBase+ '/index.php/categoriesREST/items/format/json');
+    };
+
+    /***** getCategories ****/
+    ajaxCallServices.getTags = function () {
+        return $http.get(urlBase+ '/index.php/tagsREST/items/format/json');
     };
 
     /***** getParentCategories ****/
@@ -28,7 +33,7 @@ stockmagazine.factory('ajaxCallServices', function($http) {
 });
 
 
-stockmagazine.factory('sharedFunctions', function() {
+cms.factory('sharedFunctions', function() {
     return {
         nameFunction: function($scope) {
             //todo...

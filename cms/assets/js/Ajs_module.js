@@ -1,5 +1,5 @@
-var stockmagazine = angular.module('stockmagazine', ['ngSanitize']);
+var cms = angular.module('cms', ['ngSanitize']);
 
-stockmagazine.run(function($rootScope){
+cms.run(function($rootScope){
 	$rootScope._ = _;
 });

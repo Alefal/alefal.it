@@ -1,42 +1,104 @@
-<div ng-controller="TagsController">
-
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-sm-12 main">
-        
-        <div class="col-sm-9">
-          <h2 class="sub-header">Tags</h2>
-        </div>
-        <div class="col-sm-3" align="right">
-          <button class="btn btn-primary" ng-click="openModal()">Aggiungi tag</button>
-        </div>
-
-        <div class="table-responsive">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Nome</th>
-                <th>&nbsp;</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php
-              foreach($results as $row) {
-                echo '<tr>';
-                echo '<td>'.$row->id.'</td>';
-                echo '<td>'.$row->name.'</td>';
-                echo '<td align="right"><span class="glyphicon glyphicon-pencil" ng-click="editItem(\''.$row->id.'\',\''.$row->name.'\')"></span> <a href="'.base_url().'index.php/tags/delete?idTags='.$row->id.'" onclick="return confirm(\'Are you sure ?\')"><span class="glyphicon glyphicon-remove"></span></a></td>';
-                echo '<tr>';
-              }
-              ?>
-            </tbody>
-          </table>
-        </div>
+<div id="page-wrapper">
+  <div class="row">
+      <div class="col-lg-12">
+          <h1 class="page-header">Tags</h1>
       </div>
+      <!-- /.col-lg-12 -->
+  </div>
+  <!-- /.row -->
+  
+
+  <!-- Tags Section -->
+  <div class="row" ng-controller="TagsController">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span class="btn btn-default btn-circle"><i class="fa fa-tasks"></i></span> Tags Lists - {{viewAjaxData}}
+            </div>
+            
+            <div class="panel-body" ng-show="!viewAjaxData">
+              <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+            </div>
+
+            <div class="panel-body" ng-show="viewAjaxData">
+                <div class="dataTable_wrapper">
+                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <thead>
+                            <tr>
+                                <th>&nbsp;</th>
+                                <th>Nome</th>
+                                <th>Nome (EN)</th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="tags in listTags" ng-class-odd="'odd'" ng-class-even="'even'">
+                                <td>{{tags.id}}</td>
+                                <td>{{tags.name}}</td>
+                                <td>{{tags.name_en}}</td>
+                                
+                                <td class="center">
+                                  <div class="row">
+                                    <div class="col-xs-6" align="right">
+                                      <a href="#" ng-click="editItem(category.id,category.name,category.parentId)" title="Modifica">
+                                        <i class="fa fa-pencil-square-o fa-2x"></i>
+                                      </a>  
+                                    </div>
+                                    <div class="col-xs-6" align="left">
+                                        <a href="index.php/tags/delete?idCategory={{category.id}}" onclick="return confirm(\'Are you sure ?\')" title="Elimina">
+                                          <i class="fa fa-remove fa-2x"></i>
+                                        </a>
+                                    </div>
+                                  </div> 
+                                  
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <div class="well">
+                    <h4>Usage Information</h4>
+                    <p>Information...</p>
+                </div>
+            </div>
+        </div>
     </div>
   </div>
 
+
+  <div class="row" ng-controller="TagsController">
+    <div class="col-lg-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <span class="btn btn-default btn-circle"><i class="fa fa-check"></i></span> Insert Tag
+        </div>
+        
+        <div class="panel-body">
+          
+          <div class="form-group input-group">
+            <span class="input-group-addon">@</span>
+            <input type="text" name="tagsName" id="tagsName" class="form-control" placeholder="Nome tag" required />
+          </div>
+
+          <div align="right">
+            <button type="button" class="btn btn-primary">Insert tag</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  
+  <!-- /Tags Section -->
+
+</div>
+<!-- /#page-wrapper -->
+
+
+<!--
   <div id="modalState" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-sm">
       <?php echo form_open('tags/insertUpdate'); ?>
@@ -63,15 +125,4 @@
       <?php echo form_close(); ?>
     </div>
   </div>
-
-</div>
-
-<!--
-<div class="container">
-<div class="jumbotron">
-<h2>CodeIgniter Bootstrap</h2>
-<p>CodeIgniter Bootstrap kick starts the development process of the web development process by including Twitter Bootstrap into CodeIgniter. It also includes certain libraries such as AWS and Facebook in-case you are developing applications requiring those SDKs. So stop writing the same code over again and start working on your idea.</p>
-<a class="btn btn-primary btn-large" href="https://github.com/sjlu/CodeIgniter-Bootstrap"> <i class="fa fa-github fa-lg"></i> View on Github</a>
-</div>
-</div>
--->
+  -->

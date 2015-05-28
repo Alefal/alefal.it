@@ -1,10 +1,10 @@
 /***** MasterController - Parent of all controllers ****/
-stockmagazine.controller('MasterController', function ($scope,sharedFunctions) {
-  //
+cms.controller('MasterController', function ($scope,sharedFunctions) {
+  $scope.viewAjaxData = false;
 });
 
 /***** Category Controller ****/
-stockmagazine.controller('CategoriesController', function ($scope,sharedFunctions,ajaxCallServices) {
+cms.controller('CategoriesController', function ($scope,sharedFunctions,ajaxCallServices) {
 
   //Lista categorie
   ajaxCallServices.getCategories()
@@ -12,6 +12,8 @@ stockmagazine.controller('CategoriesController', function ($scope,sharedFunction
       console.log('getSubCategoryList - success: '+JSON.stringify(listCategories));
 
       $scope.listCategories = listCategories;
+
+      $scope.viewAjaxData = true;
 
     }).error(function (error) {
       console.log('getSubCategoryList - error: '+error);
@@ -64,7 +66,21 @@ stockmagazine.controller('CategoriesController', function ($scope,sharedFunction
 });
 
 /***** Tags Controller ****/
-stockmagazine.controller('TagsController', function ($scope,sharedFunctions) {
+cms.controller('TagsController', function ($scope,sharedFunctions,ajaxCallServices) {
+
+  //Lista categorie
+  ajaxCallServices.getTags()
+    .success(function (listTags) {
+      console.log('listTags - success: '+JSON.stringify(listTags));
+
+      $scope.listTags = listTags;
+
+      $scope.viewAjaxData = true;
+
+    }).error(function (error) {
+      console.log('getSubCategoryList - error: '+error);
+    });
+
   $scope.openModal = function() {
     $scope.tagsId = '';
     $scope.tagsName = '';
