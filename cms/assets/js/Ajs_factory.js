@@ -1,4 +1,4 @@
-cms.factory('ajaxCallServices', function($http) {
+cms.factory('ajaxCallServices', function($http,$q) {
 
     var urlBase = 'http://10.80.18.107/alefal.it/cms';
     //var urlBase = 'http://www.amalficoastapp.it/cms';
@@ -11,7 +11,15 @@ cms.factory('ajaxCallServices', function($http) {
 
     /***** getCategories ****/
     ajaxCallServices.getTags = function () {
-        return $http.get(urlBase+ '/index.php/tagsREST/items/format/json');
+        var deferred = $q.defer();
+        $http.get(urlBase+ '/index.php/tagsREST/items/format/json').success(function (response) {
+            deferred.resolve(response);
+        }).error(function (reason) {
+            deferred.resolve(reason);
+        });
+        return deferred.promise;
+
+        //return $http.get(urlBase+ '/index.php/tagsREST/items/format/json');
     };
 
     /***** getParentCategories ****/

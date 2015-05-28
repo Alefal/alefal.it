@@ -67,7 +67,7 @@
   </div>
 
 
-  <div class="row" ng-controller="TagsController">
+  <div class="row">
     <div class="col-lg-12">
       <div class="panel panel-default">
         <div class="panel-heading">

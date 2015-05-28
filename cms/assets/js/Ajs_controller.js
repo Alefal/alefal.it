@@ -63,12 +63,27 @@ cms.controller('CategoriesController', function ($scope,sharedFunctions,ajaxCall
       });
 
   };
+
 });
 
 /***** Tags Controller ****/
 cms.controller('TagsController', function ($scope,sharedFunctions,ajaxCallServices) {
 
-  //Lista categorie
+  console.log('tags...............');
+  
+  //Lista Tags
+  ajaxCallServices.getTags().then(function (response) {
+
+    console.log('listTags - success: '+JSON.stringify(response));
+    $scope.listTags = response;
+    $scope.viewAjaxData = true;
+
+    //$scope.event = null;
+    if (response.ResultValue === 0)
+      $scope.connectorCollection = response.Value;
+  });
+
+  /*
   ajaxCallServices.getTags()
     .success(function (listTags) {
       console.log('listTags - success: '+JSON.stringify(listTags));
@@ -80,6 +95,7 @@ cms.controller('TagsController', function ($scope,sharedFunctions,ajaxCallServic
     }).error(function (error) {
       console.log('getSubCategoryList - error: '+error);
     });
+  */
 
   $scope.openModal = function() {
     $scope.tagsId = '';
