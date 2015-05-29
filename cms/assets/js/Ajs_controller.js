@@ -103,12 +103,11 @@ cms.controller('TagsController', function ($scope,sharedFunctions,ajaxCallServic
     $('#modalState').modal();
   };
 
-  $scope.editItem = function(id,name) {
-    console.log('editItem: '+id+' | '+name);  
+  $scope.editItem = function(id,name,nameEn) {
+    console.log('editItem: '+id+' | '+name+' | '+nameEn);  
 
     $scope.tagsId = id;
-    $scope.tagsName = name;
-
-    $('#modalState').modal('show'); 
+    $scope.tagsName = name; 
+    $scope.tagsNameEn = nameEn; 
   };
 });

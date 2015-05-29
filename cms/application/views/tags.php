@@ -1,4 +1,4 @@
-<div id="page-wrapper">
+<div id="page-wrapper" ng-controller="TagsController">
   <div class="row">
       <div class="col-lg-12">
           <h1 class="page-header">Tags</h1>
@@ -9,11 +9,11 @@
   
 
   <!-- Tags Section -->
-  <div class="row" ng-controller="TagsController">
+  <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <span class="btn btn-default btn-circle"><i class="fa fa-tasks"></i></span> Tags Lists - {{viewAjaxData}}
+                <span class="btn btn-default btn-circle"><i class="fa fa-tasks"></i></span> Tags Lists
             </div>
             
             <div class="panel-body" ng-show="!viewAjaxData">
@@ -40,12 +40,12 @@
                                 <td class="center">
                                   <div class="row">
                                     <div class="col-xs-6" align="right">
-                                      <a href="#" ng-click="editItem(category.id,category.name,category.parentId)" title="Modifica">
+                                      <a href="#" ng-click="editItem(tags.id,tags.name,tags.name_en)" title="Modifica">
                                         <i class="fa fa-pencil-square-o fa-2x"></i>
                                       </a>  
                                     </div>
                                     <div class="col-xs-6" align="left">
-                                        <a href="index.php/tags/delete?idCategory={{category.id}}" onclick="return confirm(\'Are you sure ?\')" title="Elimina">
+                                        <a href="index.php/tags/delete?idCategory={{tags.id}}" onclick="return confirm(\'Are you sure ?\')" title="Elimina">
                                           <i class="fa fa-remove fa-2x"></i>
                                         </a>
                                     </div>
@@ -77,12 +77,17 @@
         <div class="panel-body">
           
           <div class="form-group input-group">
-            <span class="input-group-addon">@</span>
-            <input type="text" name="tagsName" id="tagsName" class="form-control" placeholder="Nome tag" required />
+            <span class="input-group-addon">#</span>
+            <input type="text" name="tagsName" id="tagsName" ng-model="tagsName" class="form-control" placeholder="Nome tag" required />
+          </div>
+
+          <div class="form-group input-group">
+            <span class="input-group-addon">#</span>
+            <input type="text" name="tagsNameEn" id="tagsNameEn" ng-model="tagsNameEn" class="form-control" placeholder="Nome tag (EN)" required />
           </div>
 
           <div align="right">
-            <button type="button" class="btn btn-primary">Insert tag</button>
+            <button type="button" class="btn btn-primary" ng-disabled="!((tagsName) && (tagsNameEn))">Insert tag</button>
           </div>
 
         </div>
