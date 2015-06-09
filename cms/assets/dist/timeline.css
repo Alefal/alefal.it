@@ -143,6 +143,15 @@
     margin-top: 5px;
 }
 
+.formEvidence {
+    transition: all 1s ease;
+    -webkit-transition:all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+
+    border: 5px dashed #9DAEEB;
+}
+
 @media(max-width:767px) {
     ul.timeline:before {
         left: 40px;

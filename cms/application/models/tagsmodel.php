@@ -26,16 +26,18 @@ class tagsModel extends CI_Model {
         return $query->result();
     }
 
-    function insertEntry($tagsname)
+    function insertEntry($tagsnameIT,$tagsnameEN)
     {
-        $this->name = $tagsname; // please read the below note
+        $this->name     = $tagsnameIT; // please read the below note
+        $this->name_en  = $tagsnameEN; // please read the below note
         $this->db->insert('tags', $this);
     }
 
-    function updateEntry($tagsid,$tagsname)
+    function updateEntry($tagsid,$tagsnameIT,$tagsnameEN)
     {
         $data = array(
-           'name' => $tagsname
+           'name' => $tagsnameIT,
+           'name_en' => $tagsnameEN
         );
         $this->db->where('id', $tagsid);
         $this->db->update('tags', $data);

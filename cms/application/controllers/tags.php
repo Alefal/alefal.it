@@ -26,12 +26,23 @@ class Tags extends Main_Controller {
 	public function insertUpdate()
 	{
 		$tagsId = $this->input->post('tagsId');
-		$tagsName = $this->input->post('tagsName');
+		$tagsNameIt = $this->input->post('tagsName');
+		$tagsNameEn = $this->input->post('tagsNameEn');
+
+		/*
+		echo $tagsId.' - '.$tagsNameIt.' - '.$tagsNameEn;
+
+		print_r($_POST);
+        echo '<hr />';
+        print_r($this->input->post());
+        echo '<hr />';
+		die();
+		*/
 
 		if($tagsId != '') {
-			$this->tagsmodel->updateEntry($tagsId,$tagsName);
+			$this->tagsmodel->updateEntry($tagsId,$tagsNameIt,$tagsNameEn);
 		} else {
-			$this->tagsmodel->insertEntry($tagsName);
+			$this->tagsmodel->insertEntry($tagsNameIt,$tagsNameEn);
 		}
 	
 		redirect('tags','refresh');
@@ -40,8 +51,8 @@ class Tags extends Main_Controller {
 
 	public function delete()
 	{
-		$idTags = $this->input->get('idTags');
-		$this->tagsmodel->deleteEntry($idTags);
+		$idTag = $this->input->get('idTag');
+		$this->tagsmodel->deleteEntry($idTag);
 
 		redirect('tags','refresh');
 		//$this->index();

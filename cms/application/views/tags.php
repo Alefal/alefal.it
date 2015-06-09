@@ -40,12 +40,12 @@
                                 <td class="center">
                                   <div class="row">
                                     <div class="col-xs-6" align="right">
-                                      <a href="#" ng-click="editItem(tags.id,tags.name,tags.name_en)" title="Modifica">
+                                      <a href="#" ng-click="editTag(tags.id,tags.name,tags.name_en)" title="Modifica" scroll-to="formInsertEditTag">
                                         <i class="fa fa-pencil-square-o fa-2x"></i>
                                       </a>  
                                     </div>
                                     <div class="col-xs-6" align="left">
-                                        <a href="index.php/tags/delete?idCategory={{tags.id}}" onclick="return confirm(\'Are you sure ?\')" title="Elimina">
+                                        <a href="#" ng-click="deleteTag(tags.id)" title="Elimina">
                                           <i class="fa fa-remove fa-2x"></i>
                                         </a>
                                     </div>
@@ -67,29 +67,30 @@
   </div>
 
 
-  <div class="row">
+  <div class="row" id="formInsertEditTag">
     <div class="col-lg-12">
-      <div class="panel panel-default">
+      <div class="panel panel-default {{formClassUpdate}}">
         <div class="panel-heading">
-          <span class="btn btn-default btn-circle"><i class="fa fa-check"></i></span> Insert Tag
+          <span class="btn btn-default btn-circle"><i class="fa fa-check"></i></span> Insert/Edit Tag
         </div>
         
         <div class="panel-body">
-          
-          <div class="form-group input-group">
-            <span class="input-group-addon">#</span>
-            <input type="text" name="tagsName" id="tagsName" ng-model="tagsName" class="form-control" placeholder="Nome tag" required />
-          </div>
+          <?php echo form_open('tags/insertUpdate'); ?>
+            <input type="hidden" name="tagsId" id="tagsId" value="{{tagsId}}" />
+            <div class="form-group input-group">
+              <span class="input-group-addon">#</span>
+              <input type="text" name="tagsName" id="tagsName" ng-model="tagsName" class="form-control" placeholder="Nome tag" required />
+            </div>
 
-          <div class="form-group input-group">
-            <span class="input-group-addon">#</span>
-            <input type="text" name="tagsNameEn" id="tagsNameEn" ng-model="tagsNameEn" class="form-control" placeholder="Nome tag (EN)" required />
-          </div>
+            <div class="form-group input-group">
+              <span class="input-group-addon">#</span>
+              <input type="text" name="tagsNameEn" id="tagsNameEn" ng-model="tagsNameEn" class="form-control" placeholder="Nome tag (EN)" required />
+            </div>
 
-          <div align="right">
-            <button type="button" class="btn btn-primary" ng-disabled="!((tagsName) && (tagsNameEn))">Insert tag</button>
-          </div>
-
+            <div align="right">
+              <button type="submit" title="Inserisci" class="btn btn-primary" ng-disabled="!((tagsName) && (tagsNameEn))">Insert/Edit tag</button>
+            </div>
+          <?php echo form_close(); ?>
         </div>
       </div>
     </div>

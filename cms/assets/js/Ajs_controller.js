@@ -97,6 +97,28 @@ cms.controller('TagsController', function ($scope,sharedFunctions,ajaxCallServic
     });
   */
 
+  $scope.editTag = function(id,nameIt,nameEn) {    
+    console.log(id+' - '+nameIt+' - '+nameEn);
+
+    $scope.tagsId = id;
+    $scope.tagsName = nameIt; 
+    $scope.tagsNameEn = nameEn;
+
+    $scope.formClassUpdate = 'formEvidence'
+    
+  };
+
+  $scope.deleteTag = function(id) {    
+    console.log(id);
+
+    if(confirm('Are you sure ?')) {
+      location.href = 'tags/delete?idTag='+id;
+    } else {
+      return false;
+    }
+    
+  };
+
   $scope.openModal = function() {
     $scope.tagsId = '';
     $scope.tagsName = '';
