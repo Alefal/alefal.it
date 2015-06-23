@@ -143,7 +143,8 @@
     margin-top: 5px;
 }
 
-.formEvidence {
+.formEvidenceEdit,
+.formEvidenceSubcategory {
     transition: all 1s ease;
     -webkit-transition:all 1s ease;
     -moz-transition: all 1s ease;

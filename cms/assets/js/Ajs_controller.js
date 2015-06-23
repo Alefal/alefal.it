@@ -1,10 +1,12 @@
 /***** MasterController - Parent of all controllers ****/
 cms.controller('MasterController', function ($scope,sharedFunctions) {
   $scope.viewAjaxData = false;
+  $scope.viewSubcategoryLists = false;
 });
 
 /***** Category Controller ****/
 cms.controller('CategoriesController', function ($scope,sharedFunctions,ajaxCallServices) {
+
 
   //Lista categorie
   ajaxCallServices.getCategories()
@@ -18,6 +20,28 @@ cms.controller('CategoriesController', function ($scope,sharedFunctions,ajaxCall
     }).error(function (error) {
       console.log('getSubCategoryList - error: '+error);
     });
+
+  $scope.editCategory = function(id,nameIt,nameEn) {    
+    console.log(id+' - '+nameIt+' - '+nameEn);
+
+    $scope.categoryId = id;
+    $scope.categoryName = nameIt; 
+    $scope.categoryNameEn = nameEn;
+
+    $scope.formClassEdit = 'formEvidenceEdit'
+    
+  };
+
+  $scope.deleteCategory = function(id) {    
+    console.log(id);
+
+    if(confirm('Are you sure ?')) {
+      location.href = 'categories/delete?idTag='+id;
+    } else {
+      return false;
+    }
+    
+  };
 
   $scope.openModal = function() {
     $scope.categoryId = '';
@@ -50,16 +74,22 @@ cms.controller('CategoriesController', function ($scope,sharedFunctions,ajaxCall
 
     console.log('getSubCategoryList - id: '+id);
 
-    $scope.titleSubcategory = 'Sotto Categorie';
-
     ajaxCallServices.getSubCategoryList(id)
       .success(function (subcategory) {
         console.log('getSubCategoryList - success: '+JSON.stringify(subcategory));
 
-        $scope.listSubCategory = subcategory;
+        if(subcategory != null) {
+          $scope.viewSubcategoryLists = true;
+          $scope.listSubCategory = subcategory;
+
+          $scope.formClassSubcategory = 'formEvidenceSubcategory'
+        } else {
+          $('#modalWarning').modal();
+        }
 
       }).error(function (error) {
         console.log('getSubCategoryList - error: '+error);
+        $('#modalWarning').modal();
       });
 
   };
@@ -104,7 +134,7 @@ cms.controller('TagsController', function ($scope,sharedFunctions,ajaxCallServic
     $scope.tagsName = nameIt; 
     $scope.tagsNameEn = nameEn;
 
-    $scope.formClassUpdate = 'formEvidence'
+    $scope.formClassEdit = 'formEvidenceEdit'
     
   };
 

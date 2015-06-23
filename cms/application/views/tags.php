@@ -40,12 +40,12 @@
                                 <td class="center">
                                   <div class="row">
                                     <div class="col-xs-6" align="right">
-                                      <a href="#" ng-click="editTag(tags.id,tags.name,tags.name_en)" title="Modifica" scroll-to="formInsertEditTag">
+                                      <a href="javascript:void(0);" ng-click="editTag(tags.id,tags.name,tags.name_en)" title="Modifica" scroll-to="formInsertEditTag">
                                         <i class="fa fa-pencil-square-o fa-2x"></i>
                                       </a>  
                                     </div>
                                     <div class="col-xs-6" align="left">
-                                        <a href="#" ng-click="deleteTag(tags.id)" title="Elimina">
+                                        <a href="javascript:void(0);" ng-click="deleteTag(tags.id)" title="Elimina">
                                           <i class="fa fa-remove fa-2x"></i>
                                         </a>
                                     </div>
@@ -69,7 +69,7 @@
 
   <div class="row" id="formInsertEditTag">
     <div class="col-lg-12">
-      <div class="panel panel-default {{formClassUpdate}}">
+      <div class="panel panel-default {{formClassEdit}}">
         <div class="panel-heading">
           <span class="btn btn-default btn-circle"><i class="fa fa-check"></i></span> Insert/Edit Tag
         </div>
@@ -105,30 +105,30 @@
 
 
 <!--
-  <div id="modalState" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-sm">
-      <?php echo form_open('tags/insertUpdate'); ?>
+<div id="modalState" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-sm">
+    <?php echo form_open('tags/insertUpdate'); ?>
 
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <h4 class="modal-title" id="modalCategoryLabel">Tag</h4>
-          </div>
-          <div class="modal-body">
-              <div class="form-group">
-                <strong>Nome:</strong>
-                <br />
-                <input type="hidden" name="tagsId" id="tagsId"  value="{{tagsId}}" />
-                <input type="text" name="tagsName" id="tagsName" value="{{tagsName}}" class="form-control" placeholder="Nome tag" required />
-              </div>
-
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
-            <button type="submit" class="btn btn-primary">Salva</button>
-          </div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h4 class="modal-title" id="modalCategoryLabel">Tag</h4>
         </div>
-      <?php echo form_close(); ?>
-    </div>
+        <div class="modal-body">
+            <div class="form-group">
+              <strong>Nome:</strong>
+              <br />
+              <input type="hidden" name="tagsId" id="tagsId"  value="{{tagsId}}" />
+              <input type="text" name="tagsName" id="tagsName" value="{{tagsName}}" class="form-control" placeholder="Nome tag" required />
+            </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
+          <button type="submit" class="btn btn-primary">Salva</button>
+        </div>
+      </div>
+    <?php echo form_close(); ?>
   </div>
-  -->
+</div>
+-->
