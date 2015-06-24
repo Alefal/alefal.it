@@ -1,7 +1,12 @@
 /***** MasterController - Parent of all controllers ****/
-cms.controller('MasterController', function ($scope,sharedFunctions) {
+cms.controller('MasterController', function ($scope, $location, $anchorScroll, sharedFunctions) {
   $scope.viewAjaxData = false;
   $scope.viewSubcategoryLists = false;
+
+  $scope.scrollToAnchor = function(id) {
+     $location.hash(id);
+     $anchorScroll();
+  }
 });
 
 /***** Category Controller ****/
@@ -21,12 +26,15 @@ cms.controller('CategoriesController', function ($scope,sharedFunctions,ajaxCall
       console.log('getSubCategoryList - error: '+error);
     });
 
-  $scope.editCategory = function(id,nameIt,nameEn) {    
+  $scope.editCategory = function(id,nameIt,nameEn,descriptionIt,descriptionEn) {    
     console.log(id+' - '+nameIt+' - '+nameEn);
+    console.log(id+' - '+descriptionIt+' - '+descriptionEn);
 
     $scope.categoryId = id;
     $scope.categoryName = nameIt; 
     $scope.categoryNameEn = nameEn;
+    $scope.descriptionIt = descriptionIt; 
+    $scope.descriptionEn = descriptionEn;
 
     $scope.formClassEdit = 'formEvidenceEdit'
     

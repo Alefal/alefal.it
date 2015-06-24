@@ -75,10 +75,11 @@ class categoriesModel extends CI_Model {
         $this->db->insert('categories', $this);
     }
 
-    function updateEntry($categoryId,$categoryName)
+    function updateEntry($categoryId,$categoryNameIT,$categoryNameEN)
     {
         $data = array(
-           'name' => $categoryName
+           'name' => $categoryNameIT,
+           'name_en' => $categoryNameEN
         );
         $this->db->where('id', $categoryId);
         $this->db->update('categories', $data);

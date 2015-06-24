@@ -74,16 +74,16 @@
 
                                     <td class="center">
 
-                                        <div class="row">
+                                        <div class="row" align="right">
                                             <div class="col-xs-12">
-                                                <a href="javascript:void(0);" ng-click="getSubCategoryList(category.id)" title="Sottocategorie">
-                                                    <i class="fa fa-list fa-2x"></i></a>
-
-                                                <a href="javascript:void(0);" ng-click="editCategory(category.id,category.name,category.name_en)" title="Modifica" scroll-to="formInsertEditCategory">
+                                                <a href="javascript:void(0);" ng-click="editCategory(category.id,category.name,category.name_en,category.introtext,category.introtext_en);scrollToAnchor('formInsertEditCategory')" title="Modifica">
                                                     <i class="fa fa-pencil-square-o fa-2x"></i></a>  
 
-                                                <a href="javascript:void(0);" ng-click="deleteCategory(category.id)" title="Elimina">
+                                                <a href="javascript:void(0);" ng-click="deleteCategory(category.id)" title="Elimina" style="color:red">
                                                     <i class="fa fa-remove fa-2x"></i></a>
+
+                                                <a href="javascript:void(0);" ng-click="getSubCategoryList(category.id);scrollToAnchor('tableSubcategoryOfCategory')" title="Sottocategorie">
+                                                    <i class="fa fa-list fa-2x"></i></a>
                                             </div>
                                         </div> 
                                       
@@ -94,7 +94,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="well {{formClassSubcategory}}">
+                    <div class="well {{formClassSubcategory}}" id="tableSubcategoryOfCategory">
                         <h4>Subcategory</h4>
                         <p>Click <i class="fa fa-list fa-2x"></i> for subcategory of category</p>
 
@@ -149,11 +149,11 @@
 
                                     </td>
 
-                                    <td class="center">
+                                    <td class="center" align="right">
 
                                         <div class="row">
                                             <div class="col-xs-12">
-                                                <a href="javascript:void(0);" ng-click="editCategory(category.id,category.name,category.name_en)" title="Modifica" scroll-to="formInsertEditCategory">
+                                                <a href="javascript:void(0);" ng-click="editCategory(category.id,category.name,category.name_en,category.introtext,category.introtext_en);scrollToAnchor('formInsertEditCategory')" title="Modifica">
                                                     <i class="fa fa-pencil-square-o fa-2x"></i></a>  
 
                                                 <a href="javascript:void(0);" ng-click="deleteCategory(category.id)" title="Elimina">
@@ -170,9 +170,6 @@
 
                     </div>
                 </div>
-
-                
-
 
             </div>
         </div>
@@ -199,8 +196,18 @@
                   <input type="text" name="categoryNameEn" id="categoryNameEn" ng-model="categoryNameEn" class="form-control" placeholder="Category name (EN)" required />
                 </div>
 
+                <div class="form-group input-group">
+                  <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
+                  <textarea class="form-control" name="descriptionIt" id="descriptionIt" ng-model="descriptionIt" rows="3" placeholder="Description" required></textarea>
+                </div>
+
+                <div class="form-group input-group">
+                  <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
+                  <textarea class="form-control" name="descriptionEn" id="descriptionEn" ng-model="descriptionEn" rows="3" placeholder="Description (EN)" required></textarea>
+                </div>
+
                 <div align="right">
-                  <button type="submit" title="Inserisci" class="btn btn-primary" ng-disabled="!((tagsName) && (tagsNameEn))">Insert/Edit category</button>
+                  <button type="submit" title="Inserisci" class="btn btn-primary" ng-disabled="!((categoryName) && (categoryNameEn))">Insert/Edit category</button>
                 </div>
               <?php echo form_close(); ?>
             </div>

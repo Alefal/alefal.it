@@ -31,12 +31,13 @@ class Categories extends Main_Controller {
 	public function insertUpdate()
 	{
 		$categoryId = $this->input->post('categoryId');
-		$categoryName = $this->input->post('categoryName');
+		$categoryNameIt = $this->input->post('categoryName');
+		$categoryNameEn = $this->input->post('categoryNameEn');
 
 		if($categoryId != '') {
-			$this->categoriesmodel->updateEntry($categoryId,$categoryName);
+			$this->categoriesmodel->updateEntry($categoryId,$categoryNameIt,$categoryNameEn);
 		} else {
-			$this->categoriesmodel->insertEntry($categoryName);
+			$this->categoriesmodel->insertEntry($categoryNameIt,$categoryNameEn);
 		}
 	
 		redirect('categories','refresh');

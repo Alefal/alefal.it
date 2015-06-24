@@ -40,7 +40,7 @@
                                 <td class="center">
                                   <div class="row">
                                     <div class="col-xs-6" align="right">
-                                      <a href="javascript:void(0);" ng-click="editTag(tags.id,tags.name,tags.name_en)" title="Modifica" scroll-to="formInsertEditTag">
+                                      <a href="javascript:void(0);" ng-click="editTag(tags.id,tags.name,tags.name_en);scrollToAnchor('formInsertEditTag')" title="Modifica">
                                         <i class="fa fa-pencil-square-o fa-2x"></i>
                                       </a>  
                                     </div>
