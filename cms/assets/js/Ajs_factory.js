@@ -1,6 +1,6 @@
 cms.factory('ajaxCallServices', function($http,$q) {
 
-    var urlBase = 'http://10.80.18.107/alefal.it/cms';
+    var urlBase = 'http://127.0.0.1/alefal.it/cms';
     //var urlBase = 'http://www.amalficoastapp.it/cms';
     var ajaxCallServices = {};
 
