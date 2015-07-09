@@ -14,7 +14,37 @@ class categoriesModel extends CI_Model {
     
     function getAll()
     {
+        /*
+        SELECT  c.*, 
+            count(distinct i.name) as NumItems 
+        FROM categories c
+            LEFT JOIN items i 
+                ON c.id = i.categoryId
+        GROUP BY c.id
+        */
+
+        $this->db->select('c.*');
+        $this->db->select('count(distinct i.name) as numOfItems');
+        $this->db->from('categories c');
+        $this->db->join('items i', 'c.id = i.categoryId', 'left');
         $this->db->where('parentId',null);
+        $this->db->group_by('c.id');
+        $this->db->order_by('c.order');
+
+        $query = $this->db->get();
+        //print_r($this->db->last_query());
+        //die();
+        
+        return $query->result();
+
+        //$this->db->where('parentId',null);
+        //$this->db->order_by('order'); 
+        //$query = $this->db->get('categories');
+
+        //return $query->result();
+    }
+
+    function getCategoryList() {
         $this->db->order_by('order'); 
         $query = $this->db->get('categories');
 
@@ -53,10 +83,24 @@ class categoriesModel extends CI_Model {
 
     function getSubCategoryList($id)
     {
-        $this->db->where('parentId', $id);
-        $this->db->order_by('order'); 
-        $query = $this->db->get('categories');
+        //$this->db->where('parentId', $id);
+        //$this->db->order_by('order'); 
+        //$query = $this->db->get('categories');
 
+        //return $query->result();
+
+        $this->db->select('c.*');
+        $this->db->select('count(distinct i.name) as numOfItems');
+        $this->db->from('categories c');
+        $this->db->join('items i', 'c.id = i.categoryId', 'left');
+        $this->db->where('parentId',$id);
+        $this->db->group_by('c.id');
+        $this->db->order_by('c.order');
+
+        $query = $this->db->get();
+        //print_r($this->db->last_query());
+        //die();
+        
         return $query->result();
     }
 
@@ -69,17 +113,25 @@ class categoriesModel extends CI_Model {
         return $query->result();
     }
 
-    function insertEntry($categoryName)
+    function insertEntry($categoryName,$categoryNameEn,$descriptionIt,$descriptionEn,$categoryParent)
     {
-        $this->name = $categoryName; // please read the below note
+        $this->name         = $categoryName;
+        $this->name_en      = $categoryNameEn;
+        $this->introtext    = $descriptionIt;
+        $this->introtext_en = $descriptionEn;
+        $this->parentId     = $categoryParent;
+
         $this->db->insert('categories', $this);
     }
 
-    function updateEntry($categoryId,$categoryNameIT,$categoryNameEN)
+    function updateEntry($categoryId,$categoryNameIT,$categoryNameEN,$descriptionIt,$descriptionEn,$categoryParent)
     {
         $data = array(
            'name' => $categoryNameIT,
-           'name_en' => $categoryNameEN
+           'name_en' => $categoryNameEN,
+           'introtext' => $descriptionIt,
+           'introtext_en' => $descriptionEn,
+           'parentId' => $categoryParent
         );
         $this->db->where('id', $categoryId);
         $this->db->update('categories', $data);

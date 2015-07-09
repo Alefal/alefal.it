@@ -10,7 +10,7 @@ cms.controller('MasterController', function ($scope, $location, $anchorScroll, s
 });
 
 /***** Category Controller ****/
-cms.controller('CategoriesController', function ($scope,sharedFunctions,ajaxCallServices) {
+cms.controller('CategoriesController', function ($scope, $location, $anchorScroll, sharedFunctions,ajaxCallServices) {
 
 
   //Lista categorie
@@ -26,9 +26,22 @@ cms.controller('CategoriesController', function ($scope,sharedFunctions,ajaxCall
       console.log('getSubCategoryList - error: '+error);
     });
 
+  ajaxCallServices.getCategoryList()
+    .success(function (categoryList) {
+      console.log('getCategoryList - success: '+JSON.stringify(categoryList));
+
+      $scope.listCategoryList = categoryList;
+
+    }).error(function (error) {
+      console.log('getCategoryList - error: '+error);
+    });
+
   $scope.editCategory = function(id,nameIt,nameEn,descriptionIt,descriptionEn) {    
     console.log(id+' - '+nameIt+' - '+nameEn);
     console.log(id+' - '+descriptionIt+' - '+descriptionEn);
+
+    $scope.formClassEdit = '';
+    $scope.formClassSubcategory = '';
 
     $scope.categoryId = id;
     $scope.categoryName = nameIt; 
@@ -44,7 +57,7 @@ cms.controller('CategoriesController', function ($scope,sharedFunctions,ajaxCall
     console.log(id);
 
     if(confirm('Are you sure ?')) {
-      location.href = 'categories/delete?idTag='+id;
+      location.href = 'categories/delete?idCategory='+id;
     } else {
       return false;
     }
@@ -81,6 +94,8 @@ cms.controller('CategoriesController', function ($scope,sharedFunctions,ajaxCall
   $scope.getSubCategoryList = function(id) {
 
     console.log('getSubCategoryList - id: '+id);
+    $scope.formClassEdit = '';
+    $scope.formClassSubcategory = '';
 
     ajaxCallServices.getSubCategoryList(id)
       .success(function (subcategory) {
@@ -90,7 +105,11 @@ cms.controller('CategoriesController', function ($scope,sharedFunctions,ajaxCall
           $scope.viewSubcategoryLists = true;
           $scope.listSubCategory = subcategory;
 
-          $scope.formClassSubcategory = 'formEvidenceSubcategory'
+          $scope.formClassSubcategory = 'formEvidenceSubcategory';
+
+          $location.hash('tableSubcategoryOfCategory');
+          $anchorScroll();
+
         } else {
           $('#modalWarning').modal();
         }

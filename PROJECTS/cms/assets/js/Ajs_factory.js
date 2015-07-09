@@ -10,6 +10,11 @@ cms.factory('ajaxCallServices', function($http,$q) {
     };
 
     /***** getCategories ****/
+    ajaxCallServices.getCategoryList = function () {
+        return $http.get(urlBase+ '/index.php/categoriesREST/categorylist/format/json');
+    };
+
+    /***** getCategories ****/
     ajaxCallServices.getTags = function () {
         var deferred = $q.defer();
         $http.get(urlBase+ '/index.php/tagsREST/items/format/json').success(function (response) {

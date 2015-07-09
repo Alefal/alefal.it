@@ -33,11 +33,14 @@ class Categories extends Main_Controller {
 		$categoryId = $this->input->post('categoryId');
 		$categoryNameIt = $this->input->post('categoryName');
 		$categoryNameEn = $this->input->post('categoryNameEn');
+		$descriptionIt = $this->input->post('descriptionIt');
+		$descriptionEn = $this->input->post('descriptionEn');
+		$categoryParent = $this->input->post('categoryParent');
 
 		if($categoryId != '') {
-			$this->categoriesmodel->updateEntry($categoryId,$categoryNameIt,$categoryNameEn);
+			$this->categoriesmodel->updateEntry($categoryId,$categoryNameIt,$categoryNameEn,$descriptionIt,$descriptionEn,$categoryParent);
 		} else {
-			$this->categoriesmodel->insertEntry($categoryNameIt,$categoryNameEn);
+			$this->categoriesmodel->insertEntry($categoryNameIt,$categoryNameEn,$descriptionIt,$descriptionEn,$categoryParent);
 		}
 	
 		redirect('categories','refresh');

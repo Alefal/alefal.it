@@ -1,7 +1,7 @@
 <div id="page-wrapper" ng-controller="CategoriesController">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Categories</h1>
+            <h3 class="page-header"><i class="fa fa-list-ol"></i> Categories</h3>
         </div>
         <!-- /.col-lg-12 -->
     </div>
@@ -12,7 +12,7 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Categorie
+                    <span class="btn btn-default btn-circle"><i class="fa fa-list-alt"></i></span> Categorie
                 </div>
 
                 <div class="panel-body" ng-show="!viewAjaxData">
@@ -53,7 +53,9 @@
                                         {{category.introtext_en}}
                                     </td>
                                     <td>
-                                        <span class="badge">{{category.numOfItems}}</span>
+                                        <div ng-if="category.numOfItems > 0">
+                                            <span class="badge">{{category.numOfItems}}</span>
+                                        </div>
                                         <!--
                                         <div class="panel panel-primary">
                                             <div class="panel-heading">
@@ -82,7 +84,7 @@
                                                 <a href="javascript:void(0);" ng-click="deleteCategory(category.id)" title="Elimina" style="color:red">
                                                     <i class="fa fa-remove fa-2x"></i></a>
 
-                                                <a href="javascript:void(0);" ng-click="getSubCategoryList(category.id);scrollToAnchor('tableSubcategoryOfCategory')" title="Sottocategorie">
+                                                <a href="javascript:void(0);" ng-click="getSubCategoryList(category.id)" title="Sottocategorie">
                                                     <i class="fa fa-list fa-2x"></i></a>
                                             </div>
                                         </div> 
@@ -130,7 +132,9 @@
                                         {{category.introtext_en}}
                                     </td>
                                     <td>
-                                        <span class="badge">{{category.numOfItems}}</span>
+                                        <div ng-if="category.numOfItems > 0">
+                                            <span class="badge">{{category.numOfItems}}</span>
+                                        </div>
                                         <!--
                                         <div class="panel panel-primary">
                                             <div class="panel-heading">
@@ -204,6 +208,19 @@
                 <div class="form-group input-group">
                   <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
                   <textarea class="form-control" name="descriptionEn" id="descriptionEn" ng-model="descriptionEn" rows="3" placeholder="Description (EN)" required></textarea>
+                </div>
+
+                <div class="form-group input-group">
+                    <span class="input-group-addon"><i class="fa fa-list"></i></span>
+                    <select class="form-control" name="categoryParent" id="categoryParent">
+                        <option value="0">Scegli / Select</option>
+                        <option value="0">---------------</option>
+                        <option 
+                          ng-repeat="category in listCategoryList" 
+                          value="{{category.id}}">
+                        {{category.name}} / {{category.name_en}}
+                        </option> 
+                    </select>
                 </div>
 
                 <div align="right">

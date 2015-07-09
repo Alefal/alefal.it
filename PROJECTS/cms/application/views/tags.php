@@ -1,7 +1,7 @@
 <div id="page-wrapper" ng-controller="TagsController">
   <div class="row">
       <div class="col-lg-12">
-          <h1 class="page-header">Tags</h1>
+          <h3 class="page-header"><i class="fa fa-tags"></i> Tags</h3>
       </div>
       <!-- /.col-lg-12 -->
   </div>
@@ -13,7 +13,7 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <span class="btn btn-default btn-circle"><i class="fa fa-tasks"></i></span> Tags Lists
+                <span class="btn btn-default btn-circle"><i class="fa fa-list-alt"></i></span> Tags Lists
             </div>
             
             <div class="panel-body" ng-show="!viewAjaxData">

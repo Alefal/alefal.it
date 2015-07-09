@@ -42,11 +42,11 @@ if($pagename == 'categories') {
 		        <a href="<?php echo base_url(); ?>index.php/dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
 		    </li>
 		    <li>
-		        <a href="<?php echo base_url(); ?>index.php/tags"><i class="fa fa-table fa-fw"></i> Tags</a>
+		        <a href="<?php echo base_url(); ?>index.php/tags"><i class="fa fa-tags fa-fw"></i> Tags</a>
 		    </li>
 
 		    <li>
-		        <a href="<?php echo base_url(); ?>index.php/categories"><i class="fa fa-table fa-fw"></i> Categories</a>
+		        <a href="<?php echo base_url(); ?>index.php/categories"><i class="fa fa-list-ol fa-fw"></i> Categories</a>
 		    </li>
 		    
 		     <li>
