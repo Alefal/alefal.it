@@ -1,3 +1,5 @@
+<?php $id = 15; $p = get_page($id); echo apply_filters('the_content', $p->post_content); ?>
+<!--
 <section class="container-fluid" id="sectionHome">
     <div class="v-center">
         <h1 class="text-center" ng-bind="'TitleChiccheElena' | translate">&nbsp;</h1>
@@ -11,6 +13,7 @@
 		</div>
         </a>
 </section>
+-->
 
 <section class="container-fluid" id="sectionCollection" ng-controller="CollectionsCtrl">
     <div class="container v-center">
@@ -73,6 +76,8 @@
     </div>
 </section>
 
+<?php $id = 18; $p = get_page($id); echo apply_filters('the_content', $p->post_content); ?>
+<!--
 <section id="sectionContact">
     <div class="container v-center">
         <div class="row">
@@ -119,6 +124,7 @@
         </div>
     </div>
 </section>
+-->
 
 <section class="container-fluid" id="sectionMaps">
     <div class="row">

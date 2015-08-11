@@ -10,6 +10,21 @@
             <a class="navbar-brand text-danger" href="#" ng-bind="'TitleChiccheElena' | translate">&nbsp;</a>
         </div>
         <div class="navbar-collapse collapse" id="navbar-collapsible">
+            <?php 
+            /***** VEDI functions.php
+                wp_nav_menu( 
+                    array( 
+                        'theme_location'    => 'primary', 
+                        'container'         => false,
+                        'menu_class'        => 'nav navbar-nav navbar-left', 
+                        'menu_id'           => 'primary-menu',
+                        'depth'             => 1,
+                        'walker'            => new Custom_Walker_Nav_Menu 
+                    ) 
+                );
+            *****/ 
+            ?>
+                    
             <ul class="nav navbar-nav navbar-left">
                 <li><a href="#sectionHome" ng-bind="'Home' | translate">&nbsp;</a></li>
                 <li><a href="#sectionCollection" ng-bind="'Collection' | translate">&nbsp;</a></li>
