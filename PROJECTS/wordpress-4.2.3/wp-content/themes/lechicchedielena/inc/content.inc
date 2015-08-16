@@ -15,6 +15,8 @@
 </section>
 -->
 
+<?php $id = 26; $p = get_page($id); echo apply_filters('the_content', $p->post_content); ?>
+<!--
 <section class="container-fluid" id="sectionCollection" ng-controller="CollectionsCtrl">
     <div class="container v-center">
         <div class="row">
@@ -23,15 +25,6 @@
                 <hr>
             </div>
         </div>
-
-        <!--
-        <div class="row" ng-repeat="element in listCollections | filter: { evidence: 'true' }">
-            <div class="col-md-12">
-                <h1 class="text-center">{{element.title}}</h1>
-                <hr>
-            </div>
-        </div>
-        -->
 
         <div class="row">
 
@@ -58,7 +51,6 @@
             </div>
             
         </div>
-        <!--/row-->
         
         <br />
 
@@ -72,9 +64,9 @@
                 </div>
             </div>
         </div>
-        <!--/row-->
     </div>
 </section>
+-->
 
 <?php $id = 18; $p = get_page($id); echo apply_filters('the_content', $p->post_content); ?>
 <!--
@@ -126,6 +118,8 @@
 </section>
 -->
 
+<?php $id = 22; $p = get_page($id); echo apply_filters('the_content', $p->post_content); ?>
+<!--
 <section class="container-fluid" id="sectionMaps">
     <div class="row">
         <div class="col-md-12">
@@ -136,3 +130,4 @@
 
     <div id="map-canvas"></div>
 </section>
+-->
