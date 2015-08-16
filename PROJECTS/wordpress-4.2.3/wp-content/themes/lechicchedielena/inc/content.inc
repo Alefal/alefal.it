@@ -15,8 +15,8 @@
 </section>
 -->
 
-<?php $id = 26; $p = get_page($id); echo apply_filters('the_content', $p->post_content); ?>
-<!--
+<?php //$id = 26; $p = get_page($id); echo apply_filters('the_content', $p->post_content); ?>
+
 <section class="container-fluid" id="sectionCollection" ng-controller="CollectionsCtrl">
     <div class="container v-center">
         <div class="row">
@@ -27,22 +27,20 @@
         </div>
 
         <div class="row">
-
+            <!--
             <div class="col-sm-4" ng-repeat="element in listCollections | filter: { evidence: 'true' }">
+            -->
+            <div class="col-sm-4" ng-repeat="element in listCollections.posts">
                 <div class="row">
                     <div class="col-sm-12 text-center">
                         <div class="panel panel-default slideInLeft animate">
                             <div class="panel-heading">
                             <h3>{{element.title}}</h3></div>
                             <div class="panel-body">
-                                <p ng-if="currentLanguage == 'it'">{{element.descriptionIt}}</p>
-                                <p ng-if="currentLanguage == 'en'">{{element.descriptionEn}}</p>
+                                <p ng-bind="element.content"></p>
                                 <p class="text-center">
                                     <img src="{{element.image}}" class="img-responsive thumbnail center-block imgCollection" />
                                 </p>
-                                <!--
-                                <button class="btn btn-danger" data-toggle="modal" data-target="#myModal">Detail</button>
-                                -->
                                 <button class="btn btn-danger" ng-click="openDetail(element.id,element.title,element.descriptionIt,element.descriptionEn,element.image)" ng-bind="'Detail' | translate">&nbsp;</button>
                             </div>
                         </div>
@@ -51,22 +49,10 @@
             </div>
             
         </div>
-        
-        <br />
 
-        <div class="row">
-            <div class="col-sm-3" ng-repeat="element in listCollections | filter: { evidence: 'false' }">
-                <div class="text-center">
-                    <a href="javascript:void(0);" title="Click for detail!" ng-click="openDetail(element.id,element.title,element.descriptionIt,element.descriptionEn,element.image)">
-                        <img class="img-circle img-responsive img-thumbnail photoCollections" src="{{element.image}}">
-                    </a>
-                    <h3 class="text-center">{{element.title}}</h3>
-                </div>
-            </div>
-        </div>
     </div>
 </section>
--->
+
 
 <?php $id = 18; $p = get_page($id); echo apply_filters('the_content', $p->post_content); ?>
 <!--
