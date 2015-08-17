@@ -5,12 +5,16 @@ angular.module('lechicchedielena')
         var ajaxCallServices = {};
         //var urlBase = 'http://localhost/amalficoastapps.it/lechicchedielena.it/json/';
         //var urlBase = 'wp-content/themes/lechicchedielena/json/';
-        var urlBase = '?json=get_tag_posts&tag_slug=products';
 
+        /***** getEvidenceCollections ****/
+        ajaxCallServices.getEvidenceCollections = function () {
+            //return $http.get(urlBase+ 'collections.json');
+            return $http.get('?json=get_tag_posts&tag_slug=productsEvidence');
+        };
         /***** getCollections ****/
         ajaxCallServices.getCollections = function () {
             //return $http.get(urlBase+ 'collections.json');
-            return $http.get(urlBase);
+            return $http.get('?json=get_tag_posts&tag_slug=products');
         };
 
         return ajaxCallServices;

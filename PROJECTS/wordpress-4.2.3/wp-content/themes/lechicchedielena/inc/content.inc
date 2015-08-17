@@ -27,27 +27,37 @@
         </div>
 
         <div class="row">
-            <!--
-            <div class="col-sm-4" ng-repeat="element in listCollections | filter: { evidence: 'true' }">
-            -->
-            <div class="col-sm-4" ng-repeat="element in listCollections.posts">
+            <div class="col-sm-4" ng-repeat="element in listEvidenceCollections.posts">
                 <div class="row">
                     <div class="col-sm-12 text-center">
                         <div class="panel panel-default slideInLeft animate">
                             <div class="panel-heading">
                             <h3>{{element.title}}</h3></div>
                             <div class="panel-body">
-                                <p ng-bind="element.content"></p>
+                                <p ng-if="currentLanguage == 'it'" ng-bind-html="element.custom_fields.descrizione"></p>
+                                <p ng-if="currentLanguage == 'en'" ng-bind-html="element.custom_fields.description"></p>
                                 <p class="text-center">
-                                    <img src="{{element.image}}" class="img-responsive thumbnail center-block imgCollection" />
+                                    <img src="{{element.attachments[0].url}}" class="img-responsive thumbnail center-block imgCollection" />
                                 </p>
-                                <button class="btn btn-danger" ng-click="openDetail(element.id,element.title,element.descriptionIt,element.descriptionEn,element.image)" ng-bind="'Detail' | translate">&nbsp;</button>
+                                <button class="btn btn-danger" ng-click="openDetail(element.id,element.title,element.custom_fields.descrizione,element.custom_fields.description,element.attachments[0].url)" ng-bind="'Detail' | translate">&nbsp;</button>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div> 
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="col-sm-3" ng-repeat="element in listCollections.posts">
+                <div class="text-center">
+                    <a href="javascript:void(0);" title="Click for detail!" ng-click="openDetail(element.id,element.title,element.custom_fields.descrizione,element.custom_fields.description,element.attachments[0].url)">
+                        <img class="img-circle img-responsive img-thumbnail photoCollections" ng-src="{{element.attachments[0].url}}">
+                    </a>
+                    <h3 class="text-center">{{element.title}}</h3>
+                </div>
             </div>
-            
         </div>
 
     </div>

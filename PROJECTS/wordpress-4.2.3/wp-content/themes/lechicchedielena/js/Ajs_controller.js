@@ -3,9 +3,18 @@ angular.module('lechicchedielena')
   .controller('CollectionsCtrl', function($scope, $translate, ajaxCallServices, sharedDetailElement) {
     console.log('CollectionsCtrl');
 
+    ajaxCallServices.getEvidenceCollections()
+      .success(function (listEvidenceCollections) {
+        console.log('Success1: '+JSON.stringify(listEvidenceCollections));
+        $scope.listEvidenceCollections = listEvidenceCollections;
+
+      }).error(function (error) {
+        console.log('Error');
+      });
+
     ajaxCallServices.getCollections()
       .success(function (listCollections) {
-        console.log('Success');
+        console.log('Success2: '+JSON.stringify(listCollections));
         $scope.listCollections = listCollections;
 
       }).error(function (error) {
@@ -34,31 +43,6 @@ angular.module('lechicchedielena')
       $translate.use(language);
       $scope.currentLanguage = language;
     };
-
-  })
-
-  .controller('CollectionsCtrl', function($scope, $translate, ajaxCallServices, sharedDetailElement) {
-    console.log('CollectionsCtrl');
-
-    ajaxCallServices.getCollections()
-      .success(function (listCollections) {
-        console.log('Success');
-        $scope.listCollections = listCollections;
-
-      }).error(function (error) {
-        console.log('Error');
-      });
-
-      $scope.openDetail = function(id,title,descriptionIt,descriptionEn,image){
-        console.log('openDetail');
-
-        sharedDetailElement.data.id = id;
-        sharedDetailElement.data.title = title;
-        sharedDetailElement.data.descriptionIt = descriptionIt;
-        sharedDetailElement.data.descriptionEn = descriptionEn;
-        sharedDetailElement.data.image = image;
-        $('#detailModal').modal();
-      };
 
   })
 
