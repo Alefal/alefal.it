@@ -1,0 +1,38 @@
+#thicktabs ul {
+	float: left;
+}
+
+#thicktabs li{
+	display: inline;
+}
+
+#thicktabs li a{
+	float: left;
+	color: white;
+	font: bold 13px Tahoma;
+	padding: 12px 42px !important; /*padding of tabs*/
+	text-decoration: none;
+	background: transparent url(../images/menu.jpg) top right repeat-x;
+	border-left: 2px solid #fff;
+	/*border-top: 1px solid #d3bdbe; /*top border style*/
+	/*border-bottom: 1px solid #000000; /*thick bottom border below tabs*/
+}
+
+#thicktabs li a#leftmostitem{ /*Extra CSS for left most menu item*/
+	border-left: none; /*left border style*/
+	margin-left:5px;
+}
+
+#thicktabs li a#rightmostitem{ /*Extra CSS for right most menu item*/
+	border-right: 1px solid #fff; /*right border style*/
+	background-position: top left; /*Position background image to the left instead of default right, to hide 	indented underline for this link*/
+}
+
+#thicktabs li a:visited{
+	color: white;
+}
+
+#thicktabs li a:hover{
+	color: white;
+	background-image: url(../images/menu_over.jpg); /*background image swap on hover*/
+}

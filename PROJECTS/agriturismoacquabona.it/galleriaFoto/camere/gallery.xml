@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simpleviewerGallery  maxImageWidth="480" 
+                      maxImageHeight="480" 
+                      textColor="0xFFFFFF" 
+                      frameColor="0xffffff" 
+                      frameWidth="20" 
+                      stagePadding="40" 
+                      thumbnailColumns="3" 
+                      thumbnailRows="3" 
+                      navPosition="left" 
+                      title="Agriturismo Aquabona" 
+                      enableRightClickOpen="true" 
+                      backgroundImagePath="" 
+                      imagePath="" 
+                      thumbPath="">
+<image>
+	<filename>foto_01.jpg</filename>
+	<caption>...</caption>	
+</image>
+<image>
+	<filename>foto_02.jpg</filename>
+	<caption>...</caption>	
+</image>
+<image>
+	<filename>foto_03.jpg</filename>
+	<caption>...</caption>	
+</image>
+<image>
+	<filename>foto_04.jpg</filename>
+	<caption>...</caption>	
+</image>
+<image>
+	<filename>foto_05.jpg</filename>
+	<caption>...</caption>	
+</image>
+<image>
+	<filename>foto_06.jpg</filename>
+	<caption>...</caption>	
+</image>
+<image>
+	<filename>foto_07.jpg</filename>
+	<caption>...</caption>	
+</image>
+<image>
+	<filename>foto_08.jpg</filename>
+	<caption>...</caption>	
+</image>
+<image>
+	<filename>foto_09.jpg</filename>
+	<caption>...</caption>	
+</image>
+<image>
+	<filename>foto_10.jpg</filename>
+	<caption>...</caption>	
+</image>
+<image>
+	<filename>foto_11.jpg</filename>
+	<caption>...</caption>	
+</image>
+<image>
+	<filename>foto_12.jpg</filename>
+	<caption>...</caption>	
+</image>
+<image>
+	<filename>foto_13.jpg</filename>
+	<caption>...</caption>	
+</image>
+<image>
+	<filename>foto_14.jpg</filename>
+	<caption>...</caption>	
+</image>
+<image>
+	<filename>foto_15.jpg</filename>
+	<caption>...</caption>	
+</image>
+<image>
+	<filename>foto_16.jpg</filename>
+	<caption>...</caption>	
+</image>
+<image>
+	<filename>foto_17.jpg</filename>
+	<caption>...</caption>	
+</image>
+<image>
+	<filename>foto_18.jpg</filename>
+	<caption>...</caption>	
+</image>
+<image>
+	<filename>foto_19.jpg</filename>
+	<caption>...</caption>	
+</image>
+</simpleviewerGallery>
