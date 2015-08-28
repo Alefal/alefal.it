@@ -206,6 +206,9 @@ class acf_field_image extends acf_field
 	function format_value_for_api( $value, $post_id, $field )
 	{
 		
+		//echo 'xxx';
+		//die();
+
 		// validate
 		if( !$value )
 		{
@@ -298,6 +301,7 @@ class acf_field_image extends acf_field
 	
    	function ajax_get_images()
    	{
+
    		// vars
 		$options = array(
 			'nonce' => '',

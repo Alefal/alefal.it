@@ -221,8 +221,7 @@ class acf_revisions
 		{
 			$value = implode(', ', $value);
 		}
-		
-		
+				
 		// format
 		if( $value )
 		{

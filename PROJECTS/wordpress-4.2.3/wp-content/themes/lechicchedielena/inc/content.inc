@@ -1,3 +1,15 @@
+<?php
+/*****
+$arrayImg = $_POST['fields'];
+$url = wp_get_attachment_url(reset($arrayImg));
+reset($arrayImg);
+
+$key = key($arrayImg);
+$arrayImg[$key] = $url;
+print_r($arrayImg);
+*****/
+?>
+
 <?php $id = 15; $p = get_page($id); echo apply_filters('the_content', $p->post_content); ?>
 <!--
 <section class="container-fluid" id="sectionHome">
@@ -37,7 +49,12 @@
                                 <p ng-if="currentLanguage == 'it'" ng-bind-html="element.custom_fields.descrizione"></p>
                                 <p ng-if="currentLanguage == 'en'" ng-bind-html="element.custom_fields.description"></p>
                                 <p class="text-center">
-                                    <img src="{{element.attachments[0].url}}" class="img-responsive thumbnail center-block imgCollection" />
+                                    {{element.custom_fields.immagine}}
+                                    <?php 
+                                    $id = 
+                                    $image = wp_get_attachment_image_src('32','','');
+                                    echo '<img ng-src="'.$image[0].'" class="img-responsive thumbnail center-block imgCollection" />';
+                                    ?>
                                 </p>
                                 <button class="btn btn-danger" ng-click="openDetail(element.id,element.title,element.custom_fields.descrizione,element.custom_fields.description,element.attachments[0].url)" ng-bind="'Detail' | translate">&nbsp;</button>
                             </div>

@@ -29,6 +29,7 @@ class acf_controller_post
 	
 	function __construct()
 	{
+		
 		// actions
 		add_action('admin_enqueue_scripts',				array($this, 'admin_enqueue_scripts'));
 		add_action('save_post', 						array($this, 'save_post'), 10, 1);
@@ -495,7 +496,6 @@ class acf_controller_post
 	
 	function save_post( $post_id )
 	{	
-		
 		// do not save if this is an auto save routine
 		if( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE )
 		{
