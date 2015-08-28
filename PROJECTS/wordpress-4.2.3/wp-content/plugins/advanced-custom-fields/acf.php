@@ -874,19 +874,25 @@ class acf
 		{
 			return $post_id;
 		}
-		
 
 		// loop through and save
 		if( !empty($_POST['fields']) )
 		{
 			// loop through and save $_POST data
+			$cont = 0;
 			foreach( $_POST['fields'] as $k => $v )
 			{
 				// get field
 				$f = apply_filters('acf/load_field', false, $k );
 				
 				// update field
-				do_action('acf/update_value', $v, $post_id, $f );
+				//FIX 2015/08: Alessandro - Immagine deve essere il primo campo aggiuntivo del post
+				if($cont == 0)
+					do_action('acf/update_value', wp_get_attachment_url($v), $post_id, $f );
+				else
+					do_action('acf/update_value', $v, $post_id, $f );
+
+				$cont++;
 				
 			}
 			// foreach($fields as $key => $value)

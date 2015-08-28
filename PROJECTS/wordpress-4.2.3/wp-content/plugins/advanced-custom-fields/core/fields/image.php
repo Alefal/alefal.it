@@ -79,6 +79,16 @@ class acf_field_image extends acf_field
 			
 			}
 						
+		} else {
+			//FIX 2015/08: Alessandro - Immagine non come ID ma come URL
+			$url = $field['value'];
+			
+			if( $url ) {
+				
+				$o['url'] = $url;
+				$o['class'] = 'active';
+			
+			}
 		}
 		
 		?>
@@ -206,9 +216,6 @@ class acf_field_image extends acf_field
 	function format_value_for_api( $value, $post_id, $field )
 	{
 		
-		//echo 'xxx';
-		//die();
-
 		// validate
 		if( !$value )
 		{

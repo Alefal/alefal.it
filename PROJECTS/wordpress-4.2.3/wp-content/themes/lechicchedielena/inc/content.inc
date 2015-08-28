@@ -1,15 +1,3 @@
-<?php
-/*****
-$arrayImg = $_POST['fields'];
-$url = wp_get_attachment_url(reset($arrayImg));
-reset($arrayImg);
-
-$key = key($arrayImg);
-$arrayImg[$key] = $url;
-print_r($arrayImg);
-*****/
-?>
-
 <?php $id = 15; $p = get_page($id); echo apply_filters('the_content', $p->post_content); ?>
 <!--
 <section class="container-fluid" id="sectionHome">
@@ -27,8 +15,8 @@ print_r($arrayImg);
 </section>
 -->
 
-<?php //$id = 26; $p = get_page($id); echo apply_filters('the_content', $p->post_content); ?>
-
+<?php $id = 26; $p = get_page($id); echo apply_filters('the_content', $p->post_content); ?>
+<!--
 <section class="container-fluid" id="sectionCollection" ng-controller="CollectionsCtrl">
     <div class="container v-center">
         <div class="row">
@@ -49,14 +37,9 @@ print_r($arrayImg);
                                 <p ng-if="currentLanguage == 'it'" ng-bind-html="element.custom_fields.descrizione"></p>
                                 <p ng-if="currentLanguage == 'en'" ng-bind-html="element.custom_fields.description"></p>
                                 <p class="text-center">
-                                    {{element.custom_fields.immagine}}
-                                    <?php 
-                                    $id = 
-                                    $image = wp_get_attachment_image_src('32','','');
-                                    echo '<img ng-src="'.$image[0].'" class="img-responsive thumbnail center-block imgCollection" />';
-                                    ?>
+                                    <img ng-src="{{element.custom_fields.immagine[0]}}" class="img-responsive thumbnail center-block imgCollection" />
                                 </p>
-                                <button class="btn btn-danger" ng-click="openDetail(element.id,element.title,element.custom_fields.descrizione,element.custom_fields.description,element.attachments[0].url)" ng-bind="'Detail' | translate">&nbsp;</button>
+                                <button class="btn btn-danger" ng-click="openDetail(element.id,element.title,element.custom_fields.descrizione,element.custom_fields.description,element.custom_fields.immagine[0])" ng-bind="'Detail' | translate">&nbsp;</button>
                             </div>
                         </div>
                     </div>
@@ -69,8 +52,8 @@ print_r($arrayImg);
         <div class="row">
             <div class="col-sm-3" ng-repeat="element in listCollections.posts">
                 <div class="text-center">
-                    <a href="javascript:void(0);" title="Click for detail!" ng-click="openDetail(element.id,element.title,element.custom_fields.descrizione,element.custom_fields.description,element.attachments[0].url)">
-                        <img class="img-circle img-responsive img-thumbnail photoCollections" ng-src="{{element.attachments[0].url}}">
+                    <a href="javascript:void(0);" title="Click for detail!" ng-click="openDetail(element.id,element.title,element.custom_fields.descrizione,element.custom_fields.description,element.custom_fields.immagine[0])">
+                        <img class="img-circle img-responsive img-thumbnail photoCollections" ng-src="{{element.custom_fields.immagine[0]}}">
                     </a>
                     <h3 class="text-center">{{element.title}}</h3>
                 </div>
@@ -79,7 +62,7 @@ print_r($arrayImg);
 
     </div>
 </section>
-
+-->
 
 <?php $id = 18; $p = get_page($id); echo apply_filters('the_content', $p->post_content); ?>
 <!--

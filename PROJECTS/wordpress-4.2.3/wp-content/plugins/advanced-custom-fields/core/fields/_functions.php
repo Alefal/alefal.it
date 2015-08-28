@@ -497,7 +497,6 @@ class acf_field_functions
 		// - issue with camel case! Replaced with JS
 		//$field['name'] = sanitize_title( $field['name'] );
 		
-		
 		// filters
 		$field = apply_filters('acf/update_field/type=' . $field['type'], $field, $post_id ); // new filter
 		
