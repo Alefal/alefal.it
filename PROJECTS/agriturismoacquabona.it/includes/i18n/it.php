@@ -187,7 +187,7 @@ define("TST_CONTATTI"	,	"L'<b>Agriturismo Acquabona</b> si trova a Scala (SA), i
                     <br /><br />
                     - tel / fax <b>089858023</b> 
                     <br /><br />
-                    - per telefono al <b>3282010433</b> oppure al <b>3392081660</b>");
+                    - per telefono al <b>328 2010433</b> oppure al <b>333 3400172</b>");
 
 
 
@@ -209,7 +209,7 @@ define("FOOTER"	,	"Agriturismo Acquabona di Langella Cristofaro
         			<br />
         			via Acquabona, 84010 Scala (Sa) - Costiera Amalfitana
         			<br />
-					tel/fax: 089858023 - cell: 3282010433 o 3392081660
+					tel/fax: 089858023 - cell: 328 2010433 o 333 3400172
 					<br />");
 					
 					

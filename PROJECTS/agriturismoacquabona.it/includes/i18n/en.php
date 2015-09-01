@@ -171,9 +171,9 @@ define("TST_CONTATTI"	,	"<b>Farm holidays Acquabona</b> is located in Scala (SA)
                     <br /><br />
                     - send a email to <a href=\"mailto:".EMAIL."\">".EMAIL."</a>
                     <br /><br />
-                    - phone / fax to <b>089858023</b> 
+                    - phone / fax to <b>089 858023</b> 
                     <br /><br />
-                    - call to <b>3282010433</b> or <b>3392081660</b>");
+                    - call to <b>328 2010433</b> or <b>333 3400172</b>");
 
 
 
@@ -191,7 +191,7 @@ define("FOOTER"	,	"Farm holidays of Langella Cristofaro
         			<br />
         			street Acquabona, 84010 Scala (Sa) - Amalfi Coast
         			<br />
-					phone/fax: 089858023 - phone: 3282010433 o 3392081660
+					phone/fax: 089 858023 - phone: 328 2010433 o 333 3400172
 					<br />");
 					
 					
