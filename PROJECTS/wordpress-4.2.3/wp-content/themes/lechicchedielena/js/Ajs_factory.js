@@ -17,6 +17,13 @@ angular.module('lechicchedielena')
             return $http.get('?json=get_tag_posts&tag_slug=products');
         };
 
+        /**
+        LIST CATEGORIES:
+        http://localhost/alefal.it/PROJECTS/wordpress-4.2.3/?json=get_category_index
+        http://localhost/alefal.it/PROJECTS/wordpress-4.2.3/?json=get_category_index&parent=0
+        http://localhost/alefal.it/PROJECTS/wordpress-4.2.3/?json=get_category_index&parent=5
+        **/
+
         return ajaxCallServices;
     })
 
