@@ -1,0 +1,52 @@
+.leagueengine table {
+	width:100%;
+}
+
+.leagueengine table.team_form .leagueengine_form_win,
+.leagueengine table.team_form .leagueengine_form_lose,
+.leagueengine table.team_form .leagueengine_form_draw
+{
+	width: 40px;
+	padding: 5px 8px;
+	color: #fff;
+}
+
+.leagueengine table.team_form .leagueengine_form_win { background: #2ecc71; }
+.leagueengine table.team_form .leagueengine_form_lose { background: #e67e22; }
+.leagueengine table.team_form .leagueengine_form_draw { background: #e74c3c; }
+
+.leagueengine .team_squad th {
+	text-align: center;
+}
+
+.leagueengine .team_squad th.first,
+.leagueengine .team_squad td.first
+{
+	text-align: left;
+}
+
+.leagueengine .team_squad th,
+.leagueengine .team_squad td {
+	text-align: center;
+}
+
+.leagueengine .emblem {
+	vertical-align:middle;
+	float: left;
+    width: 16px;
+    height: 16px;
+	-webkit-border-radius: 50%; 
+	-moz-border-radius: 50%;  
+	border-radius: 50%;
+    position: relative;
+    border: 1px solid #999;
+    line-height: normal;
+}
+
+.leagueengine img.player-emblem {
+	-webkit-border-radius: 50%; 
+	-moz-border-radius: 50%;  
+	border-radius: 50%;
+	position: relative;
+	border: 1px solid #999;
+}

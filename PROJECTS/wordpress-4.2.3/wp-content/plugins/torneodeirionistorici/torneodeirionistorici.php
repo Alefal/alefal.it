@@ -12,13 +12,7 @@
  * License URI: http://www.gnu.org/licenses/gpl-3.0
 */
 
-/***** REWRITE URL *****/
-function taco_kitten_rewrite() {
-    $url = str_replace( trailingslashit( site_url() ), '', plugins_url( '/taco-kittens.php', __FILE__ ) );
-    add_rewrite_rule( 'taco-kittens\\.php$', $url, 'top' );
-}
-add_action( 'wp_loaded', 'taco_kitten_rewrite' );
-/***** REWRITE URL *****/
+require_once('functions.php');
 
 function torneodeirionistorici_menu() {
 	add_options_page( 'torneodeirionistorici', 'torneodeirionistorici', 'read', 'torneodeirionistorici', 'torneodeirionistorici_options' );
@@ -31,24 +25,19 @@ function torneodeirionistorici_options() {
 		wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 	}
 
-	global $wpdb;
-	$teams = $wpdb->get_results("SELECT * FROM avwp_leagueengine_season_teams ORDER BY season_pts DESC");
-
-	$teamsArray = array();
-
-	echo '<h3>SQUADRE</h3>';
-	$cont = 1;
-
-	foreach ($teams as $team) {
-		$teamsArray[] = array(
-            'position' => $cont,
-            'name' => $team->team_name
-        );
-
-    	echo $cont.') '.$team->team_name.'<br />';
-		$cont++;
-	}
-
-	echo json_encode($teamsArray);
-    exit();
+	echo '<br /><br /><br />';
+	echo '<div>';
+	echo 'Le chiamate abilitate sono le seguenti: <br />';
+	echo '<br />';
+	
+	echo 'CLASSIFICA: <br />';
+	echo '<b><i>http://HOST_URL/wp-content/plugins/torneodeirionistorici/ranking.php?league_id=X&season_id=Y</i></b> <br />';
+	echo '<br />';
+	
+	echo 'MATCHS: <br />';
+	echo '<b><i>http://HOST_URL/wp-content/plugins/torneodeirionistorici/matchs.php?league_id=X&season_id=Y</i></b> <br />';
+	echo '<br />';
+	
+	echo 'dove <b>X</b> è l\'id della league e <b>Y</b> è l\'id della stagione (vedi tabella <b>avwp_leagueengine_league_seasons</b>)';
+	echo '</div>';
 }
