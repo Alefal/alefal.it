@@ -1,0 +1,31 @@
+<style>
+.item {
+    white-space: normal;
+}
+</style>
+<ion-view view-title="Incontri">
+	<ion-content>
+    	<ion-list>
+
+    		<ion-item>
+    			<div class="row">
+					<div class="col-33"><h3>DATA</h3></div>
+					<div class="col-33"><h3>INCONTRO</h3></div>
+					<div class="col-25" align="right"><h3>RISULTATO</h3></div>
+				</div>
+			</ion-item>
+
+      		<ion-item ng-repeat="match in matchs">
+        	    <div class="row">
+        	    	<div class="col-33">
+        	    		{{match.match_date}}
+        	    		<br />
+        	    		{{match.match_time}}
+        	    	</div>
+					<div class="col-33">{{match.home_team_id}} - {{match.away_team_id}}</div>
+					<div class="col-25" align="right">{{match.result}}</div>
+				</div>
+      		</ion-item>
+    	</ion-list>
+  	</ion-content>
+</ion-view>

@@ -33,7 +33,7 @@ if(isset($_GET['league_id']) && isset($_GET['season_id'])) {
 
 $finalArray[] = array(
     'response'   => $resultArray,
-    'ranking'   => $teamsArray
+    'matchs'   => $teamsArray
 );
 echo json_encode($finalArray);
 exit();

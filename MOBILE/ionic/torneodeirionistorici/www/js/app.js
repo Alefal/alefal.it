@@ -25,42 +25,54 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 
 .factory('ajaxCallServices', function($http) {
 
-    var ajaxCallServices = {};
+  var ajaxCallServices = {};
 
-    //var urlBase = 'http://10.80.18.107/alefal.it/ionic/sideMenu/json';
-    var urlBase = 'http://10.80.18.107/alefal.it/PROJECTS/cms';
-    //var urlBase = 'http://www.amalficoastapp.it/cms';
+  //var urlBase = 'http://10.80.18.107/alefal.it/ionic/sideMenu/json';
+  var urlBase = 'http://10.80.18.107/alefal.it/PROJECTS/cms';
+  //var urlBase = 'http://www.amalficoastapp.it/cms';
 
-    /***** getPostsRest ****/
-    ajaxCallServices.getPostsRest = function (id,parentId) {
-        return $http.get('json/posts.json');
-    };
+  /***** getReleasesRest ****/
+  ajaxCallServices.getReleasesRest = function () {
+      return $http.get('json/releases.json');
+  };
 
-    /***** getRankingRest ****/
-    ajaxCallServices.getRankingRest = function (id,parentId) {
-        return $http.get('json/ranking.json');
-    };
+  /***** getRankingRest ****/
+  ajaxCallServices.getRankingRest = function () {
+      return $http.get('json/ranking.json');
+  };
 
-    /***** geMatchsRest ****/
-    ajaxCallServices.geMatchsRest = function (id,parentId) {
-        return $http.get('json/matchs.json');
-    };
+  /***** getRankingRest ****/
+  ajaxCallServices.getRanking2015Rest = function () {
+      return $http.get('json/ranking.json');
+  };
 
-    return ajaxCallServices;
+  /***** geMatchsRest ****/
+  ajaxCallServices.geMatchsRest = function () {
+      return $http.get('json/matchs.json');
+  };
+
+  return ajaxCallServices;
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
-
     .state('app', {
-    url: '/app',
-    abstract: true,
-    templateUrl: 'templates/menu.html',
-    controller: 'AppCtrl'
-  })
+      url: '/app',
+      abstract: true,
+      templateUrl: 'templates/menu.html',
+      controller: 'AppCtrl'
+    })
 
-
-.state('app.ranking', {
+    .state('app.releases', {
+      url: '/releases',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/releases.html',
+          controller: 'ReleasesCtrl'
+        }
+      }
+    })
+    .state('app.ranking', {
       url: '/ranking',
       views: {
         'menuContent': {
@@ -69,45 +81,25 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         }
       }
     })
-
-
-
-  .state('app.search', {
-    url: '/search',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/search.html'
-      }
-    }
-  })
-
-  .state('app.browse', {
-      url: '/browse',
+    .state('app.matchs', {
+      url: '/matchs',
       views: {
         'menuContent': {
-          templateUrl: 'templates/browse.html'
+          templateUrl: 'templates/matchs.html',
+          controller: 'MatchsCtrl'
         }
       }
     })
-    .state('app.playlists', {
-      url: '/playlists',
+    .state('app.ranking2015', {
+      url: '/ranking2015',
       views: {
         'menuContent': {
-          templateUrl: 'templates/playlists.html',
-          controller: 'PlaylistsCtrl'
+          templateUrl: 'templates/ranking2015.html',
+          controller: 'Ranking2015Ctrl'
         }
       }
-    })
+    });
 
-  .state('app.single', {
-    url: '/playlists/:playlistId',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/playlist.html',
-        controller: 'PlaylistCtrl'
-      }
-    }
-  });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/app/releases');
 });
