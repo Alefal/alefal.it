@@ -33,22 +33,26 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 
   /***** getReleasesRest ****/
   ajaxCallServices.getReleasesRest = function () {
-      return $http.get('json/releases.json');
+    //http://torneodeirionistorici.altervista.org/wp-json/posts?filter[tag]=comunicatiUfficiali
+    return $http.get('json/releases.json');
   };
 
   /***** getRankingRest ****/
   ajaxCallServices.getRankingRest = function () {
-      return $http.get('json/ranking.json');
+    //http://torneodeirionistorici.altervista.org/wp-content/plugins/torneodeirionistorici/matchs.php?league_id=171&season_id=172
+    return $http.get('json/ranking.json');
   };
 
   /***** getRankingRest ****/
   ajaxCallServices.getRanking2015Rest = function () {
-      return $http.get('json/ranking.json');
+    //http://torneodeirionistorici.altervista.org/wp-content/plugins/torneodeirionistorici/ranking.php?league_id=1&season_id=4
+    return $http.get('json/ranking.json');
   };
 
   /***** geMatchsRest ****/
   ajaxCallServices.geMatchsRest = function () {
-      return $http.get('json/matchs.json');
+    //http://torneodeirionistorici.altervista.org/wp-content/plugins/torneodeirionistorici/matchs.php?league_id=171&season_id=172
+    return $http.get('json/matchs.json');
   };
 
   return ajaxCallServices;
