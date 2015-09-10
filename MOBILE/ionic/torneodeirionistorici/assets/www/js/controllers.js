@@ -18,7 +18,7 @@ angular.module('starter.controllers', [])
 
   ajaxCallServices.getReleasesRest()
     .success(function (releases) {
-      //console.log('releases --->'+JSON.stringify(releases));
+      console.log('releases --->'+JSON.stringify(releases));
       $scope.releases = releases;
 
       $ionicLoading.hide();
@@ -38,7 +38,7 @@ angular.module('starter.controllers', [])
       if(ranking[0].response[0].result == 'OK') {
         $scope.ranking = ranking[0].ranking;
       } else {
-        $scope.ranking = 'ERROR';  
+        $scope.ranking = 'ERROR';
       }
 
       $ionicLoading.hide();
@@ -58,7 +58,7 @@ angular.module('starter.controllers', [])
       if(matchs[0].response[0].result == 'OK') {
         $scope.matchs = matchs[0].matchs;
       } else {
-        $scope.matchs = 'ERROR';  
+        $scope.matchs = 'ERROR';
       }
 
       $ionicLoading.hide();
@@ -78,7 +78,7 @@ angular.module('starter.controllers', [])
       if(ranking[0].response[0].result == 'OK') {
         $scope.ranking = ranking[0].ranking;
       } else {
-        $scope.ranking = 'ERROR';  
+        $scope.ranking = 'ERROR';
       }
 
       $ionicLoading.hide();

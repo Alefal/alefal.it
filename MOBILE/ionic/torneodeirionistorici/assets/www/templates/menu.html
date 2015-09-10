@@ -8,6 +8,11 @@
         <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
         </button>
       </ion-nav-buttons>
+      <ion-nav-buttons side="right">
+        <button class="button button-icon button-clear ion-refresh" onclick="window.location.reload(true);">
+        </button>
+      </ion-nav-buttons>
+
     </ion-nav-bar>
     <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>
@@ -22,20 +27,20 @@
           Torneo
         </ion-item>
         <ion-item menu-close href="#/app/releases">
-          Comunicati Ufficiali
+          <i class="icon ion-clipboard"></i> Comunicati Ufficiali
         </ion-item>
         <ion-item menu-close href="#/app/ranking">
-          Classifica 2015/16
+          <i class="icon ion-grid"></i> Classifica 2015/16
         </ion-item>
         <ion-item menu-close href="#/app/matchs">
-          Incontri
+          <i class="icon ion-calendar"></i> Incontri
         </ion-item>
 
         <ion-item class="item-divider">
           Archivio
         </ion-item>
         <ion-item menu-close href="#/app/ranking2015">
-          Classifica 2014/15
+          <i class="icon ion-grid"></i> Classifica 2014/15
         </ion-item>
 
 

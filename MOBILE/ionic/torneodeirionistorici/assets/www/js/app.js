@@ -27,32 +27,34 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 
   var ajaxCallServices = {};
 
-  //var urlBase = 'http://10.80.18.107/alefal.it/ionic/sideMenu/json';
-  var urlBase = 'http://10.80.18.107/alefal.it/PROJECTS/cms';
-  //var urlBase = 'http://www.amalficoastapp.it/cms';
+  var urlBase = 'http://torneodeirionistorici.altervista.org';
 
   /***** getReleasesRest ****/
   ajaxCallServices.getReleasesRest = function () {
     //http://torneodeirionistorici.altervista.org/wp-json/posts?filter[tag]=comunicatiUfficiali
-    return $http.get('json/releases.json');
+    return $http.get(urlBase+'/wp-json/posts?filter[tag]=comunicatiUfficiali');
+    //return $http.get('json/releases.json');
   };
 
   /***** getRankingRest ****/
   ajaxCallServices.getRankingRest = function () {
     //http://torneodeirionistorici.altervista.org/wp-content/plugins/torneodeirionistorici/matchs.php?league_id=171&season_id=172
-    return $http.get('json/ranking.json');
+    return $http.get(urlBase+'/wp-content/plugins/torneodeirionistorici/ranking.php?league_id=171&season_id=172');
+    //return $http.get('json/ranking.json');
   };
 
   /***** getRankingRest ****/
   ajaxCallServices.getRanking2015Rest = function () {
     //http://torneodeirionistorici.altervista.org/wp-content/plugins/torneodeirionistorici/ranking.php?league_id=1&season_id=4
-    return $http.get('json/ranking.json');
+    return $http.get(urlBase+'/wp-content/plugins/torneodeirionistorici/ranking.php?league_id=1&season_id=4');
+    //return $http.get('json/ranking.json');
   };
 
   /***** geMatchsRest ****/
   ajaxCallServices.geMatchsRest = function () {
     //http://torneodeirionistorici.altervista.org/wp-content/plugins/torneodeirionistorici/matchs.php?league_id=171&season_id=172
-    return $http.get('json/matchs.json');
+    return $http.get(urlBase+'/wp-content/plugins/torneodeirionistorici/matchs.php?league_id=171&season_id=172');
+    //return $http.get('json/matchs.json');
   };
 
   return ajaxCallServices;
@@ -61,6 +63,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('app', {
+      cache: false,
       url: '/app',
       abstract: true,
       templateUrl: 'templates/menu.html',
@@ -68,6 +71,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     })
 
     .state('app.releases', {
+      cache: false,
       url: '/releases',
       views: {
         'menuContent': {
@@ -77,6 +81,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     })
     .state('app.ranking', {
+      cache: false,
       url: '/ranking',
       views: {
         'menuContent': {
@@ -86,6 +91,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     })
     .state('app.matchs', {
+      cache: false,
       url: '/matchs',
       views: {
         'menuContent': {
@@ -95,6 +101,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     })
     .state('app.ranking2015', {
+      cache: false,
       url: '/ranking2015',
       views: {
         'menuContent': {
