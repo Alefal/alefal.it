@@ -1,0 +1,1 @@
+Vedi la cartella plugin per capire quali plugins installare

@@ -22,6 +22,33 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   });
 })
 
+
+.factory('ajaxCallServices', function($http) {
+
+    var ajaxCallServices = {};
+
+    //var urlBase = 'http://10.80.18.107/alefal.it/ionic/sideMenu/json';
+    var urlBase = 'http://10.80.18.107/alefal.it/PROJECTS/cms';
+    //var urlBase = 'http://www.amalficoastapp.it/cms';
+
+    /***** getPostsRest ****/
+    ajaxCallServices.getPostsRest = function (id,parentId) {
+        return $http.get('json/posts.json');
+    };
+
+    /***** getRankingRest ****/
+    ajaxCallServices.getRankingRest = function (id,parentId) {
+        return $http.get('json/ranking.json');
+    };
+
+    /***** geMatchsRest ****/
+    ajaxCallServices.geMatchsRest = function (id,parentId) {
+        return $http.get('json/matchs.json');
+    };
+
+    return ajaxCallServices;
+})
+
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
@@ -31,6 +58,19 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     templateUrl: 'templates/menu.html',
     controller: 'AppCtrl'
   })
+
+
+.state('app.ranking', {
+      url: '/ranking',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/ranking.html',
+          controller: 'RankingCtrl'
+        }
+      }
+    })
+
+
 
   .state('app.search', {
     url: '/search',

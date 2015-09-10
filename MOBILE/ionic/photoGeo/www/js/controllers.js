@@ -52,5 +52,47 @@ angular.module('starter.controllers', [])
   ];
 })
 
+.controller('GeoCtrl', function($scope,$cordovaGeolocation) {
+    $scope.geo = 'GeoLocation';
+
+    document.addEventListener("deviceready", function () {
+        var posOptions = {timeout: 10000, enableHighAccuracy: false};
+        $cordovaGeolocation
+            .getCurrentPosition(posOptions)
+            .then(function (position) {
+                $scope.lat  = position.coords.latitude
+                $scope.long = position.coords.longitude
+            }, function(err) {
+                alert(err);
+            });
+    }, false);
+})
+.controller('CameraCtrl', function($scope,$cordovaCamera) {
+    $scope.camera = 'Camera';
+
+    document.addEventListener("deviceready", function () {
+
+        var options = {
+              quality: 50,
+              destinationType: Camera.DestinationType.DATA_URL,
+              sourceType: Camera.PictureSourceType.CAMERA,
+              allowEdit: true,
+              encodingType: Camera.EncodingType.JPEG,
+              targetWidth: 100,
+              targetHeight: 100,
+              popoverOptions: CameraPopoverOptions,
+              saveToPhotoAlbum: false
+            };
+
+            $cordovaCamera.getPicture(options).then(function(imageData) {
+              //alert(imageData);
+              $scope.imageSRC = "data:image/jpeg;base64," + imageData;
+            }, function(err) {
+              //alert(err);
+            });
+    }, false);
+})
+
+
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 });

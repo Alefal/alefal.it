@@ -41,7 +41,12 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($scope) {
+.controller('PlaylistsCtrl', function($scope,$ionicLoading,ajaxCallServices) {
+
+  $ionicLoading.show({
+    template: 'Loading...'
+  });
+
   $scope.playlists = [
     { title: 'Reggae', id: 1 },
     { title: 'Chill', id: 2 },
@@ -50,7 +55,36 @@ angular.module('starter.controllers', [])
     { title: 'Rap', id: 5 },
     { title: 'Cowbell', id: 6 }
   ];
+
+  ajaxCallServices.getRankingRest()
+    .success(function (ranking) {
+      $scope.ranking = ranking;
+
+      console.log('ranking --->'+JSON.stringify(ranking));
+      $ionicLoading.hide();
+    }).error(function (error) {
+      $scope.status = 'Unable to load customer data' + error;
+    });
+
+
 })
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
+.controller('RankingCtrl', function($scope,$ionicLoading,ajaxCallServices) {
+  $ionicLoading.show({
+    template: 'Loading...'
+  });
+
+  ajaxCallServices.getRankingRest()
+    .success(function (ranking) {
+      console.log('ranking --->'+JSON.stringify(ranking[0].ranking));
+      if(ranking[0].response[0].result == 'OK') {
+        $scope.ranking = ranking[0].ranking;
+      } else {
+        $scope.ranking = 'ERROR';  
+      }
+
+      $ionicLoading.hide();
+    }).error(function (error) {
+      $scope.status = 'Unable to load customer data' + error;
+    });
 });
