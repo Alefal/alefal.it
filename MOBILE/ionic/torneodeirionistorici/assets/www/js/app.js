@@ -90,7 +90,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   /***** getReleasesRest ****/
   ajaxCallServices.getReleasesRest = function () {
     //http://torneodeirionistorici.altervista.org/wp-json/posts?filter[tag]=comunicatiUfficiali
-    
+
     /*
     console.log(helloWorld.sayHello());
     console.log(helloWorldFromFactory.sayHello());
@@ -107,7 +107,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   /***** getRankingRest ****/
   ajaxCallServices.getRankingRest = function () {
     //http://torneodeirionistorici.altervista.org/wp-content/plugins/torneodeirionistorici/matchs.php?league_id=171&season_id=172
-    
+
     if(CheckConnection.getConnection()) {
       return $http.get(urlBase+'/wp-content/plugins/torneodeirionistorici/ranking.php?league_id=171&season_id=172');
     } else {
@@ -117,7 +117,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   /***** getRankingRest ****/
   ajaxCallServices.getRanking2015Rest = function () {
     //http://torneodeirionistorici.altervista.org/wp-content/plugins/torneodeirionistorici/ranking.php?league_id=1&season_id=4
-    
+
     if(CheckConnection.getConnection()) {
       return $http.get(urlBase+'/wp-content/plugins/torneodeirionistorici/ranking.php?league_id=1&season_id=4');
     } else {
@@ -127,7 +127,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   /***** geMatchsRest ****/
   ajaxCallServices.geMatchsRest = function () {
     //http://torneodeirionistorici.altervista.org/wp-content/plugins/torneodeirionistorici/matchs.php?league_id=171&season_id=172
-    
+
     if(CheckConnection.getConnection()) {
       return $http.get(urlBase+'/wp-content/plugins/torneodeirionistorici/matchs.php?league_id=171&season_id=172');
     } else {
@@ -140,16 +140,31 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 
 .service('CheckConnection', function() {
     this.getConnection = function() {
-      console.info('window.Connection: '+window.Connection);
-      if(window.Connection) {
-        if(navigator.connection.type == Connection.NONE) {
+
+      return true;
+      /*
+      document.addEventListener('deviceready', function(){
+        var networkState = navigator.connection.type;
+
+        var states = {};
+        states[Connection.UNKNOWN]  = 'Unknown connection';
+        states[Connection.ETHERNET] = 'Ethernet connection';
+        states[Connection.WIFI]     = 'WiFi connection';
+        states[Connection.CELL_2G]  = 'Cell 2G connection';
+        states[Connection.CELL_3G]  = 'Cell 3G connection';
+        states[Connection.CELL_4G]  = 'Cell 4G connection';
+        states[Connection.CELL]     = 'Cell generic connection';
+        states[Connection.NONE]     = 'No network connection';
+
+        //alert('Connection type: ' + states[networkState]);
+
+        if(states[networkState] == 'No network connection') {
           return false;
         } else {
           return true;
         }
-      } else {
-        return false;
-      }
+      }, false);
+      */
     };
 })
 
@@ -161,10 +176,10 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     pushNotification.register(gcmSuccessHandler, gcmErrorHandler, {'senderID':'274440871330','ecb':'onNotificationGCM'});
   }
   function gcmSuccessHandler(result) {
-    alert('NOTIFY  pushNotification.register succeeded.  Result = '+result)
+    console.log('NOTIFY  pushNotification.register succeeded.  Result = '+result)
   }
   function gcmErrorHandler(error) {
-    alert('NOTIFY  '+error);
+    console.log('NOTIFY  '+error);
   }
   return {
     initialize : function () {
@@ -176,8 +191,10 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       //You'll probably have a web service (wrapped in an Angular service of course) set up for this.
       //For example:
 
-      var urlBase = 'http://localhost/alefal.it/PROJECTS/wordpress-4.2.3';
+      //var urlBase = 'http://localhost/alefal.it/PROJECTS/wordpress-4.2.3';
+      var urlBase = 'http://torneodeirionistorici.altervista.org';
       var result = $http.get(urlBase+'/wp-content/plugins/torneodeirionistorici/registerGCM.php?register_id='+id+'&register_model='+device.model);
+      alert(JSON.stringify(result));
       if(result[0].result == 'OK') {
         console.info('NOTIFY  Registration succeeded');
       } else {
@@ -262,7 +279,7 @@ function onNotificationGCM(e) {
             if ( e.regid.length > 0 )
             {
                 console.log('REGISTERED with GCM Server - REGID:' + e.regid);
- 
+
                 //call back to web service in Angular.
                 //This works for me because in my code I have a factory called
                 //      PushProcessingService with method registerID
@@ -272,7 +289,7 @@ function onNotificationGCM(e) {
                 myService.registerID(e.regid);
             }
             break;
- 
+
         case 'message':
             // if this flag is set, this notification happened while we were in the foreground.
             // you might want to play a sound to get the user's attention, throw up a dialog, etc.
@@ -280,7 +297,7 @@ function onNotificationGCM(e) {
             {
                 //we're using the app when a message is received.
                 console.log('--INLINE NOTIFICATION--' + '');
- 
+
                 // if the notification contains a soundname, play it.
                 //var my_media = new Media(&quot;/android_asset/www/&quot;+e.soundname);
                 //my_media.play();
@@ -293,19 +310,19 @@ function onNotificationGCM(e) {
                     console.log('--COLDSTART NOTIFICATION--' + '');
                 else
                     console.log('--BACKGROUND NOTIFICATION--' + '');
- 
+
                 // direct user here:
                 window.location = '#/tab/featured';
             }
- 
+
             console.log('MESSAGE - MSG: ' + e.payload.message + '');
             console.log('MESSAGE: '+ JSON.stringify(e.payload));
             break;
- 
+
         case 'error':
             console.log('ERROR - MSG:' + e.msg + '');
             break;
- 
+
         default:
             console.log('EVENT - Unknown, an event was received and we do not know what it is');
             break;
