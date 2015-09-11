@@ -8,6 +8,6 @@ $table_name = 'tdrs_register_device';
 $results = $wpdb->get_results("SELECT * FROM $table_name");
 
 foreach ($results as $device) {
-    echo $device->registerId.' | '.$device->registerModel;
+    //echo $device->registerId.' | '.$device->registerModel;
     sendNotificationGCM($device->registerId);
 }

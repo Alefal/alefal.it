@@ -20,6 +20,12 @@ function torneodeirionistorici_menu() {
 
 add_action( 'admin_menu', 'torneodeirionistorici_menu' );
 
+function torneodeirionistorici_script() {
+    wp_enqueue_script( 'jquery' );
+}
+
+add_action( 'wp_enqueue_scripts', 'torneodeirionistorici_script' );
+
 function torneodeirionistorici_options() {
 	if ( !current_user_can( 'manage_options' ) )  {
 		wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
@@ -44,6 +50,19 @@ function torneodeirionistorici_options() {
 	
 	echo 'dove <b>X</b> è l\'id della league (<b>1</b> per la classifica vecchia; <b>171</b> per la classifica nuova) e <b>Y</b> è l\'id della stagione (<b>4</b> per la stagione vecchia; <b>172</b> per la stagione nuova) [vedi tabella <b>avwp_leagueengine_league_seasons</b>]';
 	echo '</div>';
+
+	$url = plugins_url();
+	$buttonGCM = <<<EOF
+    <br /><hr /><br />
+    <div>
+    	<p>Invia una notifica a tutti i dispositivi registrati</p>
+    	<a 	class="button button-primary button-hero" 
+    		href="javascript:callSendNotification()">Invia notifica</a>
+    </div>
+    <br /><hr /><br />
+    <div id="torneodeirionistoriciResultNotification"></div>
+EOF;
+    echo $buttonGCM;
 }
 
  
@@ -68,3 +87,26 @@ function torneodeirionistorici_install() {
 }
 // run the install scripts upon plugin activation
 register_activation_hook(__FILE__,'torneodeirionistorici_install');
+
+add_action( 'admin_footer', 'torneodeirionistorici_javascript' ); // Write our JS below here
+
+function torneodeirionistorici_javascript() { 
+	$url = plugins_url().'/torneodeirionistorici/sendNotificationGCM.php';
+?>
+	<script type="text/javascript" >
+	function callSendNotification() {
+
+		var data = {
+			'action': 'my_action',
+			'whatever': 1234
+		};
+
+		// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
+		jQuery.post('<?php echo $url; ?>', data, function(response) {
+			//alert('Got this from the server: ' + response);
+			jQuery('#torneodeirionistoriciResultNotification').html(response);
+		});
+	}
+	</script> 
+<?php
+}

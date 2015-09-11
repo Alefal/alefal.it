@@ -1,13 +1,13 @@
 <?php
 function sendNotificationGCM($regId) {
 	// API access key from Google API's Console
-	define( 'API_ACCESS_KEY', 'AIzaSyCkAcxOLF8dsROovAVSoKChHPSrtDAYM1w' );
+	@define( 'API_ACCESS_KEY', 'AIzaSyCkAcxOLF8dsROovAVSoKChHPSrtDAYM1w' );
 	$registrationIds = array( $regId );
 	// prep the bundle
 	$msg = array
 	(
-		'message' 	=> 'here is a message. message',
-		'title'		=> 'This is a title. title',
+		'message' 	=> 'Ecco il testo del messaggio',
+		'title'		=> 'Titolo',
 		'subtitle'	=> 'This is a subtitle. subtitle',
 		'tickerText'	=> 'Ticker text here...Ticker text here...Ticker text here',
 		'vibrate'	=> 1,
@@ -21,7 +21,7 @@ function sendNotificationGCM($regId) {
 	$fields = array
 	(
 		'registration_ids' 	=> $registrationIds,
-		'data'			=> $msg
+		'data'				=> $msg
 	);
 	 
 	$headers = array
@@ -40,11 +40,11 @@ function sendNotificationGCM($regId) {
 	curl_setopt( $ch,CURLOPT_SSL_VERIFYPEER, false );
 	curl_setopt( $ch,CURLOPT_POSTFIELDS, json_encode( $fields ) );
 	$result = curl_exec($ch );
-	curl_close( $ch );
-	echo $result;
 
-	print_r($result);
-	die();
+	$json = json_decode($result);
+	echo $json->success.'<br />';
+
+	curl_close( $ch );
 }
 
 //RANKING
