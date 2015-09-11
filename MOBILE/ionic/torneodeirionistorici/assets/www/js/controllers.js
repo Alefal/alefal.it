@@ -18,7 +18,7 @@ angular.module('starter.controllers', [])
 
   ajaxCallServices.getReleasesRest()
     .success(function (releases) {
-      console.log('releases --->'+JSON.stringify(releases));
+      //console.log('releases --->'+JSON.stringify(releases));
       $scope.releases = releases;
 
       $ionicLoading.hide();
@@ -34,7 +34,7 @@ angular.module('starter.controllers', [])
 
   ajaxCallServices.getRankingRest()
     .success(function (ranking) {
-      console.log('ranking --->'+JSON.stringify(ranking[0].ranking));
+      //console.log('ranking --->'+JSON.stringify(ranking[0].ranking));
       if(ranking[0].response[0].result == 'OK') {
         $scope.ranking = ranking[0].ranking;
       } else {
@@ -54,7 +54,7 @@ angular.module('starter.controllers', [])
 
   ajaxCallServices.geMatchsRest()
     .success(function (matchs) {
-      console.log('matchs --->'+JSON.stringify(matchs[0].matchs));
+      //console.log('matchs --->'+JSON.stringify(matchs[0].matchs));
       if(matchs[0].response[0].result == 'OK') {
         $scope.matchs = matchs[0].matchs;
       } else {
@@ -74,7 +74,7 @@ angular.module('starter.controllers', [])
 
   ajaxCallServices.getRanking2015Rest()
     .success(function (ranking) {
-      console.log('ranking --->'+JSON.stringify(ranking[0].ranking));
+      //console.log('ranking --->'+JSON.stringify(ranking[0].ranking));
       if(ranking[0].response[0].result == 'OK') {
         $scope.ranking = ranking[0].ranking;
       } else {

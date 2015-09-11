@@ -30,6 +30,10 @@ function torneodeirionistorici_options() {
 	echo 'Le chiamate abilitate sono le seguenti: <br />';
 	echo '<br />';
 	
+	echo 'COMUNICATI UFFICIALI: <br />';
+	echo '<b><i>http://HOST_URL/wp-json/posts?filter[tag]=comunicatiUfficiali</i></b> <br />';
+	echo '<br />';
+	
 	echo 'CLASSIFICA: <br />';
 	echo '<b><i>http://HOST_URL/wp-content/plugins/torneodeirionistorici/ranking.php?league_id=X&season_id=Y</i></b> <br />';
 	echo '<br />';
@@ -38,6 +42,29 @@ function torneodeirionistorici_options() {
 	echo '<b><i>http://HOST_URL/wp-content/plugins/torneodeirionistorici/matchs.php?league_id=X&season_id=Y</i></b> <br />';
 	echo '<br />';
 	
-	echo 'dove <b>X</b> è l\'id della league e <b>Y</b> è l\'id della stagione (vedi tabella <b>avwp_leagueengine_league_seasons</b>)';
+	echo 'dove <b>X</b> è l\'id della league (<b>1</b> per la classifica vecchia; <b>171</b> per la classifica nuova) e <b>Y</b> è l\'id della stagione (<b>4</b> per la stagione vecchia; <b>172</b> per la stagione nuova) [vedi tabella <b>avwp_leagueengine_league_seasons</b>]';
 	echo '</div>';
 }
+
+ 
+// function to create the DB / Options / Defaults					
+function torneodeirionistorici_install() {
+
+	global $wpdb;
+	$table_name = 'tdrs_register_device';
+
+	$charset_collate = $wpdb->get_charset_collate();
+
+	$sql = "CREATE TABLE $table_name (
+	  id mediumint(9) NOT NULL AUTO_INCREMENT,
+	  registerId varchar(255) DEFAULT '' NOT NULL,
+	  registerModel varchar(255) DEFAULT '' NOT NULL,
+	  UNIQUE KEY id (id)
+	) $charset_collate;";
+
+	require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+	dbDelta( $sql );
+ 
+}
+// run the install scripts upon plugin activation
+register_activation_hook(__FILE__,'torneodeirionistorici_install');
