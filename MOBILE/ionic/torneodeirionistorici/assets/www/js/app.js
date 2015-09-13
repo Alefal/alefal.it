@@ -4,9 +4,9 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers'])
+angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
 
-.run(function($ionicPlatform,$ionicPopup,PushProcessingService,CheckConnection) {
+.run(function($ionicPlatform,$ionicPopup,$ionicLoading,PushProcessingService,$rootScope,$cordovaNetwork) {
   $ionicPlatform.ready(function() {
 
     console.info('ionicPlatform.ready');
@@ -22,27 +22,54 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       StatusBar.styleDefault();
     }
 
-    console.info('CheckConnection.getConnection: '+CheckConnection.getConnection());
-    console.info('messageConnection: '+localStorage.getItem('messageConnection'));
-    if(CheckConnection.getConnection()) {
-      PushProcessingService.initialize();
-    } else {
-      //if(localStorage.getItem('messageConnection') != 'clicked') {
+    //Check Connection
+    document.addEventListener("deviceready", function () {
+      $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
+        var onlineState = networkState;
+        //alert('$cordovaNetwork:online');
 
+        $ionicLoading.hide();
+      })
+
+      // listen for Offline event
+      $rootScope.$on('$cordovaNetwork:offline', function(event, networkState){
+        var offlineState = networkState;
+        //alert('$cordovaNetwork:offline');
+
+        $ionicLoading.show({
+          template: 'No Connection',
+          noBackdrop: true
+        });
+      })
+
+    }, false);
+
+    console.info('messageConnection: '+localStorage.getItem('messageConnection'));
+
+    document.addEventListener("deviceready", function () {
+
+      var type = $cordovaNetwork.getNetwork()
+      var isOnline = $cordovaNetwork.isOnline()
+      var isOffline = $cordovaNetwork.isOffline()
+
+      if(isOnline && !isOffline) {
+        PushProcessingService.initialize();
+      } else {
         $ionicPopup.confirm({
-            title: 'Connessione assente',
-            content: 'Controlla la tua connessione. I dati visualizzati potrebbero non essere gli ultimi aggiornati'
-          })
-          .then(function(result) {
-              console.log(result);
-              if(!result) {
-                ionic.Platform.exitApp();
-              } else {
-                localStorage.setItem('messageConnection', 'clicked');
-              }
-          });
-      //}
-    }
+          title: 'Connessione assente',
+          content: 'Controlla la tua connessione. I dati visualizzati potrebbero non essere gli ultimi aggiornati'
+        })
+        .then(function(result) {
+            console.log(result);
+            if(!result) {
+              ionic.Platform.exitApp();
+            } else {
+              localStorage.setItem('messageConnection', 'clicked');
+            }
+        });
+}
+
+    }, false);
 
   });
 })
@@ -82,90 +109,59 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 })
 //END: Example SERVICE, FACTORY, PROVIDER
 
-.factory('ajaxCallServices', function($http, CheckConnection) {
+.factory('ajaxCallServices', function($http) {
 
   var ajaxCallServices = {};
   var urlBase = 'http://torneodeirionistorici.altervista.org';
 
   /***** getReleasesRest ****/
-  ajaxCallServices.getReleasesRest = function () {
+  ajaxCallServices.getReleasesRest = function (isOnline,isOffline) {
     //http://torneodeirionistorici.altervista.org/wp-json/posts?filter[tag]=comunicatiUfficiali
 
     /*
     console.log(helloWorld.sayHello());
     console.log(helloWorldFromFactory.sayHello());
     console.log(helloWorldFromService.sayHello());
-    console.log(CheckConnection.getConnection());
     */
 
-    if(CheckConnection.getConnection()) {
+    if(isOnline && !isOffline) {
       return $http.get(urlBase+'/wp-json/posts?filter[tag]=comunicatiUfficiali');
     } else {
       return $http.get('json/releases.json');
     }
   };
   /***** getRankingRest ****/
-  ajaxCallServices.getRankingRest = function () {
-    //http://torneodeirionistorici.altervista.org/wp-content/plugins/torneodeirionistorici/matchs.php?league_id=171&season_id=172
+  ajaxCallServices.getRankingRest = function (isOnline,isOffline) {
+    //http://torneodeirionistorici.altervista.org/wp-content/plugins/alefal_torneodeirionistorici/matchs.php?league_id=171&season_id=172
 
-    if(CheckConnection.getConnection()) {
-      return $http.get(urlBase+'/wp-content/plugins/torneodeirionistorici/ranking.php?league_id=171&season_id=172');
+    if(isOnline && !isOffline) {
+      return $http.get(urlBase+'/wp-content/plugins/alefal_torneodeirionistorici/ranking.php?league_id=171&season_id=172');
     } else {
       return $http.get('json/ranking.json');
     }
   };
   /***** getRankingRest ****/
-  ajaxCallServices.getRanking2015Rest = function () {
-    //http://torneodeirionistorici.altervista.org/wp-content/plugins/torneodeirionistorici/ranking.php?league_id=1&season_id=4
+  ajaxCallServices.getRanking2015Rest = function (isOnline,isOffline) {
+    //http://torneodeirionistorici.altervista.org/wp-content/plugins/alefal_torneodeirionistorici/ranking.php?league_id=1&season_id=4
 
-    if(CheckConnection.getConnection()) {
-      return $http.get(urlBase+'/wp-content/plugins/torneodeirionistorici/ranking.php?league_id=1&season_id=4');
+    if(isOnline && !isOffline) {
+      return $http.get(urlBase+'/wp-content/plugins/alefal_torneodeirionistorici/ranking.php?league_id=1&season_id=4');
     } else {
       return $http.get('json/ranking.json');
     }
   };
   /***** geMatchsRest ****/
-  ajaxCallServices.geMatchsRest = function () {
-    //http://torneodeirionistorici.altervista.org/wp-content/plugins/torneodeirionistorici/matchs.php?league_id=171&season_id=172
+  ajaxCallServices.geMatchsRest = function (isOnline,isOffline) {
+    //http://torneodeirionistorici.altervista.org/wp-content/plugins/alefal_torneodeirionistorici/matchs.php?league_id=171&season_id=172
 
-    if(CheckConnection.getConnection()) {
-      return $http.get(urlBase+'/wp-content/plugins/torneodeirionistorici/matchs.php?league_id=171&season_id=172');
+    if(isOnline && !isOffline) {
+      return $http.get(urlBase+'/wp-content/plugins/alefal_torneodeirionistorici/matchs.php?league_id=171&season_id=172');
     } else {
       return $http.get('json/matchs.json');
     }
   };
 
   return ajaxCallServices;
-})
-
-.service('CheckConnection', function() {
-    this.getConnection = function() {
-
-      return true;
-      /*
-      document.addEventListener('deviceready', function(){
-        var networkState = navigator.connection.type;
-
-        var states = {};
-        states[Connection.UNKNOWN]  = 'Unknown connection';
-        states[Connection.ETHERNET] = 'Ethernet connection';
-        states[Connection.WIFI]     = 'WiFi connection';
-        states[Connection.CELL_2G]  = 'Cell 2G connection';
-        states[Connection.CELL_3G]  = 'Cell 3G connection';
-        states[Connection.CELL_4G]  = 'Cell 4G connection';
-        states[Connection.CELL]     = 'Cell generic connection';
-        states[Connection.NONE]     = 'No network connection';
-
-        //alert('Connection type: ' + states[networkState]);
-
-        if(states[networkState] == 'No network connection') {
-          return false;
-        } else {
-          return true;
-        }
-      }, false);
-      */
-    };
 })
 
 .factory('PushProcessingService', function($http) {
@@ -193,13 +189,15 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 
       //var urlBase = 'http://localhost/alefal.it/PROJECTS/wordpress-4.2.3';
       var urlBase = 'http://torneodeirionistorici.altervista.org';
-      var result = $http.get(urlBase+'/wp-content/plugins/torneodeirionistorici/registerGCM.php?register_id='+id+'&register_model='+device.model);
+      var result = $http.get(urlBase+'/wp-content/plugins/alefal_notificationGCM/registerGCM.php?register_id='+id+'&register_model='+device.model);
+      /*
       alert(JSON.stringify(result));
       if(result[0].result == 'OK') {
         console.info('NOTIFY  Registration succeeded');
       } else {
         console.error('NOTIFY  Registration failed: '+result[0].message);
       }
+      */
     },
     //unregister can be called from a settings area.
     unregister : function () {

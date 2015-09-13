@@ -11,78 +11,112 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('ReleasesCtrl', function($scope,$ionicLoading,ajaxCallServices) {
+.controller('ReleasesCtrl', function($scope,$ionicLoading,ajaxCallServices,$rootScope, $cordovaNetwork) {
   $ionicLoading.show({
     template: 'Loading...'
   });
 
-  ajaxCallServices.getReleasesRest()
-    .success(function (releases) {
-      //console.log('releases --->'+JSON.stringify(releases));
-      $scope.releases = releases;
+  document.addEventListener("deviceready", function () {
+      var type = $cordovaNetwork.getNetwork()
+      var isOnline = $cordovaNetwork.isOnline()
+      var isOffline = $cordovaNetwork.isOffline()
 
-      $ionicLoading.hide();
-    }).error(function (error) {
-      $scope.status = 'Unable to load customer data' + error;
-    });
+      ajaxCallServices.getReleasesRest(isOnline,isOffline)
+          .success(function (releases) {
+            //console.log('releases --->'+JSON.stringify(releases));
+            $scope.releases = releases;
+
+            $ionicLoading.hide();
+          }).error(function (error) {
+            $scope.status = 'Unable to load customer data' + error;
+          });
+
+  }, false);
 })
 
-.controller('RankingCtrl', function($scope,$ionicLoading,ajaxCallServices) {
+.controller('RankingCtrl', function($scope,$ionicLoading,ajaxCallServices,$rootScope, $cordovaNetwork) {
   $ionicLoading.show({
     template: 'Loading...'
   });
 
-  ajaxCallServices.getRankingRest()
-    .success(function (ranking) {
-      //console.log('ranking --->'+JSON.stringify(ranking[0].ranking));
-      if(ranking[0].response[0].result == 'OK') {
-        $scope.ranking = ranking[0].ranking;
-      } else {
-        $scope.ranking = 'ERROR';
-      }
+  document.addEventListener("deviceready", function () {
+      var type = $cordovaNetwork.getNetwork()
+      var isOnline = $cordovaNetwork.isOnline()
+      var isOffline = $cordovaNetwork.isOffline()
 
-      $ionicLoading.hide();
-    }).error(function (error) {
-      $scope.status = 'Unable to load customer data' + error;
-    });
+      ajaxCallServices.getRankingRest(isOnline,isOffline)
+          .success(function (ranking) {
+            //console.log('ranking --->'+JSON.stringify(ranking[0].ranking));
+            if(ranking[0].response[0].result == 'OK') {
+              $scope.ranking = ranking[0].ranking;
+            } else {
+              $scope.ranking = 'ERROR';
+            }
+
+            $ionicLoading.hide();
+          }).error(function (error) {
+            $scope.status = 'Unable to load customer data' + error;
+          });
+
+    }, false);
+
+
 })
 
-.controller('MatchsCtrl', function($scope,$ionicLoading,ajaxCallServices) {
+.controller('MatchsCtrl', function($scope,$ionicLoading,ajaxCallServices,$rootScope, $cordovaNetwork) {
   $ionicLoading.show({
     template: 'Loading...'
   });
 
-  ajaxCallServices.geMatchsRest()
-    .success(function (matchs) {
-      //console.log('matchs --->'+JSON.stringify(matchs[0].matchs));
-      if(matchs[0].response[0].result == 'OK') {
-        $scope.matchs = matchs[0].matchs;
-      } else {
-        $scope.matchs = 'ERROR';
-      }
+  document.addEventListener("deviceready", function () {
+      var type = $cordovaNetwork.getNetwork()
+      var isOnline = $cordovaNetwork.isOnline()
+      var isOffline = $cordovaNetwork.isOffline()
 
-      $ionicLoading.hide();
-    }).error(function (error) {
-      $scope.status = 'Unable to load customer data' + error;
-    });
+      ajaxCallServices.geMatchsRest(isOnline,isOffline)
+          .success(function (matchs) {
+            //console.log('matchs --->'+JSON.stringify(matchs[0].matchs));
+            if(matchs[0].response[0].result == 'OK') {
+              $scope.matchs = matchs[0].matchs;
+            } else {
+              $scope.matchs = 'ERROR';
+            }
+
+            $ionicLoading.hide();
+          }).error(function (error) {
+            $scope.status = 'Unable to load customer data' + error;
+          });
+
+  }, false);
+
+
 })
 
-.controller('Ranking2015Ctrl', function($scope,$ionicLoading,ajaxCallServices) {
+.controller('Ranking2015Ctrl', function($scope,$ionicLoading,ajaxCallServices,$rootScope, $cordovaNetwork) {
   $ionicLoading.show({
     template: 'Loading...'
   });
 
-  ajaxCallServices.getRanking2015Rest()
-    .success(function (ranking) {
-      //console.log('ranking --->'+JSON.stringify(ranking[0].ranking));
-      if(ranking[0].response[0].result == 'OK') {
-        $scope.ranking = ranking[0].ranking;
-      } else {
-        $scope.ranking = 'ERROR';
-      }
+  document.addEventListener("deviceready", function () {
+        var type = $cordovaNetwork.getNetwork()
+        var isOnline = $cordovaNetwork.isOnline()
+        var isOffline = $cordovaNetwork.isOffline()
 
-      $ionicLoading.hide();
-    }).error(function (error) {
-      $scope.status = 'Unable to load customer data' + error;
-    });
+        ajaxCallServices.getRanking2015Rest(isOnline,isOffline)
+            .success(function (ranking) {
+              //console.log('ranking --->'+JSON.stringify(ranking[0].ranking));
+              if(ranking[0].response[0].result == 'OK') {
+                $scope.ranking = ranking[0].ranking;
+              } else {
+                $scope.ranking = 'ERROR';
+              }
+
+              $ionicLoading.hide();
+            }).error(function (error) {
+              $scope.status = 'Unable to load customer data' + error;
+            });
+
+      }, false);
+
+
 });
