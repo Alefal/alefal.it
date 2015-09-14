@@ -3,7 +3,7 @@
  * Plugin Name: alefal_torneodeirionistorici
  * Version: 1.0.0
  * Description: alefal_torneodeirionistorici
- * Author: 
+ * Author: Alessandro Falcone 
  * Author URI: 
  * Plugin URI: 
  * Text Domain: 
@@ -15,7 +15,8 @@
 require_once('functions.php');
 
 function alefal_torneodeirionistorici_menu() {
-	add_options_page( 'alefal_torneodeirionistorici', 'alefal_torneodeirionistorici', 'read', 'alefal_torneodeirionistorici', 'alefal_torneodeirionistorici_options' );
+	add_menu_page( 'Torneo dei rioni storici Page', 'Torneo dei rioni storici', 'manage_options', 'alefal_torneodeirionistorici', 'alefal_torneodeirionistorici_options', 'dashicons-money' );
+	//add_options_page( 'alefal_torneodeirionistorici', 'alefal_torneodeirionistorici', 'read', 'alefal_torneodeirionistorici', 'alefal_torneodeirionistorici_options' );
 }
 
 add_action( 'admin_menu', 'alefal_torneodeirionistorici_menu' );
