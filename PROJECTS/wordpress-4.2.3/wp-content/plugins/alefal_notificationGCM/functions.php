@@ -1,19 +1,19 @@
 <?php
-function sendNotificationGCM($regId,$regModel) {
+function sendNotificationGCM($regId,$regModel,$notifTitle,$notifMessage) {
 	// API access key from Google API's Console
 	@define( 'API_ACCESS_KEY', 'AIzaSyCkAcxOLF8dsROovAVSoKChHPSrtDAYM1w' );
 	$registrationIds = array( $regId );
 	// prep the bundle
 	$msg = array
 	(
-		'message' 	=> 'Ecco il testo del messaggio',
-		'title'		=> 'Titolo',
-		'subtitle'	=> 'This is a subtitle. subtitle',
+		'message' 		=> $notifMessage,
+		'title'			=> $notifTitle,
+		'subtitle'		=> 'This is a subtitle. subtitle',
 		'tickerText'	=> 'Ticker text here...Ticker text here...Ticker text here',
-		'vibrate'	=> 1,
-		'sound'		=> 1,
-		'largeIcon'	=> 'large_icon',
-		'smallIcon'	=> 'small_icon'
+		'vibrate'		=> 1,
+		'sound'			=> 1,
+		'largeIcon'		=> 'large_icon',
+		'smallIcon'		=> 'small_icon'
 	);
 
 	

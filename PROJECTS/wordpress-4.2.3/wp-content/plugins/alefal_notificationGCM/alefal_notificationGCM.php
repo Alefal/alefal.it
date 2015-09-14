@@ -15,7 +15,8 @@
 require_once('functions.php');
 
 function alefal_notificationGCM_menu() {
-	add_options_page( 'alefal_notificationGCM', 'alefal_notificationGCM', 'read', 'alefal_notificationGCM', 'alefal_notificationGCM_options' );
+	add_menu_page( 'Notification GCM Page', 'Notification GCM', 'manage_options', 'alefal_notificationGCM', 'alefal_notificationGCM_options', 'dashicons-smartphone' );
+	//add_options_page( 'Notification GCM Options', 'Notification GCM', 'manage_options', 'alefal_notificationGCM', 'alefal_notificationGCM_options' );
 }
 
 add_action( 'admin_menu', 'alefal_notificationGCM_menu' );
@@ -37,27 +38,46 @@ function alefal_notificationGCM_options() {
 	$results = $wpdb->get_results("SELECT * FROM $table_name");
 	$outputRegisterDevice = '';
 
-	foreach ($results as $device) {
-		$outputRegisterDevice .= 'Model: <strong>'.$device->registerModel.'</strong> (<a href="javascript:callRemoveDevice('.$device->registerId.')">cancella</a>)<br />';
-		$outputRegisterDevice .= 'RegId: <i>'.$device->registerId.'</i><br /><hr />';
+	echo '<br /><br />';
+	echo '<strong>Gestione notifiche per device ANDROID</strong>';
+	echo '<br /><br />';
+
+	if (count($results)> 0) {
+		foreach ($results as $device) {
+			$outputRegisterDevice .= 'Model: <strong>'.$device->registerModel.'</strong> (<a href="javascript:callRemoveDevice('.$device->registerId.')">cancella</a>)<br />';
+			$outputRegisterDevice .= 'RegId: <i>'.$device->registerId.'</i><br /><hr />';
+		}
+
+		$url = plugins_url();
+		$buttonGCM = <<<EOF
+	    Lista device registrati:
+	    <br /><hr />
+	    $outputRegisterDevice
+	    
+	    <div>
+	    	<p>Invia una notifica a tutti i dispositivi registrati</p>
+	    	<div>
+	    		Titolo:
+	    		<br />
+	    		<input type="text" name="notifTitle" id="notifTitle" />
+	    		<br />
+	    		Testo:
+	    		<br />
+	    		<textarea name="notifMessage" id="notifMessage" rows="4" cols="50"></textarea>
+	    		<br />
+	 	   		<a 	class="button button-primary button-hero" 
+	    			href="javascript:callSendNotification()">Invia notifica</a>
+	    	</div>
+	    </div>
+	    <br /><hr /><br />
+	    <div id="alefal_notificationGCM_ResultNotification"></div>
+EOF;
+	    echo $buttonGCM;
+	} else {
+		echo 'Nessun device registrato!';
 	}
 
-	$url = plugins_url();
-	$buttonGCM = <<<EOF
-    <br /><br />
-    Lista device registrati:
-    <br /><hr />
-    $outputRegisterDevice
-    
-    <div>
-    	<p>Invia una notifica a tutti i dispositivi registrati</p>
-    	<a 	class="button button-primary button-hero" 
-    		href="javascript:callSendNotification()">Invia notifica</a>
-    </div>
-    <br /><hr /><br />
-    <div id="alefal_notificationGCM_ResultNotification"></div>
-EOF;
-    echo $buttonGCM;
+	
 }
 
  
@@ -92,12 +112,20 @@ function alefal_notificationGCM_javascript() {
 	<script type="text/javascript" >
 	function callSendNotification() {
 
-		var data = {};
+		var notifTitle 		= jQuery('#notifTitle').val();
+		var notifMessage 	= jQuery('#notifMessage').val();
+
+		var data = {
+			'notifTitle': notifTitle,
+			'notifMessage': notifMessage
+		};
 
 		// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
 		jQuery.post('<?php echo $urlSendNotification; ?>', data, function(response) {
 			//alert('Got this from the server: ' + response);
 			jQuery('#alefal_notificationGCM_ResultNotification').html(response);
+			jQuery('#notifTitle').val('');
+			jQuery('#notifMessage').val('');
 		});
 	}
 	function callRemoveDevice(regId) {
