@@ -1,0 +1,1037 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Availability Calendar & Booking v1.3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2015-09-13 12:44:03+0000\n"
+"Last-Translator: admin <jenj.maat@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: CSL v1.x\n"
+"X-Poedit-Language: Dutch\n"
+"X-Poedit-Country: NETHERLANDS\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"X-Poedit-Basepath: \n"
+"X-Poedit-Bookmarks: \n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Textdomain-Support: yes"
+
+#: avail_booking_bookings_page.php:13
+#@ jm_avail_booking
+msgid "bookings"
+msgstr "boekingen"
+
+#: avail_booking_bookings_page.php:13
+#: avail_booking_bookings_page.php:15
+#: avail_booking_prices_page.php:6
+#@ jm_avail_booking
+msgid "WP Availability Calendar & Bookings"
+msgstr ""
+
+#: avail_booking_bookings_page.php:15
+#: avail_booking_bookings_page.php:24
+#: avail_booking_bookings_page.php:68
+#: avail_booking_bookings_page.php:159
+#: avail_booking_settingspage.php:92
+#@ jm_avail_booking
+msgid "Bookings"
+msgstr "Boekingen"
+
+#: avail_booking_bookings_page.php:16
+#@ jm_avail_booking
+msgid "Add new Booking"
+msgstr "Nieuwe boeking"
+
+#: avail_booking_bookings_page.php:63
+#: avail_booking_prices_page.php:39
+#, php-format
+#@ jm_avail_booking
+msgid "Items deleted: %d"
+msgstr "Items verwijderd: %d"
+
+#: avail_booking_bookings_page.php:69
+#@ jm_avail_booking
+msgid "Add new booking"
+msgstr "Nieuwe boeking"
+
+#: avail_booking_bookings_page.php:129
+#: avail_booking_prices_page.php:108
+#@ jm_avail_booking
+msgid "Item was successfully saved"
+msgstr "Item is opgeslagen"
+
+#: avail_booking_bookings_page.php:127
+#: avail_booking_prices_page.php:106
+#@ jm_avail_booking
+msgid "There was an error while saving item"
+msgstr "Een fout tijdens het opslaan."
+
+#: avail_booking_bookings_page.php:136
+#: avail_booking_prices_page.php:116
+#@ jm_avail_booking
+msgid "Item was successfully updated"
+msgstr "Item geupdate"
+
+#: avail_booking_bookings_page.php:134
+#: avail_booking_prices_page.php:114
+#@ jm_avail_booking
+msgid "There was an error while updating item"
+msgstr "Een fout tijdens het updaten"
+
+#: avail_booking_bookings_page.php:150
+#: avail_booking_prices_page.php:130
+#@ jm_avail_booking
+msgid "Item not found"
+msgstr "Item niet gevonden."
+
+#: avail_booking_bookings_page.php:160
+#: avail_booking_prices_page.php:141
+#@ jm_avail_booking
+msgid "back to list"
+msgstr "Terug naar lijst"
+
+#: avail_booking_bookings_page.php:180
+#: avail_booking_prices_page.php:161
+#@ jm_avail_booking
+msgid "Save"
+msgstr "Opslaan"
+
+#: avail_booking_bookings_page.php:206
+#: avail_booking_prices_page.php:186
+#: includes/availabilitybooking_bookings_list_table.php:93
+#: includes/availabilitybooking_prices_list_table.php:71
+#@ jm_avail_booking
+msgid "Name"
+msgstr "Naam"
+
+#: avail_booking_bookings_page.php:211
+#: avail_booking_prices_page.php:191
+#: includes/availabilitybooking_prices_list_table.php:117
+#@ jm_avail_booking
+msgid "default"
+msgstr "default"
+
+#: avail_booking_bookings_page.php:228
+#: avail_booking_settingspage.php:209
+#: avail_booking_settingspage.php:222
+#: includes/availabilitybooking_bookings_list_table.php:94
+#@ jm_avail_booking
+msgid "Status"
+msgstr "Status"
+
+#: avail_booking_bookings_page.php:232
+#: avail_booking_settingspage.php:168
+#: avail_booking_settingspage.php:256
+#: includes/availabilitybooking_bookings_list_table.php:151
+#@ jm_avail_booking
+msgid "Requested"
+msgstr "Aangevraagd"
+
+#: avail_booking_bookings_page.php:234
+#: avail_booking_settingspage.php:170
+#: avail_booking_settingspage.php:258
+#: includes/availabilitybooking_bookings_list_table.php:153
+#@ jm_avail_booking
+msgid "Booked"
+msgstr "Geboeked"
+
+#: avail_booking_bookings_page.php:235
+#: avail_booking_settingspage.php:259
+#: includes/availabilitybooking_bookings_list_table.php:154
+#@ jm_avail_booking
+msgid "Rejected"
+msgstr "Gewijgerd"
+
+#: avail_booking_bookings_page.php:243
+#@ jm_avail_booking
+msgid "Check In"
+msgstr "Checkin"
+
+#: avail_booking_bookings_page.php:247
+#: avail_booking_bookings_page.php:256
+#: avail_booking_prices_page.php:212
+#@ jm_avail_booking
+msgid "yyyy-mm-dd"
+msgstr ""
+
+#: avail_booking_bookings_page.php:252
+#@ jm_avail_booking
+msgid "Check Out"
+msgstr "Checkout"
+
+#: avail_booking_bookings_page.php:261
+#: avail_booking_bookings_page.php:265
+#: includes/availabilitybooking_bookings_list_table.php:97
+#@ jm_avail_booking
+msgid "E-Mail"
+msgstr "E-Mail"
+
+#: avail_booking_bookings_page.php:322
+#: avail_booking_prices_page.php:241
+#@ jm_avail_booking
+msgid "Name is required"
+msgstr "Naam is verplicht"
+
+#: avail_booking_bookings_page.php:324
+#@ jm_avail_booking
+msgid "Status is required"
+msgstr "Status is verplicht"
+
+#: avail_booking_bookings_page.php:326
+#@ jm_avail_booking
+msgid "Start Date is required"
+msgstr "Aankomst datum verplicht"
+
+#: avail_booking_bookings_page.php:328
+#@ jm_avail_booking
+msgid "End Date is required"
+msgstr "Vertrekdatum verplicht"
+
+#: avail_booking_bookings_page.php:330
+#@ jm_avail_booking
+msgid "E-Mail is in wrong format"
+msgstr "E-Mail heeft een verkeerd formaat"
+
+#: avail_booking_settingspage.php:85
+#@ jm_avail_booking
+msgid "Show Weeknumbers"
+msgstr "Toon weeknummers"
+
+#: avail_booking_settingspage.php:112
+#@ jm_avail_booking
+msgid "List of Rooms"
+msgstr "Lijst met kamers"
+
+#: includes/availabilitybooking_bookings_list_table.php:31
+#: includes/availabilitybooking_bookings_list_table.php:234
+#@ jm_avail_booking
+msgid "requested"
+msgstr "aangevraagd"
+
+#: includes/availabilitybooking_bookings_list_table.php:39
+#: includes/availabilitybooking_bookings_list_table.php:237
+#: includes/availabilitycalendar.php:237
+#@ jm_avail_booking
+msgid "booked"
+msgstr "geboekt"
+
+#: includes/availabilitybooking_bookings_list_table.php:43
+#: includes/availabilitybooking_bookings_list_table.php:240
+#@ jm_avail_booking
+msgid "rejected"
+msgstr "geweigert"
+
+#: includes/availabilitybooking_bookings_list_table.php:243
+#@ jm_avail_booking
+msgid "waiting"
+msgstr "wacht"
+
+#: includes/availabilitybooking_bookings_list_table.php:63
+#: includes/availabilitybooking_prices_list_table.php:41
+#@ jm_avail_booking
+msgid "Edit"
+msgstr "Edit"
+
+#: includes/availabilitybooking_bookings_list_table.php:64
+#: includes/availabilitybooking_prices_list_table.php:42
+#@ jm_avail_booking
+msgid "Delete"
+msgstr "Delete"
+
+#: includes/availabilitybooking_bookings_list_table.php:95
+#@ jm_avail_booking
+msgid "Start Date"
+msgstr "Aankomstdatum"
+
+#: includes/availabilitybooking_bookings_list_table.php:96
+#@ jm_avail_booking
+msgid "End Date"
+msgstr "Vertrekdatum"
+
+#: includes/availabilitybookingfunctions.php:136
+#@ jm_avail_booking
+msgid "January"
+msgstr "januari"
+
+#: includes/availabilitybookingfunctions.php:137
+#@ jm_avail_booking
+msgid "February"
+msgstr "februari"
+
+#: includes/availabilitybookingfunctions.php:138
+#@ jm_avail_booking
+msgid "March"
+msgstr "maart"
+
+#: includes/availabilitybookingfunctions.php:139
+#@ jm_avail_booking
+msgid "April"
+msgstr "april"
+
+#: includes/availabilitybookingfunctions.php:140
+#@ jm_avail_booking
+msgid "May"
+msgstr "mei"
+
+#: includes/availabilitybookingfunctions.php:141
+#@ jm_avail_booking
+msgid "June"
+msgstr "juni"
+
+#: includes/availabilitybookingfunctions.php:142
+#@ jm_avail_booking
+msgid "July"
+msgstr "juli"
+
+#: includes/availabilitybookingfunctions.php:143
+#@ jm_avail_booking
+msgid "August"
+msgstr "augustus"
+
+#: includes/availabilitybookingfunctions.php:144
+#@ jm_avail_booking
+msgid "September"
+msgstr "september"
+
+#: includes/availabilitybookingfunctions.php:145
+#@ jm_avail_booking
+msgid "October"
+msgstr "oktober"
+
+#: includes/availabilitybookingfunctions.php:146
+#@ jm_avail_booking
+msgid "November"
+msgstr "november"
+
+#: includes/availabilitybookingfunctions.php:147
+#@ jm_avail_booking
+msgid "December"
+msgstr "december"
+
+#: avail_booking_settingspage.php:123
+#: avail_booking_settingspage.php:142
+#: includes/availabilitycalendar.php:67
+#: includes/availabilitycalendar.php:69
+#@ jm_avail_booking
+msgid "Su"
+msgstr "zo"
+
+#: avail_booking_settingspage.php:124
+#: avail_booking_settingspage.php:143
+#: includes/availabilitycalendar.php:67
+#: includes/availabilitycalendar.php:69
+#@ jm_avail_booking
+msgid "Mo"
+msgstr "ma"
+
+#: avail_booking_settingspage.php:125
+#: avail_booking_settingspage.php:144
+#: includes/availabilitycalendar.php:67
+#: includes/availabilitycalendar.php:69
+#@ jm_avail_booking
+msgid "Tu"
+msgstr "di"
+
+#: avail_booking_settingspage.php:126
+#: avail_booking_settingspage.php:145
+#: includes/availabilitycalendar.php:67
+#: includes/availabilitycalendar.php:69
+#@ jm_avail_booking
+msgid "We"
+msgstr "wo"
+
+#: avail_booking_settingspage.php:127
+#: avail_booking_settingspage.php:146
+#: includes/availabilitycalendar.php:67
+#: includes/availabilitycalendar.php:69
+#@ jm_avail_booking
+msgid "Th"
+msgstr "do"
+
+#: avail_booking_settingspage.php:128
+#: avail_booking_settingspage.php:147
+#: includes/availabilitycalendar.php:67
+#: includes/availabilitycalendar.php:69
+#@ jm_avail_booking
+msgid "Fr"
+msgstr "vr"
+
+#: includes/availabilitycalendar.php:67
+#@ jm_avail_booking
+msgid "Za"
+msgstr "za"
+
+#: avail_booking_settingspage.php:129
+#: avail_booking_settingspage.php:148
+#: includes/availabilitycalendar.php:69
+#@ jm_avail_booking
+msgid "Sa"
+msgstr "za"
+
+#: avail_booking_prices_page.php:6
+#: avail_booking_prices_page.php:16
+#: avail_booking_prices_page.php:43
+#: avail_booking_prices_page.php:140
+#@ jm_avail_booking
+msgid "Prices"
+msgstr "Prijzen"
+
+#: avail_booking_prices_page.php:8
+#@ jm_avail_booking
+msgid "Add new Price"
+msgstr "Nieuwe prijs toevoegen"
+
+#: avail_booking_prices_page.php:44
+#@ jm_avail_booking
+msgid "Add new price"
+msgstr "Nieuwe prijs toevoegen"
+
+#: avail_booking_prices_page.php:208
+#: includes/availabilitybooking_prices_list_table.php:72
+#@ jm_avail_booking
+msgid "Date"
+msgstr "Datum"
+
+#: avail_booking_prices_page.php:218
+#: includes/availabilitybooking_prices_list_table.php:73
+#@ jm_avail_booking
+msgid "Price"
+msgstr "Prijs"
+
+#: avail_booking_prices_page.php:244
+#@ jm_avail_booking
+msgid "Date is required"
+msgstr "Datum is verplicht"
+
+#: avail_booking_prices_page.php:247
+#@ jm_avail_booking
+msgid "Price is required"
+msgstr "Prijs is verplicht"
+
+#: avail_booking_settingspage.php:88
+#@ jm_avail_booking
+msgid "Show Prices"
+msgstr "Toon prijzen"
+
+#: avail_booking_bookings_page.php:156
+#@ jm_avail_booking
+msgid "Bookings Data"
+msgstr "Boeking gegevens"
+
+#: avail_booking_prices_page.php:136
+#@ jm_avail_booking
+msgid "Price Data"
+msgstr "Prijs gegevens"
+
+#: avail_booking_settingspage.php:106
+#@ jm_avail_booking
+msgid "Minimum Nights"
+msgstr "Minimum overnachtingen"
+
+#: avail_booking_bookings_page.php:270
+#: avail_booking_bookings_page.php:274
+#: avail_booking_settingspage.php:208
+#: avail_booking_settingspage.php:221
+#: includes/availabilitybooking_bookings_list_table.php:98
+#@ jm_avail_booking
+msgid "Phone Number"
+msgstr "Telefoon"
+
+#: avail_booking_bookings_page.php:279
+#: includes/availabilitybooking_bookings_list_table.php:99
+#@ jm_avail_booking
+msgid "Country"
+msgstr "Land"
+
+#: avail_booking_bookings_page.php:296
+#: includes/availabilitybooking_bookings_list_table.php:100
+#@ jm_avail_booking
+msgid "Language"
+msgstr "Taal"
+
+#: avail_booking_bookings_page.php:332
+#@ jm_avail_booking
+msgid "Phone number is required"
+msgstr "Telefoonnummer verplicht"
+
+#: includes/availabilitybooking_bookings_list_table.php:157
+#: includes/availabilitybooking_prices_list_table.php:139
+#@ default
+msgid "Filter"
+msgstr ""
+
+#: includes/availabilitybooking_bookings_list_table.php:142
+#@ jm_avail_booking
+msgid "Filter Time Range"
+msgstr "Filter op maanden"
+
+#: includes/availabilitybooking_bookings_list_table.php:144
+#: includes/availabilitybooking_bookings_list_table.php:150
+#: includes/availabilitybooking_prices_list_table.php:134
+#@ jm_avail_booking
+msgid "All"
+msgstr "Alles"
+
+#: includes/availabilitybooking_bookings_list_table.php:145
+#@ jm_avail_booking
+msgid "Untill this Month"
+msgstr "Tot deze maand"
+
+#: includes/availabilitybooking_bookings_list_table.php:146
+#@ jm_avail_booking
+msgid "This Month and later"
+msgstr "Deze maand en later"
+
+#: includes/availabilitybooking_bookings_list_table.php:148
+#: includes/availabilitybooking_prices_list_table.php:132
+#@ jm_avail_booking
+msgid "Filter Status"
+msgstr "Filter Status"
+
+#: includes/availabilitybooking_prices_list_table.php:114
+#@ jm_avail_booking
+msgid "Filter Room"
+msgstr "Filter kamer"
+
+#: includes/availabilitybooking_prices_list_table.php:135
+#@ jm_avail_booking
+msgid "Expired"
+msgstr "Verlopen"
+
+#: includes/availabilitybooking_prices_list_table.php:136
+#@ jm_avail_booking
+msgid "Active"
+msgstr "Actief"
+
+#: avail_booking_settingspage.php:81
+#@ jm_avail_booking
+msgid "Display Last Day as free"
+msgstr "Laatste dag weergeven als vrij."
+
+#: avail_booking_prices_page.php:100
+#@ jm_avail_booking
+msgid "Item not saved. Date already used"
+msgstr "Deze prijsinstelling is niet opgeslagen omdat de datum bij deze kamer al is gebruikt."
+
+#: avail_booking_import_export.php:6
+#: avail_booking_import_export.php:158
+#@ jm_avail_booking
+msgid "Import & Export"
+msgstr "Import & Export"
+
+#: avail_booking_import_export.php:162
+#@ jm_avail_booking
+msgid "Once downloaded  you can use this file in the Import function on another WordPress installation to import the contents of the WP Availability Calendar and Bookings."
+msgstr "Als de file op je PC is opgeslagen kun je deze file importeren met de import functie van Avalilabity Calendar & Bookings ."
+
+#: avail_booking_import_export.php:167
+#: avail_booking_import_export.php:189
+#@ jm_avail_booking
+msgid "Download"
+msgstr "Download"
+
+#: avail_booking_settingspage.php:369
+#@ jm_avail_booking
+msgid "Checkout and new Checkin on same day"
+msgstr "Check Out en een nieuwe Check in op dezelfde dag"
+
+#: avail_booking_bookings_page.php:233
+#: avail_booking_settingspage.php:169
+#: avail_booking_settingspage.php:257
+#: includes/availabilitybooking_bookings_list_table.php:152
+#@ jm_avail_booking
+msgid "Reserved"
+msgstr "Gereserveerd"
+
+#: avail_booking_settingspage.php:172
+#@ jm_avail_booking
+msgid "Select value of status after a booking with ContactForm 7."
+msgstr "Selecteer de status na een booking via ContactForm 7"
+
+#: avail_booking_settingspage.php:446
+#: avail_booking_settingspage.php:495
+#: includes/avail_booking_mainoption_page.php:101
+#@ default
+msgid "label"
+msgstr ""
+
+#: includes/availabilitybooking_bookings_list_table.php:35
+#@ jm_avail_booking
+msgid "reserved"
+msgstr "gereserveerd"
+
+#: avail_booking_settingspage.php:163
+#@ jm_avail_booking
+msgid "Status booking with ContactForm7"
+msgstr "Status boeking met ContactForm7"
+
+#: avail_booking_import_export.php:81
+#@ jm_avail_booking
+msgid "No file selected"
+msgstr "Geen bestand geselecteerd"
+
+#: avail_booking_import_export.php:87
+#@ jm_avail_booking
+msgid "XML failure"
+msgstr "XML fout"
+
+#: avail_booking_import_export.php:198
+#: avail_booking_import_export.php:219
+#@ jm_avail_booking
+msgid "Upload file:"
+msgstr "Upload bestand"
+
+#: avail_booking_import_export.php:200
+#: avail_booking_import_export.php:221
+#@ jm_avail_booking
+msgid "Upload"
+msgstr "Upload"
+
+#: avail_booking_settingspage.php:75
+#@ jm_avail_booking
+msgid "Calendar Display"
+msgstr "Kalender weergave"
+
+#: avail_booking_settingspage.php:359
+#@ jm_avail_booking
+msgid "Display a block of three months - one month default"
+msgstr "Toon een blok van 3 maanden - 1 maand is de default"
+
+#: avail_booking_settingspage.php:175
+#@ jm_avail_booking
+msgid "Title of page with booking form"
+msgstr "Titel van de pagina met het boekings-formulier"
+
+#: avail_booking_settingspage.php:180
+#@ jm_avail_booking
+msgid "Select page with the single booking form. Open also the permalinks settings and click on save!! "
+msgstr "Selecteer de pagina met het gemeenschappelijke boekings-formulier. Open ook de permalinks instellingen en klik op \\\"Wijzigingen opslaan\\\"."
+
+#: avail_booking_settingspage.php:477
+#@ jm_avail_booking
+msgid "No generic form"
+msgstr "Geen algemeen formulier"
+
+#: avail_booking_settingspage.php:251
+#@ jm_avail_booking
+msgid "Default Status"
+msgstr "Default Status"
+
+#: avail_booking_settingspage.php:261
+#@ jm_avail_booking
+msgid "Select the default status for new bookings"
+msgstr "Selecteer de default status voor nieuwe boekingen"
+
+#: avail_booking_settingspage.php:264
+#@ jm_avail_booking
+msgid "Default Country"
+msgstr "Default Land"
+
+#: avail_booking_settingspage.php:267
+#@ jm_avail_booking
+msgid "Default Language"
+msgstr "Default Taal"
+
+#: avail_booking_settingspage.php:272
+#@ jm_avail_booking
+msgid "NL"
+msgstr "NL"
+
+#: avail_booking_settingspage.php:273
+#@ jm_avail_booking
+msgid "EN"
+msgstr "EN"
+
+#: avail_booking_settingspage.php:275
+#@ jm_avail_booking
+msgid "Select the default language for new bookings"
+msgstr "Selecteer de default taal voor nieuwe boekingen"
+
+#: avail_booking_settingspage.php:558
+#@ jm_avail_booking
+msgid "Select  the default country for new bookings"
+msgstr "Selecteer het default land voor nieuwe boekingen"
+
+#: avail_booking_prices_page.php:222
+#@ jm_avail_booking
+msgid " On save the price input will be formatted conform the settings"
+msgstr "Bij het opslaan wordt de prijs volgens de instellingen geformateerd"
+
+#: avail_booking_settingspage.php:248
+#@ jm_avail_booking
+msgid "Default Currency"
+msgstr "Default valuta"
+
+#: avail_booking_settingspage.php:542
+#@ jm_avail_booking
+msgid "Select  the default currency for new prices"
+msgstr "Selecteer de default valuta"
+
+#: avail_booking_settingspage.php:78
+#@ jm_avail_booking
+msgid "Used in Widget"
+msgstr "Gebruikt in Widget"
+
+#: avail_booking_settingspage.php:364
+#@ jm_avail_booking
+msgid "The calendar is also used in a custom text widget"
+msgstr "De kalender is ook gebruikt in een custom text widget"
+
+#: avail_booking_settingspage.php:109
+#@ jm_avail_booking
+msgid "Use Small Hotel mode"
+msgstr "Hotel (klein) mode."
+
+#: avail_booking_settingspage.php:418
+#@ jm_avail_booking
+msgid "Small Hotel mode is a calendar for each room type, default a calendar for each room"
+msgstr "In de Hotel mode is er een kalender per kamer type. Default is er een kalender voor elke kamer."
+
+#: avail_booking_settingspage.php:424
+#@ jm_avail_booking
+msgid "Give the available room names separated by a comma. If empty the name default is used<br>In the default mode: room1,room2<br>In the Small Hotel mode: roomtype1:x,roomtype2:y<br> x is the number of rooms of type 1, y of type 2"
+msgstr "Vuld de namen van de beschikbare kamers in, gescheiden door een comma. Als dit veld leeg is wordt de naam  \\\"default\\\" gebruikt.<br> In de default mode bijv. kamer1,kamer2. In de hotel mode bijv. kamertype1:x,kamertype2,y. X is het aantal kamers van type 1, y dat van type 2."
+
+#: avail_booking_settingspage.php:70
+#@ jm_avail_booking
+msgid "Display"
+msgstr "Weergave"
+
+#: avail_booking_settingspage.php:115
+#@ jm_avail_booking
+msgid "Use fixed days for checkin and checkout"
+msgstr "Gebruik vaste dagen voor checkin en checkout"
+
+#: avail_booking_settingspage.php:118
+#@ jm_avail_booking
+msgid "Checkin Day"
+msgstr "Checkin dag"
+
+#: avail_booking_settingspage.php:131
+#@ jm_avail_booking
+msgid "Select the fixed checkin day"
+msgstr "Selecteer de vaste checkin dag"
+
+#: avail_booking_settingspage.php:134
+#@ jm_avail_booking
+msgid "Checkin Exceptions"
+msgstr "Checkin uitzonderingen"
+
+#: avail_booking_settingspage.php:137
+#@ jm_avail_booking
+msgid "Checkout Day"
+msgstr "Checkout dag"
+
+#: avail_booking_settingspage.php:150
+#@ jm_avail_booking
+msgid "Select the fixed checkout day"
+msgstr "Selecteer de vaste checkout dag"
+
+#: avail_booking_settingspage.php:153
+#@ jm_avail_booking
+msgid "Checkout Exceptions"
+msgstr "Checkout uitzonderingen"
+
+#: avail_booking_settingspage.php:158
+#@ jm_avail_booking
+msgid "ContactForm7"
+msgstr "ContactForm7"
+
+#: avail_booking_settingspage.php:243
+#@ jm_avail_booking
+msgid "Admin Defaults"
+msgstr "Admin Defaults"
+
+#: avail_booking_settingspage.php:354
+#@ jm_avail_booking
+msgid "This section controls how and where the calendar is displayed"
+msgstr "Deze sectie bepaald hoe en waar de kalender kan worden getoond."
+
+#: avail_booking_settingspage.php:430
+#@ jm_avail_booking
+msgid "Fixed days for Checkin and  Checkout "
+msgstr "Vaste dagen voor Checkin en Checkout"
+
+#: avail_booking_settingspage.php:454
+#@ jm_avail_booking
+msgid "Give the checkin exceptions as 2015-07-01:2015-07- 03,datex:datey <br> 2015-07-01 is replaced by 2015-07-03"
+msgstr "Geef de checkin uitzonderingen op als - 2015-07-01:2015-07-03,datex:datey <br> 2015-07-01 wordt vervangen door 2015-07-03"
+
+#: avail_booking_settingspage.php:460
+#@ jm_avail_booking
+msgid "Give the checkout exceptions as 2015-07-08:2015-07- 12,datex:datey <br> 2015-07-08 is replaced by 2015-07-12"
+msgstr "Geef de checkin uitzonderingen op als - 2015-07-08:2015-07-12,datex:datey <br> 2015-07-08 wordt vervangen door 2015-07-12"
+
+#: avail_booking_settingspage.php:465
+#@ jm_avail_booking
+msgid "This section controls the interaction with ContactForm 7"
+msgstr "Deze sectie controleert de samenwerking met ContactFrom 7"
+
+#: avail_booking_settingspage.php:523
+#@ jm_avail_booking
+msgid "This section controls the admin default for new bookings"
+msgstr "Deze sectie controleert de admin defaults voor nieuwe boekingen"
+
+#: avail_booking_settingspage.php:97
+#@ jm_avail_booking
+msgid "Internal Datepicker"
+msgstr "Interne Datepicker"
+
+#: avail_booking_settingspage.php:100
+#@ jm_avail_booking
+msgid "Restrict Reservations"
+msgstr "Reservering beperking"
+
+#: avail_booking_settingspage.php:103
+#@ jm_avail_booking
+msgid "Working Days"
+msgstr "Werk Dagen"
+
+#: avail_booking_settingspage.php:382
+#@ jm_avail_booking
+msgid "This section controls when a room may be booked. </br> The settings of this section only works when the use of the internal datepicker is set"
+msgstr "Deze sectie bepaalt wanneer een kamer mag worden geboekt.</br> De instellingen van deze sectie werken alleen wanneer de interne Datepicker wordt gebruikt."
+
+#: avail_booking_settingspage.php:387
+#@ jm_avail_booking
+msgid "Use the internal datepicker.</br> When set the start_date and end_date fields in the ctf7 must be of the type text. [text* start_date id:start_date]"
+msgstr "Gebruik de interne Datepicker</br> Wordt deze gebruikt dan moeten de ContactForm 7 velden start_date en end_date van het type text zijn. [text* start_date id:start_date]"
+
+#: avail_booking_settingspage.php:404
+#@ jm_avail_booking
+msgid " Anyone making a booking can only make a reservation in x (working) days time or later from the date they submit it"
+msgstr "Iemand die boekt kan alleen reserveren  x (werk) dagen na de datum van de boeking."
+
+#: avail_booking_settingspage.php:409
+#@ jm_avail_booking
+msgid "Days as working days"
+msgstr "Alleen werkdagen tellen."
+
+#: avail_booking_settingspage.php:195
+#@ jm_avail_booking
+msgid "Booked Only"
+msgstr "Alleen geboekt"
+
+#: avail_booking_settingspage.php:196
+#@ jm_avail_booking
+msgid "Reserved and Booked"
+msgstr "Gereserveerd en geboekt"
+
+#: avail_booking_settingspage.php:206
+#: avail_booking_settingspage.php:219
+#@ jm_avail_booking
+msgid "None"
+msgstr "geen"
+
+#: avail_booking_settingspage.php:207
+#: avail_booking_settingspage.php:220
+#@ jm_avail_booking
+msgid "Email"
+msgstr ""
+
+#: avail_booking_settingspage.php:511
+#@ jm_avail_booking
+msgid "To get the Airbenb Links first input the list of rooms  and click on Save."
+msgstr "Om de Airbenb links te krijgen vul eerst de lijst met kamers in en klik daarna op \\\"opslaan\\\"."
+
+#: avail_booking_import_export.php:103
+#@ jm_avail_booking
+msgid "XML Data imported"
+msgstr "XML data geïmporteerd."
+
+#: avail_booking_import_export.php:109
+#@ jm_avail_booking
+msgid "iCal Data imported"
+msgstr "iCal Data geïmporteerd."
+
+#: avail_booking_import_export.php:115
+#@ jm_avail_booking
+msgid "Synchronisation Ready"
+msgstr "Synchronisatie klaar"
+
+#: avail_booking_import_export.php:159
+#@ jm_avail_booking
+msgid "Export xml"
+msgstr "Export xml"
+
+#: avail_booking_import_export.php:160
+#@ jm_avail_booking
+msgid "If you click the Download button below WordPress will create  an XML file with all bookings and prices and save this file to your computer."
+msgstr "WorpPress geneert een XML bestand met alle boekingen en prijzen en download die naar de PC"
+
+#: avail_booking_import_export.php:170
+#@ jm_avail_booking
+msgid "Export iCal"
+msgstr "Export iCal"
+
+#: avail_booking_import_export.php:171
+#@ jm_avail_booking
+msgid "If you click the Download button below WordPress will create  an iCal file with bookings for the selected room and save this file to your computer."
+msgstr "WordPress genereert een iCal bestand met de boekingen voor de geselecteerde kamer en download die naar de PC."
+
+#: avail_booking_import_export.php:177
+#@ jm_avail_booking
+msgid "Select the room to export"
+msgstr "Selecteer de kamer voor export"
+
+#: avail_booking_import_export.php:193
+#@ jm_avail_booking
+msgid "Import XML"
+msgstr "Import XML"
+
+#: avail_booking_import_export.php:197
+#@ jm_avail_booking
+msgid "The xml format may includes bookings and prices."
+msgstr "Het xml formaat kan boekingen en prijs informatie bevatten."
+
+#: avail_booking_import_export.php:203
+#@ jm_avail_booking
+msgid "Import iCal"
+msgstr "Import iCal"
+
+#: avail_booking_import_export.php:207
+#@ jm_avail_booking
+msgid "The iCal format requires a separate import for each room."
+msgstr "Het iCal formaat vereist een import per kamer."
+
+#: avail_booking_import_export.php:223
+#@ jm_avail_booking
+msgid "Synchronisation with external calendar"
+msgstr "Synchronisatie met een externe kalender"
+
+#: avail_booking_import_export.php:226
+#@ jm_avail_booking
+msgid "Synchronisation with calendars like Airb&b. <br />Use the settings menu to set the required links"
+msgstr "Synchronisatie met kalenders zoals Airb&b <br /> Gebruik het instellings-menu om de benodigde links in te stellen."
+
+#: avail_booking_import_export.php:232
+#@ jm_avail_booking
+msgid "Run automatic sync"
+msgstr "Start de automatische sync."
+
+#: avail_booking_import_export.php:234
+#@ jm_avail_booking
+msgid "Start"
+msgstr ""
+
+#: avail_booking_import_export.php:237
+#@ jm_avail_booking
+msgid "Stop synchronisation with external calendar"
+msgstr "Stop de synchronisatie met de externe kalender."
+
+#: avail_booking_import_export.php:240
+#@ jm_avail_booking
+msgid "Stop"
+msgstr ""
+
+#: avail_booking_settingspage.php:27
+#@ jm_avail_booking
+msgid "Settings"
+msgstr "Instellingen"
+
+#: avail_booking_settingspage.php:185
+#@ jm_avail_booking
+msgid "External Calendar Settings"
+msgstr "Externe kalender instellingen"
+
+#: avail_booking_settingspage.php:190
+#@ jm_avail_booking
+msgid "Which status must block the external calendar"
+msgstr "Status die de externe kalender bezet moet maken"
+
+#: avail_booking_settingspage.php:198
+#@ jm_avail_booking
+msgid "Select value for blocking the external Calendar."
+msgstr "Selecteer de waarde die in de externe kalender als bezet wordt getoond."
+
+#: avail_booking_settingspage.php:201
+#@ jm_avail_booking
+msgid "Which field must be mapped to the external Calendar Summary field"
+msgstr "Veld dat gebruikt moet worden voor het externe kalender veld Samenvatting."
+
+#: avail_booking_settingspage.php:211
+#: avail_booking_settingspage.php:224
+#@ jm_avail_booking
+msgid "Select value to map to the external Calendar."
+msgstr "Selecteer de waarde."
+
+#: avail_booking_settingspage.php:214
+#@ jm_avail_booking
+msgid "Which field must be mapped to the external Calendar Descsription field"
+msgstr "Veld dat gebruikt moet worden voor het externe kalender veld Beschrijving."
+
+#: avail_booking_settingspage.php:227
+#@ jm_avail_booking
+msgid "List of external upload links"
+msgstr "Lijst met externe upload links."
+
+#: avail_booking_settingspage.php:230
+#@ jm_avail_booking
+msgid "Schedule recurrance"
+msgstr "Interval automatische download."
+
+#: avail_booking_settingspage.php:235
+#@ jm_avail_booking
+msgid "Hourly"
+msgstr "Eens per uur."
+
+#: avail_booking_settingspage.php:236
+#@ jm_avail_booking
+msgid "Twicedaily"
+msgstr "Tweemaal per dag."
+
+#: avail_booking_settingspage.php:238
+#@ jm_avail_booking
+msgid "Select the schedule recurrance."
+msgstr "Selecteer het interval."
+
+#: avail_booking_settingspage.php:501
+#@ jm_avail_booking
+msgid "This section controls the external synchronisation"
+msgstr "Externe kalender synchronisatie."
+
+#: avail_booking_settingspage.php:506
+#@ jm_avail_booking
+msgid "<strong>You have the following external Links:</strong> </br><br />"
+msgstr "<strong>Er zijn de volgende externe links:</strong> </br><br />"
+
+#: avail_booking_settingspage.php:517
+#@ jm_avail_booking
+msgid "Give the available room>link combinatons. Format roomname1>link1,roomname2:link2 "
+msgstr "Vul de beschikbare kamer>link combinaties in. Formaat kamernaam1>link1,kamernaam2>link2"
+
+#: includes/avail_booking_mainoption_page.php:26
+#@ jm_avail_booking
+msgid "WP Availability Calendar & Booking Main Option"
+msgstr "WP Availability Calendar & Booking Administratie Option."
+
+#: includes/avail_booking_mainoption_page.php:62
+#: includes/avail_booking_mainoption_page.php:67
+#@ jm_avail_booking
+msgid "Required Capability"
+msgstr "Benodigde rechten."
+
+#: includes/avail_booking_mainoption_page.php:72
+#@ jm_avail_booking
+msgid "Administrator"
+msgstr "Beheerder"
+
+#: includes/avail_booking_mainoption_page.php:73
+#@ jm_avail_booking
+msgid "Editor"
+msgstr "Redacteur"
+
+#: includes/avail_booking_mainoption_page.php:75
+#@ jm_avail_booking
+msgid "Select the user to access the plugin admin"
+msgstr "Selecteer de rechten voor toegang tot het beheer van de plugin"
+
+#: includes/avail_booking_mainoption_page.php:86
+#@ jm_avail_booking
+msgid "This section controls the minimal required level of capabilities to acces the plugin info and settings"
+msgstr "De sectie bepaalt de minimale rechten die nodig zijn om de plugin te beheren."
+
