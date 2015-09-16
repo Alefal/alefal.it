@@ -1,0 +1,37 @@
+<ion-view view-title="Login">
+	<ion-content class="padding">
+    
+    <div align="center" class="padding">
+      <h4>Welcome USER</h4>
+    </div>
+
+    <label class="item item-input">
+      <i class="ion-android-contact placeholder-icon"></i>
+      <input type="text" name="username" id="username" placeholder="Username" ng-model="authorization.username">
+    </label>
+
+    <label class="item item-input">
+      <i class="ion-android-lock placeholder-icon"></i>
+      <input type="password" name="password" id="password" placeholder="Password" ng-model="authorization.password">
+    </label>
+
+    <label class="item item-input item-select">
+      <div class="input-label">
+        Ruolo
+      </div>
+      <select name="role" id="role" ng-model="authorization.role">
+        <option value="1">Hostess</option>
+        <option value="2">Managers\Directors</option>
+        <option value="3">Waiters</option>
+        <option value="4">Customers ???</option>
+        <option value="5">Steward</option>
+        <option value="6">Guest</option>
+      </select>
+    </label>
+
+    <div class="padding">
+      <button class="button button-block button-positive" ng-click="login()">Sign In</button>
+    </div>
+      
+  </ion-content>
+</ion-view>
