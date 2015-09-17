@@ -75,15 +75,14 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
     .state('app', {
       cache: false,
       url: '/app',
-      abstract: true,
-      templateUrl: 'templates/menu.html',
-      controller: 'AppCtrl'
+      templateUrl: 'templates/container.html',
+      controller: 'WelcomeCtrl'
     })
 
     .state('app.welcome', {
       url: '/welcome',
       views: {
-        'menuContent': {
+        'pageContainer': {
           templateUrl: 'templates/welcome.html',
           controller: 'WelcomeCtrl'
         }
@@ -92,7 +91,7 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
     .state('app.login', {
       url: '/login',
       views: {
-        'menuContent': {
+        'pageContainer': {
           templateUrl: 'templates/login.html',
           controller: 'LoginCtrl'
         }
@@ -102,7 +101,7 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
     .state('app.hostess', {
       url: '/hostess',
       views: {
-        'menuContent': {
+        'pageContainer': {
           templateUrl: 'templates/users/hostess.html',
           controller: 'HostessCtrl'
         }
@@ -111,7 +110,7 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
     .state('app.managers', {
       url: '/managers',
       views: {
-        'menuContent': {
+        'pageContainer': {
           templateUrl: 'templates/users/managers.html',
           controller: 'ManagersCtrl'
         }
@@ -120,7 +119,7 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
     .state('app.waiters', {
       url: '/waiters',
       views: {
-        'menuContent': {
+        'pageContainer': {
           templateUrl: 'templates/users/waiters.html',
           controller: 'WaitersCtrl'
         }
@@ -129,7 +128,7 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
     .state('app.customers', {
       url: '/customers',
       views: {
-        'menuContent': {
+        'pageContainer': {
           templateUrl: 'templates/users/customers.html',
           controller: 'CustomersCtrl'
         }
@@ -138,7 +137,7 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
     .state('app.steward', {
       url: '/steward',
       views: {
-        'menuContent': {
+        'pageContainer': {
           templateUrl: 'templates/users/steward.html',
           controller: 'StewardCtrl'
         }
@@ -147,7 +146,7 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
     .state('app.guest', {
       url: '/guest',
       views: {
-        'menuContent': {
+        'pageContainer': {
           templateUrl: 'templates/users/guest.html',
           controller: 'GuestCtrl'
         }
@@ -157,17 +156,8 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
     .state('app.reservations', {
       url: '/reservations',
       views: {
-        'menuContent': {
-          templateUrl: 'templates/pages/reservations.html',
-          controller: 'HostessCtrl'
-        }
-      }
-    })
-    .state('app.tableInfo', {
-      url: '/tableInfo',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/pages/tableInfo.html',
+        'pageContainer': {
+          templateUrl: 'templates/pages/hostess/reservations.html',
           controller: 'HostessCtrl'
         }
       }
@@ -176,7 +166,7 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
     .state('app.nightSummary', {
       url: '/nightSummary',
       views: {
-        'menuContent': {
+        'pageContainer': {
           templateUrl: 'templates/pages/manager/nightSummary.html',
           controller: 'ManagerCtrl'
         }
@@ -185,7 +175,7 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
     .state('app.tableInfoAdmin', {
       url: '/tableInfoAdmin',
       views: {
-        'menuContent': {
+        'pageContainer': {
           templateUrl: 'templates/pages/manager/tableInfoAdmin.html',
           controller: 'ManagerCtrl'
         }

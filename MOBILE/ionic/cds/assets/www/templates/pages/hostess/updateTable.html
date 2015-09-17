@@ -1,11 +1,19 @@
-<ion-view view-title="Table">
-    <ion-content padding="true" class="has-header">
-        <h3>Update table information</h3>
+<ion-modal-view>
+
+  <ion-header-bar class="bar-positive">
+    <h1 class="title">Update Table</h1>
+    <div class="buttons">
+      <button class="button button-icon ion-close" ng-click="closeUpdateTable('')"></button>
+    </div>
+  </ion-header-bar>
+
+  <ion-content class="padding">
         <form>
             <label class="item item-input">
                 <span class="input-label">Reseved to</span>
                 <input type="text" placeholder="">
             </label>
+            <div class="spacerVertical"></div>
             <label class="item item-input">
                 <span class="input-label">Arrival time</span>
                 <!--
@@ -13,14 +21,15 @@
                 -->
                 <input type="time" formatted-time>
             </label>
+            <div class="spacerVertical"></div>
             <label class="item item-input">
                 <span class="input-label">People number</span>
                 <input type="number" placeholder="">
             </label>
         </form>
-        <div class="button-bar">
-            <a href="#/app/reservations" class="button button-stable button-block  icon-left ion-chevron-left">Back</a>
-            <a href="#/app/reservations" class="button button-stable button-block  icon-right ion-checkmark-round">Update</a>
-        </div>
+        <button class="button button-assertive button-block icon-right ion-checkmark-round" ng-click="closeUpdateTable('updateTable')">
+            Update
+        </button>
     </ion-content>
-</ion-view>
+
+</ion-modal-view>

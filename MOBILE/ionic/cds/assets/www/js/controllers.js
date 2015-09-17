@@ -1,16 +1,31 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('WelcomeCtrl', function($scope,$ionicLoading,ajaxCallServices/*,$cordovaNetwork*/) {
+  $ionicLoading.show({
+    template: 'Loading...'
+  });
 
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
+  /*
+  document.addEventListener('deviceready', function () {
+      var type = $cordovaNetwork.getNetwork()
+      var isOnline = $cordovaNetwork.isOnline()
+      var isOffline = $cordovaNetwork.isOffline()
 
+      ajaxCallServices.getReleasesRest(isOnline,isOffline)
+          .success(function (releases) {
+            //console.log('releases --->'+JSON.stringify(releases));
+            $scope.releases = releases;
+
+            $ionicLoading.hide();
+          }).error(function (error) {
+            $scope.status = 'Unable to load customer data' + error;
+          });
+
+  }, false);
+  */
+
+  $ionicLoading.hide();
 })
-
 .controller('LoginCtrl', function($scope,$ionicLoading,ajaxCallServices,$state/*,$cordovaNetwork*/) {
   $ionicLoading.show({
     template: 'Loading...'
@@ -55,35 +70,31 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('WelcomeCtrl', function($scope,$ionicLoading,ajaxCallServices/*,$cordovaNetwork*/) {
-  $ionicLoading.show({
-    template: 'Loading...'
+.controller('HostessCtrl', function($scope,$ionicLoading,ajaxCallServices,$state,$ionicModal/*,$cordovaNetwork*/) {
+  
+  //updateTable
+  $ionicModal.fromTemplateUrl('templates/pages/hostess/updateTable.html', {
+    scope: $scope
+  }).then(function(updateTable) {
+    $scope.updateTable = updateTable;
   });
+  $scope.closeUpdateTable = function(operation) {
+    if(operation == 'updateTable') {
+      alert('Aggiorno info tavolo...');
+    }
+    $scope.updateTable.hide();
+  };
+  $scope.openUpdateTable = function() {
+    $scope.updateTable.show();
+  };
 
-  /*
-  document.addEventListener('deviceready', function () {
-      var type = $cordovaNetwork.getNetwork()
-      var isOnline = $cordovaNetwork.isOnline()
-      var isOffline = $cordovaNetwork.isOffline()
+  $scope.back = function(section) {
+    $state.go('app.'+section);
+  };
 
-      ajaxCallServices.getReleasesRest(isOnline,isOffline)
-          .success(function (releases) {
-            //console.log('releases --->'+JSON.stringify(releases));
-            $scope.releases = releases;
-
-            $ionicLoading.hide();
-          }).error(function (error) {
-            $scope.status = 'Unable to load customer data' + error;
-          });
-
-  }, false);
-  */
-
-  $ionicLoading.hide();
-})
-
-.controller('HostessCtrl', function($scope,$ionicLoading,ajaxCallServices/*,$cordovaNetwork*/) {
-  console.log('HostessCtrl');
+  $scope.exitApp = function() {
+    $state.go('app.login');
+  };
 })
 .controller('ManagersCtrl', function($scope,$ionicLoading,ajaxCallServices/*,$cordovaNetwork*/) {
   console.log('ManagersCtrl');

@@ -1,17 +1,41 @@
 /* Empty. Add your own CSS if you like */
-.center {
-    /*
-    top: 40%;
-    -webkit-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    -o-transform: translateY(-50%);
-    transform: translateY(-50%);
-    position: absolute !important;
-    margin:0 auto;
-    width:100%;
-    */
+/*
+html, body, * {
+    cursor: url('http://ionicframework.com/img/finger.png'), auto;
+}
+*/
+.scroll-content {
+    background: url('../img/bg/6.png');
+    padding-top: 15%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+h1,h2,h3,h4,h5,h6 {
+    color: white !important;
 }
 .spacerVertical {
-	height: 35px;
+    height: 7px;
 }
+.item, .item-input, .button {
+    border-radius: 10px;
+}
+
+.button-ios-rounded_30 {
+    display: inline-block;
+    position: relative;
+    width: 30%;
+    height: 100px;
+    text-align: center;
+    padding: 25px;
+}
+.button-ios-rounded_50 {
+    display: inline-block;
+    position: relative;
+    width: 48%;
+    height: 148px;
+    text-align: center;
+    padding: 25px;
+}
+
