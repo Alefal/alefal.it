@@ -99,4 +99,48 @@ angular.module('starter.controllers', [])
 })
 .controller('GuestCtrl', function($scope,$ionicLoading,ajaxCallServices/*,$cordovaNetwork*/) {
   console.log('GuestCtrl');
+})
+
+.controller('ManagerCtrl', function($scope,$ionicLoading,ajaxCallServices,$ionicModal/*,$cordovaNetwork*/) {
+  console.log('ManagerCtrl');
+
+  //modalGift
+  $ionicModal.fromTemplateUrl('templates/pages/manager/gift.html', {
+    scope: $scope
+  }).then(function(modalGift) {
+    $scope.modalGift = modalGift;
+  });
+  $scope.closeManageGift = function() {
+    $scope.modalGift.hide();
+  };
+  $scope.openManageGift = function() {
+    $scope.modalGift.show();
+  };
+
+  //modalGift
+  $ionicModal.fromTemplateUrl('templates/pages/manager/discounts.html', {
+    scope: $scope
+  }).then(function(modalDiscounts) {
+    $scope.modalDiscounts = modalDiscounts;
+  });
+  $scope.closeManageDiscounts = function() {
+    $scope.modalDiscounts.hide();
+  };
+  $scope.openManageDiscounts = function() {
+    $scope.modalDiscounts.show();
+  };
+
+  //modalOrdersBill
+  $ionicModal.fromTemplateUrl('templates/pages/manager/ordersBill.html', {
+    scope: $scope
+  }).then(function(modalOrdersBill) {
+    $scope.modalOrdersBill = modalOrdersBill;
+  });
+  $scope.closeManageOrdersBill = function() {
+    $scope.modalOrdersBill.hide();
+  };
+  $scope.openManageOrdersBill = function() {
+    $scope.modalOrdersBill.show();
+  };
+
 });

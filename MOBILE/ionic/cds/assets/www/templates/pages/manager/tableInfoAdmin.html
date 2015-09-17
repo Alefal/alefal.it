@@ -1,0 +1,27 @@
+<ion-view view-title="Table">
+    <ion-content padding="true" class="has-header">
+        <h3>Update table information</h3>
+        <form>
+            <label class="item item-input">
+                <span class="input-label">Reseved to</span>
+                <input type="text" placeholder="">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Arrival time</span>
+                <!--
+                <input type="date" placeholder="">
+                -->
+                <input type="time" formatted-time>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">People number</span>
+                <input type="number" placeholder="">
+            </label>
+        </form>
+        <div class="button-bar">
+            <button class="button button-stable button-block" ng-click="openManageDiscounts()">Discounts</button>
+            <button class="button button-stable button-block" ng-click="openManageOrdersBill()">Orders &amp; Bill</button>
+            <button class="button button-stable button-block" ng-click="openManageGift()">Gift</button>
+        </div>
+    </ion-content>
+</ion-view>

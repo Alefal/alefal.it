@@ -1,9 +1,4 @@
 // Ionic Starter App
-
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-// 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
 
 .run(function($ionicPlatform,$ionicPopup,$ionicLoading,PushProcessingService/*,$rootScope,$cordovaNetwork*/) {
@@ -74,6 +69,131 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
     */
 
   });
+})
+.config(function($stateProvider, $urlRouterProvider) {
+  $stateProvider
+    .state('app', {
+      cache: false,
+      url: '/app',
+      abstract: true,
+      templateUrl: 'templates/menu.html',
+      controller: 'AppCtrl'
+    })
+
+    .state('app.welcome', {
+      url: '/welcome',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/welcome.html',
+          controller: 'WelcomeCtrl'
+        }
+      }
+    })
+    .state('app.login', {
+      url: '/login',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/login.html',
+          controller: 'LoginCtrl'
+        }
+      }
+    })
+    //USERS
+    .state('app.hostess', {
+      url: '/hostess',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/users/hostess.html',
+          controller: 'HostessCtrl'
+        }
+      }
+    })
+    .state('app.managers', {
+      url: '/managers',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/users/managers.html',
+          controller: 'ManagersCtrl'
+        }
+      }
+    })
+    .state('app.waiters', {
+      url: '/waiters',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/users/waiters.html',
+          controller: 'WaitersCtrl'
+        }
+      }
+    })
+    .state('app.customers', {
+      url: '/customers',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/users/customers.html',
+          controller: 'CustomersCtrl'
+        }
+      }
+    })
+    .state('app.steward', {
+      url: '/steward',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/users/steward.html',
+          controller: 'StewardCtrl'
+        }
+      }
+    })
+    .state('app.guest', {
+      url: '/guest',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/users/guest.html',
+          controller: 'GuestCtrl'
+        }
+      }
+    })
+    //PAGES: hostess
+    .state('app.reservations', {
+      url: '/reservations',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/pages/reservations.html',
+          controller: 'HostessCtrl'
+        }
+      }
+    })
+    .state('app.tableInfo', {
+      url: '/tableInfo',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/pages/tableInfo.html',
+          controller: 'HostessCtrl'
+        }
+      }
+    })
+    //PAGES: manager
+    .state('app.nightSummary', {
+      url: '/nightSummary',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/pages/manager/nightSummary.html',
+          controller: 'ManagerCtrl'
+        }
+      }
+    })
+    .state('app.tableInfoAdmin', {
+      url: '/tableInfoAdmin',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/pages/manager/tableInfoAdmin.html',
+          controller: 'ManagerCtrl'
+        }
+      }
+    });
+
+  // if none of the above states are matched, use this as the fallback
+  $urlRouterProvider.otherwise('/app/welcome');
 })
 
 .factory('ajaxCallServices', function($http) {
@@ -149,187 +269,20 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
   }
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
-  $stateProvider
-    .state('app', {
-      cache: false,
-      url: '/app',
-      abstract: true,
-      templateUrl: 'templates/menu.html',
-      controller: 'AppCtrl'
-    })
+.directive('formattedTime', function ($filter) {
 
-    .state('app.welcome', {
-      url: '/welcome',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/welcome.html',
-          controller: 'WelcomeCtrl'
-        }
-      }
-    })
-    .state('app.login', {
-      url: '/login',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/login.html',
-          controller: 'LoginCtrl'
-        }
-      }
-    })
-
-
-    .state('app.hostess', {
-      url: '/hostess',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/hostess.html',
-          controller: 'HostessCtrl'
-        }
-      }
-    })
-    .state('app.managers', {
-      url: '/managers',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/managers.html',
-          controller: 'ManagersCtrl'
-        }
-      }
-    })
-    .state('app.waiters', {
-      url: '/waiters',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/waiters.html',
-          controller: 'WaitersCtrl'
-        }
-      }
-    })
-    .state('app.customers', {
-      url: '/customers',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/customers.html',
-          controller: 'CustomersCtrl'
-        }
-      }
-    })
-    .state('app.steward', {
-      url: '/steward',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/steward.html',
-          controller: 'StewardCtrl'
-        }
-      }
-    })
-    .state('app.guest', {
-      url: '/guest',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/guest.html',
-          controller: 'GuestCtrl'
-        }
-      }
-    });
-
-  // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/login');
-})
-
-
-//START: Example SERVICE, FACTORY, PROVIDER
-.service('helloWorldFromService', function() {
-    this.sayHello = function() {
-        return "Hello, World!"
-    };
-})
-.factory('helloWorldFromFactory', function() {
-    return {
-        sayHello: function() {
-            return "Hello, World!"
-        }
-    };
-})
-.provider('helloWorld', function() {
-    // In the provider function, you cannot inject any
-    // service or factory. This can only be done at the
-    // "$get" method.
-
-    this.name = 'Default';
-
-    this.$get = function() {
-        var name = this.name;
-        return {
-            sayHello: function() {
-                return "Hello, " + name + "!"
-            }
-        }
-    };
-
-    this.setName = function(name) {
-        this.name = name;
-    };
-});
-//END: Example SERVICE, FACTORY, PROVIDER
-
-
-// ALL GCM notifications come through here.
-function onNotificationGCM(e) {
-    console.log('EVENT - RECEIVED:' + e.event + '');
-    switch( e.event )
-    {
-        case 'registered':
-            if ( e.regid.length > 0 )
-            {
-                console.log('REGISTERED with GCM Server - REGID:' + e.regid);
-
-                //call back to web service in Angular.
-                //This works for me because in my code I have a factory called
-                //      PushProcessingService with method registerID
-                var elem = angular.element(document.querySelector('[ng-app]'));
-                var injector = elem.injector();
-                var myService = injector.get('PushProcessingService');
-                myService.registerID(e.regid);
-            }
-            break;
-
-        case 'message':
-            // if this flag is set, this notification happened while we were in the foreground.
-            // you might want to play a sound to get the user's attention, throw up a dialog, etc.
-            if (e.foreground)
-            {
-                //we're using the app when a message is received.
-                console.log('--INLINE NOTIFICATION--' + '');
-
-                // if the notification contains a soundname, play it.
-                //var my_media = new Media(&quot;/android_asset/www/&quot;+e.soundname);
-                //my_media.play();
-                alert(e.payload.message);
-            }
-            else
-            {
-                // otherwise we were launched because the user touched a notification in the notification tray.
-                if (e.coldstart)
-                    console.log('--COLDSTART NOTIFICATION--' + '');
-                else
-                    console.log('--BACKGROUND NOTIFICATION--' + '');
-
-                // direct user here:
-                window.location = '#/tab/featured';
-            }
-
-            console.log('MESSAGE - MSG: ' + e.payload.message + '');
-            console.log('MESSAGE: '+ JSON.stringify(e.payload));
-            break;
-
-        case 'error':
-            console.log('ERROR - MSG:' + e.msg + '');
-            break;
-
-        default:
-            console.log('EVENT - Unknown, an event was received and we do not know what it is');
-            break;
+  return {
+    require: '?ngModel',
+    link: function(scope, elem, attr, ngModel) {
+        if( !ngModel )
+            return;
+        if( attr.type !== 'time' )
+            return;
+                
+        ngModel.$formatters.unshift(function(value) {
+            return value.replace(/:[0-9]+.[0-9]+$/, '');
+        });
     }
-}
+  };
+  
+});

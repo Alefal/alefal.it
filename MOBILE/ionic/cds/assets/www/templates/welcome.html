@@ -1,18 +1,12 @@
-<ion-view view-title="Welcome">
-	<ion-content>
-    	<ion-list>
+<ion-view view-title="">
 
-    		<ion-item ng-repeat="release in releases" class="card">
-    			<div class="item item-icon-left">
-				    <i class="icon ion-clipboard"></i>
-			    	<h3>{{release.title}}</h3>
-			    	<h5>{{release.date}}</h5>
-			  	</div>
+  <ion-content padding="true" class="center">
+      <div align="center" class="padding">
+          <h4>IMAGE</h4>
+          <div class="spacerVertical"></div>
+          <a href="#/app/login" class="button button-calm button-block button-large icon-left ion-android-lock">Login</a>
+          <a href="#/app/registration" class="button button-positive button-block button-large icon-left ion-android-create">Registration</a>
+      </div>
+    </ion-content>
 
-        	    <div class="row item item-text-wrap">
-        	    	<p ng-bind-html="release.excerpt"></p>
-				</div>
-      		</ion-item>
-    	</ion-list>
-  	</ion-content>
 </ion-view>
