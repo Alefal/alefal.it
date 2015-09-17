@@ -20,3 +20,5 @@ NOTE
 
 
 http://graphicdesignjunction.com/2013/05/beautiful-mobile-ui-design-with-amazing-user-experience/
+
+https://github.com/katzer/cordova-plugin-local-notifications
