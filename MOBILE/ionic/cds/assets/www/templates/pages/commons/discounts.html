@@ -1,0 +1,24 @@
+<ion-modal-view>
+
+  <ion-header-bar class="bar-positive">
+    <h1 class="title">Discounts</h1>
+    <div class="buttons">
+      <button class="button button-icon ion-close" ng-click="closeManageDiscounts()"></button>
+    </div>
+  </ion-header-bar>
+
+  <ion-content class="padding">
+    <ion-list>
+      <ion-item class="item-icon-right">
+        10%
+        <i class="icon ion-close-circled" ng-if="role == 'managers'"></i>
+      </ion-item>
+
+    </ion-list>
+
+    <button class="button button-assertive button-block icon-left ion-checkmark-circled" ng-click="addDiscounts()" ng-if="role == 'managers'">
+      Add
+    </button>
+  </ion-content>
+
+</ion-modal-view>

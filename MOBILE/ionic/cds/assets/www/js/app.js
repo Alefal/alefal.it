@@ -152,13 +152,22 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
         }
       }
     })
-    //PAGES: hostess
+    //PAGES: commons
     .state('app.reservations', {
       url: '/reservations',
       views: {
         'pageContainer': {
-          templateUrl: 'templates/pages/hostess/reservations.html',
-          controller: 'HostessCtrl'
+          templateUrl: 'templates/pages/commons/reservations.html',
+          controller: 'ReservationsCtrl'
+        }
+      }
+    })
+    .state('app.reservationDetail', {
+      url: '/reservationDetail',
+      views: {
+        'pageContainer': {
+          templateUrl: 'templates/pages/commons/reservationDetail.html',
+          controller: 'ReservationDetailCtrl'
         }
       }
     })
@@ -172,15 +181,7 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
         }
       }
     })
-    .state('app.tableInfoAdmin', {
-      url: '/tableInfoAdmin',
-      views: {
-        'pageContainer': {
-          templateUrl: 'templates/pages/manager/tableInfoAdmin.html',
-          controller: 'ManagerCtrl'
-        }
-      }
-    });
+    ;
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/welcome');

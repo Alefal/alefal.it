@@ -1,0 +1,36 @@
+<ion-nav-bar class="bar-positive">
+    <ion-nav-title>{{role}} name</ion-nav-title>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon ion-chevron-left" ng-click="back('reservations');">
+        </button>
+    </ion-nav-buttons>
+</ion-nav-bar>
+
+<ion-view view-title="Reservation">
+    <ion-content class="padding">
+        <h3>Update table information</h3>
+        
+        <label class="item item-input">
+            <span class="input-label">Reseved to</span>
+            AAA
+        </label>
+        <div class="spacerVertical"></div>
+
+        <label class="item item-input">
+            <span class="input-label">Arrival time</span>
+            xx:xx:xx
+        </label>
+        <div class="spacerVertical"></div>
+
+        <label class="item item-input">
+            <span class="input-label">People number</span>
+            00
+        </label>
+    
+        <button class="button button-positive button-block icon-left ion-scissors" ng-click="openManageDiscounts()">Discounts</button>
+        <button class="button button-dark button-block icon-left ion-clipboard" ng-click="openManageOrdersBill()">Orders &amp; Bill</button>
+        <button class="button button-assertive button-block left-right ion-bag" ng-click="openManageGift()">Gift</button>
+        
+    </ion-content>
+
+</ion-view>

@@ -1,11 +1,23 @@
+<ion-nav-bar class="bar-positive">
+	<ion-nav-title>Manager Bob</ion-nav-title>
+  	<ion-nav-buttons side="right">
+    	<button class="button button-icon ion-power" ng-click="exitApp();">
+    	</button>
+  	</ion-nav-buttons>
+</ion-nav-bar>
+
 <ion-view view-title="Manager Page">
 
-	<ion-content padding="true" class="center">
-    <div align="center" class="padding">
-      <h4>Welcome USER</h4>
-      <div class="spacerVertical"></div>
-      <a href="#/app/nightSummary" class="button button-calm button-block button-large icon-left ion-clipboard">Night Summary</a>
-    </div>
-  </ion-content>
+	<ion-content>
+        <div align="center" class="padding">
+	      	<h4>Welcome USER</h4>
+	        <div class="spacerVertical"></div>
+	        <a href="#/app/reservations" class="button button-assertive button-ios-rounded_50">
+	        	<i class="icon ion-clipboard"></i>
+	        	<br />
+	        	Night Summary
+	       	</a>
+	    </div>
+    </ion-content>
     
 </ion-view>
