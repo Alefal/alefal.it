@@ -82,7 +82,7 @@ angular.module('starter.controllers', [])
   $scope.role = $rootScope.role;
   
   //UpdateReservation
-  $ionicModal.fromTemplateUrl('templates/pages/hostess/UpdateReservation.html', {
+  $ionicModal.fromTemplateUrl('templates/pages/hostess/updateReservation.html', {
     scope: $scope
   }).then(function(UpdateReservation) {
     $scope.UpdateReservation = UpdateReservation;
