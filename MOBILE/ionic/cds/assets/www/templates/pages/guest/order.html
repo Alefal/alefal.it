@@ -6,24 +6,20 @@
     </ion-nav-buttons>
 </ion-nav-bar>
 
-<ion-view view-title="Orders">
+<ion-view view-title="Order">
 
 	<ion-content class="padding">
     	
-  		<ion-list ng-if="role == 'waiters'">
+  		<ion-list>
             <ion-item class="item-icon-right" ng-click="openPopupSetOrderState('waiter')">
-                W: Item 1 Table 1 DONE
-            </ion-item>
-            <div class="spacerVertical"></div>
-        </ion-list>
-
-        <ion-list ng-if="role == 'steward'">
-            <ion-item class="item-icon-right" ng-click="openPopupSetOrderState('steward')">
-                S: Item 1 Table 1 DONE
+                Prosecco Qnt: 2
             </ion-item>
             <div class="spacerVertical"></div>
         </ion-list>
     	
+        <button class="button button-positive button-block icon-left ion-scissors" ng-click="openPopupConfirmOrder()">Order</button>
+        <a href="#/app/menu" class="button button-assertive button-block icon-left ion-bag"> Add</a>
+        
   	</ion-content>
 
 </ion-view>

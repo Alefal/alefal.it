@@ -27,6 +27,11 @@
       </ion-item>
     </ion-list>
         
+    <div ng-if="role == 'waiters'">
+      <button class="button button-positive button-block icon-left ion-scissors" ng-click="openPopupAddItem()">Print</button>
+      <button class="button button-assertive button-block icon-left ion-bag" ng-click="openPopupAddItem()"> Add</button>
+    </div>
+
   </ion-content>
 
 </ion-modal-view>
