@@ -1,0 +1,29 @@
+<ion-nav-bar class="bar-positive">
+    <ion-nav-title>{{role}} name</ion-nav-title>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon ion-chevron-left" ng-click="back(role);">
+        </button>
+    </ion-nav-buttons>
+</ion-nav-bar>
+
+<ion-view view-title="Orders">
+
+	<ion-content class="padding">
+    	
+  		<ion-list ng-if="role == 'waiters'">
+            <ion-item class="item-icon-right" ng-click="openPopupSetOrderState('waiter')">
+                W: Item 1 Table 1 DONE
+            </ion-item>
+            <div class="spacerVertical"></div>
+        </ion-list>
+
+        <ion-list ng-if="role == 'steward'">
+            <ion-item class="item-icon-right" ng-click="openPopupSetOrderState('steward')">
+                S: Item 1 Table 1 DONE
+            </ion-item>
+            <div class="spacerVertical"></div>
+        </ion-list>
+    	
+  	</ion-content>
+
+</ion-view>

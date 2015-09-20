@@ -1,7 +1,8 @@
 /* Empty. Add your own CSS if you like */
+
 /*
-html, body, * {
-    cursor: url('http://ionicframework.com/img/finger.png'), auto;
+* {
+    font-family: 'Dosis', sans-serif;
 }
 */
 .scroll-content {

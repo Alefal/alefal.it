@@ -1,0 +1,47 @@
+<ion-view view-title="Hostess Page" hide-nav-bar="true" class="eventForm">
+
+	<ion-header-bar> <a href="" class="smallLogo button"></a>
+    	<h1 class="title">Welcome, {{role}} name</h1>
+    	<a ng-click="exitApp()" class="power button"><i class="ion-power"></i></a> 
+    </ion-header-bar>
+
+    <ion-content class="has-footer">
+      	<div align="center">
+          <h4>IMAGE | Welcome HOSTESS</h4>
+        </div>
+        <div class="row eventTab">
+          <div class="col col-50">
+            <div class="tabtext" ng-click="goto('app.reservations')">
+              <div class="icon"><i class="ion-clock"></i></div>
+              <h3>Reservations</h3>
+            </div>
+          </div>
+          <div class="col col-50">
+            <div class="tabtext" ng-click="">
+              <div class="icon"><i class="ion-map"></i></div>
+              <h3>Maps</h3>
+            </div>
+          </div>
+        </div>
+    </ion-content>
+
+    <!--
+	<ion-content>
+        <div align="center" class="padding">
+	      	<h4>Welcome HOSTESS</h4>
+	        <div class="spacerVertical"></div>
+	        <a href="#/app/reservations" class="button button-positive button-ios-rounded_50">
+	        	<i class="icon ion-clock"></i>
+	        	<br />
+	        	Reservations
+	        </a>
+	        <a href="#" class="button button-assertive button-ios-rounded_50">
+	        	<i class="icon ion-map"></i>
+	        	<br />
+	        	Maps
+	       	</a>
+	    </div>
+    </ion-content>
+	-->
+    
+</ion-view>

@@ -1,0 +1,37 @@
+<ion-modal-view>
+
+  <ion-header-bar class="bar-positive">
+    <h1 class="title">Orders Bill</h1>
+    <div class="buttons">
+      <button class="button button-icon ion-close" ng-click="closeManageOrdersBill()"></button>
+    </div>
+  </ion-header-bar>
+
+  <ion-content class="padding">
+    <ion-list>
+      <ion-item href="#/app/tableInfo" class="item-icon-right">
+        Item 1
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+      <div class="spacerVertical"></div>
+
+      <ion-item href="#/app/tableInfo" class="item-icon-right">
+        Item 2
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+      <div class="spacerVertical"></div>
+      
+      <ion-item href="#/app/tableInfo" class="item-icon-right">
+        Item 3
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+    </ion-list>
+        
+    <div ng-if="role == 'waiters'">
+      <button class="button button-positive button-block icon-left ion-scissors" ng-click="openPopupAddItem()">Print</button>
+      <button class="button button-assertive button-block icon-left ion-bag" ng-click="openPopupAddItem()"> Add</button>
+    </div>
+
+  </ion-content>
+
+</ion-modal-view>
