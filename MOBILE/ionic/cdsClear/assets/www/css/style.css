@@ -91,3 +91,6 @@ body { background: #fff; }
     border-bottom: 8px solid#ccc;
     padding-bottom: 15px;
 }
+.input-label {
+    display: flex !important;
+}

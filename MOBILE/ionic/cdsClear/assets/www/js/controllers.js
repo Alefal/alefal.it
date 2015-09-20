@@ -5,10 +5,6 @@ angular.module('starter.controllers', [])
     template: 'Loading...'
   });
 
-  $scope.goto = function(url) {
-    $state.go(url);
-  };
-
   /*
   document.addEventListener('deviceready', function () {
       var type = $cordovaNetwork.getNetwork()
@@ -75,16 +71,8 @@ angular.module('starter.controllers', [])
     }
   };
 })
-
 .controller('HostessCtrl', function($scope,$rootScope,$ionicLoading,ajaxCallServices,$state,$ionicModal/*,$cordovaNetwork*/) {
   //HOSTESS page
-  $scope.exitApp = function() {
-    $state.go('app.login');
-  };
-
-  $scope.goto = function(url) {
-    $state.go(url);
-  };
 })
 .controller('ReservationsCtrl', function($scope,$rootScope,$ionicLoading,ajaxCallServices,$state,$ionicModal/*,$cordovaNetwork*/) {
   $scope.role = $rootScope.role;
@@ -104,11 +92,6 @@ angular.module('starter.controllers', [])
   $scope.openUpdateReservation = function() {
     $scope.UpdateReservation.show();
   };
-
-  $scope.back = function(section) {
-    $state.go('app.'+section);
-  };
-
 })
 .controller('ReservationDetailCtrl', function($scope,$ionicLoading,ajaxCallServices,$state,$ionicModal,$ionicPopup/*,$cordovaNetwork*/) {
   //modalGift

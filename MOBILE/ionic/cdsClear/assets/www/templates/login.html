@@ -1,5 +1,6 @@
 <ion-view view-title="Login" class="eventForm">
-	<ion-content class="has-footer">
+
+	<ion-content class="center" style="padding:25% 5% 0 5%;">
     
     <div align="center" class="padding">
       <h4>LOGO</h4>
@@ -29,15 +30,22 @@
           <option value="6">Guest</option>
         </select>
       </label>
-    
+      <div class="spacerVertical"></div>
+      <button class="button button-block button-positive left-right ion-locked" ng-click="login()"> Sign In</button>
+
+      <div align="right">
+        Registration
+      </div>
     </div>
       
    
   </ion-content>
 
+  <!--
   <div class="bar bar-footer">
     <div class="padding">
       <button class="button button-block btnSubmit button-positive left-right ion-locked" ng-click="login()"> Sign In</button>
     </div>
   </div>
+  -->
 </ion-view>

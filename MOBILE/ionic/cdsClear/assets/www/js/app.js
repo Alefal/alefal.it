@@ -211,7 +211,7 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
     });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/welcome');
+  $urlRouterProvider.otherwise('/app/login');
 })
 
 .factory('ajaxCallServices', function($http) {
@@ -237,6 +237,22 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
   };
 
   return ajaxCallServices;
+})
+.factory('globalFunction', function($state) {
+  return {
+    exitApp: function() {
+      $state.go('app.login');
+    },
+    goto: function(url) {
+      $state.go(url);
+    },
+    back: function(section) {
+      $state.go('app.'+section);
+    }
+  };
+})
+.run(function($rootScope, globalFunction) {
+  $rootScope.globFunc = globalFunction;
 })
 
 .factory('PushProcessingService', function($http) {
