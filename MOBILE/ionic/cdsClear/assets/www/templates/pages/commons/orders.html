@@ -1,29 +1,46 @@
-<ion-nav-bar class="bar-positive">
-    <ion-nav-title>{{role}} name</ion-nav-title>
-    <ion-nav-buttons side="right">
-        <button class="button button-icon ion-chevron-left" ng-click="back(role);">
-        </button>
-    </ion-nav-buttons>
-</ion-nav-bar>
+<ion-view view-title="Orders" hide-nav-bar="true" class="eventForm">
 
-<ion-view view-title="Orders">
+    <ion-header-bar class="bar-positive">
+        <h1 class="title">Welcome, {{role}} name</h1>
+        <a ng-click="globFunc.back(role)" class="power button"><i class="ion-chevron-left"></i></a> 
+    </ion-header-bar>
 
-	<ion-content class="padding">
-    	
-  		<ion-list ng-if="role == 'waiters'">
-            <ion-item class="item-icon-right" ng-click="openPopupSetOrderState('waiter')">
-                W: Item 1 Table 1 DONE
+    <ion-content class="padding">
+        
+        <ion-list ng-if="role == 'waiters'">
+            <ion-item ng-click="openPopupSetOrderState('waiter')">
+                <div class="row eventTab">
+                  <div class="col">
+                    <p>Prosecco: qnt 2</p>
+                  </div>
+                  <div class="col">
+                    TABLE 1
+                  </div>
+                  <div class="col">
+                    DONE
+                  </div>
+                </div>
             </ion-item>
             <div class="spacerVertical"></div>
         </ion-list>
 
         <ion-list ng-if="role == 'steward'">
-            <ion-item class="item-icon-right" ng-click="openPopupSetOrderState('steward')">
-                S: Item 1 Table 1 DONE
+            <ion-item ng-click="openPopupSetOrderState('steward')">
+                <div class="row eventTab">
+                  <div class="col">
+                    <p>Prosecco: qnt 2</p>
+                  </div>
+                  <div class="col">
+                    TABLE 1
+                  </div>
+                  <div class="col">
+                    DONE
+                  </div>
+                </div>
             </ion-item>
             <div class="spacerVertical"></div>
         </ion-list>
-    	
-  	</ion-content>
+        
+    </ion-content>
 
 </ion-view>

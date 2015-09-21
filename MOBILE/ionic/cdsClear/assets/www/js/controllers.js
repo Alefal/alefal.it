@@ -166,18 +166,16 @@ angular.module('starter.controllers', [])
 
   $scope.openPopupAddItem = function() {
     $ionicPopup.confirm({
-      title: 'Add item',
-      content: 'Controlla la tua connessione. I dati visualizzati potrebbero non essere gli ultimi aggiornati',
-      cancelText: 'Take on',
-      okText: 'Delete'
+      title: 'Table 1',
+      content: 'Print / Add',
+      cancelText: 'Cancel',
+      okText: 'Add'
     })
     .then(function(result) {
       if(result) {
-        console.log('Delete');
-        //ionic.Platform.exitApp();
+        console.log('Add');
       } else {
-        console.log('Take on');
-        //localStorage.setItem('messageConnection', 'clicked');
+        console.log('Cancel');
       }
     });
   }
@@ -212,33 +210,18 @@ angular.module('starter.controllers', [])
 
 .controller('ManagersCtrl', function($scope,$ionicLoading,ajaxCallServices,$state/*,$cordovaNetwork*/) {
   //MANAGER page
-  $scope.exitApp = function() {
-    $state.go('app.login');
-  };
 })
 .controller('WaitersCtrl', function($scope,$ionicLoading,ajaxCallServices,$state/*,$cordovaNetwork*/) {
   //WAITERS page
-  $scope.exitApp = function() {
-    $state.go('app.login');
-  };
 })
 .controller('CustomersCtrl', function($scope,$ionicLoading,ajaxCallServices,$state/*,$cordovaNetwork*/) {
   //CUSTOMERS page
-  $scope.exitApp = function() {
-    $state.go('app.login');
-  };
 })
 .controller('StewardCtrl', function($scope,$ionicLoading,ajaxCallServices,$state/*,$cordovaNetwork*/) {
   //STEWARD page
-  $scope.exitApp = function() {
-    $state.go('app.login');
-  };
 })
 .controller('GuestCtrl', function($scope,$ionicLoading,ajaxCallServices,$state,$ionicPopup/*,$cordovaNetwork*/) {
   //GUEST page
-  $scope.exitApp = function() {
-    $state.go('app.login');
-  };
 
   $scope.openPopupCallWaiter = function(user) {
     $ionicPopup.confirm({
@@ -258,9 +241,6 @@ angular.module('starter.controllers', [])
 })
 .controller('MenuCtrl', function($scope,$ionicLoading,ajaxCallServices,$state,$ionicPopup/*,$cordovaNetwork*/) {
   //MENU page
-  $scope.back = function(section) {
-    $state.go('app.'+section);
-  };
 
   $scope.openPopupChooseItem = function() {
     $ionicPopup.confirm({
@@ -281,9 +261,6 @@ angular.module('starter.controllers', [])
 })
 .controller('OrderCtrl', function($scope,$ionicLoading,ajaxCallServices,$state,$ionicPopup/*,$cordovaNetwork*/) {
   //MENU page
-  $scope.back = function(section) {
-    $state.go('app.menu');
-  };
 
   $scope.openPopupConfirmOrder = function() {
     $ionicPopup.confirm({
