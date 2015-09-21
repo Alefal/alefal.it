@@ -1,5 +1,5 @@
 // Ionic Starter App
-angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
+angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalprecht.translate'/*, 'ngCordova'*/])
 
 .run(function($ionicPlatform,$ionicPopup,$ionicLoading,PushProcessingService/*,$rootScope,$cordovaNetwork*/) {
   $ionicPlatform.ready(function() {
@@ -69,6 +69,23 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
     */
 
   });
+})
+.config(function($translateProvider) {
+  $translateProvider.translations('en', {
+    AuthenticationFailed: 'Authentication failed! <br /> Use "demo" "demo" and select role...',
+    Role: 'Role',
+    SignIn: 'Sign In',
+    Registration: 'Registration'
+  });
+  $translateProvider.translations('it', {
+    AuthenticationFailed: 'Autenticazione fallita! <br /> Usa "demo" "demo" e seleziona il ruolo...',
+    Role: 'Ruolo',
+    SignIn: 'Accedi',
+    Registration: 'Registrazione'
+  });
+  $translateProvider.preferredLanguage('en');
+  $translateProvider.fallbackLanguage('en');
+  $translateProvider.useSanitizeValueStrategy('sanitize');
 })
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider

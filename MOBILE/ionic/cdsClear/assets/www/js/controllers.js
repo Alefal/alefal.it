@@ -31,6 +31,8 @@ angular.module('starter.controllers', [])
     template: 'Loading...'
   });
 
+  $scope.userLogged = false;
+
   $scope.authorization = {
     username: '',
     password : '',
@@ -40,6 +42,8 @@ angular.module('starter.controllers', [])
   $ionicLoading.hide();
 
   $scope.login = function() {
+    $scope.userLogged = false;
+
     /*
     Hostess</option>
         <option value="2">Managers\Directors</option>
@@ -67,7 +71,7 @@ angular.module('starter.controllers', [])
       $rootScope.role = 'guest';
       $state.go('app.guest');
     } else {
-      $state.go('app.login');
+      $scope.userLogged = true;
     }
   };
 })
