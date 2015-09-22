@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Champagneria della sala</title>
+
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	
+<script>
+$(function() {
+	var ua = navigator.userAgent;
+
+    var checker = {
+        android: ua.match(/Android/),
+        iphone: ua.match(/(iPhone|iPod|iPad)/),
+        blackberry: ua.match(/BlackBerry/),
+        wphone: ua.match(/IEMobile/),
+        opera: ua.match(/Opera Mini/)
+    };
+
+    if (checker.android) {
+        $('#downloadForIos').hide();
+        $('#downloadForAndroid').show();
+    } else if (checker.iphone) {
+        $('#downloadForIos').show();
+        $('#downloadForAndroid').hide();
+    } else {
+        $('#downloadForIos').hide();
+        $('#downloadForAndroid').hide();
+    }
+});
+</script>
+</head>
+
+<body>
+
+<!-- 
+https://www.googledrive.com/host/0B_9K743bUTBocVZqekFXZkxCUm8
+https://goo.gl/ClMMiT
+-->
+<div class="container">
+	<div class="page-header">
+		<h1>Champagneria della sala</h1>
+	</div>
+	<p class="lead">Accedi a questa pagina col browser del tuo device e scarica l'app per il tuo dispositivo.</p>
+	<p>Se hai problemi <a href="mailto:alefalwebmaster@gmail.com">contattaci per email </a> indicando il problema riscontrato.</p>
+    <br /><br />
+
+	<div class="row" id="downloadForAndroid" align="center">
+        <div class="col-md-12">
+			<a href="https://www.googledrive.com/host/0B_9K743bUTBocVZqekFXZkxCUm8/cds.apk">
+				<img src="https://www.googledrive.com/host/0B_9K743bUTBocVZqekFXZkxCUm8/download_android.png" width="50%">
+			</a>
+        </div>
+        <p>Version: <strong>0.0.1</strong></p>
+    </div>
+
+    <div class="row" id="downloadForIos" align="center">
+        <div class="col-md-12">
+        	<a href="itms-services://?action=download-manifest&url=*.plist">
+        		<img src="https://www.googledrive.com/host/0B_9K743bUTBocVZqekFXZkxCUm8/download_ios.png" width="50%">
+        	</a>
+        </div>
+        <p>Version: <strong>0.0.1</strong></p>
+    </div>
+
+
+
+	<!--
+	<div class="row">
+        <div class="col-md-4" id="downloadForAndroid">
+			<a href="*.apk">
+				<img src="http://www.googledrive.com/host/0B_9K743bUTBoY2tSTk9oYV84RkU" width="50%">
+			</a>
+        </div>
+        <div class="col-md-4" id="downloadForIos">
+        	<a href="itms-services://?action=download-manifest&url=*.plist">
+        		<img src="http://www.googledrive.com/host/0B_9K743bUTBoNEF2YUhFaUdjb3c" width="50%">
+        	</a>
+        </div>
+    </div>
+    -->
+	
+</div>
+
+</body>
+</html>
