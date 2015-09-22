@@ -4,15 +4,20 @@
 
     		<ion-item ng-repeat="release in releases" class="card">
     			<div class="item item-icon-left">
-				    <i class="icon ion-clipboard"></i>
-			    	<h3>{{release.title}}</h3>
-			    	<h5>{{release.date}}</h5>
-			  	</div>
+            <i class="icon ion-clipboard"></i>
+            <h3>{{release.title}}</h3>
+            <h5>{{release.date}}</h5>
+          </div>
 
-        	    <div class="row item item-text-wrap">
-        	    	<p ng-bind-html="release.excerpt"></p>
-				</div>
-      		</ion-item>
+          <div class="row item item-text-wrap item-icon-right">
+            <div class="col col-75">
+              <p ng-bind-html="release.excerpt"></p>            
+            </div>
+            <div class="col col-25">
+  				    <i class="icon ion-share positive" ng-click="openModalReleases(release.title,release.content)"></i>            
+            </div>
+				  </div>
+        </ion-item>
     	</ion-list>
   	</ion-content>
 </ion-view>

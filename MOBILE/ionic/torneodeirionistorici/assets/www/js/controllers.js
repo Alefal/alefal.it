@@ -11,16 +11,20 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('ReleasesCtrl', function($scope,$ionicLoading,ajaxCallServices,$rootScope, $cordovaNetwork) {
+.controller('ReleasesCtrl', function($scope,$ionicLoading,ajaxCallServices,$rootScope,$ionicModal/*, $cordovaNetwork*/) {
   $ionicLoading.show({
     template: 'Loading...'
   });
 
-  document.addEventListener("deviceready", function () {
-      var type = $cordovaNetwork.getNetwork()
-      var isOnline = $cordovaNetwork.isOnline()
-      var isOffline = $cordovaNetwork.isOffline()
-
+  //document.addEventListener("deviceready", function () {
+      /*
+      var type = $cordovaNetwork.getNetwork();
+      var isOnline = $cordovaNetwork.isOnline();
+      var isOffline = $cordovaNetwork.isOffline();
+      */
+      var isOnline  = true;
+      var isOffline = true;
+      
       ajaxCallServices.getReleasesRest(isOnline,isOffline)
           .success(function (releases) {
             //console.log('releases --->'+JSON.stringify(releases));
@@ -31,18 +35,37 @@ angular.module('starter.controllers', [])
             $scope.status = 'Unable to load customer data' + error;
           });
 
-  }, false);
+  //}, false);
+
+  //modalReleases
+  $ionicModal.fromTemplateUrl('templates/modalReleases.html', {
+    scope: $scope
+  }).then(function(modalReleases) {
+    $scope.modalReleases = modalReleases;
+  });
+  $scope.closeModalReleases = function() {
+    $scope.modalReleases.hide();
+  };
+  $scope.openModalReleases = function(releaseTitle,releaseContent) {
+    $scope.releaseTitle   = releaseTitle;
+    $scope.releaseContent = releaseContent;
+    $scope.modalReleases.show();
+  };
 })
 
-.controller('RankingCtrl', function($scope,$ionicLoading,ajaxCallServices,$rootScope, $cordovaNetwork) {
+.controller('RankingCtrl', function($scope,$ionicLoading,ajaxCallServices,$rootScope,$ionicModal/*, $cordovaNetwork*/) {
   $ionicLoading.show({
     template: 'Loading...'
   });
 
-  document.addEventListener("deviceready", function () {
-      var type = $cordovaNetwork.getNetwork()
-      var isOnline = $cordovaNetwork.isOnline()
-      var isOffline = $cordovaNetwork.isOffline()
+  //document.addEventListener("deviceready", function () {
+      /*
+      var type = $cordovaNetwork.getNetwork();
+      var isOnline = $cordovaNetwork.isOnline();
+      var isOffline = $cordovaNetwork.isOffline();
+      */
+      var isOnline  = true;
+      var isOffline = true;
 
       ajaxCallServices.getRankingRest(isOnline,isOffline)
           .success(function (ranking) {
@@ -58,20 +81,47 @@ angular.module('starter.controllers', [])
             $scope.status = 'Unable to load customer data' + error;
           });
 
-    }, false);
+    //}, false);
 
+  //modalRanking
+  $ionicModal.fromTemplateUrl('templates/modalRanking.html', {
+    scope: $scope
+  }).then(function(modalRanking) {
+    $scope.modalRanking = modalRanking;
+  });
+  $scope.closeModalRanking = function() {
+    $scope.modalRanking.hide();
+  };
+  $scope.openModalRanking = function(rank) {
+    
+    $scope.sqName   = rank.name;
+    $scope.sqPunti  = rank.pts;
+    $scope.sqGioc   = rank.gioc;
+    $scope.sqVitt   = rank.vitt;
+    $scope.sqPar    = rank.par;
+    $scope.sqScon   = rank.scon;
+    $scope.sqGF     = rank.gf;
+    $scope.sqGS     = rank.gs;
+    $scope.sqDiff   = rank.diff;
+
+    $scope.modalRanking.show();
+  };
 
 })
 
-.controller('MatchsCtrl', function($scope,$ionicLoading,ajaxCallServices,$rootScope, $cordovaNetwork) {
+.controller('MatchsCtrl', function($scope,$ionicLoading,ajaxCallServices,$rootScope/*, $cordovaNetwork*/) {
   $ionicLoading.show({
     template: 'Loading...'
   });
 
-  document.addEventListener("deviceready", function () {
-      var type = $cordovaNetwork.getNetwork()
-      var isOnline = $cordovaNetwork.isOnline()
-      var isOffline = $cordovaNetwork.isOffline()
+  //document.addEventListener("deviceready", function () {
+      /*
+      var type = $cordovaNetwork.getNetwork();
+      var isOnline = $cordovaNetwork.isOnline();
+      var isOffline = $cordovaNetwork.isOffline();
+      */
+      var isOnline  = true;
+      var isOffline = true;
 
       ajaxCallServices.geMatchsRest(isOnline,isOffline)
           .success(function (matchs) {
@@ -87,20 +137,24 @@ angular.module('starter.controllers', [])
             $scope.status = 'Unable to load customer data' + error;
           });
 
-  }, false);
+  //}, false);
 
 
 })
 
-.controller('Ranking2015Ctrl', function($scope,$ionicLoading,ajaxCallServices,$rootScope, $cordovaNetwork) {
+.controller('Ranking2015Ctrl', function($scope,$ionicLoading,ajaxCallServices,$rootScope,$ionicModal/*, $cordovaNetwork*/) {
   $ionicLoading.show({
     template: 'Loading...'
   });
 
-  document.addEventListener("deviceready", function () {
-        var type = $cordovaNetwork.getNetwork()
-        var isOnline = $cordovaNetwork.isOnline()
-        var isOffline = $cordovaNetwork.isOffline()
+  //document.addEventListener("deviceready", function () {
+        /*
+      var type = $cordovaNetwork.getNetwork();
+      var isOnline = $cordovaNetwork.isOnline();
+      var isOffline = $cordovaNetwork.isOffline();
+      */
+      var isOnline  = true;
+      var isOffline = true;
 
         ajaxCallServices.getRanking2015Rest(isOnline,isOffline)
             .success(function (ranking) {
@@ -116,7 +170,30 @@ angular.module('starter.controllers', [])
               $scope.status = 'Unable to load customer data' + error;
             });
 
-      }, false);
+      //}, false);
 
+  //modalRanking
+  $ionicModal.fromTemplateUrl('templates/modalRanking.html', {
+    scope: $scope
+  }).then(function(modalRanking) {
+    $scope.modalRanking = modalRanking;
+  });
+  $scope.closeModalRanking = function() {
+    $scope.modalRanking.hide();
+  };
+  $scope.openModalRanking = function(rank) {
+    
+    $scope.sqName   = rank.name;
+    $scope.sqPunti  = rank.pts;
+    $scope.sqGioc   = rank.gioc;
+    $scope.sqVitt   = rank.vitt;
+    $scope.sqPar    = rank.par;
+    $scope.sqScon   = rank.scon;
+    $scope.sqGF     = rank.gf;
+    $scope.sqGS     = rank.gs;
+    $scope.sqDiff   = rank.diff;
 
+    $scope.modalRanking.show();
+  };
+  
 });

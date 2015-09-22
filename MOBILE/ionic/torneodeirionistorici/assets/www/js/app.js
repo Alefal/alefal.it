@@ -4,9 +4,9 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
+angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
 
-.run(function($ionicPlatform,$ionicPopup,$ionicLoading,PushProcessingService,$rootScope,$cordovaNetwork) {
+.run(function($ionicPlatform,$ionicPopup,$ionicLoading,PushProcessingService,$rootScope/*, $cordovaNetwork*/) {
   $ionicPlatform.ready(function() {
 
     console.info('ionicPlatform.ready');
@@ -22,6 +22,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
       StatusBar.styleDefault();
     }
 
+    /*
     //Check Connection
     document.addEventListener("deviceready", function () {
       $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
@@ -67,9 +68,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
               localStorage.setItem('messageConnection', 'clicked');
             }
         });
-}
+      }
 
     }, false);
+    */
 
   });
 })

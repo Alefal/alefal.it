@@ -1,0 +1,85 @@
+<ion-modal-view>
+
+  <ion-header-bar class="bar-positive">
+    <h1 class="title" ng-bind-html="sqName"></h1>
+    <a ng-click="closeModalRanking()" class="power button"><i class="ion-close"></i></a> 
+  </ion-header-bar>
+
+  <ion-content class="padding">
+    
+    <div class="card">
+
+	    <div class="row ">
+	    	<div class="col col-75">
+	    		<h3>PUNTI</h3>
+	        </div>
+	        <div class="col col-25">
+	 		   <h3 class="positive" align="right">{{sqPunti}}</h3>
+	  		</div>
+		</div>
+		<div class="row">
+	    	<div class="col col-75">
+		    	<h5>GIOCATE</h5>
+	        </div>
+	        <div class="col col-25">
+			    <h4 class="positive" align="right">{{sqGioc}}</h4>
+	  		</div>
+		</div>
+		<hr />
+		
+		<div class="row">
+	    	<div class="col col-75">
+		    	<h5>VITTORIE</h5>
+	        </div>
+	        <div class="col col-25">
+			    <h4 class="balanced" align="right">{{sqVitt}}</h4>
+	  		</div>
+		</div>
+		<div class="row">
+	    	<div class="col col-75">
+		    	<h5>PAREGGI</h5>
+	        </div>
+	        <div class="col col-25">
+			    <h4 class="positive" align="right">{{sqPar}}</h4>
+	  		</div>
+		</div>
+		<div class="row">
+	    	<div class="col col-75">
+		    	<h5>SCONFITTE</h5>
+	        </div>
+	        <div class="col col-25">
+			    <h4 class="assertive" align="right">{{sqScon}}</h4>
+	  		</div>
+		</div>
+    	<hr />
+
+    	<div class="row">
+	    	<div class="col col-75">
+		    	<h5>GOAL FATTI</h5>
+	        </div>
+	        <div class="col col-25" align="right">
+			    <h4 class="balanced">{{sqGF}}</h4>
+	  		</div>
+		</div>
+		<div class="row">
+	    	<div class="col col-75">
+		    	<h5>GOAL SUBITI</h5>
+	        </div>
+	        <div class="col col-25" align="right">
+			    <h4 class="assertive">{{sqGS}}</h4>
+	  		</div>
+		</div>
+		<div class="row">
+	    	<div class="col col-75">
+		    	<h5>DIFFERENZA RETI</h5>
+	        </div>
+	        <div class="col col-25" align="right">
+			    <h4 class="positive">{{sqDiff}}</h4>
+	  		</div>
+		</div>
+
+	</div>
+
+  </ion-content>
+
+</ion-modal-view>
