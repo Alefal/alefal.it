@@ -1,8 +1,8 @@
 <?php
 /*
- * Plugin Name: alefal_notificationGCM
+ * Plugin Name: alefal_gestioneMulte
  * Version: 1.0.0
- * Description: alefal_notificationGCM
+ * Description: alefal_gestioneMulte
  * Author: Alessandro Falcone
  * Author URI: 
  * Plugin URI: 
@@ -14,20 +14,20 @@
 
 require_once('functions.php');
 
-function alefal_notificationGCM_menu() {
-	add_menu_page( 'Notification GCM Page', 'Notification GCM', 'manage_options', 'alefal_notificationGCM', 'alefal_notificationGCM_options', 'dashicons-smartphone' );
-	//add_options_page( 'Notification GCM Options', 'Notification GCM', 'manage_options', 'alefal_notificationGCM', 'alefal_notificationGCM_options' );
+function alefal_gestioneMulte_menu() {
+	add_menu_page( 'Gestione Multe Page', 'Gestione Multe', 'manage_options', 'alefal_gestioneMulte', 'alefal_gestioneMulte_options', 'dashicons-edit' );
+	//add_options_page( 'Notification GCM Options', 'Notification GCM', 'manage_options', 'alefal_gestioneMulte', 'alefal_gestioneMulte_options' );
 }
 
-add_action( 'admin_menu', 'alefal_notificationGCM_menu' );
+add_action( 'admin_menu', 'alefal_gestioneMulte_menu' );
 
-function alefal_notificationGCM_script() {
+function alefal_gestioneMulte_script() {
     wp_enqueue_script( 'jquery' );
 }
 
-add_action( 'wp_enqueue_scripts', 'alefal_notificationGCM_script' );
+add_action( 'wp_enqueue_scripts', 'alefal_gestioneMulte_script' );
 
-function alefal_notificationGCM_options() {
+function alefal_gestioneMulte_options() {
 	if ( !current_user_can( 'manage_options' ) )  {
 		wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 	}
@@ -42,9 +42,10 @@ function alefal_notificationGCM_options() {
 	echo '<strong>Gestione notifiche per device ANDROID</strong>';
 	echo '<br /><br />';
 
+	/*
 	if (count($results)> 0) {
 		foreach ($results as $device) {
-			$outputRegisterDevice .= 'Model: <strong>'.$device->registerModel.'</strong> (<a href="javascript:callRemoveDevice(\''.$device->registerId.'\')">cancella</a>)<br />';
+			$outputRegisterDevice .= 'Model: <strong>'.$device->registerModel.'</strong> (<a href="javascript:callRemoveDevice('.$device->registerId.')">cancella</a>)<br />';
 			$outputRegisterDevice .= 'RegId: <i>'.$device->registerId.'</i><br /><hr />';
 		}
 
@@ -70,20 +71,21 @@ function alefal_notificationGCM_options() {
 	    	</div>
 	    </div>
 	    <br /><hr /><br />
-	    <div id="alefal_notificationGCM_ResultNotification"></div>
+	    <div id="alefal_gestioneMulte_ResultNotification"></div>
 EOF;
 	    echo $buttonGCM;
 	} else {
 		echo 'Nessun device registrato!';
 	}
-
+	*/
 	
 }
 
  
 // function to create the DB / Options / Defaults					
-function alefal_notificationGCM_install() {
+function alefal_gestioneMulte_install() {
 
+	/*
 	global $wpdb;
 	$table_name = 'alfl_register_device';
 
@@ -98,16 +100,17 @@ function alefal_notificationGCM_install() {
 
 	require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 	dbDelta( $sql );
+	*/
  
 }
 // run the install scripts upon plugin activation
-register_activation_hook(__FILE__,'alefal_notificationGCM_install');
+register_activation_hook(__FILE__,'alefal_gestioneMulte_install');
 
-add_action( 'admin_footer', 'alefal_notificationGCM_javascript' ); // Write our JS below here
+add_action( 'admin_footer', 'alefal_gestioneMulte_javascript' ); // Write our JS below here
 
-function alefal_notificationGCM_javascript() { 
-	$urlSendNotification = plugins_url().'/alefal_notificationGCM/sendNotificationGCM.php';
-	$urlRemoveDevice = plugins_url().'/alefal_notificationGCM/removeDevice.php';
+function alefal_gestioneMulte_javascript() { 
+	$urlSendNotification = plugins_url().'/alefal_gestioneMulte/sendNotificationGCM.php';
+	$urlRemoveDevice = plugins_url().'/alefal_gestioneMulte/removeDevice.php';
 ?>
 	<script type="text/javascript" >
 	function callSendNotification() {
@@ -123,7 +126,7 @@ function alefal_notificationGCM_javascript() {
 		// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
 		jQuery.post('<?php echo $urlSendNotification; ?>', data, function(response) {
 			//alert('Got this from the server: ' + response);
-			jQuery('#alefal_notificationGCM_ResultNotification').html(response);
+			jQuery('#alefal_gestioneMulte_ResultNotification').html(response);
 			jQuery('#notifTitle').val('');
 			jQuery('#notifMessage').val('');
 		});
