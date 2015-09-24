@@ -12,96 +12,66 @@
  * License URI: http://www.gnu.org/licenses/gpl-3.0
 */
 
-require_once('functions.php');
+require_once('includes/functions.php');
 
+add_action( 'admin_init', 'alefal_gestioneMulte_style' );
+function alefal_gestioneMulte_style() {
+    wp_register_style( 'custom-style', plugins_url( '/css/style.css', __FILE__ ));
+    wp_enqueue_style( 'custom-style');
+}
+
+add_action( 'admin_menu', 'alefal_gestioneMulte_menu' );
 function alefal_gestioneMulte_menu() {
 	add_menu_page( 'Gestione Multe Page', 'Gestione Multe', 'manage_options', 'alefal_gestioneMulte', 'alefal_gestioneMulte_options', 'dashicons-edit' );
 	//add_options_page( 'Notification GCM Options', 'Notification GCM', 'manage_options', 'alefal_gestioneMulte', 'alefal_gestioneMulte_options' );
 }
 
-add_action( 'admin_menu', 'alefal_gestioneMulte_menu' );
-
-function alefal_gestioneMulte_script() {
-    wp_enqueue_script( 'jquery' );
+add_action('admin_menu', 'register_alefal_gestioneMulte_submenu_page');
+function register_alefal_gestioneMulte_submenu_page() {
+	add_submenu_page( 'alefal_gestioneMulte', 'Add / Update', 'Add / Update', 'manage_options', 'alefal_gestioneMulte-submenu-page', 'alefal_gestioneMulte_items_form_page_handler' );
+}
+function alefal_gestioneMulte_items_form_page_handler() {
+	require_once 'includes/insertUpdate.inc';
 }
 
 add_action( 'wp_enqueue_scripts', 'alefal_gestioneMulte_script' );
+function alefal_gestioneMulte_script() {
+    wp_enqueue_script( 'jquery' );
+}
 
 function alefal_gestioneMulte_options() {
 	if ( !current_user_can( 'manage_options' ) )  {
 		wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 	}
 
-	global $wpdb;
-	$table_name = 'alfl_register_device';
-
-	$results = $wpdb->get_results("SELECT * FROM $table_name");
-	$outputRegisterDevice = '';
-
-	echo '<br /><br />';
-	echo '<strong>Gestione notifiche per device ANDROID</strong>';
-	echo '<br /><br />';
-
-	/*
-	if (count($results)> 0) {
-		foreach ($results as $device) {
-			$outputRegisterDevice .= 'Model: <strong>'.$device->registerModel.'</strong> (<a href="javascript:callRemoveDevice('.$device->registerId.')">cancella</a>)<br />';
-			$outputRegisterDevice .= 'RegId: <i>'.$device->registerId.'</i><br /><hr />';
-		}
-
-		$url = plugins_url();
-		$buttonGCM = <<<EOF
-	    Lista device registrati:
-	    <br /><hr />
-	    $outputRegisterDevice
-	    
-	    <div>
-	    	<p>Invia una notifica a tutti i dispositivi registrati</p>
-	    	<div>
-	    		Titolo:
-	    		<br />
-	    		<input type="text" name="notifTitle" id="notifTitle" />
-	    		<br />
-	    		Testo:
-	    		<br />
-	    		<textarea name="notifMessage" id="notifMessage" rows="4" cols="50"></textarea>
-	    		<br />
-	 	   		<a 	class="button button-primary button-hero" 
-	    			href="javascript:callSendNotification()">Invia notifica</a>
-	    	</div>
-	    </div>
-	    <br /><hr /><br />
-	    <div id="alefal_gestioneMulte_ResultNotification"></div>
-EOF;
-	    echo $buttonGCM;
-	} else {
-		echo 'Nessun device registrato!';
+	//Our class extends the WP_List_Table class, so we need to make sure that it's there
+	if(!class_exists('WP_List_Table')){
+   		require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
 	}
-	*/
 	
+	require_once( 'includes/Multe_List_Table.php' );
+	require_once 'includes/view.inc';
 }
 
  
 // function to create the DB / Options / Defaults					
 function alefal_gestioneMulte_install() {
 
-	/*
 	global $wpdb;
-	$table_name = 'alfl_register_device';
+	$table_name = 'alfl_gestione_multe';
 
 	$charset_collate = $wpdb->get_charset_collate();
 
 	$sql = "CREATE TABLE $table_name (
 	  id mediumint(9) NOT NULL AUTO_INCREMENT,
-	  registerId varchar(255) DEFAULT '' NOT NULL,
-	  registerModel varchar(255) DEFAULT '' NOT NULL,
+	  targa varchar(10) DEFAULT '' NOT NULL,
+	  note varchar(255) DEFAULT '' NOT NULL,
 	  UNIQUE KEY id (id)
 	) $charset_collate;";
 
 	require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 	dbDelta( $sql );
-	*/
- 
+	
 }
 // run the install scripts upon plugin activation
 register_activation_hook(__FILE__,'alefal_gestioneMulte_install');
@@ -147,3 +117,66 @@ function alefal_gestioneMulte_javascript() {
 	</script> 
 <?php
 }
+
+
+
+/**
+ * register_activation_hook implementation
+ *
+ * will be called when user activates plugin first time
+ * must create needed database tables
+ */
+/*
+function custom_table_example_install()
+{
+    global $wpdb;
+    global $custom_table_example_db_version;
+
+    $table_name = $wpdb->prefix . 'cte'; // do not forget about tables prefix
+
+    $sql = "CREATE TABLE " . $table_name . " (
+      id int(11) NOT NULL AUTO_INCREMENT,
+      name tinytext NOT NULL,
+      email VARCHAR(100) NOT NULL,
+      age int(11) NULL,
+      PRIMARY KEY  (id)
+    );";
+
+    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+    dbDelta($sql);
+
+    // save current database version for later use (on upgrade)
+    add_option('custom_table_example_db_version', $custom_table_example_db_version);
+
+}
+
+register_activation_hook(__FILE__, 'custom_table_example_install');
+*/
+/**
+ * register_activation_hook implementation
+ *
+ * [OPTIONAL]
+ * additional implementation of register_activation_hook
+ * to insert some dummy data
+ */
+/*
+function custom_table_example_install_data()
+{
+    global $wpdb;
+
+    $table_name = $wpdb->prefix . 'cte'; // do not forget about tables prefix
+
+    $wpdb->insert($table_name, array(
+        'name' => 'Alex',
+        'email' => 'alex@example.com',
+        'age' => 25
+    ));
+    $wpdb->insert($table_name, array(
+        'name' => 'Maria',
+        'email' => 'maria@example.com',
+        'age' => 22
+    ));
+}
+
+register_activation_hook(__FILE__, 'custom_table_example_install_data');
+*/
