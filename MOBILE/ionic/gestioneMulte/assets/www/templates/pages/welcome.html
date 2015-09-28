@@ -1,0 +1,25 @@
+<ion-view view-title="Welcome" hide-nav-bar="true" class="eventForm">
+
+	<ion-header-bar class="bar-positive">
+    	<h1 class="title">Welcome, {{role}} name</h1>
+    	<a ng-click="globFunc.exitApp()" class="power button"><i class="ion-power"></i></a> 
+    </ion-header-bar>
+
+    <ion-content>
+      	<div class="row eventTab">
+          <div class="col col-50">
+            <div class="tabtext" ng-click="globFunc.goto('app.insert')">
+              <div class="icon"><i class="ion-android-create"></i></div>
+              <h3>Nuovo</h3>
+            </div>
+          </div>
+          <div class="col col-50">
+            <div class="tabtext" ng-click="globFunc.goto('app.search')">
+              <div class="icon"><i class="ion-search"></i></div>
+              <h3>Ricerca</h3>
+            </div>
+          </div>
+        </div>
+    </ion-content>
+    
+</ion-view>

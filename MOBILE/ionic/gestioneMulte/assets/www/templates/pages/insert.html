@@ -1,0 +1,50 @@
+<ion-view view-title="Insert" hide-nav-bar="true" class="eventForm">
+
+	<ion-header-bar class="bar-positive">
+    	<h1 class="title">Inserimento</h1>
+    	<a ng-click="globFunc.back()" class="power button"><i class="ion-chevron-left"></i></a> 
+    </ion-header-bar>
+
+    <ion-content class="padding">
+        <div class="message-info message-info-striped">
+            <i class="icon ion-ios-information-outline" style="font-size: 25px;"></i>
+            AUTOMATICO: Data, Ora, Nome Utente, LAT, LOG
+            <br />
+            Targa
+            <br />
+            Elenco VIE
+            <br />
+            Altro...
+            <br />
+            FOTO
+        </div>
+
+        <h4>Reseved to:</h4>
+        <div class="list list-inset">
+            <label class="item">
+                <i class="icon ion-android-contact placeholder-icon"></i>
+                John
+            </label>
+        </div>
+        <div class="spacerVertical"></div>
+
+        <p>{{geo}} - {{lat}} - {{long}}</p>
+
+        <p>{{camera}}</p>
+        <div id="myImage">
+            <img src="{{imageSRC}}" />
+        </div>
+    </ion-content>
+
+    <ion-footer-bar>
+        <div class="row eventTab">
+            <div class="col">
+                <button class="button button-block button-positive icon-left ion-scissors" ng-click="openManageDiscounts()"> Foto</button>
+            </div>
+            <div class="col">
+                <button class="button button-block button-dark icon-left ion-clipboard" ng-click="openManageOrdersBill()"> Altro</button>
+            </div>
+        </div>
+    </ion-footer-bar>
+    
+</ion-view>
