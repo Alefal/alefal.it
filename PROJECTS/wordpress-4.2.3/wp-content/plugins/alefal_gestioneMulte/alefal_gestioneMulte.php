@@ -20,26 +20,12 @@ function alefal_gestioneMulte_style() {
     wp_enqueue_style( 'custom-style');
 }
 
+/***** GESTIONE MULTE *****/
 add_action( 'admin_menu', 'alefal_gestioneMulte_menu' );
 function alefal_gestioneMulte_menu() {
-	add_menu_page( 'Gestione Multe Page', 'Gestione Multe', 'manage_options', 'alefal_gestioneMulte', 'alefal_gestioneMulte_options', 'dashicons-edit' );
-	//add_options_page( 'Notification GCM Options', 'Notification GCM', 'manage_options', 'alefal_gestioneMulte', 'alefal_gestioneMulte_options' );
+	add_menu_page( 'Gestione Multe Page', 'Gestione Multe', 'manage_options', 'alefal_gestioneMulte', 'alefal_gestioneMulte_multe', 'dashicons-edit' );
 }
-
-add_action('admin_menu', 'register_alefal_gestioneMulte_submenu_page');
-function register_alefal_gestioneMulte_submenu_page() {
-	add_submenu_page( 'alefal_gestioneMulte', 'Add / Update', 'Add / Update', 'manage_options', 'alefal_gestioneMulte-submenu-page', 'alefal_gestioneMulte_items_form_page_handler' );
-}
-function alefal_gestioneMulte_items_form_page_handler() {
-	require_once 'includes/insertUpdate.inc';
-}
-
-add_action( 'wp_enqueue_scripts', 'alefal_gestioneMulte_script' );
-function alefal_gestioneMulte_script() {
-    wp_enqueue_script( 'jquery' );
-}
-
-function alefal_gestioneMulte_options() {
+function alefal_gestioneMulte_multe() {
 	if ( !current_user_can( 'manage_options' ) )  {
 		wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 	}
@@ -49,9 +35,80 @@ function alefal_gestioneMulte_options() {
    		require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
 	}
 	
-	require_once( 'includes/Multe_List_Table.php' );
-	require_once 'includes/view.inc';
+	require_once( 'includes/tables/Multe_List_Table.php' );
+	require_once 'includes/views/view_multe.inc';
 }
+
+add_action('admin_menu', 'register_alefal_gestioneMulte_submenu_page');
+function register_alefal_gestioneMulte_submenu_page() {
+	add_submenu_page( 'alefal_gestioneMulte', 'Dati Enti', 'TODO: Enti', 						'manage_options', 'alefal_gestioneMulte-submenu-page', 'alefal_gestioneMulte_enti_form_page_handler' );
+	add_submenu_page( 'alefal_gestioneMulte', 'Agenti', 'Agenti', 								'manage_options', 'alefal_gestioneAgenti-submenu-page', 'alefal_gestioneMulte_agenti' );
+	add_submenu_page( 'alefal_gestioneMulte', 'Articoli', 'TODO: Articoli', 					'manage_options', 'alefal_gestioneMulte-submenu-page', 'alefal_gestioneMulte_articoli_form_page_handler' );
+	add_submenu_page( 'alefal_gestioneMulte', 'Art. Preferiti', 'TODO: Art. Preferiti', 		'manage_options', 'alefal_gestioneMulte-submenu-page', 'alefal_gestioneMulte_artpre_form_page_handler' );
+	add_submenu_page( 'alefal_gestioneMulte', 'Vie/Strade/Piazze', 'TODO: Vie/Strade/Piazze', 	'manage_options', 'alefal_gestioneMulte-submenu-page', 'alefal_gestioneMulte_vie_form_page_handler' );
+	add_submenu_page( 'alefal_gestioneMulte', 'Marche', 'Marche', 								'manage_options', 'alefal_gestioneMarche-submenu-page', 'alefal_gestioneMulte_marche' );
+
+	add_submenu_page( '', 'Add / Update Multe', 'Add / Update', 	'manage_options', 'alefal_gestioneMulte-multe-page', 'alefal_gestioneMulte_multe_form_page_handler' );
+	add_submenu_page( '', 'Add / Update Marche', 'Add / Update', 	'manage_options', 'alefal_gestioneMulte-marche-page', 'alefal_gestioneMulte_marche_form_page_handler' );
+	add_submenu_page( '', 'Add / Update Agenti', 'Add / Update', 	'manage_options', 'alefal_gestioneMulte-agenti-page', 'alefal_gestioneMulte_agenti_form_page_handler' );
+}
+
+function alefal_gestioneMulte_agenti() {
+	if ( !current_user_can( 'manage_options' ) )  {
+		wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
+	}
+
+	//Our class extends the WP_List_Table class, so we need to make sure that it's there
+	if(!class_exists('WP_List_Table')){
+   		require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
+	}
+	
+	require_once( 'includes/tables/Agenti_List_Table.php' );
+	require_once 'includes/views/view_agenti.inc';
+}
+function alefal_gestioneMulte_marche() {
+	if ( !current_user_can( 'manage_options' ) )  {
+		wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
+	}
+
+	//Our class extends the WP_List_Table class, so we need to make sure that it's there
+	if(!class_exists('WP_List_Table')){
+   		require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
+	}
+	
+	require_once( 'includes/tables/Marche_List_Table.php' );
+	require_once 'includes/views/view_marche.inc';
+}
+function alefal_gestioneMulte_multe_form_page_handler() {
+	require_once 'includes/multe.inc';
+}
+function alefal_gestioneMulte_marche_form_page_handler() {
+	require_once 'includes/marche.inc';
+}
+
+function alefal_gestioneMulte_enti_form_page_handler() {
+	
+}
+function alefal_gestioneMulte_agenti_form_page_handler() {
+	require_once 'includes/agenti.inc';
+}
+function alefal_gestioneMulte_articoli_form_page_handler() {
+	
+}
+function alefal_gestioneMulte_artpre_form_page_handler() {
+	
+}
+function alefal_gestioneMulte_vie_form_page_handler() {
+	
+}
+
+
+add_action( 'wp_enqueue_scripts', 'alefal_gestioneMulte_script' );
+function alefal_gestioneMulte_script() {
+    wp_enqueue_script( 'jquery' );
+}
+
+
 
  
 // function to create the DB / Options / Defaults					

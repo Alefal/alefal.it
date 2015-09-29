@@ -1,5 +1,5 @@
 <?php
-class Multe_List_Table extends WP_List_Table {
+class Agenti_List_Table extends WP_List_Table {
  
     function __construct(){
         global $status, $page;
@@ -28,64 +28,50 @@ class Multe_List_Table extends WP_List_Table {
      function get_columns(){
         $columns = array(
             //'cb'        => '<input type="checkbox" />', //Render a checkbox instead of text
-            'id'          => 'ID',
-            'targa'       => 'Targa',
-            'note' 		  => 'Note'
+            'ID'            => 'ID',
+            'ENTE'          => 'ENTE',
+            'NOME_AGENT'    => 'NOME_AGENT',
+            'NICK'          => 'NICK',
+            'PASS'          => 'PASS',
+            'MATR'          => 'MATR',
+            'EMAIL'         => 'EMAIL',
+            'TEL'           => 'TEL'
         );
         return $columns;
     }
 
-    function column_targa($item) {
+    function column_ID($item) {
 		$actions = array(
-			'edit'      => sprintf('<a href="?page=alefal_gestioneMulte-submenu-page&action=%s&id=%s">Edit</a>','edit',$item['id']),
-			'delete'    => sprintf('<a href="?page=%s&action=%s&id=%s">Delete</a>',$_REQUEST['page'],'delete',$item['id']),
+			'edit'      => sprintf('<a href="?page=alefal_gestioneMulte-agenti-page&action=%s&ID=%s">Edit</a>','edit',$item['ID']),
+			'delete'    => sprintf('<a href="?page=%s&action=%s&ID=%s">Delete</a>',$_REQUEST['page'],'delete',$item['ID']),
 		);
 
-		return sprintf('%1$s %2$s', $item['targa'], $this->row_actions($actions) );
-		}
+		return sprintf('%1$s %2$s', $item['ID'], $this->row_actions($actions) );
+	}
  
     function get_sortable_columns() {
-        return array('targa' => array('targa', false));
+        return array('NOME_AGENT' => array('NOME_AGENT', false));
     }
  
     function column_cb($item){
         return sprintf(
             '<input type="checkbox" name="%1$s[]" value="%2$s" />',
             /*$1%s*/ $this->_args['singular'],
-            /*$2%s*/ $item['id']
+            /*$2%s*/ $item['ID']
         );
     }
 
-    /*
-    function get_bulk_actions() {
-        $actions = array(
-            'edit'    	=> 'Modifica',
-            'delete'    => 'Cancella'
-        );
-        return $actions;
-    }
-    */
- 
     function process_bulk_action() {        
       
         if( 'delete'===$this->current_action() ) {
         	//wp_die('Items deleted (or they would be if we had items to delete)!');
-            $this->delete_item($_GET['id']);
-
-            /*
-           	foreach($_GET['id'] as $id) {
-	        	//$id will be a string containing the ID of the video
-                //i.e. $id = "123";   
-                delete_item($id);             
-            }
-            */
+            $this->delete_item($_GET['ID']);
         }        
     }
  
     function prepare_items() {
         global $wpdb; 
-        $pluginpress_db= $wpdb->prefix.'kv_pluginpress' ;    
-        $kv_query = "SELECT * FROM alfl_gestione_multe ";
+        $kv_query = "SELECT * FROM p_agenti ";
         $per_page = 5;
         $columns = $this->get_columns();
         $hidden = array();
@@ -94,7 +80,7 @@ class Multe_List_Table extends WP_List_Table {
         $this->process_bulk_action();        
         $data = $wpdb->get_results($kv_query, ARRAY_A);
         function usort_reorder($a,$b){
-            $orderby = (!empty($_REQUEST['orderby'])) ? $_REQUEST['orderby'] : 'id'; //If no sort, default to name
+            $orderby = (!empty($_REQUEST['orderby'])) ? $_REQUEST['orderby'] : 'ID'; //If no sort, default to name
             $order = (!empty($_REQUEST['order'])) ? $_REQUEST['order'] : 'dsc'; //If no order, default to asc
             $result = strcmp($a[$orderby], $b[$orderby]); //Determine sort order
             return ($order==='asc') ? $result : -$result; //Send final sort direction to usort
@@ -120,8 +106,8 @@ class Multe_List_Table extends WP_List_Table {
 	  global $wpdb;
 
 	  $wpdb->delete(
-	    "alfl_gestione_multe",
-	    [ 'id' => $id ],
+	    "p_agenti",
+	    [ 'ID' => $id ],
 	    [ '%d' ]
 	  );
 	}
