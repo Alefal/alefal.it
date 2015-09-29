@@ -1,0 +1,39 @@
+<ion-modal-view>
+
+  	<ion-header-bar class="bar-positive">
+    	<h1 class="title">Articoli</h1>
+    	<a ng-click="closeModalArticoli()" class="power button"><i class="ion-close"></i></a> 
+  	</ion-header-bar>
+
+  	<ion-content class="padding">
+    
+    	<ion-list class="card"
+
+    		<ion-item ng-repeat="articolo in articoli">
+
+			  	<div class="item item-divider">
+			    	<h3>{{articolo.DES_RID}}</h3>
+			  	</div>
+			  	<div class="item item-text-wrap">
+			  		<p>
+				    	Codice: <strong>{{articolo.COD_ART}}</strong> - 
+				    	CC: <strong>{{articolo.COD_COM}}</strong> -
+				    	Comma: <strong>{{articolo.COMMA}}</strong>
+	    	    	</p>
+	    	    	<hr />
+			  		<p>
+	    	    		{{articolo.DES_ART1}}
+	    	    	</p>
+			  	</div>
+			  	<div class="item item-divider">
+			    	&euro;: {{articolo.IMP_ART}} - Punti: {{articolo.PUNT_ART}}
+			  	</div>
+				
+
+      		</ion-item>
+
+    	</ion-list>
+
+  </ion-content>
+
+</ion-modal-view>

@@ -2,6 +2,10 @@
 angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalprecht.translate'/*, 'ngCordova'*/])
 
 .run(function($ionicPlatform,$ionicPopup,$ionicLoading/*,$rootScope,$cordovaNetwork*/) {
+  $ionicPlatform.registerBackButtonAction(function (event) {
+    event.preventDefault();
+  }, 100);
+
   $ionicPlatform.ready(function() {
 
     console.info('ionicPlatform.ready');
@@ -70,6 +74,9 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 
   });
 })
+.config(function($httpProvider) {
+    $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
+})
 .config(function($translateProvider) {
   $translateProvider.translations('en', {
     AuthenticationFailed: 'Authentication failed! <br /> Use "demo" "demo" and select role...',
@@ -105,6 +112,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
       }
     })
     .state('app.welcome', {
+      cache: false,
       url: '/welcome',
       views: {
         'pageContainer': {
@@ -140,16 +148,42 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 .factory('ajaxCallServices', function($http) {
 
   var ajaxCallServices = {};
-  var urlBase = 'http://torneodeirionistorici.altervista.org';
+  var urlBase = 'http://localhost/alefal.it/PROJECTS/wordpress-4.2.3';
 
   /***** getReleasesRest ****/
-  ajaxCallServices.getReleasesRest = function (isOnline,isOffline) {
+  ajaxCallServices.checkUserAccess = function (isOnline,isOffline,username,password) {
     //http://torneodeirionistorici.altervista.org/wp-json/posts?filter[tag]=comunicatiUfficiali
 
     if(isOnline && !isOffline) {
-      return $http.get(urlBase+'/wp-json/posts?filter[tag]=comunicatiUfficiali');
+      return $http.get(urlBase+'/wp-content/plugins/alefal_gestioneMulte/services/checkUserAccess.php?username='+username+'&password='+password);
+
+      /*
+      return $http({
+        url: urlBase+'/wp-content/plugins/alefal_gestioneMulte/services/checkUserAccess.php',
+        method: 'POST',
+        data: { 
+          username : username,
+          password : password 
+        },
+        headers: {
+          'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
+        }
+      });
+      */
+
     } else {
-      return $http.get('json/releases.json');
+      //return $http.get('json/releases.json');
+    }
+  };
+
+  /***** getArticoli ****/
+  ajaxCallServices.getArticoli = function (isOnline,isOffline) {
+    //http://torneodeirionistorici.altervista.org/wp-content/plugins/alefal_torneodeirionistorici/matchs.php?league_id=171&season_id=172
+
+    if(isOnline && !isOffline) {
+      return $http.get(urlBase+'/wp-content/plugins/alefal_gestioneMulte/services/getArticoli.php');
+    } else {
+      //return $http.get('json/ranking.json');
     }
   };
 
@@ -158,6 +192,9 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 .factory('globalFunction', function($state) {
   return {
     exitApp: function() {
+      localStorage.removeItem('agent_logged');
+      localStorage.removeItem('agent_nome');
+      localStorage.removeItem('agent_matr');
       $state.go('app.login');
     },
     goto: function(url) {
