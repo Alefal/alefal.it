@@ -5,14 +5,53 @@
     	<a ng-click="globFunc.back()" class="power button"><i class="ion-chevron-left"></i></a> 
     </ion-header-bar>
 
-    <ion-content class="padding">
-        <h4>Ricerca</h4>
-        <div class="list list-inset">
-            <label class="item">
-                <input type="search" placeholder="Ricerca">
-            </label>
+    <ion-content>
+
+        <div class="row eventTab">
+            <div class="col col-50">
+                <div class="tabtext" ng-click="openModalItem('articoli')">
+                    <div class="icon"><i class="ion-clipboard"></i></div>
+                    <h3>Articoli</h3>
+                </div>
+            </div>
+            <div class="col col-50">
+                <div class="tabtext" ng-click="openModalItem('marche')">
+                    <div class="icon"><i class="ion-model-s"></i></div>
+                    <h3>Marche</h3>
+                </div>
+            </div>
         </div>
-        <div class="spacerVertical"></div>
+
+        <div class="row eventTab">
+            <div class="col col-50">
+                <div class="tabtext" ng-click="openModalItem('autorizzati')">
+                    <div class="icon"><i class="ion-bookmark"></i></div>
+                    <h3>Autorizzati</h3>
+                </div>
+            </div>
+            <div class="col col-50">
+                <div class="tabtext" ng-click="openModalItem('vie')">
+                    <div class="icon"><i class="ion-map"></i></div>
+                    <h3>Indirizzi</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="row eventTab">
+            <div class="col col-50">
+                <div class="tabtext" ng-click="openModalItem('obbligato')">
+                    <div class="icon"><i class="ion-android-contact"></i></div>
+                    <h3>Obbligato</h3>
+                </div>
+            </div>
+            <div class="col col-50">
+                <div class="tabtext" ng-click="openModalItem('trasgres')">
+                    <div class="icon"><i class="ion-android-contacts"></i></div>
+                    <h3>Trasgressore</h3>
+                </div>
+            </div>
+        </div>
+
     </ion-content>
     
 </ion-view>

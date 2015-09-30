@@ -151,7 +151,13 @@ body { background: #fff; }
 
 .list {
     margin-bottom: 20px !important;
-    border: 2px solid #ccc;
+    /* border: 2px solid #ccc; */
+}
+.itemModal {
+    border-radius: 0px;
+    border: 1px solid #ccc !important;
+    margin-bottom: 15px;
+    padding: 0;
 }
 
 hr {

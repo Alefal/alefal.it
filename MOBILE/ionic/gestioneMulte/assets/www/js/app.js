@@ -79,13 +79,13 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 })
 .config(function($translateProvider) {
   $translateProvider.translations('en', {
-    AuthenticationFailed: 'Authentication failed! <br /> Use "demo" "demo" and select role...',
+    AuthenticationFailed: 'Authentication failed! <br /> Use "demo" "demo"',
     Role: 'Role',
     SignIn: 'Sign In',
     Registration: 'Registration'
   });
   $translateProvider.translations('it', {
-    AuthenticationFailed: 'Autenticazione fallita! <br /> Usa "demo" "demo" e seleziona il ruolo...',
+    AuthenticationFailed: 'Autenticazione fallita! <br /> Usa "demo" "demo"',
     Role: 'Ruolo',
     SignIn: 'Accedi',
     Registration: 'Registrazione'
@@ -148,7 +148,8 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 .factory('ajaxCallServices', function($http) {
 
   var ajaxCallServices = {};
-  var urlBase = 'http://localhost/alefal.it/PROJECTS/wordpress-4.2.3';
+  //var urlBase = 'http://localhost/alefal.it/PROJECTS/wordpress-4.2.3';
+  var urlBase = 'http://10.80.18.107/alefal.it/PROJECTS/wordpress-4.2.3';
 
   /***** getReleasesRest ****/
   ajaxCallServices.checkUserAccess = function (isOnline,isOffline,username,password) {
@@ -177,11 +178,32 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
   };
 
   /***** getArticoli ****/
-  ajaxCallServices.getArticoli = function (isOnline,isOffline) {
+  ajaxCallServices.getItems = function (isOnline,isOffline,item) {
     //http://torneodeirionistorici.altervista.org/wp-content/plugins/alefal_torneodeirionistorici/matchs.php?league_id=171&season_id=172
 
+    var service = '';
+    if(item == 'articoli') {
+      service = 'getArticoli.php';
+    } else if(item == 'marche') {
+      service = 'getMarche.php';
+    }
+
+    if(item == 'articoli') {
+      service = 'getArticoli.php'
+    } else if(item == 'marche') {
+      service = 'getMarche.php';
+    } else if(item == 'autorizzati') {
+      service = 'getAutorizzati.php';
+    } else if(item == 'vie') {
+      service = 'getVie.php';
+    } else if(item == 'obbligato') {
+      service = 'getObbligato.php';
+    } else if(item == 'trasgres') {
+      service = 'getTrasgressore.php';
+    }
+
     if(isOnline && !isOffline) {
-      return $http.get(urlBase+'/wp-content/plugins/alefal_gestioneMulte/services/getArticoli.php');
+      return $http.get(urlBase+'/wp-content/plugins/alefal_gestioneMulte/services/'+service);
     } else {
       //return $http.get('json/ranking.json');
     }
@@ -225,4 +247,51 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
     }
   };
   
+})
+.service('ModalService', function($ionicModal, $rootScope) {
+  
+  var init = function(item, $scope) {
+    var promise;
+    $scope = $scope || $rootScope.$new();
+
+    var tpl = '';
+    if(item == 'articoli') {
+      tpl = 'templates/pages/modalArticoli.html';
+    } else if(item == 'marche') {
+      tpl = 'templates/pages/modalMarche.html';
+    } else if(item == 'autorizzati') {
+      tpl = 'templates/pages/modalAutorizzati.html';
+    } else if(item == 'vie') {
+      tpl = 'templates/pages/modalVie.html';
+    } else if(item == 'obbligato') {
+      tpl = 'templates/pages/modalObbligato.html';
+    } else if(item == 'trasgres') {
+      tpl = 'templates/pages/modalTrasgres.html';
+    }
+
+    promise = $ionicModal.fromTemplateUrl(tpl, {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function(modal) {
+      $scope.modal = modal;
+      return modal;
+    });
+
+    $scope.openModal = function() {
+      $scope.modal.show();
+    };
+    $scope.closeModal = function() {
+      $scope.modal.hide();
+    };
+    $scope.$on('$destroy', function() {
+       $scope.modal.remove();
+    });
+
+    return promise;
+  }
+
+  return {
+    init: init
+  }
+
 });

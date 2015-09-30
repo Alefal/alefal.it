@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('WelcomeCtrl', function($scope,$ionicLoading,$ionicModal,ajaxCallServices,$state/*,$cordovaNetwork*/) {
+.controller('WelcomeCtrl', function($scope,$rootScope,$ionicLoading,$ionicModal,ajaxCallServices,$state,ModalService/*,$cordovaNetwork*/) {
   $ionicLoading.show({
     template: 'Loading...'
   });
@@ -17,18 +17,15 @@ angular.module('starter.controllers', [])
 
   $ionicLoading.hide();
 
-
-  //modalArticoli
+  /*****
+  //modalArticoli 
   $ionicModal.fromTemplateUrl('templates/pages/modalArticoli.html', {
     scope: $scope
   }).then(function(modalArticoli) {
     $scope.modalArticoli = modalArticoli;
   });
-  $scope.closeModalArticoli = function() {
-    $scope.modalArticoli.hide();
-  };
+
   $scope.openModalArticoli = function() {
-    
     ajaxCallServices.getArticoli(true,false)
       .success(function (articoli) {
 
@@ -44,7 +41,12 @@ angular.module('starter.controllers', [])
 
     $scope.modalArticoli.show();
   };
+  $scope.closeModalArticoli = function() {
+    $scope.modalArticoli.hide();
+  };
+  *****/
 
+  
 
 })
 .controller('LoginCtrl', function($scope,$rootScope,$ionicLoading,ajaxCallServices,$state/*,$cordovaNetwork*/) {
@@ -136,46 +138,38 @@ angular.module('starter.controllers', [])
   */
 })
 
-.controller('SearchCtrl', function($scope/*,$cordovaGeolocation*/) {
+.controller('SearchCtrl', function($scope,$ionicLoading,ModalService,ajaxCallServices/*,$cordovaGeolocation*/) {
 
-  $scope.geo = 'GeoLocation';
+  $scope.openModalItem = function(item) {
 
-  /*
-  document.addEventListener("deviceready", function () {
-      var posOptions = {timeout: 10000, enableHighAccuracy: false};
-      $cordovaGeolocation
-          .getCurrentPosition(posOptions)
-          .then(function (position) {
-              $scope.lat  = position.coords.latitude
-              $scope.long = position.coords.longitude
-          }, function(err) {
-              alert(err);
+    $scope.loading = true;
+
+    $ionicLoading.show({
+      template: 'Loading...'
+    });
+
+    ModalService
+      .init(item, $scope)
+      .then(function(modal) {
+
+        ajaxCallServices.getItems(true,false,item)
+          .success(function (items) {
+
+            if(items[0].response[0].result == 'OK') {
+              $scope.items = items[0].items;   
+              $scope.loading = false;    
+
+              $ionicLoading.hide();   
+            } else {
+              $scope.items = 'ERROR';
+            }
+            
+          }).error(function (error) {
+            $scope.status = 'Unable to load customer data' + error;
           });
-  }, false);
-  */
 
-  $scope.camera = 'Camera';
-  /*
-  document.addEventListener("deviceready", function () {
+        modal.show();
+      });
+  };
 
-      var options = {
-            quality: 50,
-            destinationType: Camera.DestinationType.DATA_URL,
-            sourceType: Camera.PictureSourceType.CAMERA,
-            allowEdit: true,
-            encodingType: Camera.EncodingType.JPEG,
-            targetWidth: 100,
-            targetHeight: 100,
-            popoverOptions: CameraPopoverOptions,
-            saveToPhotoAlbum: false
-          };
-
-          $cordovaCamera.getPicture(options).then(function(imageData) {
-            //alert(imageData);
-            $scope.imageSRC = "data:image/jpeg;base64," + imageData;
-          }, function(err) {
-            //alert(err);
-          });
-  }, false);
-  */
 });

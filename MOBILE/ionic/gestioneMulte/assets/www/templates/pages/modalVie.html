@@ -1,0 +1,36 @@
+<!--
+COD_ENT: "43"
+DESCR_VIE: "Via Giovanni Boccaccio"
+ENTE: "H198"
+ID: "1"
+QUART: "1"
+TOPON: ""
+-->
+
+<ion-modal-view>
+
+  	<ion-header-bar class="bar-positive">
+    	<h1 class="title">Vie</h1>
+    	<a ng-click="closeModal()" class="power button"><i class="ion-close"></i></a> 
+  	</ion-header-bar>
+
+  	<ion-content class="padding" ng-show="!loading">
+
+  		<div class="list list-inset" style="border:none;">
+			<label class="item item-input">
+				<i class="icon ion-funnel placeholder-icon"></i>
+				<input type="search" ng-model="q" placeholder="Filtra i risultati...">
+			</label>
+		</div>
+
+    	<ion-list class="card">
+    		<ion-item ng-repeat="item in items | filter:q as results" class="itemModal item-icon-right" style="padding:10px">
+			  	{{item.DESCR_VIE}}		
+			  	<i class="icon ion-chevron-right"></i>	
+      		</ion-item>
+
+    	</ion-list>
+
+  </ion-content>
+
+</ion-modal-view>

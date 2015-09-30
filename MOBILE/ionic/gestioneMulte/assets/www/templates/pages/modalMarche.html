@@ -1,41 +1,33 @@
 <ion-modal-view>
 
   	<ion-header-bar class="bar-positive">
-    	<h1 class="title">Articoli</h1>
+    	<h1 class="title">Marche</h1>
     	<a ng-click="closeModal()" class="power button"><i class="ion-close"></i></a> 
   	</ion-header-bar>
 
   	<ion-content class="padding" ng-show="!loading">
-    
-    	<div class="list list-inset" style="border:none;">
+
+  		<div class="list list-inset" style="border:none;">
 			<label class="item item-input">
 				<i class="icon ion-funnel placeholder-icon"></i>
 				<input type="search" ng-model="q" placeholder="Filtra i risultati...">
 			</label>
 		</div>
-		
+
     	<ion-list class="card">
 
     		<ion-item ng-repeat="item in items | filter:q as results" class="itemModal">
 
 			  	<div class="item item-divider">
-			    	<h3>{{item.DES_RID}}</h3>
+			    	<h3 ng-if="item.TIPO == 'A'">AUTOMOBILE</h3>
+			    	<h3 ng-if="item.TIPO == 'M'">MOTOCICLO</h3>
 			  	</div>
 			  	<div class="item item-text-wrap">
 			  		<p>
-				    	Codice: <strong>{{item.COD_ART}}</strong> - 
-				    	CC: <strong>{{item.COD_COM}}</strong> -
-				    	Comma: <strong>{{item.COMMA}}</strong>
+				    	Marca: <strong>{{item.MARCA}}</strong> - 
+				    	Modello: <strong>{{item.MODELLO}}</strong>
 	    	    	</p>
-	    	    	<hr />
-			  		<p>
-	    	    		{{item.DES_ART1}}
-	    	    	</p>
-			  	</div>
-			  	<div class="item item-divider">
-			    	&euro;: {{item.IMP_ART}} - Punti: {{item.PUNT_ART}}
-			  	</div>
-				
+			  	</div>				
 
       		</ion-item>
 
