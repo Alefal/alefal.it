@@ -32,18 +32,22 @@ ID: "1"
 
     	<ion-list class="card">
 
-    		<ion-item ng-repeat="item in items | filter:q as results" class="itemModal">
+    		<ion-item ng-repeat="item in items | filter:q as results" class="itemModal item-icon-right">
 
 			  	<div class="item item-divider">
 			    	<h3>{{item.NOME_OBLG}}</h3>
+
+			    	<span ng-if="selectItem" ng-click="selezionaObbligato(item.NOME_OBLG)"> 
+			    		<i class="icon ion-toggle"></i>
+			    	</span>
 			  	</div>
 			  	<div class="item item-text-wrap">
 			  		<p> 
-			  			Nato a <strong>{{item.LUOGO_NASC_OBLG}}</strong> il <strong>{{item.DATA_NASC_OBLG}}</strong> e residente in <strong>{{item.RESID_VIA_OBLG}}</strong>, <strong>{{item.RESID_CAP_OBLG}}</strong> <strong>{{item.RESID_COMUN_OBLG}}</strong>
+			  			Nato a <strong>{{item.LUOGO_NASC_OBLG}}</strong> ill <strong>{{item.DATA_NASC_OBLG | date:"MM/dd/yyyy"}}</strong> e residente in <strong>{{item.RESID_VIA_OBLG}}</strong>, <strong>{{item.RESID_CAP_OBLG}}</strong> <strong>{{item.RESID_COMUN_OBLG}}</strong>
 			  		</p>
 			  		<hr />
 			  		<p>
-			  			Documento <strong>{{item.TIPO_DOC_OBLG}}</strong> numero <strong>{{item.NUM_DOC_OBLG}}</strong> rilasciato da <strong>{{item.ENTE_RIL_DOC_OBLG}}</strong> il <strong>{{item.DATA_RIL_DOC_OBLG}}</strong>
+			  			Documento <strong>{{item.TIPO_DOC_OBLG}}</strong> numero <strong>{{item.NUM_DOC_OBLG}}</strong> rilasciato da <strong>{{item.ENTE_RIL_DOC_OBLG}}</strong> il <strong>{{item.DATA_RIL_DOC_OBLG | date:"MM/dd/yyyy"}}</strong>
 	    	    	</p>
 			  	</div>
 			  	<div class="item item-divider">

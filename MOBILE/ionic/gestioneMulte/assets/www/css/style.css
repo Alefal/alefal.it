@@ -164,3 +164,16 @@ hr {
     border-bottom: 1px dotted #ccc;
     margin: 5px;
 }
+
+.inserimentoVerbale .icon {
+    font-size: 25px;
+    padding-right: 15px;
+}
+.inserimentoVerbale .readonly {
+    background-color: #f8f8f8;
+}
+
+.inserimentoVerbale .row, 
+.inserimentoVerbale .col {
+    padding: 0;
+}

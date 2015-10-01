@@ -5,27 +5,195 @@
     	<a ng-click="globFunc.back()" class="power button"><i class="ion-chevron-left"></i></a> 
     </ion-header-bar>
 
-    <ion-content class="padding">
+    <ion-content class="padding inserimentoVerbale">
+        <!--
         <div class="message-info message-info-striped">
             <i class="icon ion-ios-information-outline" style="font-size: 25px;"></i>
-            AUTOMATICO: Data, Ora, Nome Utente, LAT, LOG
-            <br />
-            Targa
-            <br />
-            Elenco VIE
-            <br />
-            Altro...
-            <br />
-            FOTO
         </div>
+        -->
 
-        <h4>Reseved to:</h4>
+        <!--
+        NUM_VERB
+        DATA_VERB
+        ORA_VERB
+        -->
+        <h4>Verbale</h4>
         <div class="list list-inset">
-            <label class="item">
-                <i class="icon ion-android-contact placeholder-icon"></i>
-                John
+            <label class="item item-input">
+                <input type="text" name="NUM_VERB" placeholder="Numero verbale">
+            </label>
+            <label class="item item-input">
+                <!--
+                <input type="date" name="DATA_VERB" placeholder="Data verbale" value="{{date | date:'MM/dd/yyyy'}}">
+                -->
+                <input type="text" name="DATA_VERB" placeholder="Data verbale" onfocus="this.type='date';this.setAttribute('onfocus','');this.blur();this.focus();">
+                <i class="icon ion-calendar"></i>
+            </label>
+            <label class="item item-input">
+                <!--
+                <input type="time" name="ORA_VERB" placeholder="Ora verbale" value="{{date | date:'h:mma'}}">
+                -->
+                <input type="text" name="ORA_VERB" placeholder="Ora verbale" onfocus="this.type='time';this.setAttribute('onfocus','');this.blur();this.focus();">
+                <i class="icon ion-clock"></i>
             </label>
         </div>
+
+        <!-- 
+        TIPO_VEI_VERB
+        TARGA_VERB
+        MODELLO_VERB
+        -->
+        <div class="row eventTab">
+            <div class="col">
+                <h4>Veicolo</h4>
+            </div>
+            <div class="col" align="right">
+                <button class="button button-assertive icon-left ion-android-checkbox-outline" ng-click="openModalItem('marche')"> Scegli</button>
+            </div>
+        </div>
+
+        <div class="list list-inset">
+            <label class="item item-input">
+                <input type="text" name="TARGA_VERB" placeholder="Targa veicolo">
+                <i class="icon ion-model-s"></i>
+            </label>
+            <label class="item item-input readonly">
+                <input type="text" name="TIPO_VEI_VERB" value="{{tipoVeicolo}}" readonly="true" placeholder="Tipo veicolo">
+            </label>
+            <label class="item item-input readonly">
+                <input type="text" name="MODELLO_VERB" value="{{modelloVeicolo}}" readonly="true" placeholder="Modello veicolo">
+            </label>
+        </div>
+
+        <!-- 
+        VIA_VERB
+        CIVICO_VERB
+        DESCR_VIA_VERB
+        -->
+        <div class="row eventTab">
+            <div class="col">
+                <h4>Indirizzo</h4>
+            </div>
+            <div class="col" align="right">
+                <button class="button button-balanced icon-left ion-android-checkbox-outline" ng-click="openModalItem('vie')"> Scegli</button>
+            </div>
+        </div>
+
+        <div class="list list-inset">
+            <label class="item item-input readonly">
+                <input type="text" name="VIA_VERB" placeholder="Indirizzo" readonly="true" value="{{indirizzo}}">
+                <i class="icon ion-map"></i>
+            </label>
+            <label class="item item-input">
+                <input type="number" name="CIVICO_VERB" placeholder="Civico">
+            </label>
+            <label class="item item-input">
+                <textarea name="DESCR_VIA_VERB" placeholder="Descrizione indirizzo" rows="5" cols="10"></textarea>
+            </label>
+        </div>
+
+        <!-- 
+        ART1_VERB
+        COD1_VERB
+        DESCR_ART1_VERB
+        -->
+        <div class="row eventTab">
+            <div class="col">
+                <h4>Articolo</h4>
+            </div>
+            <div class="col" align="right">
+                <button class="button button-positive icon-left ion-android-checkbox-outline" ng-click="openModalItem('articoli','art1')"> Scegli</button>
+            </div>
+        </div>
+
+        <div class="list list-inset">
+            <label class="item item-input readonly">
+                <input type="text" name="ART1_VERB" placeholder="Articolo" readonly="true" value="{{art1}}">
+                <i class="icon ion-clipboard"></i>
+            </label>
+            <label class="item item-input readonly">
+                <input type="text" name="COD1_VERB" placeholder="Cod e Comma" readonly="true" value="{{codArt1}}">
+            </label>
+            <label class="item item-input readonly">
+                <textarea name="DESCR_ART1_VERB" placeholder="Descrizione articolo" readonly="true" rows="5" cols="10" ng-bind="descrArt1"></textarea>
+            </label>
+        </div>
+
+        <!-- 
+        ART2_VERB
+        COD2_VERB
+        DESCR_ART2_VERB
+        -->
+        <div class="row eventTab">
+            <div class="col">
+                <h4>Articolo</h4>
+            </div>
+            <div class="col" align="right">
+                <button class="button button-positive icon-left ion-android-checkbox-outline" ng-click="openModalItem('articoli','art2')"> Scegli</button>
+            </div>
+        </div>
+
+        <div class="list list-inset">
+            <label class="item item-input readonly">
+                <input type="text" name="ART2_VERB" placeholder="Articolo" readonly="true" value="{{art2}}">
+                <i class="icon ion-clipboard"></i>
+            </label>
+            <label class="item item-input readonly">
+                <input type="text" name="COD2_VERB" placeholder="Cod e Comma" readonly="true" value="{{codArt2}}">
+            </label>
+            <label class="item item-input readonly">
+                <textarea name="DESCR_ART2_VERB" placeholder="Descrizione articolo" readonly="true" rows="5" cols="10" ng-bind="descrArt2"></textarea>
+            </label>
+        </div>
+
+        <!-- 
+        COD_OBLG_VERB
+        -->
+        <div class="row eventTab">
+            <div class="col col-80">
+                <div class="list list-inset" style="margin: 0 !important;">
+                    <label class="item item-input readonly">
+                        <input type="text" name="COD_OBLG_VERB" placeholder="Obbligato" readonly="true" value="{{nomeObbligato}}">
+                        <i class="icon ion-android-contact"></i>
+                    </label>
+                </div>
+            </div>
+            <div class="col" align="right">
+                <button class="button button-energized icon-left-right ion-android-checkbox-outline" ng-click="openModalItem('obbligato','')" style="height: 45px;"></button>
+            </div>
+        </div>
+
+        <div class="spacerVertical"></div>
+        
+        <!-- 
+        COD_TRSG_VERB
+        -->
+        <div class="row eventTab">
+            <div class="col col-80">
+                <div class="list list-inset" style="margin: 0 !important;">
+                    <label class="item item-input readonly">
+                        <input type="text" name="COD_TRSG_VERB" placeholder="Trasgressore" readonly="true" value="{{nomeTrasgres}}">
+                        <i class="icon ion-android-contacts"></i>
+                    </label>
+                </div>
+            </div>
+            <div class="col" align="right">
+                <button class="button button-dark icon-left-right ion-android-checkbox-outline" ng-click="openModalItem('trasgres','')" style="height: 45px;"></button>
+            </div>
+        </div>
+
+        <!--
+        AGENTE2_VERB
+        LATI_VERB
+        LONG_VERB
+        -->
+        <input type="hidden" name="AGENTE2_VERB" value="{{agenteVerbale}}">
+        <input type="hidden" name="LATI_VERB" value="{{latVerbale}}">
+        <input type="hidden" name="LONG_VERB" value="{{longVerbale}}">
+
+        <!--
+        IMG_VERB
+        -->
         <div class="spacerVertical"></div>
 
         <p>{{geo}} - {{lat}} - {{long}}</p>
@@ -35,16 +203,5 @@
             <img src="{{imageSRC}}" />
         </div>
     </ion-content>
-
-    <ion-footer-bar>
-        <div class="row eventTab">
-            <div class="col">
-                <button class="button button-block button-positive icon-left ion-scissors" ng-click="openManageDiscounts()"> Foto</button>
-            </div>
-            <div class="col">
-                <button class="button button-block button-dark icon-left ion-clipboard" ng-click="openManageOrdersBill()"> Altro</button>
-            </div>
-        </div>
-    </ion-footer-bar>
     
 </ion-view>

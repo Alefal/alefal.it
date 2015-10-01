@@ -16,10 +16,14 @@
 		
     	<ion-list class="card">
 
-    		<ion-item ng-repeat="item in items | filter:q as results" class="itemModal">
+    		<ion-item ng-repeat="item in items | filter:q as results" class="itemModal item-icon-right">
 
 			  	<div class="item item-divider">
 			    	<h3>{{item.DES_RID}}</h3>
+
+			    	<span ng-if="selectItem" ng-click="selezionaArticolo(item.COD_ART,item.COD_COM,item.COMMA,item.DES_ART1)"> 
+			    		<i class="icon ion-toggle"></i>
+			    	</span>
 			  	</div>
 			  	<div class="item item-text-wrap">
 			  		<p>

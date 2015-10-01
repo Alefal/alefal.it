@@ -16,11 +16,16 @@
 
     	<ion-list class="card">
 
-    		<ion-item ng-repeat="item in items | filter:q as results" class="itemModal">
+    		<ion-item ng-repeat="item in items | filter:q as results" class="itemModal item-icon-right">
 
 			  	<div class="item item-divider">
 			    	<h3 ng-if="item.TIPO == 'A'">AUTOMOBILE</h3>
 			    	<h3 ng-if="item.TIPO == 'M'">MOTOCICLO</h3>
+
+			    	<span ng-if="selectItem" ng-click="selezionaMarca(item.TIPO,item.MARCA,item.MODELLO)"> 
+			    		<i class="icon ion-toggle"></i>
+			    	</span>
+
 			  	</div>
 			  	<div class="item item-text-wrap">
 			  		<p>

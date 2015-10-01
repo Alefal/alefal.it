@@ -30,18 +30,22 @@ TIPO_DOC_TRGS: "PATENTE"
 
 		<ion-list class="card">
 
-    		<ion-item ng-repeat="item in items | filter:q as results" class="itemModal">
+    		<ion-item ng-repeat="item in items | filter:q as results" class="itemModal item-icon-right">
 
 			  	<div class="item item-divider">
 			    	<h3>{{item.NOME_TRGS}}</h3>
+
+			    	<span ng-if="selectItem" ng-click="selezionaTrasgres(item.NOME_TRGS)"> 
+			    		<i class="icon ion-toggle"></i>
+			    	</span>
 			  	</div>
 			  	<div class="item item-text-wrap">
 			  		<p> 
-			  			Nato a <strong>{{item.LUOGO_NASC_TRGS}}</strong> il <strong>{{item.DATA_NASC_TRGS}}</strong> e residente in <strong>{{item.RESID_VIA_TRGS}}</strong>, <strong>{{item.RESID_CAP_TRGS}}</strong> <strong>{{item.RESID_COMUN_TRGS}}</strong>
+			  			Nato a <strong>{{item.LUOGO_NASC_TRGS}}</strong> il <strong>{{item.DATA_NASC_TRGS | date:"MM/dd/yyyy"}}</strong> e residente in <strong>{{item.RESID_VIA_TRGS}}</strong>, <strong>{{item.RESID_CAP_TRGS}}</strong> <strong>{{item.RESID_COMUN_TRGS}}</strong>
 			  		</p>
 			  		<hr />
 			  		<p>
-			  			Documento <strong>{{item.TIPO_DOC_TRGS}}</strong> numero <strong>{{item.NUM_DOC_TRGS}}</strong> rilasciato da <strong>{{item.ENTE_RIL_DOC_TRGS}}</strong> il <strong>{{item.DATA_RIL_DOC_TRGS}}</strong>
+			  			Documento <strong>{{item.TIPO_DOC_TRGS}}</strong> numero <strong>{{item.NUM_DOC_TRGS}}</strong> rilasciato da <strong>{{item.ENTE_RIL_DOC_TRGS}}</strong> il <strong>{{item.DATA_RIL_DOC_TRGS | date:"MM/dd/yyyy"}}</strong>
 	    	    	</p>
 			  	</div>				
 

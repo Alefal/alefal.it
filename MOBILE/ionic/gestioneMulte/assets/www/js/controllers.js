@@ -94,9 +94,89 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('InsertCtrl', function($scope/*,$cordovaGeolocation*/) {
+.controller('InsertCtrl', function($scope,$ionicLoading,ModalService,ajaxCallServices/*,$cordovaGeolocation*/) {
 
-  $scope.geo = 'GeoLocation';
+  $scope.date = new Date();
+
+  $scope.agenteVerbale  = localStorage.getItem('agent_matr');
+
+  $scope.latVerbale   = '';
+  $scope.longVerbale  = '';
+
+  $scope.openModalItem = function(item,section) {
+
+    $scope.setArt1 = false;
+    $scope.setArt2 = false;
+
+    if(section == 'art1') {
+      $scope.setArt1 = true;
+    } else if(section == 'art2') {
+      $scope.setArt2 = true;
+    }
+
+    $scope.loading = true;
+    $scope.selectItem = true;
+
+    $ionicLoading.show({
+      template: 'Loading...'
+    });
+
+    ModalService
+      .init(item, $scope)
+      .then(function(modal) {
+
+        ajaxCallServices.getItems(true,false,item)
+          .success(function (items) {
+
+            if(items[0].response[0].result == 'OK') {
+              $scope.items = items[0].items;   
+              $scope.loading = false;    
+
+              $ionicLoading.hide();   
+            } else {
+              $scope.items = 'ERROR';
+            }
+            
+          }).error(function (error) {
+            $scope.status = 'Unable to load customer data' + error;
+          });
+
+        modal.show();
+      });
+  };
+
+  $scope.selezionaMarca = function(TIPO,MARCA,MODELLO) {
+    $scope.tipoVeicolo    = TIPO;
+    $scope.modelloVeicolo = MODELLO;
+    $scope.modal.hide();
+  }
+
+  $scope.selezionaIndirizzo = function(DESCR_VIE) {
+    $scope.indirizzo = DESCR_VIE;
+    $scope.modal.hide();
+  }
+
+  $scope.selezionaArticolo = function(COD_ART,COD_COM,COMMA,DES_ART1) {
+    if($scope.setArt1) {
+      $scope.art1       = COD_ART;
+      $scope.codArt1    = COD_COM+' - '+COMMA;
+      $scope.descrArt1  = DES_ART1;
+    } else if($scope.setArt2) {
+      $scope.art2       = COD_ART;
+      $scope.codArt2    = COD_COM+' - '+COMMA;
+      $scope.descrArt2  = DES_ART1;
+    }
+    $scope.modal.hide();
+  }
+
+  $scope.selezionaObbligato = function(NOME_OBLG) {
+    $scope.nomeObbligato = NOME_OBLG;
+    $scope.modal.hide();
+  }
+  $scope.selezionaTrasgres = function(NOME_TRGS) {
+    $scope.nomeTrasgres = NOME_TRGS;
+    $scope.modal.hide();
+  }
 
   /*
   document.addEventListener("deviceready", function () {
