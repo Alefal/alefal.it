@@ -18,6 +18,9 @@
         ORA_VERB
         -->
         <h4>Verbale</h4>
+
+        <button class="button button-dark icon-left-right ion-android-checkbox-outline" ng-click="openModalItem('photo','')" style="height: 45px;"></button>
+
         <div class="list list-inset">
             <label class="item item-input">
                 <input type="text" name="NUM_VERB" placeholder="Numero verbale" ng-model="verbale.numeroVerbale">
@@ -153,7 +156,8 @@
             <div class="col col-80">
                 <div class="list list-inset" style="margin: 0 !important;">
                     <label class="item item-input readonly">
-                        <input type="text" name="COD_OBLG_VERB" placeholder="Obbligato" readonly="true" value="{{nomeObbligato}}">
+                        <input type="text" placeholder="Obbligato" readonly="true" value="{{nomeObbligato}}">
+                        <input type="hidden" name="COD_OBLG_VERB" value="{{idObbligato}}">
                         <i class="icon ion-android-contact"></i>
                     </label>
                 </div>
@@ -172,7 +176,8 @@
             <div class="col col-80">
                 <div class="list list-inset" style="margin: 0 !important;">
                     <label class="item item-input readonly">
-                        <input type="text" name="COD_TRSG_VERB" placeholder="Trasgressore" readonly="true" value="{{nomeTrasgres}}">
+                        <input type="text" placeholder="Trasgressore" readonly="true" value="{{nomeTrasgres}}">
+                        <input type="hidden" name="COD_TRSG_VERB" value="{{idTrasgres}}">
                         <i class="icon ion-android-contacts"></i>
                     </label>
                 </div>

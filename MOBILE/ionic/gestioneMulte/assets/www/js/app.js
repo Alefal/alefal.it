@@ -277,6 +277,8 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
       tpl = 'templates/pages/modalObbligato.html';
     } else if(item == 'trasgres') {
       tpl = 'templates/pages/modalTrasgres.html';
+    } else if(item == 'photo') {
+      tpl = 'templates/pages/modalPhoto.html';
     }
 
     promise = $ionicModal.fromTemplateUrl(tpl, {
