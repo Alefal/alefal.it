@@ -148,8 +148,8 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 .factory('ajaxCallServices', function($http) {
 
   var ajaxCallServices = {};
-  //var urlBase = 'http://localhost/alefal.it/PROJECTS/wordpress-4.2.3';
-  var urlBase = 'http://10.80.18.107/alefal.it/PROJECTS/wordpress-4.2.3';
+  var urlBase = 'http://localhost/alefal.it/PROJECTS/wordpress-4.2.3';
+  //var urlBase = 'http://10.80.18.107/alefal.it/PROJECTS/wordpress-4.2.3';
 
   /***** getReleasesRest ****/
   ajaxCallServices.checkUserAccess = function (isOnline,isOffline,username,password) {
@@ -177,7 +177,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
     }
   };
 
-  /***** getArticoli ****/
+  /***** getItems ****/
   ajaxCallServices.getItems = function (isOnline,isOffline,item) {
     //http://torneodeirionistorici.altervista.org/wp-content/plugins/alefal_torneodeirionistorici/matchs.php?league_id=171&season_id=172
 
@@ -204,6 +204,16 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 
     if(isOnline && !isOffline) {
       return $http.get(urlBase+'/wp-content/plugins/alefal_gestioneMulte/services/'+service);
+    } else {
+      //return $http.get('json/ranking.json');
+    }
+  };
+
+  /***** salvaVerbale ****/
+  ajaxCallServices.salvaVerbale = function (isOnline,isOffline,verbaleCompleto) {
+    if(isOnline && !isOffline) {
+      console.log(verbaleCompleto);
+      return $http({url:urlBase+'/wp-content/plugins/alefal_gestioneMulte/services/setVerbale.php',method:'GET',params:{verbaleCompleto: verbaleCompleto}});
     } else {
       //return $http.get('json/ranking.json');
     }

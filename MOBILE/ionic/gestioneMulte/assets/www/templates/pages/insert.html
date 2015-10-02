@@ -20,20 +20,20 @@
         <h4>Verbale</h4>
         <div class="list list-inset">
             <label class="item item-input">
-                <input type="text" name="NUM_VERB" placeholder="Numero verbale">
+                <input type="text" name="NUM_VERB" placeholder="Numero verbale" ng-model="verbale.numeroVerbale">
             </label>
             <label class="item item-input">
                 <!--
                 <input type="date" name="DATA_VERB" placeholder="Data verbale" value="{{date | date:'MM/dd/yyyy'}}">
                 -->
-                <input type="text" name="DATA_VERB" placeholder="Data verbale" onfocus="this.type='date';this.setAttribute('onfocus','');this.blur();this.focus();">
+                <input type="text" name="DATA_VERB" placeholder="Data verbale" ng-model="verbale.dataVerbale" onfocus="this.type='date';this.setAttribute('onfocus','');this.blur();this.focus();">
                 <i class="icon ion-calendar"></i>
             </label>
             <label class="item item-input">
                 <!--
                 <input type="time" name="ORA_VERB" placeholder="Ora verbale" value="{{date | date:'h:mma'}}">
                 -->
-                <input type="text" name="ORA_VERB" placeholder="Ora verbale" onfocus="this.type='time';this.setAttribute('onfocus','');this.blur();this.focus();">
+                <input type="text" name="ORA_VERB" placeholder="Ora verbale" ng-model="verbale.oraVerbale" onfocus="this.type='time';this.setAttribute('onfocus','');this.blur();this.focus();">
                 <i class="icon ion-clock"></i>
             </label>
         </div>
@@ -54,7 +54,7 @@
 
         <div class="list list-inset">
             <label class="item item-input">
-                <input type="text" name="TARGA_VERB" placeholder="Targa veicolo">
+                <input type="text" name="TARGA_VERB" placeholder="Targa veicolo" ng-model="verbale.targaVeicolo">
                 <i class="icon ion-model-s"></i>
             </label>
             <label class="item item-input readonly">
@@ -85,10 +85,10 @@
                 <i class="icon ion-map"></i>
             </label>
             <label class="item item-input">
-                <input type="number" name="CIVICO_VERB" placeholder="Civico">
+                <input type="number" name="CIVICO_VERB" placeholder="Civico" ng-model="verbale.indirizzoCivico">
             </label>
             <label class="item item-input">
-                <textarea name="DESCR_VIA_VERB" placeholder="Descrizione indirizzo" rows="5" cols="10"></textarea>
+                <textarea name="DESCR_VIA_VERB" placeholder="Descrizione indirizzo" rows="5" cols="10" ng-model="verbale.indirizzoDescr"></textarea>
             </label>
         </div>
 
@@ -200,6 +200,28 @@
         <div id="myImage">
             <img width="50%" src="data:image/png;base64,{{imgBase64}}" />
         </div>
+
+        <div class="row eventTab">
+            <div class="col col-50">
+                <button class="button button-block button-positive icon-left ion-android-done" ng-click="salvaVerbale(verbale)"> Salva</button>
+            </div>
+            <div class="col col-50">
+                <button class="button button-block button-assertive icon-left ion-android-cancel" ng-click="annullaVerbale()"> Annulla</button>
+            </div>
+        </div>
     </ion-content>
+
+    <!--
+    <ion-footer-bar>
+        <div class="row eventTab">
+            <div class="col col-50">
+                <button class="button button-block button-positive icon-left ion-android-done" ng-click="salvaVerbale(verbale)"> Salva</button>
+            </div>
+            <div class="col col-50">
+                <button class="button button-block button-assertive icon-left ion-android-cancel" ng-click="annullaVerbale()"> Annulla</button>
+            </div>
+        </div>
+  </ion-footer-bar>
+  -->
     
 </ion-view>
