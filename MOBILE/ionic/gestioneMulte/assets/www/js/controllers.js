@@ -94,7 +94,50 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('InsertCtrl', function($scope,$ionicLoading,ModalService,ajaxCallServices,$cordovaFileTransfer/*,$cordovaGeolocation*/) {
+.controller('InsertCtrl', function($scope,$ionicLoading,ModalService,ajaxCallServices/*,$cordovaCamera,$cordovaFileTransfer,$cordovaGeolocation*/) {
+
+  $scope.data = { "ImageURI" :  "Select Image" };
+
+      $scope.takePicture = function() {
+        var options = {
+          quality: 50,
+          destinationType: Camera.DestinationType.FILE_URL,
+          sourceType: Camera.PictureSourceType.CAMERA
+        };
+        $cordovaCamera.getPicture(options).then(
+          function(imageData) {
+            console.log(imageData);
+            $scope.picData = imageData;
+            $scope.ftLoad = true;
+            /*$localstorage.set('fotoUp', imageData);*/
+            $ionicLoading.show({
+              template: 'Foto acquisita...', duration:5000
+            });
+          },
+          function(err){
+            $ionicLoading.show({template: 'Errore di caricamento...', duration:5000});
+          })
+      }
+
+  $scope.uploadPicture = function() {
+        $ionicLoading.show({template: 'Sto inviando la foto...'});
+        var fileURL = $scope.picData;
+        var options = new FileUploadOptions();
+        options.fileKey = "file";
+        options.fileName = fileURL.substr(fileURL.lastIndexOf('/') + 1);
+        options.mimeType = "image/jpeg";
+        options.chunkedMode = true;
+
+        var params = {};
+        params.value1 = "someparams";
+            params.value2 = "otherparams";
+
+        options.params = params;
+
+        var ft = new FileTransfer();
+        ft.upload(fileURL, encodeURI("http://192.168.1.188/alefal.it/PROJECTS/wordpress-4.2.3/wp-content/plugins/alefal_gestioneMulte/services/upload.php"), viewUploadedPictures, function(error) {$ionicLoading.show({template: 'Errore di connessione...'});
+        $ionicLoading.hide();}, options);
+      }
 
   $scope.date = new Date();
 

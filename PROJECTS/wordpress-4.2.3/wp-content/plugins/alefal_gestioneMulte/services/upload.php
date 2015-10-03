@@ -1,6 +1,6 @@
 <?php
 header('Access-Control-Allow-Origin: *'); 
-$dirname = "../friends/".trim($_POST['value1']); 
+$dirname = "../".trim($_POST['value1']); 
 $ran = $_POST['value2']."_".rand();  
 
 // If uploading file

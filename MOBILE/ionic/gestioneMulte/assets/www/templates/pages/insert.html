@@ -68,6 +68,23 @@
             </label>
         </div>
 
+        <div class="row eventTab">
+            <div class="col">
+                <h4>Scatta foto</h4>
+            </div>
+            <div class="col" align="right">
+                <button class="button button-dark icon-left ion-ios-camera-outline" ng-click="takePicture()"> Scegli</button>
+            </div>
+        </div>
+        <div class="list list-inset">
+            <label class="item item-input capturePhoto">
+                <div ng-show="picData" class="item item-image">
+                    When pics loaded click to upload!
+                    <img id="myImage" class="item" ng-src="{{picData}}" ng-click="uploadPicture()" style="height:750px;"/>
+                </div>
+            </label>
+        </div>
+
         <!-- 
         VIA_VERB
         CIVICO_VERB
