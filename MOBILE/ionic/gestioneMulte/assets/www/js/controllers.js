@@ -1,24 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('WelcomeCtrl', function($scope,$rootScope,$ionicLoading,$ionicModal,ajaxCallServices,$state,ModalService/*,$cordovaNetwork*/) {
-  $ionicLoading.show({
-    template: 'Attendere...'
-  });
-
-  //check localStorage size:
-  //for(var x in localStorage)console.log(x+"="+((localStorage[x].length * 2)/1024/1024).toFixed(2)+" MB");
-
-  if(localStorage.getItem('agent_logged')) {
-    $scope.agent_nome = localStorage.getItem('agent_nome');
-    $scope.agent_matr = localStorage.getItem('agent_matr');
-  } else {
-     $state.go('app.login');
-  }
-
-  $ionicLoading.hide();
-
-})
-.controller('LoginCtrl', function($scope,$rootScope,$ionicLoading,ajaxCallServices,$state/*,$cordovaNetwork*/) {
+.controller('LoginCtrl', function($scope,$rootScope,$ionicLoading,ajaxCallServices,$state,ModalService/*,$cordovaNetwork*/) {
 
   $scope.userLoggedFailed = false;
 
@@ -32,10 +14,7 @@ angular.module('starter.controllers', [])
       template: 'Attendere...'
     });
 
-    var isOnline  = true;
-    var isOffline = false;
-
-    ajaxCallServices.checkUserAccess(isOnline,isOffline,$scope.authorization.username,$scope.authorization.password)
+    ajaxCallServices.checkUserAccess($scope.authorization.username,$scope.authorization.password)
       .success(function (access) {
 
         if(access[0].response[0].result == 'OK') {
@@ -44,6 +23,34 @@ angular.module('starter.controllers', [])
           localStorage.setItem('agent_logged', true);
           localStorage.setItem('agent_nome', access[0].items[0].NOME_AGENT);
           localStorage.setItem('agent_matr', access[0].items[0].MATR);
+
+          //MEMORIZZO I DATI NEL LOCAL STORAGE PER NAVIGAZIONE OFFLINE
+          $scope.openModalItem = function(item) {
+            ModalService
+              .init(item, $scope)
+              .then(function(modal) {
+
+                ajaxCallServices.getItems(item)
+                  .success(function (items) {
+
+                    if(items[0].response[0].result == 'OK') {
+                      localStorage.setItem(item,JSON.stringify(items[0]));
+                    } else {
+                      $scope.items = 'ERROR';
+                    }
+
+                  }).error(function (error) {
+                    $scope.status = 'Unable to load customer data' + error;
+                  });
+              });
+          };
+
+          $scope.openModalItem('articoli');
+          $scope.openModalItem('marche');
+          $scope.openModalItem('autorizzati');
+          $scope.openModalItem('vie');
+          $scope.openModalItem('obbligato');
+          $scope.openModalItem('trasgres');
 
           $ionicLoading.hide();
           $state.go('app.welcome');
@@ -63,7 +70,108 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('InsertCtrl', function($scope,$rootScope,$ionicLoading,$ionicScrollDelegate,$state,$ionicPopup,ModalService,ajaxCallServices,$cordovaFileTransfer,$cordovaCamera,$cordovaGeolocation) {
+.controller('WelcomeCtrl', function($scope,$rootScope,$ionicLoading,$ionicModal,$ionicPopup,ajaxCallServices,$state,ModalService/*,$cordovaNetwork*/) {
+  $ionicLoading.show({
+    template: 'Attendere...'
+  });
+
+  $scope.showAlert = function(title,message) {
+     var alertPopup = $ionicPopup.alert({
+       title: title,
+       template: message
+     });
+  };
+
+  //check localStorage size:
+  //for(var x in localStorage)console.log(x+"="+((localStorage[x].length * 2)/1024/1024).toFixed(2)+" MB");
+
+  if(localStorage.getItem('agent_logged')) {
+    $scope.agent_nome = localStorage.getItem('agent_nome');
+    $scope.agent_matr = localStorage.getItem('agent_matr');
+
+    var online = true;
+    if (localStorage.getItem('datiVerbaleOffline') === null) {
+      $scope.datiVerbaleOffline = false;
+    } else {
+      if(online) {
+        $scope.datiVerbaleOffline = true;
+      } 
+    }
+  } else {
+     $state.go('app.login');
+  }
+
+  $ionicLoading.hide();
+
+  $scope.sincronizzaDati = function() {
+    $scope.verbaleCompletoArray = [];
+
+    if (localStorage.getItem('datiVerbaleOffline') === null) {
+      $scope.showAlert('Sincronizza dati','Dati offline non trovati!');
+    } else {
+      $scope.verbaleCompletoArray = angular.fromJson(localStorage.getItem('datiVerbaleOffline'));
+    }
+
+    $scope.messageSincronizzazione      = '';
+    $scope.viewMessageSincronizzazione  = false;
+
+    angular.forEach($scope.verbaleCompletoArray, function (items, indexP) {
+      console.log(JSON.stringify(items['numeroVerbale']));
+
+      $scope.verbaleCompleto = JSON.stringify(items);
+     
+      ajaxCallServices.salvaVerbale($scope.verbaleCompleto)
+        .success(function (result) {
+
+          //console.log(JSON.stringify(result));
+          //console.log(result[0].message);
+          //console.log($scope.picData);
+
+          //document.addEventListener('deviceready', function () {
+
+              if(angular.isNumber(result[0].message)) {
+
+                var server = $rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/upload.php?id='+result[0].message;
+                var filePath = $scope.picData;
+                console.log(filePath);
+                var options = {};
+
+                if (filePath == '') {
+                  $cordovaFileTransfer.upload(server, filePath, options)
+                    .then(function(result) {
+                      // Result
+                      $scope.messageSincronizzazione += 'Verbale '+JSON.stringify(items['numeroVerbale'])+' salvato correttamente! <br/>';
+                      $scope.viewMessageSincronizzazione = true;
+                    }, function(err) {
+                      // Error
+                      $scope.messageSincronizzazione += 'Errore nel salvataggio del verbale '+JSON.stringify(items['numeroVerbale'])+'! <br/>';
+                      $scope.viewMessageSincronizzazione = true;
+                    }, function (progress) {
+                      // constant progress updates
+                    });
+                  } else {
+                    $scope.messageSincronizzazione += 'Verbale '+JSON.stringify(items['numeroVerbale'])+' salvato correttamente! <br/>';
+                    $scope.viewMessageSincronizzazione = true;
+                  }
+              } else {
+                $scope.messageSincronizzazione += 'Verbale '+JSON.stringify(items['numeroVerbale'])+' salvato correttamente! <br/>';
+                $scope.viewMessageSincronizzazione = true;
+              }
+
+              $scope.datiVerbaleOffline = false;
+              localStorage.removeItem('datiVerbaleOffline');
+            //}, false);
+
+        }).error(function (error) {
+          $ionicLoading.hide();
+        });
+      
+    });
+  };
+
+})
+
+.controller('InsertCtrl', function($scope,$rootScope,$ionicLoading,$ionicScrollDelegate,$state,$ionicPopup,ModalService,ajaxCallServices/*,$cordovaFileTransfer,$cordovaCamera,$cordovaGeolocation*/) {
 
   // An alert dialog
   $scope.showAlert = function(title,message) {
@@ -105,7 +213,7 @@ angular.module('starter.controllers', [])
 
   $scope.latVerbale   = '';
   $scope.longVerbale  = '';
-
+  /*
   var posOptions = {timeout: 10000, enableHighAccuracy: false};
   $cordovaGeolocation
     .getCurrentPosition(posOptions)
@@ -115,7 +223,7 @@ angular.module('starter.controllers', [])
     }, function(err) {
       // error
     });
-
+  */
   $scope.salvaVerbale = function(verbale) {
 
     if (typeof(verbale) == 'undefined') {
@@ -174,7 +282,9 @@ angular.module('starter.controllers', [])
       template: 'Attendere...'
     });
 
-    var verbaleCompleto =
+    $scope.picData = '1234567890';
+
+    $scope.verbaleCompleto =
       {
         'numeroVerbale'   : verbale.numeroVerbale,
         'dataVerbale'     : verbale.dataVerbale,
@@ -185,7 +295,7 @@ angular.module('starter.controllers', [])
         'targaVeicolo'    : verbale.targaVeicolo,
         'tipoVeicolo'     : $scope.tipoVeicolo,
         'modelloVeicolo'  : $scope.modelloVeicolo,
-        'indirizzo'       : $scope.indirizzo,
+        'indirizzo'       : $scope.indirizzoId,
         'indirizzoCivico' : verbale.indirizzoCivico,
         'indirizzoDescr'  : verbale.indirizzoDescr,
         'art1'            : $scope.art1,
@@ -196,66 +306,86 @@ angular.module('starter.controllers', [])
         'descrArt2'       : $scope.descrArt2,
         'nomeObbligato'   : $scope.idObbligato,
         'nomeTrasgres'    : $scope.idTrasgres,
-        'imgBase64'       : ''
+        'imgBase64'       : $scope.picData
         //'imgBase64'       : $scope.imgBase64
       };
 
-    var isOnline  = true;
-    var isOffline = false;
+    var online = true;
 
-    ajaxCallServices.salvaVerbale(isOnline,isOffline,verbaleCompleto)
-      .success(function (result) {
+    if(online) {
 
-        //console.log(JSON.stringify(result));
-        //console.log(result[0].message);
-        //console.log($scope.picData);
+      ajaxCallServices.salvaVerbale($scope.verbaleCompleto)
+        .success(function (result) {
 
-        document.addEventListener('deviceready', function () {
+          //console.log(JSON.stringify(result));
+          //console.log(result[0].message);
+          //console.log($scope.picData);
 
-            if(angular.isNumber(result[0].message)) {
+          document.addEventListener('deviceready', function () {
 
-              var server = $rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/upload.php?id='+result[0].message;
-              var filePath = $scope.picData;
-              console.log(filePath);
-              var options = {};
+              if(angular.isNumber(result[0].message)) {
 
-              if (filePath == '') {
-                $cordovaFileTransfer.upload(server, filePath, options)
-                  .then(function(result) {
-                    // Result
+                var server = $rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/upload.php?id='+result[0].message;
+                var filePath = $scope.picData;
+                console.log(filePath);
+                var options = {};
+
+                if (filePath == '') {
+                  $cordovaFileTransfer.upload(server, filePath, options)
+                    .then(function(result) {
+                      // Result
+                      $ionicLoading.hide();
+                      $scope.showAlert('Salvataggio verbale','Verbale salvato correttamente!');
+                      $scope.annullaVerbale();
+                      console.log(result);
+                    }, function(err) {
+                      // Error
+                      $ionicLoading.hide();
+                      $scope.showAlert('Salvataggio verbale','Errore nel salvataggio del verbale: '+JSON.stringify(err));
+                      $scope.annullaVerbale();
+                      console.log(err);
+                    }, function (progress) {
+                      // constant progress updates
+                      console.log(progress);
+                    });
+                  } else {
                     $ionicLoading.hide();
                     $scope.showAlert('Salvataggio verbale','Verbale salvato correttamente!');
                     $scope.annullaVerbale();
-                    console.log(result);
-                  }, function(err) {
-                    // Error
-                    $ionicLoading.hide();
-                    $scope.showAlert('Salvataggio verbale','Errore nel salvataggio del verbale: '+JSON.stringify(err));
-                    $scope.annullaVerbale();
-                    console.log(err);
-                  }, function (progress) {
-                    // constant progress updates
-                    console.log(progress);
-                  });
-                } else {
-                  $ionicLoading.hide();
-                  $scope.showAlert('Salvataggio verbale','Verbale salvato correttamente!');
-                  $scope.annullaVerbale();
-                }
-            } else {
-              $ionicLoading.hide();
-              $scope.showAlert('Salvataggio verbale','Verbale salvato correttamente!');
-              $scope.annullaVerbale();
-            }
-          }, false);
+                  }
+              } else {
+                $ionicLoading.hide();
+                $scope.showAlert('Salvataggio verbale','Verbale salvato correttamente!');
+                $scope.annullaVerbale();
+              }
+            }, false);
 
-      }).error(function (error) {
+        }).error(function (error) {
+          $ionicLoading.hide();
+        });
+
+      } else {
+        $scope.verbaleCompletoArray = [];
+
+        if (localStorage.getItem('datiVerbaleOffline') === null) {
+          $scope.verbaleCompletoArray = [];
+        } else {
+          $scope.verbaleCompletoArray = angular.fromJson(localStorage.getItem('datiVerbaleOffline'));
+        }
+
+        $scope.verbaleCompletoArray.push($scope.verbaleCompleto);
+        console.log($scope.verbaleCompletoArray);
+
+        localStorage.setItem('datiVerbaleOffline',JSON.stringify($scope.verbaleCompletoArray));
+
         $ionicLoading.hide();
-      });
-
+        $scope.showAlert('Salvataggio verbale','Il tuo verbale &egrave; stato salvato in memoria! Ricordati di premere "Sincronizza" appena entri sotto copertura rete.');
+        $scope.annullaVerbale();
+      }
 
   }
 
+  
   $scope.annullaVerbale = function() {
     //verbale.numeroVerbale   = '';
     //verbale.dataVerbale     = '';
@@ -284,36 +414,30 @@ angular.module('starter.controllers', [])
 
   $scope.openModalItem = function(item,section) {
 
-    if(item == 'photo') {
+    $scope.setArt1 = false;
+    $scope.setArt2 = false;
 
-      ModalService
-        .init(item, $scope)
-        .then(function(modal) {
-          modal.show();
-        });
+    if(section == 'art1') {
+      $scope.setArt1 = true;
+    } else if(section == 'art2') {
+      $scope.setArt2 = true;
+    }
 
-    } else {
-      $scope.setArt1 = false;
-      $scope.setArt2 = false;
+    $scope.loading = true;
+    $scope.selectItem = true;
 
-      if(section == 'art1') {
-        $scope.setArt1 = true;
-      } else if(section == 'art2') {
-        $scope.setArt2 = true;
-      }
+    $ionicLoading.show({
+      template: 'Attendere...'
+    });
 
-      $scope.loading = true;
-      $scope.selectItem = true;
+    ModalService
+      .init(item, $scope)
+      .then(function(modal) {
 
-      $ionicLoading.show({
-        template: 'Attendere...'
-      });
+        var online = true;
 
-      ModalService
-        .init(item, $scope)
-        .then(function(modal) {
-
-          ajaxCallServices.getItems(true,false,item)
+        if(online) {
+          ajaxCallServices.getItems(item)
             .success(function (items) {
 
               if(items[0].response[0].result == 'OK') {
@@ -329,9 +453,19 @@ angular.module('starter.controllers', [])
               $scope.status = 'Unable to load customer data' + error;
             });
 
-          modal.show();
+            modal.show();
+          } else {
+
+            var jsObject = angular.fromJson(localStorage.getItem(item));
+            
+            $scope.items = jsObject.items;
+            $scope.loading = false;
+
+            $ionicLoading.hide();
+            modal.show();
+          }
         });
-      }
+      
   };
 
   $scope.selezionaMarca = function(TIPO,MARCA,MODELLO) {
@@ -340,8 +474,9 @@ angular.module('starter.controllers', [])
     $scope.modal.hide();
   }
 
-  $scope.selezionaIndirizzo = function(DESCR_VIE) {
-    $scope.indirizzo = DESCR_VIE;
+  $scope.selezionaIndirizzo = function(ID,DESCR_VIE) {
+    $scope.indirizzoId  = ID;
+    $scope.indirizzo    = DESCR_VIE;
     $scope.modal.hide();
   }
 
@@ -386,31 +521,6 @@ angular.module('starter.controllers', [])
           });
   }, false);
   */
-
-  $scope.camera = 'Camera';
-  /*
-  document.addEventListener("deviceready", function () {
-
-      var options = {
-            quality: 50,
-            destinationType: Camera.DestinationType.DATA_URL,
-            sourceType: Camera.PictureSourceType.CAMERA,
-            allowEdit: true,
-            encodingType: Camera.EncodingType.JPEG,
-            targetWidth: 100,
-            targetHeight: 100,
-            popoverOptions: CameraPopoverOptions,
-            saveToPhotoAlbum: false
-          };
-
-          $cordovaCamera.getPicture(options).then(function(imageData) {
-            //alert(imageData);
-            $scope.imageSRC = "data:image/jpeg;base64," + imageData;
-          }, function(err) {
-            //alert(err);
-          });
-  }, false);
-  */
 })
 
 .controller('SearchCtrl', function($scope,$ionicLoading,ModalService,ajaxCallServices/*,$cordovaGeolocation*/) {
@@ -427,23 +537,37 @@ angular.module('starter.controllers', [])
       .init(item, $scope)
       .then(function(modal) {
 
-        ajaxCallServices.getItems(true,false,item)
-          .success(function (items) {
+        var online = true;
 
-            if(items[0].response[0].result == 'OK') {
-              $scope.items = items[0].items;
-              $scope.loading = false;
+        if(online) {
+          ajaxCallServices.getItems(item)
+            .success(function (items) {
 
-              $ionicLoading.hide();
-            } else {
-              $scope.items = 'ERROR';
-            }
+              if(items[0].response[0].result == 'OK') {
+                $scope.items = items[0].items;
+                $scope.loading = false;
 
-          }).error(function (error) {
-            $scope.status = 'Unable to load customer data' + error;
-          });
+                $ionicLoading.hide();
+              } else {
+                $scope.items = 'ERROR';
+              }
 
-        modal.show();
+            }).error(function (error) {
+              $scope.status = 'Unable to load customer data' + error;
+            });
+
+          modal.show();
+        } else {
+
+          var jsObject = angular.fromJson(localStorage.getItem(item));
+          console.log(jsObject.items);
+
+          $scope.items = jsObject.items;
+          $scope.loading = false;
+
+          $ionicLoading.hide();
+          modal.show();
+        }
       });
   };
 

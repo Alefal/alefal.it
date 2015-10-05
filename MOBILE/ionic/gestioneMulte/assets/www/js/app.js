@@ -1,5 +1,5 @@
 // Ionic Starter App
-angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalprecht.translate', 'ngCordova'])
+angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalprecht.translate'/*, 'ngCordova'*/])
 
 .run(function($ionicPlatform,$ionicPopup,$ionicLoading,$rootScope/*,$cordovaNetwork*/) {
   $ionicPlatform.registerBackButtonAction(function (event) {
@@ -9,6 +9,8 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
   $ionicPlatform.ready(function() {
 
     $rootScope.server = 'http://192.168.1.188/alefal.it/PROJECTS/wordpress-4.2.3';
+    //$rootScope.server = 'http://cdsmobile.swstudio.net/';
+
     console.info('ionicPlatform.ready');
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -151,38 +153,15 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
   var ajaxCallServices = {};
 
   /***** getReleasesRest ****/
-  ajaxCallServices.checkUserAccess = function (isOnline,isOffline,username,password) {
-    //http://torneodeirionistorici.altervista.org/wp-json/posts?filter[tag]=comunicatiUfficiali
-
-    if(isOnline && !isOffline) {
-      return $http.get($rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/checkUserAccess.php?username='+username+'&password='+password);
-
-      /*
-      return $http({
-        url: urlBase+'/wp-content/plugins/alefal_gestioneMulte/services/checkUserAccess.php',
-        method: 'POST',
-        data: {
-          username : username,
-          password : password
-        },
-        headers: {
-          'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
-        }
-      });
-      */
-
-    } else {
-      //return $http.get('json/releases.json');
-    }
+  ajaxCallServices.checkUserAccess = function (username,password) {
+    return $http.get($rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/checkUserAccess.php?username='+username+'&password='+password);
   };
 
   /***** getItems ****/
-  ajaxCallServices.getItems = function (isOnline,isOffline,item) {
-    //http://torneodeirionistorici.altervista.org/wp-content/plugins/alefal_torneodeirionistorici/matchs.php?league_id=171&season_id=172
-
-    console.log(isOnline+' - '+isOffline+' - '+item);
-
+  ajaxCallServices.getItems = function (item) {
+    
     var service = '';
+
     if(item == 'articoli') {
       service = 'getArticoli.php';
     } else if(item == 'marche') {
@@ -203,21 +182,14 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
       service = 'getTrasgressore.php';
     }
 
-    if(isOnline && !isOffline) {
-      return $http.get($rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/'+service);
-    } else {
-      //return $http.get('json/ranking.json');
-    }
+    return $http.get($rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/'+service);
+    
   };
 
   /***** salvaVerbale ****/
-  ajaxCallServices.salvaVerbale = function (isOnline,isOffline,verbaleCompleto) {
-    if(isOnline && !isOffline) {
-      console.log(verbaleCompleto);
-      return $http({url:$rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/setVerbale.php',method:'GET',params:{verbaleCompleto: verbaleCompleto}});
-    } else {
-      //return $http.get('json/ranking.json');
-    }
+  ajaxCallServices.salvaVerbale = function (verbaleCompleto) {
+    console.log(verbaleCompleto);
+    return $http({url:$rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/setVerbale.php',method:'GET',params:{verbaleCompleto: verbaleCompleto}});
   };
 
   return ajaxCallServices;

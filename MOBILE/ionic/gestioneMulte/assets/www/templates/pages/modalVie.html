@@ -27,7 +27,7 @@ TOPON: ""
     		<ion-item ng-repeat="item in items | filter:q as results" class="itemModal item-icon-right" style="padding:10px">
 			  	{{item.DESCR_VIE}}	
 
-          <span ng-if="selectItem" ng-click="selezionaIndirizzo(item.DESCR_VIE)"> 
+          <span ng-if="selectItem" ng-click="selezionaIndirizzo(item.ID,item.DESCR_VIE)"> 
             <i class="icon ion-toggle"></i>
           </span>	
       	</ion-item>

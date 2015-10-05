@@ -22,7 +22,10 @@
         </div>
       </div>
 
-      <div class="row eventTab">
+      <div class="message-info message-info-striped padding" ng-show="viewMessageSincronizzazione" ng-bind-html="messageSincronizzazione" style="margin:10px">
+      </div>
+
+      <div class="row eventTab" ng-show="datiVerbaleOffline" ng-click="sincronizzaDati()">
         <div class="col">
           <div class="tabtext" ng-click="">
             <div class="icon"><i class="ion-arrow-swap"></i></div>
