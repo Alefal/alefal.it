@@ -1,13 +1,14 @@
 // Ionic Starter App
-angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalprecht.translate'/*, 'ngCordova'*/])
+angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalprecht.translate', 'ngCordova'])
 
-.run(function($ionicPlatform,$ionicPopup,$ionicLoading/*,$rootScope,$cordovaNetwork*/) {
+.run(function($ionicPlatform,$ionicPopup,$ionicLoading,$rootScope/*,$cordovaNetwork*/) {
   $ionicPlatform.registerBackButtonAction(function (event) {
     event.preventDefault();
   }, 100);
 
   $ionicPlatform.ready(function() {
 
+    $rootScope.server = 'http://192.168.1.188/alefal.it/PROJECTS/wordpress-4.2.3';
     console.info('ionicPlatform.ready');
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -121,7 +122,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
         }
       }
     })
-    
+
     .state('app.insert', {
       url: '/insert',
       views: {
@@ -145,26 +146,24 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
   $urlRouterProvider.otherwise('/app/login');
 })
 
-.factory('ajaxCallServices', function($http) {
+.factory('ajaxCallServices', function($http,$rootScope) {
 
   var ajaxCallServices = {};
-  var urlBase = 'http://localhost/alefal.it/PROJECTS/wordpress-4.2.3';
-  //var urlBase = 'http://10.80.18.107/alefal.it/PROJECTS/wordpress-4.2.3';
 
   /***** getReleasesRest ****/
   ajaxCallServices.checkUserAccess = function (isOnline,isOffline,username,password) {
     //http://torneodeirionistorici.altervista.org/wp-json/posts?filter[tag]=comunicatiUfficiali
 
     if(isOnline && !isOffline) {
-      return $http.get(urlBase+'/wp-content/plugins/alefal_gestioneMulte/services/checkUserAccess.php?username='+username+'&password='+password);
+      return $http.get($rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/checkUserAccess.php?username='+username+'&password='+password);
 
       /*
       return $http({
         url: urlBase+'/wp-content/plugins/alefal_gestioneMulte/services/checkUserAccess.php',
         method: 'POST',
-        data: { 
+        data: {
           username : username,
-          password : password 
+          password : password
         },
         headers: {
           'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
@@ -180,6 +179,8 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
   /***** getItems ****/
   ajaxCallServices.getItems = function (isOnline,isOffline,item) {
     //http://torneodeirionistorici.altervista.org/wp-content/plugins/alefal_torneodeirionistorici/matchs.php?league_id=171&season_id=172
+
+    console.log(isOnline+' - '+isOffline+' - '+item);
 
     var service = '';
     if(item == 'articoli') {
@@ -203,7 +204,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
     }
 
     if(isOnline && !isOffline) {
-      return $http.get(urlBase+'/wp-content/plugins/alefal_gestioneMulte/services/'+service);
+      return $http.get($rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/'+service);
     } else {
       //return $http.get('json/ranking.json');
     }
@@ -213,7 +214,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
   ajaxCallServices.salvaVerbale = function (isOnline,isOffline,verbaleCompleto) {
     if(isOnline && !isOffline) {
       console.log(verbaleCompleto);
-      return $http({url:urlBase+'/wp-content/plugins/alefal_gestioneMulte/services/setVerbale.php',method:'GET',params:{verbaleCompleto: verbaleCompleto}});
+      return $http({url:$rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/setVerbale.php',method:'GET',params:{verbaleCompleto: verbaleCompleto}});
     } else {
       //return $http.get('json/ranking.json');
     }
@@ -250,16 +251,16 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
             return;
         if( attr.type !== 'time' )
             return;
-                
+
         ngModel.$formatters.unshift(function(value) {
             return value.replace(/:[0-9]+.[0-9]+$/, '');
         });
     }
   };
-  
+
 })
 .service('ModalService', function($ionicModal, $rootScope) {
-  
+
   var init = function(item, $scope) {
     var promise;
     $scope = $scope || $rootScope.$new();

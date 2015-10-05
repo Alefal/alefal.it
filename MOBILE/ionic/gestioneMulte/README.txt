@@ -5,4 +5,4 @@ Plugin necessari:
 - cordova plugin add cordova-plugin-file-transfer
 - cordova plugin add https://github.com/apache/cordova-plugin-network-information
 - cordova plugin add cordova-plugin-device
-cordova plugin add org.apache.cordova.camera
+- cordova plugin add org.apache.cordova.camera

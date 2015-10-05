@@ -1,4 +1,11 @@
 <?php
+// Turn off all error reporting
+// Report all errors except E_NOTICE
+error_reporting(E_ALL & ~E_NOTICE);
+
+// Report all PHP errors (see changelog)
+error_reporting(E_ALL);
+
 /***** CAMPI *****
 ID
 NUM_VERB
@@ -33,6 +40,9 @@ $resultArray = array();
 
 $verbaleCompletoObj = str_replace('\\', '',$_GET['verbaleCompleto']);
 $verbaleCompletoArr = json_decode($verbaleCompletoObj, true);
+
+//print_r(isset($verbaleCompletoArr['tipoVeicolo']) ? $verbaleCompletoArr['tipoVeicolo'] : '');
+//die();
 
 if($verbaleCompletoArr['numeroVerbale'] != '') {
     
@@ -103,27 +113,27 @@ if($verbaleCompletoArr['numeroVerbale'] != '') {
                                 %s, %s, %s, %s, %s, %s, %s,
                                 %s, %s, %s, %s, %s, %s, %s,
                                 %s, %s, %s, %s, %s, %s, %s)", 
-                    $verbaleCompletoArr['numeroVerbale'],
-                    $verbaleCompletoArr['dataVerbale'],
-                    $verbaleCompletoArr['oraVerbale'],
-                    $verbaleCompletoArr['tipoVeicolo'],
-                    $verbaleCompletoArr['targaVeicolo'],
-                    $verbaleCompletoArr['modelloVeicolo'],
-                    $verbaleCompletoArr['indirizzo'],
-                    $verbaleCompletoArr['indirizzoCivico'],
-                    $verbaleCompletoArr['indirizzoDescr'],
-                    $verbaleCompletoArr['art1'],
-                    $verbaleCompletoArr['codArt1'],
-                    $verbaleCompletoArr['descrArt1'],
-                    $verbaleCompletoArr['art2'],
-                    $verbaleCompletoArr['codArt2'],
-                    $verbaleCompletoArr['descrArt2'],
-                    $verbaleCompletoArr['agenteVerbale'],
-                    $verbaleCompletoArr['nomeObbligato'],
-                    $verbaleCompletoArr['nomeTrasgres'],
+                    isset($verbaleCompletoArr['numeroVerbale'])     ? $verbaleCompletoArr['numeroVerbale'] : '',
+                    isset($verbaleCompletoArr['dataVerbale'])       ? $verbaleCompletoArr['dataVerbale'] : '',
+                    isset($verbaleCompletoArr['oraVerbale'])        ? $verbaleCompletoArr['oraVerbale'] : '',
+                    isset($verbaleCompletoArr['tipoVeicolo'])       ? $verbaleCompletoArr['tipoVeicolo'] : '',
+                    isset($verbaleCompletoArr['targaVeicolo'])      ? $verbaleCompletoArr['targaVeicolo'] : '',
+                    isset($verbaleCompletoArr['modelloVeicolo'])    ? $verbaleCompletoArr['modelloVeicolo'] : '',
+                    isset($verbaleCompletoArr['indirizzo'])         ? $verbaleCompletoArr['indirizzo'] : '',
+                    isset($verbaleCompletoArr['indirizzoCivico'])   ? $verbaleCompletoArr['indirizzoCivico'] : '',
+                    isset($verbaleCompletoArr['indirizzoDescr'])    ? $verbaleCompletoArr['indirizzoDescr'] : '',
+                    isset($verbaleCompletoArr['art1'])              ? $verbaleCompletoArr['art1'] : '',
+                    isset($verbaleCompletoArr['codArt1'])           ? $verbaleCompletoArr['codArt1'] : '',
+                    isset($verbaleCompletoArr['descrArt1'])         ? $verbaleCompletoArr['descrArt1'] : '',
+                    isset($verbaleCompletoArr['art2'])              ? $verbaleCompletoArr['art2'] : '',
+                    isset($verbaleCompletoArr['codArt2'])           ? $verbaleCompletoArr['codArt2'] : '',
+                    isset($verbaleCompletoArr['descrArt2'])         ? $verbaleCompletoArr['descrArt2'] : '',
+                    isset($verbaleCompletoArr['agenteVerbale'])     ? $verbaleCompletoArr['agenteVerbale'] : '',
+                    isset($verbaleCompletoArr['nomeObbligato'])     ? $verbaleCompletoArr['nomeObbligato'] : '',
+                    isset($verbaleCompletoArr['nomeTrasgres'])      ? $verbaleCompletoArr['nomeTrasgres'] : '',
                     '',
-                    $verbaleCompletoArr['latVerbale'],
-                    $verbaleCompletoArr['longVerbale']);
+                    isset($verbaleCompletoArr['latVerbale'])        ? $verbaleCompletoArr['latVerbale'] : '',
+                    isset($verbaleCompletoArr['longVerbale'])       ? $verbaleCompletoArr['longVerbale'] : '');
 
         //echo $sql;
         $result = $wpdb->query($sql);
@@ -199,7 +209,7 @@ if($verbaleCompletoArr['numeroVerbale'] != '') {
         if ($result > 0) {
             $resultArray[] = array(
                 'result'  => 'OK',
-                'message' => 'Inserimento eseguito'
+                'message' => $wpdb->insert_id
             );
         } 
 

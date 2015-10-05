@@ -13,10 +13,10 @@ body { background: #fff; }
 .has-tabs-top { top: 44px; }
 .bar { height: 54px; }
 .has-header { top: 54px; }
-.bar .title, .platform-android .bar .title { 
-    height: 53px; 
-    line-height: 54px; 
-    text-align: center; 
+.bar .title, .platform-android .bar .title {
+    height: 53px;
+    line-height: 54px;
+    text-align: center;
     color: #1773BA;
 }
 .agentLogged {
@@ -173,7 +173,7 @@ hr {
     background-color: #f8f8f8;
 }
 
-.inserimentoVerbale .row, 
+.inserimentoVerbale .row,
 .inserimentoVerbale .col {
     padding: 0;
 }
