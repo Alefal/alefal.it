@@ -5,8 +5,8 @@ angular.module('starter.controllers', [])
   $scope.userLoggedFailed = false;
 
   $scope.authorization = {
-    username: 'demo',
-    password : 'demo'
+    username: 'VinSCHIAVO',
+    password : '12345'
   };
 
   $scope.login = function() {
@@ -14,6 +14,7 @@ angular.module('starter.controllers', [])
       template: 'Attendere...'
     });
 
+    //LOGIN offline ???
     ajaxCallServices.checkUserAccess($scope.authorization.username,$scope.authorization.password)
       .success(function (access) {
 
@@ -21,8 +22,10 @@ angular.module('starter.controllers', [])
           $scope.userLoggedFailed = false;
 
           localStorage.setItem('agent_logged', true);
+          localStorage.setItem('agent_id', access[0].items[0].ID);
           localStorage.setItem('agent_nome', access[0].items[0].NOME_AGENT);
-          localStorage.setItem('agent_matr', access[0].items[0].MATR);
+          localStorage.setItem('agent_ente', access[0].items[0].ENTE);
+          localStorage.setItem('agent_ente', access[0].items[0].MATR);
 
           //MEMORIZZO I DATI NEL LOCAL STORAGE PER NAVIGAZIONE OFFLINE
           $scope.openModalItem = function(item) {
@@ -51,6 +54,7 @@ angular.module('starter.controllers', [])
           $scope.openModalItem('vie');
           $scope.openModalItem('obbligato');
           $scope.openModalItem('trasgres');
+          $scope.openModalItem('agenti');
 
           $ionicLoading.hide();
           $state.go('app.welcome');
@@ -70,7 +74,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('WelcomeCtrl', function($scope,$rootScope,$ionicLoading,$ionicModal,$ionicPopup,ajaxCallServices,$state,ModalService/*,$cordovaNetwork*/) {
+.controller('WelcomeCtrl', function($scope,$rootScope,$ionicLoading,$ionicModal,$ionicPopup,ajaxCallServices,$state,ModalService/*,$cordovaNetwork,$cordovaFileTransfer*/) {
   $ionicLoading.show({
     template: 'Attendere...'
   });
@@ -89,13 +93,12 @@ angular.module('starter.controllers', [])
     $scope.agent_nome = localStorage.getItem('agent_nome');
     $scope.agent_matr = localStorage.getItem('agent_matr');
 
-    var online = true;
-    if (localStorage.getItem('datiVerbaleOffline') === null) {
-      $scope.datiVerbaleOffline = false;
+    if (localStorage.getItem('datiVerbaleOffline')) {
+      if(!$rootScope.checkNoConnection) {
+        $rootScope.datiVerbaleOffline = true;
+      }
     } else {
-      if(online) {
-        $scope.datiVerbaleOffline = true;
-      } 
+      $rootScope.datiVerbaleOffline = false;
     }
   } else {
      $state.go('app.login');
@@ -106,37 +109,40 @@ angular.module('starter.controllers', [])
   $scope.sincronizzaDati = function() {
     $scope.verbaleCompletoArray = [];
 
-    if (localStorage.getItem('datiVerbaleOffline') === null) {
-      $scope.showAlert('Sincronizza dati','Dati offline non trovati!');
-    } else {
+    if (localStorage.getItem('datiVerbaleOffline')) {
       $scope.verbaleCompletoArray = angular.fromJson(localStorage.getItem('datiVerbaleOffline'));
+    } else {
+      $scope.showAlert('Sincronizza dati','Dati offline non trovati!');
     }
 
     $scope.messageSincronizzazione      = '';
     $scope.viewMessageSincronizzazione  = false;
 
     angular.forEach($scope.verbaleCompletoArray, function (items, indexP) {
-      console.log(JSON.stringify(items['numeroVerbale']));
 
       $scope.verbaleCompleto = JSON.stringify(items);
-     
+      var numeroVerbale = JSON.stringify(items['numeroVerbale']);
+      var imageVerbale  = JSON.stringify(items['imgBase64']);
+
+      console.log('numeroVerbale -> '+numeroVerbale);
+      console.log('imageVerbale -> '+imageVerbale.replace(/"/g, ''));
+
       ajaxCallServices.salvaVerbale($scope.verbaleCompleto)
         .success(function (result) {
 
-          //console.log(JSON.stringify(result));
-          //console.log(result[0].message);
-          //console.log($scope.picData);
+          console.log(JSON.stringify(result));
+          console.log(result[0].message);
 
-          //document.addEventListener('deviceready', function () {
+          document.addEventListener('deviceready', function () {
 
               if(angular.isNumber(result[0].message)) {
 
                 var server = $rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/upload.php?id='+result[0].message;
-                var filePath = $scope.picData;
+                var filePath = imageVerbale.replace(/"/g, '');
                 console.log(filePath);
                 var options = {};
 
-                if (filePath == '') {
+                if (filePath != '') {
                   $cordovaFileTransfer.upload(server, filePath, options)
                     .then(function(result) {
                       // Result
@@ -158,43 +164,70 @@ angular.module('starter.controllers', [])
                 $scope.viewMessageSincronizzazione = true;
               }
 
-              $scope.datiVerbaleOffline = false;
+              $rootScope.datiVerbaleOffline = false;
               localStorage.removeItem('datiVerbaleOffline');
-            //}, false);
+          }, false);
 
         }).error(function (error) {
           $ionicLoading.hide();
         });
-      
+
     });
   };
 
 })
 
-.controller('InsertCtrl', function($scope,$rootScope,$ionicLoading,$ionicScrollDelegate,$state,$ionicPopup,ModalService,ajaxCallServices/*,$cordovaFileTransfer,$cordovaCamera,$cordovaGeolocation*/) {
+.controller('InsertCtrl', function($scope,$rootScope,$ionicLoading,$ionicScrollDelegate,$state,$ionicPopup,ModalService,ajaxCallServices/*,$cordovaFileTransfer,$cordovaCamera,$cordovaGeolocation,$cordovaBluetoothSerial,$timeout,$cordovaPrinter*/) {
+
+  $scope.messageBluetoothSerialEnable = '';
 
   // An alert dialog
-  $scope.showAlert = function(title,message) {
-     var alertPopup = $ionicPopup.alert({
+  $scope.showAlert = function(title,message,print) {
+    if(print) {
+      var alertPopup = $ionicPopup.alert({
+         title: title,
+         template: message+'<br />'+$scope.messageBluetoothSerialEnable,
+         okText: 'Stampa', // String (default: 'OK'). The text of the OK button.
+         okType: 'button-positive'
+      });
+      alertPopup.then(function(res) {
+        $scope.stampaVerbale();
+      });
+    } else {
+      var alertPopup = $ionicPopup.alert({
+         title: title,
+         template: message
+      });
+      alertPopup.then(function(res) {
+        $state.go('app.welcome');
+      });
+    }
+  };
+  $scope.showAlertMessage = function(title,message) {
+    var alertPopupMessage = $ionicPopup.alert({
        title: title,
-       template: message
-     });
-     alertPopup.then(function(res) {
-      $state.go('app.welcome');
-     });
+       template: message,
+       okText: 'Ok',
+       okType: 'button-assertive'
+    });
+    alertPopupMessage.then(function(res) {
+      alertPopupMessage.close();
+    });
   };
 
   $scope.data = { "ImageURI" :  "Select Image" };
+  $scope.picData = '';
 
   $scope.takePicture = function() {
     var options = {
       quality: 50,
-      destinationType: Camera.DestinationType.FILE_URL,
-      sourceType: Camera.PictureSourceType.CAMERA
+      destinationType: Camera.DestinationType.FILE_URI,
+      sourceType: Camera.PictureSourceType.CAMERA/*,
+      saveToPhotoAlbum: true*/ //Versione 0.3.5
     };
     $cordovaCamera.getPicture(options).then(
       function(imageData) {
-        console.log(imageData);
+        console.log('--->>> '+imageData);
         $scope.picData = imageData;
         $scope.ftLoad = true;
         /*$localstorage.set('fotoUp', imageData);*/
@@ -207,13 +240,16 @@ angular.module('starter.controllers', [])
       })
   }
 
-  $scope.date = new Date();
+  var localDate = new Date();
+  $scope.dataVerbale      = localDate.toLocaleDateString();
+  $scope.oraVerbale       = localDate.toLocaleTimeString();
 
-  $scope.agenteVerbale  = localStorage.getItem('agent_matr');
+  $scope.agenteVerbale  = localStorage.getItem('agent_id');
 
   $scope.latVerbale   = '';
   $scope.longVerbale  = '';
-  /*
+
+/*
   var posOptions = {timeout: 10000, enableHighAccuracy: false};
   $cordovaGeolocation
     .getCurrentPosition(posOptions)
@@ -223,7 +259,7 @@ angular.module('starter.controllers', [])
     }, function(err) {
       // error
     });
-  */
+*/
   $scope.salvaVerbale = function(verbale) {
 
     if (typeof(verbale) == 'undefined') {
@@ -233,10 +269,7 @@ angular.module('starter.controllers', [])
       return false;
     } else {
 
-      if (typeof(verbale.numeroVerbale) == 'undefined' ||
-          typeof(verbale.dataVerbale) == 'undefined' ||
-          typeof(verbale.oraVerbale) == 'undefined') {
-
+      if (typeof(verbale.numeroVerbale) == 'undefined') {
         $scope.fieldsRequired = true;
         $scope.verbaleRequired = false;
         $scope.datiVerbaleRequired = true;
@@ -282,13 +315,11 @@ angular.module('starter.controllers', [])
       template: 'Attendere...'
     });
 
-    $scope.picData = '1234567890';
-
     $scope.verbaleCompleto =
       {
         'numeroVerbale'   : verbale.numeroVerbale,
-        'dataVerbale'     : verbale.dataVerbale,
-        'oraVerbale'      : verbale.oraVerbale,
+        'dataVerbale'     : $scope.dataVerbale,
+        'oraVerbale'      : $scope.oraVerbale,
         'agenteVerbale'   : $scope.agenteVerbale,
         'latVerbale'      : $scope.latVerbale,
         'longVerbale'     : $scope.longVerbale,
@@ -306,20 +337,23 @@ angular.module('starter.controllers', [])
         'descrArt2'       : $scope.descrArt2,
         'nomeObbligato'   : $scope.idObbligato,
         'nomeTrasgres'    : $scope.idTrasgres,
+        'agente2Verbale'  : $scope.idAgente2,
         'imgBase64'       : $scope.picData
-        //'imgBase64'       : $scope.imgBase64
       };
 
-    var online = true;
+    console.log('Check connection: '+$rootScope.checkNoConnection);
 
-    if(online) {
+    console.log('dataVerbale: '+$scope.dataVerbale);
+    console.log('oraVerbale: '+$scope.oraVerbale);
+
+    if(!$rootScope.checkNoConnection) {
 
       ajaxCallServices.salvaVerbale($scope.verbaleCompleto)
         .success(function (result) {
 
-          //console.log(JSON.stringify(result));
-          //console.log(result[0].message);
-          //console.log($scope.picData);
+          console.log(JSON.stringify(result));
+          console.log(result[0].message);
+          console.log($scope.picData);
 
           document.addEventListener('deviceready', function () {
 
@@ -330,19 +364,17 @@ angular.module('starter.controllers', [])
                 console.log(filePath);
                 var options = {};
 
-                if (filePath == '') {
+                if (filePath != '') {
                   $cordovaFileTransfer.upload(server, filePath, options)
                     .then(function(result) {
                       // Result
                       $ionicLoading.hide();
-                      $scope.showAlert('Salvataggio verbale','Verbale salvato correttamente!');
-                      $scope.annullaVerbale();
+                      $scope.showAlert('Salvataggio verbale','Verbale salvato correttamente!',true);
                       console.log(result);
                     }, function(err) {
                       // Error
                       $ionicLoading.hide();
-                      $scope.showAlert('Salvataggio verbale','Errore nel salvataggio del verbale: '+JSON.stringify(err));
-                      $scope.annullaVerbale();
+                      $scope.showAlert('Salvataggio verbale','Errore nel salvataggio del verbale: '+JSON.stringify(err),false);
                       console.log(err);
                     }, function (progress) {
                       // constant progress updates
@@ -350,13 +382,11 @@ angular.module('starter.controllers', [])
                     });
                   } else {
                     $ionicLoading.hide();
-                    $scope.showAlert('Salvataggio verbale','Verbale salvato correttamente!');
-                    $scope.annullaVerbale();
+                    $scope.showAlert('Salvataggio verbale','Verbale salvato correttamente!',true);
                   }
               } else {
                 $ionicLoading.hide();
-                $scope.showAlert('Salvataggio verbale','Verbale salvato correttamente!');
-                $scope.annullaVerbale();
+                $scope.showAlert('Salvataggio verbale','Verbale salvato correttamente!',true);
               }
             }, false);
 
@@ -367,10 +397,10 @@ angular.module('starter.controllers', [])
       } else {
         $scope.verbaleCompletoArray = [];
 
-        if (localStorage.getItem('datiVerbaleOffline') === null) {
-          $scope.verbaleCompletoArray = [];
-        } else {
+        if (localStorage.getItem('datiVerbaleOffline')) {
           $scope.verbaleCompletoArray = angular.fromJson(localStorage.getItem('datiVerbaleOffline'));
+        } else {
+          $scope.verbaleCompletoArray = [];
         }
 
         $scope.verbaleCompletoArray.push($scope.verbaleCompleto);
@@ -379,17 +409,16 @@ angular.module('starter.controllers', [])
         localStorage.setItem('datiVerbaleOffline',JSON.stringify($scope.verbaleCompletoArray));
 
         $ionicLoading.hide();
-        $scope.showAlert('Salvataggio verbale','Il tuo verbale &egrave; stato salvato in memoria! Ricordati di premere "Sincronizza" appena entri sotto copertura rete.');
+        $scope.showAlert('Salvataggio verbale','Il tuo verbale &egrave; stato salvato in memoria! Ricordati di premere "Sincronizza" appena entri sotto copertura rete.',true);
         $scope.annullaVerbale();
       }
 
   }
 
-  
   $scope.annullaVerbale = function() {
     //verbale.numeroVerbale   = '';
-    //verbale.dataVerbale     = '';
-    //verbale.oraVerbale      = '';
+    $scope.dataVerbale      = '';
+    $scope.oraVerbale       = '';
     $scope.agenteVerbale    = '';
     $scope.latVerbale       = '';
     $scope.longVerbale      = '';
@@ -410,6 +439,9 @@ angular.module('starter.controllers', [])
     $scope.nomeObbligato    = '';
     $scope.nomeTrasgres     = '';
     $scope.picData          = '';
+
+    $scope.idAgente2        = '';
+    $scope.nomeAgente2      = '';
   }
 
   $scope.openModalItem = function(item,section) {
@@ -434,9 +466,8 @@ angular.module('starter.controllers', [])
       .init(item, $scope)
       .then(function(modal) {
 
-        var online = true;
-
-        if(online) {
+        //Memorizzo le info nel localStorage in fase di login: successivamente utilizzo i dati memorizzati
+        if(!localStorage.getItem(item)) {
           ajaxCallServices.getItems(item)
             .success(function (items) {
 
@@ -457,7 +488,7 @@ angular.module('starter.controllers', [])
           } else {
 
             var jsObject = angular.fromJson(localStorage.getItem(item));
-            
+
             $scope.items = jsObject.items;
             $scope.loading = false;
 
@@ -465,12 +496,12 @@ angular.module('starter.controllers', [])
             modal.show();
           }
         });
-      
+
   };
 
   $scope.selezionaMarca = function(TIPO,MARCA,MODELLO) {
     $scope.tipoVeicolo    = TIPO;
-    $scope.modelloVeicolo = MODELLO;
+    $scope.modelloVeicolo = MARCA+' - '+MODELLO;
     $scope.modal.hide();
   }
 
@@ -480,14 +511,20 @@ angular.module('starter.controllers', [])
     $scope.modal.hide();
   }
 
+  $scope.selezionaAgente = function(ID,NOME_AGENT) {
+    $scope.idAgente2      = ID;
+    $scope.nomeAgente2    = NOME_AGENT;
+    $scope.modal.hide();
+  }
+
   $scope.selezionaArticolo = function(COD_ART,COD_COM,COMMA,DES_ART1) {
     if($scope.setArt1) {
       $scope.art1       = COD_ART;
-      $scope.codArt1    = COD_COM+','+COMMA;
+      $scope.codArt1    = COD_COM/*+','+COMMA*/;
       $scope.descrArt1  = DES_ART1;
     } else if($scope.setArt2) {
       $scope.art2       = COD_ART;
-      $scope.codArt2    = COD_COM+','+COMMA;
+      $scope.codArt2    = COD_COM/*+','+COMMA*/;
       $scope.descrArt2  = DES_ART1;
     }
     $scope.modal.hide();
@@ -506,21 +543,30 @@ angular.module('starter.controllers', [])
 
   $scope.imgBase64 = '';
 
+  //PRINT
+  $scope.stampaVerbale = function() {
+    //$timeout(function () {
+    //https://github.com/don/BluetoothSerial
+/*
+    $cordovaBluetoothSerial.isEnabled().then(
+      function() {
+        var printerAvail = $cordovaPrinter.isAvailable()
+        console.log("printerAvail: "+printerAvail);
+        var doc = '<html><body>Verbale numero '+$scope.verbaleCompleto.numeroVerbale+'...</body></html>';
+        $cordovaPrinter.print(doc);
 
+        $scope.annullaVerbale();
+        $state.go('app.welcome');
+      },
+      function() {
+        $scope.messageBluetoothSerialEnable = 'Attivare il bluetooth per poter proseguire con la stampa';
+        //$scope.showAlertMessage('Bluetooth non attivo','Attivare il bluetooth per poter proseguire con la stampa');
+      }
+    );
+    //},5000);
+*/
+  }
 
-  /*
-  document.addEventListener("deviceready", function () {
-      var posOptions = {timeout: 10000, enableHighAccuracy: false};
-      $cordovaGeolocation
-          .getCurrentPosition(posOptions)
-          .then(function (position) {
-              $scope.lat  = position.coords.latitude
-              $scope.long = position.coords.longitude
-          }, function(err) {
-              alert(err);
-          });
-  }, false);
-  */
 })
 
 .controller('SearchCtrl', function($scope,$ionicLoading,ModalService,ajaxCallServices/*,$cordovaGeolocation*/) {
@@ -537,9 +583,8 @@ angular.module('starter.controllers', [])
       .init(item, $scope)
       .then(function(modal) {
 
-        var online = true;
-
-        if(online) {
+        //Memorizzo le info nel localStorage in fase di login: successivamente utilizzo i dati memorizzati
+        if(!localStorage.getItem(item)) {
           ajaxCallServices.getItems(item)
             .success(function (items) {
 

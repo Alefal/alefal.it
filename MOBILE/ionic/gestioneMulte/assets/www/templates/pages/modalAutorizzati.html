@@ -12,7 +12,7 @@ TIPO_ATRZ: "R1-ZTL"
 
   	<ion-header-bar class="bar-positive">
     	<h1 class="title">Autorizzati</h1>
-    	<a ng-click="closeModal()" class="power button"><i class="ion-close"></i></a> 
+    	<a ng-click="closeModal()" class="power button"><i class="ion-close"></i></a>
   	</ion-header-bar>
 
   	<ion-content class="padding" ng-show="!loading">
@@ -32,14 +32,14 @@ TIPO_ATRZ: "R1-ZTL"
 			    	<h3>{{item.OBLG_ATRZ}}</h3>
 			  	</div>
 			  	<div class="item item-text-wrap">
-			  		<p> 
+			  		<p>
 			  			Autorizzazione numero <strong>{{item.NUM_ATRZ}}</strong>, tipologia <strong>{{item.TIPO_ATRZ}}</strong>
 			  			per veicolo targato <strong>{{item.TARGA_ATRZ}}</strong>, modello <strong>{{item.MODELLO_ATRZ}}</strong>
 	    	    	</p>
 			  	</div>
 			  	<div class="item item-divider" align="right">
-			    	<a href="tel:{{item.TEL_OBLG_ATRZ}}" class="button button-small button-positive icon-left ion-iphone" style="    height: 30px;">{{item.TEL_OBLG_ATRZ}}</a>
-			  	</div>				
+			    	<a ng-href="tel:{{item.TEL_OBLG_ATRZ}}" class="button button-small button-positive icon-left ion-iphone" style="    height: 30px;">{{item.TEL_OBLG_ATRZ}}</a>
+			  	</div>
 
       		</ion-item>
 

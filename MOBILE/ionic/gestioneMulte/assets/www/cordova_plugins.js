@@ -77,6 +77,21 @@ module.exports = [
         ]
     },
     {
+        "file": "plugins/cordova-plugin-bluetooth-serial/www/bluetoothSerial.js",
+        "id": "cordova-plugin-bluetooth-serial.bluetoothSerial",
+        "clobbers": [
+            "window.bluetoothSerial"
+        ]
+    },
+    {
+        "file": "plugins/de.appplant.cordova.plugin.printer/www/printer.js",
+        "id": "de.appplant.cordova.plugin.printer.Printer",
+        "clobbers": [
+            "plugin.printer",
+            "cordova.plugins.printer"
+        ]
+    },
+    {
         "file": "plugins/cordova-plugin-file/www/DirectoryEntry.js",
         "id": "cordova-plugin-file.DirectoryEntry",
         "clobbers": [
@@ -232,8 +247,10 @@ module.exports.metadata =
     "cordova-plugin-whitelist": "1.1.1-dev",
     "cordova-plugin-network-information": "1.0.2-dev",
     "cordova-plugin-file-transfer": "1.3.0",
-    "org.apache.cordova.camera": "0.3.6",
     "org.apache.cordova.geolocation": "0.3.12",
+    "org.apache.cordova.camera": "0.3.6",
+    "cordova-plugin-bluetooth-serial": "0.4.4",
+    "de.appplant.cordova.plugin.printer": "0.7.1",
     "cordova-plugin-file": "3.0.0"
 }
 // BOTTOM OF METADATA

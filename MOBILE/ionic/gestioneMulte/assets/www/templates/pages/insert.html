@@ -21,7 +21,7 @@
 
         <div class="message-danger message-danger-striped" ng-show="fieldsRequired" id="messageFieldsRequired">
           <p ng-show="verbaleRequired">Inserire i dati del verbale!</p>
-          <p ng-show="datiVerbaleRequired">Il numero di verbale, la data e l'ora sono obbligatori!</p>
+          <p ng-show="datiVerbaleRequired">Il numero di verbale &egrave; obbligatorio!</p>
           <p ng-show="targaVeicoloRequired">La targa &egrave; obbligatoria!</p>
           <p ng-show="indirizzoRequired">L'indirizzo &egrave; obbligatorio!</p>
           <p ng-show="articoloRequired">L'articolo &egrave; obbligatorio!</p>
@@ -29,22 +29,21 @@
 
         <div class="list list-inset">
             <label class="item item-input">
+                <!-- INCREMENTALE -->
                 <input type="number" name="NUM_VERB" placeholder="Numero verbale" ng-model="verbale.numeroVerbale" required>
+                <input type="hidden" name="DATA_VERB" value="{{dataVerbale}}">
+                <input type="hidden" name="ORA_VERB" value="{{oraVerbale}}">
             </label>
+            <!--
             <label class="item item-input">
-                <!--
-                <input type="date" name="DATA_VERB" placeholder="Data verbale" value="{{date | date:'MM/dd/yyyy'}}">
-                -->
-                <input type="text" name="DATA_VERB" placeholder="Data verbale" ng-model="verbale.dataVerbale" onfocus="this.type='date';this.setAttribute('onfocus','');this.blur();this.focus();" required>
+                <input type="text" name="DATA_VERB" value="{{dataVerbale}}" ng-model="verbale.dataVerbale" onfocus="this.type='date';this.setAttribute('onfocus','');this.blur();this.focus();" required>
                 <i class="icon ion-calendar"></i>
             </label>
             <label class="item item-input">
-                <!--
-                <input type="time" name="ORA_VERB" placeholder="Ora verbale" value="{{date | date:'h:mma'}}">
-                -->
                 <input type="text" name="ORA_VERB" placeholder="Ora verbale" ng-model="verbale.oraVerbale" onfocus="this.type='time';this.setAttribute('onfocus','');this.blur();this.focus();" required>
                 <i class="icon ion-clock"></i>
             </label>
+            -->
         </div>
 
         <!--
@@ -61,16 +60,37 @@
             </div>
         </div>
 
-        <div class="list list-inset">
+      <div class="spacerVertical"></div>
+
+        <!-- RADIO BUTTON: A | C | M | R -->
+
+      <div class="row eventTab">
+        <div class="col">
+          <input type="radio" name="TIPO_VEI_VERB"> A
+        </div>
+        <div class="col">
+          <input type="radio" name="TIPO_VEI_VERB"> C
+        </div>
+        <div class="col">
+          <input type="radio" name="TIPO_VEI_VERB"> M
+        </div>
+        <div class="col">
+          <input type="radio" name="TIPO_VEI_VERB"> R
+        </div>
+      </div>
+
+      <div class="list list-inset">
             <label class="item item-input">
                 <input type="text" name="TARGA_VERB" placeholder="Targa veicolo" ng-model="verbale.targaVeicolo" required>
                 <i class="icon ion-model-s"></i>
             </label>
+            <!--
             <label class="item item-input readonly">
                 <input type="text" name="TIPO_VEI_VERB" value="{{tipoVeicolo}}" readonly="true" placeholder="Tipo veicolo">
             </label>
-            <label class="item item-input readonly">
-                <input type="text" name="MODELLO_VERB" value="{{modelloVeicolo}}" readonly="true" placeholder="Modello veicolo">
+            -->
+            <label class="item item-input">
+                <input type="text" name="MODELLO_VERB" value="{{modelloVeicolo}}" placeholder="Modello veicolo">
             </label>
         </div>
 
@@ -88,6 +108,9 @@
         <div class="list list-inset">
           <label class="item item-input capturePhoto">
             <div ng-show="picData" class="item item-image">
+              <!--
+              Fare UPLOAD del file e aggiungere campo PATH_IMG_VERB
+              -->
               <img id="veicoloFoto" class="item" ng-src="{{picData}}" ng-click="uploadPicture()" style="height:175px;"/>
             </div>
           </label>
@@ -108,8 +131,10 @@
         </div>
 
         <div class="list list-inset">
-            <label class="item item-input readonly">
-                <input type="text" name="VIA_VERB" placeholder="Indirizzo" readonly="true" value="{{indirizzo}}" required>
+            <label class="item item-input">
+                <!-- MANTENERE ULTIMO SELEZIONATO -->
+                <input type="text" placeholder="Indirizzo" readonly="true" value="{{indirizzo}}" required>
+                <input type="hidden" name="VIA_VERB" value="{{indirizzoId}}">
                 <i class="icon ion-map"></i>
             </label>
             <label class="item item-input">
@@ -130,7 +155,10 @@
                 <h4>Articolo</h4>
             </div>
             <div class="col" align="right">
-                <button class="button button-positive icon-left ion-android-checkbox-outline" ng-click="openModalItem('articoli','art1')"> Scegli</button>
+                <button class="button button-positive icon-left ion-android-checkbox-outline" ng-click="openModalItem('articoli','art1')" style="height: 45px;"></button>
+
+                <!-- TODO -->
+                <button class="button button-energized icon-left-right ion-star" ng-click="openModalItem('artPref','')" style="height: 45px;"></button>
             </div>
         </div>
 
@@ -140,6 +168,7 @@
                 <i class="icon ion-clipboard"></i>
             </label>
             <label class="item item-input readonly">
+                <!-- SOLO CC (OK) -->
                 <input type="text" name="COD1_VERB" placeholder="Cod e Comma" readonly="true" value="{{codArt1}}" required>
             </label>
             <label class="item item-input readonly">
@@ -157,7 +186,10 @@
                 <h4>Articolo</h4>
             </div>
             <div class="col" align="right">
-                <button class="button button-positive icon-left ion-android-checkbox-outline" ng-click="openModalItem('articoli','art2')"> Scegli</button>
+                <button class="button button-positive icon-left ion-android-checkbox-outline" ng-click="openModalItem('articoli','art2')" style="height: 45px;"></button>
+
+                <!-- TODO -->
+                <button class="button button-energized icon-left-right ion-star" ng-click="openModalItem('artPref','')" style="height: 45px;"></button>
             </div>
         </div>
 
@@ -175,8 +207,8 @@
         </div>
 
         <!--
-        COD_OBLG_VERB
-        -->
+        COD_OBLG_VERB: da nascondere
+
         <div class="row eventTab">
             <div class="col col-80">
                 <div class="list list-inset" style="margin: 0 !important;">
@@ -193,10 +225,11 @@
         </div>
 
         <div class="spacerVertical"></div>
+        -->
 
         <!--
-        COD_TRSG_VERB
-        -->
+        COD_TRSG_VERB: da nascondere
+
         <div class="row eventTab">
             <div class="col col-80">
                 <div class="list list-inset" style="margin: 0 !important;">
@@ -212,12 +245,36 @@
             </div>
         </div>
 
+        <div class="spacerVertical"></div>
+        -->
+
         <!--
-        AGENTE2_VERB
+        ID_AGENTE2_VERB
+        -->
+        <div class="row eventTab">
+          <div class="col col-80">
+            <div class="list list-inset" style="margin: 0 !important;">
+              <label class="item item-input readonly">
+                <!-- MANTENERE ULTIMO SELEZIONATO -->
+                <input type="text" placeholder="Agente" readonly="true" value="{{nomeAgente2}}">
+                <input type="hidden" name="ID_AGENTE2_VERB" value="{{idAgente2}}">
+                <i class="icon ion-android-hand"></i>
+              </label>
+            </div>
+          </div>
+          <div class="col" align="right">
+            <button class="button button-balanced icon-left-right ion-android-checkbox-outline" ng-click="openModalItem('agenti','')" style="height: 45px;"></button>
+          </div>
+        </div>
+
+        <!--
+        ID_AGENTE1_VERB: deve essere ID e non MATRICOLA (OK)
         LATI_VERB
         LONG_VERB
+
+        Aggiungere ENTE nella tabella P_VERB
         -->
-        <input type="hidden" name="AGENTE2_VERB" value="{{agenteVerbale}}" required>
+        <input type="hidden" name="ID_AGENTE1_VERB" value="{{agenteVerbale}}" required>
         <input type="hidden" name="LATI_VERB" value="{{latVerbale}}">
         <input type="hidden" name="LONG_VERB" value="{{longVerbale}}">
 
@@ -232,18 +289,5 @@
             </div>
         </div>
     </ion-content>
-
-    <!--
-    <ion-footer-bar>
-        <div class="row eventTab">
-            <div class="col col-50">
-                <button class="button button-block button-positive icon-left ion-android-done" ng-click="salvaVerbale(verbale)"> Salva</button>
-            </div>
-            <div class="col col-50">
-                <button class="button button-block button-assertive icon-left ion-android-cancel" ng-click="annullaVerbale()"> Annulla</button>
-            </div>
-        </div>
-  </ion-footer-bar>
-  -->
 
 </ion-view>

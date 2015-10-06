@@ -47,7 +47,8 @@ $verbaleCompletoArr = json_decode($verbaleCompletoObj, true);
 
 if($verbaleCompletoArr['numeroVerbale'] != '') {
     
-    
+    $dataVerbale = new DateTime($verbaleCompletoArr['dataVerbale']);
+
     $sql = $wpdb->prepare(
         "INSERT INTO $table_name (
             `NUM_VERB`,
@@ -77,7 +78,7 @@ if($verbaleCompletoArr['numeroVerbale'] != '') {
                             %s, %s, %s, %s, %s, %s, %s)", 
                 isset($verbaleCompletoArr['numeroVerbale'])     ? $verbaleCompletoArr['numeroVerbale'] : '',
                 isset($verbaleCompletoArr['agenteVerbale'])     ? $verbaleCompletoArr['agenteVerbale'] : '',
-                isset($verbaleCompletoArr['dataVerbale'])       ? $verbaleCompletoArr['dataVerbale'] : '',
+                isset($verbaleCompletoArr['dataVerbale'])       ? date_format($dataVerbale, 'Y-m-d') : '',
                 isset($verbaleCompletoArr['oraVerbale'])        ? $verbaleCompletoArr['oraVerbale'] : '',
                 isset($verbaleCompletoArr['tipoVeicolo'])       ? $verbaleCompletoArr['tipoVeicolo'] : '',
                 isset($verbaleCompletoArr['targaVeicolo'])      ? $verbaleCompletoArr['targaVeicolo'] : '',
@@ -91,7 +92,7 @@ if($verbaleCompletoArr['numeroVerbale'] != '') {
                 isset($verbaleCompletoArr['art2'])              ? $verbaleCompletoArr['art2'] : '',
                 isset($verbaleCompletoArr['codArt2'])           ? $verbaleCompletoArr['codArt2'] : '',
                 isset($verbaleCompletoArr['descrArt2'])         ? $verbaleCompletoArr['descrArt2'] : '',
-                isset($verbaleCompletoArr['agenteVerbale'])     ? $verbaleCompletoArr['agenteVerbale'] : '',
+                isset($verbaleCompletoArr['agente2Verbale'])    ? $verbaleCompletoArr['agente2Verbale'] : '',
                 isset($verbaleCompletoArr['nomeObbligato'])     ? $verbaleCompletoArr['nomeObbligato'] : '',
                 isset($verbaleCompletoArr['nomeTrasgres'])      ? $verbaleCompletoArr['nomeTrasgres'] : '',
                 '',

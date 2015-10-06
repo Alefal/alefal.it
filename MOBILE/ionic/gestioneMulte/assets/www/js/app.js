@@ -9,7 +9,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
   $ionicPlatform.ready(function() {
 
     $rootScope.server = 'http://192.168.1.188/alefal.it/PROJECTS/wordpress-4.2.3';
-    //$rootScope.server = 'http://cdsmobile.swstudio.net/';
+    //$rootScope.server = 'http://cdsmobile.swstudio.net';
 
     console.info('ionicPlatform.ready');
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -25,55 +25,26 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
     }
 
     //Check Connection
-    /*
+/*
     document.addEventListener('deviceready', function () {
       $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
-        var onlineState = networkState;
-        //alert('$cordovaNetwork:online');
+        $rootScope.checkNoConnection = false;
 
-        $ionicLoading.hide();
+        if (localStorage.getItem('datiVerbaleOffline')) {
+          $rootScope.datiVerbaleOffline = true;
+        } else {
+          $rootScope.datiVerbaleOffline = false;
+        }
       })
 
       // listen for Offline event
       $rootScope.$on('$cordovaNetwork:offline', function(event, networkState){
-        var offlineState = networkState;
-        //alert('$cordovaNetwork:offline');
-
-        $ionicLoading.show({
-          template: 'No Connection',
-          noBackdrop: true
-        });
+        $rootScope.checkNoConnection = true;
+        $rootScope.datiVerbaleOffline = false;
       })
 
     }, false);
-
-    console.info('messageConnection: '+localStorage.getItem('messageConnection'));
-
-    document.addEventListener("deviceready", function () {
-
-      var type = $cordovaNetwork.getNetwork()
-      var isOnline = $cordovaNetwork.isOnline()
-      var isOffline = $cordovaNetwork.isOffline()
-
-      if(isOnline && !isOffline) {
-        PushProcessingService.initialize();
-      } else {
-        $ionicPopup.confirm({
-          title: 'Connessione assente',
-          content: 'Controlla la tua connessione. I dati visualizzati potrebbero non essere gli ultimi aggiornati'
-        })
-        .then(function(result) {
-            console.log(result);
-            if(!result) {
-              ionic.Platform.exitApp();
-            } else {
-              localStorage.setItem('messageConnection', 'clicked');
-            }
-        });
-      }
-
-    }, false);
-    */
+*/
 
   });
 })
@@ -159,14 +130,8 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 
   /***** getItems ****/
   ajaxCallServices.getItems = function (item) {
-    
-    var service = '';
 
-    if(item == 'articoli') {
-      service = 'getArticoli.php';
-    } else if(item == 'marche') {
-      service = 'getMarche.php';
-    }
+    var service = '';
 
     if(item == 'articoli') {
       service = 'getArticoli.php'
@@ -180,15 +145,17 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
       service = 'getObbligato.php';
     } else if(item == 'trasgres') {
       service = 'getTrasgressore.php';
+    } else if(item == 'agenti') {
+      service = 'getAgenti.php';
     }
 
     return $http.get($rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/'+service);
-    
+
   };
 
   /***** salvaVerbale ****/
   ajaxCallServices.salvaVerbale = function (verbaleCompleto) {
-    console.log(verbaleCompleto);
+    console.log(JSON.stringify(verbaleCompleto));
     return $http({url:$rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/setVerbale.php',method:'GET',params:{verbaleCompleto: verbaleCompleto}});
   };
 
@@ -198,8 +165,10 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
   return {
     exitApp: function() {
       localStorage.removeItem('agent_logged');
+      localStorage.removeItem('agent_id');
       localStorage.removeItem('agent_nome');
-      localStorage.removeItem('agent_matr');
+      localStorage.removeItem('agent_ente');
+      localStorage.removeItem('agent_ente');
       $state.go('app.login');
     },
     goto: function(url) {
@@ -250,8 +219,8 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
       tpl = 'templates/pages/modalObbligato.html';
     } else if(item == 'trasgres') {
       tpl = 'templates/pages/modalTrasgres.html';
-    } else if(item == 'photo') {
-      tpl = 'templates/pages/modalPhoto.html';
+    } else if(item == 'agenti') {
+      tpl = 'templates/pages/modalAgenti.html';
     }
 
     promise = $ionicModal.fromTemplateUrl(tpl, {
