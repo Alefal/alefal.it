@@ -100,8 +100,9 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
       url: '/insert',
       views: {
         'pageContainer': {
-          templateUrl: 'templates/pages/insert.html',
-          controller: 'InsertCtrl'
+          templateUrl: 'templates/pages/insert.html'/*,
+          controller: 'InsertCtrl'*/
+          //Il controller mi serve nella pagina altrimenti ng-model e $scope non funzionano...
         }
       }
     })

@@ -5,7 +5,7 @@
     	<a ng-click="globFunc.back()" class="power button"><i class="ion-chevron-left"></i></a>
     </ion-header-bar>
 
-    <ion-content class="padding inserimentoVerbale">
+    <ion-content class="padding inserimentoVerbale" ng-controller="InsertCtrl">
         <!--
         <div class="message-info message-info-striped">
             <i class="icon ion-ios-information-outline" style="font-size: 25px;"></i>
@@ -17,7 +17,11 @@
         DATA_VERB
         ORA_VERB
         -->
-        <h4>Verbale</h4>
+        <h4>Verbale numero: <strong>{{numeroVerbale}}</strong></h4>
+
+        <input type="hidden" name="NUM_VERB"    value="{{numeroVerbale}}">
+        <input type="hidden" name="DATA_VERB"   value="{{dataVerbale}}">
+        <input type="hidden" name="ORA_VERB"    value="{{oraVerbale}}">
 
         <div class="message-danger message-danger-striped" ng-show="fieldsRequired" id="messageFieldsRequired">
           <p ng-show="verbaleRequired">Inserire i dati del verbale!</p>
@@ -27,14 +31,14 @@
           <p ng-show="articoloRequired">L'articolo &egrave; obbligatorio!</p>
         </div>
 
+        <!--
         <div class="list list-inset">
             <label class="item item-input">
-                <!-- INCREMENTALE -->
                 <input type="number" name="NUM_VERB" placeholder="Numero verbale" ng-model="verbale.numeroVerbale" required>
                 <input type="hidden" name="DATA_VERB" value="{{dataVerbale}}">
                 <input type="hidden" name="ORA_VERB" value="{{oraVerbale}}">
             </label>
-            <!--
+            
             <label class="item item-input">
                 <input type="text" name="DATA_VERB" value="{{dataVerbale}}" ng-model="verbale.dataVerbale" onfocus="this.type='date';this.setAttribute('onfocus','');this.blur();this.focus();" required>
                 <i class="icon ion-calendar"></i>
@@ -43,8 +47,11 @@
                 <input type="text" name="ORA_VERB" placeholder="Ora verbale" ng-model="verbale.oraVerbale" onfocus="this.type='time';this.setAttribute('onfocus','');this.blur();this.focus();" required>
                 <i class="icon ion-clock"></i>
             </label>
-            -->
+            
         </div>
+        -->
+
+        <div class="spacerVertical"></div>
 
         <!--
         TIPO_VEI_VERB
@@ -64,7 +71,7 @@
 
         <div class="list list-inset">
             <label class="item item-input">
-                <input type="text" name="TARGA_VERB" placeholder="Targa veicolo" ng-model="verbale.targaVeicolo" required>
+                <input type="text" name="TARGA_VERB" placeholder="Targa veicolo" ng-model="targaVeicolo" required>
                 <i class="icon ion-model-s"></i>
             </label>
             <!--
@@ -81,7 +88,7 @@
         <div class="list">
             <div align="right" style="padding:5px">Tipologia</div>
             <label class="item item-radio">
-                <input type="radio" name="TIPO_VEI_VERB" value="A">
+                <input type="radio" ng-model="tipoVeicolo" name="TIPO_VEI_VERB" value="A">
                 <div class="item-content">
                     Automobile
                 </div>
@@ -89,7 +96,7 @@
             </label>
 
             <label class="item item-radio">
-                <input type="radio" name="TIPO_VEI_VERB" value="C">
+                <input type="radio" ng-model="tipoVeicolo" name="TIPO_VEI_VERB" value="C">
                 <div class="item-content">
                     Ciclomotore
                 </div>
@@ -97,7 +104,7 @@
             </label>
 
             <label class="item item-radio">
-                <input type="radio" name="TIPO_VEI_VERB" value="M">
+                <input type="radio" ng-model="tipoVeicolo" name="TIPO_VEI_VERB" value="M">
                 <div class="item-content">
                     Motociclo
                 </div>
@@ -105,7 +112,7 @@
             </label>
 
             <label class="item item-radio">
-                <input type="radio" name="TIPO_VEI_VERB" value="R">
+                <input type="radio" ng-model="tipoVeicolo" name="TIPO_VEI_VERB" value="R">
                 <div class="item-content">
                     Rimorchio
                 </div>
@@ -159,10 +166,10 @@
                 <i class="icon ion-map"></i>
             </label>
             <label class="item item-input">
-                <input type="number" name="CIVICO_VERB" placeholder="Civico" ng-model="verbale.indirizzoCivico">
+                <input type="number" name="CIVICO_VERB" placeholder="Civico" ng-model="indirizzoCivico">
             </label>
             <label class="item item-input">
-                <textarea name="DESCR_VIA_VERB" placeholder="Descrizione indirizzo" rows="5" cols="10" ng-model="verbale.indirizzoDescr"></textarea>
+                <textarea name="DESCR_VIA_VERB" placeholder="Descrizione indirizzo" rows="5" cols="10" ng-model="indirizzoDescr"></textarea>
             </label>
         </div>
 
@@ -304,7 +311,7 @@
 
         <div class="row eventTab">
             <div class="col col-50">
-                <button class="button button-block button-positive icon-left ion-android-done" ng-click="salvaVerbale(verbale)"> Salva</button>
+                <button class="button button-block button-positive icon-left ion-android-done" ng-click="salvaVerbale()"> Salva</button>
             </div>
             <div class="col col-50">
                 <button class="button button-block button-assertive icon-left ion-android-cancel" ng-click="annullaVerbale()"> Annulla</button>

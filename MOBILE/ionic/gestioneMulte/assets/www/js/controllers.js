@@ -49,6 +49,7 @@ angular.module('starter.controllers', [])
           };
 
           $scope.openModalItem('articoli');
+          $scope.openModalItem('artpref');
           $scope.openModalItem('marche');
           $scope.openModalItem('autorizzati');
           $scope.openModalItem('vie');
@@ -179,7 +180,42 @@ angular.module('starter.controllers', [])
 
 .controller('InsertCtrl', function($scope,$rootScope,$ionicLoading,$ionicScrollDelegate,$state,$ionicPopup,ModalService,ajaxCallServices/*,$cordovaFileTransfer,$cordovaCamera,$cordovaGeolocation,$cordovaBluetoothSerial,$timeout,$cordovaPrinter*/) {
 
+  console.log('InsertCtrl');
+
   $scope.messageBluetoothSerialEnable = '';
+
+  $scope.filePathImg  = '';
+  $scope.picData      = '';
+
+  $scope.numeroVerbale = Math.floor((Math.random() * 1000000) + 1);
+
+  var localDate = new Date();
+  $scope.dataVerbale      = localDate.toLocaleDateString();
+  $scope.oraVerbale       = localDate.toLocaleTimeString();
+
+  $scope.agenteVerbale  = localStorage.getItem('agent_id');
+  $scope.agenteEnte     = localStorage.getItem('agent_ente');
+
+  $scope.latVerbale   = '';
+  $scope.longVerbale  = '';
+
+  $scope.targaVeicolo     = '';
+  $scope.indirizzoCivico  = '';
+  $scope.indirizzoDescr   = '';
+
+  $scope.tipoVeicolo = 'A';
+
+  /*
+  var posOptions = {timeout: 10000, enableHighAccuracy: false};
+  $cordovaGeolocation
+    .getCurrentPosition(posOptions)
+    .then(function (position) {
+      $scope.latVerbale  = position.coords.latitude
+      $scope.longVerbale = position.coords.longitude
+    }, function(err) {
+      // error
+    });
+*/
 
   // An alert dialog
   $scope.showAlert = function(title,message,print) {
@@ -215,12 +251,7 @@ angular.module('starter.controllers', [])
     });
   };
 
-  $scope.filePathImg  = '';
-  $scope.picData      = '';
-
   $scope.takePicture = function() {
-
-    
 
     var options = {
       quality: 50,
@@ -232,6 +263,7 @@ angular.module('starter.controllers', [])
       function(imageData) {
         $scope.capturePhotoClass = 'capturePhoto';
         console.log('--->>> '+imageData);
+        $scope.filePathImg = ''+imageData+'';
         $scope.picData = imageData;
         $scope.ftLoad = true;
         /*$localstorage.set('fotoUp', imageData);*/
@@ -244,97 +276,70 @@ angular.module('starter.controllers', [])
       })
   }
 
-  var localDate = new Date();
-  $scope.dataVerbale      = localDate.toLocaleDateString();
-  $scope.oraVerbale       = localDate.toLocaleTimeString();
+  $scope.salvaVerbale = function() {
 
-  $scope.agenteVerbale  = localStorage.getItem('agent_id');
-  $scope.agenteEnte     = localStorage.getItem('agent_ente');
+    console.log($scope.tipoVeicolo);
 
-  $scope.latVerbale   = '';
-  $scope.longVerbale  = '';
-
-/*
-  var posOptions = {timeout: 10000, enableHighAccuracy: false};
-  $cordovaGeolocation
-    .getCurrentPosition(posOptions)
-    .then(function (position) {
-      $scope.latVerbale  = position.coords.latitude
-      $scope.longVerbale = position.coords.longitude
-    }, function(err) {
-      // error
-    });
-*/
-  $scope.salvaVerbale = function(verbale) {
-
-    if (typeof(verbale) == 'undefined') {
+    if (typeof($scope.numeroVerbale) == 'undefined') {
       $scope.fieldsRequired = true;
-      $scope.verbaleRequired = true;
+      $scope.verbaleRequired = false;
+      $scope.datiVerbaleRequired = true;
+      $ionicScrollDelegate.scrollTop(true);
+      return false;
+    } else if(typeof($scope.targaVeicolo) == 'undefined') {
+      $scope.fieldsRequired = true;
+      $scope.verbaleRequired = false;
+      $scope.datiVerbaleRequired = false;
+      $scope.targaVeicoloRequired = true;
+      $ionicScrollDelegate.scrollTop(true);
+      return false;
+    } else if(typeof($rootScope.indirizzoId) == 'undefined') {
+      $scope.fieldsRequired = true;
+      $scope.verbaleRequired = false;
+      $scope.datiVerbaleRequired = false;
+      $scope.targaVeicoloRequired = false;
+      $scope.indirizzoRequired = true;
+      $ionicScrollDelegate.scrollTop(true);
+      return false;
+    } else if(typeof($scope.art1) == 'undefined' ||
+              typeof($scope.codArt1) == 'undefined' ||
+              typeof($scope.descrArt1) == 'undefined') {
+      $scope.fieldsRequired = true;
+      $scope.verbaleRequired = false;
+      $scope.datiVerbaleRequired = false;
+      $scope.targaVeicoloRequired = false;
+      $scope.indirizzoRequired = false;
+      $scope.articoloRequired = true;
       $ionicScrollDelegate.scrollTop(true);
       return false;
     } else {
-
-      if (typeof(verbale.numeroVerbale) == 'undefined') {
-        $scope.fieldsRequired = true;
-        $scope.verbaleRequired = false;
-        $scope.datiVerbaleRequired = true;
-        $ionicScrollDelegate.scrollTop(true);
-        return false;
-      } else if(typeof(verbale.targaVeicolo) == 'undefined') {
-        $scope.fieldsRequired = true;
-        $scope.verbaleRequired = false;
-        $scope.datiVerbaleRequired = false;
-        $scope.targaVeicoloRequired = true;
-        $ionicScrollDelegate.scrollTop(true);
-        return false;
-      } else if(typeof($rootScope.indirizzoId) == 'undefined') {
-        $scope.fieldsRequired = true;
-        $scope.verbaleRequired = false;
-        $scope.datiVerbaleRequired = false;
-        $scope.targaVeicoloRequired = false;
-        $scope.indirizzoRequired = true;
-        $ionicScrollDelegate.scrollTop(true);
-        return false;
-      } else if(typeof($scope.art1) == 'undefined' ||
-                typeof($scope.codArt1) == 'undefined' ||
-                typeof($scope.descrArt1) == 'undefined') {
-        $scope.fieldsRequired = true;
-        $scope.verbaleRequired = false;
-        $scope.datiVerbaleRequired = false;
-        $scope.targaVeicoloRequired = false;
-        $scope.indirizzoRequired = false;
-        $scope.articoloRequired = true;
-        $ionicScrollDelegate.scrollTop(true);
-        return false;
-      } else {
-        $scope.fieldsRequired = false;
-        $scope.verbaleRequired = false;
-        $scope.datiVerbaleRequired = false;
-        $scope.targaVeicoloRequired = false;
-        $scope.indirizzoRequired = false;
-        $scope.articoloRequired = false;
-      }
+      $scope.fieldsRequired = false;
+      $scope.verbaleRequired = false;
+      $scope.datiVerbaleRequired = false;
+      $scope.targaVeicoloRequired = false;
+      $scope.indirizzoRequired = false;
+      $scope.articoloRequired = false;
     }
-
+    
     $ionicLoading.show({
       template: 'Attendere...'
     });
 
     $scope.verbaleCompleto =
       {
-        'numeroVerbale'   : verbale.numeroVerbale,
+        'numeroVerbale'   : $scope.numeroVerbale,
         'dataVerbale'     : $scope.dataVerbale,
         'oraVerbale'      : $scope.oraVerbale,
         'enteVerbale'     : $scope.agenteEnte,
         'agenteVerbale'   : $scope.agenteVerbale,
         'latVerbale'      : $scope.latVerbale,
         'longVerbale'     : $scope.longVerbale,
-        'targaVeicolo'    : verbale.targaVeicolo,
+        'targaVeicolo'    : $scope.targaVeicolo,
         'tipoVeicolo'     : $scope.tipoVeicolo,
         'modelloVeicolo'  : $scope.modelloVeicolo,
         'indirizzo'       : $rootScope.indirizzoId,
-        'indirizzoCivico' : verbale.indirizzoCivico,
-        'indirizzoDescr'  : verbale.indirizzoDescr,
+        'indirizzoCivico' : $scope.indirizzoCivico,
+        'indirizzoDescr'  : $scope.indirizzoDescr,
         'art1'            : $scope.art1,
         'codArt1'         : $scope.codArt1,
         'descrArt1'       : $scope.descrArt1,
@@ -423,18 +428,18 @@ angular.module('starter.controllers', [])
   }
 
   $scope.annullaVerbale = function() {
-    //verbale.numeroVerbale   = '';
+    $scope.numeroVerbale   = '';
     $scope.dataVerbale      = '';
     $scope.oraVerbale       = '';
-    //$scope.agenteVerbale    = '';
+    //$scope.agenteVerbale    = ''; //Mantenere agente loggato
     $scope.latVerbale       = '';
     $scope.longVerbale      = '';
-    //verbale.targaVeicolo    = '';
+    $scope.targaVeicolo    = '';
     $scope.tipoVeicolo      = '';
     $scope.modelloVeicolo   = '';
-    //$scope.indirizzo        = '';
-    //verbale.indirizzoCivico = '';
-    //verbale.indirizzoDescr  = '';
+    //$scope.indirizzo        = ''; //Mantenere ultimo scelto
+    $scope.indirizzoCivico = '';
+    $scope.indirizzoDescr  = '';
     $scope.art1             = '';
     $scope.codArt1          = '';
     $scope.descrArt1        = '';
@@ -448,8 +453,8 @@ angular.module('starter.controllers', [])
     $scope.picData          = '';
 
     /*
-    $scope.idAgente2        = '';
-    $scope.nomeAgente2      = '';
+    $scope.idAgente2        = ''; //Mantenere ultimo scelto
+    $scope.nomeAgente2      = ''; //Mantenere ultimo scelto
     */
   }
 
