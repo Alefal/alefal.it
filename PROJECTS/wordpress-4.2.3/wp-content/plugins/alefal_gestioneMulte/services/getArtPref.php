@@ -2,9 +2,13 @@
 require_once('../../../../wp-config.php'); 
 
 global $wpdb;
+
+$ente = $_GET['ente'];
+
 $table_name_1 = 'p_artpref';
 $table_name_2 = 'p_articoli';
-$items = $wpdb->get_results("SELECT * FROM $table_name_1 as ap JOIN $table_name_2 as a ON ap.ID_ART=a.ID;");
+//SELECT * FROM p_artpref as ap JOIN p_articoli as a ON ap.ID_ART=a.ID AND ap.ENTE LIKE 'H198'
+$items = $wpdb->get_results("SELECT * FROM $table_name_1 as ap JOIN $table_name_2 as a ON ap.ID_ART=a.ID AND ap.ENTE LIKE '$ente'");
 
 $itemsArray = array();
 $resultArray = array();

@@ -12,6 +12,7 @@ error_reporting(E_ALL);
 -> ID_AGENTE1_VERB
 -> DATA_VERB
 -> ORA_VERB
+-> ENTE_VERB
 -> TIPO_VEI_VERB
 -> TARGA_VERB
 -> MODELLO_VERB
@@ -28,6 +29,7 @@ error_reporting(E_ALL);
 -> COD_OBLG_VERB
 -> COD_TRSG_VERB
 -> IMG_VERB
+-> FILE_PATH_IMG_VERB
 -> LATI_VERB
 -> LONG_VERB
 ***** CAMPI *****/
@@ -55,6 +57,7 @@ if($verbaleCompletoArr['numeroVerbale'] != '') {
             `ID_AGENTE1_VERB`,
             `DATA_VERB`,
             `ORA_VERB`,
+            `ENTE_VERB`,
             `TIPO_VEI_VERB`,
             `TARGA_VERB`,
             `MODELLO_VERB`,
@@ -71,15 +74,17 @@ if($verbaleCompletoArr['numeroVerbale'] != '') {
             `COD_OBLG_VERB`,
             `COD_TRSG_VERB`,
             `IMG_VERB`,
+            `FILE_PATH_IMG_VERB`,
             `LATI_VERB`,
             `LONG_VERB`) values (
+                            %s, %s, %s, %s, %s, %s, %s, %s, 
                             %s, %s, %s, %s, %s, %s, %s, %s,
-                            %s, %s, %s, %s, %s, %s, %s,
-                            %s, %s, %s, %s, %s, %s, %s)", 
+                            %s, %s, %s, %s, %s, %s, %s, %s)", 
                 isset($verbaleCompletoArr['numeroVerbale'])     ? $verbaleCompletoArr['numeroVerbale'] : '',
                 isset($verbaleCompletoArr['agenteVerbale'])     ? $verbaleCompletoArr['agenteVerbale'] : '',
                 isset($verbaleCompletoArr['dataVerbale'])       ? date_format($dataVerbale, 'Y-m-d') : '',
                 isset($verbaleCompletoArr['oraVerbale'])        ? $verbaleCompletoArr['oraVerbale'] : '',
+                isset($verbaleCompletoArr['enteVerbale'])       ? $verbaleCompletoArr['enteVerbale'] : '',
                 isset($verbaleCompletoArr['tipoVeicolo'])       ? $verbaleCompletoArr['tipoVeicolo'] : '',
                 isset($verbaleCompletoArr['targaVeicolo'])      ? $verbaleCompletoArr['targaVeicolo'] : '',
                 isset($verbaleCompletoArr['modelloVeicolo'])    ? $verbaleCompletoArr['modelloVeicolo'] : '',
@@ -96,6 +101,7 @@ if($verbaleCompletoArr['numeroVerbale'] != '') {
                 isset($verbaleCompletoArr['nomeObbligato'])     ? $verbaleCompletoArr['nomeObbligato'] : '',
                 isset($verbaleCompletoArr['nomeTrasgres'])      ? $verbaleCompletoArr['nomeTrasgres'] : '',
                 '',
+                isset($verbaleCompletoArr['filePathImg'])       ? $verbaleCompletoArr['filePathImg'] : '',
                 isset($verbaleCompletoArr['latVerbale'])        ? $verbaleCompletoArr['latVerbale'] : '',
                 isset($verbaleCompletoArr['longVerbale'])       ? $verbaleCompletoArr['longVerbale'] : '');
 

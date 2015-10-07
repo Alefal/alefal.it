@@ -60,26 +60,9 @@
             </div>
         </div>
 
-      <div class="spacerVertical"></div>
+        <div class="spacerVertical"></div>
 
-        <!-- RADIO BUTTON: A | C | M | R -->
-
-      <div class="row eventTab">
-        <div class="col">
-          <input type="radio" name="TIPO_VEI_VERB"> A
-        </div>
-        <div class="col">
-          <input type="radio" name="TIPO_VEI_VERB"> C
-        </div>
-        <div class="col">
-          <input type="radio" name="TIPO_VEI_VERB"> M
-        </div>
-        <div class="col">
-          <input type="radio" name="TIPO_VEI_VERB"> R
-        </div>
-      </div>
-
-      <div class="list list-inset">
+        <div class="list list-inset">
             <label class="item item-input">
                 <input type="text" name="TARGA_VERB" placeholder="Targa veicolo" ng-model="verbale.targaVeicolo" required>
                 <i class="icon ion-model-s"></i>
@@ -94,6 +77,44 @@
             </label>
         </div>
 
+        <!-- RADIO BUTTON: A | C | M | R -->
+        <div class="list">
+            <div align="right" style="padding:5px">Tipologia</div>
+            <label class="item item-radio">
+                <input type="radio" name="TIPO_VEI_VERB" value="A">
+                <div class="item-content">
+                    Automobile
+                </div>
+                <i class="radio-icon ion-checkmark"></i>
+            </label>
+
+            <label class="item item-radio">
+                <input type="radio" name="TIPO_VEI_VERB" value="C">
+                <div class="item-content">
+                    Ciclomotore
+                </div>
+                <i class="radio-icon ion-checkmark"></i>
+            </label>
+
+            <label class="item item-radio">
+                <input type="radio" name="TIPO_VEI_VERB" value="M">
+                <div class="item-content">
+                    Motociclo
+                </div>
+                <i class="radio-icon ion-checkmark"></i>
+            </label>
+
+            <label class="item item-radio">
+                <input type="radio" name="TIPO_VEI_VERB" value="R">
+                <div class="item-content">
+                    Rimorchio
+                </div>
+                <i class="radio-icon ion-checkmark"></i>
+            </label>
+        </div>
+
+        
+
       <!--
       IMG_VERB
       -->
@@ -106,12 +127,12 @@
           </div>
         </div>
         <div class="list list-inset">
-          <label class="item item-input capturePhoto">
+          <label class="item item-input {{capturePhotoClass}}">
             <div ng-show="picData" class="item item-image">
               <!--
               Fare UPLOAD del file e aggiungere campo PATH_IMG_VERB
               -->
-              <img id="veicoloFoto" class="item" ng-src="{{picData}}" ng-click="uploadPicture()" style="height:175px;"/>
+              <img id="veicoloFoto" class="item" ng-src="{{picData}}" ng-click="uploadPicture()" />
             </div>
           </label>
         </div>
@@ -158,7 +179,7 @@
                 <button class="button button-positive icon-left ion-android-checkbox-outline" ng-click="openModalItem('articoli','art1')" style="height: 45px;"></button>
 
                 <!-- TODO -->
-                <button class="button button-energized icon-left-right ion-star" ng-click="openModalItem('artPref','')" style="height: 45px;"></button>
+                <button class="button button-energized icon-left-right ion-star" ng-click="openModalItem('artpref','art1')" style="height: 45px;"></button>
             </div>
         </div>
 
@@ -189,7 +210,7 @@
                 <button class="button button-positive icon-left ion-android-checkbox-outline" ng-click="openModalItem('articoli','art2')" style="height: 45px;"></button>
 
                 <!-- TODO -->
-                <button class="button button-energized icon-left-right ion-star" ng-click="openModalItem('artPref','')" style="height: 45px;"></button>
+                <button class="button button-energized icon-left-right ion-star" ng-click="openModalItem('artpref','art2')" style="height: 45px;"></button>
             </div>
         </div>
 
@@ -274,7 +295,8 @@
 
         Aggiungere ENTE nella tabella P_VERB
         -->
-        <input type="hidden" name="ID_AGENTE1_VERB" value="{{agenteVerbale}}" required>
+        <input type="hidden" name="ID_AGENTE1_VERB" value="{{agenteVerbale}}">
+        <input type="hidden" name="ENTE" value="{{agenteEnte}}">
         <input type="hidden" name="LATI_VERB" value="{{latVerbale}}">
         <input type="hidden" name="LONG_VERB" value="{{longVerbale}}">
 

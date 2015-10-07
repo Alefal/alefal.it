@@ -8,7 +8,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 
   $ionicPlatform.ready(function() {
 
-    $rootScope.server = 'http://192.168.1.188/alefal.it/PROJECTS/wordpress-4.2.3';
+    $rootScope.server = 'http://localhost/alefal.it/PROJECTS/wordpress-4.2.3';
     //$rootScope.server = 'http://cdsmobile.swstudio.net';
 
     console.info('ionicPlatform.ready');
@@ -132,21 +132,24 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
   ajaxCallServices.getItems = function (item) {
 
     var service = '';
+    var ente    = localStorage.getItem('agent_ente');
 
     if(item == 'articoli') {
       service = 'getArticoli.php'
+    } else if(item == 'artpref') {
+      service = 'getArtPref.php?ente='+ente;
     } else if(item == 'marche') {
       service = 'getMarche.php';
     } else if(item == 'autorizzati') {
       service = 'getAutorizzati.php';
     } else if(item == 'vie') {
-      service = 'getVie.php';
+      service = 'getVie.php?ente='+ente;
     } else if(item == 'obbligato') {
       service = 'getObbligato.php';
     } else if(item == 'trasgres') {
       service = 'getTrasgressore.php';
     } else if(item == 'agenti') {
-      service = 'getAgenti.php';
+      service = 'getAgenti.php?ente='+ente;
     }
 
     return $http.get($rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/'+service);
@@ -168,7 +171,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
       localStorage.removeItem('agent_id');
       localStorage.removeItem('agent_nome');
       localStorage.removeItem('agent_ente');
-      localStorage.removeItem('agent_ente');
+      localStorage.removeItem('agent_matr');
       $state.go('app.login');
     },
     goto: function(url) {
@@ -209,6 +212,8 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
     var tpl = '';
     if(item == 'articoli') {
       tpl = 'templates/pages/modalArticoli.html';
+    } else if(item == 'artpref') {
+      tpl = 'templates/pages/modalArtPref.html';
     } else if(item == 'marche') {
       tpl = 'templates/pages/modalMarche.html';
     } else if(item == 'autorizzati') {

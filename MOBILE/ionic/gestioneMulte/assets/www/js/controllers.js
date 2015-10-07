@@ -25,7 +25,7 @@ angular.module('starter.controllers', [])
           localStorage.setItem('agent_id', access[0].items[0].ID);
           localStorage.setItem('agent_nome', access[0].items[0].NOME_AGENT);
           localStorage.setItem('agent_ente', access[0].items[0].ENTE);
-          localStorage.setItem('agent_ente', access[0].items[0].MATR);
+          localStorage.setItem('agent_matr', access[0].items[0].MATR);
 
           //MEMORIZZO I DATI NEL LOCAL STORAGE PER NAVIGAZIONE OFFLINE
           $scope.openModalItem = function(item) {
@@ -215,10 +215,13 @@ angular.module('starter.controllers', [])
     });
   };
 
-  $scope.data = { "ImageURI" :  "Select Image" };
-  $scope.picData = '';
+  $scope.filePathImg  = '';
+  $scope.picData      = '';
 
   $scope.takePicture = function() {
+
+    
+
     var options = {
       quality: 50,
       destinationType: Camera.DestinationType.FILE_URI,
@@ -227,6 +230,7 @@ angular.module('starter.controllers', [])
     };
     $cordovaCamera.getPicture(options).then(
       function(imageData) {
+        $scope.capturePhotoClass = 'capturePhoto';
         console.log('--->>> '+imageData);
         $scope.picData = imageData;
         $scope.ftLoad = true;
@@ -245,6 +249,7 @@ angular.module('starter.controllers', [])
   $scope.oraVerbale       = localDate.toLocaleTimeString();
 
   $scope.agenteVerbale  = localStorage.getItem('agent_id');
+  $scope.agenteEnte     = localStorage.getItem('agent_ente');
 
   $scope.latVerbale   = '';
   $scope.longVerbale  = '';
@@ -282,7 +287,7 @@ angular.module('starter.controllers', [])
         $scope.targaVeicoloRequired = true;
         $ionicScrollDelegate.scrollTop(true);
         return false;
-      } else if(typeof($scope.indirizzo) == 'undefined') {
+      } else if(typeof($rootScope.indirizzoId) == 'undefined') {
         $scope.fieldsRequired = true;
         $scope.verbaleRequired = false;
         $scope.datiVerbaleRequired = false;
@@ -320,13 +325,14 @@ angular.module('starter.controllers', [])
         'numeroVerbale'   : verbale.numeroVerbale,
         'dataVerbale'     : $scope.dataVerbale,
         'oraVerbale'      : $scope.oraVerbale,
+        'enteVerbale'     : $scope.agenteEnte,
         'agenteVerbale'   : $scope.agenteVerbale,
         'latVerbale'      : $scope.latVerbale,
         'longVerbale'     : $scope.longVerbale,
         'targaVeicolo'    : verbale.targaVeicolo,
         'tipoVeicolo'     : $scope.tipoVeicolo,
         'modelloVeicolo'  : $scope.modelloVeicolo,
-        'indirizzo'       : $scope.indirizzoId,
+        'indirizzo'       : $rootScope.indirizzoId,
         'indirizzoCivico' : verbale.indirizzoCivico,
         'indirizzoDescr'  : verbale.indirizzoDescr,
         'art1'            : $scope.art1,
@@ -337,7 +343,8 @@ angular.module('starter.controllers', [])
         'descrArt2'       : $scope.descrArt2,
         'nomeObbligato'   : $scope.idObbligato,
         'nomeTrasgres'    : $scope.idTrasgres,
-        'agente2Verbale'  : $scope.idAgente2,
+        'agente2Verbale'  : $rootScope.idAgente2,
+        'filePathImg'     : $scope.filePathImg,
         'imgBase64'       : $scope.picData
       };
 
@@ -355,7 +362,7 @@ angular.module('starter.controllers', [])
           console.log(result[0].message);
           console.log($scope.picData);
 
-          document.addEventListener('deviceready', function () {
+          //document.addEventListener('deviceready', function () {
 
               if(angular.isNumber(result[0].message)) {
 
@@ -388,7 +395,7 @@ angular.module('starter.controllers', [])
                 $ionicLoading.hide();
                 $scope.showAlert('Salvataggio verbale','Verbale salvato correttamente!',true);
               }
-            }, false);
+            //}, false);
 
         }).error(function (error) {
           $ionicLoading.hide();
@@ -419,13 +426,13 @@ angular.module('starter.controllers', [])
     //verbale.numeroVerbale   = '';
     $scope.dataVerbale      = '';
     $scope.oraVerbale       = '';
-    $scope.agenteVerbale    = '';
+    //$scope.agenteVerbale    = '';
     $scope.latVerbale       = '';
     $scope.longVerbale      = '';
     //verbale.targaVeicolo    = '';
     $scope.tipoVeicolo      = '';
     $scope.modelloVeicolo   = '';
-    $scope.indirizzo        = '';
+    //$scope.indirizzo        = '';
     //verbale.indirizzoCivico = '';
     //verbale.indirizzoDescr  = '';
     $scope.art1             = '';
@@ -440,8 +447,10 @@ angular.module('starter.controllers', [])
     $scope.nomeTrasgres     = '';
     $scope.picData          = '';
 
+    /*
     $scope.idAgente2        = '';
     $scope.nomeAgente2      = '';
+    */
   }
 
   $scope.openModalItem = function(item,section) {
@@ -506,14 +515,14 @@ angular.module('starter.controllers', [])
   }
 
   $scope.selezionaIndirizzo = function(ID,DESCR_VIE) {
-    $scope.indirizzoId  = ID;
-    $scope.indirizzo    = DESCR_VIE;
+    $rootScope.indirizzoId  = ID;
+    $rootScope.indirizzo    = DESCR_VIE;
     $scope.modal.hide();
   }
 
   $scope.selezionaAgente = function(ID,NOME_AGENT) {
-    $scope.idAgente2      = ID;
-    $scope.nomeAgente2    = NOME_AGENT;
+    $rootScope.idAgente2      = ID;
+    $rootScope.nomeAgente2    = NOME_AGENT;
     $scope.modal.hide();
   }
 
@@ -545,6 +554,11 @@ angular.module('starter.controllers', [])
 
   //PRINT
   $scope.stampaVerbale = function() {
+
+    $scope.annullaVerbale();
+    $state.go('app.welcome');
+
+
     //$timeout(function () {
     //https://github.com/don/BluetoothSerial
 /*

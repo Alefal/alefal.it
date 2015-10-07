@@ -2,8 +2,11 @@
 require_once('../../../../wp-config.php'); 
 
 global $wpdb;
+
+$ente = $_GET['ente'];
+
 $table_name = 'p_agenti';
-$items = $wpdb->get_results("SELECT * FROM $table_name");
+$items = $wpdb->get_results("SELECT * FROM $table_name WHERE ENTE LIKE '$ente'");
 
 $itemsArray = array();
 $resultArray = array();
