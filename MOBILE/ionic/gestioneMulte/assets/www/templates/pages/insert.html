@@ -17,11 +17,12 @@
         DATA_VERB
         ORA_VERB
         -->
-        <h4>Verbale numero: <strong>{{numeroVerbale}}</strong></h4>
-
-        <input type="hidden" name="NUM_VERB"    value="{{numeroVerbale}}">
-        <input type="hidden" name="DATA_VERB"   value="{{dataVerbale}}">
-        <input type="hidden" name="ORA_VERB"    value="{{oraVerbale}}">
+        <div align="center">
+            <h5>Verbale <strong>{{numeroVerbale}}</strong> del <strong>{{dataVerbale}}</strong> ora <strong>{{oraVerbale}}</strong></h5>
+            <input type="hidden" name="NUM_VERB"    value="{{numeroVerbale}}">
+            <input type="hidden" name="DATA_VERB"   value="{{dataVerbale}}">
+            <input type="hidden" name="ORA_VERB"    value="{{oraVerbale}}">
+        </div>
 
         <div class="message-danger message-danger-striped" ng-show="fieldsRequired" id="messageFieldsRequired">
           <p ng-show="verbaleRequired">Inserire i dati del verbale!</p>
@@ -30,6 +31,8 @@
           <p ng-show="indirizzoRequired">L'indirizzo &egrave; obbligatorio!</p>
           <p ng-show="articoloRequired">L'articolo &egrave; obbligatorio!</p>
         </div>
+
+        <div class="spacerVertical"></div>
 
         <!--
         <div class="list list-inset">
@@ -54,7 +57,6 @@
         <div class="spacerVertical"></div>
 
         <!--
-        TIPO_VEI_VERB
         TARGA_VERB
         MODELLO_VERB
         -->
@@ -84,43 +86,31 @@
             </label>
         </div>
 
-        <!-- RADIO BUTTON: A | C | M | R -->
-        <div class="list">
-            <div align="right" style="padding:5px">Tipologia</div>
-            <label class="item item-radio">
-                <input type="radio" ng-model="tipoVeicolo" name="TIPO_VEI_VERB" value="A">
-                <div class="item-content">
-                    Automobile
-                </div>
-                <i class="radio-icon ion-checkmark"></i>
-            </label>
+        <div class="spacerVertical"></div>
 
-            <label class="item item-radio">
-                <input type="radio" ng-model="tipoVeicolo" name="TIPO_VEI_VERB" value="C">
-                <div class="item-content">
-                    Ciclomotore
-                </div>
-                <i class="radio-icon ion-checkmark"></i>
-            </label>
+        <!--
+        TIPO_VEI_VERB
+        -->
+        <div class="row eventTab">
+            <div class="col">
+                <h4>Tipologia veicolo</h4>
+            </div>
+            <div class="col" align="right">
+                <button class="button button-energized icon-left ion-android-checkbox-outline" ng-click="openModalItem('tipoVeicolo')"> Scegli</button>
+            </div>
+        </div>
 
-            <label class="item item-radio">
-                <input type="radio" ng-model="tipoVeicolo" name="TIPO_VEI_VERB" value="M">
-                <div class="item-content">
-                    Motociclo
-                </div>
-                <i class="radio-icon ion-checkmark"></i>
-            </label>
+        <div class="spacerVertical"></div>
 
-            <label class="item item-radio">
-                <input type="radio" ng-model="tipoVeicolo" name="TIPO_VEI_VERB" value="R">
-                <div class="item-content">
-                    Rimorchio
-                </div>
-                <i class="radio-icon ion-checkmark"></i>
+        <div class="list list-inset">
+            <label class="item item-input">
+                <input type="text" placeholder="Tipo veicolo" ng-model="tipoVeicoloDescr" required>
+                <input type="hidden" name="TIPO_VEI_VERB" value="{{tipoVeicoloCode}}">
+                <i class="icon ion-model-s"></i>
             </label>
         </div>
 
-        
+        <div class="spacerVertical"></div>
 
       <!--
       IMG_VERB

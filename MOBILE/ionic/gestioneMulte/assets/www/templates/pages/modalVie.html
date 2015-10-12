@@ -17,11 +17,11 @@ TOPON: ""
   	<ion-content class="padding" ng-show="!loading">
 
   		<div class="list list-inset" style="border:none;">
-			<label class="item item-input">
-				<i class="icon ion-funnel placeholder-icon"></i>
-				<input type="search" ng-model="q" placeholder="Filtra i risultati...">
-			</label>
-		</div>
+  			<label class="item item-input">
+  				<i class="icon ion-funnel placeholder-icon"></i>
+  				<input type="search" ng-model="q" placeholder="Filtra i risultati...">
+  			</label>
+  		</div>
 
     	<ion-list class="card">
     		<ion-item ng-repeat="item in items | filter:q as results" class="itemModal item-icon-right" style="padding:10px">

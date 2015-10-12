@@ -2,6 +2,39 @@ angular.module('starter.controllers', [])
 
 .controller('LoginCtrl', function($scope,$rootScope,$ionicLoading,ajaxCallServices,$state,ModalService/*,$cordovaNetwork*/) {
 
+  $scope.deviceNotRegistered = false;
+  if(localStorage.getItem('deviceRegistered')) {
+    $scope.deviceNotRegistered = false;
+  } else {
+    $scope.deviceNotRegistered = true;
+  }
+
+  $scope.registraDevice = function() {
+    $ionicLoading.show({
+      template: 'Attendere...'
+    });
+
+    ajaxCallServices.registraDevice('1234567890','HTC ONE')
+      .success(function (operation) {
+      
+        if(operation[0].result == 'OK') {
+          console.log('Ok');
+
+          $scope.deviceNotRegistered = false;
+          localStorage.setItem('deviceRegistered',true);
+
+          $ionicLoading.hide();
+        } else {
+          console.log('KO');    //TODO: gestire messaggio
+          $ionicLoading.hide();
+        }
+
+      }).error(function (error) {
+        console.log('KO');
+        $ionicLoading.hide();
+      });
+  };
+
   $scope.userLoggedFailed = false;
 
   $scope.authorization = {
@@ -56,6 +89,7 @@ angular.module('starter.controllers', [])
           $scope.openModalItem('obbligato');
           $scope.openModalItem('trasgres');
           $scope.openModalItem('agenti');
+          $scope.openModalItem('tipoVeicolo');
 
           $ionicLoading.hide();
           $state.go('app.welcome');
@@ -187,7 +221,23 @@ angular.module('starter.controllers', [])
   $scope.filePathImg  = '';
   $scope.picData      = '';
 
-  $scope.numeroVerbale = Math.floor((Math.random() * 1000000) + 1);
+  //$scope.numeroVerbale = Math.floor((Math.random() * 1000000) + 1);
+  $scope.numeroVerbale = '';
+
+  ajaxCallServices.getItems('device')
+    .success(function (device) {
+    
+      if(device[0].response[0].result == 'OK') {
+        console.log('OK: '+device[0].items[0].NUM_VERB);
+        $scope.numeroVerbale = device[0].items[0].NUM_VERB;
+      } else {
+        console.log('KO'); 
+      }
+
+    }).error(function (error) {
+      console.log('KO');
+    });
+
 
   var localDate = new Date();
   $scope.dataVerbale      = localDate.toLocaleDateString();
@@ -203,7 +253,8 @@ angular.module('starter.controllers', [])
   $scope.indirizzoCivico  = '';
   $scope.indirizzoDescr   = '';
 
-  $scope.tipoVeicolo = 'A';
+  $scope.tipoVeicoloCode  = 'A';
+  $scope.tipoVeicoloDescr = 'AUTOVEICOLO';
 
   /*
   var posOptions = {timeout: 10000, enableHighAccuracy: false};
@@ -278,7 +329,7 @@ angular.module('starter.controllers', [])
 
   $scope.salvaVerbale = function() {
 
-    console.log($scope.tipoVeicolo);
+    console.log($scope.tipoVeicoloCode);
 
     if (typeof($scope.numeroVerbale) == 'undefined') {
       $scope.fieldsRequired = true;
@@ -335,7 +386,7 @@ angular.module('starter.controllers', [])
         'latVerbale'      : $scope.latVerbale,
         'longVerbale'     : $scope.longVerbale,
         'targaVeicolo'    : $scope.targaVeicolo,
-        'tipoVeicolo'     : $scope.tipoVeicolo,
+        'tipoVeicolo'     : $scope.tipoVeicoloCode,
         'modelloVeicolo'  : $scope.modelloVeicolo,
         'indirizzo'       : $rootScope.indirizzoId,
         'indirizzoCivico' : $scope.indirizzoCivico,
@@ -428,18 +479,19 @@ angular.module('starter.controllers', [])
   }
 
   $scope.annullaVerbale = function() {
-    $scope.numeroVerbale   = '';
+    $scope.numeroVerbale    = '';
     $scope.dataVerbale      = '';
     $scope.oraVerbale       = '';
     //$scope.agenteVerbale    = ''; //Mantenere agente loggato
     $scope.latVerbale       = '';
     $scope.longVerbale      = '';
-    $scope.targaVeicolo    = '';
-    $scope.tipoVeicolo      = '';
+    $scope.targaVeicolo     = '';
+    $scope.tipoVeicoloCode  = 'A';
+    $scope.tipoVeicoloDescr = 'AUTOVEICOLO';
     $scope.modelloVeicolo   = '';
     //$scope.indirizzo        = ''; //Mantenere ultimo scelto
-    $scope.indirizzoCivico = '';
-    $scope.indirizzoDescr  = '';
+    $scope.indirizzoCivico  = '';
+    $scope.indirizzoDescr   = '';
     $scope.art1             = '';
     $scope.codArt1          = '';
     $scope.descrArt1        = '';
@@ -554,6 +606,11 @@ angular.module('starter.controllers', [])
     $scope.nomeTrasgres = NOME_TRGS;
     $scope.modal.hide();
   }
+  $scope.selezionaTipoVeicolo = function(COD_VEI,DESC_VEIC) {
+    $scope.tipoVeicoloCode  = COD_VEI;
+    $scope.tipoVeicoloDescr = DESC_VEIC;
+    $scope.modal.hide();
+  }
 
   $scope.imgBase64 = '';
 
@@ -634,5 +691,30 @@ angular.module('starter.controllers', [])
         }
       });
   };
+
+})
+
+.controller('VerbaliCtrl', function($scope,$ionicLoading,ModalService,ajaxCallServices/*,$cordovaGeolocation*/) {
+
+  ajaxCallServices.getItems('verbale')
+    .success(function (items) {
+
+      if(items[0].response[0].result == 'OK') {
+        $scope.items = items[0].items;
+        $scope.loading = false;
+
+        $ionicLoading.hide();
+      } else {
+        $scope.items = 'ERROR';
+      }
+
+    }).error(function (error) {
+      $scope.status = 'Unable to load customer data' + error;
+    });
+
+
+  $scope.stampaVerbale = function() {
+    console.log('stampaVerbale');
+  }
 
 });

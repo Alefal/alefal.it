@@ -1,0 +1,31 @@
+<ion-view view-title="Verbali" hide-nav-bar="true" class="eventForm">
+
+	<ion-header-bar class="bar-positive">
+    	<h1 class="title">Verbali odierni</h1>
+    	<a ng-click="globFunc.back()" class="power button"><i class="ion-chevron-left"></i></a> 
+    </ion-header-bar>
+
+    <ion-content>
+
+        <div class="list list-inset" style="border:none;">
+            <label class="item item-input">
+                <i class="icon ion-funnel placeholder-icon"></i>
+                <input type="search" ng-model="q" placeholder="Filtra i risultati...">
+            </label>
+        </div>
+        
+        <ion-list>
+            <ion-item ng-repeat="item in items | filter:q as results" class="item-icon-left item-icon-right">
+                <i class="icon ion-clipboard"></i>
+                
+                <h3>Verbale numero <strong>{{item.NUM_VERB}}</strong> del <strong>{{item.DATA_VERB}}</strong> alle <strong>{{item.ORA_VERB}}</strong></h3>
+                <p>Targa <strong>{{item.TARGA_VERB}}</strong>, tipo veicolo <strong>{{item.TIPO_VEI_VERB}}</strong></p>
+
+                <i class="icon ion-android-print" ng-click="stampaVerbale()"></i>
+            </ion-item>
+
+        </ion-list>
+
+    </ion-content>
+    
+</ion-view>

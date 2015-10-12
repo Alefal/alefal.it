@@ -108,6 +108,7 @@ if($verbaleCompletoArr['numeroVerbale'] != '') {
     //echo $sql;
     $result = $wpdb->query($sql);
 
+    //TODO: incrementare numero verbale sulla tabella DEVICE
     
     // Fail -- the "===" operator compares type as well as value
     if ($result === false) {

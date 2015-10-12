@@ -55,12 +55,14 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
   $translateProvider.translations('en', {
     AuthenticationFailed: 'Authentication failed! <br /> Use "demo" "demo"',
     Role: 'Role',
+    RegistraDevice: 'Store Device',
     SignIn: 'Sign In',
     Registration: 'Registration'
   });
   $translateProvider.translations('it', {
     AuthenticationFailed: 'Autenticazione fallita! <br /> Usa "demo" "demo"',
     Role: 'Ruolo',
+    RegistraDevice: 'Registra Device',
     SignIn: 'Accedi',
     Registration: 'Registrazione'
   });
@@ -114,6 +116,15 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
           controller: 'SearchCtrl'
         }
       }
+    })
+    .state('app.verbali', {
+      url: '/verbali',
+      views: {
+        'pageContainer': {
+          templateUrl: 'templates/pages/verbali.html',
+          controller: 'VerbaliCtrl'
+        }
+      }
     });
 
   // if none of the above states are matched, use this as the fallback
@@ -134,6 +145,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 
     var service = '';
     var ente    = localStorage.getItem('agent_ente');
+    var device  = '1234567890';
 
     if(item == 'articoli') {
       service = 'getArticoli.php'
@@ -151,6 +163,12 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
       service = 'getTrasgressore.php';
     } else if(item == 'agenti') {
       service = 'getAgenti.php?ente='+ente;
+    } else if(item == 'tipoVeicolo') {
+      service = 'getTipoVeicolo.php';
+    } else if(item == 'verbale') {
+      service = 'getVerbale.php';
+    } else if(item == 'device') {
+      service = 'getDevice.php?ente='+ente+'&device='+device;
     }
 
     return $http.get($rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/'+service);
@@ -161,6 +179,12 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
   ajaxCallServices.salvaVerbale = function (verbaleCompleto) {
     console.log(JSON.stringify(verbaleCompleto));
     return $http({url:$rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/setVerbale.php',method:'GET',params:{verbaleCompleto: verbaleCompleto}});
+  };
+
+  /***** registraDevice ****/
+  ajaxCallServices.registraDevice = function (deviceUUID, deviceModel) {
+    //COD_ENTE e NUM_VERB devono essere impostati in fase iniziale 
+    return $http({url:$rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/setDevice.php',method:'GET',params:{COD_UID_DEVICE: deviceUUID, DESC_DEVICE: deviceModel}});
   };
 
   return ajaxCallServices;
@@ -227,6 +251,8 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
       tpl = 'templates/pages/modalTrasgres.html';
     } else if(item == 'agenti') {
       tpl = 'templates/pages/modalAgenti.html';
+    } else if(item == 'tipoVeicolo') {
+      tpl = 'templates/pages/modalTipoVeicolo.html';
     }
 
     promise = $ionicModal.fromTemplateUrl(tpl, {

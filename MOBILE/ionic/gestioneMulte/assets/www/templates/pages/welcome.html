@@ -25,9 +25,15 @@
       <div class="message-info message-info-striped padding" ng-show="viewMessageSincronizzazione" ng-bind-html="messageSincronizzazione" style="margin:10px">
       </div>
 
-      <div class="row eventTab" ng-show="datiVerbaleOffline" ng-click="sincronizzaDati()">
-        <div class="col">
-          <div class="tabtext" ng-click="">
+      <div class="row eventTab">
+        <div class="col col-50">
+          <div class="tabtext" ng-click="globFunc.goto('app.verbali')">
+            <div class="icon"><i class="ion-clipboard"></i></div>
+            <h3>Verbali</h3>
+          </div>
+        </div>
+        <div class="col col-50">
+          <div class="tabtext" ng-click="sincronizzaDati()" ng-show="datiVerbaleOffline">
             <div class="icon"><i class="ion-arrow-swap"></i></div>
             <h3>Sincronizza dati</h3>
           </div>

@@ -28,6 +28,11 @@
         <span ng-bind-html="'SignIn' | translate">&nbsp;</span>
       </button>
 
+      <div class="spacerVertical"></div>
+      <button class="button button-block button-positive left-right ion-arrow-swap" ng-click="registraDevice()" ng-show="deviceNotRegistered">
+        <span ng-bind-html="'RegistraDevice' | translate">&nbsp;</span>
+      </button>
+
       <br />
       {{server}}
 
