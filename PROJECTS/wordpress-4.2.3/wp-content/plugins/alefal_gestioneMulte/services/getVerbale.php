@@ -3,7 +3,7 @@ require_once('../../../../wp-config.php');
 
 global $wpdb;
 $table_name = 'p_verb';
-$items = $wpdb->get_results("SELECT * FROM $table_name  WHERE `DATA_VERB` = CURDATE()");
+$items = $wpdb->get_results("SELECT * FROM $table_name  WHERE `DATA_VERB` = CURDATE() ORDER BY NUM_VERB;");
 
 $itemsArray = array();
 $resultArray = array();

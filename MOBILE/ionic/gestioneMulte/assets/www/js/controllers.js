@@ -452,6 +452,9 @@ angular.module('starter.controllers', [])
           console.log(result[0].message);
           console.log($scope.picData);
 
+          var numVerbIncremente = parseInt(localStorage.getItem('numeroVerbale')) + 1;
+          localStorage.setItem('numeroVerbale',numVerbIncremente);
+
           //document.addEventListener('deviceready', function () {
 
               if(angular.isNumber(result[0].message)) {
@@ -505,7 +508,7 @@ angular.module('starter.controllers', [])
 
         localStorage.setItem('datiVerbaleOffline',JSON.stringify($scope.verbaleCompletoArray));
         var numVerbIncremente = parseInt(localStorage.getItem('numeroVerbale')) + 1;
-        localStorage.setItem('numeroVerbale',numVerbIncremente)
+        localStorage.setItem('numeroVerbale',numVerbIncremente);
 
         $ionicLoading.hide();
         $scope.showAlert('Salvataggio verbale','Il tuo verbale &egrave; stato salvato in memoria! Ricordati di premere "Sincronizza" appena entri sotto copertura rete.',true);
@@ -659,6 +662,7 @@ angular.module('starter.controllers', [])
 
     //$timeout(function () {
     //https://github.com/don/BluetoothSerial
+    //cordova plugin add https://github.com/eddysby2000/Cordova-Bluetooth-Printer-Plugin.git
 /*
     $cordovaBluetoothSerial.isEnabled().then(
       function() {
