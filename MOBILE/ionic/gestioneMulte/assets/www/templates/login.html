@@ -11,6 +11,14 @@
           <i class="icon ion-android-warning" style="font-size: 25px;"></i>
           <span ng-bind-html="'AuthenticationFailed' | translate">&nbsp;</span>
       </div>
+      <div class="message-danger message-danger-striped" ng-show="deviceFirstRegistered">
+          <i class="icon ion-android-warning" style="font-size: 25px;"></i>
+          Devi prima registrare il device!
+      </div>
+      <div class="message-info message-info-striped" ng-show="deviceCompleteRegistered">
+          <i class="icon ion-android-warning" style="font-size: 25px;"></i>
+          Completa la valorizzazzione dei dati sulla tabella <strong>p_device</strong> con il <strong>COD_ENTE</strong> e <strong>NUM_VERB</strong> per il device <strong>{{device.uuid}}</strong>
+      </div>
 
       <label class="item item-input">
         <i class="ion-android-contact placeholder-icon"></i>

@@ -3,6 +3,10 @@ angular.module('starter.controllers', [])
 .controller('LoginCtrl', function($scope,$rootScope,$ionicLoading,ajaxCallServices,$state,ModalService/*,$cordovaNetwork*/) {
 
   $scope.deviceNotRegistered = false;
+  $scope.deviceFirstRegistered = false;
+  $scope.deviceCompleteRegistered = false;
+  $scope.userLoggedFailed = false;
+
   if(localStorage.getItem('deviceRegistered')) {
     $scope.deviceNotRegistered = false;
   } else {
@@ -14,13 +18,18 @@ angular.module('starter.controllers', [])
       template: 'Attendere...'
     });
 
-    ajaxCallServices.registraDevice('1234567890','HTC ONE')
+    var deviceUUID  = localStorage.getItem('deviceUUID');
+    var deviceModel = localStorage.getItem('deviceModel');
+    ajaxCallServices.registraDevice(deviceUUID,deviceModel)
       .success(function (operation) {
       
         if(operation[0].result == 'OK') {
           console.log('Ok');
 
           $scope.deviceNotRegistered = false;
+          $scope.deviceFirstRegistered = false;
+          $scope.deviceCompleteRegistered = true;
+
           localStorage.setItem('deviceRegistered',true);
 
           $ionicLoading.hide();
@@ -35,7 +44,6 @@ angular.module('starter.controllers', [])
       });
   };
 
-  $scope.userLoggedFailed = false;
 
   $scope.authorization = {
     username: 'VinSCHIAVO',
@@ -46,6 +54,12 @@ angular.module('starter.controllers', [])
     $ionicLoading.show({
       template: 'Attendere...'
     });
+
+    if(!localStorage.getItem('deviceRegistered')) {
+      $scope.deviceFirstRegistered = true;
+      $ionicLoading.hide();
+      return false;
+    }
 
     //LOGIN offline ???
     ajaxCallServices.checkUserAccess($scope.authorization.username,$scope.authorization.password)
@@ -90,6 +104,21 @@ angular.module('starter.controllers', [])
           $scope.openModalItem('trasgres');
           $scope.openModalItem('agenti');
           $scope.openModalItem('tipoVeicolo');
+
+          //MEMORIZZO I DATI NEL LOCAL STORAGE PER NAVIGAZIONE OFFLINE
+          ajaxCallServices.getItems('device')
+            .success(function (device) {
+            
+              if(device[0].response[0].result == 'OK') {
+                console.log('OK: '+device[0].items[0].NUM_VERB);
+                localStorage.setItem('numeroVerbale',device[0].items[0].NUM_VERB);
+              } else {
+                console.log('KO'); 
+              }
+
+            }).error(function (error) {
+              console.log('KO');
+            });
 
           $ionicLoading.hide();
           $state.go('app.welcome');
@@ -224,20 +253,24 @@ angular.module('starter.controllers', [])
   //$scope.numeroVerbale = Math.floor((Math.random() * 1000000) + 1);
   $scope.numeroVerbale = '';
 
-  ajaxCallServices.getItems('device')
-    .success(function (device) {
-    
-      if(device[0].response[0].result == 'OK') {
-        console.log('OK: '+device[0].items[0].NUM_VERB);
-        $scope.numeroVerbale = device[0].items[0].NUM_VERB;
-      } else {
-        console.log('KO'); 
-      }
+  if(!$rootScope.checkNoConnection) {
+    ajaxCallServices.getItems('device')
+      .success(function (device) {
+      
+        if(device[0].response[0].result == 'OK') {
+          console.log('OK: '+device[0].items[0].NUM_VERB);
+          $scope.numeroVerbale = device[0].items[0].NUM_VERB;
+        } else {
+          console.log('KO'); 
+        }
 
-    }).error(function (error) {
-      console.log('KO');
-    });
-
+      }).error(function (error) {
+        console.log('KO');
+      });
+  } else {
+    //No connection
+    $scope.numeroVerbale = localStorage.getItem('numeroVerbale');
+  }
 
   var localDate = new Date();
   $scope.dataVerbale      = localDate.toLocaleDateString();
@@ -401,7 +434,8 @@ angular.module('starter.controllers', [])
         'nomeTrasgres'    : $scope.idTrasgres,
         'agente2Verbale'  : $rootScope.idAgente2,
         'filePathImg'     : $scope.filePathImg,
-        'imgBase64'       : $scope.picData
+        'imgBase64'       : $scope.picData,
+        'deviceUUID'      : localStorage.getItem('deviceUUID')  //device da localStorage
       };
 
     console.log('Check connection: '+$rootScope.checkNoConnection);
@@ -470,6 +504,8 @@ angular.module('starter.controllers', [])
         console.log($scope.verbaleCompletoArray);
 
         localStorage.setItem('datiVerbaleOffline',JSON.stringify($scope.verbaleCompletoArray));
+        var numVerbIncremente = parseInt(localStorage.getItem('numeroVerbale')) + 1;
+        localStorage.setItem('numeroVerbale',numVerbIncremente)
 
         $ionicLoading.hide();
         $scope.showAlert('Salvataggio verbale','Il tuo verbale &egrave; stato salvato in memoria! Ricordati di premere "Sincronizza" appena entri sotto copertura rete.',true);
@@ -696,6 +732,7 @@ angular.module('starter.controllers', [])
 
 .controller('VerbaliCtrl', function($scope,$ionicLoading,ModalService,ajaxCallServices/*,$cordovaGeolocation*/) {
 
+  //TODO: gestione offline ???
   ajaxCallServices.getItems('verbale')
     .success(function (items) {
 

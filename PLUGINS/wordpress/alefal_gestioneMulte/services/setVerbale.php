@@ -126,6 +126,16 @@ if($verbaleCompletoArr['numeroVerbale'] != '') {
     } 
     // Success, and updates were done. $result is the number of affected rows.
     if ($result > 0) {
+
+        $numeroVerbale = intval($verbaleCompletoArr['numeroVerbale']) + 1;
+        $deviceUUID = $verbaleCompletoArr['deviceUUID'];
+
+        $table_name = 'p_device';
+        $sql = $wpdb->prepare("UPDATE $table_name SET NUM_VERB = '%s' WHERE COD_UID_DEVICE = '%d'", $numeroVerbale, $deviceUUID);
+
+        //echo $sql;
+        $result = $wpdb->query($sql);
+
         $resultArray[] = array(
             'result'  => 'OK',
             'message' => $wpdb->insert_id

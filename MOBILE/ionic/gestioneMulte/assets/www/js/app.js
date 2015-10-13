@@ -11,6 +11,18 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
     $rootScope.server = 'http://localhost/alefal.it/PROJECTS/wordpress-4.2.3';
     //$rootScope.server = 'http://cdsmobile.swstudio.net';
 
+    //TEST WITH BROWSER
+    $rootScope.device = {
+      model: 'HTC ONE',           //$cordovaDevice.getModel();
+      platform: 'android',          //$cordovaDevice.getPlatform()
+      uuid: '1234567890',     //$cordovaDevice.getUUID();
+      version: '1.1'                //$cordovaDevice.getVersion();
+    };
+    localStorage.setItem('deviceModel',$rootScope.device.model);
+    localStorage.setItem('devicePlatform',$rootScope.device.platform);
+    localStorage.setItem('deviceUUID',$rootScope.device.uuid);
+    localStorage.setItem('deviceVersion',$rootScope.device.version);
+
     console.info('ionicPlatform.ready');
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -25,6 +37,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
     }
 
     //Check Connection
+    $rootScope.checkNoConnection = false; //TEST
 /*
     document.addEventListener('deviceready', function () {
       $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
@@ -145,7 +158,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 
     var service = '';
     var ente    = localStorage.getItem('agent_ente');
-    var device  = '1234567890';
+    var device  = localStorage.getItem('deviceUUID');
 
     if(item == 'articoli') {
       service = 'getArticoli.php'
