@@ -245,6 +245,56 @@ angular.module('starter.controllers', [])
 
   console.log('InsertCtrl');
 
+  // An alert dialog
+  $scope.showAlert = function(title,message,print) {
+    if(print) {
+      var alertPopup = $ionicPopup.alert({
+         title: title,
+         template: message+'<br />'+$scope.messageBluetoothSerialEnable,
+         okText: 'Stampa', // String (default: 'OK'). The text of the OK button.
+         okType: 'button-positive'
+      });
+      alertPopup.then(function(res) {
+        $scope.stampaVerbale();
+      });
+    } else {
+      var alertPopup = $ionicPopup.alert({
+         title: title,
+         template: message
+      });
+      alertPopup.then(function(res) {
+        $state.go('app.welcome');
+      });
+    }
+  };
+  $scope.showAlertMessage = function(title,message,back) {
+    var alertPopupMessage = $ionicPopup.alert({
+       title: title,
+       template: message,
+       okText: 'Ok',
+       okType: 'button-assertive'
+    });
+    alertPopupMessage.then(function(res) {
+      alertPopupMessage.close();
+
+      if(back) {
+        $state.go('app.welcome');
+      }
+    });
+  };
+
+  $scope.formattedDate = function(date) {
+    var d = new Date(date || Date.now()),
+        day = '' + d.getDate(),
+        month = '' + (d.getMonth() + 1),
+        year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [day, month, year].join('/');
+  }
+
   $scope.messageBluetoothSerialEnable = '';
 
   $scope.filePathImg  = '';
@@ -260,6 +310,10 @@ angular.module('starter.controllers', [])
         if(device[0].response[0].result == 'OK') {
           console.log('OK: '+device[0].items[0].NUM_VERB);
           $scope.numeroVerbale = device[0].items[0].NUM_VERB;
+
+          if($scope.numeroVerbale == '' || $scope.numeroVerbale == 0) {
+            $scope.showAlertMessage('Numero verbale','Numero verbale non trovato! Contattare l\'amministratore!',true);
+          }
         } else {
           console.log('KO'); 
         }
@@ -270,11 +324,18 @@ angular.module('starter.controllers', [])
   } else {
     //No connection
     $scope.numeroVerbale = localStorage.getItem('numeroVerbale');
+
+    if($scope.numeroVerbale == '' || $scope.numeroVerbale == 0) {
+      $scope.showAlertMessage('Numero verbale','Numero verbale non trovato! Contattare l\'amministratore!',true);
+    }
   }
 
   var localDate = new Date();
-  $scope.dataVerbale      = localDate.toLocaleDateString();
+  $scope.dataVerbale      = $scope.formattedDate();
   $scope.oraVerbale       = localDate.toLocaleTimeString();
+
+  console.log('dataVerbale: '+$scope.dataVerbale);
+  console.log('oraVerbale: '+$scope.oraVerbale);
 
   $scope.agenteVerbale  = localStorage.getItem('agent_id');
   $scope.agenteEnte     = localStorage.getItem('agent_ente');
@@ -300,40 +361,6 @@ angular.module('starter.controllers', [])
       // error
     });
 */
-
-  // An alert dialog
-  $scope.showAlert = function(title,message,print) {
-    if(print) {
-      var alertPopup = $ionicPopup.alert({
-         title: title,
-         template: message+'<br />'+$scope.messageBluetoothSerialEnable,
-         okText: 'Stampa', // String (default: 'OK'). The text of the OK button.
-         okType: 'button-positive'
-      });
-      alertPopup.then(function(res) {
-        $scope.stampaVerbale();
-      });
-    } else {
-      var alertPopup = $ionicPopup.alert({
-         title: title,
-         template: message
-      });
-      alertPopup.then(function(res) {
-        $state.go('app.welcome');
-      });
-    }
-  };
-  $scope.showAlertMessage = function(title,message) {
-    var alertPopupMessage = $ionicPopup.alert({
-       title: title,
-       template: message,
-       okText: 'Ok',
-       okType: 'button-assertive'
-    });
-    alertPopupMessage.then(function(res) {
-      alertPopupMessage.close();
-    });
-  };
 
   $scope.takePicture = function() {
 
@@ -439,9 +466,6 @@ angular.module('starter.controllers', [])
       };
 
     console.log('Check connection: '+$rootScope.checkNoConnection);
-
-    console.log('dataVerbale: '+$scope.dataVerbale);
-    console.log('oraVerbale: '+$scope.oraVerbale);
 
     if(!$rootScope.checkNoConnection) {
 

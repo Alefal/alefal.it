@@ -17,12 +17,12 @@ NUM_VERB
 require_once('../../../../wp-config.php');
 
 global $wpdb;
-
-$COD_UID_DEVICE = isset($_GET['COD_UID_DEVICE'])    ? $_GET['COD_UID_DEVICE']   : '';
-$DESC_DEVICE    = isset($_GET['DESC_DEVICE'])       ? $_GET['DESC_DEVICE']      : '';
-$COD_ENTE       = isset($_GET['COD_ENTE'])          ? $_GET['COD_ENTE']         : '';
-
 $table_name = 'p_device';
+
+$data                   = file_get_contents("php://input");
+$dataJsonDecode         = json_decode($data);
+$COD_UID_DEVICE         = $dataJsonDecode->COD_UID_DEVICE;
+$DESC_DEVICE            = $dataJsonDecode->DESC_DEVICE;
 
 $resultArray = array();
 
@@ -36,8 +36,7 @@ if($COD_UID_DEVICE != '') {
             `NUM_VERB`) values (%s, %s, %s, %s)", 
                 isset($COD_UID_DEVICE)  ? $COD_UID_DEVICE : '',
                 isset($DESC_DEVICE)     ? $DESC_DEVICE : '',
-                isset($COD_ENTE )       ? $COD_ENTE  : '',
-                '');
+                '','');
 
     //echo $sql;
     $result = $wpdb->query($sql);

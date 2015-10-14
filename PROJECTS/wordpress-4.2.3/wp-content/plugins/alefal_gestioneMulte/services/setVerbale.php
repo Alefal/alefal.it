@@ -39,17 +39,45 @@ require_once('../../../../wp-config.php');
 global $wpdb;
 $table_name = 'p_verb';
 
+$data                   = file_get_contents("php://input");
+$dataJsonDecode         = json_decode($data);
+
+$numeroVerbale      = isset($dataJsonDecode->verbaleCompleto->numeroVerbale)        ? $dataJsonDecode->verbaleCompleto->numeroVerbale : '';
+$agenteVerbale      = isset($dataJsonDecode->verbaleCompleto->agenteVerbale)        ? $dataJsonDecode->verbaleCompleto->agenteVerbale : '';
+$dataVerbale        = isset($dataJsonDecode->verbaleCompleto->dataVerbale)          ? $dataJsonDecode->verbaleCompleto->dataVerbale : '';
+$oraVerbale         = isset($dataJsonDecode->verbaleCompleto->oraVerbale)           ? $dataJsonDecode->verbaleCompleto->oraVerbale : '';
+$enteVerbale        = isset($dataJsonDecode->verbaleCompleto->enteVerbale)          ? $dataJsonDecode->verbaleCompleto->enteVerbale : '';
+$tipoVeicolo        = isset($dataJsonDecode->verbaleCompleto->tipoVeicolo)          ? $dataJsonDecode->verbaleCompleto->tipoVeicolo : '';
+$targaVeicolo       = isset($dataJsonDecode->verbaleCompleto->targaVeicolo)         ? $dataJsonDecode->verbaleCompleto->targaVeicolo : '';
+$modelloVeicolo     = isset($dataJsonDecode->verbaleCompleto->modelloVeicolo)       ? $dataJsonDecode->verbaleCompleto->modelloVeicolo : '';
+$indirizzo          = isset($dataJsonDecode->verbaleCompleto->indirizzo)            ? $dataJsonDecode->verbaleCompleto->indirizzo : '';
+$indirizzoCivico    = isset($dataJsonDecode->verbaleCompleto->indirizzoCivico)      ? $dataJsonDecode->verbaleCompleto->indirizzoCivico : '';
+$indirizzoDescr     = isset($dataJsonDecode->verbaleCompleto->indirizzoDescr)       ? $dataJsonDecode->verbaleCompleto->indirizzoDescr : '';
+$art1               = isset($dataJsonDecode->verbaleCompleto->art1)                 ? $dataJsonDecode->verbaleCompleto->art1 : '';
+$codArt1            = isset($dataJsonDecode->verbaleCompleto->codArt1)              ? $dataJsonDecode->verbaleCompleto->codArt1 : '';
+$descrArt1          = isset($dataJsonDecode->verbaleCompleto->descrArt1)            ? $dataJsonDecode->verbaleCompleto->descrArt1 : '';
+$art2               = isset($dataJsonDecode->verbaleCompleto->art2)                 ? $dataJsonDecode->verbaleCompleto->art2 : '';
+$codArt2            = isset($dataJsonDecode->verbaleCompleto->codArt2)              ? $dataJsonDecode->verbaleCompleto->codArt2 : '';
+$descrArt2          = isset($dataJsonDecode->verbaleCompleto->descrArt2)            ? $dataJsonDecode->verbaleCompleto->descrArt2 : '';
+$agente2Verbale     = isset($dataJsonDecode->verbaleCompleto->agente2Verbale)       ? $dataJsonDecode->verbaleCompleto->agente2Verbale : '';
+$nomeTrasgres       = isset($dataJsonDecode->verbaleCompleto->nomeTrasgres)         ? $dataJsonDecode->verbaleCompleto->nomeTrasgres : '';
+$nomeObbligato      = isset($dataJsonDecode->verbaleCompleto->nomeObbligato)        ? $dataJsonDecode->verbaleCompleto->nomeObbligato : '';
+$imgBase64          = isset($dataJsonDecode->verbaleCompleto->imgBase64)            ? $dataJsonDecode->verbaleCompleto->imgBase64 : '';
+$filePathImg        = isset($dataJsonDecode->verbaleCompleto->filePathImg)          ? $dataJsonDecode->verbaleCompleto->filePathImg : '';
+$latVerbale         = isset($dataJsonDecode->verbaleCompleto->latVerbale)           ? $dataJsonDecode->verbaleCompleto->latVerbale : '';
+$longVerbale        = isset($dataJsonDecode->verbaleCompleto->longVerbale)          ? $dataJsonDecode->verbaleCompleto->longVerbale : '';
+$deviceUUID         = isset($dataJsonDecode->verbaleCompleto->deviceUUID)           ? $dataJsonDecode->verbaleCompleto->deviceUUID : '';
+
 $resultArray = array();
 
-$verbaleCompletoObj = str_replace('\\', '',$_GET['verbaleCompleto']);
-$verbaleCompletoArr = json_decode($verbaleCompletoObj, true);
-
+//$verbaleCompletoObj = str_replace('\\', '',$_GET['verbaleCompleto']);
+//$verbaleCompletoArr = json_decode($verbaleCompletoObj, true);
 //print_r(isset($verbaleCompletoArr['tipoVeicolo']) ? $verbaleCompletoArr['tipoVeicolo'] : '');
 //die();
 
-if($verbaleCompletoArr['numeroVerbale'] != '') {
+if($numeroVerbale != '') {
     
-    $dataVerbale = new DateTime($verbaleCompletoArr['dataVerbale']);
+    $dataVerbale = date('Y-m-d', strtotime(str_replace('/', '-', $dataVerbale)));
 
     $sql = $wpdb->prepare(
         "INSERT INTO $table_name (
@@ -80,36 +108,34 @@ if($verbaleCompletoArr['numeroVerbale'] != '') {
                             %s, %s, %s, %s, %s, %s, %s, %s, 
                             %s, %s, %s, %s, %s, %s, %s, %s,
                             %s, %s, %s, %s, %s, %s, %s, %s)", 
-                isset($verbaleCompletoArr['numeroVerbale'])     ? $verbaleCompletoArr['numeroVerbale'] : '',
-                isset($verbaleCompletoArr['agenteVerbale'])     ? $verbaleCompletoArr['agenteVerbale'] : '',
-                isset($verbaleCompletoArr['dataVerbale'])       ? date_format($dataVerbale, 'Y-m-d') : '',
-                isset($verbaleCompletoArr['oraVerbale'])        ? $verbaleCompletoArr['oraVerbale'] : '',
-                isset($verbaleCompletoArr['enteVerbale'])       ? $verbaleCompletoArr['enteVerbale'] : '',
-                isset($verbaleCompletoArr['tipoVeicolo'])       ? $verbaleCompletoArr['tipoVeicolo'] : '',
-                isset($verbaleCompletoArr['targaVeicolo'])      ? $verbaleCompletoArr['targaVeicolo'] : '',
-                isset($verbaleCompletoArr['modelloVeicolo'])    ? $verbaleCompletoArr['modelloVeicolo'] : '',
-                isset($verbaleCompletoArr['indirizzo'])         ? $verbaleCompletoArr['indirizzo'] : '',
-                isset($verbaleCompletoArr['indirizzoCivico'])   ? $verbaleCompletoArr['indirizzoCivico'] : '',
-                isset($verbaleCompletoArr['indirizzoDescr'])    ? $verbaleCompletoArr['indirizzoDescr'] : '',
-                isset($verbaleCompletoArr['art1'])              ? $verbaleCompletoArr['art1'] : '',
-                isset($verbaleCompletoArr['codArt1'])           ? $verbaleCompletoArr['codArt1'] : '',
-                isset($verbaleCompletoArr['descrArt1'])         ? $verbaleCompletoArr['descrArt1'] : '',
-                isset($verbaleCompletoArr['art2'])              ? $verbaleCompletoArr['art2'] : '',
-                isset($verbaleCompletoArr['codArt2'])           ? $verbaleCompletoArr['codArt2'] : '',
-                isset($verbaleCompletoArr['descrArt2'])         ? $verbaleCompletoArr['descrArt2'] : '',
-                isset($verbaleCompletoArr['agente2Verbale'])    ? $verbaleCompletoArr['agente2Verbale'] : '',
-                isset($verbaleCompletoArr['nomeObbligato'])     ? $verbaleCompletoArr['nomeObbligato'] : '',
-                isset($verbaleCompletoArr['nomeTrasgres'])      ? $verbaleCompletoArr['nomeTrasgres'] : '',
-                '',
-                isset($verbaleCompletoArr['filePathImg'])       ? $verbaleCompletoArr['filePathImg'] : '',
-                isset($verbaleCompletoArr['latVerbale'])        ? $verbaleCompletoArr['latVerbale'] : '',
-                isset($verbaleCompletoArr['longVerbale'])       ? $verbaleCompletoArr['longVerbale'] : '');
+                $numeroVerbale,
+                $agenteVerbale,
+                $dataVerbale,
+                $oraVerbale,
+                $enteVerbale,
+                $tipoVeicolo,
+                $targaVeicolo,
+                $modelloVeicolo,
+                $indirizzo,
+                $indirizzoCivico,
+                $indirizzoDescr,
+                $art1,
+                $codArt1,
+                $descrArt1,
+                $art2,
+                $codArt2,
+                $descrArt2,
+                $agente2Verbale,
+                $nomeObbligato,
+                $nomeTrasgres,
+                $imgBase64,
+                $filePathImg,
+                $latVerbale,
+                $longVerbale);
 
     //echo $sql;
     $result = $wpdb->query($sql);
 
-    //TODO: incrementare numero verbale sulla tabella DEVICE
-    
     // Fail -- the "===" operator compares type as well as value
     if ($result === false) {
         $resultArray[] = array(
@@ -127,11 +153,9 @@ if($verbaleCompletoArr['numeroVerbale'] != '') {
     // Success, and updates were done. $result is the number of affected rows.
     if ($result > 0) {
 
-        $numeroVerbale = intval($verbaleCompletoArr['numeroVerbale']) + 1;
-        $deviceUUID = $verbaleCompletoArr['deviceUUID'];
-
+        //Incremento numero verbale sulla tabella DEVICE
         $table_name = 'p_device';
-        $sql = $wpdb->prepare("UPDATE $table_name SET NUM_VERB = '%s' WHERE COD_UID_DEVICE = '%d'", $numeroVerbale, $deviceUUID);
+        $sql = $wpdb->prepare("UPDATE $table_name SET NUM_VERB = '%s' WHERE COD_UID_DEVICE = '%d'", intval($numeroVerbale) + 1, $deviceUUID);
 
         //echo $sql;
         $result = $wpdb->query($sql);

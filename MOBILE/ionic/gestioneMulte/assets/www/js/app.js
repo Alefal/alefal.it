@@ -14,9 +14,9 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
     //TEST WITH BROWSER
     $rootScope.device = {
       model: 'HTC ONE',           //$cordovaDevice.getModel();
-      platform: 'android',          //$cordovaDevice.getPlatform()
-      uuid: '1234567890',     //$cordovaDevice.getUUID();
-      version: '1.1'                //$cordovaDevice.getVersion();
+      platform: 'android',        //$cordovaDevice.getPlatform()
+      uuid: '1234567890',         //$cordovaDevice.getUUID();
+      version: '1.1'              //$cordovaDevice.getVersion();
     };
     localStorage.setItem('deviceModel',$rootScope.device.model);
     localStorage.setItem('devicePlatform',$rootScope.device.platform);
@@ -66,21 +66,21 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 })
 .config(function($translateProvider) {
   $translateProvider.translations('en', {
-    AuthenticationFailed: 'Authentication failed! <br /> Use "demo" "demo"',
+    AuthenticationFailed: 'Authentication failed!',
     Role: 'Role',
     RegistraDevice: 'Store Device',
     SignIn: 'Sign In',
     Registration: 'Registration'
   });
   $translateProvider.translations('it', {
-    AuthenticationFailed: 'Autenticazione fallita! <br /> Usa "demo" "demo"',
+    AuthenticationFailed: 'Autenticazione fallita!',
     Role: 'Ruolo',
     RegistraDevice: 'Registra Device',
     SignIn: 'Accedi',
     Registration: 'Registrazione'
   });
-  $translateProvider.preferredLanguage('en');
-  $translateProvider.fallbackLanguage('en');
+  $translateProvider.preferredLanguage('it');
+  $translateProvider.fallbackLanguage('it');
   $translateProvider.useSanitizeValueStrategy('sanitize');
 })
 .config(function($stateProvider, $urlRouterProvider) {
@@ -191,13 +191,29 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
   /***** salvaVerbale ****/
   ajaxCallServices.salvaVerbale = function (verbaleCompleto) {
     console.log(JSON.stringify(verbaleCompleto));
-    return $http({url:$rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/setVerbale.php',method:'GET',params:{verbaleCompleto: verbaleCompleto}});
+    //return $http({url:$rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/setVerbale.php',method:'POST',params:{verbaleCompleto: verbaleCompleto}});
+    return $http({
+      url:$rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/setVerbale.php',
+      method:'POST',
+      data: {verbaleCompleto:verbaleCompleto},
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' }
+    });
   };
 
   /***** registraDevice ****/
   ajaxCallServices.registraDevice = function (deviceUUID, deviceModel) {
     //COD_ENTE e NUM_VERB devono essere impostati in fase iniziale 
-    return $http({url:$rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/setDevice.php',method:'GET',params:{COD_UID_DEVICE: deviceUUID, DESC_DEVICE: deviceModel}});
+    return $http({
+      url:$rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/setDevice.php',
+      /*
+      method:'POST',
+      params:{COD_UID_DEVICE: deviceUUID, DESC_DEVICE: deviceModel},
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+      */    
+      method:'POST',
+      data: {COD_UID_DEVICE: deviceUUID, DESC_DEVICE: deviceModel},
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' }
+    });
   };
 
   return ajaxCallServices;
