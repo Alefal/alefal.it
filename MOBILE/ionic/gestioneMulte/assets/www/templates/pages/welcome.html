@@ -2,7 +2,7 @@
 
 	<ion-header-bar class="bar-positive">
     	<h1 class="title">Gestione multe</h1>
-    	<a ng-click="globFunc.exitApp()" class="power button"><i class="ion-power"></i></a> 
+    	<a ng-click="globFunc.exitApp()" class="power button"><i class="ion-power"></i></a>
     </ion-header-bar>
 
     <ion-content>
@@ -22,9 +22,6 @@
         </div>
       </div>
 
-      <div class="message-info message-info-striped padding" ng-show="viewMessageSincronizzazione" ng-bind-html="messageSincronizzazione" style="margin:10px">
-      </div>
-
       <div class="row eventTab">
         <div class="col col-50">
           <div class="tabtext" ng-click="globFunc.goto('app.verbali')">
@@ -40,6 +37,9 @@
         </div>
       </div>
 
+      <div class="message-info message-info-striped padding" ng-show="viewMessageSincronizzazione" ng-bind-html="messageSincronizzazione" style="margin:10px">
+      </div>
+
     </ion-content>
 
     <ion-footer-bar class="bar-balanced">
@@ -49,5 +49,5 @@
         Matricola: <strong>{{agent_matr}}</strong>
       </div>
     </ion-footer-bar>
-    
+
 </ion-view>

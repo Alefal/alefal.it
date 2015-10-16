@@ -1,23 +1,31 @@
 // Ionic Starter App
-angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalprecht.translate'/*, 'ngCordova'*/])
+angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalprecht.translate','ngCordova'])
 
-.run(function($ionicPlatform,$ionicPopup,$ionicLoading,$rootScope/*,$cordovaNetwork*/) {
+.run(function($ionicPlatform,$ionicPopup,$ionicLoading,$rootScope,$cordovaNetwork,$cordovaDevice) {
   $ionicPlatform.registerBackButtonAction(function (event) {
     event.preventDefault();
   }, 100);
 
   $ionicPlatform.ready(function() {
 
-    $rootScope.server = 'http://localhost/alefal.it/PROJECTS/wordpress-4.2.3';
+    $rootScope.server = 'http://192.168.1.188/alefal.it/PROJECTS/wordpress-4.2.3';
     //$rootScope.server = 'http://cdsmobile.swstudio.net';
 
-    //TEST WITH BROWSER
+    /***** TEST WITH BROWSER
     $rootScope.device = {
-      model: 'HTC ONE',           //$cordovaDevice.getModel();
-      platform: 'android',        //$cordovaDevice.getPlatform()
-      uuid: '1234567890',         //$cordovaDevice.getUUID();
-      version: '1.1'              //$cordovaDevice.getVersion();
+      model: 'HTC ONE',
+      platform: 'android',
+      uuid: '1234567890',
+      version: '1.1'
     };
+    *****/
+    $rootScope.device = {
+      model: $cordovaDevice.getModel(),
+      platform: $cordovaDevice.getPlatform(),
+      uuid: $cordovaDevice.getUUID(),
+      version: $cordovaDevice.getVersion()
+    };
+
     localStorage.setItem('deviceModel',$rootScope.device.model);
     localStorage.setItem('devicePlatform',$rootScope.device.platform);
     localStorage.setItem('deviceUUID',$rootScope.device.uuid);
@@ -37,8 +45,9 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
     }
 
     //Check Connection
-    $rootScope.checkNoConnection = false; //TEST
-/*
+    /***** TEST WITH BROWSER
+    $rootScope.checkNoConnection = false;
+    *****/
     document.addEventListener('deviceready', function () {
       $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
         $rootScope.checkNoConnection = false;
@@ -57,7 +66,6 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
       })
 
     }, false);
-*/
 
   });
 })
@@ -202,14 +210,14 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 
   /***** registraDevice ****/
   ajaxCallServices.registraDevice = function (deviceUUID, deviceModel) {
-    //COD_ENTE e NUM_VERB devono essere impostati in fase iniziale 
+    //COD_ENTE e NUM_VERB devono essere impostati in fase iniziale
     return $http({
       url:$rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/setDevice.php',
       /*
       method:'POST',
       params:{COD_UID_DEVICE: deviceUUID, DESC_DEVICE: deviceModel},
       headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-      */    
+      */
       method:'POST',
       data: {COD_UID_DEVICE: deviceUUID, DESC_DEVICE: deviceModel},
       headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' }
@@ -221,11 +229,13 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 .factory('globalFunction', function($state) {
   return {
     exitApp: function() {
+      /* NON LI CANCELLO PER ACCESSO OFFLINE...
       localStorage.removeItem('agent_logged');
       localStorage.removeItem('agent_id');
       localStorage.removeItem('agent_nome');
       localStorage.removeItem('agent_ente');
       localStorage.removeItem('agent_matr');
+      */
       $state.go('app.login');
     },
     goto: function(url) {

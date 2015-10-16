@@ -155,9 +155,10 @@ if($numeroVerbale != '') {
 
         //Incremento numero verbale sulla tabella DEVICE
         $table_name = 'p_device';
-        $sql = $wpdb->prepare("UPDATE $table_name SET NUM_VERB = '%s' WHERE COD_UID_DEVICE = '%d'", intval($numeroVerbale) + 1, $deviceUUID);
+        $sql = $wpdb->prepare("UPDATE $table_name SET NUM_VERB = '%d' WHERE COD_UID_DEVICE = '%s'", intval($numeroVerbale) + 1, $deviceUUID);
 
         //echo $sql;
+        //die();
         $result = $wpdb->query($sql);
 
         $resultArray[] = array(

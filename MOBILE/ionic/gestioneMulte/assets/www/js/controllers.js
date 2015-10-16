@@ -1,7 +1,64 @@
 angular.module('starter.controllers', [])
 
-.controller('LoginCtrl', function($scope,$rootScope,$ionicLoading,ajaxCallServices,$state,ModalService/*,$cordovaNetwork*/) {
+.controller('LoginCtrl', function($scope,$rootScope,$ionicLoading,$ionicPopup,ajaxCallServices,$state,ModalService) {
 
+  $scope.showAlertMessage = function(title,message,back) {
+    var alertPopupMessage = $ionicPopup.alert({
+       title: title,
+       template: message,
+       okText: 'Ok',
+       okType: 'button-assertive'
+    });
+    alertPopupMessage.then(function(res) {
+      alertPopupMessage.close();
+
+      if(back) {
+        $state.go('app.login');
+      }
+    });
+  };
+
+  $scope.checkUserConnectionOffline = function() {
+    $scope.data = {}
+
+    // An elaborate, custom popup
+    var confirmUser = $ionicPopup.show({
+      template: '<input type="text" ng-model="data.matricola">',
+      title: 'Matricola',
+      subTitle: 'Inserisci la tua matricola per accesso offline',
+      scope: $scope,
+      buttons: [
+        { text: 'Annulla' },
+        {
+          text: '<b>Conferma</b>',
+          type: 'button-positive',
+          onTap: function(e) {
+            if (!$scope.data.matricola) {
+              e.preventDefault();
+            } else {
+              return $scope.data.matricola;
+            }
+          }
+        }
+      ]
+    });
+    confirmUser.then(function(res) {
+      console.log('RES: ',res);
+      if(res) {
+        console.log('You are sure: '+$scope.data.matricola);
+        if($scope.data.matricola == localStorage.getItem('agent_matr')) {
+          $state.go('app.welcome');
+        } else {
+          $scope.showAlertMessage('Accesso non consentito','La tua matricola non coincide! Non puoi accedere offline!',false);
+        }
+      } else {
+        confirmUser.close();
+      }
+    });
+   };
+
+  $scope.deviceRegisteredError = false;
+  $scope.deviceRegisteredErrorMessage = '';
   $scope.deviceNotRegistered = false;
   $scope.deviceFirstRegistered = false;
   $scope.deviceCompleteRegistered = false;
@@ -20,28 +77,40 @@ angular.module('starter.controllers', [])
 
     var deviceUUID  = localStorage.getItem('deviceUUID');
     var deviceModel = localStorage.getItem('deviceModel');
-    ajaxCallServices.registraDevice(deviceUUID,deviceModel)
-      .success(function (operation) {
-      
-        if(operation[0].result == 'OK') {
-          console.log('Ok');
 
-          $scope.deviceNotRegistered = false;
-          $scope.deviceFirstRegistered = false;
-          $scope.deviceCompleteRegistered = true;
+    if(!$rootScope.checkNoConnection) {
+      ajaxCallServices.registraDevice(deviceUUID,deviceModel)
+        .success(function (operation) {
 
-          localStorage.setItem('deviceRegistered',true);
+          if(operation[0].result == 'OK') {
+            console.log('Ok');
 
+            $scope.deviceNotRegistered = false;
+            $scope.deviceFirstRegistered = false;
+            $scope.deviceCompleteRegistered = true;
+
+            localStorage.setItem('deviceRegistered',true);
+
+            $ionicLoading.hide();
+          } else {
+            console.log('KO');
+            $scope.deviceRegisteredError = true;
+            $scope.deviceRegisteredErrorMessage = operation;
+            $ionicLoading.hide();
+          }
+
+        }).error(function (error) {
+          console.log('KO');
+          $scope.deviceRegisteredError = true;
+          $scope.deviceRegisteredErrorMessage = error;
           $ionicLoading.hide();
-        } else {
-          console.log('KO');    //TODO: gestire messaggio
-          $ionicLoading.hide();
-        }
+        });
 
-      }).error(function (error) {
-        console.log('KO');
-        $ionicLoading.hide();
-      });
+    } else {
+      //No connection
+      $ionicLoading.hide();
+      $scope.showAlertMessage('Accesso','Devi essere online per registrare il device...',false);
+    }
   };
 
 
@@ -61,84 +130,107 @@ angular.module('starter.controllers', [])
       return false;
     }
 
-    //LOGIN offline ???
-    ajaxCallServices.checkUserAccess($scope.authorization.username,$scope.authorization.password)
-      .success(function (access) {
+    if(!$rootScope.checkNoConnection) {
+      ajaxCallServices.checkUserAccess($scope.authorization.username,$scope.authorization.password)
+        .success(function (access) {
 
-        if(access[0].response[0].result == 'OK') {
-          $scope.userLoggedFailed = false;
+          if(access[0].response[0].result == 'OK') {
+            $scope.userLoggedFailed = false;
 
-          localStorage.setItem('agent_logged', true);
-          localStorage.setItem('agent_id', access[0].items[0].ID);
-          localStorage.setItem('agent_nome', access[0].items[0].NOME_AGENT);
-          localStorage.setItem('agent_ente', access[0].items[0].ENTE);
-          localStorage.setItem('agent_matr', access[0].items[0].MATR);
+            localStorage.setItem('agent_logged', true);
+            localStorage.setItem('agent_id', access[0].items[0].ID);
+            localStorage.setItem('agent_nome', access[0].items[0].NOME_AGENT);
+            localStorage.setItem('agent_ente', access[0].items[0].ENTE);
+            localStorage.setItem('agent_matr', access[0].items[0].MATR);
 
-          //MEMORIZZO I DATI NEL LOCAL STORAGE PER NAVIGAZIONE OFFLINE
-          $scope.openModalItem = function(item) {
-            ModalService
-              .init(item, $scope)
-              .then(function(modal) {
+            //MEMORIZZO I DATI NEL LOCAL STORAGE PER NAVIGAZIONE OFFLINE
+            $scope.openModalItem = function(item) {
+              ModalService
+                .init(item, $scope)
+                .then(function(modal) {
 
-                ajaxCallServices.getItems(item)
-                  .success(function (items) {
+                  ajaxCallServices.getItems(item)
+                    .success(function (items) {
 
-                    if(items[0].response[0].result == 'OK') {
-                      localStorage.setItem(item,JSON.stringify(items[0]));
-                    } else {
-                      $scope.items = 'ERROR';
-                    }
+                      if(items[0].response[0].result == 'OK') {
+                        localStorage.setItem(item,JSON.stringify(items[0]));
+                      } else {
+                        $scope.items = 'ERROR';
+                      }
 
-                  }).error(function (error) {
-                    $scope.status = 'Unable to load customer data' + error;
-                  });
+                    }).error(function (error) {
+                      $scope.status = 'Unable to load customer data' + error;
+                    });
+                });
+            };
+
+            $scope.openModalItem('articoli');
+            $scope.openModalItem('artpref');
+            $scope.openModalItem('marche');
+            $scope.openModalItem('autorizzati');
+            $scope.openModalItem('vie');
+            $scope.openModalItem('obbligato');
+            $scope.openModalItem('trasgres');
+            $scope.openModalItem('agenti');
+            $scope.openModalItem('tipoVeicolo');
+
+            //MEMORIZZO I DATI NEL LOCAL STORAGE PER NAVIGAZIONE OFFLINE
+            ajaxCallServices.getItems('device')
+              .success(function (device) {
+
+                if(device[0].response[0].result == 'OK') {
+                  console.log('OK: '+device[0].items[0].NUM_VERB);
+                  localStorage.setItem('numeroVerbale',device[0].items[0].NUM_VERB);
+                } else {
+                  console.log('KO');
+                  localStorage.setItem('numeroVerbale',0);
+                }
+
+              }).error(function (error) {
+                console.log('KO');
+                localStorage.setItem('numeroVerbale',0);
               });
-          };
 
-          $scope.openModalItem('articoli');
-          $scope.openModalItem('artpref');
-          $scope.openModalItem('marche');
-          $scope.openModalItem('autorizzati');
-          $scope.openModalItem('vie');
-          $scope.openModalItem('obbligato');
-          $scope.openModalItem('trasgres');
-          $scope.openModalItem('agenti');
-          $scope.openModalItem('tipoVeicolo');
+            $ionicLoading.hide();
+            $state.go('app.welcome');
+          } else {
+            $scope.userLoggedFailed = true;
+            $ionicLoading.hide();
+            $state.go('app.login');
+          }
 
-          //MEMORIZZO I DATI NEL LOCAL STORAGE PER NAVIGAZIONE OFFLINE
-          ajaxCallServices.getItems('device')
-            .success(function (device) {
-            
-              if(device[0].response[0].result == 'OK') {
-                console.log('OK: '+device[0].items[0].NUM_VERB);
-                localStorage.setItem('numeroVerbale',device[0].items[0].NUM_VERB);
-              } else {
-                console.log('KO'); 
-              }
-
-            }).error(function (error) {
-              console.log('KO');
-            });
-
-          $ionicLoading.hide();
-          $state.go('app.welcome');
-        } else {
+        }).error(function (error) {
           $scope.userLoggedFailed = true;
           $ionicLoading.hide();
           $state.go('app.login');
-        }
+        });
 
-      }).error(function (error) {
-        $scope.userLoggedFailed = true;
+      } else {
+        //No connection: l'utente deve essere entrato almeno una volta per poter loggarsi offline
         $ionicLoading.hide();
-        $state.go('app.login');
-      });
 
+        if(localStorage.getItem('agent_logged') &&        //controllo se l'utente è entrato almeno una volta
+            localStorage.getItem('deviceRegistered') &&   //controllo che il device è stato registrato correttamente
+            localStorage.getItem('numeroVerbale') > 0) {  //verifico la presenza del numero verbale
+          console.log('Posso accedere offline...');
+          $scope.checkUserConnectionOffline();
+        } else {
+          $scope.showAlertMessage('Device','Devi essere online per accedere...',false);
+        }
+      }
   };
 
 })
 
-.controller('WelcomeCtrl', function($scope,$rootScope,$ionicLoading,$ionicModal,$ionicPopup,ajaxCallServices,$state,ModalService/*,$cordovaNetwork,$cordovaFileTransfer*/) {
+.controller('WelcomeCtrl', function($scope,$rootScope,$ionicLoading,$ionicModal,$ionicPopup,ajaxCallServices,$state,ModalService,$cordovaFileTransfer) {
+
+  $scope.deviceRegisteredError = false;
+  $scope.deviceRegisteredErrorMessage = '';
+  $scope.deviceNotRegistered = false;
+  $scope.deviceFirstRegistered = false;
+  $scope.deviceCompleteRegistered = false;
+  $scope.userLoggedFailed = false;
+
   $ionicLoading.show({
     template: 'Attendere...'
   });
@@ -184,13 +276,15 @@ angular.module('starter.controllers', [])
 
     angular.forEach($scope.verbaleCompletoArray, function (items, indexP) {
 
-      $scope.verbaleCompleto = JSON.stringify(items);
+      $scope.verbaleCompleto = items;
+
       var numeroVerbale = JSON.stringify(items['numeroVerbale']);
       var imageVerbale  = JSON.stringify(items['imgBase64']);
 
       console.log('numeroVerbale -> '+numeroVerbale);
       console.log('imageVerbale -> '+imageVerbale.replace(/"/g, ''));
 
+      console.log('$scope.verbaleCompleto -> '+$scope.verbaleCompleto);
       ajaxCallServices.salvaVerbale($scope.verbaleCompleto)
         .success(function (result) {
 
@@ -241,7 +335,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('InsertCtrl', function($scope,$rootScope,$ionicLoading,$ionicScrollDelegate,$state,$ionicPopup,ModalService,ajaxCallServices/*,$cordovaFileTransfer,$cordovaCamera,$cordovaGeolocation,$cordovaBluetoothSerial,$timeout,$cordovaPrinter*/) {
+.controller('InsertCtrl', function($scope,$rootScope,$ionicLoading,$ionicScrollDelegate,$state,$ionicPopup,ModalService,ajaxCallServices,$timeout,$cordovaFileTransfer,$cordovaCamera,$cordovaGeolocation,$cordovaBluetoothSerial,$cordovaPrinter) {
 
   console.log('InsertCtrl');
 
@@ -295,6 +389,15 @@ angular.module('starter.controllers', [])
     return [day, month, year].join('/');
   }
 
+  //Verificare se sono online e se ci sono dati in memoria da sincronizzare: necessario per mantenere il numero di verbale aggiornato sia ONLINE che OFFLINE
+  if(!$rootScope.checkNoConnection) {
+    //Connection
+    if (localStorage.getItem('datiVerbaleOffline')) {
+      //Si devono PRIMA sincronizzare i dati
+      $scope.showAlertMessage('Sicronizzate dati','Trovati dei dati salvati in memoria. Devono essere sincronizzati tali dati prima di procedere alla stesura di un nuovo verbale',true);
+    }
+  }
+
   $scope.messageBluetoothSerialEnable = '';
 
   $scope.filePathImg  = '';
@@ -306,7 +409,7 @@ angular.module('starter.controllers', [])
   if(!$rootScope.checkNoConnection) {
     ajaxCallServices.getItems('device')
       .success(function (device) {
-      
+
         if(device[0].response[0].result == 'OK') {
           console.log('OK: '+device[0].items[0].NUM_VERB);
           $scope.numeroVerbale = device[0].items[0].NUM_VERB;
@@ -315,11 +418,13 @@ angular.module('starter.controllers', [])
             $scope.showAlertMessage('Numero verbale','Numero verbale non trovato! Contattare l\'amministratore!',true);
           }
         } else {
-          console.log('KO'); 
+          console.log('KO');
+          $scope.showAlertMessage('Numero verbale','Numero verbale non trovato! Contattare l\'amministratore!',true);
         }
 
       }).error(function (error) {
         console.log('KO');
+        $scope.showAlertMessage('Numero verbale','Numero verbale non trovato! Contattare l\'amministratore!',true);
       });
   } else {
     //No connection
@@ -350,7 +455,7 @@ angular.module('starter.controllers', [])
   $scope.tipoVeicoloCode  = 'A';
   $scope.tipoVeicoloDescr = 'AUTOVEICOLO';
 
-  /*
+  //GEOLOCATION
   var posOptions = {timeout: 10000, enableHighAccuracy: false};
   $cordovaGeolocation
     .getCurrentPosition(posOptions)
@@ -360,7 +465,6 @@ angular.module('starter.controllers', [])
     }, function(err) {
       // error
     });
-*/
 
   $scope.takePicture = function() {
 
@@ -431,7 +535,7 @@ angular.module('starter.controllers', [])
       $scope.indirizzoRequired = false;
       $scope.articoloRequired = false;
     }
-    
+
     $ionicLoading.show({
       template: 'Attendere...'
     });
@@ -479,7 +583,7 @@ angular.module('starter.controllers', [])
           var numVerbIncremente = parseInt(localStorage.getItem('numeroVerbale')) + 1;
           localStorage.setItem('numeroVerbale',numVerbIncremente);
 
-          //document.addEventListener('deviceready', function () {
+          document.addEventListener('deviceready', function () {
 
               if(angular.isNumber(result[0].message)) {
 
@@ -512,7 +616,7 @@ angular.module('starter.controllers', [])
                 $ionicLoading.hide();
                 $scope.showAlert('Salvataggio verbale','Verbale salvato correttamente!',true);
               }
-            //}, false);
+          }, false);
 
         }).error(function (error) {
           $ionicLoading.hide();
@@ -677,7 +781,7 @@ angular.module('starter.controllers', [])
 
   $scope.imgBase64 = '';
 
-  //PRINT
+  //TODO: bluetooth print
   $scope.stampaVerbale = function() {
 
     $scope.annullaVerbale();
@@ -709,7 +813,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('SearchCtrl', function($scope,$ionicLoading,ModalService,ajaxCallServices/*,$cordovaGeolocation*/) {
+.controller('SearchCtrl', function($scope,$ionicLoading,ModalService,ajaxCallServices,$cordovaGeolocation) {
 
   $scope.openModalItem = function(item) {
 
@@ -758,7 +862,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('VerbaliCtrl', function($scope,$ionicLoading,ModalService,ajaxCallServices/*,$cordovaGeolocation*/) {
+.controller('VerbaliCtrl', function($scope,$ionicLoading,ModalService,ajaxCallServices,$cordovaGeolocation) {
 
   //TODO: gestione offline ???
   ajaxCallServices.getItems('verbale')
