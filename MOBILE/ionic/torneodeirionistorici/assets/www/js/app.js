@@ -22,31 +22,25 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
       StatusBar.styleDefault();
     }
 
-    /*
     //Check Connection
-    document.addEventListener("deviceready", function () {
+    /***** TEST WITH BROWSER */
+    $rootScope.checkNoConnection = false;
+    /*****/
+    /*
+    //Check connection
+    document.addEventListener('deviceready', function () {
       $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
-        var onlineState = networkState;
-        //alert('$cordovaNetwork:online');
-
-        $ionicLoading.hide();
+        $rootScope.checkNoConnection = false;
       })
 
       // listen for Offline event
       $rootScope.$on('$cordovaNetwork:offline', function(event, networkState){
-        var offlineState = networkState;
-        //alert('$cordovaNetwork:offline');
-
-        $ionicLoading.show({
-          template: 'No Connection',
-          noBackdrop: true
-        });
+        $rootScope.checkNoConnection = true;
       })
 
     }, false);
 
-    console.info('messageConnection: '+localStorage.getItem('messageConnection'));
-
+    //Push service
     document.addEventListener("deviceready", function () {
 
       var type = $cordovaNetwork.getNetwork()
@@ -56,17 +50,12 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
       if(isOnline && !isOffline) {
         PushProcessingService.initialize();
       } else {
-        $ionicPopup.confirm({
+        $ionicPopup.alert({
           title: 'Connessione assente',
           content: 'Controlla la tua connessione. I dati visualizzati potrebbero non essere gli ultimi aggiornati'
         })
         .then(function(result) {
-            console.log(result);
-            if(!result) {
-              ionic.Platform.exitApp();
-            } else {
-              localStorage.setItem('messageConnection', 'clicked');
-            }
+           console.log('...');
         });
       }
 
@@ -117,53 +106,46 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
   var urlBase = 'http://torneodeirionistorici.altervista.org';
 
   /***** getReleasesRest ****/
-  ajaxCallServices.getReleasesRest = function (isOnline,isOffline) {
+  ajaxCallServices.getReleasesRest = function () {
     //http://torneodeirionistorici.altervista.org/wp-json/posts?filter[tag]=comunicatiUfficiali
-
-    /*
-    console.log(helloWorld.sayHello());
-    console.log(helloWorldFromFactory.sayHello());
-    console.log(helloWorldFromService.sayHello());
-    */
-
-    if(isOnline && !isOffline) {
-      return $http.get(urlBase+'/wp-json/posts?filter[tag]=comunicatiUfficiali');
-    } else {
-      return $http.get('json/releases.json');
-    }
+    return $http.get(urlBase+'/wp-json/posts?filter[tag]=comunicatiUfficiali');
+  };
+  /***** getGiornalinoUfficiale ****/
+  ajaxCallServices.getGiornalinoRest = function () {
+    //http://torneodeirionistorici.altervista.org/wp-json/posts?filter[tag]=giornalinoUfficiale
+    return $http.get(urlBase+'/wp-json/posts?filter[tag]=giornalinoUfficiale');
   };
   /***** getRankingRest ****/
-  ajaxCallServices.getRankingRest = function (isOnline,isOffline) {
+  ajaxCallServices.getRankingRest = function () {
     //http://torneodeirionistorici.altervista.org/wp-content/plugins/alefal_torneodeirionistorici/matchs.php?league_id=171&season_id=172
-
-    if(isOnline && !isOffline) {
-      return $http.get(urlBase+'/wp-content/plugins/alefal_torneodeirionistorici/ranking.php?league_id=171&season_id=172');
-    } else {
-      return $http.get('json/ranking.json');
-    }
+    return $http.get(urlBase+'/wp-content/plugins/alefal_torneodeirionistorici/ranking.php?league_id=171&season_id=172');
   };
   /***** getRankingRest ****/
-  ajaxCallServices.getRanking2015Rest = function (isOnline,isOffline) {
+  ajaxCallServices.getRanking2015Rest = function () {
     //http://torneodeirionistorici.altervista.org/wp-content/plugins/alefal_torneodeirionistorici/ranking.php?league_id=1&season_id=4
-
-    if(isOnline && !isOffline) {
-      return $http.get(urlBase+'/wp-content/plugins/alefal_torneodeirionistorici/ranking.php?league_id=1&season_id=4');
-    } else {
-      return $http.get('json/ranking.json');
-    }
+    return $http.get(urlBase+'/wp-content/plugins/alefal_torneodeirionistorici/ranking.php?league_id=1&season_id=4');
   };
   /***** geMatchsRest ****/
-  ajaxCallServices.geMatchsRest = function (isOnline,isOffline) {
+  ajaxCallServices.geMatchsRest = function () {
     //http://torneodeirionistorici.altervista.org/wp-content/plugins/alefal_torneodeirionistorici/matchs.php?league_id=171&season_id=172
-
-    if(isOnline && !isOffline) {
-      return $http.get(urlBase+'/wp-content/plugins/alefal_torneodeirionistorici/matchs.php?league_id=171&season_id=172');
-    } else {
-      return $http.get('json/matchs.json');
-    }
+    return $http.get(urlBase+'/wp-content/plugins/alefal_torneodeirionistorici/matchs.php?league_id=171&season_id=172');
   };
 
   return ajaxCallServices;
+})
+
+.factory('globalFunction', function($state) {
+  return {
+    goto: function(url) {
+      $state.go(url);
+    },
+    back: function() {
+      $state.go('app.welcome');
+    }
+  };
+})
+.run(function($rootScope, globalFunction) {
+  $rootScope.globFunc = globalFunction;
 })
 
 .factory('PushProcessingService', function($http) {
@@ -217,15 +199,23 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('app', {
-      cache: false,
       url: '/app',
       abstract: true,
       templateUrl: 'templates/menu.html',
       controller: 'AppCtrl'
     })
 
+    .state('app.welcome', {
+      url: '/welcome',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/welcome.html',
+          controller: 'WelcomeCtrl'
+        }
+      }
+    })
+
     .state('app.releases', {
-      cache: false,
       url: '/releases',
       views: {
         'menuContent': {
@@ -234,8 +224,16 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
         }
       }
     })
+    .state('app.giornalino', {
+      url: '/giornalino',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/giornalino.html',
+          controller: 'GiornalinoCtrl'
+        }
+      }
+    })
     .state('app.ranking', {
-      cache: false,
       url: '/ranking',
       views: {
         'menuContent': {
@@ -245,7 +243,6 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
       }
     })
     .state('app.matchs', {
-      cache: false,
       url: '/matchs',
       views: {
         'menuContent': {
@@ -255,7 +252,6 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
       }
     })
     .state('app.ranking2015', {
-      cache: false,
       url: '/ranking2015',
       views: {
         'menuContent': {
@@ -266,7 +262,7 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
     });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/releases');
+  $urlRouterProvider.otherwise('/app/welcome');
 });
 
 

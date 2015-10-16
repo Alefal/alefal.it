@@ -5,6 +5,11 @@
 </style>
 <ion-view view-title="Classifica 2014/15">
 	<ion-content>
+    	<ion-refresher
+        	pulling-text="Aggiorna..."
+        	on-refresh="doRefresh()">
+      	</ion-refresher>
+      
     	<ion-list>
 
     		<ion-item>

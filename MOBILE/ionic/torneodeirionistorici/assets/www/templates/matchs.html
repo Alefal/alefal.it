@@ -5,7 +5,12 @@
 </style>
 <ion-view view-title="Incontri">
 	<ion-content>
-    	<ion-list>
+    	<ion-refresher
+        pulling-text="Aggiorna..."
+        on-refresh="doRefresh()">
+      </ion-refresher>
+      
+      <ion-list>
 
     		<ion-item>
     			<div class="row">
