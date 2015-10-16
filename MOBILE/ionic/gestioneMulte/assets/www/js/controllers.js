@@ -1,6 +1,86 @@
 angular.module('starter.controllers', [])
 
-.controller('LoginCtrl', function($scope,$rootScope,$ionicLoading,$ionicPopup,ajaxCallServices,$state,ModalService) {
+.controller('LoginCtrl', function($scope,$rootScope,$ionicLoading,$ionicPopup,ajaxCallServices,$state,ModalService,$timeout,$cordovaBluetoothSerial,$cordovaPrinter) {
+
+  /*
+  $scope.testBluetoothPrinter = function(title,message) {
+          bluetoothSerial.list(function(devices) {
+              devices.forEach(function(device) {
+                  var data = "something \r\n";
+                  alert(device.address);
+                  bluetoothSerial.connect(device.address, function(success) {
+                                                                      console.log('success -> '+success);
+                                                                    }, function(error) {
+                                                                                   console.log('error -> '+error);
+                                                                                 });
+                  bluetoothSerial.write(data, function(success) {
+                                                          console.log('success -> '+success);
+                                                        }, function(error) {
+                                                                       console.log('error -> '+error);
+                                                                     });
+              })
+          }, function(error) {
+            console.log('error -> '+error);
+          });
+  };
+  */
+
+   /*
+  $timeout(function () {
+    //https://github.com/don/BluetoothSerial
+    //cordova plugin add https://github.com/eddysby2000/Cordova-Bluetooth-Printer-Plugin.git
+
+    var deviceBluetoothMac = '';
+    var deviceBluetoothName = '';
+    $cordovaBluetoothSerial.isEnabled().then(
+      function() {
+        bluetoothSerial.list(
+          function(devices) {
+            devices.forEach(function(device) {
+                console.log(device.id+' - '+device.name);
+
+                if(device.id == '00:13:E0:92:EC:8E') {
+                  deviceBluetoothMac = device.id;
+
+                  console.log(deviceBluetoothMac);
+                  bluetoothSerial.connect(deviceBluetoothMac,
+                    function(success) {
+                      console.log('success connect -> '+success);
+                      bluetoothSerial.write("hello, world",
+                        function(success) {
+                          console.log('success write -> '+success);
+
+                          bluetoothSerial.subscribe('\n', function (data) {
+                              console.log(data);
+                          }, function(error) {
+                             console.log('error -> '+error);
+                           });
+                        },
+                        function(error) {
+                          console.log('error -> '+error);
+                        }
+                      );
+
+                    },
+                    function(error) {
+                      console.log('error -> '+error);
+                    });
+
+
+                }
+            })
+          },
+          function(error) {
+            console.log(error);
+          });
+      },
+      function() {
+        alert('Attivare il bluetooth per poter proseguire con la stampa');
+      }
+    );
+  },5000);
+*/
+
 
   $scope.showAlertMessage = function(title,message,back) {
     var alertPopupMessage = $ionicPopup.alert({
@@ -339,6 +419,10 @@ angular.module('starter.controllers', [])
 
   console.log('InsertCtrl');
 
+  $ionicLoading.show({
+    template: 'Attendere...'
+  });
+
   // An alert dialog
   $scope.showAlert = function(title,message,print) {
     if(print) {
@@ -394,6 +478,7 @@ angular.module('starter.controllers', [])
     //Connection
     if (localStorage.getItem('datiVerbaleOffline')) {
       //Si devono PRIMA sincronizzare i dati
+      $ionicLoading.hide();
       $scope.showAlertMessage('Sicronizzate dati','Trovati dei dati salvati in memoria. Devono essere sincronizzati tali dati prima di procedere alla stesura di un nuovo verbale',true);
     }
   }
@@ -409,6 +494,8 @@ angular.module('starter.controllers', [])
   if(!$rootScope.checkNoConnection) {
     ajaxCallServices.getItems('device')
       .success(function (device) {
+
+        $ionicLoading.hide();
 
         if(device[0].response[0].result == 'OK') {
           console.log('OK: '+device[0].items[0].NUM_VERB);
@@ -428,6 +515,7 @@ angular.module('starter.controllers', [])
       });
   } else {
     //No connection
+    $ionicLoading.hide();
     $scope.numeroVerbale = localStorage.getItem('numeroVerbale');
 
     if($scope.numeroVerbale == '' || $scope.numeroVerbale == 0) {
@@ -785,30 +873,30 @@ angular.module('starter.controllers', [])
   $scope.stampaVerbale = function() {
 
     $scope.annullaVerbale();
-    $state.go('app.welcome');
+    //$state.go('app.welcome');
 
 
-    //$timeout(function () {
-    //https://github.com/don/BluetoothSerial
-    //cordova plugin add https://github.com/eddysby2000/Cordova-Bluetooth-Printer-Plugin.git
-/*
-    $cordovaBluetoothSerial.isEnabled().then(
-      function() {
-        var printerAvail = $cordovaPrinter.isAvailable()
-        console.log("printerAvail: "+printerAvail);
-        var doc = '<html><body>Verbale numero '+$scope.verbaleCompleto.numeroVerbale+'...</body></html>';
-        $cordovaPrinter.print(doc);
+    $timeout(function () {
+      //https://github.com/don/BluetoothSerial
+      //cordova plugin add https://github.com/eddysby2000/Cordova-Bluetooth-Printer-Plugin.git
 
-        $scope.annullaVerbale();
-        $state.go('app.welcome');
-      },
-      function() {
-        $scope.messageBluetoothSerialEnable = 'Attivare il bluetooth per poter proseguire con la stampa';
-        //$scope.showAlertMessage('Bluetooth non attivo','Attivare il bluetooth per poter proseguire con la stampa');
-      }
-    );
-    //},5000);
-*/
+      $cordovaBluetoothSerial.isEnabled().then(
+        function() {
+          var printerAvail = $cordovaPrinter.isAvailable()
+          console.log("printerAvail: "+printerAvail);
+          var doc = '<html><body>Verbale numero '+$scope.verbaleCompleto.numeroVerbale+'...</body></html>';
+          $cordovaPrinter.print(doc);
+
+          $scope.annullaVerbale();
+          $state.go('app.welcome');
+        },
+        function() {
+          $scope.messageBluetoothSerialEnable = 'Attivare il bluetooth per poter proseguire con la stampa';
+          //$scope.showAlertMessage('Bluetooth non attivo','Attivare il bluetooth per poter proseguire con la stampa');
+        }
+      );
+    },5000);
+
   }
 
 })
@@ -864,6 +952,10 @@ angular.module('starter.controllers', [])
 
 .controller('VerbaliCtrl', function($scope,$ionicLoading,ModalService,ajaxCallServices,$cordovaGeolocation) {
 
+  $ionicLoading.show({
+    template: 'Attendere...'
+  });
+
   //TODO: gestione offline ???
   ajaxCallServices.getItems('verbale')
     .success(function (items) {
@@ -875,9 +967,11 @@ angular.module('starter.controllers', [])
         $ionicLoading.hide();
       } else {
         $scope.items = 'ERROR';
+        $ionicLoading.hide();
       }
 
     }).error(function (error) {
+      $ionicLoading.hide();
       $scope.status = 'Unable to load customer data' + error;
     });
 
