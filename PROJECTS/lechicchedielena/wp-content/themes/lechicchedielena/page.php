@@ -1,6 +1,6 @@
 <?php
 get_header();
-if(is_page( 'prodotti' )) {
+if(is_page( 'prodotti-2' )) {
 	require get_template_directory() . '/inc/products.inc';
 } else {
 	require get_template_directory() . '/inc/home.inc';

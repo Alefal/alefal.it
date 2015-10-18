@@ -21,15 +21,19 @@
 // ** dal proprio fornitore di hosting ** //
 /** Il nome del database di WordPress */
 define('DB_NAME', 'lechicchedielena');
+//define('DB_NAME', 'Sql907166_1');
 
 /** Nome utente del database MySQL */
 define('DB_USER', 'root');
+//define('DB_USER', 'Sql907166');
 
 /** Password del database MySQL */
 define('DB_PASSWORD', '');
+//define('DB_PASSWORD', 'u8k8858262');
 
 /** Hostname MySQL  */
 define('DB_HOST', 'localhost');
+//define('DB_HOST', '62.149.150.246');
 
 /** Charset del Database da utilizare nella creazione delle tabelle. */
 define('DB_CHARSET', 'utf8mb4');
