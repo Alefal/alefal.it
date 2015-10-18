@@ -1,86 +1,120 @@
 angular.module('starter.controllers', [])
 
-.controller('LoginCtrl', function($scope,$rootScope,$ionicLoading,$ionicPopup,ajaxCallServices,$state,ModalService,$timeout,$cordovaBluetoothSerial,$cordovaPrinter) {
-
-  /*
-  $scope.testBluetoothPrinter = function(title,message) {
-          bluetoothSerial.list(function(devices) {
-              devices.forEach(function(device) {
-                  var data = "something \r\n";
-                  alert(device.address);
-                  bluetoothSerial.connect(device.address, function(success) {
-                                                                      console.log('success -> '+success);
-                                                                    }, function(error) {
-                                                                                   console.log('error -> '+error);
-                                                                                 });
-                  bluetoothSerial.write(data, function(success) {
-                                                          console.log('success -> '+success);
-                                                        }, function(error) {
-                                                                       console.log('error -> '+error);
-                                                                     });
-              })
-          }, function(error) {
-            console.log('error -> '+error);
-          });
-  };
-  */
-
-   /*
-  $timeout(function () {
-    //https://github.com/don/BluetoothSerial
-    //cordova plugin add https://github.com/eddysby2000/Cordova-Bluetooth-Printer-Plugin.git
-
-    var deviceBluetoothMac = '';
-    var deviceBluetoothName = '';
-    $cordovaBluetoothSerial.isEnabled().then(
-      function() {
-        bluetoothSerial.list(
-          function(devices) {
-            devices.forEach(function(device) {
-                console.log(device.id+' - '+device.name);
-
-                if(device.id == '00:13:E0:92:EC:8E') {
-                  deviceBluetoothMac = device.id;
-
-                  console.log(deviceBluetoothMac);
-                  bluetoothSerial.connect(deviceBluetoothMac,
-                    function(success) {
-                      console.log('success connect -> '+success);
-                      bluetoothSerial.write("hello, world",
-                        function(success) {
-                          console.log('success write -> '+success);
-
-                          bluetoothSerial.subscribe('\n', function (data) {
-                              console.log(data);
-                          }, function(error) {
-                             console.log('error -> '+error);
-                           });
-                        },
-                        function(error) {
-                          console.log('error -> '+error);
-                        }
-                      );
-
-                    },
-                    function(error) {
-                      console.log('error -> '+error);
-                    });
+.controller('LoginCtrl', function($scope,$rootScope,$ionicLoading,$ionicPopup,ajaxCallServices,$state,ModalService,$timeout/*,$cordovaBluetoothSerial,$cordovaPrinter*/) {
 
 
-                }
-            })
+  $scope.testBluetoothPrinter = function() {
+
+/***** PLUGIN: sipkita
+    printer.list(
+      function(name) {
+        console.log('list success: '+name);
+
+        printer.open  (
+          function(data) {
+            console.log('open success: '+data);
+
+            printer.print  (
+              function(data) {
+                console.log('print success: '+data);
+
+                printer.close  (
+                  function(data) {
+                    console.log('close success: '+data);
+                  },
+                  function(data) {
+                    console.log('close error: '+data);
+                  }
+                );
+              },
+              function(data) {
+                console.log('print error: '+data);
+              },
+              '<br />testo<br />'
+            );
+
           },
-          function(error) {
-            console.log(error);
-          });
+          function(data) {
+            console.log('open error: '+data);
+          },
+          "S'print-BT"
+        );
       },
-      function() {
-        alert('Attivare il bluetooth per poter proseguire con la stampa');
+      function(data) {
+        console.log('list error: '+data);
       }
     );
-  },5000);
-*/
+*****/
 
+/***** PLUGIN: bluetooth-serial
+    bluetoothSerial.list(function(devices) {
+      devices.forEach(function(device) {
+        console.log(device.id+' - '+device.name);
+          if(device.id == '00:13:E0:92:EC:8E') {
+            deviceBluetoothMac = device.id;
+            console.log(deviceBluetoothMac);
+            bluetoothSerial.connectInsecure(deviceBluetoothMac,
+              function() {
+                console.log('-> connectSuccess');
+
+                bluetoothSerial.isConnected(
+                  function() {
+                    console.log('Bluetooth is connected');
+
+                    bluetoothSerial.available(
+                      function(numBytes) {
+                        console.log('There are ' + numBytes + ' available to read.');
+                      },
+                      function() {
+                        console.log('Bluetooth *not* available');
+                      }
+                    );
+                  },
+                  function() {
+                    console.log('Bluetooth is *not* connected');
+                  }
+                );
+                // Typed Array
+                //var data = '\r\n something \r\n';
+                // Typed Array
+                var data = new Uint8Array(4);
+                data[0] = 0x1B;
+                data[1] = 0x002;
+
+                data[2] = 0x03;
+                data[3] = 0x43;   //C
+                data[4] = 0x55;   //U
+                data[5] = 0x53;   //S
+                data[6] = 0x54;   //T
+                data[7] = 0x4F;   //O
+                data[8] = 0x4D;   //M
+                data[9] = 0x0A;
+
+                data[10] = 0x1B;
+                data[11] = 0x03;
+
+                console.log('-> data: '+data);
+                bluetoothSerial.write(data,
+                  function() {
+                    console.log('-> writeSuccess');
+                  },
+                  function() {
+                    console.log('-> writeFailure');
+                  }
+                );
+              },
+              function() {
+                console.log('-> connectFailure');
+              }
+            );
+          }
+      })
+    }, function() {
+        console.log('-> listFailure');
+    });
+*****/
+
+  };
 
   $scope.showAlertMessage = function(title,message,back) {
     var alertPopupMessage = $ionicPopup.alert({
@@ -302,7 +336,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('WelcomeCtrl', function($scope,$rootScope,$ionicLoading,$ionicModal,$ionicPopup,ajaxCallServices,$state,ModalService,$cordovaFileTransfer) {
+.controller('WelcomeCtrl', function($scope,$rootScope,$ionicLoading,$ionicModal,$ionicPopup,ajaxCallServices,$state,ModalService/*,$cordovaFileTransfer*/) {
 
   $scope.deviceRegisteredError = false;
   $scope.deviceRegisteredErrorMessage = '';
@@ -415,7 +449,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('InsertCtrl', function($scope,$rootScope,$ionicLoading,$ionicScrollDelegate,$state,$ionicPopup,ModalService,ajaxCallServices,$timeout,$cordovaFileTransfer,$cordovaCamera,$cordovaGeolocation,$cordovaBluetoothSerial,$cordovaPrinter) {
+.controller('InsertCtrl', function($scope,$rootScope,$ionicLoading,$ionicScrollDelegate,$state,$ionicPopup,ModalService,ajaxCallServices,$timeout/*,$cordovaFileTransfer,$cordovaCamera,$cordovaGeolocation,$cordovaBluetoothSerial,$cordovaPrinter*/) {
 
   console.log('InsertCtrl');
 
@@ -543,7 +577,7 @@ angular.module('starter.controllers', [])
   $scope.tipoVeicoloCode  = 'A';
   $scope.tipoVeicoloDescr = 'AUTOVEICOLO';
 
-  //GEOLOCATION
+  /***** GEOLOCATION
   var posOptions = {timeout: 10000, enableHighAccuracy: false};
   $cordovaGeolocation
     .getCurrentPosition(posOptions)
@@ -553,7 +587,7 @@ angular.module('starter.controllers', [])
     }, function(err) {
       // error
     });
-
+  *****/
   $scope.takePicture = function() {
 
     var options = {
@@ -873,9 +907,9 @@ angular.module('starter.controllers', [])
   $scope.stampaVerbale = function() {
 
     $scope.annullaVerbale();
-    //$state.go('app.welcome');
+    $state.go('app.welcome');
 
-
+    /*****
     $timeout(function () {
       //https://github.com/don/BluetoothSerial
       //cordova plugin add https://github.com/eddysby2000/Cordova-Bluetooth-Printer-Plugin.git
@@ -896,12 +930,12 @@ angular.module('starter.controllers', [])
         }
       );
     },5000);
-
+    *****/
   }
 
 })
 
-.controller('SearchCtrl', function($scope,$ionicLoading,ModalService,ajaxCallServices,$cordovaGeolocation) {
+.controller('SearchCtrl', function($scope,$ionicLoading,ModalService,ajaxCallServices) {
 
   $scope.openModalItem = function(item) {
 
@@ -950,7 +984,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('VerbaliCtrl', function($scope,$ionicLoading,ModalService,ajaxCallServices,$cordovaGeolocation) {
+.controller('VerbaliCtrl', function($scope,$ionicLoading,ModalService,ajaxCallServices) {
 
   $ionicLoading.show({
     template: 'Attendere...'

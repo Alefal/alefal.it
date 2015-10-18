@@ -92,6 +92,13 @@ module.exports = [
         ]
     },
     {
+        "file": "plugins/org.apache.cordova.sipkita/www/printer.js",
+        "id": "org.apache.cordova.sipkita.BluetoothPrinter",
+        "clobbers": [
+            "printer"
+        ]
+    },
+    {
         "file": "plugins/cordova-plugin-file/www/DirectoryEntry.js",
         "id": "cordova-plugin-file.DirectoryEntry",
         "clobbers": [
@@ -251,6 +258,7 @@ module.exports.metadata =
     "org.apache.cordova.camera": "0.3.6",
     "cordova-plugin-bluetooth-serial": "0.4.4",
     "de.appplant.cordova.plugin.printer": "0.7.1",
+    "org.apache.cordova.sipkita": "0.0.1-dev",
     "cordova-plugin-file": "3.0.0"
 }
 // BOTTOM OF METADATA

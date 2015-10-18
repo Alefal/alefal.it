@@ -1,31 +1,32 @@
 // Ionic Starter App
-angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalprecht.translate','ngCordova'])
+angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalprecht.translate'/*,'ngCordova'*/])
 
-.run(function($ionicPlatform,$ionicPopup,$ionicLoading,$rootScope,$cordovaNetwork,$cordovaDevice) {
+.run(function($ionicPlatform,$ionicPopup,$ionicLoading,$rootScope/*,$cordovaNetwork,$cordovaDevice*/) {
   $ionicPlatform.registerBackButtonAction(function (event) {
     event.preventDefault();
   }, 100);
 
   $ionicPlatform.ready(function() {
 
+    $rootScope.server = 'http://localhost/alefal.it/PROJECTS/wordpress-4.2.3';
     //$rootScope.server = 'http://192.168.1.188/alefal.it/PROJECTS/wordpress-4.2.3';
-    $rootScope.server = 'http://cdsmobile.swstudio.net';
+    //$rootScope.server = 'http://cdsmobile.swstudio.net';
 
-    /***** TEST WITH BROWSER
+    /***** TEST WITH BROWSER *****/
     $rootScope.device = {
       model: 'HTC ONE',
       platform: 'android',
       uuid: '1234567890',
       version: '1.1'
     };
-    *****/
+/*****    
     $rootScope.device = {
       model: $cordovaDevice.getModel(),
       platform: $cordovaDevice.getPlatform(),
       uuid: $cordovaDevice.getUUID(),
       version: $cordovaDevice.getVersion()
     };
-
+*****/
     localStorage.setItem('deviceModel',$rootScope.device.model);
     localStorage.setItem('devicePlatform',$rootScope.device.platform);
     localStorage.setItem('deviceUUID',$rootScope.device.uuid);
@@ -45,9 +46,9 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
     }
 
     //Check Connection
-    /***** TEST WITH BROWSER
+    /***** TEST WITH BROWSER *****/
     $rootScope.checkNoConnection = false;
-    *****/
+    /*****
     document.addEventListener('deviceready', function () {
       $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
         $rootScope.checkNoConnection = false;
@@ -66,7 +67,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
       })
 
     }, false);
-
+    *****/
   });
 })
 .config(function($httpProvider) {
