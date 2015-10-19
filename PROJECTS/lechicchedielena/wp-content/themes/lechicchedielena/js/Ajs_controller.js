@@ -5,7 +5,7 @@ angular.module('lechicchedielena')
 
     ajaxCallServices.getEvidenceCollections()
       .success(function (listEvidenceCollections) {
-        console.log('Success1: '+JSON.stringify(listEvidenceCollections));
+        //console.log('Success1: '+JSON.stringify(listEvidenceCollections));
         $scope.listEvidenceCollections = listEvidenceCollections;
 
       }).error(function (error) {
@@ -14,7 +14,7 @@ angular.module('lechicchedielena')
 
     ajaxCallServices.getCollections()
       .success(function (listCollections) {
-        console.log('Success2: '+JSON.stringify(listCollections));
+        //console.log('Success2: '+JSON.stringify(listCollections));
         $scope.listCollections = listCollections;
 
       }).error(function (error) {
@@ -39,7 +39,7 @@ angular.module('lechicchedielena')
 
     ajaxCallServices.getEvidenceCollections()
       .success(function (listEvidenceCollections) {
-        console.log('Success1: '+JSON.stringify(listEvidenceCollections));
+        //console.log('Success1: '+JSON.stringify(listEvidenceCollections));
         $scope.listEvidenceCollections = listEvidenceCollections;
 
       }).error(function (error) {
@@ -48,7 +48,7 @@ angular.module('lechicchedielena')
 
     ajaxCallServices.getAllCollections()
       .success(function (listCollections) {
-        console.log('Success2: '+JSON.stringify(listCollections));
+        //console.log('Success2: '+JSON.stringify(listCollections));
         $scope.listCollections = listCollections;
 
       }).error(function (error) {
@@ -92,5 +92,38 @@ angular.module('lechicchedielena')
       $scope.detailDescriptionEn = sharedDetailElement.data.descriptionEn;
       $scope.detailImage = sharedDetailElement.data.image;
     })
+
+  })
+
+  .controller('ContactCtrl', function($scope, $translate, ajaxCallServices,$rootScope,$http) {
+    console.log('ContactCtrl');
+    $scope.contactName  = '';
+    $scope.contactEmail = '';
+    $scope.contactInfo  = '';
+
+    $scope.sendContactForm = function(){
+      $scope.messageSendOK = false;
+      $scope.messageSendKO = false;
+
+      if($scope.contactForm.$valid) {
+        console.log('sendContactForm');
+
+        $http({
+          url:$rootScope.server+'/wp-content/plugins/alefal_sendEmail/services/sendEmail.php',
+          method:'POST',
+          data: {contactName: $scope.contactName, contactEmail: $scope.contactEmail, contactInfo: $scope.contactInfo},
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' }
+        }).then(function successCallback(response) {
+          if(response == 'OK') {
+            $scope.messageSendOK = true;
+          } else {
+            $scope.messageSendKO = true;
+          }
+        }, function errorCallback(response) {
+          $scope.messageSendKO = true;
+        });
+
+      }
+    };
 
   });  

@@ -64,35 +64,39 @@
 </section>
 -->
 
-<?php $id = 18; $p = get_page($id); echo apply_filters('the_content', $p->post_content); ?>
 <!--
-<section id="sectionContact">
+<?php $id = 18; $p = get_page($id); echo apply_filters('the_content', $p->post_content); ?>
+-->
+<section id="sectionContact" ng-controller="ContactCtrl">
     <div class="container v-center">
         <div class="row">
             <div class="col-md-12">
                 <h1 class="text-center" ng-bind="'ContactUs' | translate">&nbsp;</h1>
+
+                <div class="alert alert-success" ng-bind="'MessageSendOK' | translate" ng-show="messageSendOK">&nbsp;</div>
+                <div class="alert alert-danger" ng-bind="'MessageSendKO' | translate" ng-show="messageSendKO">&nbsp;</div>
                 <hr>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-9">
-                <form>
+                <form name="contactForm">
                     <div class="row form-group">
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" name="name" placeholder="Name" required="">
+                            <input type="text" class="form-control" name="name" placeholder="Name" required="" ng-model="contactName">
                         </div>
                         <div class="col-sm-5">
-                            <input type="email" class="form-control" name="email" placeholder="Email" required="">
+                            <input type="email" class="form-control" name="email" placeholder="Email" required="" ng-model="contactEmail">
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="col-sm-10">
-                            <textarea type="homepage" class="form-control" placeholder="Information" required=""></textarea>
+                            <textarea type="homepage" class="form-control" placeholder="Information" required="" ng-model="contactInfo"></textarea>
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="col-sm-10">
-                            <button class="btn btn-default btn-lg pull-right" ng-bind="'ContactUs' | translate">&nbsp;</button>
+                            <button class="btn btn-default btn-lg pull-right" ng-bind="'ContactUs' | translate" ng-click="sendContactForm()">&nbsp;</button>
                         </div>
                     </div>
                 </form>
@@ -112,7 +116,7 @@
         </div>
     </div>
 </section>
--->
+
 
 <?php $id = 22; $p = get_page($id); echo apply_filters('the_content', $p->post_content); ?>
 <!--

@@ -2,13 +2,18 @@ var lechicchedielena = angular.module('lechicchedielena', ['ngSanitize', 'pascal
 
 .run(function($rootScope){
 	$rootScope._ = _;
+	$rootScope.server = 'http://localhost/alefal.it/PROJECTS/lechicchedielena';
+	//$rootScope.server = 'http://www.lechicchedielena.it';
 })
 .config(function($translateProvider) {
+
 	$translateProvider.translations('en', {
 		TitleChiccheElena: 'The Chicche of Elena',
 		SubtitleChiccheElena: 'Handmade (Ravello - Italy)',
 		CompleteCollection: 'Our complete collections',
 		ContactUs: 'Contact Us',
+		MessageSendOK: 'Message send',
+		MessageSendKO: 'Message NOT send',
 		Home: 'Home',
 		Collection: 'Collections',
 		Maps: 'Maps',
@@ -25,6 +30,8 @@ var lechicchedielena = angular.module('lechicchedielena', ['ngSanitize', 'pascal
 		Home: 'Home',
 		Collection: 'Collezioni',
 		ContactUs: 'Contattaci',
+		MessageSendOK: 'Messaggio inviato correttamente',
+		MessageSendKO: 'Messaggio NON inviato',
 		Maps: 'Dove Siamo',
 		AllCollections: 'Tutte le collezioni',
 		Language: 'Lingua',
