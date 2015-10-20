@@ -39,8 +39,10 @@
 <body ng-controller="LanguageCtrl">
 
 	<?php
-	if(is_page( 'prodotti' )) {
+	if(is_page( 'prodotti-2' )) {
 		require get_template_directory() . '/inc/navProducts.inc';
+	} else if ( is_404() ) {
+		// nothing
 	} else {
 		require get_template_directory() . '/inc/nav.inc';
 	}

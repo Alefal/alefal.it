@@ -73,8 +73,12 @@
             <div class="col-md-12">
                 <h1 class="text-center" ng-bind="'ContactUs' | translate">&nbsp;</h1>
 
-                <div class="alert alert-success" ng-bind="'MessageSendOK' | translate" ng-show="messageSendOK">&nbsp;</div>
-                <div class="alert alert-danger" ng-bind="'MessageSendKO' | translate" ng-show="messageSendKO">&nbsp;</div>
+                <div class="alert alert-success" ng-bind="'MessageSendOK' | translate" ng-show="messageSendOKHome">&nbsp;</div>
+                <div class="alert alert-danger" ng-bind="'MessageSendKO' | translate" ng-show="messageSendKOHome">&nbsp;</div>
+
+                <div class="progress progress-striped active" style="margin-bottom:0;" ng-show="messageSendWaitingHome">
+                    <div class="progress-bar" style="width: 100%"></div>
+                </div>
                 <hr>
             </div>
         </div>
@@ -96,7 +100,7 @@
                     </div>
                     <div class="row form-group">
                         <div class="col-sm-10">
-                            <button class="btn btn-default btn-lg pull-right" ng-bind="'ContactUs' | translate" ng-click="sendContactForm()">&nbsp;</button>
+                            <button class="btn btn-default btn-lg pull-right" ng-bind="'ContactUs' | translate" ng-click="sendContactForm('home')">&nbsp;</button>
                         </div>
                     </div>
                 </form>

@@ -1,6 +1,6 @@
 angular.module('lechicchedielena')
 
-  .controller('CollectionsCtrl', function($scope, $translate, ajaxCallServices, sharedDetailElement) {
+  .controller('CollectionsCtrl', function($scope, $rootScope, $translate, ajaxCallServices, sharedDetailElement) {
     console.log('CollectionsCtrl');
 
     ajaxCallServices.getEvidenceCollections()
@@ -24,6 +24,9 @@ angular.module('lechicchedielena')
       $scope.openDetail = function(id,title,descriptionIt,descriptionEn,image){
         console.log('openDetail');
 
+        $rootScope.viewFormForOrder = false;
+        $rootScope.messageSendWaiting = false;
+    
         sharedDetailElement.data.id = id;
         sharedDetailElement.data.title = title;
         sharedDetailElement.data.descriptionIt = descriptionIt;
@@ -82,7 +85,7 @@ angular.module('lechicchedielena')
 
   .controller('DetailModalCtrl', function($scope, sharedDetailElement) {
     console.log('DetailModalCtrl -> '+sharedDetailElement.data.title);
-    
+
     $('#detailModal').on('show.bs.modal', function (e) {
       console.log('detailTitle -> '+sharedDetailElement.data.title);
 
@@ -95,32 +98,77 @@ angular.module('lechicchedielena')
 
   })
 
-  .controller('ContactCtrl', function($scope, $translate, ajaxCallServices,$rootScope,$http) {
+  .controller('ContactCtrl', function($scope, $rootScope, $translate, ajaxCallServices,$rootScope,$http) {
     console.log('ContactCtrl');
     $scope.contactName  = '';
     $scope.contactEmail = '';
     $scope.contactInfo  = '';
 
-    $scope.sendContactForm = function(){
+    $rootScope.viewFormForOrder = false;
+    $rootScope.contactFormView = true;
+
+    $rootScope.messageSendWaitingHome = false;
+    $rootScope.messageSendWaiting = false;
+
+    $scope.openFormOrder = function(){
+      $rootScope.viewFormForOrder = true;
+    };
+
+    $scope.sendContactForm = function(section,detailTitle){
+
       $scope.messageSendOK = false;
       $scope.messageSendKO = false;
+      $scope.messageSendOKHome = false;
+      $scope.messageSendKOHome = false;
 
       if($scope.contactForm.$valid) {
         console.log('sendContactForm');
 
+        if(section == 'home') {
+          $rootScope.messageSendWaitingHome = true;
+        } else {
+          $rootScope.messageSendWaiting = true;
+          $rootScope.contactFormView = false;
+        }
+
         $http({
           url:$rootScope.server+'/wp-content/plugins/alefal_sendEmail/services/sendEmail.php',
           method:'POST',
-          data: {contactName: $scope.contactName, contactEmail: $scope.contactEmail, contactInfo: $scope.contactInfo},
+          data: {contactName: $scope.contactName, contactEmail: $scope.contactEmail, contactInfo: $scope.contactInfo, detailTitle: detailTitle},
           headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' }
         }).then(function successCallback(response) {
           if(response == 'OK') {
-            $scope.messageSendOK = true;
+
+            if(section == 'home') {
+              $scope.messageSendOKHome = true;
+              $rootScope.messageSendWaitingHome = false;
+            } else {
+              $scope.messageSendOK = true;
+              $rootScope.messageSendWaiting = false;
+              $rootScope.contactFormView = true;
+            }
+            
           } else {
-            $scope.messageSendKO = true;
+
+            if(section == 'home') {
+              $scope.messageSendKOHome = true;
+              $rootScope.messageSendWaitingHome = false;
+            } else {
+              $scope.messageSendKO = true;
+              $rootScope.messageSendWaiting = false;
+              $rootScope.contactFormView = true;
+            }
+
           }
         }, function errorCallback(response) {
-          $scope.messageSendKO = true;
+          if(section == 'home') {
+            $scope.messageSendKOHome = true;
+            $rootScope.messageSendWaitingHome = false;
+          } else {
+            $scope.messageSendKO = true;
+            $rootScope.messageSendWaiting = false;
+            $rootScope.contactFormView = true;
+          }
         });
 
       }

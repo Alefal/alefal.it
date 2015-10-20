@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand text-danger" href="#" ng-bind="'TitleChiccheElena' | translate">&nbsp;</a>
+            <a class="navbar-brand text-danger" href="<?php echo home_url(); ?>" ng-bind="'TitleChiccheElena' | translate">&nbsp;</a>
         </div>
         <div class="navbar-collapse collapse" id="navbar-collapsible">
             <?php 

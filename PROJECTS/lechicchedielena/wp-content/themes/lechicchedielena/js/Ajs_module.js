@@ -21,7 +21,11 @@ var lechicchedielena = angular.module('lechicchedielena', ['ngSanitize', 'pascal
 		Language: 'Language',
 		Detail: 'Detail',
 		Order: 'Order',
-		Footer: 'Le Chicche di Elena - Street Roma, 34 - Ravello (SA) - Italy'
+		Page404: 'Page not found',
+		Footer: 'Le Chicche di Elena - Street Roma, 34 - Ravello (SA) - Italy',
+		PlaceholderName: 'Name',
+		PlaceholderEmail: 'Email',
+		PlaceholderInfo: 'Information'
 	});
 	$translateProvider.translations('it', {
     	TitleChiccheElena: 'Le Chicche di Elena',
@@ -37,7 +41,11 @@ var lechicchedielena = angular.module('lechicchedielena', ['ngSanitize', 'pascal
 		Language: 'Lingua',
 		Detail: 'Dettaglio',
 		Order: 'Ordina',
-		Footer: 'Le Chicche di Elena - Via Roma, 34 - Ravello (SA) - Italia'
+		Page404: 'Pagina non trovata',
+		Footer: 'Le Chicche di Elena - Via Roma, 34 - Ravello (SA) - Italia',
+		PlaceholderName: 'Nome',
+		PlaceholderEmail: 'Email',
+		PlaceholderInfo: 'Informazioni'
     });
   	$translateProvider.preferredLanguage('it');
   	$translateProvider.fallbackLanguage('it');

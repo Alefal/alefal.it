@@ -62,21 +62,38 @@
                 <h2 class="text-center">
                      <img src="{{detailImage}}" class="img-responsive thumbnail center-block">
                      <br />
-                     {{detailTitle}}
+                     <span ng-bind-html="detailTitle">&nbsp;</span>
                 </h2>
             </div>
-            <div class="modal-body row">
+            <div class="modal-body row" ng-controller="ContactCtrl">
                 <div class="col-md-10 col-md-offset-1 col-xs-12 col-xs-offset-0">
-                    <h6 class="text-justify" ng-if="currentLanguage == 'it'">
-                        {{detailDescriptionIt}}
-                    </h6>
-                    <h6 class="text-justify" ng-if="currentLanguage == 'en'">
-                        {{detailDescriptionEn}}
-                    </h6>
+                    <h6 class="text-justify" ng-if="currentLanguage == 'it'" ng-bind-html="detailDescriptionIt">&nbsp;</h6>
+                    <h6 class="text-justify" ng-if="currentLanguage == 'en'" ng-bind-html="detailDescriptionEn">&nbsp;</h6>
                 </div>
 
                 <div class="col-md-10 col-md-offset-1 col-xs-12 col-xs-offset-0">
-                    <button class="btn btn-danger btn-lg btn-block" ng-bind="'Order' | translate">&nbsp;</button>
+                    <button class="btn btn-danger btn-lg btn-block" ng-bind="'Order' | translate" ng-click="openFormOrder()">&nbsp;</button>
+                </div>
+
+                <!-- Richiesta prodott per email -->
+                <div class="col-md-10 col-md-offset-1 col-xs-12 col-xs-offset-0" ng-show="viewFormForOrder">
+                    <br />
+                    <div class="alert alert-success" ng-bind="'MessageSendOK' | translate" ng-show="messageSendOK">&nbsp;</div>
+                    <div class="alert alert-danger" ng-bind="'MessageSendKO' | translate" ng-show="messageSendKO">&nbsp;</div>
+
+                    <div class="progress progress-striped active" style="margin-bottom:0;" ng-show="messageSendWaiting">
+                        <div class="progress-bar" style="width: 100%"></div>
+                    </div>
+                    <form name="contactForm" ng-show="contactFormView">
+                        <br />
+                        <input type="text" class="form-control" name="name" placeholder="{{'PlaceholderName' | translate}}" required="" ng-model="contactName">
+                        <br />
+                        <input type="email" class="form-control" name="email" placeholder="{{'PlaceholderEmail' | translate}}" required="" ng-model="contactEmail">
+                        <br />
+                        <textarea type="homepage" class="form-control" placeholder="{{'PlaceholderInfo' | translate}}" required="" ng-model="contactInfo"></textarea>
+                        <br />
+                        <button class="btn btn-default btn-lg pull-right" ng-bind="'Order' | translate" ng-click="sendContactForm('detail',detailTitle)">&nbsp;</button>
+                    </form>
                 </div>
             </div>
 

@@ -1,0 +1,39 @@
+//http://champagneriadellasala-disconnection.rhcloud.com/services/baseService/getRoles/
+//user: adm
+//psw: 222222
+{
+   "roleList":[
+      {
+         "id":5,
+         "role":"admin"
+      },
+      {
+         "id":6,
+         "role":"moderator"
+      },
+      {
+         "id":7,
+         "role":"direttore"
+      },
+      {
+         "id":8,
+         "role":"cliente"
+      },
+      {
+         "id":9,
+         "role":"cassa"
+      },
+      {
+         "id":10,
+         "role":"hostess"
+      },
+      {
+         "id":11,
+         "role":"cambusiere"
+      },
+      {
+         "id":12,
+         "role":"cameriere"
+      }
+   ]
+}
