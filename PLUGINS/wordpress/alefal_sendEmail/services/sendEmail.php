@@ -33,13 +33,14 @@ $dataJsonDecode         = json_decode($data);
 $contactName         	= $dataJsonDecode->contactName;
 $contactEmail           = $dataJsonDecode->contactEmail;
 $contactInfo            = $dataJsonDecode->contactInfo;
+$detailTitle            = $dataJsonDecode->detailTitle;
 
 $resultArray = array();
 
 if($contactName != '') {
     
     $message = $contactName.' - '.$contactInfo;
-    $sent_message = wp_mail( 'alefalwebmaster@gmail.com', 'Test', $message );
+    $sent_message = wp_mail( 'alefalwebmaster@gmail.com', $detailTitle, $message );
 
     if ( $sent_message ) {
 	    // The message was sent.
