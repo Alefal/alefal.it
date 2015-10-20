@@ -1,7 +1,7 @@
 
 <section class="container-fluid" id="section7">
     <div class="row" align="center">
-        <p>©2015 - <span  ng-bind="'Footer' | translate">&nbsp;</span></p>
+        <p>&copy; 2015 - <span  ng-bind="'Footer' | translate">&nbsp;</span></p>
     </div>
 </section>
 
@@ -58,7 +58,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
                 <h2 class="text-center">
                      <img src="{{detailImage}}" class="img-responsive thumbnail center-block">
                      <br />
@@ -98,7 +98,7 @@
             </div>
 
             <div class="modal-footer">
-                <h6 class="text-center">© 2015 - <span ng-bind="'TitleChiccheElena' | translate">&nbsp;</span></h6>
+                <h6 class="text-center">&copy; 2015 - <span ng-bind="'TitleChiccheElena' | translate">&nbsp;</span></h6>
             </div>
         </div>
     </div>

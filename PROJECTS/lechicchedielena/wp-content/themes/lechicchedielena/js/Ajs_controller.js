@@ -137,7 +137,7 @@ angular.module('lechicchedielena')
           data: {contactName: $scope.contactName, contactEmail: $scope.contactEmail, contactInfo: $scope.contactInfo, detailTitle: detailTitle},
           headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' }
         }).then(function successCallback(response) {
-          if(response == 'OK') {
+          if(response.data == 'OK') {
 
             if(section == 'home') {
               $scope.messageSendOKHome = true;

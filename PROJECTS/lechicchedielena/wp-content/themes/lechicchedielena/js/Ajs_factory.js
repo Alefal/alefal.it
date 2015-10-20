@@ -3,8 +3,8 @@ angular.module('lechicchedielena')
     .factory('ajaxCallServices', function($http) {
 
         var ajaxCallServices = {};
-        var urlBase = 'http://localhost/alefal.it/PROJECTS/wordpress-4.2.3/';
-        //var urlBase = 'http://www.lechicchedielena.it/';
+        //var urlBase = 'http://localhost/alefal.it/PROJECTS/wordpress-4.2.3/';
+        var urlBase = 'http://www.lechicchedielena.it/';
         //var urlBase = 'wp-content/themes/lechicchedielena/json/';
 
         /***** getEvidenceCollections ****/

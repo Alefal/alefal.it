@@ -30,16 +30,16 @@ require_once('../../../../wp-config.php');
 
 $data                   = file_get_contents("php://input");
 $dataJsonDecode         = json_decode($data);
-$contactName         	= $dataJsonDecode->contactName;
-$contactEmail           = $dataJsonDecode->contactEmail;
-$contactInfo            = $dataJsonDecode->contactInfo;
-$detailTitle            = $dataJsonDecode->detailTitle;
+$contactName         	= isset($dataJsonDecode->contactName)	? $dataJsonDecode->contactName 	: '';
+$contactEmail           = isset($dataJsonDecode->contactEmail) 	? $dataJsonDecode->contactEmail : '';
+$contactInfo            = isset($dataJsonDecode->contactInfo) 	? $dataJsonDecode->contactInfo 	: '';
+$detailTitle            = isset($dataJsonDecode->detailTitle) 	? $dataJsonDecode->detailTitle 	: '';
 
 $resultArray = array();
 
 if($contactName != '') {
     
-    $message = $contactName.' - '.$contactInfo;
+    $message = $contactEmail.' - '.$contactName.' - '.$contactInfo;
     $sent_message = wp_mail( 'alefalwebmaster@gmail.com', $detailTitle, $message );
 
     if ( $sent_message ) {

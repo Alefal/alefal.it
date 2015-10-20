@@ -64,9 +64,9 @@
 </section>
 -->
 
-<!--
+
 <?php $id = 18; $p = get_page($id); echo apply_filters('the_content', $p->post_content); ?>
--->
+<!--
 <section id="sectionContact" ng-controller="ContactCtrl">
     <div class="container v-center">
         <div class="row">
@@ -120,7 +120,7 @@
         </div>
     </div>
 </section>
-
+-->
 
 <?php $id = 22; $p = get_page($id); echo apply_filters('the_content', $p->post_content); ?>
 <!--
