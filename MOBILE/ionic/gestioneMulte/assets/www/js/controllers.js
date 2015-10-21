@@ -124,6 +124,8 @@ angular.module('starter.controllers', [])
       template: 'Attendere...'
     });
 
+    $scope.deviceCompleteRegistered = false;
+
     if(!localStorage.getItem('deviceRegistered')) {
       $scope.deviceFirstRegistered = true;
       $ionicLoading.hide();
@@ -294,7 +296,7 @@ angular.module('starter.controllers', [])
           console.log(JSON.stringify(result));
           console.log(result[0].message);
 
-          document.addEventListener('deviceready', function () {
+          //document.addEventListener('deviceready', function () {
 
               if(angular.isNumber(result[0].message)) {
 
@@ -327,7 +329,7 @@ angular.module('starter.controllers', [])
 
               $rootScope.datiVerbaleOffline = false;
               localStorage.removeItem('datiVerbaleOffline');
-          }, false);
+          //}, false);
 
         }).error(function (error) {
           $ionicLoading.hide();
@@ -406,7 +408,7 @@ angular.module('starter.controllers', [])
     }
   }
 
-  $scope.messageBluetoothSerialEnable = '';
+  $scope.messageBluetoothSerialEnable = 'Abilita il bluetooth per stampare il verbale...';
 
   $scope.filePathImg  = '';
   $scope.picData      = '';
@@ -460,11 +462,29 @@ angular.module('starter.controllers', [])
   $scope.longVerbale  = '';
 
   $scope.targaVeicolo     = '';
+  $scope.tipoVeicolo      = '';
+  $scope.modelloVeicolo   = '';
+
+  $rootScope.indirizzoId  = '';
+  $rootScope.indirizzo    = '';
   $scope.indirizzoCivico  = '';
   $scope.indirizzoDescr   = '';
 
   $scope.tipoVeicoloCode  = 'A';
   $scope.tipoVeicoloDescr = 'AUTOVEICOLO';
+
+  $rootScope.idAgente2      = '';
+  $rootScope.nomeAgente2    = '';
+
+  $scope.art1       = '';
+  $scope.codArt1    = '';
+  $scope.descrArt1  = '';
+
+  $scope.art2       = '';
+  $scope.codArt2    = '';
+  $scope.descrArt2  = '';
+
+  $scope.imgBase64 = '';
 
   //GEOLOCATION
   /*****
@@ -592,10 +612,10 @@ angular.module('starter.controllers', [])
           console.log(result[0].message);
           console.log($scope.picData);
 
-          var numVerbIncremente = parseInt(localStorage.getItem('numeroVerbale')) + 1;
-          localStorage.setItem('numeroVerbale',numVerbIncremente);
+          var numVerbIncremento = parseInt(localStorage.getItem('numeroVerbale')) + 1;
+          localStorage.setItem('numeroVerbale',numVerbIncremento);
 
-          document.addEventListener('deviceready', function () {
+          //document.addEventListener('deviceready', function () {
 
               if(angular.isNumber(result[0].message)) {
 
@@ -628,7 +648,7 @@ angular.module('starter.controllers', [])
                 $ionicLoading.hide();
                 $scope.showAlert('Salvataggio verbale','Verbale salvato correttamente!',true);
               }
-          }, false);
+          //}, false);
 
         }).error(function (error) {
           $ionicLoading.hide();
@@ -689,6 +709,13 @@ angular.module('starter.controllers', [])
     */
   }
 
+  //Bluetooth print
+  $scope.stampaVerbale = function() {
+
+    $rootScope.globFunc.bluetoothPrinter('verbale',$scope.numeroVerbale,$scope.dataVerbale,$scope.oraVerbale,$scope.targaVeicolo,$scope.tipoVeicoloDescr,$scope.indirizzoDescr,$scope.indirizzoCivico,$scope.art1,$scope.codArt1,scope.descrArt1);
+    $scope.annullaVerbale();
+  }
+
   $scope.openModalItem = function(item,section) {
 
     $scope.setArt1 = false;
@@ -747,18 +774,30 @@ angular.module('starter.controllers', [])
   $scope.selezionaMarca = function(TIPO,MARCA,MODELLO) {
     $scope.tipoVeicolo    = TIPO;
     $scope.modelloVeicolo = MARCA+' - '+MODELLO;
+
+    //Se inizio a scrivere nel campo e poi scelgo il valore da inseriree dalla modale, il val() non mi cambia...
+    angular.element(document.querySelector('#MODELLO_VERB')).val($scope.modelloVeicolo);
+
     $scope.modal.hide();
   }
 
   $scope.selezionaIndirizzo = function(ID,DESCR_VIE) {
     $rootScope.indirizzoId  = ID;
     $rootScope.indirizzo    = DESCR_VIE;
+
+    angular.element(document.querySelector('#VIA_VERB')).val($scope.indirizzoId);
+    angular.element(document.querySelector('#DESCR_VIE')).val($scope.indirizzo);
+
     $scope.modal.hide();
   }
 
   $scope.selezionaAgente = function(ID,NOME_AGENT) {
     $rootScope.idAgente2      = ID;
     $rootScope.nomeAgente2    = NOME_AGENT;
+
+    angular.element(document.querySelector('#ID_AGENTE2_VERB')).val($scope.idAgente2);
+    angular.element(document.querySelector('#NOME_AGENT')).val($scope.nomeAgente2);
+
     $scope.modal.hide();
   }
 
@@ -767,10 +806,20 @@ angular.module('starter.controllers', [])
       $scope.art1       = COD_ART;
       $scope.codArt1    = COD_COM/*+','+COMMA*/;
       $scope.descrArt1  = DES_ART1;
+
+      angular.element(document.querySelector('#ART1_VERB')).val($scope.art1);
+      angular.element(document.querySelector('#COD1_VERB')).val($scope.codArt1);
+      angular.element(document.querySelector('#DESCR_ART1_VERB')).val($scope.descrArt1);
+    
     } else if($scope.setArt2) {
       $scope.art2       = COD_ART;
       $scope.codArt2    = COD_COM/*+','+COMMA*/;
       $scope.descrArt2  = DES_ART1;
+
+      angular.element(document.querySelector('#ART2_VERB')).val($scope.art2);
+      angular.element(document.querySelector('#COD2_VERB')).val($scope.codArt2);
+      angular.element(document.querySelector('#DESCR_ART2_VERB')).val($scope.descrArt2);
+      
     }
     $scope.modal.hide();
   }
@@ -789,15 +838,6 @@ angular.module('starter.controllers', [])
     $scope.tipoVeicoloCode  = COD_VEI;
     $scope.tipoVeicoloDescr = DESC_VEIC;
     $scope.modal.hide();
-  }
-
-  $scope.imgBase64 = '';
-
-  //Bluetooth print
-  $scope.stampaVerbale = function() {
-
-    $rootScope.globFunc.bluetoothPrinter('verbale',$scope.numeroVerbale,$scope.dataVerbale,$scope.oraVerbale,$scope.targaVeicolo,$scope.tipoVeicoloDescr,$scope.indirizzoDescr,$scope.indirizzoCivico,$scope.art1,$scope.codArt1,scope.descrArt1);
-    $scope.annullaVerbale();
   }
 
 })
@@ -915,7 +955,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('StampanteCtrl', function($scope,$rootScope,$ionicLoading,ModalService,ajaxCallServices/*,bluetoothSerial*/) {
+.controller('StampanteCtrl', function($scope,$rootScope,$ionicLoading,ModalService,ajaxCallServices) {
 
   $scope.checkPrintFound = false;
   $scope.resultTestShow = false;

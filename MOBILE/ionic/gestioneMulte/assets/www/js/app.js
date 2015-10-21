@@ -8,7 +8,8 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 
   $ionicPlatform.ready(function() {
 
-    $rootScope.server = 'http://localhost/alefal.it/PROJECTS/wordpress-4.2.3';
+    //$rootScope.server = 'http://localhost/alefal.it/PROJECTS/wordpress-4.2.3';
+    $rootScope.server = 'http://10.80.18.107/alefal.it/PROJECTS/wordpress-4.2.3';
     //$rootScope.server = 'http://192.168.1.188/alefal.it/PROJECTS/wordpress-4.2.3';
     //$rootScope.server = 'http://cdsmobile.swstudio.net';
 
@@ -46,7 +47,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
     }
 
     //TEST WITH BROWSER: Check Connection
-    $rootScope.checkNoConnection = true;
+    $rootScope.checkNoConnection = false;
     
     /*****
     document.addEventListener('deviceready', function () {
@@ -236,7 +237,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 
   return ajaxCallServices;
 })
-.factory('globalFunction', function($state,$rootScope) {
+.factory('globalFunction', function($state,$rootScope/*,bluetoothSerial*/) {
   return {
     exitApp: function() {
       /* NON LI CANCELLO PER ACCESSO OFFLINE...
@@ -256,6 +257,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
     },
     bluetoothPrinter: function(section,numeroVerbale,dataVerbale,oraVerbale,targaVeicolo,tipoVeicoloDescr,indirizzoDescr,indirizzoCivico,art1,codArt1,descrArt1) {
 
+      //BlueTooth Printer
       var stampanteBluetoothName = localStorage.getItem('stampanteBluetooth');
 
       var resultTest = '';

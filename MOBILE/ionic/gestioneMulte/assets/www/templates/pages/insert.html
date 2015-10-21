@@ -68,7 +68,7 @@
                 <button class="button button-assertive icon-left ion-android-checkbox-outline" ng-click="openModalItem('marche')"> Scegli</button>
             </div>
         </div>
-
+                
         <div class="spacerVertical"></div>
 
         <div class="list list-inset">
@@ -82,7 +82,7 @@
             </label>
             -->
             <label class="item item-input">
-                <input type="text" name="MODELLO_VERB" value="{{modelloVeicolo}}" placeholder="Modello veicolo">
+                <input type="text" id="MODELLO_VERB" name="MODELLO_VERB" value="{{modelloVeicolo}}" placeholder="Modello veicolo">
             </label>
         </div>
 
@@ -103,8 +103,8 @@
         <div class="spacerVertical"></div>
 
         <div class="list list-inset">
-            <label class="item item-input">
-                <input type="text" placeholder="Tipo veicolo" ng-model="tipoVeicoloDescr" required>
+            <label class="item item-input readonly">
+                <input type="text" placeholder="Tipo veicolo" ng-model="tipoVeicoloDescr" required readonly="true" >
                 <input type="hidden" name="TIPO_VEI_VERB" value="{{tipoVeicoloCode}}">
                 <i class="icon ion-model-s"></i>
             </label>
@@ -149,10 +149,10 @@
         </div>
 
         <div class="list list-inset">
-            <label class="item item-input">
+            <label class="item item-input readonly">
                 <!-- MANTENERE ULTIMO SELEZIONATO -->
-                <input type="text" placeholder="Indirizzo" readonly="true" value="{{indirizzo}}" required>
-                <input type="hidden" name="VIA_VERB" value="{{indirizzoId}}">
+                <input type="text" id="DESCR_VIE" placeholder="Indirizzo" readonly="true" value="{{indirizzo}}" required>
+                <input type="hidden" id="VIA_VERB" name="VIA_VERB" value="{{indirizzoId}}">
                 <i class="icon ion-map"></i>
             </label>
             <label class="item item-input">
@@ -180,15 +180,15 @@
 
         <div class="list list-inset">
             <label class="item item-input readonly">
-                <input type="text" name="ART1_VERB" placeholder="Articolo" readonly="true" value="{{art1}}" required>
+                <input type="text" id="ART1_VERB" name="ART1_VERB" placeholder="Articolo" readonly="true" value="{{art1}}" required>
                 <i class="icon ion-clipboard"></i>
             </label>
             <label class="item item-input readonly">
                 <!-- SOLO CC (OK) -->
-                <input type="text" name="COD1_VERB" placeholder="Cod e Comma" readonly="true" value="{{codArt1}}" required>
+                <input type="text" id="COD1_VERB" name="COD1_VERB" placeholder="Cod e Comma" readonly="true" value="{{codArt1}}" required>
             </label>
             <label class="item item-input readonly">
-                <textarea name="DESCR_ART1_VERB" placeholder="Descrizione articolo" readonly="true" rows="5" cols="10" ng-bind="descrArt1" required></textarea>
+                <textarea id="DESCR_ART1_VERB" name="DESCR_ART1_VERB" placeholder="Descrizione articolo" readonly="true" rows="5" cols="10" ng-bind="descrArt1" required></textarea>
             </label>
         </div>
 
@@ -209,14 +209,14 @@
 
         <div class="list list-inset">
             <label class="item item-input readonly">
-                <input type="text" name="ART2_VERB" placeholder="Articolo" readonly="true" value="{{art2}}">
+                <input type="text" id="ART2_VERB" name="ART2_VERB" placeholder="Articolo" readonly="true" value="{{art2}}">
                 <i class="icon ion-clipboard"></i>
             </label>
             <label class="item item-input readonly">
-                <input type="text" name="COD2_VERB" placeholder="Cod e Comma" readonly="true" value="{{codArt2}}">
+                <input type="text" id="COD2_VERB" name="COD2_VERB" placeholder="Cod e Comma" readonly="true" value="{{codArt2}}">
             </label>
             <label class="item item-input readonly">
-                <textarea name="DESCR_ART2_VERB" placeholder="Descrizione articolo" readonly="true" rows="5" cols="10" ng-bind="descrArt2"></textarea>
+                <textarea id="DESCR_ART2_VERB" name="DESCR_ART2_VERB" placeholder="Descrizione articolo" readonly="true" rows="5" cols="10" ng-bind="descrArt2"></textarea>
             </label>
         </div>
 
@@ -270,8 +270,8 @@
             <div class="list list-inset" style="margin: 0 !important;">
               <label class="item item-input readonly">
                 <!-- MANTENERE ULTIMO SELEZIONATO -->
-                <input type="text" placeholder="Agente" readonly="true" value="{{nomeAgente2}}">
-                <input type="hidden" name="ID_AGENTE2_VERB" value="{{idAgente2}}">
+                <input type="text" id="NOME_AGENT" placeholder="Agente" readonly="true" value="{{nomeAgente2}}">
+                <input type="hidden" id="ID_AGENTE2_VERB" name="ID_AGENTE2_VERB" value="{{idAgente2}}">
                 <i class="icon ion-android-hand"></i>
               </label>
             </div>
