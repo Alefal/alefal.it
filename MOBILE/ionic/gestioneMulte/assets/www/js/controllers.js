@@ -1,53 +1,7 @@
 angular.module('starter.controllers', [])
 
-.controller('LoginCtrl', function($scope,$rootScope,$ionicLoading,$ionicPopup,ajaxCallServices,$state,ModalService,$timeout,$cordovaBluetoothSerial,$cordovaPrinter) {
+.controller('LoginCtrl', function($scope,$rootScope,$ionicLoading,$ionicPopup,ajaxCallServices,$state,ModalService,$timeout) {
 
-/*****
-  $scope.testBluetoothPrinter = function() {
-    bluetoothSerial.list(function(devices) {
-      devices.forEach(function(device) {
-        console.log(device.id+' - '+device.name);
-          if(device.name == 'BlueTooth Printer') {
-            deviceBluetoothMac = device.id;
-            console.log(deviceBluetoothMac);
-            bluetoothSerial.connect(deviceBluetoothMac,
-              function() {
-                console.log('-> connectSuccess');
-
-                bluetoothSerial.isConnected(
-                  function() {
-                    console.log('Bluetooth is connected');
-
-                   // Typed Array
-                   var data = '\n something \n';
-
-                   console.log('-> data: '+data);
-                   bluetoothSerial.write(data,
-                     function() {
-                       console.log('-> writeSuccess');
-                     },
-                     function() {
-                       console.log('-> writeFailure');
-                     }
-                   );
-                  },
-                  function() {
-                    console.log('Bluetooth is *not* connected');
-                  }
-                );
-
-              },
-              function() {
-                console.log('-> connectFailure');
-              }
-            );
-          }
-      })
-    }, function() {
-        console.log('-> listFailure');
-    });
-  };
-*****/
   $scope.showAlertMessage = function(title,message,back) {
     var alertPopupMessage = $ionicPopup.alert({
        title: title,
@@ -225,16 +179,19 @@ angular.module('starter.controllers', [])
               .success(function (device) {
 
                 if(device[0].response[0].result == 'OK') {
-                  console.log('OK: '+device[0].items[0].NUM_VERB);
+                  console.log('OK: '+device[0].items[0].NUM_VERB+' - '+device[0].items[0].STAMPANTE_BLUETOOTH);
                   localStorage.setItem('numeroVerbale',device[0].items[0].NUM_VERB);
+                  localStorage.setItem('stampanteBluetooth',device[0].items[0].STAMPANTE_BLUETOOTH);
                 } else {
                   console.log('KO');
                   localStorage.setItem('numeroVerbale',0);
+                  localStorage.setItem('stampanteBluetooth','');
                 }
 
               }).error(function (error) {
                 console.log('KO');
                 localStorage.setItem('numeroVerbale',0);
+                localStorage.setItem('stampanteBluetooth','');
               });
 
             $ionicLoading.hide();
@@ -268,7 +225,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('WelcomeCtrl', function($scope,$rootScope,$ionicLoading,$ionicModal,$ionicPopup,ajaxCallServices,$state,ModalService,$cordovaFileTransfer) {
+.controller('WelcomeCtrl', function($scope,$rootScope,$ionicLoading,$ionicModal,$ionicPopup,ajaxCallServices,$state,ModalService/*,$cordovaFileTransfer*/) {
 
   $scope.deviceRegisteredError = false;
   $scope.deviceRegisteredErrorMessage = '';
@@ -381,7 +338,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('InsertCtrl', function($scope,$rootScope,$ionicLoading,$ionicScrollDelegate,$state,$ionicPopup,ModalService,ajaxCallServices,$timeout,$cordovaFileTransfer,$cordovaCamera,$cordovaGeolocation,$cordovaBluetoothSerial,$cordovaPrinter) {
+.controller('InsertCtrl', function($scope,$rootScope,$ionicLoading,$ionicScrollDelegate,$state,$ionicPopup,ModalService,ajaxCallServices,$timeout/*,$cordovaFileTransfer,$cordovaCamera,$cordovaGeolocation,$cordovaBluetoothSerial,$cordovaPrinter*/) {
 
   console.log('InsertCtrl');
 
@@ -510,6 +467,7 @@ angular.module('starter.controllers', [])
   $scope.tipoVeicoloDescr = 'AUTOVEICOLO';
 
   //GEOLOCATION
+  /*****
   var posOptions = {timeout: 10000, enableHighAccuracy: false};
   $cordovaGeolocation
     .getCurrentPosition(posOptions)
@@ -519,7 +477,7 @@ angular.module('starter.controllers', [])
     }, function(err) {
       // error
     });
-
+  *****/
   $scope.takePicture = function() {
 
     var options = {
@@ -838,61 +796,13 @@ angular.module('starter.controllers', [])
   //Bluetooth print
   $scope.stampaVerbale = function() {
 
-    bluetoothSerial.list(function(devices) {
-      devices.forEach(function(device) {
-        console.log(device.id+' - '+device.name);
-          if(device.name == 'BlueTooth Printer') {
-            deviceBluetoothMac = device.id;
-            console.log(deviceBluetoothMac);
-            bluetoothSerial.connect(deviceBluetoothMac,
-              function() {
-                console.log('-> connectSuccess');
-
-                bluetoothSerial.isConnected(
-                  function() {
-                    console.log('Bluetooth is connected');
-
-                   // Typed Array
-                   var data = '\n Verbale numero'+$scope.numeroVerbale+'\n';
-                   data += 'del '+$scope.dataVerbale+'\n';
-                   data += 'alle ore '+$scope.oraVerbale+'\n';
-                   data += 'Targa: '+$scope.targaVeicolo+' '+$scope.tipoVeicoloDescr+'\n';
-                   data += 'in '+$scope.indirizzoDescr+' '+$scope.indirizzoCivico+'\n';
-                   data += 'Articolo '+$scope.art1+' '+$scope.codArt1+' '+$scope.descrArt1+'\n';
-
-                   console.log('-> data: '+data);
-                   bluetoothSerial.write(data,
-                     function() {
-                       console.log('-> writeSuccess');
-                     },
-                     function() {
-                       console.log('-> writeFailure');
-                     }
-                   );
-                  },
-                  function() {
-                    console.log('Bluetooth is *not* connected');
-                  }
-                );
-
-              },
-              function() {
-                console.log('-> connectFailure');
-              }
-            );
-          }
-        })
-      }, function() {
-          console.log('-> listFailure');
-      });
-
+    $rootScope.globFunc.bluetoothPrinter('verbale',$scope.numeroVerbale,$scope.dataVerbale,$scope.oraVerbale,$scope.targaVeicolo,$scope.tipoVeicoloDescr,$scope.indirizzoDescr,$scope.indirizzoCivico,$scope.art1,$scope.codArt1,scope.descrArt1);
     $scope.annullaVerbale();
-    //$state.go('app.welcome');
   }
 
 })
 
-.controller('SearchCtrl', function($scope,$ionicLoading,ModalService,ajaxCallServices,$cordovaGeolocation) {
+.controller('SearchCtrl', function($scope,$ionicLoading,ModalService,ajaxCallServices) {
 
   $scope.openModalItem = function(item) {
 
@@ -941,23 +851,31 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('VerbaliCtrl', function($scope,$ionicLoading,ModalService,ajaxCallServices,$cordovaGeolocation) {
+.controller('VerbaliCtrl', function($scope,$rootScope,$ionicLoading,ModalService,ajaxCallServices) {
 
   $ionicLoading.show({
     template: 'Attendere...'
   });
 
-  //TODO: gestione offline ???
+  $scope.verbaliOnlineFound = false;
+  $scope.verbaliOnlineNotFound = false;
+
+  $scope.verbaliOfflineFound = false;
+  $scope.verbaliOfflineNotFound = false;
+
+  //VERBALI ONLINE
   ajaxCallServices.getItems('verbale')
     .success(function (items) {
 
       if(items[0].response[0].result == 'OK') {
+        $scope.verbaliOnlineFound = true;
+
         $scope.items = items[0].items;
         $scope.loading = false;
 
         $ionicLoading.hide();
       } else {
-        $scope.items = 'ERROR';
+        $scope.verbaliOnlineNotFound = true;
         $ionicLoading.hide();
       }
 
@@ -965,6 +883,17 @@ angular.module('starter.controllers', [])
       $ionicLoading.hide();
       $scope.status = 'Unable to load customer data' + error;
     });
+
+
+    //VERBALI OFFLINE
+    if (localStorage.getItem('datiVerbaleOffline')) {
+      $scope.verbaleCompleto = angular.fromJson(localStorage.getItem('datiVerbaleOffline'));
+      console.log($scope.verbaleCompleto);
+
+      $scope.verbaliOfflineFound = true;
+    } else {
+      $scope.verbaliOfflineNotFound = true;
+    }
 
   $scope.stampaVerbale = function(NUM_VERB,DATA_VERB,ORA_VERB,TARGA_VERB,TIPO_VEI_VERB,DESCR_VIA_VERB,CIVICO_VERB,ID_ART1_VERB,COD1_VERB,DESCR_ART1_VERB) {
     console.log('stampaVerbale');
@@ -980,53 +909,31 @@ angular.module('starter.controllers', [])
     $scope.codArt1          = COD1_VERB;
     $scope.descrArt1        = DESCR_ART1_VERB;
 
-    bluetoothSerial.list(function(devices) {
-      devices.forEach(function(device) {
-        console.log(device.id+' - '+device.name);
-          if(device.name == 'BlueTooth Printer') {
-            deviceBluetoothMac = device.id;
-            console.log(deviceBluetoothMac);
-            bluetoothSerial.connect(deviceBluetoothMac,
-              function() {
-                console.log('-> connectSuccess');
+    $rootScope.globFunc.bluetoothPrinter('verbale',$scope.numeroVerbale,$scope.dataVerbale,$scope.oraVerbale,$scope.targaVeicolo,$scope.tipoVeicoloDescr,$scope.indirizzoDescr,$scope.indirizzoCivico,$scope.art1,$scope.codArt1,$scope.descrArt1);
+    
+  }
 
-                bluetoothSerial.isConnected(
-                  function() {
-                    console.log('Bluetooth is connected');
+})
 
-                   // Typed Array
-                   var data = '\n Verbale numero: '+$scope.numeroVerbale+'\n';
-                   data += 'del '+$scope.dataVerbale+'\n';
-                   data += 'alle ore '+$scope.oraVerbale+'\n';
-                   data += 'Targa: '+$scope.targaVeicolo+' '+$scope.tipoVeicoloDescr+'\n';
-                   data += 'in '+$scope.indirizzoDescr+' '+$scope.indirizzoCivico+'\n';
-                   data += 'Articolo: '+$scope.art1+' '+$scope.codArt1+' '+$scope.descrArt1+'\n';
+.controller('StampanteCtrl', function($scope,$rootScope,$ionicLoading,ModalService,ajaxCallServices/*,bluetoothSerial*/) {
 
-                   console.log('-> data: '+data);
-                   bluetoothSerial.write(data,
-                     function() {
-                       console.log('-> writeSuccess');
-                     },
-                     function() {
-                       console.log('-> writeFailure');
-                     }
-                   );
-                  },
-                  function() {
-                    console.log('Bluetooth is *not* connected');
-                  }
-                );
+  $scope.checkPrintFound = false;
+  $scope.resultTestShow = false;
+  var stampanteBluetoothName = localStorage.getItem('stampanteBluetooth');
 
-              },
-              function() {
-                console.log('-> connectFailure');
-              }
-            );
-          }
-        })
-      }, function() {
-          console.log('-> listFailure');
-      });
+  if(localStorage.getItem('stampanteBluetooth') && 
+    stampanteBluetoothName != '' &&
+    stampanteBluetoothName != 'undefined') {
+    console.log('Stampante trovata')
+    $scope.checkPrintFound    = true;
+    $scope.checkPrintMessage  = 'Stampante trovata: <strong>'+stampanteBluetoothName+'</strong>';
+  } else {
+    $scope.checkPrintMessage  = 'Nessuna stampante bluetooth associata al device <strong>'+localStorage.getItem('deviceUUID')+'</strong>! <br />Contattare l\'amministratore.';
+  }
+
+  $scope.bluetoothPrinter = function() {
+    console.log('bluetoothPrinter');
+    $rootScope.globFunc.bluetoothPrinter('stampante');
   }
 
 });

@@ -23,11 +23,12 @@ if($items) {
 	foreach ($items as $item) {
 		
 		$itemsArray[] = array(
-	        'ID'				=> $item->ID,
-	        'COD_UID_DEVICE'	=> $item->COD_UID_DEVICE,
-	        'DESC_DEVICE'		=> $item->DESC_DEVICE,
-	        'COD_ENTE'			=> $item->COD_ENTE,
-	        'NUM_VERB'			=> $item->NUM_VERB
+	        'ID'					=> $item->ID,
+	        'COD_UID_DEVICE'		=> $item->COD_UID_DEVICE,
+	        'DESC_DEVICE'			=> $item->DESC_DEVICE,
+	        'COD_ENTE'				=> $item->COD_ENTE,
+	        'NUM_VERB'				=> $item->NUM_VERB,
+	        'STAMPANTE_BLUETOOTH'	=> $item->STAMPANTE_BLUETOOTH
 	    );
 	}
 } else {

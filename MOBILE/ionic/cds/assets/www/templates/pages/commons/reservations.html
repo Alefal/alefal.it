@@ -1,29 +1,57 @@
-<ion-nav-bar class="bar-positive">
-    <ion-nav-title>{{role}} name</ion-nav-title>
-    <ion-nav-buttons side="right">
-        <button class="button button-icon ion-chevron-left" ng-click="back(role);">
-        </button>
-    </ion-nav-buttons>
-</ion-nav-bar>
+<ion-view view-title="Reservations" hide-nav-bar="true" class="eventForm">
 
-<ion-view view-title="Reservations">
+    <ion-header-bar class="bar-positive">
+        <h1 class="title">Welcome, {{role}} name</h1>
+        <a ng-click="globFunc.back(role)" class="power button"><i class="ion-chevron-left"></i></a> 
+    </ion-header-bar>
 
 	<ion-content class="padding">
     	
   		<ion-list ng-if="role == 'hostess'">
-            <ion-item class="item-icon-right"  ng-click="openUpdateReservation()">
-            	openUpdateTable
-            	<i class="icon ion-chevron-right icon-accessory"></i>
+            <ion-item ng-click="openUpdateReservation()">
+                <div class="item-icon-left">
+                    <i class="icon ion-android-create"></i>
+                    <p>Item 1</p>
+                </div>
+                <div class="item-icon-right">
+                    <i class="icon ion-ios-arrow-right"></i>
+                </div>
+            </ion-item>
+            <div class="spacerVertical"></div>
+            <ion-item ng-click="openUpdateReservation()">
+                <div class="item-icon-left">
+                    <i class="icon ion-android-create"></i>
+                    <p>Item 2</p>
+                </div>
+                <div class="item-icon-right">
+                    <i class="icon ion-ios-arrow-right"></i>
+                </div>
+            </ion-item>
+            <div class="spacerVertical"></div>
+            <ion-item ng-click="openUpdateReservation()">
+                <div class="item-icon-left">
+                    <i class="icon ion-android-create"></i>
+                    <p>Item 3</p>
+                </div>
+                <div class="item-icon-right">
+                    <i class="icon ion-ios-arrow-right"></i>
+                </div>
             </ion-item>
             <div class="spacerVertical"></div>
         </ion-list>
 
         <ion-list ng-if="role == 'managers' || role == 'waiters'">
-            <ion-item class="item-icon-right" href="#/app/reservationDetail">
-                Item 1
-                <i class="icon ion-chevron-right icon-accessory"></i>
+            <ion-item ng-click="globFunc.goto('app.reservationDetail')">
+                <div class="item-icon-left">
+                    <i class="icon ion-android-create"></i>
+                    <p>Item 1</p>
+                </div>
+                <div class="item-icon-right">
+                    <i class="icon ion-ios-arrow-right"></i>
+                </div>
             </ion-item>
             <div class="spacerVertical"></div>
+
         </ion-list>
     	
   	</ion-content>

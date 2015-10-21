@@ -1,23 +1,19 @@
-<ion-nav-bar class="bar-positive">
-	<ion-nav-title>{{role}} name</ion-nav-title>
-  	<ion-nav-buttons side="right">
-    	<button class="button button-icon ion-power" ng-click="exitApp();">
-    	</button>
-  	</ion-nav-buttons>
-</ion-nav-bar>
+<ion-view view-title="Steward Page" hide-nav-bar="true" class="eventForm">
 
-<ion-view view-title="Waiters Page">
+	<ion-header-bar class="bar-positive">
+    	<h1 class="title">Welcome, {{role}} name</h1>
+    	<a ng-click="globFunc.exitApp()" class="power button"><i class="ion-power"></i></a> 
+    </ion-header-bar>
 
-	<ion-content>
-        <div align="center" class="padding">
-	      	<h4>Welcome STEWARD</h4>
-	        <div class="spacerVertical"></div>
-	        <a href="#/app/orders" class="button button-assertive button-ios-rounded_50">
-	        	<i class="icon ion-navicon"></i>
-	        	<br />
-	        	Orders
-	       	</a>
-	    </div>
+    <ion-content>
+      	<div class="row eventTab">
+          <div class="col">
+            <div class="tabtext" ng-click="globFunc.goto('app.orders')">
+              <div class="icon"><i class="ion-navicon"></i></div>
+              <h3>Orders</h3>
+            </div>
+          </div>
+        </div>
     </ion-content>
-
+    
 </ion-view>

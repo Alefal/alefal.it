@@ -1,31 +1,32 @@
 // Ionic Starter App
-angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalprecht.translate','ngCordova'])
+angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalprecht.translate'/*,'ngCordova'*/])
 
-.run(function($ionicPlatform,$ionicPopup,$ionicLoading,$rootScope,$cordovaNetwork,$cordovaDevice) {
+.run(function($ionicPlatform,$ionicPopup,$ionicLoading,$rootScope/*,$cordovaNetwork,$cordovaDevice*/) {
   $ionicPlatform.registerBackButtonAction(function (event) {
     event.preventDefault();
   }, 100);
 
   $ionicPlatform.ready(function() {
 
+    $rootScope.server = 'http://localhost/alefal.it/PROJECTS/wordpress-4.2.3';
     //$rootScope.server = 'http://192.168.1.188/alefal.it/PROJECTS/wordpress-4.2.3';
-    $rootScope.server = 'http://cdsmobile.swstudio.net';
+    //$rootScope.server = 'http://cdsmobile.swstudio.net';
 
-    /***** TEST WITH BROWSER
+    //TEST WITH BROWSER: device
     $rootScope.device = {
       model: 'HTC ONE',
       platform: 'android',
       uuid: '1234567890',
       version: '1.1'
     };
-    *****/
+    /*****
     $rootScope.device = {
       model: $cordovaDevice.getModel(),
       platform: $cordovaDevice.getPlatform(),
       uuid: $cordovaDevice.getUUID(),
       version: $cordovaDevice.getVersion()
     };
-
+    *****/
     localStorage.setItem('deviceModel',$rootScope.device.model);
     localStorage.setItem('devicePlatform',$rootScope.device.platform);
     localStorage.setItem('deviceUUID',$rootScope.device.uuid);
@@ -44,10 +45,10 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
       StatusBar.styleDefault();
     }
 
-    //Check Connection
-    /***** TEST WITH BROWSER
-    $rootScope.checkNoConnection = false;
-    *****/
+    //TEST WITH BROWSER: Check Connection
+    $rootScope.checkNoConnection = true;
+    
+    /*****
     document.addEventListener('deviceready', function () {
       $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
         $rootScope.checkNoConnection = false;
@@ -66,7 +67,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
       })
 
     }, false);
-
+    *****/
   });
 })
 .config(function($httpProvider) {
@@ -144,6 +145,15 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
         'pageContainer': {
           templateUrl: 'templates/pages/verbali.html',
           controller: 'VerbaliCtrl'
+        }
+      }
+    })
+    .state('app.stampante', {
+      url: '/stampante',
+      views: {
+        'pageContainer': {
+          templateUrl: 'templates/pages/stampante.html',
+          controller: 'StampanteCtrl'
         }
       }
     });
@@ -226,7 +236,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 
   return ajaxCallServices;
 })
-.factory('globalFunction', function($state) {
+.factory('globalFunction', function($state,$rootScope) {
   return {
     exitApp: function() {
       /* NON LI CANCELLO PER ACCESSO OFFLINE...
@@ -243,6 +253,115 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
     },
     back: function() {
       $state.go('app.welcome');
+    },
+    bluetoothPrinter: function(section,numeroVerbale,dataVerbale,oraVerbale,targaVeicolo,tipoVeicoloDescr,indirizzoDescr,indirizzoCivico,art1,codArt1,descrArt1) {
+
+      var stampanteBluetoothName = localStorage.getItem('stampanteBluetooth');
+
+      var resultTest = '';
+
+      resultTest += stampanteBluetoothName+' <br/>';
+      resultTest += 'a <br/>';
+      resultTest += 'b <br/>';
+
+      $rootScope.checkPrintFound = false;
+
+      bluetoothSerial.isEnabled(
+        function() {
+          resultTest += 'Bluetooth is enabled';
+
+
+          bluetoothSerial.list(function(devices) {
+
+            devices.forEach(function(device) {
+
+              console.log(device.id+' - '+device.name);
+              resultTest += device.id+' - '+device.name+' <br/>';
+              resultTest += stampanteBluetoothName+' <br/>';
+
+                if(device.name == stampanteBluetoothName) {
+
+                  deviceBluetoothMac = device.id;
+                  console.log(deviceBluetoothMac);
+
+                  bluetoothSerial.connect(deviceBluetoothMac,
+                    function() {
+                      console.log('-> connectSuccess');
+                      resultTest += 'connectSuccess <br/>';
+
+                      bluetoothSerial.isConnected(
+                        function() {
+                          console.log('Bluetooth is connected');
+                          resultTest += 'Bluetooth is connected <br/>';
+
+                         // Typed Array
+                         var data = '';
+                         
+                         if(section == 'stampante') {
+
+                          data = '\n Test stampa...\n';
+
+                         } else if(section == 'verbale') {
+
+                          data = '\n Verbale numero'+numeroVerbale+'\n';
+                          data += 'del '+dataVerbale+'\n';
+                          data += 'alle ore '+oraVerbale+'\n';
+                          data += 'Targa: '+targaVeicolo+' '+tipoVeicoloDescr+'\n';
+                          data += 'in '+indirizzoDescr+' '+indirizzoCivico+'\n';
+                          data += 'Articolo '+art1+' '+codArt1+' '+descrArt1+'\n';
+
+                         } else {
+
+                          data = '\n Stampante...\n';
+                          data += stampanteBluetoothName+'\n';
+                          
+                         }
+
+                         console.log('-> data: '+data);
+
+                         bluetoothSerial.write(data,
+                           function() {
+                             console.log('-> writeSuccess');
+                             resultTest += 'writeSuccess <br/>';
+                           },
+                           function() {
+                             console.log('-> writeFailure');
+                             resultTest += 'writeFailure <br/>';
+                           }
+                         );
+
+                        },
+                        function() {
+                          console.log('Bluetooth is *not* connected');
+                          resultTest += 'Bluetooth is *not* connected <br/>';
+                        }
+                      );
+
+                    },
+
+                    function() {
+                      console.log('-> connectFailure');
+                      resultTest += 'connectFailure <br/>';
+                    }
+
+                  );
+                }
+              })
+            }, function() {
+                console.log('-> listFailure');
+                resultTest += 'listFailure <br/>';
+            });
+
+
+        },
+        function() {
+          resultTest += 'Bluetooth is *not* enabled';
+        }
+      );
+
+      
+      $rootScope.checkPrintTestResult = resultTest;
+      $rootScope.resultTestShow = true;
     }
   };
 })

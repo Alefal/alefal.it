@@ -5,26 +5,61 @@
     	<a ng-click="globFunc.back()" class="power button"><i class="ion-chevron-left"></i></a>
     </ion-header-bar>
 
-    <ion-content>
+    <ion-content class="padding">
 
-        <div class="list list-inset" style="border:none;">
-            <label class="item item-input">
-                <i class="icon ion-funnel placeholder-icon"></i>
-                <input type="search" ng-model="q" placeholder="Filtra i risultati...">
-            </label>
+        <div ng-show="verbaliOnlineNotFound">
+            <h3>Verbali salvati</h3>
+            <p>Nessuna verbale da visualizzare</p>
+            <div class="spacerVertical"></div>
+        </div>
+        <div ng-show="verbaliOnlineFound">
+            <h3>Verbali salvati</h3>
+            <div class="list list-inset" style="border:none;">
+                <label class="item item-input">
+                    <i class="icon ion-funnel placeholder-icon"></i>
+                    <input type="search" ng-model="q" placeholder="Filtra i risultati...">
+                </label>
+            </div>
+            <ion-list>
+                <ion-item ng-repeat="item in items | filter:q as results" class="item-icon-left item-icon-right">
+                    <i class="icon ion-clipboard"></i>
+
+                    <h3>Verbale numero <strong>{{item.NUM_VERB}}</strong> del <strong>{{item.DATA_VERB}}</strong> alle <strong>{{item.ORA_VERB}}</strong></h3>
+                    <p>Targa <strong>{{item.TARGA_VERB}}</strong>, tipo veicolo <strong>{{item.TIPO_VEI_VERB}}</strong></p>
+
+                    <i class="icon ion-android-print" ng-click="stampaVerbale(item.NUM_VERB,item.DATA_VERB,item.ORA_VERB,item.TARGA_VERB,item.TIPO_VEI_VERB,item.DESCR_VIA_VERB,item.CIVICO_VERB,item.ID_ART1_VERB,item.COD1_VERB,item.DESCR_ART1_VERB)"></i>
+                </ion-item>
+
+            </ion-list>
         </div>
 
-        <ion-list>
-            <ion-item ng-repeat="item in items | filter:q as results" class="item-icon-left item-icon-right">
-                <i class="icon ion-clipboard"></i>
+        <hr />
 
-                <h3>Verbale numero <strong>{{item.NUM_VERB}}</strong> del <strong>{{item.DATA_VERB}}</strong> alle <strong>{{item.ORA_VERB}}</strong></h3>
-                <p>Targa <strong>{{item.TARGA_VERB}}</strong>, tipo veicolo <strong>{{item.TIPO_VEI_VERB}}</strong></p>
+        <div ng-show="verbaliOfflineNotFound">
+            <h3>Verbali da sincronizzare</h3>
+            <p>Nessuna verbale da visualizzare</p>
+            <div class="spacerVertical"></div>
+        </div>
+        <div ng-show="verbaliOfflineFound">
+            <h3>Verbali da sincronizzare</h3>
+            <div class="list list-inset" style="border:none;">
+                <label class="item item-input">
+                    <i class="icon ion-funnel placeholder-icon"></i>
+                    <input type="search" ng-model="off" placeholder="Filtra i risultati...">
+                </label>
+            </div>
+            <ion-list>
+                <ion-item ng-repeat="item in verbaleCompleto | filter:off as results" class="item-icon-left item-icon-right">
+                    <i class="icon ion-clipboard"></i>
 
-                <i class="icon ion-android-print" ng-click="stampaVerbale(item.NUM_VERB,item.DATA_VERB,item.ORA_VERB,item.TARGA_VERB,item.TIPO_VEI_VERB,item.DESCR_VIA_VERB,item.CIVICO_VERB,item.ID_ART1_VERB,item.COD1_VERB,item.DESCR_ART1_VERB)"></i>
-            </ion-item>
+                    <h3>Verbale numero <strong>{{item.numeroVerbale}}</strong> del <strong>{{item.dataVerbale}}</strong> alle <strong>{{item.oraVerbale}}</strong></h3>
+                    <p>Targa <strong>{{item.targaVeicolo}}</strong>, tipo veicolo <strong>{{item.tipoVeicolo}}</strong></p>
 
-        </ion-list>
+                    <i class="icon ion-android-print" ng-click="stampaVerbale(item.numeroVerbale,item.dataVerbale,item.oraVerbale,item.targaVeicolo,item.tipoVeicolo,item.indirizzoDescr,item.indirizzoCivico,item.art1,item.codArt1,item.descrArt1)"></i>
+                </ion-item>
+
+            </ion-list>
+        </div>
 
     </ion-content>
 

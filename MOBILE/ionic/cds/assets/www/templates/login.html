@@ -1,8 +1,14 @@
-<ion-view view-title="Login">
-	<ion-content class="padding">
+<ion-view view-title="Login" class="eventForm">
+
+	<ion-content class="center" style="padding:25% 5% 0 5%;">
     
     <div align="center" class="padding">
       <h4>LOGO</h4>
+
+      <div class="message-danger message-danger-striped" ng-show="userLogged">
+          <i class="icon ion-android-warning" style="font-size: 25px;"></i>
+          <span ng-bind-html="'AuthenticationFailed' | translate">&nbsp;</span>
+      </div>
 
       <label class="item item-input">
         <i class="ion-android-contact placeholder-icon"></i>
@@ -18,7 +24,7 @@
       <div class="spacerVertical"></div>
       <label class="item item-input item-select">
         <div class="input-label">
-          Ruolo
+          <span ng-bind-html="'Role' | translate">&nbsp;</span>
         </div>
         <select name="role" id="role" ng-model="authorization.role">
           <option value="1">Hostess</option>
@@ -29,9 +35,24 @@
           <option value="6">Guest</option>
         </select>
       </label>
-    
-      <button class="button button-block button-positive left-right ion-locked" ng-click="login()"> Sign In</button>
+      <div class="spacerVertical"></div>
+      <button class="button button-block button-positive left-right ion-locked" ng-click="login()"> 
+        <span ng-bind-html="'SignIn' | translate">&nbsp;</span>
+      </button>
+
+      <div align="right">
+        <span ng-bind-html="'Registration' | translate">&nbsp;</span>
+      </div>
     </div>
       
+   
   </ion-content>
+
+  <!--
+  <div class="bar bar-footer">
+    <div class="padding">
+      <button class="button button-block btnSubmit button-positive left-right ion-locked" ng-click="login()"> Sign In</button>
+    </div>
+  </div>
+  -->
 </ion-view>
