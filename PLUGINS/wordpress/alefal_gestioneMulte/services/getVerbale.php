@@ -5,6 +5,34 @@ global $wpdb;
 $table_name = 'p_verb';
 $items = $wpdb->get_results("SELECT * FROM $table_name  WHERE `DATA_VERB` = CURDATE() ORDER BY NUM_VERB;");
 
+/*****
+SELECT 
+	verbale.*, 
+    ente.CCP_ENTE AS ENTE_CCP_ENTE, ente.DESC_ENTE AS ENTE_DESC_ENTE,
+    vie.DESCR_VIE AS VIE_DESCR_VIE,
+
+    art1.IMP_ART AS ART1_IMP_ART, art1.PUNT_ART AS ART1_PUNT_ART,
+    art2.IMP_ART AS ART2_IMP_ART, art2.PUNT_ART AS ART2_PUNT_ART,
+
+    agente1.NOME_AGENT AS AGENTE1_NOME_AGENT,
+    agente2.NOME_AGENT AS AGENTE2_NOME_AGENT
+
+FROM p_verb as verbale 
+
+JOIN p_ente as ente ON verbale.ENTE_VERB = ente.ENTE
+JOIN p_vie as vie ON verbale.ID_VIA_VERB = vie.ID
+JOIN p_articoli as art1 ON verbale.ID_ART1_VERB = art1.COD_ART
+
+JOIN p_articoli as art2 ON verbale.ID_ART2_VERB = art2.COD_ART AND verbale.ID_ART2_VERB IS NOT NULL 
+
+JOIN p_agenti as agente1 ON verbale.ID_AGENTE1_VERB = agente1.ID
+JOIN p_agenti as agente2 ON verbale.ID_AGENTE2_VERB = agente2.ID AND verbale.ID_AGENTE2_VERB IS NOT NULL 
+
+
+WHERE verbale.DATA_VERB = CURDATE() 
+ORDER BY verbale.NUM_VERB;
+*****/
+
 $itemsArray = array();
 $resultArray = array();
 $finalArray = array();
