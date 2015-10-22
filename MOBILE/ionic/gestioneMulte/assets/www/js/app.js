@@ -47,7 +47,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
     }
 
     //TEST WITH BROWSER: Check Connection
-    $rootScope.checkNoConnection = true;
+    $rootScope.checkNoConnection = false;
     
     /*****
     document.addEventListener('deviceready', function () {
@@ -240,7 +240,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 
   return ajaxCallServices;
 })
-.factory('globalFunction', function($state,$rootScope/*,bluetoothSerial*/) {
+.factory('globalFunction', function($state,$rootScope/*,$cordovaBluetoothSerial*/) {
   return {
     exitApp: function() {
       /* NON LI CANCELLO PER ACCESSO OFFLINE...
