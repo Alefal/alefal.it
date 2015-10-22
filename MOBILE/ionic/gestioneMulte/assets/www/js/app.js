@@ -47,7 +47,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
     }
 
     //TEST WITH BROWSER: Check Connection
-    $rootScope.checkNoConnection = false;
+    $rootScope.checkNoConnection = true;
     
     /*****
     document.addEventListener('deviceready', function () {
@@ -258,7 +258,10 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
     back: function() {
       $state.go('app.welcome');
     },
-    bluetoothPrinter: function(section,numeroVerbale,dataVerbale,oraVerbale,targaVeicolo,tipoVeicoloDescr,indirizzoDescr,indirizzoCivico,art1,codArt1,descrArt1) {
+    bluetoothPrinter: function(section,verbaleCompleto) {
+
+      console.log(verbaleCompleto);
+      $rootScope.globFunc.templateStampa(verbaleCompleto);
 
       //BlueTooth Printer
       var stampanteBluetoothName = localStorage.getItem('stampanteBluetooth');
@@ -308,13 +311,8 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 
                          } else if(section == 'verbale') {
 
-                          data = '\n Verbale numero'+numeroVerbale+'\n';
-                          data += 'del '+dataVerbale+'\n';
-                          data += 'alle ore '+oraVerbale+'\n';
-                          data += 'Targa: '+targaVeicolo+' '+tipoVeicoloDescr+'\n';
-                          data += 'in '+indirizzoDescr+' '+indirizzoCivico+'\n';
-                          data += 'Articolo '+art1+' '+codArt1+' '+descrArt1+'\n';
-
+                          data = $rootScope.globFunc.templateStampa(verbaleCompleto);
+                          
                          } else {
 
                           data = '\n Stampante...\n';
@@ -367,7 +365,70 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
       
       $rootScope.checkPrintTestResult = resultTest;
       $rootScope.resultTestShow = true;
-    }
+    },
+    templateStampa: function(verbaleCompleto) {
+
+      var data = '';
+
+      data += 'Comando Polizia Locale di '+verbaleCompleto.enteNomeVerbale+'\n';
+      data += 'Violation of the trafficlaw/Violation du code dela rue.\n\n';
+
+      data += 'Avviso accertamento di  violazione al Cod. della Strada N.: '+verbaleCompleto.numeroVerbale+'\n\n';
+
+      data += 'Il giorno '+verbaleCompleto.dataVerbale+' ';
+      data += 'alle ore '+verbaleCompleto.oraVerbale+' ';
+      data += 'in '+verbaleCompleto.indirizzoDescr+' ';
+      data += 'civico '+verbaleCompleto.indirizzoCivico+'\n\n';
+
+      data += verbaleCompleto.tipoDescrVeicolo+' ';
+      data += verbaleCompleto.modelloVeicolo+' ';
+      data += 'Targa: '+verbaleCompleto.targaVeicolo+'\n\n';
+
+      
+      if(verbaleCompleto.art2 != 0) {   
+        data += 'ha violato gli art. ';
+        data += verbaleCompleto.art1+' '+verbaleCompleto.codArt1+' e ';
+        data += verbaleCompleto.art2+' '+verbaleCompleto.codArt2+' del CdS perche\': ';
+        data += verbaleCompleto.descrArt1+' '+verbaleCompleto.descrArt2+'\n\n';
+      } else {
+        data += 'ha violato art. '+verbaleCompleto.art1+' '+verbaleCompleto.codArt1+'  del CdS perche\': '+verbaleCompleto.descrArt1+'\n\n';
+      }
+
+      if(verbaleCompleto.descrMancataCont != '') 
+        data += 'La violazione non e\' stata immediatamente contestata a causa : '+verbaleCompleto.descrMancataCont+' \n\n';
+
+      var puntiTotali   = parseInt(verbaleCompleto.puntiArt1) + parseInt(verbaleCompleto.puntiArt2);
+      var importoTotale = parseFloat(verbaleCompleto.importoArt1) + parseInt(verbaleCompleto.importoArt2);
+
+      if(verbaleCompleto.sanzAccDescrArt1 != '')
+        data += 'Sanzioni accessoria: '+verbaleCompleto.sanzAccDescrArt1+' \n';
+
+      if(verbaleCompleto.sanzAccDescrArt2 != '')
+        data += 'Sanzioni accessoria: '+verbaleCompleto.sanzAccDescrArt2+' \n';
+
+      if(verbaleCompleto.noteVerbale != '')
+        data += 'Annotazioni: '+verbaleCompleto.noteVerbale+' \n';
+
+      if(puntiTotali > 0)
+        data += 'L\'infrazione comporta la decurtazione di punti : '+puntiTotali+' \n\n';
+
+      data += 'E\' ammesso pagamento in misura ridotta di Euro '+importoTotale+' (Vedi Avvertenze) \n\n';
+
+      if(verbaleCompleto.agente2Verbale != 0)
+        data += 'Gli accertatori: '+verbaleCompleto.agenteNomeVerbale+' / '+verbaleCompleto.agente2NomeVerbale+' \n';
+      else
+        data += 'L\'accertatore: '+verbaleCompleto.agenteNomeVerbale+' \n\n';
+  
+      data += 'Firma _______________________________________ \n\n';
+
+      data += 'AVVERTENZE PER AVVISO \n';
+      data += 'L \'importo totale del pagamento in misura ridotta va versato, entro 10 gg. dalla data di accertamento direttamente al Comando Polizia Locale '+verbaleCompleto.enteNomeVerbale+' oppure sul c/c postale '+verbaleCompleto.enteCCPVerbale+' N. '+verbaleCompleto.enteIBANVerbale+' intestato a: '+verbaleCompleto.enteNomeVerbale+' Polizia Locale Servizio Contravvenzioni. Nella causale del versamento indicare sempre il numero del presente avviso e la targa del veicolo. Trascorso il suddetto termine si procedera\' alla notifica del verbale all\'intestatario del veicolo con spese a carico del destinatario \n';
+
+      console.log('templateStampa -> ');
+      console.log(data);
+
+      return data;
+    },
   };
 })
 .run(function($rootScope, globalFunction) {

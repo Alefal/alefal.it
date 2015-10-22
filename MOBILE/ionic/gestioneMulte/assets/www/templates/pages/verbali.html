@@ -27,7 +27,7 @@
                     <h3>Verbale numero <strong>{{item.NUM_VERB}}</strong> del <strong>{{item.DATA_VERB}}</strong> alle <strong>{{item.ORA_VERB}}</strong></h3>
                     <p>Targa <strong>{{item.TARGA_VERB}}</strong>, tipo veicolo <strong>{{item.TIPO_VEI_VERB}}</strong></p>
 
-                    <i class="icon ion-android-print" ng-click="stampaVerbale(item.NUM_VERB,item.DATA_VERB,item.ORA_VERB,item.TARGA_VERB,item.TIPO_VEI_VERB,item.DESCR_VIA_VERB,item.CIVICO_VERB,item.ID_ART1_VERB,item.COD1_VERB,item.DESCR_ART1_VERB)"></i>
+                    <i class="icon ion-android-print" ng-click="stampaVerbale('online',item)"></i>
                 </ion-item>
 
             </ion-list>
@@ -55,7 +55,7 @@
                     <h3>Verbale numero <strong>{{item.numeroVerbale}}</strong> del <strong>{{item.dataVerbale}}</strong> alle <strong>{{item.oraVerbale}}</strong></h3>
                     <p>Targa <strong>{{item.targaVeicolo}}</strong>, tipo veicolo <strong>{{item.tipoVeicolo}}</strong></p>
 
-                    <i class="icon ion-android-print" ng-click="stampaVerbale(item.numeroVerbale,item.dataVerbale,item.oraVerbale,item.targaVeicolo,item.tipoVeicolo,item.indirizzoDescr,item.indirizzoCivico,item.art1,item.codArt1,item.descrArt1)"></i>
+                    <i class="icon ion-android-print" ng-click="stampaVerbale('offline',item)"></i>
                 </ion-item>
 
             </ion-list>

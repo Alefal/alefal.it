@@ -664,8 +664,8 @@ angular.module('starter.controllers', [])
         'deviceUUID'          : localStorage.getItem('deviceUUID')  //device da localStorage
       };
 
-    console.log('Check connection: '+$rootScope.checkNoConnection);
-    console.log('verbaleCompleto: '+JSON.stringify($scope.verbaleCompleto));
+    //console.log('Check connection: '+$rootScope.checkNoConnection);
+    //console.log('verbaleCompleto: '+JSON.stringify($scope.verbaleCompleto));
 
     if(!$rootScope.checkNoConnection) {
 
@@ -776,7 +776,7 @@ angular.module('starter.controllers', [])
   //Bluetooth print
   $scope.stampaVerbale = function() {
 
-    $rootScope.globFunc.bluetoothPrinter('verbale',$scope.numeroVerbale,$scope.dataVerbale,$scope.oraVerbale,$scope.targaVeicolo,$scope.tipoVeicoloDescr,$scope.indirizzoDescr,$scope.indirizzoCivico,$scope.art1,$scope.codArt1,$scope.descrArt1);
+    $rootScope.globFunc.bluetoothPrinter('verbale',$scope.verbaleCompleto);
     $scope.annullaVerbale();
   }
 
@@ -1016,22 +1016,122 @@ angular.module('starter.controllers', [])
       $scope.verbaliOfflineNotFound = true;
     }
 
-  $scope.stampaVerbale = function(NUM_VERB,DATA_VERB,ORA_VERB,TARGA_VERB,TIPO_VEI_VERB,DESCR_VIA_VERB,CIVICO_VERB,ID_ART1_VERB,COD1_VERB,DESCR_ART1_VERB) {
-    console.log('stampaVerbale');
+  $scope.stampaVerbale = function(section,verbale) {
+    console.log('stampaVerbale: '+JSON.stringify(verbale));
 
-    $scope.numeroVerbale    = NUM_VERB;
-    $scope.dataVerbale      = DATA_VERB;
-    $scope.oraVerbale       = ORA_VERB;
-    $scope.targaVeicolo     = TARGA_VERB;
-    $scope.tipoVeicoloDescr = TIPO_VEI_VERB;
-    $scope.indirizzoDescr   = DESCR_VIA_VERB;
-    $scope.indirizzoCivico  = CIVICO_VERB;
-    $scope.art1             = ID_ART1_VERB;
-    $scope.codArt1          = COD1_VERB;
-    $scope.descrArt1        = DESCR_ART1_VERB;
+    if(section == 'online') {
 
-    $rootScope.globFunc.bluetoothPrinter('verbale',$scope.numeroVerbale,$scope.dataVerbale,$scope.oraVerbale,$scope.targaVeicolo,$scope.tipoVeicoloDescr,$scope.indirizzoDescr,$scope.indirizzoCivico,$scope.art1,$scope.codArt1,$scope.descrArt1);
+      $scope.verbaleCompletoStampare =
+        {
+          'numeroVerbale'       : verbale.NUM_VERB,
+          'dataVerbale'         : verbale.DATA_VERB,
+          'oraVerbale'          : verbale.ORA_VERB,
+
+          'enteCodVerbale'      : verbale.ENTE_VERB,
+          'enteNomeVerbale'     : verbale.NOME_ENTE_VERB,
+          'enteCCPVerbale'      : verbale.CCP_ENTE_VERB,
+          'enteIBANVerbale'     : verbale.IBAN,
+          
+          'tipoVeicolo'         : verbale.TIPO_VEI_ID_VERB,
+          'tipoDescrVeicolo'    : verbale.TIPO_VEI_DESCR_VERB,
+          'targaVeicolo'        : verbale.TARGA_VERB,
+          'modelloVeicolo'      : verbale.MODELLO_VERB,
+
+          'indirizzo'           : verbale.ID_VIA_VERB,
+          'indirizzoNome'       : verbale.VIA_DESCR_VERB,
+          'indirizzoCivico'     : verbale.CIVICO_VERB,
+          'indirizzoDescr'      : verbale.DESCR_VIA_VERB,
+
+          'art1'                : verbale.ART1_VERB_ID,
+          'codArt1'             : verbale.ART1_COD1_VERB,
+          'descrArt1'           : verbale.ART1_DESCR_VERB,
+          'puntiArt1'           : verbale.ART1_PUNTI_VERB,
+          'importoArt1'         : verbale.ART1_IMPORTO_VERB,
+          'sanzAccIdArt1'       : verbale.ART1_ID_SANZ_ACC_VERB,
+          'sanzAccDescrArt1'    : verbale.ART1_DESC_SANZ_ACC_VERB,
+
+          'art2'                : verbale.ART2_VERB_ID,
+          'codArt2'             : verbale.ART2_COD1_VERB,
+          'descrArt2'           : verbale.ART2_DESCR_VERB,
+          'puntiArt2'           : verbale.ART2_PUNTI_VERB,
+          'importoArt2'         : verbale.ART2_IMPORTO_VERB,
+          'sanzAccIdArt2'       : verbale.ART2_ID_SANZ_ACC_VERB,
+          'sanzAccDescrArt2'    : verbale.ART2_DESC_SANZ_ACC_VERB,
+
+          'noteVerbale'         : verbale.NOTE_VERB,
+          'descrMancataCont'    : verbale.DESC_MANC_CONT_VERB,
+
+          'nomeObbligato'       : verbale.COD_OBLG_VERB,
+          'nomeTrasgres'        : verbale.COD_TRSG_VERB,
+
+          'imgBase64'           : verbale.IMG_VERB,
+          'filePathImg'         : verbale.FILE_PATH_IMG_VERB,
+          'latVerbale'          : verbale.LATI_VERB,
+          'longVerbale'         : verbale.LONG_VERB,
+
+          'agenteVerbale'       : verbale.ID_AGENTE1_VERB,
+          'agente2Verbale'      : verbale.ID_AGENTE2_VERB,
+          'agenteNomeVerbale'   : verbale.NOME_AGENT1_VERB,
+          'agente2NomeVerbale'  : verbale.NOME_AGENT2_VERB
+        };
+    } else if(section == 'offline') {
+
+      $scope.verbaleCompletoStampare =
+        {
+          'numeroVerbale'       : verbale.numeroVerbale,
+          'dataVerbale'         : verbale.dataVerbale,
+          'oraVerbale'          : verbale.oraVerbale,
+
+          'enteCodVerbale'      : verbale.enteCodVerbale,
+          'enteNomeVerbale'     : verbale.enteNomeVerbale,
+          'enteCCPVerbale'      : verbale.enteCCPVerbale,
+          'enteIBANVerbale'     : verbale.enteIBANVerbale,
+          
+          'tipoVeicolo'         : verbale.tipoVeicolo,
+          'tipoDescrVeicolo'    : verbale.tipoDescrVeicolo,
+          'targaVeicolo'        : verbale.targaVeicolo,
+          'modelloVeicolo'      : verbale.modelloVeicolo,
+
+          'indirizzo'           : verbale.indirizzo,
+          'indirizzoNome'       : verbale.indirizzoNome,
+          'indirizzoCivico'     : verbale.indirizzoCivico,
+          'indirizzoDescr'      : verbale.indirizzoDescr,
+
+          'art1'                : verbale.art1,
+          'codArt1'             : verbale.codArt1,
+          'descrArt1'           : verbale.descrArt1,
+          'puntiArt1'           : verbale.puntiArt1,
+          'importoArt1'         : verbale.importoArt1,
+          'sanzAccIdArt1'       : verbale.sanzAccIdArt1,
+          'sanzAccDescrArt1'    : verbale.sanzAccDescrArt1,
+
+          'art2'                : verbale.art2,
+          'codArt2'             : verbale.codArt2,
+          'descrArt2'           : verbale.descrArt2,
+          'puntiArt2'           : verbale.puntiArt2,
+          'importoArt2'         : verbale.importoArt2,
+          'sanzAccIdArt2'       : verbale.sanzAccIdArt2,
+          'sanzAccDescrArt2'    : verbale.sanzAccDescrArt2,
+
+          'noteVerbale'         : verbale.noteVerbale,
+          'descrMancataCont'    : verbale.descrMancataCont,
+
+          'nomeObbligato'       : verbale.nomeObbligato,
+          'nomeTrasgres'        : verbale.nomeTrasgres,
+
+          'imgBase64'           : verbale.imgBase64,
+          'filePathImg'         : verbale.filePathImg,
+          'latVerbale'          : verbale.latVerbale,
+          'longVerbale'         : verbale.longVerbale,
+
+          'agenteVerbale'       : verbale.agenteVerbale,
+          'agente2Verbale'      : verbale.agente2Verbale,
+          'agenteNomeVerbale'   : verbale.agenteNomeVerbale,
+          'agente2NomeVerbale'  : verbale.agente2NomeVerbale
+        };
+    } 
     
+    $rootScope.globFunc.bluetoothPrinter('verbale',$scope.verbaleCompletoStampare); 
   }
 
 })
