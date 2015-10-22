@@ -2,36 +2,11 @@
 require_once('../../../../wp-config.php'); 
 
 global $wpdb;
+
+$agenteId = $_GET['agenteId'];
+
 $table_name = 'p_verb';
-$items = $wpdb->get_results("SELECT * FROM $table_name  WHERE `DATA_VERB` = CURDATE() ORDER BY NUM_VERB;");
-
-/*****
-SELECT 
-	verbale.*, 
-    ente.CCP_ENTE AS ENTE_CCP_ENTE, ente.DESC_ENTE AS ENTE_DESC_ENTE,
-    vie.DESCR_VIE AS VIE_DESCR_VIE,
-
-    art1.IMP_ART AS ART1_IMP_ART, art1.PUNT_ART AS ART1_PUNT_ART,
-    art2.IMP_ART AS ART2_IMP_ART, art2.PUNT_ART AS ART2_PUNT_ART,
-
-    agente1.NOME_AGENT AS AGENTE1_NOME_AGENT,
-    agente2.NOME_AGENT AS AGENTE2_NOME_AGENT
-
-FROM p_verb as verbale 
-
-JOIN p_ente as ente ON verbale.ENTE_VERB = ente.ENTE
-JOIN p_vie as vie ON verbale.ID_VIA_VERB = vie.ID
-JOIN p_articoli as art1 ON verbale.ID_ART1_VERB = art1.COD_ART
-
-JOIN p_articoli as art2 ON verbale.ID_ART2_VERB = art2.COD_ART AND verbale.ID_ART2_VERB IS NOT NULL 
-
-JOIN p_agenti as agente1 ON verbale.ID_AGENTE1_VERB = agente1.ID
-JOIN p_agenti as agente2 ON verbale.ID_AGENTE2_VERB = agente2.ID AND verbale.ID_AGENTE2_VERB IS NOT NULL 
-
-
-WHERE verbale.DATA_VERB = CURDATE() 
-ORDER BY verbale.NUM_VERB;
-*****/
+$items = $wpdb->get_results("SELECT * FROM $table_name  WHERE `DATA_VERB` = CURDATE() AND ID_AGENTE1_VERB LIKE '$agenteId' ORDER BY NUM_VERB;");
 
 $itemsArray = array();
 $resultArray = array();
@@ -47,31 +22,48 @@ if($items) {
 	foreach ($items as $item) {
 		
 		$itemsArray[] = array(
-			'ID'					=> $item->ID,
-			'NUM_VERB'				=> $item->NUM_VERB,
-			'ID_AGENTE1_VERB'		=> $item->ID_AGENTE1_VERB,
-			'DATA_VERB'				=> $item->DATA_VERB,
-			'ORA_VERB'				=> $item->ORA_VERB,
-			'ENTE_VERB'				=> $item->ENTE_VERB,
-			'TIPO_VEI_VERB'			=> $item->TIPO_VEI_VERB,
-			'TARGA_VERB'			=> $item->TARGA_VERB,
-			'MODELLO_VERB'			=> $item->MODELLO_VERB,
-			'ID_VIA_VERB'			=> $item->ID_VIA_VERB,
-			'CIVICO_VERB'			=> $item->CIVICO_VERB,
-			'DESCR_VIA_VERB'		=> $item->DESCR_VIA_VERB,
-			'ID_ART1_VERB'			=> $item->ID_ART1_VERB,
-			'COD1_VERB'				=> $item->COD1_VERB,
-			'DESCR_ART1_VERB'		=> $item->DESCR_ART1_VERB,
-			'ID_ART2_VERB'			=> $item->ID_ART2_VERB,
-			'COD2_VERB'				=> $item->COD2_VERB,
-			'DESCR_ART2_VERB'		=> $item->DESCR_ART2_VERB,
-			'ID_AGENTE2_VERB'		=> $item->ID_AGENTE2_VERB,
-			'COD_OBLG_VERB'			=> $item->COD_OBLG_VERB,
-			'COD_TRSG_VERB'			=> $item->COD_TRSG_VERB,
-			'IMG_VERB'				=> $item->IMG_VERB,
-			'FILE_PATH_IMG_VERB'	=> $item->FILE_PATH_IMG_VERB,
-			'LATI_VERB'				=> $item->LATI_VERB,
-			'LONG_VERB'				=> $item->LONG_VERB
+			'ID'							=> $item->ID,
+			'NUM_VERB'						=> $item->NUM_VERB,
+            'DATA_VERB'						=> $item->DATA_VERB,
+            'ORA_VERB'						=> $item->ORA_VERB,
+            'ENTE_VERB'						=> $item->ENTE_VERB,
+            'NOME_ENTE_VERB'				=> $item->NOME_ENTE_VERB,
+            'CCP_ENTE_VERB'					=> $item->CCP_ENTE_VERB,
+            'IBAN'							=> $item->IBAN,
+            'TIPO_VEI_ID_VERB'				=> $item->TIPO_VEI_ID_VERB,
+            'TIPO_VEI_DESCR_VERB'			=> $item->TIPO_VEI_DESCR_VERB,
+            'TARGA_VERB'					=> $item->TARGA_VERB,
+            'MODELLO_VERB'					=> $item->MODELLO_VERB,
+            'ID_VIA_VERB'					=> $item->ID_VIA_VERB,
+            'VIA_DESCR_VERB'				=> $item->VIA_DESCR_VERB,
+            'CIVICO_VERB'					=> $item->CIVICO_VERB,
+            'DESCR_VIA_VERB'				=> $item->DESCR_VIA_VERB,
+            'ART1_VERB_ID'					=> $item->ART1_VERB_ID,
+            'ART1_COD1_VERB'				=> $item->ART1_COD1_VERB,
+            'ART1_DESCR_VERB'				=> $item->ART1_DESCR_VERB,
+            'ART1_PUNTI_VERB'				=> $item->ART1_PUNTI_VERB,
+            'ART1_IMPORTO_VERB'				=> $item->ART1_IMPORTO_VERB,
+            'ART1_ID_SANZ_ACC_VERB'			=> $item->ART1_ID_SANZ_ACC_VERB,
+            'ART1_DESC_SANZ_ACC_VERB'		=> $item->ART1_DESC_SANZ_ACC_VERB,
+            'ART2_VERB_ID'					=> $item->ART2_VERB_ID,
+            'ART2_COD1_VERB'				=> $item->ART2_COD1_VERB,
+            'ART2_DESCR_VERB'				=> $item->ART2_DESCR_VERB,
+            'ART2_PUNTI_VERB'				=> $item->ART2_PUNTI_VERB,
+            'ART2_IMPORTO_VERB'				=> $item->ART2_IMPORTO_VERB,
+            'ART2_ID_SANZ_ACC_VERB'			=> $item->ART2_ID_SANZ_ACC_VERB,
+            'ART2_DESC_SANZ_ACC_VERB'		=> $item->ART2_DESC_SANZ_ACC_VERB,
+            'NOTE_VERB'						=> $item->NOTE_VERB,
+            'DESC_MANC_CONT_VERB'			=> $item->DESC_MANC_CONT_VERB,
+            'COD_OBLG_VERB'					=> $item->COD_OBLG_VERB,
+            'COD_TRSG_VERB'					=> $item->COD_TRSG_VERB,
+            'IMG_VERB'						=> $item->IMG_VERB,
+            'FILE_PATH_IMG_VERB'			=> $item->FILE_PATH_IMG_VERB,
+            'LATI_VERB'						=> $item->LATI_VERB,
+            'LONG_VERB'						=> $item->LONG_VERB,
+            'ID_AGENTE1_VERB'				=> $item->ID_AGENTE1_VERB,
+            'ID_AGENTE2_VERB'				=> $item->ID_AGENTE2_VERB,
+            'NOME_AGENT1_VERB'				=> $item->NOME_AGENT1_VERB,
+            'NOME_AGENT2_VERB'				=> $item->NOME_AGENT2_VERB
 	    );
 	}
 } else {

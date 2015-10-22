@@ -188,8 +188,16 @@
                 <input type="text" id="COD1_VERB" name="COD1_VERB" placeholder="Cod e Comma" readonly="true" value="{{codArt1}}" required>
             </label>
             <label class="item item-input readonly">
-                <textarea id="DESCR_ART1_VERB" name="DESCR_ART1_VERB" placeholder="Descrizione articolo" readonly="true" rows="5" cols="10" ng-bind="descrArt1" required></textarea>
+                <textarea id="DESCR_ART1_VERB" name="DESCR_ART1_VERB" placeholder="Descrizione articolo" readonly="true" rows="3" cols="10" ng-bind="descrArt1" required></textarea>
             </label>
+            <label class="item item-input readonly">
+                <textarea id="INFO_ART1_VERB" name="INFO_ART1_VERB" placeholder="Informazioni articolo" readonly="true" rows="3" cols="10" ng-bind="infoArt1" required></textarea>
+            </label>
+
+            <input type="hidden" name="puntiArt1" value="{{puntiArt1}}">
+            <input type="hidden" name="importoArt1" value="{{importoArt1}}">
+            <input type="hidden" name="sanzAccIdArt1" value="{{sanzAccIdArt1}}">
+            <input type="hidden" name="sanzAccDescrArt1" value="{{sanzAccDescrArt1}}">
         </div>
 
         <!--
@@ -218,6 +226,14 @@
             <label class="item item-input readonly">
                 <textarea id="DESCR_ART2_VERB" name="DESCR_ART2_VERB" placeholder="Descrizione articolo" readonly="true" rows="5" cols="10" ng-bind="descrArt2"></textarea>
             </label>
+            <label class="item item-input readonly">
+                <textarea id="INFO_ART2_VERB" name="INFO_ART2_VERB" placeholder="Informazioni articolo" readonly="true" rows="3" cols="10" ng-bind="infoArt2" required></textarea>
+            </label>
+
+            <input type="hidden" name="puntiArt2" value="{{puntiArt2}}">
+            <input type="hidden" name="importoArt2" value="{{importoArt2}}">
+            <input type="hidden" name="sanzAccIdArt2" value="{{sanzAccIdArt2}}">
+            <input type="hidden" name="sanzAccDescrArt2" value="{{sanzAccDescrArt2}}">
         </div>
 
         <!--
@@ -261,6 +277,28 @@
 
         <div class="spacerVertical"></div>
         -->
+
+        <!--
+        DESC_MANC_CONT_VERB
+        -->
+        <div class="row eventTab">
+          <div class="col">
+            <ion-checkbox ng-model="mancataContestazione">Mancata contestazione</ion-checkbox>          
+          </div>
+        </div>
+
+        <div class="spacerVertical"></div>
+
+        <!--
+        NOTE_VERB
+        -->
+        <div class="list list-inset">
+            <label class="item item-input">
+                <textarea id="NOTE_VERB" name="NOTE_VERB" placeholder="Note ulteriori" rows="5" cols="10" ng-model="noteVerbale"></textarea>
+            </label>
+        </div>
+
+        <div class="spacerVertical"></div>
 
         <!--
         ID_AGENTE2_VERB

@@ -176,6 +176,24 @@ angular.module('starter.controllers', [])
             $scope.openModalItem('agenti');
             $scope.openModalItem('tipoVeicolo');
 
+            //INFO SULL'ENTE PER LA STAMPA DEL VERBALE
+            ajaxCallServices.getItems('ente')
+              .success(function (ente) {
+
+                if(ente[0].response[0].result == 'OK') {
+                  console.log('OK: '+ente[0].items[0].DESC_ENTE+' - '+ente[0].items[0].IBAN_ENTE+' - '+ente[0].items[0].CCP_ENTE);
+                  localStorage.setItem('enteDescrizione',ente[0].items[0].DESC_ENTE);
+                  localStorage.setItem('enteIBAN',ente[0].items[0].IBAN_ENTE);
+                  localStorage.setItem('enteCCP',ente[0].items[0].CCP_ENTE);
+                } else {
+                  console.log('KO');
+                }
+
+              }).error(function (error) {
+                console.log('KO');
+              });
+
+
             //MEMORIZZO I DATI NEL LOCAL STORAGE PER NAVIGAZIONE OFFLINE
             ajaxCallServices.getItems('device')
               .success(function (device) {
@@ -410,9 +428,6 @@ angular.module('starter.controllers', [])
 
   $scope.messageBluetoothSerialEnable = 'Abilita il bluetooth per stampare il verbale...';
 
-  $scope.filePathImg  = '';
-  $scope.picData      = '';
-
   //$scope.numeroVerbale = Math.floor((Math.random() * 1000000) + 1);
   $scope.numeroVerbale = '';
 
@@ -473,18 +488,32 @@ angular.module('starter.controllers', [])
   $scope.tipoVeicoloCode  = 'A';
   $scope.tipoVeicoloDescr = 'AUTOVEICOLO';
 
+  $scope.mancataContestazione = true;
+
   $rootScope.idAgente2      = '';
   $rootScope.nomeAgente2    = '';
 
-  $scope.art1       = '';
-  $scope.codArt1    = '';
-  $scope.descrArt1  = '';
+  $scope.art1               = '';
+  $scope.codArt1            = '';
+  $scope.descrArt1          = '';
+  $scope.puntiArt1          = '';
+  $scope.importoArt1        = '';
+  $scope.sanzAccIdArt1      = '';
+  $scope.sanzAccDescrArt1   = '';
 
-  $scope.art2       = '';
-  $scope.codArt2    = '';
-  $scope.descrArt2  = '';
+  $scope.art2               = '';
+  $scope.codArt2            = '';
+  $scope.descrArt2          = '';
+  $scope.puntiArt2          = '';
+  $scope.importoArt2        = '';
+  $scope.sanzAccIdArt2      = '';
+  $scope.sanzAccDescrArt2   = '';
 
-  $scope.imgBase64 = '';
+  $scope.noteVerbale        = '';
+
+  $scope.imgBase64    = '';
+  $scope.filePathImg  = '';
+  $scope.picData      = '';
 
   //GEOLOCATION
   /*****
@@ -572,36 +601,71 @@ angular.module('starter.controllers', [])
       template: 'Attendere...'
     });
 
+    var descrMancataCont = '';
+    if($scope.mancataContestazione) {
+      descrMancataCont = 'Assenza del Trasgressore';
+    } else {
+      descrMancataCont = '';
+    }
+
     $scope.verbaleCompleto =
       {
-        'numeroVerbale'   : $scope.numeroVerbale,
-        'dataVerbale'     : $scope.dataVerbale,
-        'oraVerbale'      : $scope.oraVerbale,
-        'enteVerbale'     : $scope.agenteEnte,
-        'agenteVerbale'   : $scope.agenteVerbale,
-        'latVerbale'      : $scope.latVerbale,
-        'longVerbale'     : $scope.longVerbale,
-        'targaVeicolo'    : $scope.targaVeicolo,
-        'tipoVeicolo'     : $scope.tipoVeicoloCode,
-        'modelloVeicolo'  : $scope.modelloVeicolo,
-        'indirizzo'       : $rootScope.indirizzoId,
-        'indirizzoCivico' : $scope.indirizzoCivico,
-        'indirizzoDescr'  : $scope.indirizzoDescr,
-        'art1'            : $scope.art1,
-        'codArt1'         : $scope.codArt1,
-        'descrArt1'       : $scope.descrArt1,
-        'art2'            : $scope.art2,
-        'codArt2'         : $scope.codArt2,
-        'descrArt2'       : $scope.descrArt2,
-        'nomeObbligato'   : $scope.idObbligato,
-        'nomeTrasgres'    : $scope.idTrasgres,
-        'agente2Verbale'  : $rootScope.idAgente2,
-        'filePathImg'     : $scope.filePathImg,
-        'imgBase64'       : $scope.picData,
-        'deviceUUID'      : localStorage.getItem('deviceUUID')  //device da localStorage
+        'numeroVerbale'       : $scope.numeroVerbale,
+        'dataVerbale'         : $scope.dataVerbale,
+        'oraVerbale'          : $scope.oraVerbale,
+
+        'enteCodVerbale'      : $scope.agenteEnte,
+        'enteNomeVerbale'     : localStorage.getItem('enteDescrizione'),
+        'enteCCPVerbale'      : localStorage.getItem('enteCCP'),
+        'enteIBANVerbale'     : localStorage.getItem('enteIBAN'),
+        
+        'tipoVeicolo'         : $scope.tipoVeicoloCode,
+        'tipoDescrVeicolo'    : $scope.tipoVeicoloDescr,
+        'targaVeicolo'        : $scope.targaVeicolo,
+        'modelloVeicolo'      : $scope.modelloVeicolo,
+
+        'indirizzo'           : $rootScope.indirizzoId,
+        'indirizzoNome'       : $rootScope.indirizzo,
+        'indirizzoCivico'     : $scope.indirizzoCivico,
+        'indirizzoDescr'      : $scope.indirizzoDescr,
+
+        'art1'                : $scope.art1,
+        'codArt1'             : $scope.codArt1,
+        'descrArt1'           : $scope.descrArt1,
+        'puntiArt1'           : $scope.puntiArt1,
+        'importoArt1'         : $scope.importoArt1,
+        'sanzAccIdArt1'       : $scope.sanzAccIdArt1,
+        'sanzAccDescrArt1'    : $scope.sanzAccDescrArt1,
+
+        'art2'                : $scope.art2,
+        'codArt2'             : $scope.codArt2,
+        'descrArt2'           : $scope.descrArt2,
+        'puntiArt2'           : $scope.puntiArt2,
+        'importoArt2'         : $scope.importoArt2,
+        'sanzAccIdArt2'       : $scope.sanzAccIdArt2,
+        'sanzAccDescrArt2'    : $scope.sanzAccDescrArt2,
+
+        'noteVerbale'         : $scope.noteVerbale,
+        'descrMancataCont'    : descrMancataCont,
+
+        'nomeObbligato'       : $scope.idObbligato,
+        'nomeTrasgres'        : $scope.idTrasgres,
+
+        'imgBase64'           : $scope.picData,
+        'filePathImg'         : $scope.filePathImg,
+        'latVerbale'          : $scope.latVerbale,
+        'longVerbale'         : $scope.longVerbale,
+
+        'agenteVerbale'       : $scope.agenteVerbale,
+        'agente2Verbale'      : $rootScope.idAgente2,
+        'agenteNomeVerbale'   : localStorage.getItem('agent_nome'),
+        'agente2NomeVerbale'  : $rootScope.nomeAgente2,
+
+        'deviceUUID'          : localStorage.getItem('deviceUUID')  //device da localStorage
       };
 
     console.log('Check connection: '+$rootScope.checkNoConnection);
+    console.log('verbaleCompleto: '+JSON.stringify($scope.verbaleCompleto));
 
     if(!$rootScope.checkNoConnection) {
 
@@ -712,7 +776,7 @@ angular.module('starter.controllers', [])
   //Bluetooth print
   $scope.stampaVerbale = function() {
 
-    $rootScope.globFunc.bluetoothPrinter('verbale',$scope.numeroVerbale,$scope.dataVerbale,$scope.oraVerbale,$scope.targaVeicolo,$scope.tipoVeicoloDescr,$scope.indirizzoDescr,$scope.indirizzoCivico,$scope.art1,$scope.codArt1,scope.descrArt1);
+    $rootScope.globFunc.bluetoothPrinter('verbale',$scope.numeroVerbale,$scope.dataVerbale,$scope.oraVerbale,$scope.targaVeicolo,$scope.tipoVeicoloDescr,$scope.indirizzoDescr,$scope.indirizzoCivico,$scope.art1,$scope.codArt1,$scope.descrArt1);
     $scope.annullaVerbale();
   }
 
@@ -801,11 +865,21 @@ angular.module('starter.controllers', [])
     $scope.modal.hide();
   }
 
-  $scope.selezionaArticolo = function(COD_ART,COD_COM,COMMA,DES_ART1) {
+  $scope.selezionaArticolo = function(COD_ART,COD_COM,COMMA,DES_ART1,PUNT_ART,IMP_ART,ID_SANZ,DESCR_SANZ) {
+
+    //console.log(COD_ART+' - '+COD_COM+' - '+COMMA+' - '+DES_ART1+' - '+PUNT_ART+' - '+IMP_ART+' - '+ID_SANZ+' - '+DESCR_SANZ);
+
     if($scope.setArt1) {
       $scope.art1       = COD_ART;
       $scope.codArt1    = COD_COM/*+','+COMMA*/;
       $scope.descrArt1  = DES_ART1;
+
+      $scope.infoArt1 = 'Importo: '+IMP_ART+'; Punti: '+PUNT_ART+'; Sanzione accessoria: '+DESCR_SANZ;
+
+      $scope.puntiArt1        = PUNT_ART;
+      $scope.importoArt1      = IMP_ART;
+      $scope.sanzAccIdArt1    = ID_SANZ;
+      $scope.sanzAccDescrArt1 = DESCR_SANZ;
 
       angular.element(document.querySelector('#ART1_VERB')).val($scope.art1);
       angular.element(document.querySelector('#COD1_VERB')).val($scope.codArt1);
@@ -815,6 +889,13 @@ angular.module('starter.controllers', [])
       $scope.art2       = COD_ART;
       $scope.codArt2    = COD_COM/*+','+COMMA*/;
       $scope.descrArt2  = DES_ART1;
+
+      $scope.infoArt2 = 'Importo: '+IMP_ART+'; Punti: '+PUNT_ART+'; Sanzione accessoria: '+DESCR_SANZ;
+
+      $scope.puntiArt2        = PUNT_ART;
+      $scope.importoArt2      = IMP_ART;
+      $scope.sanzAccIdArt2    = ID_SANZ;
+      $scope.sanzAccDescrArt2 = DESCR_SANZ;
 
       angular.element(document.querySelector('#ART2_VERB')).val($scope.art2);
       angular.element(document.querySelector('#COD2_VERB')).val($scope.codArt2);
