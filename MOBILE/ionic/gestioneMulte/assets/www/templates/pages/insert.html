@@ -124,12 +124,12 @@
           </div>
         </div>
         <div class="list list-inset">
-          <label class="item item-input {{capturePhotoClass}}">
+          <label class="item item-input {{capturePhotoClass}}" ng-click="openModalItem('generic')">
             <div ng-show="picData" class="item item-image">
               <!--
               Fare UPLOAD del file e aggiungere campo PATH_IMG_VERB
               -->
-              <img id="veicoloFoto" class="item" ng-src="{{picData}}" ng-click="uploadPicture()" />
+              <img id="veicoloFoto" class="item" ng-src="{{picData}}" />
             </div>
           </label>
         </div>

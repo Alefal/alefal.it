@@ -47,7 +47,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
     }
 
     //TEST WITH BROWSER: Check Connection
-    $rootScope.checkNoConnection = false;
+    $rootScope.checkNoConnection = true;
     
     /*****
     document.addEventListener('deviceready', function () {
@@ -123,6 +123,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 
     .state('app.insert', {
       url: '/insert',
+      cache: false,
       views: {
         'pageContainer': {
           templateUrl: 'templates/pages/insert.html'/*,
@@ -142,6 +143,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
     })
     .state('app.verbali', {
       url: '/verbali',
+      cache: false,
       views: {
         'pageContainer': {
           templateUrl: 'templates/pages/verbali.html',
@@ -260,19 +262,21 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
     },
     bluetoothPrinter: function(section,verbaleCompleto) {
 
-      console.log(verbaleCompleto);
-      $rootScope.globFunc.templateStampa(verbaleCompleto);
+      //console.log(verbaleCompleto);
+      //$rootScope.globFunc.templateStampa(verbaleCompleto);
+      //return false;
 
       //BlueTooth Printer
       var stampanteBluetoothName = localStorage.getItem('stampanteBluetooth');
+      console.log('stampanteBluetoothName: '+stampanteBluetoothName);
+    
+      $rootScope.checkPrintFound = false;
+      $rootScope.resultPrintTestShow = false;
+      $rootScope.checkPrintTestResult = '';
 
       var resultTest = '';
 
       resultTest += stampanteBluetoothName+' <br/>';
-      resultTest += 'a <br/>';
-      resultTest += 'b <br/>';
-
-      $rootScope.checkPrintFound = false;
 
       bluetoothSerial.isEnabled(
         function() {
@@ -361,23 +365,26 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
           resultTest += 'Bluetooth is *not* enabled';
         }
       );
-
       
+      $rootScope.resultPrintTestShow = true;
       $rootScope.checkPrintTestResult = resultTest;
-      $rootScope.resultTestShow = true;
+
     },
     templateStampa: function(verbaleCompleto) {
+
+      //var dataVerbaleTmp = verbaleCompleto.dataVerbale.split('-');
+      //var dataVerbale = dataVerbaleTmp[2]+'/'+dataVerbaleTmp[1]+'/'+dataVerbaleTmp[0];
 
       var data = '';
 
       data += 'Comando Polizia Locale di '+verbaleCompleto.enteNomeVerbale+'\n';
-      data += 'Violation of the trafficlaw/Violation du code dela rue.\n\n';
+      data += 'Violation of the traffic law/Violation du code de la rue.\n\n';
 
       data += 'Avviso accertamento di  violazione al Cod. della Strada N.: '+verbaleCompleto.numeroVerbale+'\n\n';
 
       data += 'Il giorno '+verbaleCompleto.dataVerbale+' ';
       data += 'alle ore '+verbaleCompleto.oraVerbale+' ';
-      data += 'in '+verbaleCompleto.indirizzoDescr+' ';
+      data += 'in '+verbaleCompleto.indirizzoNome+' '+verbaleCompleto.indirizzoDescr+' ';
       data += 'civico '+verbaleCompleto.indirizzoCivico+'\n\n';
 
       data += verbaleCompleto.tipoDescrVeicolo+' ';
@@ -429,6 +436,17 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 
       return data;
     },
+    formattedDate: function(date) {
+      var d = new Date(date || Date.now()),
+        day = '' + d.getDate(),
+        month = '' + (d.getMonth() + 1),
+        year = d.getFullYear();
+
+      if (month.length < 2) month = '0' + month;
+      if (day.length < 2) day = '0' + day;
+
+      return [day, month, year].join('/');
+    },
   };
 })
 .run(function($rootScope, globalFunction) {
@@ -477,6 +495,8 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
       tpl = 'templates/pages/modalAgenti.html';
     } else if(item == 'tipoVeicolo') {
       tpl = 'templates/pages/modalTipoVeicolo.html';
+    } else if(item == 'generic') {
+      tpl = 'templates/pages/modalGeneric.html';
     }
 
     promise = $ionicModal.fromTemplateUrl(tpl, {

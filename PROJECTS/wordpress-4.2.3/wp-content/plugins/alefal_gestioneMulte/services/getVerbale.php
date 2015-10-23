@@ -6,7 +6,7 @@ global $wpdb;
 $agenteId = $_GET['agenteId'];
 
 $table_name = 'p_verb';
-$items = $wpdb->get_results("SELECT * FROM $table_name  WHERE `DATA_VERB` = CURDATE() AND ID_AGENTE1_VERB LIKE '$agenteId' ORDER BY NUM_VERB;");
+$items = $wpdb->get_results("SELECT * FROM $table_name  WHERE `DATA_VERB` = CURDATE() AND ID_AGENTE1_VERB LIKE '$agenteId' ORDER BY NUM_VERB DESC;");
 
 $itemsArray = array();
 $resultArray = array();

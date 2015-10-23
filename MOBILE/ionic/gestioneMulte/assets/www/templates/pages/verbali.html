@@ -24,8 +24,10 @@
                 <ion-item ng-repeat="item in items | filter:q as results" class="item-icon-left item-icon-right">
                     <i class="icon ion-clipboard"></i>
 
-                    <h3>Verbale numero <strong>{{item.NUM_VERB}}</strong> del <strong>{{item.DATA_VERB}}</strong> alle <strong>{{item.ORA_VERB}}</strong></h3>
-                    <p>Targa <strong>{{item.TARGA_VERB}}</strong>, tipo veicolo <strong>{{item.TIPO_VEI_VERB}}</strong></p>
+                    <h3>Verbale numero <strong>{{item.NUM_VERB}}</strong></h3>
+                    <h3>del <strong>{{item.DATA_VERB | date:'dd/MM/yyyy'}}</strong> alle <strong>{{item.ORA_VERB | date:'HH:mm:ss'}}</strong></h3>
+                    <p style="color:black">Targa <strong>{{item.TARGA_VERB}}</strong></strong> tipo veicolo <strong>{{item.TIPO_VEI_DESCR_VERB}}</strong></p>
+                    <p style="color:black">Articolo <strong>{{item.ART1_VERB_ID}} {{item.ART1_COD1_VERB}}</strong></p>
 
                     <i class="icon ion-android-print" ng-click="stampaVerbale('online',item)"></i>
                 </ion-item>
@@ -52,8 +54,10 @@
                 <ion-item ng-repeat="item in verbaleCompleto | filter:off as results" class="item-icon-left item-icon-right">
                     <i class="icon ion-clipboard"></i>
 
-                    <h3>Verbale numero <strong>{{item.numeroVerbale}}</strong> del <strong>{{item.dataVerbale}}</strong> alle <strong>{{item.oraVerbale}}</strong></h3>
-                    <p>Targa <strong>{{item.targaVeicolo}}</strong>, tipo veicolo <strong>{{item.tipoVeicolo}}</strong></p>
+                    <h3>Verbale numero <strong>{{item.numeroVerbale}}</strong></strong></h3>
+                    <h3>del <strong>{{item.dataVerbale | date:'dd/MM/yyyy'}}</strong> alle <strong>{{item.oraVerbale | date:'HH:mm:ss'}}</strong></h3>
+                    <p style="color:black">Targa <strong>{{item.targaVeicolo}}</strong>, tipo veicolo <strong>{{item.tipoDescrVeicolo}}</strong></p>
+                    <p style="color:black">Articolo <strong>{{item.art1}} {{item.codArt1}}</strong></p>
 
                     <i class="icon ion-android-print" ng-click="stampaVerbale('offline',item)"></i>
                 </ion-item>

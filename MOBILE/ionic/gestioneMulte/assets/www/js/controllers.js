@@ -376,7 +376,8 @@ angular.module('starter.controllers', [])
          okType: 'button-positive'
       });
       alertPopup.then(function(res) {
-        $scope.stampaVerbale();
+        //$scope.stampaVerbale();
+        $state.go('app.verbali');
       });
     } else {
       var alertPopup = $ionicPopup.alert({
@@ -403,18 +404,6 @@ angular.module('starter.controllers', [])
       }
     });
   };
-
-  $scope.formattedDate = function(date) {
-    var d = new Date(date || Date.now()),
-        day = '' + d.getDate(),
-        month = '' + (d.getMonth() + 1),
-        year = d.getFullYear();
-
-    if (month.length < 2) month = '0' + month;
-    if (day.length < 2) day = '0' + day;
-
-    return [day, month, year].join('/');
-  }
 
   //Verificare se sono online e se ci sono dati in memoria da sincronizzare: necessario per mantenere il numero di verbale aggiornato sia ONLINE che OFFLINE
   if(!$rootScope.checkNoConnection) {
@@ -464,7 +453,7 @@ angular.module('starter.controllers', [])
   }
 
   var localDate = new Date();
-  $scope.dataVerbale      = $scope.formattedDate();
+  $scope.dataVerbale      = $rootScope.globFunc.formattedDate(localDate);
   $scope.oraVerbale       = localDate.toLocaleTimeString();
 
   console.log('dataVerbale: '+$scope.dataVerbale);
@@ -802,6 +791,14 @@ angular.module('starter.controllers', [])
       .init(item, $scope)
       .then(function(modal) {
 
+        if(item == 'generic') {
+          $scope.loading = false;
+          $ionicLoading.hide();
+
+          modal.show();
+          return false;
+        }
+
         //Memorizzo le info nel localStorage in fase di login: successivamente utilizzo i dati memorizzati
         if(!localStorage.getItem(item)) {
           ajaxCallServices.getItems(item)
@@ -1021,10 +1018,13 @@ angular.module('starter.controllers', [])
 
     if(section == 'online') {
 
+      var dataVerbaleTmp = verbale.DATA_VERB.split('-');
+      var dataVerbale = dataVerbaleTmp[2]+'/'+dataVerbaleTmp[1]+'/'+dataVerbaleTmp[0];
+
       $scope.verbaleCompletoStampare =
         {
           'numeroVerbale'       : verbale.NUM_VERB,
-          'dataVerbale'         : verbale.DATA_VERB,
+          'dataVerbale'         : dataVerbale,
           'oraVerbale'          : verbale.ORA_VERB,
 
           'enteCodVerbale'      : verbale.ENTE_VERB,
