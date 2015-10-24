@@ -115,8 +115,8 @@ angular.module('starter.controllers', [])
 
 
   $scope.authorization = {
-    username: 'VinSCHIAVO',
-    password : '12345'
+    username: '',
+    password : ''
   };
 
   $scope.login = function() {
@@ -505,7 +505,7 @@ angular.module('starter.controllers', [])
   $scope.picData      = '';
 
   //GEOLOCATION
-  /*****
+/***** 
   var posOptions = {timeout: 10000, enableHighAccuracy: false};
   $cordovaGeolocation
     .getCurrentPosition(posOptions)
@@ -515,7 +515,7 @@ angular.module('starter.controllers', [])
     }, function(err) {
       // error
     });
-  *****/
+*****/
   $scope.takePicture = function() {
 
     var options = {
@@ -607,7 +607,7 @@ angular.module('starter.controllers', [])
         'enteNomeVerbale'     : localStorage.getItem('enteDescrizione'),
         'enteCCPVerbale'      : localStorage.getItem('enteCCP'),
         'enteIBANVerbale'     : localStorage.getItem('enteIBAN'),
-        
+
         'tipoVeicolo'         : $scope.tipoVeicoloCode,
         'tipoDescrVeicolo'    : $scope.tipoVeicoloDescr,
         'targaVeicolo'        : $scope.targaVeicolo,
@@ -881,7 +881,7 @@ angular.module('starter.controllers', [])
       angular.element(document.querySelector('#ART1_VERB')).val($scope.art1);
       angular.element(document.querySelector('#COD1_VERB')).val($scope.codArt1);
       angular.element(document.querySelector('#DESCR_ART1_VERB')).val($scope.descrArt1);
-    
+
     } else if($scope.setArt2) {
       $scope.art2       = COD_ART;
       $scope.codArt2    = COD_COM/*+','+COMMA*/;
@@ -897,7 +897,7 @@ angular.module('starter.controllers', [])
       angular.element(document.querySelector('#ART2_VERB')).val($scope.art2);
       angular.element(document.querySelector('#COD2_VERB')).val($scope.codArt2);
       angular.element(document.querySelector('#DESCR_ART2_VERB')).val($scope.descrArt2);
-      
+
     }
     $scope.modal.hide();
   }
@@ -1031,7 +1031,7 @@ angular.module('starter.controllers', [])
           'enteNomeVerbale'     : verbale.NOME_ENTE_VERB,
           'enteCCPVerbale'      : verbale.CCP_ENTE_VERB,
           'enteIBANVerbale'     : verbale.IBAN,
-          
+
           'tipoVeicolo'         : verbale.TIPO_VEI_ID_VERB,
           'tipoDescrVeicolo'    : verbale.TIPO_VEI_DESCR_VERB,
           'targaVeicolo'        : verbale.TARGA_VERB,
@@ -1086,7 +1086,7 @@ angular.module('starter.controllers', [])
           'enteNomeVerbale'     : verbale.enteNomeVerbale,
           'enteCCPVerbale'      : verbale.enteCCPVerbale,
           'enteIBANVerbale'     : verbale.enteIBANVerbale,
-          
+
           'tipoVeicolo'         : verbale.tipoVeicolo,
           'tipoDescrVeicolo'    : verbale.tipoDescrVeicolo,
           'targaVeicolo'        : verbale.targaVeicolo,
@@ -1129,20 +1129,21 @@ angular.module('starter.controllers', [])
           'agenteNomeVerbale'   : verbale.agenteNomeVerbale,
           'agente2NomeVerbale'  : verbale.agente2NomeVerbale
         };
-    } 
-    
-    $rootScope.globFunc.bluetoothPrinter('verbale',$scope.verbaleCompletoStampare); 
+    }
+
+    $rootScope.globFunc.bluetoothPrinter('verbale',$scope.verbaleCompletoStampare);
   }
 
 })
 
 .controller('StampanteCtrl', function($scope,$rootScope,$ionicLoading,ModalService,ajaxCallServices) {
 
+  $rootScope.checkPrintTestResult = '';
   $scope.checkPrintFound = false;
-  $scope.resultTestShow = false;
+
   var stampanteBluetoothName = localStorage.getItem('stampanteBluetooth');
 
-  if(localStorage.getItem('stampanteBluetooth') && 
+  if(localStorage.getItem('stampanteBluetooth') &&
     stampanteBluetoothName != '' &&
     stampanteBluetoothName != 'undefined') {
     console.log('Stampante trovata')

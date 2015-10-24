@@ -12,22 +12,24 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
     //$rootScope.server = 'http://10.80.18.107/alefal.it/PROJECTS/wordpress-4.2.3';
     //$rootScope.server = 'http://192.168.1.188/alefal.it/PROJECTS/wordpress-4.2.3';
     //$rootScope.server = 'http://cdsmobile.swstudio.net';
+    //$rootScope.server = 'http://95.110.159.203';
 
     //TEST WITH BROWSER: device
+    
     $rootScope.device = {
       model: 'HTC ONE',
       platform: 'android',
       uuid: '1234567890',
       version: '1.1'
     };
-    /*****
+/*****    
     $rootScope.device = {
       model: $cordovaDevice.getModel(),
       platform: $cordovaDevice.getPlatform(),
       uuid: $cordovaDevice.getUUID(),
       version: $cordovaDevice.getVersion()
     };
-    *****/
+*****/
     localStorage.setItem('deviceModel',$rootScope.device.model);
     localStorage.setItem('devicePlatform',$rootScope.device.platform);
     localStorage.setItem('deviceUUID',$rootScope.device.uuid);
@@ -47,9 +49,10 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
     }
 
     //TEST WITH BROWSER: Check Connection
-    $rootScope.checkNoConnection = true;
     
-    /*****
+    $rootScope.checkNoConnection = false;
+    
+/*****
     document.addEventListener('deviceready', function () {
       $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
         $rootScope.checkNoConnection = false;
@@ -68,7 +71,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
       })
 
     }, false);
-    *****/
+*****/
   });
 })
 .config(function($httpProvider) {
@@ -242,7 +245,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 
   return ajaxCallServices;
 })
-.factory('globalFunction', function($state,$rootScope/*,$cordovaBluetoothSerial*/) {
+.factory('globalFunction', function($state,$rootScope,/*$cordovaBluetoothSerial,*/$ionicPopup) {
   return {
     exitApp: function() {
       /* NON LI CANCELLO PER ACCESSO OFFLINE...
@@ -269,14 +272,12 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
       //BlueTooth Printer
       var stampanteBluetoothName = localStorage.getItem('stampanteBluetooth');
       console.log('stampanteBluetoothName: '+stampanteBluetoothName);
-    
-      $rootScope.checkPrintFound = false;
+
       $rootScope.resultPrintTestShow = false;
-      $rootScope.checkPrintTestResult = '';
 
-      var resultTest = '';
+      var resultTest = 'Connessione a ';
 
-      resultTest += stampanteBluetoothName+' <br/>';
+      resultTest += stampanteBluetoothName+'... <br/>';
 
       bluetoothSerial.isEnabled(
         function() {
@@ -308,7 +309,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 
                          // Typed Array
                          var data = '';
-                         
+
                          if(section == 'stampante') {
 
                           data = '\n Test stampa...\n';
@@ -316,12 +317,12 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
                          } else if(section == 'verbale') {
 
                           data = $rootScope.globFunc.templateStampa(verbaleCompleto);
-                          
+
                          } else {
 
                           data = '\n Stampante...\n';
                           data += stampanteBluetoothName+'\n';
-                          
+
                          }
 
                          console.log('-> data: '+data);
@@ -329,10 +330,12 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
                          bluetoothSerial.write(data,
                            function() {
                              console.log('-> writeSuccess');
+                             $rootScope.globFunc.showInformationMessage('Stampa','Stampa eseguita');
                              resultTest += 'writeSuccess <br/>';
                            },
                            function() {
                              console.log('-> writeFailure');
+                             $rootScope.globFunc.showInformationMessage('Errore','Stampa fallita. Riprovare!');
                              resultTest += 'writeFailure <br/>';
                            }
                          );
@@ -340,6 +343,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
                         },
                         function() {
                           console.log('Bluetooth is *not* connected');
+                          $rootScope.globFunc.showInformationMessage('Errore','Bluetooth non connesso. Riprovare!');
                           resultTest += 'Bluetooth is *not* connected <br/>';
                         }
                       );
@@ -348,6 +352,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 
                     function() {
                       console.log('-> connectFailure');
+                      $rootScope.globFunc.showInformationMessage('Errore','Connessione fallita alla stampante. Riprovare!');
                       resultTest += 'connectFailure <br/>';
                     }
 
@@ -362,10 +367,11 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 
         },
         function() {
+          $rootScope.globFunc.showInformationMessage('Errore','Attivare bluetooth e riprovare!');
           resultTest += 'Bluetooth is *not* enabled';
         }
       );
-      
+
       $rootScope.resultPrintTestShow = true;
       $rootScope.checkPrintTestResult = resultTest;
 
@@ -391,8 +397,8 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
       data += verbaleCompleto.modelloVeicolo+' ';
       data += 'Targa: '+verbaleCompleto.targaVeicolo+'\n\n';
 
-      
-      if(verbaleCompleto.art2 != 0) {   
+
+      if(verbaleCompleto.art2 != 0) {
         data += 'ha violato gli art. ';
         data += verbaleCompleto.art1+' '+verbaleCompleto.codArt1+' e ';
         data += verbaleCompleto.art2+' '+verbaleCompleto.codArt2+' del CdS perche\': ';
@@ -401,7 +407,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
         data += 'ha violato art. '+verbaleCompleto.art1+' '+verbaleCompleto.codArt1+'  del CdS perche\': '+verbaleCompleto.descrArt1+'\n\n';
       }
 
-      if(verbaleCompleto.descrMancataCont != '') 
+      if(verbaleCompleto.descrMancataCont != '')
         data += 'La violazione non e\' stata immediatamente contestata a causa : '+verbaleCompleto.descrMancataCont+' \n\n';
 
       var puntiTotali   = parseInt(verbaleCompleto.puntiArt1) + parseInt(verbaleCompleto.puntiArt2);
@@ -425,7 +431,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
         data += 'Gli accertatori: '+verbaleCompleto.agenteNomeVerbale+' / '+verbaleCompleto.agente2NomeVerbale+' \n';
       else
         data += 'L\'accertatore: '+verbaleCompleto.agenteNomeVerbale+' \n\n';
-  
+
       data += 'Firma _______________________________________ \n\n';
 
       data += 'AVVERTENZE PER AVVISO \n';
@@ -446,6 +452,17 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
       if (day.length < 2) day = '0' + day;
 
       return [day, month, year].join('/');
+    },
+    showInformationMessage: function(title,message) {
+      var alertPopupMessage = $ionicPopup.alert({
+         title: title,
+         template: message,
+         okText: 'Chiudi',
+         okType: 'button-positive'
+      });
+      alertPopupMessage.then(function(res) {
+        alertPopupMessage.close();
+      });
     },
   };
 })
