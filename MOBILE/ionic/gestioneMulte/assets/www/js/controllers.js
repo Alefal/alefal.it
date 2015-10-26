@@ -411,7 +411,7 @@ angular.module('starter.controllers', [])
     if (localStorage.getItem('datiVerbaleOffline')) {
       //Si devono PRIMA sincronizzare i dati
       $ionicLoading.hide();
-      $scope.showAlertMessage('Sicronizzate dati','Trovati dei dati salvati in memoria. Devono essere sincronizzati tali dati prima di procedere alla stesura di un nuovo verbale',true);
+      $scope.showAlertMessage('Sincronizzare dati','Trovati dei dati salvati in memoria. Devono essere sincronizzati tali dati prima di procedere alla stesura di un nuovo verbale',true);
     }
   }
 

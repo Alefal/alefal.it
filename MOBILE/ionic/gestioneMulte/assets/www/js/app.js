@@ -50,7 +50,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 
     //TEST WITH BROWSER: Check Connection
     
-    $rootScope.checkNoConnection = false;
+    $rootScope.checkNoConnection = true;
     
 /*****
     document.addEventListener('deviceready', function () {
@@ -265,9 +265,9 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
     },
     bluetoothPrinter: function(section,verbaleCompleto) {
 
-      //console.log(verbaleCompleto);
-      //$rootScope.globFunc.templateStampa(verbaleCompleto);
-      //return false;
+      console.log(verbaleCompleto);
+      $rootScope.globFunc.templateStampa(verbaleCompleto);
+      return false;
 
       //BlueTooth Printer
       var stampanteBluetoothName = localStorage.getItem('stampanteBluetooth');
@@ -410,8 +410,10 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
       if(verbaleCompleto.descrMancataCont != '')
         data += 'La violazione non e\' stata immediatamente contestata a causa : '+verbaleCompleto.descrMancataCont+' \n\n';
 
-      var puntiTotali   = parseInt(verbaleCompleto.puntiArt1) + parseInt(verbaleCompleto.puntiArt2);
-      var importoTotale = parseFloat(verbaleCompleto.importoArt1) + parseInt(verbaleCompleto.importoArt2);
+      var puntiTotali         = (parseInt(verbaleCompleto.puntiArt1) || 0) + (parseInt(verbaleCompleto.puntiArt2) || 0);
+      var importoTotale       = (parseFloat(verbaleCompleto.importoArt1) || 0) + (parseFloat(verbaleCompleto.importoArt2) || 0);
+      var importoSconto       = importoTotale * 30 / 100;
+      var importoTotaleSconto = importoTotale - importoSconto;
 
       if(verbaleCompleto.sanzAccDescrArt1 != '')
         data += 'Sanzioni accessoria: '+verbaleCompleto.sanzAccDescrArt1+' \n';
@@ -425,7 +427,9 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
       if(puntiTotali > 0)
         data += 'L\'infrazione comporta la decurtazione di punti : '+puntiTotali+' \n\n';
 
-      data += 'E\' ammesso pagamento in misura ridotta di Euro '+importoTotale+' (Vedi Avvertenze) \n\n';
+      data += 'E\' ammesso pagamento in misura ridotta di Euro '+importoTotale+' (Vedi Avvertenze) \n';
+      data += 'TUTTAVIA, SE SI EFFETTUA IL PAGAMENTO ENTRO 5 GIORNI DALLA DATA DI NOTIFICA/CONTESTAZIONE, SI PUO\' GODERE DELLO SCONTO DEL 30%. \n';
+      data += 'Importo minimo scontato Euro '+importoTotaleSconto.toFixed(2)+'. \n\n';
 
       if(verbaleCompleto.agente2Verbale != 0)
         data += 'Gli accertatori: '+verbaleCompleto.agenteNomeVerbale+' / '+verbaleCompleto.agente2NomeVerbale+' \n';

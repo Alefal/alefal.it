@@ -1,5 +1,5 @@
 "Comando Polizia Locale  di " @@##ENTE##@@
-"Violation of the trafficlaw/Violation du code dela rue."
+"Violation of the traffic law/Violation du code de la rue."
 
 "Avviso accertamento di  violazione al Cod. della Strada N.:" @@##NUMVERBALE##@@
 
@@ -18,6 +18,9 @@ Oppure
 @@##DESPUNTI##@@
 
 "E' ammesso pagamento in misura ridotta di Euro  " @@##IMPORTO##@@ " (Vedi Avvertenze)"
+TUTTAVIA, SE SI EFFETTUA IL PAGAMENTO ENTRO 5 GIORNI DALLA DATA DI NOTIFICA/CONTESTAZIONE, SI PUO' GODERE DELLO SCONTO DEL 30%.
+Importo minimo scontato Euro @@##IMPORTOSCONTO30##@@.
+
 
 "Gli accertatori:" @@##NOMEAGE1##@@/@@##NOMEAGE2##@@
     OPPURE
