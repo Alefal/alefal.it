@@ -57,12 +57,12 @@ angular.module('starter.controllers', [])
     });
    };
 
-  $scope.deviceRegisteredError = false;
+  $scope.deviceRegisteredError        = false;
   $scope.deviceRegisteredErrorMessage = '';
-  $scope.deviceNotRegistered = false;
-  $scope.deviceFirstRegistered = false;
-  $scope.deviceCompleteRegistered = false;
-  $scope.userLoggedFailed = false;
+  $scope.deviceNotRegistered          = false;
+  $scope.deviceFirstRegistered        = false;
+  $scope.deviceCompleteRegistered     = false;
+  $scope.userLoggedFailed             = false;
 
   if(localStorage.getItem('deviceRegistered')) {
     $scope.deviceNotRegistered = false;
@@ -74,6 +74,12 @@ angular.module('starter.controllers', [])
     $ionicLoading.show({
       template: 'Attendere...'
     });
+
+    $scope.deviceRegisteredError        = false;
+    $scope.deviceRegisteredErrorMessage = '';
+    $scope.deviceFirstRegistered        = false;
+    $scope.deviceCompleteRegistered     = false;
+    $scope.userLoggedFailed             = false;
 
     var deviceUUID  = localStorage.getItem('deviceUUID');
     var deviceModel = localStorage.getItem('deviceModel');
@@ -124,7 +130,11 @@ angular.module('starter.controllers', [])
       template: 'Attendere...'
     });
 
-    $scope.deviceCompleteRegistered = false;
+    $scope.deviceRegisteredError        = false;
+    $scope.deviceRegisteredErrorMessage = '';
+    $scope.deviceFirstRegistered        = false;
+    $scope.deviceCompleteRegistered     = false;
+    $scope.userLoggedFailed             = false;
 
     if(!localStorage.getItem('deviceRegistered')) {
       $scope.deviceFirstRegistered = true;
@@ -545,20 +555,23 @@ angular.module('starter.controllers', [])
 
     console.log($scope.tipoVeicoloCode);
 
-    if (typeof($scope.numeroVerbale) == 'undefined') {
+    if (typeof($scope.numeroVerbale) == 'undefined' ||
+          $scope.numeroVerbale == '') {
       $scope.fieldsRequired = true;
       $scope.verbaleRequired = false;
       $scope.datiVerbaleRequired = true;
       $ionicScrollDelegate.scrollTop(true);
       return false;
-    } else if(typeof($scope.targaVeicolo) == 'undefined') {
+    } else if(typeof($scope.targaVeicolo) == 'undefined' ||
+          $scope.targaVeicolo == '') {
       $scope.fieldsRequired = true;
       $scope.verbaleRequired = false;
       $scope.datiVerbaleRequired = false;
       $scope.targaVeicoloRequired = true;
       $ionicScrollDelegate.scrollTop(true);
       return false;
-    } else if(typeof($rootScope.indirizzoId) == 'undefined') {
+    } else if(typeof($rootScope.indirizzoId) == 'undefined' ||
+          $rootScope.indirizzoId == '') {
       $scope.fieldsRequired = true;
       $scope.verbaleRequired = false;
       $scope.datiVerbaleRequired = false;
@@ -568,7 +581,10 @@ angular.module('starter.controllers', [])
       return false;
     } else if(typeof($scope.art1) == 'undefined' ||
               typeof($scope.codArt1) == 'undefined' ||
-              typeof($scope.descrArt1) == 'undefined') {
+              typeof($scope.descrArt1) == 'undefined' ||
+              $scope.art1 == '' ||
+              $scope.codArt1 == '' ||
+              $scope.descrArt1 == '') {
       $scope.fieldsRequired = true;
       $scope.verbaleRequired = false;
       $scope.datiVerbaleRequired = false;
@@ -1139,7 +1155,8 @@ angular.module('starter.controllers', [])
 .controller('StampanteCtrl', function($scope,$rootScope,$ionicLoading,ModalService,ajaxCallServices) {
 
   $rootScope.checkPrintTestResult = '';
-  $scope.checkPrintFound = false;
+  $scope.checkPrintFound          = false;
+  $rootScope.resultPrintTestShow  = false;
 
   var stampanteBluetoothName = localStorage.getItem('stampanteBluetooth');
 
@@ -1155,6 +1172,7 @@ angular.module('starter.controllers', [])
 
   $scope.bluetoothPrinter = function() {
     console.log('bluetoothPrinter');
+    $rootScope.resultPrintTestShow = false;
     $rootScope.globFunc.bluetoothPrinter('stampante');
   }
 

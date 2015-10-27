@@ -22,7 +22,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
       uuid: '1234567890',
       version: '1.1'
     };
-/*****    
+/*****
     $rootScope.device = {
       model: $cordovaDevice.getModel(),
       platform: $cordovaDevice.getPlatform(),
@@ -50,7 +50,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 
     //TEST WITH BROWSER: Check Connection
     
-    $rootScope.checkNoConnection = true;
+    $rootScope.checkNoConnection = false;
     
 /*****
     document.addEventListener('deviceready', function () {
@@ -245,7 +245,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 
   return ajaxCallServices;
 })
-.factory('globalFunction', function($state,$rootScope,/*$cordovaBluetoothSerial,*/$ionicPopup) {
+.factory('globalFunction', function($state,$rootScope/*,$cordovaBluetoothSerial*/,$ionicPopup,$ionicLoading) {
   return {
     exitApp: function() {
       /* NON LI CANCELLO PER ACCESSO OFFLINE...
@@ -264,16 +264,20 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
       $state.go('app.welcome');
     },
     bluetoothPrinter: function(section,verbaleCompleto) {
-
+      //TEST WITH BROWSER
+      
       console.log(verbaleCompleto);
       $rootScope.globFunc.templateStampa(verbaleCompleto);
       return false;
+      /**********/
+
+      $ionicLoading.show({
+        template: 'Attendere...'
+      });
 
       //BlueTooth Printer
       var stampanteBluetoothName = localStorage.getItem('stampanteBluetooth');
       console.log('stampanteBluetoothName: '+stampanteBluetoothName);
-
-      $rootScope.resultPrintTestShow = false;
 
       var resultTest = 'Connessione a ';
 
@@ -286,6 +290,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 
           bluetoothSerial.list(function(devices) {
 
+            var printerFound = false;
             devices.forEach(function(device) {
 
               console.log(device.id+' - '+device.name);
@@ -293,6 +298,8 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
               resultTest += stampanteBluetoothName+' <br/>';
 
                 if(device.name == stampanteBluetoothName) {
+                  printerFound = true;
+                  console.log('printerFound '+printerFound);
 
                   deviceBluetoothMac = device.id;
                   console.log(deviceBluetoothMac);
@@ -330,12 +337,14 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
                          bluetoothSerial.write(data,
                            function() {
                              console.log('-> writeSuccess');
-                             $rootScope.globFunc.showInformationMessage('Stampa','Stampa eseguita');
+                             $rootScope.globFunc.showInformationMessage('Stampa','Stampa eseguita','writeOK');
+                             $ionicLoading.hide();
                              resultTest += 'writeSuccess <br/>';
                            },
                            function() {
                              console.log('-> writeFailure');
-                             $rootScope.globFunc.showInformationMessage('Errore','Stampa fallita. Riprovare!');
+                             $rootScope.globFunc.showInformationMessage('Errore','Stampa fallita. Riprovare!','writeKO');
+                             $ionicLoading.hide();
                              resultTest += 'writeFailure <br/>';
                            }
                          );
@@ -343,7 +352,8 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
                         },
                         function() {
                           console.log('Bluetooth is *not* connected');
-                          $rootScope.globFunc.showInformationMessage('Errore','Bluetooth non connesso. Riprovare!');
+                          $rootScope.globFunc.showInformationMessage('Errore','Bluetooth non connesso. Riprovare!','blthNotConnect');
+                          $ionicLoading.hide();
                           resultTest += 'Bluetooth is *not* connected <br/>';
                         }
                       );
@@ -352,22 +362,33 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 
                     function() {
                       console.log('-> connectFailure');
-                      $rootScope.globFunc.showInformationMessage('Errore','Connessione fallita alla stampante. Riprovare!');
+                      $rootScope.globFunc.showInformationMessage('Errore','Connessione fallita alla stampante. La stampante e\' accesa ? Riprovare!','connectKO');
+                      $ionicLoading.hide();
                       resultTest += 'connectFailure <br/>';
                     }
 
                   );
                 }
               })
+
+              if(!printerFound) {
+                console.log('-> stampante '+stampanteBluetoothName+' non trovata');
+                $rootScope.globFunc.showInformationMessage('Errore','Stampante '+stampanteBluetoothName+' non trovata. Verificare che il nome della stampante associata al device sia la stessa visualizzata nella sezione "Stampante"!','notFound');
+                $ionicLoading.hide();
+                resultTest += '-> stampante '+stampanteBluetoothName+' non trovata <br/>';
+              }
             }, function() {
                 console.log('-> listFailure');
+                $rootScope.globFunc.showInformationMessage('Errore','Nessuna stampante trovata!','listOk');
+                $ionicLoading.hide();
                 resultTest += 'listFailure <br/>';
             });
 
 
         },
         function() {
-          $rootScope.globFunc.showInformationMessage('Errore','Attivare bluetooth e riprovare!');
+          $rootScope.globFunc.showInformationMessage('Errore','Attivare bluetooth e riprovare!','blthDisable');
+          $ionicLoading.hide();
           resultTest += 'Bluetooth is *not* enabled';
         }
       );
@@ -429,7 +450,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 
       data += 'E\' ammesso pagamento in misura ridotta di Euro '+importoTotale+' (Vedi Avvertenze) \n';
       data += 'TUTTAVIA, SE SI EFFETTUA IL PAGAMENTO ENTRO 5 GIORNI DALLA DATA DI NOTIFICA/CONTESTAZIONE, SI PUO\' GODERE DELLO SCONTO DEL 30%. \n';
-      data += 'Importo minimo scontato Euro '+importoTotaleSconto.toFixed(2)+'. \n\n';
+      data += 'Importo minimo scontato Euro '+importoTotaleSconto.toFixed(2)+' \n\n';
 
       if(verbaleCompleto.agente2Verbale != 0)
         data += 'Gli accertatori: '+verbaleCompleto.agenteNomeVerbale+' / '+verbaleCompleto.agente2NomeVerbale+' \n';
@@ -457,15 +478,17 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 
       return [day, month, year].join('/');
     },
-    showInformationMessage: function(title,message) {
-      var alertPopupMessage = $ionicPopup.alert({
+    showInformationMessage: function(title,message,section) {
+      var nomePopup = 'alertPopupMessage'+section;
+      var nomePopup = $ionicPopup.alert({
          title: title,
          template: message,
          okText: 'Chiudi',
          okType: 'button-positive'
       });
-      alertPopupMessage.then(function(res) {
-        alertPopupMessage.close();
+      nomePopup.then(function(res) {
+        $rootScope.resultPrintTestShow = false;
+        nomePopup.close();
       });
     },
   };

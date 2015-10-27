@@ -56,7 +56,8 @@ if($items) {
             'DESC_MANC_CONT_VERB'			=> $item->DESC_MANC_CONT_VERB,
             'COD_OBLG_VERB'					=> $item->COD_OBLG_VERB,
             'COD_TRSG_VERB'					=> $item->COD_TRSG_VERB,
-            'IMG_VERB'						=> $item->IMG_VERB,
+            //'IMG_VERB'                      => $item->IMG_VERB,
+            'IMG_VERB'						=> '', //Problemi recupero BLOB
             'FILE_PATH_IMG_VERB'			=> $item->FILE_PATH_IMG_VERB,
             'LATI_VERB'						=> $item->LATI_VERB,
             'LONG_VERB'						=> $item->LONG_VERB,
@@ -74,8 +75,8 @@ if($items) {
 }
 
 $finalArray[] = array(
-    'response'   => $resultArray,
-    'items'   => $itemsArray
+    'response'  => $resultArray,
+    'items'     => $itemsArray
 );
 echo json_encode($finalArray);
 exit();
