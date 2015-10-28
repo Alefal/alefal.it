@@ -1,5 +1,5 @@
 // Ionic Starter App
-angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalprecht.translate'/*, 'ngCordova'*/])
+angular.module('starter', ['ionic','starter.controllers','starter.factory','ngSanitize','pascalprecht.translate'/*, 'ngCordova'*/])
 
 .run(function($ionicPlatform,$ionicPopup,$ionicLoading,PushProcessingService/*,$rootScope,$cordovaNetwork*/) {
   $ionicPlatform.ready(function() {
@@ -95,7 +95,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
       templateUrl: 'templates/container.html',
       controller: 'WelcomeCtrl'
     })
-
+    /*
     .state('app.welcome', {
       url: '/welcome',
       views: {
@@ -105,6 +105,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
         }
       }
     })
+    */
     .state('app.login', {
       url: '/login',
       views: {
@@ -197,7 +198,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
         }
       }
     })
-    //PAGES: manager
+    /*
     .state('app.nightSummary', {
       url: '/nightSummary',
       views: {
@@ -207,6 +208,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
         }
       }
     })
+    */
     //PAGES: guest
     .state('app.menu', {
       url: '/menu',
@@ -231,30 +233,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
   $urlRouterProvider.otherwise('/app/login');
 })
 
-.factory('ajaxCallServices', function($http) {
 
-  var ajaxCallServices = {};
-  var urlBase = 'http://torneodeirionistorici.altervista.org';
-
-  /***** getReleasesRest ****/
-  ajaxCallServices.getReleasesRest = function (isOnline,isOffline) {
-    //http://torneodeirionistorici.altervista.org/wp-json/posts?filter[tag]=comunicatiUfficiali
-
-    /*
-    console.log(helloWorld.sayHello());
-    console.log(helloWorldFromFactory.sayHello());
-    console.log(helloWorldFromService.sayHello());
-    */
-
-    if(isOnline && !isOffline) {
-      return $http.get(urlBase+'/wp-json/posts?filter[tag]=comunicatiUfficiali');
-    } else {
-      return $http.get('json/releases.json');
-    }
-  };
-
-  return ajaxCallServices;
-})
 .factory('globalFunction', function($state) {
   return {
     exitApp: function() {

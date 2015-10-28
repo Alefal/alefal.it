@@ -42,6 +42,16 @@ angular.module('starter.controllers', [])
   $ionicLoading.hide();
 
   $scope.login = function() {
+
+    ajaxCallServices.login('ivoru')
+      .success(function (data) {
+        console.log('data --->'+JSON.stringify(data));
+
+        $ionicLoading.hide();
+      }).error(function (error) {
+        $scope.status = 'Unable to load customer data' + error;
+      });
+
     $scope.userLogged = false;
 
     /*
