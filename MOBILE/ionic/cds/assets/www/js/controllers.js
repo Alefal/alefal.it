@@ -5,45 +5,20 @@ angular.module('starter.controllers', [])
     template: 'Loading...'
   });
 
-  /*
-  document.addEventListener('deviceready', function () {
-      var type = $cordovaNetwork.getNetwork()
-      var isOnline = $cordovaNetwork.isOnline()
-      var isOffline = $cordovaNetwork.isOffline()
 
-      ajaxCallServices.getReleasesRest(isOnline,isOffline)
-          .success(function (releases) {
-            //console.log('releases --->'+JSON.stringify(releases));
-            $scope.releases = releases;
+  /***** TEST REST CALL *****/
+  ajaxCallServices.getReservation('')
+      .success(function (data) {
+        console.log('data --->'+JSON.stringify(data));
 
-            $ionicLoading.hide();
-          }).error(function (error) {
-            $scope.status = 'Unable to load customer data' + error;
-          });
+        $ionicLoading.hide();
+      }).error(function (error) {
+        $scope.status = 'Unable to load customer data' + error;
+      });
 
-  }, false);
-  */
 
-  $ionicLoading.hide();
-})
-.controller('LoginCtrl', function($scope,$rootScope,$ionicLoading,ajaxCallServices,$state/*,$cordovaNetwork*/) {
-  $ionicLoading.show({
-    template: 'Loading...'
-  });
 
-  $scope.userLogged = false;
-
-  $scope.authorization = {
-    username: '',
-    password : '',
-    role: ''  
-  }; 
-
-  $ionicLoading.hide();
-
-  $scope.login = function() {
-
-    ajaxCallServices.login('ivoru')
+  ajaxCallServices.login('ivoru')
       .success(function (data) {
         console.log('data --->'+JSON.stringify(data));
 
@@ -69,6 +44,25 @@ angular.module('starter.controllers', [])
       }).error(function (error) {
         $scope.status = 'Unable to load customer data' + error;
       });
+
+  $ionicLoading.hide();
+})
+.controller('LoginCtrl', function($scope,$rootScope,$ionicLoading,ajaxCallServices,$state/*,$cordovaNetwork*/) {
+  $ionicLoading.show({
+    template: 'Loading...'
+  });
+
+  $scope.userLogged = false;
+
+  $scope.authorization = {
+    username: '',
+    password : '',
+    role: ''  
+  }; 
+
+  $ionicLoading.hide();
+
+  $scope.login = function() {
 
     $scope.userLogged = false;
 

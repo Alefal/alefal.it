@@ -331,6 +331,13 @@ angular.module('starter.controllers', [])
                 var server = $rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/upload.php?id='+result[0].message;
                 var filePath = imageVerbale.replace(/"/g, '');
                 console.log(filePath);
+
+
+                /***** Picture Upload Error Code: 3 - Aggiungere all'header
+                this.op.headers = {
+                  Connection: "close"
+                };
+                *****/
                 var options = {};
 
                 if (filePath != '') {
@@ -692,6 +699,14 @@ angular.module('starter.controllers', [])
                 var filePath = $scope.picData;
                 console.log(filePath);
                 var options = {};
+
+                /***** Picture Upload Error Code: 3 - Aggiungere all'header
+                var options = new FileUploadOptions();
+                options.chunkedMode = false;
+                options.headers = {
+                    Connection: "close"
+                }
+                *****/
 
                 if (filePath != '') {
                   $cordovaFileTransfer.upload(server, filePath, options)

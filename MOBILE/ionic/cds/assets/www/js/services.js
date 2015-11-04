@@ -51,23 +51,40 @@ angular.module('starter.factory', [])
 
   /***** getRequest (Request request)  *****/
 
-  /***** getMenu() *****/
+
+
+
+
+  /***** KO: getReservation(Reservation) *****/
+  ajaxCallServices.getReservation = function (reservation) {
+    var parameter = JSON.stringify({"id_reservation":null,"people_num":null,"date_reservation":null,"code":"A01moder","note":null,"code_table":"","user":null});
+
+    return $http({
+      url:urlBase+'nightService/getReservation/',
+      method:'POST',
+      data: parameter,
+      headers: { 
+        'Authorization': 'Basic bW9kZXI6MTExMTEx' 
+      }
+    });
+  };
+
+  /***** OK: getMenu() *****/
   ajaxCallServices.getMenu = function (category) {
     //{"category":null}
     //VALORI POSSIBILI: bottles, beverages
-    var parameter = JSON.stringify({category:category});
+    var parameter = JSON.stringify({"category":null});
 
     return $http({
       url:urlBase+'nightService/getMenu/',
       method:'POST',
       data: parameter,
       headers: { 
-        'Authorization': 'Basic bW9kZXI6MTExMTEx',
-        'Content-Type': 'application/json' 
+        'Authorization': 'Basic bW9kZXI6MTExMTEx' 
       }
     });
   };
-  /***** login(User) *****/
+  /***** OK: login(User) *****/
   ajaxCallServices.login = function (username) {
     var parameter = JSON.stringify({login:username});
 
@@ -81,11 +98,14 @@ angular.module('starter.factory', [])
     });
   };
 
-  /**** getRoles() *****/
+  /**** OK: getRoles() *****/
   ajaxCallServices.getRoles = function () {
     return $http({
       url:urlBase+'baseService/getRoles/',
-      method:'POST'
+      method:'GET',
+      headers: { 
+        'Authorization': 'Basic bW9kZXI6MTExMTEx'
+      }
     });
   };
 
@@ -97,17 +117,7 @@ angular.module('starter.factory', [])
 
   /**** callWaiter(Table) *****/
   ajaxCallServices.callWaiter = function (username) {
-    var parameter = JSON.stringify({login:username});
-
-    return $http({
-      url:urlBase+'baseService/login/',
-      method:'POST',
-      data: parameter,
-      headers: { 
-        'Authorization': 'Basic bW9kZXI6MTExMTEx',
-        'Content-Type': 'application/json' 
-      }
-    });
+   
   };
 
   return ajaxCallServices;
