@@ -334,9 +334,11 @@ angular.module('starter.controllers', [])
 
 
                 /***** Picture Upload Error Code: 3 - Aggiungere all'header
-                this.op.headers = {
-                  Connection: "close"
-                };
+                var options = new FileUploadOptions();
+                options.chunkedMode = false;
+                options.headers = {
+                  Connection: 'close'
+                }
                 *****/
                 var options = {};
 
@@ -704,7 +706,7 @@ angular.module('starter.controllers', [])
                 var options = new FileUploadOptions();
                 options.chunkedMode = false;
                 options.headers = {
-                    Connection: "close"
+                  Connection: 'close'
                 }
                 *****/
 

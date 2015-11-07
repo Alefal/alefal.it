@@ -8,7 +8,8 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 
   $ionicPlatform.ready(function() {
 
-    $rootScope.server = 'http://localhost/alefal.it/PROJECTS/wordpress-4.2.3';
+    $rootScope.server = 'http://localhost';
+    //$rootScope.server = 'http://localhost/alefal.it/PROJECTS/wordpress-4.2.3';
     //$rootScope.server = 'http://10.80.18.107/alefal.it/PROJECTS/wordpress-4.2.3';
     //$rootScope.server = 'http://192.168.1.188/alefal.it/PROJECTS/wordpress-4.2.3';
     //$rootScope.server = 'http://cdsmobile.swstudio.net';
