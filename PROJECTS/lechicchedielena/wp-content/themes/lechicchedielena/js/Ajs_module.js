@@ -2,8 +2,8 @@ var lechicchedielena = angular.module('lechicchedielena', ['ngSanitize', 'pascal
 
 .run(function($rootScope){
 	$rootScope._ = _;
-	//$rootScope.server = 'http://localhost/alefal.it/PROJECTS/lechicchedielena';
-	$rootScope.server = 'http://www.lechicchedielena.it';
+	$rootScope.server = 'http://localhost/alefal.it/PROJECTS/lechicchedielena';
+	//$rootScope.server = 'http://www.lechicchedielena.it';
 })
 .config(function($translateProvider) {
 

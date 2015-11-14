@@ -1,26 +1,23 @@
 angular.module('lechicchedielena')
 
-    .factory('ajaxCallServices', function($http) {
+    .factory('ajaxCallServices', function($http,$rootScope) {
 
         var ajaxCallServices = {};
-        //var urlBase = 'http://localhost/alefal.it/PROJECTS/wordpress-4.2.3/';
-        var urlBase = 'http://www.lechicchedielena.it/';
-        //var urlBase = 'wp-content/themes/lechicchedielena/json/';
-
+        
         /***** getEvidenceCollections ****/
         ajaxCallServices.getEvidenceCollections = function () {
             //return $http.get(urlBase+ 'collections.json');
-            return $http.get(urlBase+'?json=get_tag_posts&tag_slug=productsEvidence');
+            return $http.get($rootScope.server+'?json=get_tag_posts&tag_slug=productsEvidence');
         };
         /***** getCollections ****/
         ajaxCallServices.getCollections = function () {
             //return $http.get(urlBase+ 'collections.json');
-            return $http.get(urlBase+'?json=get_tag_posts&tag_slug=products');
+            return $http.get($rootScope.server+'?json=get_tag_posts&tag_slug=products');
         };
         /***** getAllCollections ****/
         ajaxCallServices.getAllCollections = function () {
             //return $http.get(urlBase+ 'collections.json');
-            return $http.get(urlBase+'?json=get_tag_posts&tag_slug=productsAll');
+            return $http.get($rootScope.server+'?json=get_tag_posts&tag_slug=productsAll');
         };
 
         /**
