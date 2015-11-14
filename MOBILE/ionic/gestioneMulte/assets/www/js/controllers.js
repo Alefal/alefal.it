@@ -636,7 +636,8 @@ angular.module('starter.controllers', [])
         'tipoVeicolo'         : $scope.tipoVeicoloCode,
         'tipoDescrVeicolo'    : $scope.tipoVeicoloDescr,
         'targaVeicolo'        : $scope.targaVeicolo,
-        'modelloVeicolo'      : $scope.modelloVeicolo,
+        'modelloVeicolo'      : angular.element(document.querySelector('#MODELLO_VERB')).val(),
+        //'modelloVeicolo'      : $scope.modelloVeicolo,
 
         'indirizzo'           : $rootScope.indirizzoId,
         'indirizzoNome'       : $rootScope.indirizzo,
@@ -869,7 +870,7 @@ angular.module('starter.controllers', [])
     $scope.tipoVeicolo    = TIPO;
     $scope.modelloVeicolo = MARCA+' - '+MODELLO;
 
-    //Se inizio a scrivere nel campo e poi scelgo il valore da inseriree dalla modale, il val() non mi cambia...
+    //Se inizio a scrivere nel campo e poi scelgo il valore da inserire dalla modale, il val() non mi cambia...
     angular.element(document.querySelector('#MODELLO_VERB')).val($scope.modelloVeicolo);
 
     $scope.modal.hide();

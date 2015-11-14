@@ -1,0 +1,16 @@
+.wp-list-table th.column-id, 
+.wp-list-table th.column-targa, 
+.wp-list-table th.column-note { 
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.wp-list-table .column-id { 
+	width: 10%; 
+}
+.wp-list-table .column-targa { 
+	width: 20%; 
+}
+.wp-list-table .column-note { 
+	width: 70%;
+}
