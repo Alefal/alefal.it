@@ -6,7 +6,7 @@ angular.module('starter.controllers', [])
   });
 
 
-  /***** TEST REST CALL *****/
+  /***** TEST REST CALL 
   ajaxCallServices.getReservation('')
       .success(function (data) {
         console.log('data --->'+JSON.stringify(data));
@@ -44,7 +44,7 @@ angular.module('starter.controllers', [])
       }).error(function (error) {
         $scope.status = 'Unable to load customer data' + error;
       });
-
+    *****/
   $ionicLoading.hide();
 })
 .controller('LoginCtrl', function($scope,$rootScope,$ionicLoading,ajaxCallServices,$state/*,$cordovaNetwork*/) {
