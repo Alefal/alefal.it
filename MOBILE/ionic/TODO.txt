@@ -1,6 +1,6 @@
 Gestione Multe:
 OK -> problema inserimento manuale "Modello veicolo": viene valorizzato SOLO con la scelta da modale; il testo inserito non viene considerato
-- generare app versione 1.1.01
+OK -> generare app versione 1.1.01
 
 La Champagneria della Sala:
 - rest call
