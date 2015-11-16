@@ -1,0 +1,17 @@
+{
+   "id_reservation":null,
+   "people_num":null,
+   "date_reservation":"2010-12-31",
+   "code":"A01moder",
+   "note":null,
+   "code_table":{
+      "code":"A01",
+      "is_reserved":null,
+      "width":null,
+      "height":null,
+      "top":null,
+      "waiter_id":null,
+      "left":null
+   },
+   "user":null
+}

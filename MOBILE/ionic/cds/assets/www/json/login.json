@@ -1,0 +1,14 @@
+{
+   "id":41,
+   "login":"ivoru",
+   "name":"Russo",
+   "surname":"Russo",
+   "password":"ererer",
+   "mail":"test@test",
+   "activated":false,
+   "device_id":null,
+   "role":{
+      "id":8,
+      "role":"cliente"
+   }
+}
