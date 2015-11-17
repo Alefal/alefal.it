@@ -217,7 +217,7 @@ angular.module('starter.controllers', [])
 
         $ionicLoading.hide();
       }).error(function (error) {
-        $scope.status = 'Unable to load customer data' + error;
+        alert('Unable to load customer data' + error);
       });
     
   };
@@ -227,14 +227,23 @@ angular.module('starter.controllers', [])
 })
 .controller('ReservationsCtrl', function($scope,$rootScope,$ionicLoading,ajaxCallServices,$state,$ionicModal/*,$cordovaNetwork*/) {
   $scope.role = $rootScope.role;
+  $scope.tableReservedName    = '';
+  $scope.tableReservedTime    = '';
+  $scope.tableReservedNumber  = '';
+
+  $ionicLoading.show({
+    template: 'Loading...'
+  });
   
+  //TODO: cambiare la data di ricerca; dovrebbe essere TODAY
   ajaxCallServices.getAllReservation('2010-12-32')
     .success(function (data) {
       console.log('getAllReservation --->'+JSON.stringify(data));
       $scope.items = data;
       $ionicLoading.hide();
     }).error(function (error) {
-      $scope.status = 'Unable to load customer data' + error;
+      $ionicLoading.hide();
+      alert('Unable to load customer data' + error);
     });
 
   //UpdateReservation
@@ -244,8 +253,35 @@ angular.module('starter.controllers', [])
     $scope.UpdateReservation = UpdateReservation;
   });
   $scope.closeUpdateReservation = function(operation) {
-    if(operation == 'UpdateReservation') {
-      alert('Aggiorno info tavolo...');
+    if(operation == 'updateReservation') {
+
+      /*
+      item.id_reservation;
+      console.log(angular.element(document.querySelector('#TRNumber')).val());
+      item.date_reservation
+      item.code
+      item.code_table.code
+      console.log(angular.element(document.querySelector('#TRName')).val());
+      console.log(angular.element(document.querySelector('#TRTime')).val());
+      */
+
+      /*
+      $ionicLoading.show({
+        template: 'Loading...'
+      });
+
+      ajaxCallServices.updateReservation('1','22','2010-12-32','A01moder','A01','5')
+      .success(function (data) {
+        console.log('updateReservation --->'+JSON.stringify(data));
+
+        $ionicLoading.hide();
+      }).error(function (error) {
+        $scope.status = 'Unable to load customer data' + error;
+      });
+      */
+
+
+
     }
     $scope.UpdateReservation.hide();
   };

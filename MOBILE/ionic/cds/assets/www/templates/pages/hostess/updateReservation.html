@@ -8,41 +8,43 @@
     <ion-content class="padding">
         <div class="message-info message-info-striped">
             <i class="icon ion-ios-information-outline" style="font-size: 25px;"></i>
-            Select "Arrival people" and "People number" and click "Update" button -{{item.code_table.code}}-
+            Tavolo {{item.code_table.code}}
         </div>
 
-        <h4>Reseved to:</h4>
+        <h4>Riservato:</h4>
         <div class="list list-inset">
             <label class="item item-input">
                 <i class="icon ion-android-contact placeholder-icon"></i>
-                <input type="text" placeholder="John">
+                <input type="text" id="TRName" ng-value="item.code_table.waiter_id.name" />
             </label>
         </div>
         <div class="spacerVertical"></div>
 
-        <h4>Arrival time:</h4>
+        <h4>Arrivo:</h4>
         <div class="list list-inset">
             <label class="item item-input">
                 <i class="icon ion-ios-clock-outline placeholder-icon"></i>
-                <input type="time" formatted-time>
+                <!-- TODO: nel json manca l'orario di arrivo -->
+                <input type="time" id="TRTime" formatted-time value="21:00" />
             </label>
         </div>
         <div class="spacerVertical"></div>
 
-        <h4>People number:</h4>
+        <h4>Persone:</h4>
         <div class="list list-inset">
             <label class="item item-input">
                 <i class="icon ion-android-contacts placeholder-icon"></i>
-                <input type="number" placeholder="">
+                <input type="number" id="TRNumber" ng-value="item.people_num" />
             </label>
         </div>
         <div class="spacerVertical"></div>
-    </ion-content>
 
-    <ion-footer-bar>
-        <button class="button button-assertive button-block icon-right ion-checkmark-round" ng-click="closeUpdateReservation('updateTable')">
-            Update
-        </button>
-    </ion-footer-bar>
+        <div class="row eventTab">
+            <div class="col">
+                <button class="button button-block button-assertive icon-left ion-android-done" ng-click="closeUpdateReservation('updateReservation')"> Aggiorna</button>
+            </div>
+        </div>
+
+    </ion-content>
 
 </ion-modal-view>
