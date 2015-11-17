@@ -21,6 +21,7 @@
         <input type="password" name="password" id="password" placeholder="Password" ng-model="authorization.password">
       </label>
 
+      <!--
       <div class="spacerVertical"></div>
       <label class="item item-input item-select">
         <div class="input-label">
@@ -35,10 +36,67 @@
           <option value="6">Guest</option>
         </select>
       </label>
+      -->
+
       <div class="spacerVertical"></div>
       <button class="button button-block button-positive left-right ion-locked" ng-click="login()"> 
         <span ng-bind-html="'SignIn' | translate">&nbsp;</span>
       </button>
+
+      <style>
+      .card div {
+        font-size:9px;
+      }
+      </style>
+      <div class="card">
+        <div class="item item-divider">
+          UTENZE
+        </div>
+        <div class="item item-text-wrap">
+          <div class="row" align="left">
+            <div class="col"><strong>AUTH</strong></div>
+            <div class="col"><strong>User</strong></div>
+            <div class="col"><strong>Pass</strong></div>
+            <div class="col"><strong>Role</strong></div>
+          </div>
+
+          <div class="row" align="left">
+            <div class="col">ADMIN</div>
+            <div class="col">adm</div>
+            <div class="col">222222</div>
+            <div class="col"><i>service</i></div>
+          </div>
+
+          <div class="row" align="left">
+            <div class="col">CAMERIERE</div>
+            <div class="col">arianna</div>
+            <div class="col">love</div>
+            <div class="col"><i>waiters</i></div>
+          </div>
+
+          <div class="row" align="left">
+            <div class="col">DIRETTORE</div>
+            <div class="col">fsfsad</div>
+            <div class="col">dsasd</div>
+            <div class="col"><i>managers</i></div>
+          </div>
+
+          <div class="row" align="left">
+            <div class="col">ACCOMPAGNATRICE</div>
+            <div class="col">dfgsd</div>
+            <div class="col">gdsf</div>
+            <div class="col"><i>hostess</i></div>
+          </div>
+
+          <div class="row" align="left">
+            <div class="col">CLIENTE</div>
+            <div class="col">ivoru</div>
+            <div class="col"></div>
+            <div class="col"><i>guest</i></div>
+          </div>
+
+        </div>
+      </div>
 
       <div align="right">
         <span ng-bind-html="'Registration' | translate">&nbsp;</span>

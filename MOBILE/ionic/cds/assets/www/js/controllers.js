@@ -7,8 +7,8 @@ angular.module('starter.controllers', [])
 
 
     /***** TEST REST CALL *****/
-    ///////////////////////// GIFT
-    
+    ///////////////////////// GIFT 
+    /*
     ajaxCallServices.getAllGift('2010-12-32','A02ado')
       .success(function (data) {
         console.log('getAllGift --->'+JSON.stringify(data));
@@ -17,7 +17,6 @@ angular.module('starter.controllers', [])
       }).error(function (error) {
         $scope.status = 'Unable to load customer data' + error;
       });
-    /*
     ajaxCallServices.updateGift('1','22')
       .success(function (data) {
         console.log('updateGift --->'+JSON.stringify(data));
@@ -74,7 +73,7 @@ angular.module('starter.controllers', [])
         $scope.status = 'Unable to load customer data' + error;
       });
 
-    ajaxCallServices.getAllReservation('2010-12-32','ivoru')
+    ajaxCallServices.getAllReservation('2010-12-32')
       .success(function (data) {
         console.log('getAllReservation --->'+JSON.stringify(data));
 
@@ -112,7 +111,7 @@ angular.module('starter.controllers', [])
     */
     ///////////////////////// OTHER
     /*
-    ajaxCallServices.login('ivoru')
+    ajaxCallServices.login('dfgsd')
       .success(function (data) {
         console.log('login --->'+JSON.stringify(data));
 
@@ -120,7 +119,7 @@ angular.module('starter.controllers', [])
       }).error(function (error) {
         $scope.status = 'Unable to load customer data' + error;
       });
-
+    
     ajaxCallServices.getMenu('bottle')
       .success(function (data) {
         console.log('getMenu --->'+JSON.stringify(data));
@@ -150,7 +149,7 @@ angular.module('starter.controllers', [])
   $scope.userLogged = false;
 
   $scope.authorization = {
-    username: '',
+    username: 'dfgsd',
     password : '',
     role: ''  
   }; 
@@ -161,35 +160,66 @@ angular.module('starter.controllers', [])
 
     $scope.userLogged = false;
 
-    /*
-    Hostess</option>
-        <option value="2">Managers\Directors</option>
-        <option value="3">Waiters</option>
-        <option value="4">Customers ???</option>
-        <option value="5">Steward</option>
-        <option value="6">Guest
-    */
-    if($scope.authorization.role == 1) {
-      $rootScope.role = 'hostess';
-      $state.go('app.hostess');
-    } else if($scope.authorization.role == 2) {
-      $rootScope.role = 'managers';
-      $state.go('app.managers');
-    } else if($scope.authorization.role == 3) {
-      $rootScope.role = 'waiters';
-      $state.go('app.waiters');
-    } else if($scope.authorization.role == 4) {
-      $rootScope.role = 'customers';
-      $state.go('app.customers');
-    } else if($scope.authorization.role == 5) {
-      $rootScope.role = 'steward';
-      $state.go('app.steward');
-    } else if($scope.authorization.role == 6) {
-      $rootScope.role = 'guest';
-      $state.go('app.guest');
-    } else {
+    console.log('username ---> '+$scope.authorization.username);
+    console.log('password ---> '+$scope.authorization.password);
+
+    if($scope.authorization.username == '') {
       $scope.userLogged = true;
-    }
+      return;
+    } 
+
+    //OK: authentication senza password
+    ajaxCallServices.login($scope.authorization.username)
+      .success(function (data) {
+        //console.log('login --->'+JSON.stringify(data));
+        console.log(data.name+' - '+data.role.role);
+
+        $rootScope.userLoggedName = data.name;
+        var roleUser = data.role.role;
+        //OK
+        if(roleUser == 'hostess') {
+          $rootScope.role = 'hostess';
+          $rootScope.roleTitle = 'hostess';
+          $state.go('app.hostess');
+        } 
+        //OK
+        else if(roleUser == 'direttore') {
+          $rootScope.role = 'managers';
+          $rootScope.roleTitle = 'direttore';
+          $state.go('app.managers');
+        } 
+        //OK
+        else if(roleUser == 'cameriere') {
+          $rootScope.role = 'waiters';
+          $rootScope.roleTitle = 'cameriere';
+          $state.go('app.waiters');
+        } 
+        else if(roleUser == 'customers') {
+          $rootScope.role = 'customers';
+          $rootScope.roleTitle = 'customers';
+          $state.go('app.customers');
+        } 
+        else if(roleUser == 'steward') {
+          $rootScope.role = 'steward';
+          $rootScope.roleTitle = 'steward';
+          $state.go('app.steward');
+        } 
+        //OK
+        else if(roleUser == 'cliente') {
+          $rootScope.role = 'guest';
+          $rootScope.roleTitle = '';
+          $state.go('app.guest');
+        } 
+        //OK
+        else {
+          $scope.userLogged = true;
+        }
+
+        $ionicLoading.hide();
+      }).error(function (error) {
+        $scope.status = 'Unable to load customer data' + error;
+      });
+    
   };
 })
 .controller('HostessCtrl', function($scope,$rootScope,$ionicLoading,ajaxCallServices,$state,$ionicModal/*,$cordovaNetwork*/) {
@@ -198,9 +228,18 @@ angular.module('starter.controllers', [])
 .controller('ReservationsCtrl', function($scope,$rootScope,$ionicLoading,ajaxCallServices,$state,$ionicModal/*,$cordovaNetwork*/) {
   $scope.role = $rootScope.role;
   
+  ajaxCallServices.getAllReservation('2010-12-32')
+    .success(function (data) {
+      console.log('getAllReservation --->'+JSON.stringify(data));
+      $scope.items = data;
+      $ionicLoading.hide();
+    }).error(function (error) {
+      $scope.status = 'Unable to load customer data' + error;
+    });
+
   //UpdateReservation
   $ionicModal.fromTemplateUrl('templates/pages/hostess/updateReservation.html', {
-    scope: $scope
+    scope: $scope //recupera lo scope del padre
   }).then(function(UpdateReservation) {
     $scope.UpdateReservation = UpdateReservation;
   });
@@ -210,7 +249,9 @@ angular.module('starter.controllers', [])
     }
     $scope.UpdateReservation.hide();
   };
-  $scope.openUpdateReservation = function() {
+  $scope.openUpdateReservation = function(item) {
+    console.log('openUpdateReservation --->'+JSON.stringify(item));
+    $scope.item = item;
     $scope.UpdateReservation.show();
   };
 })

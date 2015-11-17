@@ -1,3 +1,24 @@
+/***** UTENZE
+AUTH ADMIN 
+  user: adm 
+  psw:  222222
+
+AUTH CAMERIERE 
+  user: arianna 
+  psw:  love
+
+AUTH DIRETTORE 
+  user: fsfsad 
+  psw:  dsasd
+
+AUTH ACCOMPAGNATRICE 
+  user: dfgsd 
+  psw:  gdsf
+
+AUTH CLIENTE
+  user: ivoru
+*****/
+
 /***** List dei servizi
 Tutti I servizi hanno "security policy provided by Spring". Di conseguenza sarà necessario inviare ad ogni chiamata le credenziali di autenticazione.
 
@@ -46,8 +67,8 @@ angular.module('starter.factory', [])
 .factory('ajaxCallServices', function($http) {
 
   var ajaxCallServices = {};
-  var urlBase = 'http://champagneriadellasala-disconnection.rhcloud.com/services/';
-  //var urlBase = 'http://localhost/services/';
+  //var urlBase = 'http://champagneriadellasala-disconnection.rhcloud.com/services/';
+  var urlBase = 'http://localhost/services/';
 
   /***** getRequest (Request request)  *****/
 

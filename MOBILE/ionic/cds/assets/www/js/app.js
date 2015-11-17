@@ -72,13 +72,13 @@ angular.module('starter', ['ionic','starter.controllers','starter.state','starte
 })
 .config(function($translateProvider) {
   $translateProvider.translations('en', {
-    AuthenticationFailed: 'Authentication failed! <br /> Use "demo" "demo" and select role...',
+    AuthenticationFailed: 'Authentication failed!',
     Role: 'Role',
     SignIn: 'Sign In',
     Registration: 'Registration'
   });
   $translateProvider.translations('it', {
-    AuthenticationFailed: 'Autenticazione fallita! <br /> Usa "demo" "demo" e seleziona il ruolo...',
+    AuthenticationFailed: 'Autenticazione fallita!',
     Role: 'Ruolo',
     SignIn: 'Accedi',
     Registration: 'Registrazione'
@@ -96,6 +96,10 @@ angular.module('starter', ['ionic','starter.controllers','starter.state','starte
       $state.go(url);
     },
     back: function(section) {
+      //undefined <- equivale a -> typeof section === 'undefined'
+      if(!section) {
+        section = 'login';
+      }
       $state.go('app.'+section);
     }
   };
