@@ -150,7 +150,7 @@ angular.module('starter.controllers', [])
 
   $scope.authorization = {
     username: 'dfgsd',
-    password : '',
+    password : 'gdsf',
     role: ''  
   }; 
 
@@ -163,13 +163,13 @@ angular.module('starter.controllers', [])
     console.log('username ---> '+$scope.authorization.username);
     console.log('password ---> '+$scope.authorization.password);
 
-    if($scope.authorization.username == '') {
+    if($scope.authorization.username == '' || $scope.authorization.password == '') {
       $scope.userLogged = true;
       return;
     } 
 
     //OK: authentication senza password
-    ajaxCallServices.login($scope.authorization.username)
+    ajaxCallServices.login($scope.authorization.username,$scope.authorization.password)
       .success(function (data) {
         //console.log('login --->'+JSON.stringify(data));
         console.log(data.name+' - '+data.role.role);
@@ -225,26 +225,72 @@ angular.module('starter.controllers', [])
 .controller('HostessCtrl', function($scope,$rootScope,$ionicLoading,ajaxCallServices,$state,$ionicModal/*,$cordovaNetwork*/) {
   //HOSTESS page
 })
-.controller('ReservationsCtrl', function($scope,$rootScope,$ionicLoading,ajaxCallServices,$state,$ionicModal/*,$cordovaNetwork*/) {
+.controller('ReservationsCtrl', function($scope,$rootScope,$ionicLoading,ajaxCallServices,$state,$ionicModal,$ionicPopup/*,$cordovaNetwork*/) {
+
+  // An alert dialog
+  $scope.showAlertMessage = function(title,message) {
+    var alertPopupMessage = $ionicPopup.alert({
+       title: title,
+       template: message,
+       okText: 'Ok',
+       okType: 'button-assertive'
+    });
+    alertPopupMessage.then(function(res) {
+      alertPopupMessage.close();
+    });
+  };
+
+  $scope.deleteReservationConfirm = function(itemId) {
+    console.log('itemId: '+itemId);
+
+    var deleteReservationConfirmPopup = $ionicPopup.confirm({
+      title: 'Prenotazione '+itemId,
+      content: 'Sei sicuro di voler cancellare la prenotazione ?',
+      okText: 'Cancella',
+      okType: 'button-assertive',
+      cancelText: 'Annulla',
+      cancelType: 'button-positive'
+    })
+    deleteReservationConfirmPopup.then(function(result) {
+      if(result) {
+        console.log('CANCELLO');
+        $scope.UpdateReservation.hide();
+
+        $scope.getAllReservation();
+          
+      } else {
+        deleteReservationConfirmPopup.close();
+      }
+    });
+  };
+
   $scope.role = $rootScope.role;
   $scope.tableReservedName    = '';
   $scope.tableReservedTime    = '';
   $scope.tableReservedNumber  = '';
 
-  $ionicLoading.show({
-    template: 'Loading...'
-  });
-  
-  //TODO: cambiare la data di ricerca; dovrebbe essere TODAY
-  ajaxCallServices.getAllReservation('2010-12-32')
-    .success(function (data) {
-      console.log('getAllReservation --->'+JSON.stringify(data));
-      $scope.items = data;
-      $ionicLoading.hide();
-    }).error(function (error) {
-      $ionicLoading.hide();
-      alert('Unable to load customer data' + error);
+  $scope.getAllReservation = function(itemId) {
+    $ionicLoading.show({
+      template: 'Loading...'
     });
+
+    //TODO: cambiare la data di ricerca; dovrebbe essere TODAY
+    ajaxCallServices.getAllReservation('2010-12-32')
+      .success(function (data) {
+        console.log('getAllReservation --->'+JSON.stringify(data));
+        $scope.items = data;
+        $ionicLoading.hide();
+      }).error(function (error) {
+        $ionicLoading.hide();
+        alert('Unable to load customer data' + error);
+      });
+  };
+
+  $scope.deleteReservation = function(itemId) {
+    $scope.deleteReservationConfirm(itemId);
+  };
+
+  $scope.getAllReservation();
 
   //UpdateReservation
   $ionicModal.fromTemplateUrl('templates/pages/hostess/updateReservation.html', {
@@ -279,9 +325,6 @@ angular.module('starter.controllers', [])
         $scope.status = 'Unable to load customer data' + error;
       });
       */
-
-
-
     }
     $scope.UpdateReservation.hide();
   };
@@ -290,6 +333,7 @@ angular.module('starter.controllers', [])
     $scope.item = item;
     $scope.UpdateReservation.show();
   };
+
 })
 .controller('ReservationDetailCtrl', function($scope,$ionicLoading,ajaxCallServices,$state,$ionicModal,$ionicPopup/*,$cordovaNetwork*/) {
   //modalGift

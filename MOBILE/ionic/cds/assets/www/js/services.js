@@ -243,8 +243,8 @@ angular.module('starter.factory', [])
     });
   };
   /***** OK: login() *****/
-  ajaxCallServices.login = function (username) {
-    var parameter = JSON.stringify({login:username});
+  ajaxCallServices.login = function (username,password) {
+    var parameter = JSON.stringify({login:username,password:password});
 
     return $http({
       url:urlBase+'baseService/login/',

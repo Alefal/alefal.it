@@ -1,15 +1,22 @@
 <ion-modal-view class="eventForm">
 
     <ion-header-bar class="bar-positive">
-        <h1 class="title">Update Reservation</h1>
+        <h1 class="title">Tavolo {{item.code_table.code}}</h1>
         <a ng-click="closeUpdateReservation('')" class="power button"><i class="ion-close"></i></a> 
     </ion-header-bar>
 
     <ion-content class="padding">
+
+        <button class="button button-float-assertive-top" ng-click="deleteReservation(item.id_reservation)">
+            <i class="icon ion-close-round"></i>
+        </button>
+
+        <!--
         <div class="message-info message-info-striped">
             <i class="icon ion-ios-information-outline" style="font-size: 25px;"></i>
             Tavolo {{item.code_table.code}}
         </div>
+        -->
 
         <h4>Riservato:</h4>
         <div class="list list-inset">
@@ -41,7 +48,7 @@
 
         <div class="row eventTab">
             <div class="col">
-                <button class="button button-block button-assertive icon-left ion-android-done" ng-click="closeUpdateReservation('updateReservation')"> Aggiorna</button>
+                <button class="button button-block button-balanced icon-left ion-android-done" ng-click="closeUpdateReservation('updateReservation')"> Aggiorna</button>
             </div>
         </div>
 
