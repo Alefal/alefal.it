@@ -184,3 +184,16 @@ body { background: #fff; }
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4) !important;
     background: rgba(239, 71, 58, 0.8) !important;
 }
+
+.item-input {
+    padding: 0;
+
+}
+.item-input i {
+    background: #efefef;
+    padding: 10px 20px !important;
+    width: 50px;
+}
+.item-input input {
+    padding: 10px;
+}
