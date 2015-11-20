@@ -334,6 +334,94 @@ angular.module('starter.controllers', [])
     $scope.UpdateReservation.show();
   };
 
+
+  //modalGift
+  $ionicModal.fromTemplateUrl('templates/pages/commons/gift.html', {
+    scope: $scope
+  }).then(function(modalGift) {
+    $scope.modalGift = modalGift;
+  });
+  $scope.closeManageGift = function() {
+    $scope.modalGift.hide();
+  };
+  $scope.openManageGift = function() {
+    $scope.modalGift.show();
+  };
+
+  //modalGift
+  $ionicModal.fromTemplateUrl('templates/pages/commons/discounts.html', {
+    scope: $scope
+  }).then(function(modalDiscounts) {
+    $scope.modalDiscounts = modalDiscounts;
+  });
+  $scope.closeManageDiscounts = function() {
+    $scope.modalDiscounts.hide();
+  };
+  $scope.openManageDiscounts = function() {
+    $scope.modalDiscounts.show();
+  };
+
+  //modalOrdersBill
+  $ionicModal.fromTemplateUrl('templates/pages/commons/ordersBill.html', {
+    scope: $scope
+  }).then(function(modalOrdersBill) {
+    $scope.modalOrdersBill = modalOrdersBill;
+  });
+  $scope.closeManageOrdersBill = function() {
+    $scope.modalOrdersBill.hide();
+  };
+  $scope.openManageOrdersBill = function() {
+    $scope.modalOrdersBill.show();
+  };
+
+  $scope.openPopupAddGift = function() {
+    $ionicPopup.confirm({
+      title: 'Table 1',
+      content: 'Add gift',
+      cancelText: 'Cancel',
+      okText: 'Add'
+    })
+    .then(function(result) {
+      if(result) {
+        console.log('Add');
+      } else {
+        console.log('Cancel');
+      }
+    });
+  }
+  $scope.openPopupAddDiscount = function() {
+    $ionicPopup.confirm({
+      title: 'Table 1',
+      content: 'Add discount',
+      cancelText: 'Cancel',
+      okText: 'Add'
+    })
+    .then(function(result) {
+      if(result) {
+        console.log('Add');
+      } else {
+        console.log('Cancel');
+      }
+    });
+  }
+
+  $scope.openPopupAddItem = function() {
+    $ionicPopup.confirm({
+      title: 'Table 1',
+      content: 'Print / Add',
+      cancelText: 'Cancel',
+      okText: 'Add'
+    })
+    .then(function(result) {
+      if(result) {
+        console.log('Add');
+      } else {
+        console.log('Cancel');
+      }
+    });
+  }
+  
+
 })
 .controller('ReservationDetailCtrl', function($scope,$ionicLoading,ajaxCallServices,$state,$ionicModal,$ionicPopup/*,$cordovaNetwork*/) {
   //modalGift
@@ -450,11 +538,13 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('ManagersCtrl', function($scope,$ionicLoading,ajaxCallServices,$state/*,$cordovaNetwork*/) {
+.controller('ManagersCtrl', function($scope,$rootScope,$ionicLoading,ajaxCallServices,$state/*,$cordovaNetwork*/) {
   //MANAGER page
+  $scope.role = $rootScope.role;
 })
-.controller('WaitersCtrl', function($scope,$ionicLoading,ajaxCallServices,$state/*,$cordovaNetwork*/) {
+.controller('WaitersCtrl', function($scope,$rootScope,$ionicLoading,ajaxCallServices,$state/*,$cordovaNetwork*/) {
   //WAITERS page
+  $scope.role = $rootScope.role;
 })
 .controller('CustomersCtrl', function($scope,$ionicLoading,ajaxCallServices,$state/*,$cordovaNetwork*/) {
   //CUSTOMERS page
@@ -462,8 +552,9 @@ angular.module('starter.controllers', [])
 .controller('StewardCtrl', function($scope,$ionicLoading,ajaxCallServices,$state/*,$cordovaNetwork*/) {
   //STEWARD page
 })
-.controller('GuestCtrl', function($scope,$ionicLoading,ajaxCallServices,$state,$ionicPopup/*,$cordovaNetwork*/) {
+.controller('GuestCtrl', function($scope,$rootScope,$ionicLoading,ajaxCallServices,$state,$ionicPopup/*,$cordovaNetwork*/) {
   //GUEST page
+  $scope.role = $rootScope.role;
 
   $scope.openPopupCallWaiter = function(user) {
     $ionicPopup.confirm({

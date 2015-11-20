@@ -1,11 +1,11 @@
 <ion-modal-view class="eventForm">
 
     <ion-header-bar class="bar-positive">
-        <h1 class="title">Tavolo {{item.code_table.code}}</h1>
+        <h1 class="title">Tavolo {{item.code_table.code}} {{role}}</h1>
         <a ng-click="closeUpdateReservation('')" class="power button"><i class="ion-close"></i></a> 
     </ion-header-bar>
 
-    <ion-content class="padding">
+    <ion-content class="padding scrollModal" ng-if="role == 'hostess'">
 
         <button class="button button-float-assertive-top" ng-click="deleteReservation(item.id_reservation)">
             <i class="icon ion-close-round"></i>
@@ -49,6 +49,50 @@
         <div class="row eventTab">
             <div class="col">
                 <button class="button button-block button-balanced icon-left ion-android-done" ng-click="closeUpdateReservation('updateReservation')"> Aggiorna</button>
+            </div>
+        </div>
+
+    </ion-content>
+
+    <ion-content class="padding scrollModal" ng-if="role == 'managers' || role == 'waiters'">
+        <button class="button button-float-assertive-top" ng-click="deleteReservation(item.id_reservation)">
+            <i class="icon ion-close-round"></i>
+        </button>
+
+        <h4>Riservato:</h4>
+        <div class="list list-inset">
+            <label class="item item-input">
+                {{item.code_table.waiter_id.name}}
+            </label>
+        </div>
+        <div class="spacerVertical"></div>
+
+        <h4>Arrivo:</h4>
+        <div class="list list-inset">
+            <label class="item item-input">
+                {{item.code_table.waiter_id.name}}
+            </label>
+        </div>
+        <div class="spacerVertical"></div>
+
+        <h4>Persone:</h4>
+        <div class="list list-inset">
+            <label class="item item-input">
+                <i class="icon ion-android-contacts placeholder-icon"></i>
+               {{item.people_num}}
+            </label>
+        </div>
+        <div class="spacerVertical"></div>
+
+        <div class="row eventTab">
+            <div class="col">
+                <button class="button button-block button-positive icon-left ion-scissors" ng-click="openManageDiscounts()"> Discounts</button>
+            </div>
+            <div class="col">
+                <button class="button button-block button-dark icon-left ion-clipboard" ng-click="openManageOrdersBill()"> Orders &amp; Bill</button>
+            </div>
+            <div class="col">
+                <button class="button button-block button-assertive icon-left ion-bag" ng-click="openManageGift()"> Gift</button>
             </div>
         </div>
 

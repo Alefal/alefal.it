@@ -197,3 +197,7 @@ body { background: #fff; }
 .item-input input {
     padding: 10px;
 }
+
+.scrollModal {
+    margin-top: 75px;
+}
