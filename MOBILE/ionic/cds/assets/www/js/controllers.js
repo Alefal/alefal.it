@@ -149,8 +149,10 @@ angular.module('starter.controllers', [])
   $scope.userLogged = false;
 
   $scope.authorization = {
-    username: 'dfgsd',
-    password : 'gdsf',
+    //username: 'dfgsd',
+    //password : 'gdsf',
+    username: 'fsfsad',
+    password : 'dsasd',
     role: ''  
   }; 
 
@@ -290,10 +292,10 @@ angular.module('starter.controllers', [])
     $scope.deleteReservationConfirm(itemId);
   };
 
-  $scope.getAllReservation();
+  //$scope.getAllReservation();
 
   //UpdateReservation
-  $ionicModal.fromTemplateUrl('templates/pages/hostess/updateReservation.html', {
+  $ionicModal.fromTemplateUrl('templates/pages/commons/reservationDetail.html', {
     scope: $scope //recupera lo scope del padre
   }).then(function(UpdateReservation) {
     $scope.UpdateReservation = UpdateReservation;
@@ -335,6 +337,7 @@ angular.module('starter.controllers', [])
   };
 
 
+
   //modalGift
   $ionicModal.fromTemplateUrl('templates/pages/commons/gift.html', {
     scope: $scope
@@ -345,10 +348,23 @@ angular.module('starter.controllers', [])
     $scope.modalGift.hide();
   };
   $scope.openManageGift = function() {
-    $scope.modalGift.show();
+    $ionicLoading.show({
+      template: 'Loading...'
+    });
+
+    ajaxCallServices.getAllGift('2010-12-32','A02ado')
+      .success(function (data) {
+        console.log('getAllGift --->'+JSON.stringify(data));
+
+        $scope.itemsGift = data;
+        $scope.modalGift.show();
+        $ionicLoading.hide();
+      }).error(function (error) {
+        $scope.status = 'Unable to load customer data' + error;
+      });
   };
 
-  //modalGift
+  //modalDiscounts
   $ionicModal.fromTemplateUrl('templates/pages/commons/discounts.html', {
     scope: $scope
   }).then(function(modalDiscounts) {
@@ -423,7 +439,9 @@ angular.module('starter.controllers', [])
   
 
 })
-.controller('ReservationDetailCtrl', function($scope,$ionicLoading,ajaxCallServices,$state,$ionicModal,$ionicPopup/*,$cordovaNetwork*/) {
+//TODO: eliminare
+/*
+.controller('ReservationDetailCtrl', function($scope,$ionicLoading,ajaxCallServices,$state,$ionicModal,$ionicPopup) {
   //modalGift
   $ionicModal.fromTemplateUrl('templates/pages/commons/gift.html', {
     scope: $scope
@@ -514,6 +532,7 @@ angular.module('starter.controllers', [])
     $state.go('app.'+section);
   };
 })
+*/
 .controller('OrdersCtrl', function($scope,$ionicLoading,ajaxCallServices,$state,$ionicPopup/*,$cordovaNetwork*/) {
   $scope.back = function(section) {
     $state.go('app.'+section);

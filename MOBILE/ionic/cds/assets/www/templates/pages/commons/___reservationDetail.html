@@ -1,0 +1,56 @@
+<ion-view view-title="Reservation" hide-nav-bar="true" class="eventForm">
+
+    <ion-header-bar class="bar-positive">
+        <h1 class="title">Welcome, {{roleTitle}} {{userLoggedName}}</h1>
+        <a ng-click="globFunc.back('reservations')" class="power button"><i class="ion-chevron-left"></i></a> 
+    </ion-header-bar>
+
+    <ion-content class="padding">
+        <div class="message-info message-info-striped">
+            <i class="icon ion-ios-information-outline" style="font-size: 25px;"></i>
+            Information about <strong>TABLE 1</strong>
+        </div>
+
+        <h4>Reseved to:</h4>
+        <div class="list list-inset">
+            <label class="item">
+                <i class="icon ion-android-contact placeholder-icon"></i>
+                John
+            </label>
+        </div>
+        <div class="spacerVertical"></div>
+
+        <h4>Arrival time:</h4>
+        <div class="list list-inset">
+            <label class="item">
+                <i class="icon ion-ios-clock-outline placeholder-icon"></i>
+                21:12:00
+            </label>
+        </div>
+        <div class="spacerVertical"></div>
+
+        <h4>People number:</h4>
+        <div class="list list-inset">
+            <label class="item">
+                <i class="icon ion-android-contacts placeholder-icon"></i>
+                5
+            </label>
+        </div>
+        <div class="spacerVertical"></div>
+    </ion-content>
+
+    <ion-footer-bar>
+        <div class="row eventTab">
+            <div class="col">
+                <button class="button button-block button-positive icon-left ion-scissors" ng-click="openManageDiscounts()"> Discounts</button>
+            </div>
+            <div class="col">
+                <button class="button button-block button-dark icon-left ion-clipboard" ng-click="openManageOrdersBill()"> Orders &amp; Bill</button>
+            </div>
+            <div class="col">
+                <button class="button button-block button-assertive icon-left ion-bag" ng-click="openManageGift()"> Gift</button>
+            </div>
+        </div>
+    </ion-footer-bar>
+
+</ion-view>

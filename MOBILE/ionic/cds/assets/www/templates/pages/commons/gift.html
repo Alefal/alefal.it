@@ -7,10 +7,11 @@
 
   <ion-content class="padding">
     <h5>None</h5>
-  </ion-content>
+    {{itemsGift[0].gift_id}} {{itemsGift[0].stuff_id.name}}
 
-  <ion-footer-bar>
-    <button class="button button-block btnSubmit button-assertive icon-left ion-checkmark-circled" ng-click="openPopupAddGift()" ng-if="role == 'managers'"> Add</button>
-  </ion-footer-bar>
+    <div align="center">
+      <button class="button btnSubmit button-assertive icon-left ion-checkmark-circled" ng-click="openPopupAddGift()" ng-if="role == 'managers'"> Add</button>
+    </div>
+  </ion-content>
 
 </ion-modal-view>

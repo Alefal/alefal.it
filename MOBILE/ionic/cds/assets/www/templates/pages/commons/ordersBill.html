@@ -24,17 +24,17 @@
         <i class="icon ion-chevron-right icon-accessory"></i>
       </ion-item>
     </ion-list>
-  </ion-content>
 
-  <ion-footer-bar ng-if="role == 'waiters'">
-    <div class="row eventTab">
-      <div class="col col-50">
-        <button class="button button-block button-positive icon-left ion-scissors" ng-click="openPopupAddItem()"> Print</button>
-      </div>
-      <div class="col col-50">
-        <button class="button button-block button-assertive icon-left ion-bag" ng-click="openPopupAddItem()"> Add</button>
-      </div>
-    </div>
-  </ion-footer-bar>
+    <!-- Print -->
+    <button class="button button-calm button-float-assertive-bottom" ng-click="openPopupAddItem()" ng-if="role == 'waiters'">
+        <i class="icon ion-scissors"></i>
+    </button>
+
+    <!-- Add -->
+    <button class="button button-balanced button-float-assertive-bottom" ng-click="openPopupAddItem()" style=" bottom: 70px !important;" ng-if="role == 'waiters'">
+        <i class="icon ion-bag"></i>
+    </button>
+
+  </ion-content>
 
 </ion-modal-view>

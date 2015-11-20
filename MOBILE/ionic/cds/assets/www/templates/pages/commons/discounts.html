@@ -12,10 +12,10 @@
         <i class="icon ion-close-circled" ng-if="role == 'managers'"></i>
       </ion-item>
     </ion-list>
-  </ion-content>
 
-  <ion-footer-bar>
-    <button class="button button-block btnSubmit button-positive icon-left ion-checkmark-circled" ng-click="openPopupAddDiscount()" ng-if="role == 'managers'"> Add</button>
-  </ion-footer-bar>
+    <div align="center">
+      <button class="button btnSubmit button-positive icon-left ion-checkmark-circled" ng-click="openPopupAddDiscount()" ng-if="role == 'managers'"> Add</button>
+    </div>
+  </ion-content>
 
 </ion-modal-view>
