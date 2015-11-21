@@ -93,7 +93,6 @@ angular.module('starter', ['ionic','starter.controllers','starter.state','starte
       $state.go('app.login');
     },
     goto: function(url) {
-      alert(url);
       $state.go(url);
     },
     back: function(section) {

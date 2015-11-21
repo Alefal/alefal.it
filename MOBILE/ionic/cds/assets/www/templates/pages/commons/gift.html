@@ -6,8 +6,16 @@
   </ion-header-bar>
 
   <ion-content class="padding">
-    <h5>None</h5>
-    {{itemsGift[0].gift_id}} {{itemsGift[0].stuff_id.name}}
+    <ion-list>
+        <ion-item ng-repeat="itemGift in itemsGift" class="item-icon-left item-icon-right" ng-click="openUpdateReservation(itemGift)" style="margin-bottom:5px;">
+            <i class="icon ion-bag"></i>
+
+            <h3>{{itemGift.stuff_id.name}}</h3>
+            <p>Prezzo <strong>{{itemGift.stuff_id.price}}</strong></p>
+
+            <i class="icon ion-android-close" ng-click="openPopupRemoveGift(itemGift.gift_id)"></i>
+        </ion-item>
+    </ion-list>
 
     <div align="center">
       <button class="button btnSubmit button-assertive icon-left ion-checkmark-circled" ng-click="openPopupAddGift()" ng-if="role == 'managers'"> Add</button>

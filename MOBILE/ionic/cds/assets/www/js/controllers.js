@@ -5,6 +5,17 @@ angular.module('starter.controllers', [])
     template: 'Loading...'
   });
 
+  /* TEST ADD / REMOVE
+  ajaxCallServices.addGift('2010-12-32','A02ado','2','PEPSI','fsfsad')
+      .success(function (data) {
+        console.log('addGift --->'+JSON.stringify(data));
+
+        $ionicLoading.hide();
+      }).error(function (error) {
+        $scope.status = 'Unable to load customer data' + error;
+      });
+  */
+
 
     /***** TEST REST CALL *****/
     ///////////////////////// GIFT 
@@ -292,7 +303,7 @@ angular.module('starter.controllers', [])
     $scope.deleteReservationConfirm(itemId);
   };
 
-  //$scope.getAllReservation();
+  $scope.getAllReservation();
 
   //UpdateReservation
   $ionicModal.fromTemplateUrl('templates/pages/commons/reservationDetail.html', {
@@ -312,21 +323,6 @@ angular.module('starter.controllers', [])
       console.log(angular.element(document.querySelector('#TRName')).val());
       console.log(angular.element(document.querySelector('#TRTime')).val());
       */
-
-      /*
-      $ionicLoading.show({
-        template: 'Loading...'
-      });
-
-      ajaxCallServices.updateReservation('1','22','2010-12-32','A01moder','A01','5')
-      .success(function (data) {
-        console.log('updateReservation --->'+JSON.stringify(data));
-
-        $ionicLoading.hide();
-      }).error(function (error) {
-        $scope.status = 'Unable to load customer data' + error;
-      });
-      */
     }
     $scope.UpdateReservation.hide();
   };
@@ -336,9 +332,7 @@ angular.module('starter.controllers', [])
     $scope.UpdateReservation.show();
   };
 
-
-
-  //modalGift
+  //////////////////// Gift
   $ionicModal.fromTemplateUrl('templates/pages/commons/gift.html', {
     scope: $scope
   }).then(function(modalGift) {
@@ -363,6 +357,95 @@ angular.module('starter.controllers', [])
         $scope.status = 'Unable to load customer data' + error;
       });
   };
+  $scope.openPopupAddGift = function() {
+    $scope.gift = {}
+
+    var openPopupAddGift = $ionicPopup.confirm({
+      template: 'Nome<br/><input type="text" ng-model="gift.nome"><br />Quantita\'<br/><input type="text" ng-model="gift.qty">',
+      title: 'Regalo',
+      subTitle: 'Inserisci la tua matricola per accesso offline',
+      scope: $scope,
+      okText: 'Aggiungi',
+      okType: 'button-assertive',
+      cancelText: 'Annulla',
+      cancelType: 'button-positive'
+    })
+    openPopupAddGift.then(function(result) {
+      if(result) {
+        $ionicLoading.show({
+          template: 'Loading...'
+        });
+
+        console.log($scope.item.date_reservation+' - '+$scope.item.code+' - '+$scope.gift.qty+' - '+$scope.gift.nome+' - '+$scope.item.user.login);
+        //date_reservation,code,qty,name,login
+        ajaxCallServices.addGift($scope.item.date_reservation,$scope.item.code,$scope.gift.qty,$scope.gift.nome,$scope.item.user.login)
+          .success(function (data) {
+            console.log('addGift --->'+JSON.stringify(data));
+
+            ajaxCallServices.getAllGift('2010-12-32','A02ado')
+              .success(function (data) {
+                console.log('getAllGift --->'+JSON.stringify(data));
+
+                $scope.itemsGift = data;
+                $ionicLoading.hide();
+                openPopupAddGift.close();
+              }).error(function (error) {
+                $scope.status = 'Unable to load customer data' + error;
+              });
+
+          }).error(function (error) {
+            $scope.status = 'Unable to load customer data' + error;
+          });
+
+      } else {
+        console.log('Cancel');
+        openPopupAddGift.close();
+      }
+    });
+  }
+  $scope.openPopupRemoveGift = function(id) {
+    var openPopupRemoveGift = $ionicPopup.confirm({
+      title: 'Eliminare',
+      content: 'Vuoi eliminare il regalo ?',
+      okText: 'Cancella',
+      okType: 'button-assertive',
+      cancelText: 'Annulla',
+      cancelType: 'button-positive'
+    })
+    openPopupRemoveGift.then(function(result) {
+      if(result) {
+        $ionicLoading.show({
+          template: 'Loading...'
+        });
+
+        ajaxCallServices.deleteGift(id)
+          .success(function (data) {
+            console.log('deleteGift --->'+JSON.stringify(data));
+
+            openPopupRemoveGift.close();
+
+            ajaxCallServices.getAllGift('2010-12-32','A02ado')
+              .success(function (data) {
+                console.log('getAllGift --->'+JSON.stringify(data));
+
+                $scope.itemsGift = data;
+                $ionicLoading.hide();
+              }).error(function (error) {
+                $scope.status = 'Unable to load customer data' + error;
+              });
+
+          }).error(function (error) {
+            $scope.status = 'Unable to load customer data' + error;
+          });
+
+
+      } else {
+        console.log('Annulla');
+        openPopupRemoveGift.close();
+      }
+    });
+  }
+
 
   //modalDiscounts
   $ionicModal.fromTemplateUrl('templates/pages/commons/discounts.html', {
@@ -390,21 +473,9 @@ angular.module('starter.controllers', [])
     $scope.modalOrdersBill.show();
   };
 
-  $scope.openPopupAddGift = function() {
-    $ionicPopup.confirm({
-      title: 'Table 1',
-      content: 'Add gift',
-      cancelText: 'Cancel',
-      okText: 'Add'
-    })
-    .then(function(result) {
-      if(result) {
-        console.log('Add');
-      } else {
-        console.log('Cancel');
-      }
-    });
-  }
+
+  
+
   $scope.openPopupAddDiscount = function() {
     $ionicPopup.confirm({
       title: 'Table 1',
@@ -436,9 +507,9 @@ angular.module('starter.controllers', [])
       }
     });
   }
-  
 
 })
+
 //TODO: eliminare
 /*
 .controller('ReservationDetailCtrl', function($scope,$ionicLoading,ajaxCallServices,$state,$ionicModal,$ionicPopup) {
