@@ -5,151 +5,17 @@ angular.module('starter.controllers', [])
     template: 'Loading...'
   });
 
-  /* TEST ADD / REMOVE
-  ajaxCallServices.addGift('2010-12-32','A02ado','2','PEPSI','fsfsad')
-      .success(function (data) {
-        console.log('addGift --->'+JSON.stringify(data));
+  /* TEST REST */
+ ajaxCallServices.getMenu('beverages')
+  .success(function (data) {
+    console.log('getMenu --->'+JSON.stringify(data));
 
-        $ionicLoading.hide();
-      }).error(function (error) {
-        $scope.status = 'Unable to load customer data' + error;
-      });
-  */
+    $ionicLoading.hide();
+  }).error(function (error) {
+    $scope.status = 'Unable to load customer data' + error;
+  });
+  
 
-
-    /***** TEST REST CALL *****/
-    ///////////////////////// GIFT 
-    /*
-    ajaxCallServices.getAllGift('2010-12-32','A02ado')
-      .success(function (data) {
-        console.log('getAllGift --->'+JSON.stringify(data));
-
-        $ionicLoading.hide();
-      }).error(function (error) {
-        $scope.status = 'Unable to load customer data' + error;
-      });
-    ajaxCallServices.updateGift('1','22')
-      .success(function (data) {
-        console.log('updateGift --->'+JSON.stringify(data));
-
-        $ionicLoading.hide();
-      }).error(function (error) {
-        $scope.status = 'Unable to load customer data' + error;
-      });
-    
-    ajaxCallServices.addGift('2010-12-32','A01moder','2','PEPSI','fsfsad')
-      .success(function (data) {
-        console.log('addGift --->'+JSON.stringify(data));
-
-        $ionicLoading.hide();
-      }).error(function (error) {
-        $scope.status = 'Unable to load customer data' + error;
-      });
-    
-    ajaxCallServices.deleteGift('2')
-      .success(function (data) {
-        console.log('deleteGift --->'+JSON.stringify(data));
-
-        $ionicLoading.hide();
-      }).error(function (error) {
-        $scope.status = 'Unable to load customer data' + error;
-      });
-    */
-    ///////////////////////// RESERVATION
-    /*
-    ajaxCallServices.insertReservation('22','2010-12-32','A03moder','A03','5')
-      .success(function (data) {
-        console.log('insertReservation --->'+JSON.stringify(data));
-
-        $ionicLoading.hide();
-      }).error(function (error) {
-        $scope.status = 'Unable to load customer data' + error;
-      });
-
-    ajaxCallServices.updateReservation('1','22','2010-12-32','A01moder','A01','5')
-      .success(function (data) {
-        console.log('updateReservation --->'+JSON.stringify(data));
-
-        $ionicLoading.hide();
-      }).error(function (error) {
-        $scope.status = 'Unable to load customer data' + error;
-      });
-
-    ajaxCallServices.deleteReservation('1','22','2010-12-32','A01moder','A01','5')
-      .success(function (data) {
-        console.log('deleteReservation --->'+JSON.stringify(data));
-
-        $ionicLoading.hide();
-      }).error(function (error) {
-        $scope.status = 'Unable to load customer data' + error;
-      });
-
-    ajaxCallServices.getAllReservation('2010-12-32')
-      .success(function (data) {
-        console.log('getAllReservation --->'+JSON.stringify(data));
-
-        $ionicLoading.hide();
-      }).error(function (error) {
-        $scope.status = 'Unable to load customer data' + error;
-      });
-
-    ajaxCallServices.getReservationForWaiters('2010-12-32','ivoru')
-      .success(function (data) {
-        console.log('getReservationForWaiters --->'+JSON.stringify(data));
-
-        $ionicLoading.hide();
-      }).error(function (error) {
-        $scope.status = 'Unable to load customer data' + error;
-      });
-
-    ajaxCallServices.getReservation('2010-12-32','A01moder')
-      .success(function (data) {
-        console.log('getReservation --->'+JSON.stringify(data));
-
-        $ionicLoading.hide();
-      }).error(function (error) {
-        $scope.status = 'Unable to load customer data' + error;
-      });
-    
-    ajaxCallServices.changeReservationTable('2010-12-32','A01moder','A01')
-      .success(function (data) {
-        console.log('changeReservationTable --->'+JSON.stringify(data));
-
-        $ionicLoading.hide();
-      }).error(function (error) {
-        $scope.status = 'Unable to load customer data' + error;
-      });
-    */
-    ///////////////////////// OTHER
-    /*
-    ajaxCallServices.login('dfgsd')
-      .success(function (data) {
-        console.log('login --->'+JSON.stringify(data));
-
-        $ionicLoading.hide();
-      }).error(function (error) {
-        $scope.status = 'Unable to load customer data' + error;
-      });
-    
-    ajaxCallServices.getMenu('bottle')
-      .success(function (data) {
-        console.log('getMenu --->'+JSON.stringify(data));
-
-        $ionicLoading.hide();
-      }).error(function (error) {
-        $scope.status = 'Unable to load customer data' + error;
-      });
-
-    ajaxCallServices.getRoles()
-      .success(function (data) {
-        console.log('getRoles --->'+JSON.stringify(data));
-
-        $ionicLoading.hide();
-      }).error(function (error) {
-        $scope.status = 'Unable to load customer data' + error;
-      });
-    */
-    
   $ionicLoading.hide();
 })
 .controller('LoginCtrl', function($scope,$rootScope,$ionicLoading,ajaxCallServices,$state/*,$cordovaNetwork*/) {
@@ -288,7 +154,7 @@ angular.module('starter.controllers', [])
     });
 
     //TODO: cambiare la data di ricerca; dovrebbe essere TODAY
-    ajaxCallServices.getAllReservation('2010-12-32')
+    ajaxCallServices.getAllReservation('2015-11-11')
       .success(function (data) {
         console.log('getAllReservation --->'+JSON.stringify(data));
         $scope.items = data;
@@ -346,7 +212,13 @@ angular.module('starter.controllers', [])
       template: 'Loading...'
     });
 
-    ajaxCallServices.getAllGift('2010-12-32','A02ado')
+    //TODO: problema data + 1
+    var ar = [];
+    ar = $scope.item.date_reservation.split('-');
+    var dataPiuUno = ar[0]+'-'+ar[1]+'-'+(parseInt(ar[2])+1);
+    console.log('getAllGift -> '+$scope.item.date_reservation+' - '+$scope.item.code+'! PROBLEMA: data + 1: '+dataPiuUno);
+
+    ajaxCallServices.getAllGift(dataPiuUno,$scope.item.code)
       .success(function (data) {
         console.log('getAllGift --->'+JSON.stringify(data));
 
@@ -354,7 +226,8 @@ angular.module('starter.controllers', [])
         $scope.modalGift.show();
         $ionicLoading.hide();
       }).error(function (error) {
-        $scope.status = 'Unable to load customer data' + error;
+        $ionicLoading.hide();
+        alert('getAllGift: '+error);
       });
   };
   $scope.openPopupAddGift = function() {
@@ -376,13 +249,18 @@ angular.module('starter.controllers', [])
           template: 'Loading...'
         });
 
-        console.log($scope.item.date_reservation+' - '+$scope.item.code+' - '+$scope.gift.qty+' - '+$scope.gift.nome+' - '+$scope.item.user.login);
+        //TODO: problema data + 1
+        var ar = [];
+        ar = $scope.item.date_reservation.split('-');
+        var dataPiuUno = ar[0]+'-'+ar[1]+'-'+(parseInt(ar[2])+1);
+        console.log('addGift -> '+$scope.item.date_reservation+' - '+$scope.item.code+'! PROBLEMA: data + 1: '+dataPiuUno);
+
         //date_reservation,code,qty,name,login
-        ajaxCallServices.addGift($scope.item.date_reservation,$scope.item.code,$scope.gift.qty,$scope.gift.nome,$scope.item.user.login)
+        ajaxCallServices.addGift(dataPiuUno,$scope.item.code,$scope.gift.qty,$scope.gift.nome,$scope.item.user.login)
           .success(function (data) {
             console.log('addGift --->'+JSON.stringify(data));
 
-            ajaxCallServices.getAllGift('2010-12-32','A02ado')
+            ajaxCallServices.getAllGift(dataPiuUno,$scope.item.code)
               .success(function (data) {
                 console.log('getAllGift --->'+JSON.stringify(data));
 
@@ -390,11 +268,13 @@ angular.module('starter.controllers', [])
                 $ionicLoading.hide();
                 openPopupAddGift.close();
               }).error(function (error) {
-                $scope.status = 'Unable to load customer data' + error;
+                $ionicLoading.hide();
+                alert('getAllGift: '+error);
               });
 
           }).error(function (error) {
-            $scope.status = 'Unable to load customer data' + error;
+            $ionicLoading.hide();
+            alert('addGift: '+error);
           });
 
       } else {
@@ -407,6 +287,7 @@ angular.module('starter.controllers', [])
     var openPopupRemoveGift = $ionicPopup.confirm({
       title: 'Eliminare',
       content: 'Vuoi eliminare il regalo ?',
+      scope: $scope,
       okText: 'Cancella',
       okType: 'button-assertive',
       cancelText: 'Annulla',
@@ -422,20 +303,27 @@ angular.module('starter.controllers', [])
           .success(function (data) {
             console.log('deleteGift --->'+JSON.stringify(data));
 
-            openPopupRemoveGift.close();
-
-            ajaxCallServices.getAllGift('2010-12-32','A02ado')
+            //TODO: problema data + 1
+            var ar = [];
+            ar = $scope.item.date_reservation.split('-');
+            var dataPiuUno = ar[0]+'-'+ar[1]+'-'+(parseInt(ar[2])+1);
+            console.log('getAllGift -> '+$scope.item.date_reservation+' - '+$scope.item.code+'! PROBLEMA: data + 1: '+dataPiuUno);
+            
+            ajaxCallServices.getAllGift(dataPiuUno,$scope.item.code)
               .success(function (data) {
                 console.log('getAllGift --->'+JSON.stringify(data));
-
+                
                 $scope.itemsGift = data;
                 $ionicLoading.hide();
+                openPopupRemoveGift.close();
               }).error(function (error) {
-                $scope.status = 'Unable to load customer data' + error;
+                $ionicLoading.hide();
+                alert('getAllGift: '+error);
               });
 
           }).error(function (error) {
-            $scope.status = 'Unable to load customer data' + error;
+            $ionicLoading.hide();
+            alert('deleteGift: '+error);
           });
 
 
