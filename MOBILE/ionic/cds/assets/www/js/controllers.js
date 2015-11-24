@@ -104,7 +104,7 @@ angular.module('starter.controllers', [])
 .controller('HostessCtrl', function($scope,$rootScope,$ionicLoading,ajaxCallServices,$state,$ionicModal/*,$cordovaNetwork*/) {
   //HOSTESS page
 })
-.controller('ReservationsCtrl', function($scope,$rootScope,$ionicLoading,ajaxCallServices,$state,$ionicModal,$ionicPopup/*,$cordovaNetwork*/) {
+.controller('ReservationsCtrl', function($scope,$rootScope,$ionicLoading,ajaxCallServices,$state,$ionicModal,$ionicPopup,$ionicActionSheet/*,$cordovaNetwork*/) {
 
   // An alert dialog
   $scope.showAlertMessage = function(title,message) {
@@ -199,6 +199,8 @@ angular.module('starter.controllers', [])
   };
 
   //////////////////// Gift
+  $scope.loadingIcon = false;
+
   $ionicModal.fromTemplateUrl('templates/pages/commons/gift.html', {
     scope: $scope
   }).then(function(modalGift) {
@@ -236,7 +238,7 @@ angular.module('starter.controllers', [])
     var openPopupAddGift = $ionicPopup.confirm({
       template: 'Nome<br/><input type="text" ng-model="gift.nome"><br />Quantita\'<br/><input type="text" ng-model="gift.qty">',
       title: 'Regalo',
-      subTitle: 'Inserisci la tua matricola per accesso offline',
+      subTitle: 'Aggiungi un regalo alla prenotazione',
       scope: $scope,
       okText: 'Aggiungi',
       okType: 'button-assertive',
@@ -245,6 +247,8 @@ angular.module('starter.controllers', [])
     })
     openPopupAddGift.then(function(result) {
       if(result) {
+
+        //$scope.loadingIcon = true;
         $ionicLoading.show({
           template: 'Loading...'
         });
@@ -284,6 +288,49 @@ angular.module('starter.controllers', [])
     });
   }
   $scope.openPopupRemoveGift = function(id) {
+    $ionicActionSheet.show({
+      destructiveText: 'Eliminare',
+      titleText: 'Vuoi eliminare il regalo ?',
+      cancelText: 'Cancella',
+      cancel: function() {
+        return !0
+      },
+      destructiveButtonClicked : function(index) {
+        $ionicLoading.show({
+          template: 'Loading...'
+        });
+
+        ajaxCallServices.deleteGift(id)
+          .success(function (data) {
+            console.log('deleteGift --->'+JSON.stringify(data));
+
+            //TODO: problema data + 1
+            var ar = [];
+            ar = $scope.item.date_reservation.split('-');
+            var dataPiuUno = ar[0]+'-'+ar[1]+'-'+(parseInt(ar[2])+1);
+            console.log('getAllGift -> '+$scope.item.date_reservation+' - '+$scope.item.code+'! PROBLEMA: data + 1: '+dataPiuUno);
+            
+            ajaxCallServices.getAllGift(dataPiuUno,$scope.item.code)
+              .success(function (data) {
+                console.log('getAllGift --->'+JSON.stringify(data));
+                
+                $scope.itemsGift = data;
+                $ionicLoading.hide();
+
+              }).error(function (error) {
+                $ionicLoading.hide();
+                alert('getAllGift: '+error);
+              });
+
+          }).error(function (error) {
+            $ionicLoading.hide();
+            alert('deleteGift: '+error);
+          });
+
+        return true;
+      }
+    });
+    /*
     var openPopupRemoveGift = $ionicPopup.confirm({
       title: 'Eliminare',
       content: 'Vuoi eliminare il regalo ?',
@@ -332,6 +379,7 @@ angular.module('starter.controllers', [])
         openPopupRemoveGift.close();
       }
     });
+    */
   }
 
 

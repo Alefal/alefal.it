@@ -1,11 +1,59 @@
 angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function($scope,$rootScope,$ionicLoading,$ionicPopup,ajaxCallServices,$state,ModalService,$timeout) {
+  console.log('AppCtrl');
+  
+
 })
 .controller('HomeCtrl', function($scope,$rootScope,$ionicLoading,$ionicModal,$ionicPopup,ajaxCallServices,$state,ModalService/*,$cordovaFileTransfer*/) {
   console.log('home');
 })
-.controller('LoginCtrl', function($scope,$rootScope,$ionicLoading,$ionicPopup,ajaxCallServices,$state,ModalService,$timeout) {
+.controller('LoginCtrl', function($scope,$rootScope,$ionicLoading,$ionicPopup,ajaxCallServices,$state,ModalService,$interval,$ionicActionSheet) {
+
+  $scope.clickCount = 0;
+
+  $interval(function() {
+    $scope.clickCount = 0;
+    console.log($scope.clickCount)
+  }, 10000);
+
+
+  // When you call the $watch() method, AngularJS
+  // returns an unbind function that will kill the
+  // $watch() listener when its called.
+  var unbindWatcher = $scope.$watch(
+      'clickCount',
+      function( newClickCount ) {
+          //console.log( "Watching click count." );
+          if ( newClickCount == 15 ) {
+              $ionicActionSheet.show({
+                destructiveText: 'Change',
+                titleText: 'Server: '+$rootScope.server,
+                cancelText: 'Cancel',
+                cancel: function() {
+                  return !0
+                },
+                destructiveButtonClicked : function(index) {
+                  $state.go('login');
+                }
+              })
+              // Once the feedback has been displayed,
+              // there's no more need to watch the change
+              // in the model value.
+              //unbindWatcher();
+          }
+      }
+  );
+
+  // I increment the click count.
+  $scope.incrementCount = function() {
+      $scope.clickCount++;
+      // NOTE: You could just as easily have called a
+      // counter-related method right here to test when
+      // to show feedback. I am just demonstrating an
+      // alternate approach.
+  };
+
 
   $scope.error  = '';
   $scope.user   = {};

@@ -51,7 +51,15 @@ angular.module('starter', ['ionic','starter.state','starter.factory','starter.co
 .run(function($rootScope, globalFunction) {
   $rootScope.globFunc = globalFunction;
 })
-
+/*
+.directive('globalEvents', function() {
+  return function(scope, element, attrs) {
+    element.bind('click', function(e){
+      alert(e.detail);
+    })
+  }
+})
+*/
 .directive('formattedTime', function ($filter) {
 
   return {
