@@ -1,0 +1,38 @@
+PREREQUISITI:
+- JSON API USER
+- JSON API
+
+#################### JSON API USER ####################
+AUTHENTICATION:
+http://localhost/alefal.it/PROJECTS/wordpress/api/user/generate_auth_cookie/?username=admin&password=admin
+
+FB CONNECT:
+/api/user/fb_connect/?access_token=CAACEdEose0cBADLKmcHWOZCnW4RGU8emG
+
+REGISTER:
+- Recuperare ONCE:
+	http://localhost/alefal.it/PROJECTS/wordpress/api/get_nonce/?controller=user&method=register
+	{"status":"ok","controller":"user","method":"register","nonce":"3818ac2f0d"}
+- Registrate:
+	http://localhost/alefal.it/PROJECTS/wordpress/api/user/register/?username=test&email=test@domain.com&nonce=3818ac2f0d&display_name=Test&user_pass=test&notify=no
+
+USER:
+- INFO:
+	http://localhost/alefal.it/PROJECTS/wordpress/api/user/get_userinfo/?user_id=1
+- RETRIEVE:
+	http://localhost/alefal.it/PROJECTS/wordpress/api/user/retrieve_password/?user_login=test
+	{"status":"ok","msg":"Link for password reset has been emailed to you. Please check your email."}
+
+#################### JSON API ####################
+POSTS:
+- Recent posts:
+	http://localhost/alefal.it/PROJECTS/wordpress/?json=get_recent_posts
+	http://localhost/alefal.it/PROJECTS/wordpress/api/get_recent_posts/		(With user-friendly permalinks configured)
+- Post:
+	http://localhost/alefal.it/PROJECTS/wordpress/?json=get_post&post_id=1
+
+CATEGORIES (solo quelli associati ad un post):
+http://localhost/alefal.it/PROJECTS/wordpress/?json=get_category_index
+
+TAGS (solo quelli associati ad un post):
+http://localhost/alefal.it/PROJECTS/wordpress/?json=get_tag_index
