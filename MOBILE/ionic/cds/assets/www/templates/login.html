@@ -5,7 +5,7 @@
     <div align="center" class="padding">
       <h4>LOGO</h4>
 
-      <div class="message-danger message-danger-striped" ng-show="userLogged">
+      <div class="message-danger message-danger-striped" ng-show="userNotLogged">
           <i class="icon ion-android-warning" style="font-size: 25px;"></i>
           <span ng-bind-html="'AuthenticationFailed' | translate">&nbsp;</span>
       </div>
@@ -21,28 +21,29 @@
         <input type="password" name="password" id="password" placeholder="Password" ng-model="authorization.password">
       </label>
 
-      <!--
+      <!-- DA ELIMINARE -->
       <div class="spacerVertical"></div>
       <label class="item item-input item-select">
         <div class="input-label">
           <span ng-bind-html="'Role' | translate">&nbsp;</span>
         </div>
         <select name="role" id="role" ng-model="authorization.role">
-          <option value="1">Hostess</option>
-          <option value="2">Managers\Directors</option>
-          <option value="3">Waiters</option>
-          <option value="4">Customers ???</option>
-          <option value="5">Steward</option>
-          <option value="6">Guest</option>
+          <option value="hostess">Hostess</option>
+          <option value="direttore">Managers\Directors</option>
+          <option value="waiters">Waiters</option>
+          <option value="customers">Customers ???</option>
+          <option value="steward">Steward</option>
+          <option value="guest">Guest</option>
         </select>
       </label>
-      -->
+      <!-- DA ELIMINARE -->
 
       <div class="spacerVertical"></div>
       <button class="button button-block button-positive left-right ion-locked" ng-click="login()"> 
         <span ng-bind-html="'SignIn' | translate">&nbsp;</span>
       </button>
 
+      <!--
       <div class="card">
         <div class="item item-divider">
           UTENZE
@@ -86,12 +87,13 @@
           <div class="row" align="left">
             <div class="col">CLIENTE</div>
             <div class="col">ivoru</div>
-            <div class="col"></div>
+            <div class="col">ererer</div>
             <div class="col"><i>guest</i></div>
           </div>
 
         </div>
       </div>
+      -->
     </div>
    
   </ion-content>

@@ -8,7 +8,7 @@ angular.module('starter.state', [])
       templateUrl: 'templates/walkthrough.html',
       controller: 'HomeCtrl',
       data: {
-        authenticate: !1
+        authenticate: !1  //false
       }
     })
     .state('login', {
@@ -51,7 +51,7 @@ angular.module('starter.state', [])
         }
       },
       data: {
-          authenticate: !0
+          authenticate: !0  //true
       }
     })
     .state('app.post', {

@@ -9,6 +9,7 @@ angular.module('starter', ['ionic','starter.state','starter.factory','starter.co
   $ionicPlatform.ready(function() {
 
     $rootScope.server = 'http://localhost/alefal.it/PROJECTS/wordpress';
+    $rootScope.authenticate = false;
 
     console.info('ionicPlatform.ready');
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

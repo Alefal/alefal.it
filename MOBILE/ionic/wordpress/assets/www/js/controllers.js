@@ -7,8 +7,11 @@ angular.module('starter.controllers', [])
 })
 .controller('HomeCtrl', function($scope,$rootScope,$ionicLoading,$ionicModal,$ionicPopup,ajaxCallServices,$state,ModalService/*,$cordovaFileTransfer*/) {
   console.log('home');
+
 })
 .controller('LoginCtrl', function($scope,$rootScope,$ionicLoading,$ionicPopup,ajaxCallServices,$state,ModalService,$interval,$ionicActionSheet) {
+
+  //console.log($state.current.data.authenticate);
 
   $scope.clickCount = 0;
 

@@ -23,13 +23,13 @@ angular.module('starter.controllers', [])
     template: 'Loading...'
   });
 
-  $scope.userLogged = false;
+  $scope.userNotLogged = false;
 
   $scope.authorization = {
     //username: 'dfgsd',
     //password : 'gdsf',
-    username: 'fsfsad',
-    password : 'dsasd',
+    username: '',
+    password: '',
     role: ''  
   }; 
 
@@ -37,13 +37,48 @@ angular.module('starter.controllers', [])
 
   $scope.login = function() {
 
-    $scope.userLogged = false;
+    $scope.userNotLogged = false;
 
     console.log('username ---> '+$scope.authorization.username);
     console.log('password ---> '+$scope.authorization.password);
 
+    /***** DA ELIMINARE *****/
+    var roleUser = $scope.authorization.role;
+    if(roleUser == 'hostess') {
+      $scope.authorization.username = 'dfgsd';
+      $scope.authorization.password = 'gdsf';
+    } 
+    //OK
+    else if(roleUser == 'direttore') {
+      $scope.authorization.username = 'fsfsad';
+      $scope.authorization.password = 'dsasd';
+    } 
+    //OK
+    else if(roleUser == 'cameriere') {
+      $scope.authorization.username = 'arianna';
+      $scope.authorization.password = 'love';
+    } 
+    else if(roleUser == 'customers') {
+      $scope.authorization.username = '';
+      $scope.authorization.password = '';
+    } 
+    else if(roleUser == 'steward') {
+      $scope.authorization.username = '';
+      $scope.authorization.password = '';
+    } 
+    //OK
+    else if(roleUser == 'cliente') {
+      $scope.authorization.username = 'ivoru';
+      $scope.authorization.password = 'ererer';
+    } 
+    //OK
+    else {
+      $scope.userNotLogged = true;
+    }
+    /***** DA ELIMINARE *****/
+
     if($scope.authorization.username == '' || $scope.authorization.password == '') {
-      $scope.userLogged = true;
+      $scope.userNotLogged = true;
       return;
     } 
 
@@ -91,7 +126,7 @@ angular.module('starter.controllers', [])
         } 
         //OK
         else {
-          $scope.userLogged = true;
+          $scope.userNotLogged = true;
         }
 
         $ionicLoading.hide();
