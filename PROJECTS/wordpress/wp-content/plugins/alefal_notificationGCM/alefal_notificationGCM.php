@@ -92,8 +92,7 @@ function alefal_notificationGCM_install() {
 	$sql = "CREATE TABLE alfl_register_device (
 	  id mediumint(9) NOT NULL AUTO_INCREMENT,
 	  registerId varchar(255) DEFAULT '' NOT NULL,
-	  registerModel varchar(255) DEFAULT '' NOT NULL,
-	  versionApp varchar(255) DEFAULT '' NOT NULL,
+	  registerModel varchar(255) DEFAULT '' NOT NULL
 	  UNIQUE KEY id (id)
 	) $charset_collate;";
 

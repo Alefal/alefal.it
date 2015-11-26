@@ -125,7 +125,7 @@ angular.module('starter.controllers', [])
   console.log('WelcomeCtrl...');
 })
 
-.controller('ReleasesCtrl', function($scope,$ionicLoading,ajaxCallServices,$rootScope,$ionicModal/*, $cordovaNetwork*/) {
+.controller('ReleasesCtrl', function($scope,$ionicLoading,ajaxCallServices,$rootScope,$ionicModal) {
   $scope.doRefresh = function() {
     ajaxCallServices.getReleasesRest()
       .success(function (releases) {
@@ -173,7 +173,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('GiornalinoCtrl', function($scope,$ionicLoading,ajaxCallServices,$rootScope,$ionicModal/*, $cordovaNetwork*/) {
+.controller('GiornalinoCtrl', function($scope,$ionicLoading,ajaxCallServices,$rootScope,$ionicModal) {
   $scope.doRefresh = function() {
     ajaxCallServices.getGiornalinoRest()
       .success(function (releases) {
@@ -220,7 +220,7 @@ angular.module('starter.controllers', [])
     $scope.modalReleases.show();
   };
 })
-.controller('RankingCtrl', function($scope,$ionicLoading,ajaxCallServices,$rootScope,$ionicModal/*, $cordovaNetwork*/) {
+.controller('RankingCtrl', function($scope,$ionicLoading,ajaxCallServices,$rootScope,$ionicModal) {
   $scope.doRefresh = function() {
     ajaxCallServices.getRankingRest()
       .success(function (ranking) {
@@ -286,7 +286,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('MatchsCtrl', function($scope,$ionicLoading,ajaxCallServices,$rootScope/*, $cordovaNetwork*/) {
+.controller('MatchsCtrl', function($scope,$ionicLoading,ajaxCallServices,$rootScope) {
   $scope.doRefresh = function() {
     ajaxCallServices.geMatchsRest()
       .success(function (matchs) {
@@ -328,7 +328,7 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('Ranking2015Ctrl', function($scope,$ionicLoading,ajaxCallServices,$rootScope,$ionicModal/*, $cordovaNetwork*/) {
+.controller('Ranking2015Ctrl', function($scope,$ionicLoading,ajaxCallServices,$rootScope,$ionicModal) {
   $scope.doRefresh = function() {
     ajaxCallServices.getRanking2015Rest()
       .success(function (ranking) {

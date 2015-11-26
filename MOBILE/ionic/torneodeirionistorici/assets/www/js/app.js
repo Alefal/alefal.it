@@ -111,7 +111,7 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
 
   var ajaxCallServices = {};
   
-  /***** getReleasesRest ****/
+  /***** checkUpdateApp ****/
   ajaxCallServices.checkUpdateApp = function (version) {
     return $http.get($rootScope.server+'/wp-content/plugins/alefal_notificationGCM/checkUpdateApp.php?nameApp='+$rootScope.nameApp);
   };

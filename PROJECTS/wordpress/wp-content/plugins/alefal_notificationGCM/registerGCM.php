@@ -7,10 +7,9 @@ $table_name = 'alfl_register_device';
 
 $resultArray = array();
 
-if(isset($_GET['register_id']) && isset($_GET['register_model']) && isset($_GET['version_app'])) {
+if(isset($_GET['register_id']) && isset($_GET['register_model'])) {
     $register_id 	= $_GET['register_id'];
     $register_model = $_GET['register_model'];
-    $version_app = $_GET['version_app'];
 
     $results = $wpdb->get_results("SELECT * FROM $table_name WHERE registerId LIKE '$register_id'");
 
@@ -19,8 +18,7 @@ if(isset($_GET['register_id']) && isset($_GET['register_model']) && isset($_GET[
             $table_name, 
             array( 
                 'registerId' => $register_id, 
-                'registerModel' => $register_model, 
-                'versionApp' => $version_app, 
+                'registerModel' => $register_model,
             ),
             array( 
                 'registerId' => $register_id 
@@ -31,8 +29,7 @@ if(isset($_GET['register_id']) && isset($_GET['register_model']) && isset($_GET[
             $table_name, 
             array( 
                 'registerId' => $register_id, 
-                'registerModel' => $register_model, 
-                'versionApp' => $version_app,
+                'registerModel' => $register_model,
             ) 
         );
     }
