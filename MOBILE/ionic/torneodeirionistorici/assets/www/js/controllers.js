@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope,$ionicModal,$timeout,$rootScope,ajaxCallServices,$ionicPopup) {
+.controller('AppCtrl', function($scope,$ionicModal,$timeout,$rootScope,ajaxCallServices,$ionicPopup,$ionicLoading) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -10,6 +10,40 @@ angular.module('starter.controllers', [])
   //});
 
   console.log('appctrl...');
+ 
+  $ionicLoading.show({
+    template: 'Loading...'
+  });
+
+  //modalUpdateApp
+  $ionicModal.fromTemplateUrl('templates/modalUpdateApp.html', {
+    scope: $scope
+  }).then(function(modalUpdateApp) {
+    $scope.modalUpdateApp = modalUpdateApp;
+
+    //connection
+    ajaxCallServices.checkUpdateApp($rootScope.version)
+      .success(function (device) {
+        if(device[0].result == 'OK') {
+
+          var versionCurrent  = $rootScope.version.replace('.','');
+          var versionOnline   = device[0].message.replace('.','');
+
+          $ionicLoading.hide();
+          if(versionCurrent < versionOnline) {
+            $scope.modalUpdateApp.show();            
+          }
+        }
+      }).error(function (error) {
+        $ionicLoading.hide();
+        $scope.status = 'Unable to load customer data' + error;
+      });
+    
+  });
+  $scope.closeModalUpdateApp = function() {
+    $scope.modalUpdateApp.hide();
+  };
+  
 
   /**** COMUNICATI UFFICIALI *****/
   if(!$rootScope.checkNoConnection) {

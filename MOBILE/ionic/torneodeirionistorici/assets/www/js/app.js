@@ -6,10 +6,17 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
 
-.run(function($ionicPlatform,$ionicPopup,$ionicLoading,PushProcessingService,$rootScope/*, $cordovaNetwork*/) {
+.run(function($ionicPlatform,$ionicPopup,$ionicLoading,$rootScope,PushProcessingService,$rootScope/*, $cordovaNetwork*/) {
   $ionicPlatform.ready(function() {
 
     console.info('ionicPlatform.ready');
+
+    //$rootScope.server = 'http://torneodeirionistorici.altervista.org';
+    $rootScope.server   = 'http://localhost/alefal.it/PROJECTS/wordpress';
+    $rootScope.version  = '1.1';
+    $rootScope.regId    = localStorage.getItem('deviceUUID');
+    $rootScope.nameApp  = 'torneodeirionistorici';
+
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -100,35 +107,38 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
 })
 //END: Example SERVICE, FACTORY, PROVIDER
 
-.factory('ajaxCallServices', function($http) {
+.factory('ajaxCallServices', function($http,$rootScope) {
 
   var ajaxCallServices = {};
-  var urlBase = 'http://torneodeirionistorici.altervista.org';
-
+  
+  /***** getReleasesRest ****/
+  ajaxCallServices.checkUpdateApp = function (version) {
+    return $http.get($rootScope.server+'/wp-content/plugins/alefal_notificationGCM/checkUpdateApp.php?nameApp='+$rootScope.nameApp);
+  };
   /***** getReleasesRest ****/
   ajaxCallServices.getReleasesRest = function () {
     //http://torneodeirionistorici.altervista.org/wp-json/posts?filter[tag]=comunicatiUfficiali
-    return $http.get(urlBase+'/wp-json/posts?filter[tag]=comunicatiUfficiali');
+    return $http.get($rootScope.server+'/wp-json/posts?filter[tag]=comunicatiUfficiali');
   };
   /***** getGiornalinoUfficiale ****/
   ajaxCallServices.getGiornalinoRest = function () {
     //http://torneodeirionistorici.altervista.org/wp-json/posts?filter[tag]=giornalinoUfficiale
-    return $http.get(urlBase+'/wp-json/posts?filter[tag]=giornalinoUfficiale');
+    return $http.get($rootScope.server+'/wp-json/posts?filter[tag]=giornalinoUfficiale');
   };
   /***** getRankingRest ****/
   ajaxCallServices.getRankingRest = function () {
     //http://torneodeirionistorici.altervista.org/wp-content/plugins/alefal_torneodeirionistorici/matchs.php?league_id=171&season_id=172
-    return $http.get(urlBase+'/wp-content/plugins/alefal_torneodeirionistorici/ranking.php?league_id=171&season_id=172');
+    return $http.get($rootScope.server+'/wp-content/plugins/alefal_torneodeirionistorici/ranking.php?league_id=171&season_id=172');
   };
   /***** getRankingRest ****/
   ajaxCallServices.getRanking2015Rest = function () {
     //http://torneodeirionistorici.altervista.org/wp-content/plugins/alefal_torneodeirionistorici/ranking.php?league_id=1&season_id=4
-    return $http.get(urlBase+'/wp-content/plugins/alefal_torneodeirionistorici/ranking.php?league_id=1&season_id=4');
+    return $http.get($rootScope.server+'/wp-content/plugins/alefal_torneodeirionistorici/ranking.php?league_id=1&season_id=4');
   };
   /***** geMatchsRest ****/
   ajaxCallServices.geMatchsRest = function () {
     //http://torneodeirionistorici.altervista.org/wp-content/plugins/alefal_torneodeirionistorici/matchs.php?league_id=171&season_id=172
-    return $http.get(urlBase+'/wp-content/plugins/alefal_torneodeirionistorici/matchs.php?league_id=171&season_id=172');
+    return $http.get($rootScope.server+'/wp-content/plugins/alefal_torneodeirionistorici/matchs.php?league_id=171&season_id=172');
   };
 
   return ajaxCallServices;
@@ -148,7 +158,7 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
   $rootScope.globFunc = globalFunction;
 })
 
-.factory('PushProcessingService', function($http) {
+.factory('PushProcessingService', function($http,$rootScope) {
   function onDeviceReady() {
     console.info('NOTIFY  Device is ready.  Registering with GCM server');
     //register with google GCM server
@@ -172,8 +182,8 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
       //For example:
 
       //var urlBase = 'http://localhost/alefal.it/PROJECTS/wordpress-4.2.3';
-      var urlBase = 'http://torneodeirionistorici.altervista.org';
-      var result = $http.get(urlBase+'/wp-content/plugins/alefal_notificationGCM/registerGCM.php?register_id='+id+'&register_model='+device.model);
+      localStorage.setItem('deviceUUID',id);
+      var result = $http.get($rootScope.server+'/wp-content/plugins/alefal_notificationGCM/registerGCM.php?register_id='+id+'&register_model='+device.model);
       /*
       alert(JSON.stringify(result));
       if(result[0].result == 'OK') {

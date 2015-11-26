@@ -3,7 +3,7 @@ hr {
 	border: 1px solid #efefef;
 }
 
-.eventForm .scroll-content { background: #e9e9e9; }
+.eventForm .scroll-content { background: #ffffff; }
 
 .eventForm .eventTab .col div.tabtext { background: #fff; padding: 20px 0 20px; min-height: 160px; text-align: center; }
 .eventForm .eventTab .col div.tabtext i { font-size: 60px; color: #013D09; }

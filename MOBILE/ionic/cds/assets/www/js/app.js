@@ -1,10 +1,13 @@
 // Ionic Starter App
 angular.module('starter', ['ionic','starter.controllers','starter.state','starter.factory','ngSanitize','pascalprecht.translate'/*, 'ngCordova'*/])
 
-.run(function($ionicPlatform,$ionicPopup,$ionicLoading,PushProcessingService/*,$rootScope,$cordovaNetwork*/) {
+.run(function($ionicPlatform,$ionicPopup,$ionicLoading,$rootScope,PushProcessingService/*,$rootScope,$cordovaNetwork*/) {
   $ionicPlatform.ready(function() {
 
     console.info('ionicPlatform.ready');
+
+    $rootScope.server = 'http://localhost/alefal.it/PROJECTS/wordpress';
+    
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins.Keyboard) {

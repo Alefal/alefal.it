@@ -2,6 +2,12 @@
 .item {
     white-space: normal;
 }
+.odd {
+  background-color: #efefef;
+}
+.even {
+  background-color: #ffffff;
+}
 </style>
 <ion-view view-title="Incontri">
 	<ion-content>
@@ -11,26 +17,20 @@
       </ion-refresher>
       
       <ion-list>
+        <ion-item ng-repeat="match in matchs" class="item-icon-left item-icon-right" ng-class-odd="'odd'" ng-class-even="'even'">
+            <i class="icon ion-ios-football"></i>
 
-    		<ion-item>
-    			<div class="row">
-					<div class="col col-33"><h3>DATA</h3></div>
-					<div class="col col-33"><h3>INCONTRO</h3></div>
-					<div class="col col-25" align="right"><h3>RISULTATO</h3></div>
-				</div>
-			</ion-item>
+            <h3>{{match.home_team_id}} - {{match.away_team_id}}</h3>
+            <h4>{{match.match_date}} @ {{match.match_time}}</h4>
+            <p>
+              <span ng-if="match.result == ' - '">Da giocare...</span>
+              <span ng-if="match.result != ' - '">Risultato: <strong>{{match.result}}</strong></span>
+            </p>
 
-      		<ion-item ng-repeat="match in matchs">
-        	    <div class="row">
-        	    	<div class="col col-33">
-        	    		{{match.match_date}}
-        	    		<br />
-        	    		{{match.match_time}}
-        	    	</div>
-					<div class="col col-33">{{match.home_team_id}} - {{match.away_team_id}}</div>
-					<div class="col col-25" align="right">{{match.result}}</div>
-				</div>
-      		</ion-item>
-    	</ion-list>
+            <i class="icon ion-more" ng-if="match.result == ' - '"></i>
+            <i class="icon ion-android-done-all" style="color:green" ng-if="match.result != ' - '"></i>
+        </ion-item>
+      </ion-list>
+
   	</ion-content>
 </ion-view>
