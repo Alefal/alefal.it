@@ -182,6 +182,8 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
   ajaxCallServices.getItems = function (item) {
 
     var service = '';
+    var timeoutCall = 15000; //15 secondi
+    
     var ente      = localStorage.getItem('agent_ente');
     var device    = localStorage.getItem('deviceUUID');
     var agenteId  = localStorage.getItem('agent_id');
@@ -212,7 +214,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
       service = 'getEnte.php?ente='+ente;
     }
 
-    return $http.get($rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/'+service);
+    return $http.get($rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/'+service, { timeout: timeoutCall });
 
   };
 

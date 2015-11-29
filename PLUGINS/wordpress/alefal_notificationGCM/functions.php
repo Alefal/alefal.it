@@ -1,5 +1,5 @@
 <?php
-function sendNotificationGCM($regId,$regModel,$notifTitle,$notifMessage) {
+function sendNotificationGCM($regId,$regModel,$notifTitle,$notifMessage,$notifSection) {
 	// API access key from Google API's Console
 	@define( 'API_ACCESS_KEY', 'AIzaSyCkAcxOLF8dsROovAVSoKChHPSrtDAYM1w' );
 	$registrationIds = array( $regId );
@@ -8,6 +8,7 @@ function sendNotificationGCM($regId,$regModel,$notifTitle,$notifMessage) {
 	(
 		'message' 		=> $notifMessage,
 		'title'			=> $notifTitle,
+		'section'		=> $notifSection,
 		'subtitle'		=> 'This is a subtitle. subtitle',
 		'tickerText'	=> 'Ticker text here...Ticker text here...Ticker text here',
 		'vibrate'		=> 1,

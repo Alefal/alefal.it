@@ -65,6 +65,15 @@ function alefal_notificationGCM_options() {
 	    		<br />
 	    		<textarea name="notifMessage" id="notifMessage" rows="4" cols="50"></textarea>
 	    		<br />
+	 	   		Sezione:
+	    		<br />
+	    		<select name="notifSection" id="notifSection">
+	    			<option value="comunicati">Comunicati</option>
+	    			<option value="giornalino">Giornalino</option>
+	    			<option value="classifica">Classifica</option>
+	    			<option value="incontri">Incontri</option>
+	    		</select>
+	    		<br /><br />
 	 	   		<a 	class="button button-primary button-hero" 
 	    			href="javascript:callSendNotification()">Invia notifica</a>
 	    	</div>
@@ -121,10 +130,12 @@ function alefal_notificationGCM_javascript() {
 
 		var notifTitle 		= jQuery('#notifTitle').val();
 		var notifMessage 	= jQuery('#notifMessage').val();
+		var notifSection 	= jQuery('#notifSection').val();
 
 		var data = {
 			'notifTitle': notifTitle,
-			'notifMessage': notifMessage
+			'notifMessage': notifMessage,
+			'notifSection': notifSection
 		};
 
 		// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
@@ -133,6 +144,7 @@ function alefal_notificationGCM_javascript() {
 			jQuery('#alefal_notificationGCM_ResultNotification').html(response);
 			jQuery('#notifTitle').val('');
 			jQuery('#notifMessage').val('');
+			jQuery('#notifSection').val('');
 		});
 	}
 	function callRemoveDevice(regId) {

@@ -391,12 +391,12 @@ angular.module('starter.controllers', [])
       var alertPopup = $ionicPopup.alert({
          title: title,
          template: message+'<br />'+$scope.messageBluetoothSerialEnable,
-         okText: 'Stampa', // String (default: 'OK'). The text of the OK button.
+         okText: 'OK', // String (default: 'OK'). The text of the OK button.
          okType: 'button-positive'
       });
       alertPopup.then(function(res) {
-        //$scope.stampaVerbale();
-        $state.go('app.verbali');
+        //$state.go('app.verbali');
+        $state.go('app.welcome');
       });
     } else {
       var alertPopup = $ionicPopup.alert({
@@ -540,7 +540,9 @@ angular.module('starter.controllers', [])
     var options = {
       quality: 50,
       destinationType: Camera.DestinationType.FILE_URI,
-      sourceType: Camera.PictureSourceType.CAMERA/*,
+      sourceType: Camera.PictureSourceType.CAMERA
+      targetWidth:1280,
+      targetHeight:724/*,
       saveToPhotoAlbum: true*/ //Versione 0.3.5
     };
     $cordovaCamera.getPicture(options).then(

@@ -316,13 +316,22 @@ function onNotificationGCM(e) {
                     console.log('--COLDSTART NOTIFICATION--' + '');
                 else
                     console.log('--BACKGROUND NOTIFICATION--' + '');
-
-                // direct user here:
-                window.location = '#/tab/featured';
             }
 
-            console.log('MESSAGE - MSG: ' + e.payload.message + '');
-            console.log('MESSAGE: '+ JSON.stringify(e.payload));
+            // direct user here:
+            var section = '';
+            if(e.payload.section == 'comunicati')
+              section = '#/app/releases';
+            else if(e.payload.section == 'giornalino')
+              section = '#/app/giornalino';
+            else if(e.payload.section == 'classifica')
+              section = '#/app/ranking';
+            else if(e.payload.section == 'incontri')
+              section = '#/app/matchs';
+            else
+              section = '#/app/welcome';
+            window.location = section;
+
             break;
 
         case 'error':
