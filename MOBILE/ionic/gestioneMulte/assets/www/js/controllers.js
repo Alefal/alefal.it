@@ -396,6 +396,9 @@ angular.module('starter.controllers', [])
       });
       alertPopup.then(function(res) {
         //$state.go('app.verbali');
+
+        //TODO: Testare STAMPARE VERBALE
+        $rootScope.globFunc.bluetoothPrinter('verbale',$scope.verbaleCompleto);
         $state.go('app.welcome');
       });
     } else {
@@ -488,26 +491,30 @@ angular.module('starter.controllers', [])
   $scope.tipoVeicolo      = '';
   $scope.modelloVeicolo   = '';
 
-  $rootScope.indirizzoId  = '';
-  $rootScope.indirizzo    = '';
-  $scope.indirizzoCivico  = '';
-  $scope.indirizzoDescr   = '';
+  /* COMMENTATO PER RICORDARE ULTIMO SELEZIONATO
+  $rootScope.indirizzoId      = '';
+  $rootScope.indirizzo        = '';
+  $rootScope.indirizzoCivico  = '';
+  $rootScope.indirizzoDescr   = '';
+  */
 
   $scope.tipoVeicoloCode  = 'A';
   $scope.tipoVeicoloDescr = 'AUTOVEICOLO';
 
   $scope.mancataContestazione = true;
 
+   /* COMMENTATO PER RICORDARE ULTIMO SELEZIONATO
   $rootScope.idAgente2      = '';
   $rootScope.nomeAgente2    = '';
-
-  $scope.art1               = '';
-  $scope.codArt1            = '';
-  $scope.descrArt1          = '';
-  $scope.puntiArt1          = '';
-  $scope.importoArt1        = '';
-  $scope.sanzAccIdArt1      = '';
-  $scope.sanzAccDescrArt1   = '';
+  
+  $rootScope.art1               = '';
+  $rootScope.codArt1            = '';
+  $rootScope.descrArt1          = '';
+  $rootScope.puntiArt1          = '';
+  $rootScope.importoArt1        = '';
+  $rootScope.sanzAccIdArt1      = '';
+  $rootScope.sanzAccDescrArt1   = '';
+  */
 
   $scope.art2               = '';
   $scope.codArt2            = '';
@@ -522,6 +529,7 @@ angular.module('starter.controllers', [])
   $scope.imgBase64    = '';
   $scope.filePathImg  = '';
   $scope.picData      = '';
+  //$scope.picData      = 'img/icon.png'; //TEST BROWSER
 
   //GEOLOCATION
 /***** 
@@ -540,7 +548,7 @@ angular.module('starter.controllers', [])
     var options = {
       quality: 50,
       destinationType: Camera.DestinationType.FILE_URI,
-      sourceType: Camera.PictureSourceType.CAMERA
+      sourceType: Camera.PictureSourceType.CAMERA,
       targetWidth:1280,
       targetHeight:724/*,
       saveToPhotoAlbum: true*/ //Versione 0.3.5
@@ -590,12 +598,12 @@ angular.module('starter.controllers', [])
       $scope.indirizzoRequired = true;
       $ionicScrollDelegate.scrollTop(true);
       return false;
-    } else if(typeof($scope.art1) == 'undefined' ||
-              typeof($scope.codArt1) == 'undefined' ||
-              typeof($scope.descrArt1) == 'undefined' ||
-              $scope.art1 == '' ||
-              $scope.codArt1 == '' ||
-              $scope.descrArt1 == '') {
+    } else if(typeof($rootScope.art1) == 'undefined' ||
+              typeof($rootScope.codArt1) == 'undefined' ||
+              typeof($rootScope.descrArt1) == 'undefined' ||
+              $rootScope.art1 == '' ||
+              $rootScope.codArt1 == '' ||
+              $rootScope.descrArt1 == '') {
       $scope.fieldsRequired = true;
       $scope.verbaleRequired = false;
       $scope.datiVerbaleRequired = false;
@@ -903,20 +911,20 @@ angular.module('starter.controllers', [])
     //console.log(COD_ART+' - '+COD_COM+' - '+COMMA+' - '+DES_ART1+' - '+PUNT_ART+' - '+IMP_ART+' - '+ID_SANZ+' - '+DESCR_SANZ);
 
     if($scope.setArt1) {
-      $scope.art1       = COD_ART;
-      $scope.codArt1    = COD_COM/*+','+COMMA*/;
-      $scope.descrArt1  = DES_ART1;
+      $rootScope.art1       = COD_ART;
+      $rootScope.codArt1    = COD_COM/*+','+COMMA*/;
+      $rootScope.descrArt1  = DES_ART1;
 
-      $scope.infoArt1 = 'Importo: '+IMP_ART+'; Punti: '+PUNT_ART+'; Sanzione accessoria: '+DESCR_SANZ;
+      $rootScope.infoArt1 = 'Importo: '+IMP_ART+'; Punti: '+PUNT_ART+'; Sanzione accessoria: '+DESCR_SANZ;
 
-      $scope.puntiArt1        = PUNT_ART;
-      $scope.importoArt1      = IMP_ART;
-      $scope.sanzAccIdArt1    = ID_SANZ;
-      $scope.sanzAccDescrArt1 = DESCR_SANZ;
+      $rootScope.puntiArt1        = PUNT_ART;
+      $rootScope.importoArt1      = IMP_ART;
+      $rootScope.sanzAccIdArt1    = ID_SANZ;
+      $rootScope.sanzAccDescrArt1 = DESCR_SANZ;
 
-      angular.element(document.querySelector('#ART1_VERB')).val($scope.art1);
-      angular.element(document.querySelector('#COD1_VERB')).val($scope.codArt1);
-      angular.element(document.querySelector('#DESCR_ART1_VERB')).val($scope.descrArt1);
+      angular.element(document.querySelector('#ART1_VERB')).val($rootScope.art1);
+      angular.element(document.querySelector('#COD1_VERB')).val($rootScope.codArt1);
+      angular.element(document.querySelector('#DESCR_ART1_VERB')).val($rootScope.descrArt1);
 
     } else if($scope.setArt2) {
       $scope.art2       = COD_ART;

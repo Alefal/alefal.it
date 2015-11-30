@@ -1,0 +1,19 @@
+TODO:
+OK -> una volta salvato un verbale non si atterra più sulla pagina dei VERBALI ma sulla HOME dell'app
+
+OK -> Modifica alla dimensione dell'immagine da caricare... la dimensione settata è 1280*724
+
+OK -> Il verbale va sempre stampato, quello che volevo eliminare e la form che appare dopo il salva, nel senso che il salva automaticamente salva e stampa senza ulteriori conferme. Nel caso la stampa non dovesse partire, e solo in questo caso, l'agente ha la possibilità di ritentare dalla sezione ricerca.
+
+OK -> Una modifica che permetterebbe di velocizzare l'inserimento e inserire il salva in alto e non in fondo alla pagina.
+
+OK -> Visto che gli agenti sono un po cecati è possibile avere un bel font per la targa e il modello??? (AUMENTARE FONT)
+
+OK -> Ho notato che i default non funzionano, non ricorda l'ultima via e l'ultimo articolo.
+
+- Quando si utilizza in off line, le informazioni georeferenziali e la foto non vengono sincronizzate.
+-- Verificare per GEO; per le immagini dovrebbe funzionare
+
+OK -> Quando si utilizza in off line il messaggio di stato off line appare sovrapposto a campo marca/modello e alla fine sovrapposto al salva creando un pò di fastidio vedi se puoi dargli una altra posizione oppure presente solo sulla HOME e se puoi in bella evidenza come il tasto sincronizza che utilizzi quando si ritorna in on line. (INSERIRLO IN ALTO STILE FACEBOOK)
+
+- timeout sulle richieste 

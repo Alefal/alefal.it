@@ -186,7 +186,8 @@ hr {
 
 .messageNoConnection {
     z-index: 5;
-    bottom: 0px;
+    /*bottom: 0px;*/
+    top: 54px;
     position: absolute;
     width: 100%;
     text-align: center;
@@ -194,6 +195,7 @@ hr {
     padding: 10px;
     color: #000;
     text-shadow: 0 0 2px #fff;
+    border-bottom: 5px solid #709EEC;
 }
 
 .item-radio .item-content {

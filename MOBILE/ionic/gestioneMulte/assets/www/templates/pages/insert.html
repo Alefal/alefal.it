@@ -5,7 +5,23 @@
     	<a ng-click="globFunc.back()" class="power button"><i class="ion-chevron-left"></i></a>
     </ion-header-bar>
 
-    <ion-content class="padding inserimentoVerbale" ng-controller="InsertCtrl">
+    <ion-content class="padding inserimentoVerbale" ng-controller="InsertCtrl" style="{{marginMessageNoConnection}}">
+
+        <div class="row eventTab" align="center">
+            <div class="col col-50" style="margin-right: 3px;">
+                <button class="button button-block button-positive icon-left ion-android-done" ng-click="salvaVerbale()"> Salva</button>
+            </div>
+            <div class="col col-50">
+                <button class="button button-block button-assertive icon-left ion-android-cancel" ng-click="globFunc.back()"> Annulla</button>
+            </div>
+        </div>
+
+        <div class="spacerVertical"></div>
+        <div class="spacerVertical"></div>
+        <hr />
+        <div class="spacerVertical"></div>
+        <div class="spacerVertical"></div>
+
         <!--
         <div class="message-info message-info-striped">
             <i class="icon ion-ios-information-outline" style="font-size: 25px;"></i>
@@ -65,7 +81,7 @@
                 <h4>Veicolo</h4>
             </div>
             <div class="col" align="right">
-                <button class="button button-assertive icon-left ion-android-checkbox-outline" ng-click="openModalItem('marche')"> Scegli</button>
+                <button class="button button-stable icon-left ion-android-checkbox-outline" ng-click="openModalItem('marche')"> Scegli</button>
             </div>
         </div>
                 
@@ -73,6 +89,7 @@
 
         <div class="list list-inset">
             <label class="item item-input">
+                <i class="icon ion-alert" style="color:red"></i>
                 <input type="text" name="TARGA_VERB" placeholder="Targa veicolo" ng-model="targaVeicolo" required>
                 <i class="icon ion-model-s"></i>
             </label>
@@ -151,6 +168,7 @@
         <div class="list list-inset">
             <label class="item item-input readonly">
                 <!-- MANTENERE ULTIMO SELEZIONATO -->
+                <i class="icon ion-alert" style="color:red"></i>
                 <input type="text" id="DESCR_VIE" placeholder="Indirizzo" readonly="true" value="{{indirizzo}}" required>
                 <input type="hidden" id="VIA_VERB" name="VIA_VERB" value="{{indirizzoId}}">
                 <i class="icon ion-map"></i>
@@ -180,6 +198,7 @@
 
         <div class="list list-inset">
             <label class="item item-input readonly">
+                <i class="icon ion-alert" style="color:red"></i>
                 <input type="text" id="ART1_VERB" name="ART1_VERB" placeholder="Articolo" readonly="true" value="{{art1}}" required>
                 <i class="icon ion-clipboard"></i>
             </label>
@@ -332,18 +351,15 @@
         <input type="hidden" name="LONG_VERB" value="{{longVerbale}}">
 
         <div class="spacerVertical"></div>
+        <div class="spacerVertical"></div>
+        <div class="spacerVertical"></div>
+        <div class="spacerVertical"></div>
+        <hr />        
 
-        <div class="row eventTab">
-            <div class="col col-50">
-                <button class="button button-block button-positive icon-left ion-android-done" ng-click="salvaVerbale()"> Salva</button>
-            </div>
-            <div class="col col-50">
-                <!--
-                <button class="button button-block button-assertive icon-left ion-android-cancel" ng-click="annullaVerbale()"> Annulla</button>
-                -->
-                <button class="button button-block button-assertive icon-left ion-android-cancel" ng-click="globFunc.back()"> Annulla</button>
-            </div>
+        <div align="center">
+            <h6>LEGENDA: i campi contrassegnato con <i class="icon ion-alert" style="color:red;padding-left: 15px;"></i> sono obbligatori</h6>
         </div>
+
     </ion-content>
 
 </ion-view>

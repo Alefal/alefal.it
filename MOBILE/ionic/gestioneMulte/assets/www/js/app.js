@@ -42,7 +42,6 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
-
     }
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
@@ -50,8 +49,12 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
     }
 
     //TEST WITH BROWSER: Check Connection
-    
-    $rootScope.checkNoConnection = false;
+    //NO CONNECTION
+    //$rootScope.checkNoConnection          = true;
+    //$rootScope.marginMessageNoConnection  = 'margin-top:60px';
+    //SI CONNECTION
+    $rootScope.checkNoConnection          = false;
+    $rootScope.marginMessageNoConnection  = 'margin-top:0px';
     
 /*****
     document.addEventListener('deviceready', function () {
