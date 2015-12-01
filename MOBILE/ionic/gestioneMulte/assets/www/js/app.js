@@ -60,6 +60,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
     document.addEventListener('deviceready', function () {
       $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
         $rootScope.checkNoConnection = false;
+        $rootScope.marginMessageNoConnection  = 'margin-top:0px';
 
         if (localStorage.getItem('datiVerbaleOffline')) {
           $rootScope.datiVerbaleOffline = true;
@@ -71,6 +72,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
       // listen for Offline event
       $rootScope.$on('$cordovaNetwork:offline', function(event, networkState){
         $rootScope.checkNoConnection = true;
+        $rootScope.marginMessageNoConnection  = 'margin-top:60px';
         $rootScope.datiVerbaleOffline = false;
       })
 
@@ -251,7 +253,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 
   return ajaxCallServices;
 })
-.factory('globalFunction', function($state,$rootScope/*,$cordovaBluetoothSerial*/,$ionicPopup,$ionicLoading) {
+.factory('globalFunction', function($state,$rootScope,$ionicPopup,$ionicLoading/*,$cordovaBluetoothSerial*/) {
   return {
     exitApp: function() {
       /* NON LI CANCELLO PER ACCESSO OFFLINE...

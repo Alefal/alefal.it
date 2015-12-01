@@ -333,14 +333,12 @@ angular.module('starter.controllers', [])
                 console.log(filePath);
 
 
-                /***** Picture Upload Error Code: 3 - Aggiungere all'header
+                /***** Picture Upload Error Code: 3 - Aggiungere all'header *****/
                 var options = new FileUploadOptions();
                 options.chunkedMode = false;
                 options.headers = {
                   Connection: 'close'
                 }
-                *****/
-                var options = {};
 
                 if (filePath != '') {
                   $cordovaFileTransfer.upload(server, filePath, options)
@@ -462,6 +460,7 @@ angular.module('starter.controllers', [])
 
       }).error(function (error) {
         console.log('KO');
+        $ionicLoading.hide();
         $scope.showAlertMessage('Numero verbale','Numero verbale non trovato! Contattare l\'amministratore!',true);
       });
   } else {
@@ -713,14 +712,13 @@ angular.module('starter.controllers', [])
                 console.log(filePath);
                 var options = {};
 
-                /***** Picture Upload Error Code: 3 - Aggiungere all'header
+                /***** Picture Upload Error Code: 3 - Aggiungere all'header *****/
                 var options = new FileUploadOptions();
                 options.chunkedMode = false;
                 options.headers = {
                   Connection: 'close'
                 }
-                *****/
-
+                
                 if (filePath != '') {
                   $cordovaFileTransfer.upload(server, filePath, options)
                     .then(function(result) {
