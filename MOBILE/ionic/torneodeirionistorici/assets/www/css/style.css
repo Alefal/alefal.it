@@ -91,3 +91,19 @@ hr {
     color: #fff;
     font-weight: 500;
 }
+
+.notes .goal, .notes .assist, .notes .yellowcard, .notes .redcard, .notes .sub {
+    display: block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    float: left;
+    background: url(../img/notes.png) no-repeat;
+    overflow: hidden;
+    text-indent: -100px;
+}
+.notes .goal { background-position: -5px -5px; }
+.notes .assist { background-position: -165px -5px; }
+.notes .yellowcard { background-position: -45px -5px; }
+.notes .redcard { background-position: -85px -5px; }
+.notes .sub { background-position: -125px -5px; }

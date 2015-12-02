@@ -39,7 +39,7 @@ if(isset($_GET['team_id'])) { //692
 
 $finalArray[] = array(
     'response'   => $resultArray,
-    'ranking'   => $teamsArray
+    'atleti'   => $teamsArray
 );
 echo json_encode($finalArray);
 exit();

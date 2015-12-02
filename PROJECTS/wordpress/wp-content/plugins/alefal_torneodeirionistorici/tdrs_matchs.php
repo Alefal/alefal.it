@@ -10,7 +10,7 @@ $finalArray = array();
 //SQUADRE: select id,post_title from avwp_posts where post_type = 'tb_club' and post_status = 'publish'
 
 
-    $matchs = $wpdb->get_results("select P.id, P.post_date, PM.*, PP.post_title AS casa, PPP.post_title AS fuori
+$matchs = $wpdb->get_results("select P.id, P.post_date, PM.*, PP.post_title AS casa, PPP.post_title AS fuori
 
 from avwp_posts AS P  
 
@@ -18,7 +18,7 @@ JOIN avwp_postmeta as PM ON P.id=PM.post_id
 LEFT JOIN avwp_posts as PP ON PP.id=PM.meta_value AND PM.meta_key = 'tb_home_club'
 LEFT JOIN avwp_posts as PPP ON PPP.id=PM.meta_value AND PM.meta_key = 'tb_away_club'
 
-where P.post_type = 'tb_match' AND P.id = '733' AND 
+where P.post_type = 'tb_match' AND (P.post_status = 'publish' OR P.post_status = 'future') AND
     (PM.meta_key = 'tb_home_club' OR 
      PM.meta_key = 'tb_away_club' OR 
      PM.meta_key = 'tb_home_goals' OR 
@@ -31,19 +31,18 @@ $resultArray[] = array(
     'message' => 'OK'
 );
 
+$matchId        = '';
 $matchDate      = '';
 $matchTeamHome  = '';
 $matchTeamAway  = '';
 $matchGoalHome  = '';
 $matchGoalAway  = '';
 
-$cont = 0;
+$cont = 1;
 foreach ($matchs as $match) {
 
-    echo $match->id;
-    
-    if($cont == 0)
-        $matchDate = $match->post_date;
+    $matchId = $match->post_id;
+    $matchDate = $match->post_date;
 
     if( $match->casa != '')
         $matchTeamHome = $match->casa;
@@ -55,20 +54,24 @@ foreach ($matchs as $match) {
     else if( $match->meta_key == 'tb_away_goals' && $match->meta_value != '')
         $matchGoalAway = $match->meta_value;
 
+    if($cont % 4 == 0) {
+        $teamsArray[] = array(        
+            'Id'        => $matchId,
+            'Date'      => $matchDate,
+            'TeamHome'  => $matchTeamHome,
+            'TeamAway'  => $matchTeamAway,
+            'GoalHome'  => $matchGoalHome,
+            'GoalAway'  => $matchGoalAway
+        );  
+    }
+
     $cont++;
 }
 
-$teamsArray[] = array(        
-    'Date'      => $matchDate,
-    'TeamHome'  => $matchTeamHome,
-    'TeamAway'  => $matchTeamAway,
-    'GoalHome'  => $matchGoalHome,
-    'GoalAway'  => $matchGoalAway
-);  
 
 $finalArray[] = array(
     'response'   => $resultArray,
-    'ranking'   => $teamsArray
+    'matchs'   => $teamsArray
 );
 echo json_encode($finalArray);
 exit();

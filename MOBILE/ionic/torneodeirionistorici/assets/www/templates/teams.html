@@ -1,0 +1,30 @@
+<style>
+.item {
+    white-space: normal;
+}
+</style>
+<ion-view view-title="Squadre">
+	<ion-content>
+    	<ion-refresher
+        	pulling-text="Aggiorna..."
+        	on-refresh="doRefresh()">
+      	</ion-refresher>
+      
+      	<ion-list>
+            <ion-item ng-repeat="team in teams" class="item item-avatar item-icon-right" ng-click="openModalAtleti(team.SquadraId)" style="margin-bottom:5px;">
+
+            	<img ng-if="team.Squadra == 'Lacco'"			src="http://torneodeirionistorici.altervista.org/wp-content/uploads/2014/11/lacco1.jpg" style="border-radius: 0;" />
+                <img ng-if="team.Squadra == 'Minuta'" 			src="http://torneodeirionistorici.altervista.org/wp-content/uploads/2014/11/minuta.png" style="border-radius: 0;" />
+                <img ng-if="team.Squadra == 'Monte Brusara'" 	src="http://torneodeirionistorici.altervista.org/wp-content/uploads/2014/11/monte_brusara1.jpg" style="border-radius: 0;" />
+                <img ng-if="team.Squadra == 'Sambuco'" 			src="http://torneodeirionistorici.altervista.org/wp-content/uploads/2014/11/sambuco1.jpg" style="border-radius: 0;" />
+                <img ng-if="team.Squadra == 'Santa Caterina'" 	src="http://torneodeirionistorici.altervista.org/wp-content/uploads/2014/11/santa_caterina1.jpg" style="border-radius: 0;" />
+                <img ng-if="team.Squadra == 'San Pietro'" 		src="http://torneodeirionistorici.altervista.org/wp-content/uploads/2014/11/san_pietro.jpg" style="border-radius: 0;" />
+                <img ng-if="team.Squadra == 'San Cosma'" 		src="http://torneodeirionistorici.altervista.org/wp-content/uploads/2014/11/san_cosma1.jpg" style="border-radius: 0;" />
+                <h2 style="margin-top: 10px;">{{team.Squadra}}</h2>
+                <i class="icon ion-ios-arrow-right"></i>
+
+            </ion-item>
+        </ion-list>
+
+  	</ion-content>
+</ion-view>

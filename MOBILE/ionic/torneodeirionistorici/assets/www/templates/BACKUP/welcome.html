@@ -3,20 +3,18 @@
 	<ion-content>
     	
 		<div class="row eventTab">
-			
 			<div class="col col-50" style="border-right:1px solid #013D09">
+				<div class="tabtext" ng-click="globFunc.goto('app.releases')">
+					<div class="icon"><i class="ion-clipboard"></i></div>
+					<h3>Comunicati</h3>
+				</div>
+			</div>
+			<div class="col col-50">
 				<div class="tabtext" ng-click="globFunc.goto('app.giornalino')">
 					<div class="icon"><i class="ion-android-chat"></i></div>
 					<h3>Rioni NEWS</h3>
 				</div>
 			</div>
-			<div class="col col-50">
-				<div class="tabtext" ng-click="globFunc.goto('app.teams')">
-					<div class="icon"><i class="ion-ios-football"></i></div>
-					<h3>Squadre</h3>
-				</div>
-			</div>
-
 		</div>
 
         <div class="row">
@@ -26,17 +24,16 @@
 		</div>
 
         <div class="row eventTab">
-        
 			<div class="col col-50" style="border-right:1px solid #013D09">
-				<div class="tabtext" ng-click="globFunc.goto('app.matchs')">
-					<div class="icon"><i class="ion-calendar"></i></div>
-					<h3>Incontri</h3>
-				</div>
-			</div>
-			<div class="col col-50">
 				<div class="tabtext" ng-click="globFunc.goto('app.ranking')">
 					<div class="icon"><i class="ion-grid"></i></div>
 					<h3>Classifica</h3>
+				</div>
+			</div>
+			<div class="col col-50">
+				<div class="tabtext" ng-click="globFunc.goto('app.matchs')">
+					<div class="icon"><i class="ion-calendar"></i></div>
+					<h3>Incontri</h3>
 				</div>
 			</div>
 		</div>

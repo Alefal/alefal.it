@@ -13,7 +13,6 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
 
     //$rootScope.server = 'http://torneodeirionistorici.altervista.org';
     $rootScope.server   = 'http://localhost/alefal.it/PROJECTS/wordpress';
-    //$rootScope.server   = 'http://localhost';
     $rootScope.version  = '1.1';
     $rootScope.regId    = localStorage.getItem('deviceUUID');
     $rootScope.nameApp  = 'torneodeirionistorici';
@@ -111,8 +110,6 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
 .factory('ajaxCallServices', function($http,$rootScope) {
 
   var ajaxCallServices = {};
-
-  var timeoutCall = 15000; //15 secondi
   
   /***** checkUpdateApp ****/
   ajaxCallServices.checkUpdateApp = function (version) {
@@ -121,44 +118,27 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
   /***** getReleasesRest ****/
   ajaxCallServices.getReleasesRest = function () {
     //http://torneodeirionistorici.altervista.org/wp-json/posts?filter[tag]=comunicatiUfficiali
-    return $http.get($rootScope.server+'/wp-json/posts?filter[tag]=comunicatiUfficiali', { timeout: timeoutCall });
+    return $http.get($rootScope.server+'/wp-json/posts?filter[tag]=comunicatiUfficiali');
   };
   /***** getGiornalinoUfficiale ****/
   ajaxCallServices.getGiornalinoRest = function () {
     //http://torneodeirionistorici.altervista.org/wp-json/posts?filter[tag]=giornalinoUfficiale
-    return $http.get($rootScope.server+'/wp-json/posts?filter[tag]=giornalinoUfficiale', { timeout: timeoutCall });
+    return $http.get($rootScope.server+'/wp-json/posts?filter[tag]=giornalinoUfficiale');
   };
-
-  /***** getTeamsRest ****/
-  ajaxCallServices.getTeamsRest = function () {
-    //http://torneodeirionistorici.altervista.org/wp-content/plugins/alefal_torneodeirionistorici/matchs.php?league_id=171&season_id=172
-    return $http.get($rootScope.server+'/wp-content/plugins/alefal_torneodeirionistorici/tdrs_teams.php', { timeout: timeoutCall });
-  };
-  /***** getAtletiRest ****/
-  ajaxCallServices.getAtletiRest = function (id) {
-    //http://torneodeirionistorici.altervista.org/wp-content/plugins/alefal_torneodeirionistorici/matchs.php?league_id=171&season_id=172
-    return $http.get($rootScope.server+'/wp-content/plugins/alefal_torneodeirionistorici/tdrs_atleti.php?team_id='+id, { timeout: timeoutCall });
-  };
-
   /***** getRankingRest ****/
   ajaxCallServices.getRankingRest = function () {
     //http://torneodeirionistorici.altervista.org/wp-content/plugins/alefal_torneodeirionistorici/matchs.php?league_id=171&season_id=172
-    return $http.get($rootScope.server+'/wp-content/plugins/alefal_torneodeirionistorici/ranking.php?league_id=171&season_id=172', { timeout: timeoutCall });
+    return $http.get($rootScope.server+'/wp-content/plugins/alefal_torneodeirionistorici/ranking.php?league_id=171&season_id=172');
   };
-  /***** getRanking2015Rest ****/
+  /***** getRankingRest ****/
   ajaxCallServices.getRanking2015Rest = function () {
     //http://torneodeirionistorici.altervista.org/wp-content/plugins/alefal_torneodeirionistorici/ranking.php?league_id=1&season_id=4
-    return $http.get($rootScope.server+'/wp-content/plugins/alefal_torneodeirionistorici/ranking.php?league_id=1&season_id=4', { timeout: timeoutCall });
+    return $http.get($rootScope.server+'/wp-content/plugins/alefal_torneodeirionistorici/ranking.php?league_id=1&season_id=4');
   };
   /***** geMatchsRest ****/
   ajaxCallServices.geMatchsRest = function () {
-    //return $http.get($rootScope.server+'/wp-content/plugins/alefal_torneodeirionistorici/matchs.php?league_id=171&season_id=172', { timeout: timeoutCall });
-    return $http.get($rootScope.server+'/wp-content/plugins/alefal_torneodeirionistorici/tdrs_matchs.php', { timeout: timeoutCall });
-  };
-  /***** getMatchDetailRest ****/
-  ajaxCallServices.getMatchDetailRest = function (id) {
-    //return $http.get($rootScope.server+'/wp-content/plugins/alefal_torneodeirionistorici/matchs.php?league_id=171&season_id=172', { timeout: timeoutCall });
-    return $http.get($rootScope.server+'/wp-content/plugins/alefal_torneodeirionistorici/tdrs_matchDetails.php?match_id='+id, { timeout: timeoutCall });
+    //http://torneodeirionistorici.altervista.org/wp-content/plugins/alefal_torneodeirionistorici/matchs.php?league_id=171&season_id=172
+    return $http.get($rootScope.server+'/wp-content/plugins/alefal_torneodeirionistorici/matchs.php?league_id=171&season_id=172');
   };
 
   return ajaxCallServices;
@@ -260,15 +240,6 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
         'menuContent': {
           templateUrl: 'templates/giornalino.html',
           controller: 'GiornalinoCtrl'
-        }
-      }
-    })
-    .state('app.teams', {
-      url: '/teams',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/teams.html',
-          controller: 'TeamsCtrl'
         }
       }
     })

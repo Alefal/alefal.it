@@ -17,18 +17,18 @@
       </ion-refresher>
       
       <ion-list>
-        <ion-item ng-repeat="match in matchs" class="item-icon-left item-icon-right" ng-class-odd="'odd'" ng-class-even="'even'">
+        <ion-item ng-repeat="match in matchs" class="item-icon-left item-icon-right" ng-click="openModalMatchDetail(match.Id,match.TeamHome,match.TeamAway,match.GoalHome,match.GoalAway)" ng-class-odd="'odd'" ng-class-even="'even'">
             <i class="icon ion-ios-football"></i>
 
-            <h3>{{match.home_team_id}} - {{match.away_team_id}}</h3>
-            <h4>{{match.match_date}} @ {{match.match_time}}</h4>
+            <h3>{{match.TeamHome}} - {{match.TeamAway}}</h3>
+            <h4>{{match.Date}}</h4>
             <p>
-              <span ng-if="match.result == ' - '">Da giocare...</span>
-              <span ng-if="match.result != ' - '">Risultato: <strong>{{match.result}}</strong></span>
+              <span ng-if="match.GoalHome == '0' && match.GoalAway == '0'">Da giocare...</span>
+              <span ng-if="match.GoalHome != '0' && match.GoalAway != '0'">Risultato: <strong>{{match.GoalHome}}</strong> - <strong>{{match.GoalAway}}</strong></span>
             </p>
 
-            <i class="icon ion-more" ng-if="match.result == ' - '"></i>
-            <i class="icon ion-android-done-all" style="color:green" ng-if="match.result != ' - '"></i>
+            <i class="icon ion-more" ng-if="match.GoalHome == '0' && match.GoalAway == '0'"></i>
+            <i class="icon ion-android-done-all" style="color:green" ng-if="match.GoalHome != '0' && match.GoalAway != '0'"></i>
         </ion-item>
       </ion-list>
 

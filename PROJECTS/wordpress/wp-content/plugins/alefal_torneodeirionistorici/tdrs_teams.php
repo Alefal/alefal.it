@@ -7,7 +7,7 @@ $teamsArray = array();
 $resultArray = array();
 $finalArray = array();
  
-$teams = $wpdb->get_results("select id,post_title from avwp_posts where post_type = 'tb_club' and post_status = 'publish'");
+$teams = $wpdb->get_results("select id,post_title from avwp_posts where post_type = 'tb_club' and post_status = 'publish' order by post_title");
 
 $resultArray[] = array(
     'result'  => 'OK',
@@ -24,7 +24,7 @@ foreach ($teams as $team) {
 
 $finalArray[] = array(
     'response'   => $resultArray,
-    'ranking'   => $teamsArray
+    'teams'   => $teamsArray
 );
 echo json_encode($finalArray);
 exit();

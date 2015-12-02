@@ -1,0 +1,22 @@
+<ion-modal-view>
+
+  <ion-header-bar class="bar-balanced">
+    <h1 class="title" ng-bind-html="sqName"></h1>
+    <a ng-click="closeModalAtleti()" class="power button"><i class="ion-close"></i></a> 
+  </ion-header-bar>
+
+  <ion-content class="padding">
+    
+    <ion-list>
+        <ion-item ng-repeat="atleta in atleti" class="item-icon-left item-icon-right" style="margin-bottom:5px;">
+
+            <i class="icon ion-clipboard"></i>
+            <h3>{{atleta.Atleta}}</h3>
+            <i class="icon ion-ios-arrow-right"></i>
+
+        </ion-item>
+    </ion-list>
+
+  </ion-content>
+
+</ion-modal-view>
