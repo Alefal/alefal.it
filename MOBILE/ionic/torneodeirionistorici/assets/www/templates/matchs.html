@@ -11,17 +11,22 @@
 </style>
 <ion-view view-title="Incontri">
 	<ion-content>
+
+      <div class="padding" align="center" ng-show="statusError">
+        <h5>Contenuto non disponibile! Riprovare più tardi...</h5>
+      </div>
+
     	<ion-refresher
         pulling-text="Aggiorna..."
         on-refresh="doRefresh()">
       </ion-refresher>
       
-      <ion-list>
+      <ion-list ng-show="!statusError">
         <ion-item ng-repeat="match in matchs" class="item-icon-left item-icon-right" ng-click="openModalMatchDetail(match.Id,match.TeamHome,match.TeamAway,match.GoalHome,match.GoalAway)" ng-class-odd="'odd'" ng-class-even="'even'">
             <i class="icon ion-ios-football"></i>
 
             <h3>{{match.TeamHome}} - {{match.TeamAway}}</h3>
-            <h4>{{match.Date}}</h4>
+            <h4>{{match.Date | date:'dd-MM-yyyy HH:mm'}}</h4>
             <p>
               <span ng-if="match.GoalHome == '0' && match.GoalAway == '0'">Da giocare...</span>
               <span ng-if="match.GoalHome != '0' && match.GoalAway != '0'">Risultato: <strong>{{match.GoalHome}}</strong> - <strong>{{match.GoalAway}}</strong></span>

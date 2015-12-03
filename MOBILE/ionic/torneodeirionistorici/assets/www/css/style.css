@@ -107,3 +107,7 @@ hr {
 .notes .yellowcard { background-position: -45px -5px; }
 .notes .redcard { background-position: -85px -5px; }
 .notes .sub { background-position: -125px -5px; }
+
+.spacerVertical {
+    height: 7px;
+}

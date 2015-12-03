@@ -5,12 +5,17 @@
 </style>
 <ion-view view-title="Classifica">
 	<ion-content>
+
+		<div class="padding" align="center" ng-show="statusError">
+        	<h5>Contenuto non disponibile! Riprovare più tardi...</h5>
+      	</div>
+    	
     	<ion-refresher
         	pulling-text="Aggiorna..."
         	on-refresh="doRefresh()">
       	</ion-refresher>
       
-    	<ion-list>
+    	<ion-list ng-show="!statusError">
 
     		<ion-item>
     			<div class="row">

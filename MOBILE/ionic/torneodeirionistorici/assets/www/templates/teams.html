@@ -5,13 +5,18 @@
 </style>
 <ion-view view-title="Squadre">
 	<ion-content>
+
+        <div class="padding" align="center" ng-show="statusError">
+            <h5>Contenuto non disponibile! Riprovare più tardi...</h5>
+        </div>
+
     	<ion-refresher
         	pulling-text="Aggiorna..."
         	on-refresh="doRefresh()">
       	</ion-refresher>
       
-      	<ion-list>
-            <ion-item ng-repeat="team in teams" class="item item-avatar item-icon-right" ng-click="openModalAtleti(team.SquadraId)" style="margin-bottom:5px;">
+      	<ion-list ng-show="!statusError">
+            <ion-item ng-repeat="team in teams" class="item item-avatar item-icon-right" ng-click="openModalAtleti(team.SquadraId,team.Squadra)" style="margin-bottom:5px;">
 
             	<img ng-if="team.Squadra == 'Lacco'"			src="http://torneodeirionistorici.altervista.org/wp-content/uploads/2014/11/lacco1.jpg" style="border-radius: 0;" />
                 <img ng-if="team.Squadra == 'Minuta'" 			src="http://torneodeirionistorici.altervista.org/wp-content/uploads/2014/11/minuta.png" style="border-radius: 0;" />

@@ -12,8 +12,8 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
     console.info('ionicPlatform.ready');
 
     //$rootScope.server = 'http://torneodeirionistorici.altervista.org';
-    $rootScope.server   = 'http://localhost/alefal.it/PROJECTS/wordpress';
-    //$rootScope.server   = 'http://localhost';
+    //$rootScope.server   = 'http://localhost/alefal.it/PROJECTS/wordpress';
+    $rootScope.server   = 'http://10.80.18.107';
     $rootScope.version  = '1.1';
     $rootScope.regId    = localStorage.getItem('deviceUUID');
     $rootScope.nameApp  = 'torneodeirionistorici';
@@ -247,6 +247,7 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
 
     .state('app.releases', {
       url: '/releases',
+      cache: false,
       views: {
         'menuContent': {
           templateUrl: 'templates/releases.html',
@@ -256,6 +257,7 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
     })
     .state('app.giornalino', {
       url: '/giornalino',
+      cache: false,
       views: {
         'menuContent': {
           templateUrl: 'templates/giornalino.html',
@@ -265,6 +267,7 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
     })
     .state('app.teams', {
       url: '/teams',
+      cache: false,
       views: {
         'menuContent': {
           templateUrl: 'templates/teams.html',
@@ -274,6 +277,7 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
     })
     .state('app.ranking', {
       url: '/ranking',
+      cache: false,
       views: {
         'menuContent': {
           templateUrl: 'templates/ranking.html',
@@ -283,6 +287,7 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
     })
     .state('app.matchs', {
       url: '/matchs',
+      cache: false,
       views: {
         'menuContent': {
           templateUrl: 'templates/matchs.html',

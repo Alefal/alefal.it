@@ -1,17 +1,22 @@
 <ion-view view-title="Giornalino Ufficiale">
 	<ion-content>
+
+      <div class="padding" align="center" ng-show="statusError">
+        <h5>Contenuto non disponibile! Riprovare più tardi...</h5>
+      </div>
+
       <ion-refresher
         pulling-text="Aggiorna..."
         on-refresh="doRefresh()">
       </ion-refresher>
       
-    	<ion-list>
+    	<ion-list ng-show="!statusError">
 
     		<ion-item ng-repeat="release in releases" class="card">
     			<div class="item item-icon-left item-icon-right">
             <i class="icon ion-clipboard"></i>
             <h3>{{release.title}}</h3>
-            <h5>{{release.date}}</h5>
+            <h5>{{release.date | date : format : timezone}}</h5>
             <i class="icon ion-share positive" ng-click="openModalReleases(release.title,release.content)"></i>
           </div>
 

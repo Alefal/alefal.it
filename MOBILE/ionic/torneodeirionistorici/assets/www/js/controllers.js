@@ -46,7 +46,7 @@ angular.module('starter.controllers', [])
   };
   *****/
 
-  /**** COMUNICATI UFFICIALI *****/
+  /**** COMUNICATI UFFICIALI 
   if(!$rootScope.checkNoConnection) {
     //connection
     ajaxCallServices.getReleasesRest()
@@ -65,8 +65,8 @@ angular.module('starter.controllers', [])
        console.log('...');
     });
   }
-
-  /**** GIORNALINO *****/
+*****/
+  /**** GIORNALINO 
   if(!$rootScope.checkNoConnection) {
     //connection
     ajaxCallServices.getGiornalinoRest()
@@ -78,8 +78,8 @@ angular.module('starter.controllers', [])
   } else {
     //No connection
   }
-
-  /**** CLASSIFICA *****/
+*****/
+  /**** CLASSIFICA 
   if(!$rootScope.checkNoConnection) {
     //connection
     ajaxCallServices.getRankingRest()
@@ -92,8 +92,8 @@ angular.module('starter.controllers', [])
   } else {
     //No connection
   }
-
-  /**** INCONTRI *****/
+*****/
+  /**** INCONTRI 
   if(!$rootScope.checkNoConnection) {
     //connection
     ajaxCallServices.geMatchsRest()
@@ -106,8 +106,8 @@ angular.module('starter.controllers', [])
   } else {
     //No connection
   }
-  
-  /**** CLASSIFICA 2015 *****/
+*****/  
+  /**** CLASSIFICA 2015 
   if(!$rootScope.checkNoConnection) {
     //connection
     ajaxCallServices.getRanking2015Rest()
@@ -120,13 +120,14 @@ angular.module('starter.controllers', [])
   } else {
     //No connection
   }
+*****/
 })
-
 .controller('WelcomeCtrl', function($scope,$ionicModal,$timeout,$rootScope,ajaxCallServices,$ionicPopup) {
   console.log('WelcomeCtrl...');
 })
-
 .controller('ReleasesCtrl', function($scope,$ionicLoading,ajaxCallServices,$rootScope,$ionicModal) {
+  $scope.statusError = false;
+
   $scope.doRefresh = function() {
     ajaxCallServices.getReleasesRest()
       .success(function (releases) {
@@ -155,7 +156,7 @@ angular.module('starter.controllers', [])
         $ionicLoading.hide();
       }).error(function (error) {
         $ionicLoading.hide();
-        $scope.status = 'Unable to load customer data' + error;
+        $scope.statusError = true;
       });
   }
 
@@ -174,8 +175,9 @@ angular.module('starter.controllers', [])
     $scope.modalReleases.show();
   };
 })
-
 .controller('GiornalinoCtrl', function($scope,$ionicLoading,ajaxCallServices,$rootScope,$ionicModal) {
+  $scope.statusError = false;
+
   $scope.doRefresh = function() {
     ajaxCallServices.getGiornalinoRest()
       .success(function (releases) {
@@ -204,7 +206,7 @@ angular.module('starter.controllers', [])
         $ionicLoading.hide();
       }).error(function (error) {
         $ionicLoading.hide();
-        $scope.status = 'Unable to load customer data' + error;
+        $scope.statusError = true;
       });
   }
 
@@ -224,6 +226,8 @@ angular.module('starter.controllers', [])
   };
 })
 .controller('RankingCtrl', function($scope,$ionicLoading,ajaxCallServices,$rootScope,$ionicModal) {
+  $scope.statusError = false;
+
   $scope.doRefresh = function() {
     ajaxCallServices.getRankingRest()
       .success(function (ranking) {
@@ -231,7 +235,7 @@ angular.module('starter.controllers', [])
         if(ranking[0].response[0].result == 'OK') {
           $scope.ranking = ranking[0].ranking;
         } else {
-          $scope.ranking = 'ERROR';
+          $scope.statusError = true;
         }
 
         $scope.$broadcast('scroll.refreshComplete');
@@ -254,12 +258,13 @@ angular.module('starter.controllers', [])
         if(ranking[0].response[0].result == 'OK') {
           $scope.ranking = ranking[0].ranking;
         } else {
-          $scope.ranking = 'ERROR';
+          $scope.statusError = true;
         }
 
         $ionicLoading.hide();
       }).error(function (error) {
-        $scope.status = 'Unable to load customer data' + error;
+        $ionicLoading.hide();
+        $scope.statusError = true;
       });
 
   }
@@ -288,8 +293,9 @@ angular.module('starter.controllers', [])
     $scope.modalRanking.show();
   };
 })
+.controller('MatchsCtrl', function($scope,$ionicLoading,$ionicModal,$ionicPopup,ajaxCallServices,$rootScope) {
+  $scope.statusError = false;
 
-.controller('MatchsCtrl', function($scope,$ionicLoading,$ionicModal,ajaxCallServices,$rootScope) {
   $scope.doRefresh = function() {
     ajaxCallServices.geMatchsRest()
       .success(function (matchs) {
@@ -297,12 +303,12 @@ angular.module('starter.controllers', [])
         if(matchs[0].response[0].result == 'OK') {
           $scope.matchs = matchs[0].matchs;
         } else {
-          $scope.matchs = 'ERROR';
+          $scope.statusError = true;
         }
 
         $scope.$broadcast('scroll.refreshComplete');
       }).error(function (error) {
-        $scope.status = 'Unable to load customer data' + error;
+        $scope.statusError = true;
       });
   };
 
@@ -316,17 +322,17 @@ angular.module('starter.controllers', [])
   } else {
     ajaxCallServices.geMatchsRest()
       .success(function (matchs) {
-        console.log('matchs --->'+JSON.stringify(matchs[0].matchs));
+        //console.log('matchs --->'+JSON.stringify(matchs[0].matchs));
         if(matchs[0].response[0].result == 'OK') {
           $scope.matchs = matchs[0].matchs;
         } else {
-          $scope.matchs = 'ERROR';
+          $scope.statusError = true;
         }
 
         $ionicLoading.hide();
       }).error(function (error) {
         $ionicLoading.hide();
-        $scope.status = 'Unable to load customer data' + error;
+        $scope.statusError = true;
       });
 
   }
@@ -353,36 +359,37 @@ angular.module('starter.controllers', [])
     if(goalHome == '0' && goalAway == '0') {
       $ionicPopup.alert({
           title: 'Dettagli ND',
-          content: 'I dettagli del match saranno disponibili dopo la '
+          content: 'I dettagli del match saranno disponibili dopo la partita'
         })
         .then(function(result) {
            console.log('...');
         });
-    }
+    } else {
 
-    $ionicLoading.show({
-      template: 'Loading...'
-    });
-
-    ajaxCallServices.getMatchDetailRest(id)
-      .success(function (match) {
-        console.log('match --->'+JSON.stringify(match));
-        $ionicLoading.hide();
-
-        if(match[0].response[0].result == 'OK') {
-          $scope.matchHome = match[0].home;
-          $scope.matchAway = match[0].away;
-        } else {
-          $scope.match = 'ERROR';
-        }
-
-        $scope.$broadcast('scroll.refreshComplete');
-      }).error(function (error) {
-        $ionicLoading.hide();
-        $scope.status = 'Unable to load customer data' + error;
+      $ionicLoading.show({
+        template: 'Loading...'
       });
 
-    $scope.modalMatchDetail.show();
+      ajaxCallServices.getMatchDetailRest(id)
+        .success(function (match) {
+          //console.log('match --->'+JSON.stringify(match));
+          $ionicLoading.hide();
+
+          if(match[0].response[0].result == 'OK') {
+            $scope.matchHome = match[0].home;
+            $scope.matchAway = match[0].away;
+          } else {
+            $scope.statusError = true;
+          }
+
+          $scope.$broadcast('scroll.refreshComplete');
+        }).error(function (error) {
+          $ionicLoading.hide();
+          $scope.statusError = true;
+        });
+
+      $scope.modalMatchDetail.show();
+    }
   };
 
   $scope.range = function(min, max, step) {
@@ -393,11 +400,10 @@ angular.module('starter.controllers', [])
     }
     return input;
   };
-
-
 })
-
 .controller('TeamsCtrl', function($scope,$ionicLoading,ajaxCallServices,$rootScope,$ionicModal) {
+  $scope.statusError = false;
+
   $scope.doRefresh = function() {
     ajaxCallServices.getTeamsRest()
       .success(function (teams) {
@@ -405,7 +411,7 @@ angular.module('starter.controllers', [])
         if(teams[0].response[0].result == 'OK') {
           $scope.teams = teams[0].teams;
         } else {
-          $scope.teams = 'ERROR';
+          $scope.statusError = true;
         }
 
         $scope.$broadcast('scroll.refreshComplete');
@@ -430,13 +436,13 @@ angular.module('starter.controllers', [])
           if(teams[0].response[0].result == 'OK') {
             $scope.teams = teams[0].teams;
           } else {
-            $scope.teams = 'ERROR';
+            $scope.statusError = true;
           }
 
           $scope.$broadcast('scroll.refreshComplete');
         }).error(function (error) {
           $ionicLoading.hide();
-          $scope.status = 'Unable to load customer data' + error;
+          $scope.statusError = true;
         });
   }
 
@@ -450,35 +456,37 @@ angular.module('starter.controllers', [])
     $scope.atleti = '';
     $scope.modalAtleti.hide();
   };
-  $scope.openModalAtleti = function(id) {
+  $scope.openModalAtleti = function(id,squadra) {
     
+    $scope.nomeSquadra = squadra;
+
     $ionicLoading.show({
       template: 'Loading...'
     });
 
     ajaxCallServices.getAtletiRest(id)
       .success(function (atleti) {
-        console.log('atleti --->'+JSON.stringify(atleti));
+        //console.log('atleti --->'+JSON.stringify(atleti));
         $ionicLoading.hide();
 
         if(atleti[0].response[0].result == 'OK') {
           $scope.atleti = atleti[0].atleti;
         } else {
-          $scope.atleti = 'ERROR';
+          $scope.statusError = true;
         }
 
         $scope.$broadcast('scroll.refreshComplete');
       }).error(function (error) {
         $ionicLoading.hide();
-        $scope.status = 'Unable to load customer data' + error;
+        $scope.statusError = true;
       });
 
     $scope.modalAtleti.show();
   };
-
 })
-
 .controller('Ranking2015Ctrl', function($scope,$ionicLoading,ajaxCallServices,$rootScope,$ionicModal) {
+  $scope.statusError = false;
+
   $scope.doRefresh = function() {
     ajaxCallServices.getRanking2015Rest()
       .success(function (ranking) {
@@ -514,7 +522,7 @@ angular.module('starter.controllers', [])
 
         $ionicLoading.hide();
       }).error(function (error) {
-        $scope.status = 'Unable to load customer data' + error;
+        $scope.statusError = true;
       });
   }
 

@@ -1,43 +1,57 @@
 <ion-modal-view>
 
   <ion-header-bar class="bar-balanced">
-    <h1 class="title" ng-bind-html="sqName"></h1>
+    <h1 class="title">{{matchTeamHome}} - {{matchTeamAway}}</h1>
     <a ng-click="closeModalMatchDetail()" class="power button"><i class="ion-close"></i></a> 
   </ion-header-bar>
 
   <ion-content class="padding">
+
+    <div class="padding" align="center" ng-show="statusError">
+      <h5>Contenuto non disponibile! Riprovare più tardi...</h5>
+    </div>
     
-    <h3><i class="icon ion-ios-football"></i> {{matchTeamHome}} ({{matchGoalHome}})</h3>
-    <ion-list>
-        <ion-item ng-repeat="home in matchHome" class="item-icon-left" style="margin-bottom:5px;">
+    <div ng-show="!statusError">
+      <div class="spacerVertical"></div>
+      <h3><i class="icon ion-ios-football"></i> {{matchTeamHome}} ({{matchGoalHome}})</h3>
+      <hr />
+      <div class="spacerVertical"></div>
 
-            <i class="icon ion-android-contact"></i>
-            <h3>{{home.atletaNome}}</h3>
-            <p class="notes">
-              <span class="goal" title="goal"             ng-if="home.atletaGoal != 0" ng-repeat="n in range(1,home.atletaGoal)">goal</span>
-              <span class="assist" title="assist"         ng-if="home.atletaAssist != 0">assist</span>
-              <span class="yellowcard" title="yellowcard" ng-if="home.atletaYellowcards != 0">yellowcard</span>
-              <span class="redcard" title="redcard"       ng-if="home.atletaRedcards != 0">redcard</span>
-            </p>
+      <ion-list>
+          <ion-item ng-repeat="home in matchHome" class="item-icon-left" style="margin-bottom:5px;">
 
-        </ion-item>
-    </ion-list>
+              <i class="icon ion-android-contact"></i>
+              <h3>{{home.atletaNome}}</h3>
+              <p class="notes">
+                <span class="goal" title="goal"             ng-if="home.atletaGoal != 0" ng-repeat="n in range(1,home.atletaGoal)">goal</span>
+                <span class="assist" title="assist"         ng-if="home.atletaAssist != 0">assist</span>
+                <span class="yellowcard" title="yellowcard" ng-if="home.atletaYellowcards != 0">yellowcard</span>
+                <span class="redcard" title="redcard"       ng-if="home.atletaRedcards != 0">redcard</span>
+              </p>
 
-    <h3><i class="icon ion-ios-football"></i> {{matchTeamAway}} ({{matchGoalAway}})</h3>
-    <ion-list>
-        <ion-item ng-repeat="away in matchAway" class="item-icon-left" style="margin-bottom:5px;">
+          </ion-item>
+      </ion-list>
 
-            <i class="icon ion-android-contact"></i>
-            <h3>{{away.atletaNome}}</h3>
-            <p class="notes">
-              <span class="goal" title="goal"             ng-if="away.atletaGoal != 0" ng-repeat="n in range(1,away.atletaGoal)">goal</span>
-              <span class="assist" title="assist"         ng-if="away.atletaAssist != 0">assist</span>
-              <span class="yellowcard" title="yellowcard" ng-if="away.atletaYellowcards != 0">yellowcard</span>
-              <span class="redcard" title="redcard"       ng-if="away.atletaRedcards != 0">redcard</span>
-            </p>
+      <div class="spacerVertical"></div>
+      <h3><i class="icon ion-ios-football"></i> {{matchTeamAway}} ({{matchGoalAway}})</h3>
+      <hr />
+      <div class="spacerVertical"></div>
+      
+      <ion-list>
+          <ion-item ng-repeat="away in matchAway" class="item-icon-left" style="margin-bottom:5px;">
 
-        </ion-item>
-    </ion-list>
+              <i class="icon ion-android-contact"></i>
+              <h3>{{away.atletaNome}}</h3>
+              <p class="notes">
+                <span class="goal" title="goal"             ng-if="away.atletaGoal != 0" ng-repeat="n in range(1,away.atletaGoal)">goal</span>
+                <span class="assist" title="assist"         ng-if="away.atletaAssist != 0">assist</span>
+                <span class="yellowcard" title="yellowcard" ng-if="away.atletaYellowcards != 0">yellowcard</span>
+                <span class="redcard" title="redcard"       ng-if="away.atletaRedcards != 0">redcard</span>
+              </p>
+
+          </ion-item>
+      </ion-list>
+    </div>
 
   </ion-content>
 
