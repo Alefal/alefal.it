@@ -255,7 +255,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('WelcomeCtrl', function($scope,$rootScope,$ionicLoading,$ionicModal,$ionicPopup,ajaxCallServices,$state,ModalService/*,$cordovaFileTransfer*/) {
+.controller('WelcomeCtrl', function($scope,$rootScope,$ionicLoading,$ionicModal,$ionicPopup,ajaxCallServices,$state,ModalService/*,$cordovaFileTransfer,$cordovaNetwork*/) {
 
   $scope.deviceRegisteredError = false;
   $scope.deviceRegisteredErrorMessage = '';
@@ -263,6 +263,18 @@ angular.module('starter.controllers', [])
   $scope.deviceFirstRegistered = false;
   $scope.deviceCompleteRegistered = false;
   $scope.userLoggedFailed = false;
+
+  //CONNESSIONE presente: ripristinare i dati settati per connessione debole nell''inserimento di un verbale
+  if($cordovaNetwork.isOnline()) {
+    $rootScope.checkNoConnection = false;
+    $rootScope.marginMessageNoConnection  = 'margin-top:0px';
+
+    if (localStorage.getItem('datiVerbaleOffline')) {
+      $rootScope.datiVerbaleOffline = true;
+    } else {
+      $rootScope.datiVerbaleOffline = false;
+    }
+  }
 
   $ionicLoading.show({
     template: 'Attendere...'
@@ -461,7 +473,18 @@ angular.module('starter.controllers', [])
       }).error(function (error) {
         console.log('KO');
         $ionicLoading.hide();
-        $scope.showAlertMessage('Numero verbale','Numero verbale non trovato! Contattare l\'amministratore!',true);
+
+        $rootScope.checkNoConnection = true;
+        $rootScope.marginMessageNoConnection  = 'margin-top:60px';
+        $rootScope.datiVerbaleOffline = false;
+
+        $scope.numeroVerbale = localStorage.getItem('numeroVerbale');
+
+        if($scope.numeroVerbale == '' || $scope.numeroVerbale == 0) {
+          $scope.showAlertMessage('Numero verbale','Numero verbale non trovato! Contattare l\'amministratore!',true);
+        } else {
+          $scope.showAlertMessage('Connessione debole','Il tuo verbale sara\' salvato in locale. Successivamente sara\' necessario sincronizzare il verbale',false);
+        }
       });
   } else {
     //No connection
@@ -532,7 +555,7 @@ angular.module('starter.controllers', [])
 
   //GEOLOCATION
 /***** 
-  var posOptions = {timeout: 10000, enableHighAccuracy: false};
+  var posOptions = {timeout: 30000, enableHighAccuracy: false};
   $cordovaGeolocation
     .getCurrentPosition(posOptions)
     .then(function (position) {

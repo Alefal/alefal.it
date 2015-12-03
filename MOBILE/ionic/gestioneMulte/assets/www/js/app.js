@@ -177,17 +177,17 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 .factory('ajaxCallServices', function($http,$rootScope) {
 
   var ajaxCallServices = {};
+  var timeoutCall = 15000; //15 secondi
 
   /***** getReleasesRest ****/
   ajaxCallServices.checkUserAccess = function (username,password) {
-    return $http.get($rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/checkUserAccess.php?username='+username+'&password='+password);
+    return $http.get($rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/checkUserAccess.php?username='+username+'&password='+password, { timeout: timeoutCall });
   };
 
   /***** getItems ****/
   ajaxCallServices.getItems = function (item) {
 
     var service = '';
-    var timeoutCall = 15000; //15 secondi
     
     var ente      = localStorage.getItem('agent_ente');
     var device    = localStorage.getItem('deviceUUID');
@@ -229,6 +229,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
     //return $http({url:$rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/setVerbale.php',method:'POST',params:{verbaleCompleto: verbaleCompleto}});
     return $http({
       url:$rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/setVerbale.php',
+      //timeout: timeoutCall,
       method:'POST',
       data: {verbaleCompleto:verbaleCompleto},
       headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' }
@@ -240,6 +241,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
     //COD_ENTE e NUM_VERB devono essere impostati in fase iniziale
     return $http({
       url:$rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/setDevice.php',
+      timeout: timeoutCall,
       /*
       method:'POST',
       params:{COD_UID_DEVICE: deviceUUID, DESC_DEVICE: deviceModel},
