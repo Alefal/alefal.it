@@ -12,8 +12,8 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
     console.info('ionicPlatform.ready');
 
     //$rootScope.server = 'http://torneodeirionistorici.altervista.org';
-    //$rootScope.server   = 'http://localhost/alefal.it/PROJECTS/wordpress';
-    $rootScope.server   = 'http://10.80.18.107';
+    $rootScope.server   = 'http://localhost/alefal.it/PROJECTS/wordpress';
+    //$rootScope.server   = 'http://10.80.18.107';
     $rootScope.version  = '1.1';
     $rootScope.regId    = localStorage.getItem('deviceUUID');
     $rootScope.nameApp  = 'torneodeirionistorici';
