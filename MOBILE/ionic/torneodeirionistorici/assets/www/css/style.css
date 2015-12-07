@@ -111,3 +111,33 @@ hr {
 .spacerVertical {
     height: 7px;
 }
+
+.teamsItem .item {
+    white-space: normal;
+    border: none;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 30px;
+    padding-top: 30px;
+}
+
+.teamsItem img {
+    margin-top: 15px;
+}
+.teamMatchDetail img {
+    width: 50%;
+}
+.matchResult {
+    padding: 24px;
+    background: #efefef;
+    border: 2px dashed #ccc;
+    font-size: 2em;
+}
+.notesSx .goal, .notesSx .assist, .notesSx .yellowcard, .notesSx .redcard, .notesSx .sub {
+	float: right;
+}
+.notesDx .goal, .notesDx .assist, .notesDx .yellowcard, .notesDx .redcard, .notesDx .sub  {
+	float: left;
+}
+.marcatoreNomeSquadra {
+	font-size: 0.8em;
+}

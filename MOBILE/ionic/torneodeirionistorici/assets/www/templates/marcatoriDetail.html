@@ -1,0 +1,42 @@
+<ion-view view-title="Marcatori">
+	<ion-content class="teamsItem">
+
+        <div class="padding" align="center" ng-show="statusError">
+            <h5>Contenuto non disponibile! Riprovare più tardi...</h5>
+        </div>
+
+    	<ion-refresher
+        	pulling-text="Aggiorna..."
+        	on-refresh="doRefresh()">
+      	</ion-refresher>
+
+        <br />
+        <div align="center">
+           <h3 ng-show="goalTot">Bomber</h3>
+           <h3 ng-show="assist">I nuovi "Pirlo"</h3>
+           <h3 ng-show="yellowCard">Giallo facile</h3>
+           <h3 ng-show="redCard">I più cattivi</h3>
+        </div>
+        <hr />
+
+        <ion-list ng-show="!statusError">
+            <ion-item ng-repeat="result in results" class="item-icon-left" style="margin-bottom:5px;">
+
+                <div class="row">
+                    <div class="col col-75">
+                        <i class="icon ion-android-contact"></i>
+                        <h3>{{result.nome}}</h3>
+                        <span class="marcatoreNomeSquadra">(<u>{{result.squadra}}</u>)</span>
+                    </div>
+                    <div class="col col-25" align="right">
+                        <h3 ng-show="goalTot">{{result.goal}}</h3>
+                        <h3 ng-show="assist">{{result.assist}}</h3>
+                        <h3 ng-show="yellowCard">{{result.yellow}}</h3>
+                        <h3 ng-show="redCard">{{result.red}}</h3>
+                    </div>
+            </ion-item>
+
+        </ion-list>
+
+  	</ion-content>
+</ion-view>

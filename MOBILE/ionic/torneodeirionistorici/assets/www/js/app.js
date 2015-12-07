@@ -12,7 +12,8 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
     console.info('ionicPlatform.ready');
 
     //$rootScope.server = 'http://torneodeirionistorici.altervista.org';
-    $rootScope.server   = 'http://localhost/alefal.it/PROJECTS/wordpress';
+    //$rootScope.server   = 'http://localhost/alefal.it/PROJECTS/wordpress';
+    $rootScope.server   = 'http://localhost';
     //$rootScope.server   = 'http://10.80.18.107';
     $rootScope.version  = '1.1';
     $rootScope.regId    = localStorage.getItem('deviceUUID');
@@ -138,6 +139,11 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
   ajaxCallServices.getAtletiRest = function (id) {
     //http://torneodeirionistorici.altervista.org/wp-content/plugins/alefal_torneodeirionistorici/matchs.php?league_id=171&season_id=172
     return $http.get($rootScope.server+'/wp-content/plugins/alefal_torneodeirionistorici/tdrs_atleti.php?team_id='+id, { timeout: timeoutCall });
+  };
+  /***** getMarcatori ****/
+  ajaxCallServices.getMarcatori = function (tipo) {
+    //http://torneodeirionistorici.altervista.org/wp-content/plugins/alefal_torneodeirionistorici/matchs.php?league_id=171&season_id=172
+    return $http.get($rootScope.server+'/wp-content/plugins/alefal_torneodeirionistorici/tdrs_marcatori.php?tipo='+tipo, { timeout: timeoutCall });
   };
 
   /***** getRankingRest ****/
@@ -292,6 +298,26 @@ angular.module('starter', ['ionic', 'starter.controllers'/*, 'ngCordova'*/])
         'menuContent': {
           templateUrl: 'templates/matchs.html',
           controller: 'MatchsCtrl'
+        }
+      }
+    })
+    .state('app.marcatori', {
+      url: '/marcatori',
+      cache: false,
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/marcatori.html',
+          controller: 'MarcatoriCtrl'
+        }
+      }
+    })
+    .state('app.marcatoriDetail', {
+      url: '/marcatoriDetail/:tipo',
+      cache: false,
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/marcatoriDetail.html',
+          controller: 'MarcatoriDetailCtrl'
         }
       }
     })

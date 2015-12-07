@@ -1,0 +1,43 @@
+<ion-view view-title="Marcatori" class="eventForm">
+	<ion-content>
+        
+        <div class="row eventTab">
+            
+            <div class="col col-50" style="border-right:1px solid #013D09">
+                <div class="tabtext" ui-sref="app.marcatoriDetail({tipo: 'goal_tot'})">
+                    <div class="icon"><i class="ion-ios-football"></i></div>
+                    <h3>Goal</h3>
+                </div>
+            </div>
+            <div class="col col-50">
+                <div class="tabtext" ui-sref="app.marcatoriDetail({tipo: 'assist'})">
+                    <div class="icon"><i class="ion-forward"></i></div>
+                    <h3>Assist</h3>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <img src="img/banner_new_2015.jpg" style="width: 100%;">
+            </div>
+        </div>
+
+        <div class="row eventTab">
+        
+            <div class="col col-50" style="border-right:1px solid #013D09">
+                <div class="tabtext" ui-sref="app.marcatoriDetail({tipo: 'yellow_card'})">
+                    <div class="icon"><i class="ion-document" style="color:yellow"></i></div>
+                    <h3>Cart. Gialli</h3>
+                </div>
+            </div>
+            <div class="col col-50">
+                <div class="tabtext" ui-sref="app.marcatoriDetail({tipo: 'red_card'})">
+                    <div class="icon"><i class="ion-document" style="color:red"></i></div>
+                    <h3>Cart. Rossi</h3>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

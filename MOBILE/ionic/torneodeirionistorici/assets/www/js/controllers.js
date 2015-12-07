@@ -549,4 +549,67 @@ angular.module('starter.controllers', [])
 
     $scope.modalRanking.show();
   };
+})
+.controller('MarcatoriCtrl', function($scope,$ionicLoading,ajaxCallServices,$rootScope,$ionicModal) {
+  $scope.statusError = false;
+})
+.controller('MarcatoriDetailCtrl', function($scope,$ionicLoading,ajaxCallServices,$rootScope,$ionicModal,$stateParams) {
+  $scope.statusError = false;
+  
+  $scope.goalTot    = false;
+  $scope.assist     = false;
+  $scope.yellowCard = false;
+  $scope.redCard    = false;
+
+  console.log('MarcatoriDetailCtrl: '+$stateParams.tipo);
+
+  if($stateParams.tipo == 'goal_tot') {
+    $scope.goalTot    = true;
+  } else if($stateParams.tipo == 'assist') {
+    $scope.assist     = true;
+  } else if($stateParams.tipo == 'yellow_card') {
+    $scope.yellowCard = true;
+  } else if($stateParams.tipo == 'red_card') {
+    $scope.redCard    = true;
+  } else {
+    $scope.statusError = false;
+  }
+
+  $scope.doRefresh = function() {
+    ajaxCallServices.getMarcatori($stateParams.tipo)
+      .success(function (results) {
+        //console.log('releases --->'+JSON.stringify(releases));
+        if(results[0].response[0].result == 'OK') {
+          $scope.results = results[0].teams;
+        } else {
+          $scope.statusError = true;
+        }
+
+        $scope.$broadcast('scroll.refreshComplete');
+      }).error(function (error) {
+        $scope.status = 'Unable to load customer data' + error;
+      });
+  };
+
+  $ionicLoading.show({
+    template: 'Loading...'
+  });
+
+  ajaxCallServices.getMarcatori($stateParams.tipo)
+    .success(function (results) {
+      console.log('results --->'+JSON.stringify(results));
+      $ionicLoading.hide();
+
+      if(results[0].response[0].result == 'OK') {
+        $scope.results = results[0].teams;
+      } else {
+        $scope.statusError = true;
+      }
+
+      $scope.$broadcast('scroll.refreshComplete');
+    }).error(function (error) {
+      $ionicLoading.hide();
+      $scope.statusError = true;
+    });
+
 });
