@@ -5,20 +5,16 @@
     	<a ng-click="globFunc.back()" class="power button"><i class="ion-chevron-left"></i></a>
     </ion-header-bar>
 
+    <div class="bar bar-subheader" style="{{barSubheaderNoConnection}}">
+        <button class="button button-block button-positive icon-left ion-android-done" ng-click="salvaVerbale()"> Salva</button>
+        <hr />
+    </div>
+
     <ion-content class="padding inserimentoVerbale" ng-controller="InsertCtrl" style="{{marginMessageNoConnection}}">
 
-        <div class="row eventTab" align="center">
-            <div class="col col-50" style="margin-right: 3px;">
-                <button class="button button-block button-positive icon-left ion-android-done" ng-click="salvaVerbale()"> Salva</button>
-            </div>
-            <div class="col col-50">
-                <button class="button button-block button-assertive icon-left ion-android-cancel" ng-click="globFunc.back()"> Annulla</button>
-            </div>
-        </div>
-
-        <div class="spacerVertical"></div>
-        <div class="spacerVertical"></div>
-        <hr />
+        <div class="spacerVerticalLarge"></div>
+        <div class="spacerVerticalLarge"></div>
+        <div class="spacerVerticalLarge"></div>
         <div class="spacerVertical"></div>
         <div class="spacerVertical"></div>
 
@@ -353,10 +349,13 @@
         <div class="spacerVertical"></div>
         <div class="spacerVertical"></div>
         <div class="spacerVertical"></div>
-        <div class="spacerVertical"></div>
-        <hr />        
 
+        
         <div align="center">
+            <button class="button button-block button-assertive icon-left ion-android-cancel" ng-click="globFunc.back()"> Annulla Verbale</button>
+            <div class="spacerVertical"></div>
+            <hr />        
+            <div class="spacerVertical"></div>
             <h6>LEGENDA: i campi contrassegnato con <i class="icon ion-alert" style="color:red;padding-left: 15px;"></i> sono obbligatori</h6>
         </div>
 

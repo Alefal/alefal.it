@@ -264,18 +264,6 @@ angular.module('starter.controllers', [])
   $scope.deviceCompleteRegistered = false;
   $scope.userLoggedFailed = false;
 
-  //CONNESSIONE presente: ripristinare i dati settati per connessione debole nell''inserimento di un verbale
-  if($cordovaNetwork.isOnline()) {
-    $rootScope.checkNoConnection = false;
-    $rootScope.marginMessageNoConnection  = 'margin-top:0px';
-
-    if (localStorage.getItem('datiVerbaleOffline')) {
-      $rootScope.datiVerbaleOffline = true;
-    } else {
-      $rootScope.datiVerbaleOffline = false;
-    }
-  }
-
   $ionicLoading.show({
     template: 'Attendere...'
   });
@@ -474,17 +462,8 @@ angular.module('starter.controllers', [])
         console.log('KO');
         $ionicLoading.hide();
 
-        $rootScope.checkNoConnection = true;
-        $rootScope.marginMessageNoConnection  = 'margin-top:60px';
-        $rootScope.datiVerbaleOffline = false;
-
-        $scope.numeroVerbale = localStorage.getItem('numeroVerbale');
-
-        if($scope.numeroVerbale == '' || $scope.numeroVerbale == 0) {
-          $scope.showAlertMessage('Numero verbale','Numero verbale non trovato! Contattare l\'amministratore!',true);
-        } else {
-          $scope.showAlertMessage('Connessione debole','Il tuo verbale sara\' salvato in locale. Successivamente sara\' necessario sincronizzare il verbale',false);
-        }
+        $scope.showAlertMessage('Connessione debole','Accedere in modalità offline per compilare il verbale.',true);
+        
       });
   } else {
     //No connection

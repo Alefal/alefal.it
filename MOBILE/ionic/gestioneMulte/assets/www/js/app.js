@@ -8,8 +8,8 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 
   $ionicPlatform.ready(function() {
 
-    //$rootScope.server = 'http://localhost';
-    $rootScope.server = 'http://localhost/alefal.it/PROJECTS/wordpress';
+    $rootScope.server = 'http://localhost';
+    //$rootScope.server = 'http://localhost/alefal.it/PROJECTS/wordpress';
     //$rootScope.server = 'http://10.80.18.107/alefal.it/PROJECTS/wordpress-4.2.3';
     //$rootScope.server = 'http://192.168.1.188/alefal.it/PROJECTS/wordpress-4.2.3';
     //$rootScope.server = 'http://cdsmobile.swstudio.net';
@@ -52,15 +52,18 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
     //NO CONNECTION
     //$rootScope.checkNoConnection          = true;
     //$rootScope.marginMessageNoConnection  = 'margin-top:60px';
+    //$rootScope.barSubheaderNoConnection   = 'margin-top: 75px';
     //SI CONNECTION
     $rootScope.checkNoConnection          = false;
     $rootScope.marginMessageNoConnection  = 'margin-top:0px';
+    $rootScope.barSubheaderNoConnection   = 'margin-top:0px;';
     
 /*****
     document.addEventListener('deviceready', function () {
       $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
         $rootScope.checkNoConnection = false;
-        $rootScope.marginMessageNoConnection  = 'margin-top:0px';
+        $rootScope.marginMessageNoConnection  = 'margin-top:0px;';
+        $rootScope.barSubheaderNoConnection   = 'margin-top:0px;';
 
         if (localStorage.getItem('datiVerbaleOffline')) {
           $rootScope.datiVerbaleOffline = true;
@@ -72,7 +75,8 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
       // listen for Offline event
       $rootScope.$on('$cordovaNetwork:offline', function(event, networkState){
         $rootScope.checkNoConnection = true;
-        $rootScope.marginMessageNoConnection  = 'margin-top:60px';
+        $rootScope.marginMessageNoConnection  = 'margin-top:60px;';
+        $rootScope.barSubheaderNoConnection   = 'margin-top:75px;';
         $rootScope.datiVerbaleOffline = false;
       })
 
@@ -177,7 +181,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 .factory('ajaxCallServices', function($http,$rootScope) {
 
   var ajaxCallServices = {};
-  var timeoutCall = 15000; //15 secondi
+  var timeoutCall = 20000; //20 secondi
 
   /***** getReleasesRest ****/
   ajaxCallServices.checkUserAccess = function (username,password) {
