@@ -455,7 +455,7 @@ angular.module('starter.controllers', [])
           }
         } else {
           console.log('KO');
-          $scope.showAlertMessage('Numero verbale','Numero verbale non trovato! Contattare l\'amministratore!',true);
+          $scope.showAlertMessage('Numero verbale','Numero verbale non trovato! Contattare l\'amministratore!',false);
         }
 
       }).error(function (error) {
@@ -538,10 +538,11 @@ angular.module('starter.controllers', [])
   $cordovaGeolocation
     .getCurrentPosition(posOptions)
     .then(function (position) {
-      $scope.latVerbale  = position.coords.latitude
-      $scope.longVerbale = position.coords.longitude
+      $scope.latVerbale  = position.coords.latitude;
+      $scope.longVerbale = position.coords.longitude;
+      //alert('--->>> '+$scope.latVerbale+' | '+$scope.longVerbale);
     }, function(err) {
-      // error
+      //alert('code: '    + err.code    + '\n' + 'message: ' + err.message + '\n');
     });
 *****/
   $scope.takePicture = function() {
@@ -573,7 +574,13 @@ angular.module('starter.controllers', [])
 
   $scope.salvaVerbale = function() {
 
-    console.log($scope.tipoVeicoloCode);
+    console.log('-> salvaVerbale');
+
+    $scope.targaVeicolo     = angular.element(document.querySelector('#TARGA_VERB')).val();
+    $scope.modelloVeicolo   = angular.element(document.querySelector('#MODELLO_VERB')).val();
+    $scope.indirizzoCivico  = angular.element(document.querySelector('#CIVICO_VERB')).val();
+    $scope.indirizzoDescr   = angular.element(document.querySelector('#DESCR_VIA_VERB')).val();
+    $scope.noteVerbale      = angular.element(document.querySelector('#NOTE_VERB')).val();
 
     if (typeof($scope.numeroVerbale) == 'undefined' ||
           $scope.numeroVerbale == '') {
@@ -647,8 +654,7 @@ angular.module('starter.controllers', [])
         'tipoVeicolo'         : $scope.tipoVeicoloCode,
         'tipoDescrVeicolo'    : $scope.tipoVeicoloDescr,
         'targaVeicolo'        : $scope.targaVeicolo,
-        'modelloVeicolo'      : angular.element(document.querySelector('#MODELLO_VERB')).val(),
-        //'modelloVeicolo'      : $scope.modelloVeicolo,
+        'modelloVeicolo'      : $scope.modelloVeicolo,
 
         'indirizzo'           : $rootScope.indirizzoId,
         'indirizzoNome'       : $rootScope.indirizzo,

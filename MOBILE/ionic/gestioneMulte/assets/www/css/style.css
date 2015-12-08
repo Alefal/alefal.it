@@ -108,6 +108,7 @@ body { background: #fff; }
     padding:10px;
     border: none;
     height: 80px;
+    margin-top: 15px;
 }
 .button {
     height: 50px;

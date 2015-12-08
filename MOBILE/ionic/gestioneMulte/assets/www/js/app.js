@@ -52,18 +52,18 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
     //NO CONNECTION
     //$rootScope.checkNoConnection          = true;
     //$rootScope.marginMessageNoConnection  = 'margin-top:60px';
-    //$rootScope.barSubheaderNoConnection   = 'margin-top: 75px';
+    //$rootScope.barSubheaderNoConnection   = 'margin-top:75px';
     //SI CONNECTION
     $rootScope.checkNoConnection          = false;
     $rootScope.marginMessageNoConnection  = 'margin-top:0px';
-    $rootScope.barSubheaderNoConnection   = 'margin-top:0px;';
+    $rootScope.barSubheaderNoConnection   = 'margin-top:15px;';
     
 /*****
     document.addEventListener('deviceready', function () {
       $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
         $rootScope.checkNoConnection = false;
         $rootScope.marginMessageNoConnection  = 'margin-top:0px;';
-        $rootScope.barSubheaderNoConnection   = 'margin-top:0px;';
+        $rootScope.barSubheaderNoConnection   = 'margin-top:15px;';
 
         if (localStorage.getItem('datiVerbaleOffline')) {
           $rootScope.datiVerbaleOffline = true;

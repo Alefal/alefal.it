@@ -1,23 +1,27 @@
-<ion-view view-title="Insert" hide-nav-bar="true" class="eventForm">
+<ion-view view-title="Insert" hide-nav-bar="true" class="eventForm" ng-controller="InsertCtrl">
 
 	<ion-header-bar class="bar-positive">
     	<h1 class="title">Inserimento</h1>
     	<a ng-click="globFunc.back()" class="power button"><i class="ion-chevron-left"></i></a>
     </ion-header-bar>
 
-    <div class="bar bar-subheader" style="{{barSubheaderNoConnection}}">
+    <ion-header-bar class="bar bar-subheader" style="{{barSubheaderNoConnection}}">
         <button class="button button-block button-positive icon-left ion-android-done" ng-click="salvaVerbale()"> Salva</button>
         <hr />
-    </div>
+    </ion-header-bar>
 
-    <ion-content class="padding inserimentoVerbale" ng-controller="InsertCtrl" style="{{marginMessageNoConnection}}">
+    <ion-content class="padding inserimentoVerbale" style="{{marginMessageNoConnection}}">
 
         <div class="spacerVerticalLarge"></div>
         <div class="spacerVerticalLarge"></div>
-        <div class="spacerVerticalLarge"></div>
-        <div class="spacerVertical"></div>
-        <div class="spacerVertical"></div>
 
+        <div class="message-danger message-danger-striped" ng-show="fieldsRequired" id="messageFieldsRequired">
+          <p ng-show="verbaleRequired">Inserire i dati del verbale!</p>
+          <p ng-show="datiVerbaleRequired">Il numero di verbale &egrave; obbligatorio!</p>
+          <p ng-show="targaVeicoloRequired">La targa &egrave; obbligatoria!</p>
+          <p ng-show="indirizzoRequired">L'indirizzo &egrave; obbligatorio!</p>
+          <p ng-show="articoloRequired">L'articolo &egrave; obbligatorio!</p>
+        </div>
         <!--
         <div class="message-info message-info-striped">
             <i class="icon ion-ios-information-outline" style="font-size: 25px;"></i>
@@ -34,14 +38,6 @@
             <input type="hidden" name="NUM_VERB"    value="{{numeroVerbale}}">
             <input type="hidden" name="DATA_VERB"   value="{{dataVerbale}}">
             <input type="hidden" name="ORA_VERB"    value="{{oraVerbale}}">
-        </div>
-
-        <div class="message-danger message-danger-striped" ng-show="fieldsRequired" id="messageFieldsRequired">
-          <p ng-show="verbaleRequired">Inserire i dati del verbale!</p>
-          <p ng-show="datiVerbaleRequired">Il numero di verbale &egrave; obbligatorio!</p>
-          <p ng-show="targaVeicoloRequired">La targa &egrave; obbligatoria!</p>
-          <p ng-show="indirizzoRequired">L'indirizzo &egrave; obbligatorio!</p>
-          <p ng-show="articoloRequired">L'articolo &egrave; obbligatorio!</p>
         </div>
 
         <div class="spacerVertical"></div>
@@ -86,7 +82,7 @@
         <div class="list list-inset">
             <label class="item item-input">
                 <i class="icon ion-alert" style="color:red"></i>
-                <input type="text" name="TARGA_VERB" placeholder="Targa veicolo" ng-model="targaVeicolo" required>
+                <input type="text" id="TARGA_VERB" name="TARGA_VERB" placeholder="Targa veicolo" ng-model="targaVeicolo" required>
                 <i class="icon ion-model-s"></i>
             </label>
             <!--
@@ -170,10 +166,10 @@
                 <i class="icon ion-map"></i>
             </label>
             <label class="item item-input">
-                <input type="number" name="CIVICO_VERB" placeholder="Civico" ng-model="indirizzoCivico">
+                <input type="number" id="CIVICO_VERB" name="CIVICO_VERB" placeholder="Civico" ng-model="indirizzoCivico">
             </label>
             <label class="item item-input">
-                <textarea name="DESCR_VIA_VERB" placeholder="Descrizione indirizzo" rows="5" cols="10" ng-model="indirizzoDescr"></textarea>
+                <textarea id="DESCR_VIA_VERB" name="DESCR_VIA_VERB" placeholder="Descrizione indirizzo" rows="5" cols="10" ng-model="indirizzoDescr"></textarea>
             </label>
         </div>
 
