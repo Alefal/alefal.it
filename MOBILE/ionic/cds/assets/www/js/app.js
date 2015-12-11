@@ -6,7 +6,7 @@ angular.module('starter', ['ionic','starter.controllers','starter.state','starte
 
     console.info('ionicPlatform.ready');
 
-    $rootScope.server = 'http://localhost/alefal.it/PROJECTS/wordpress';
+    $rootScope.server = 'http://localhost';
     
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)

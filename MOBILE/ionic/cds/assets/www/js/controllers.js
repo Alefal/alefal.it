@@ -39,9 +39,6 @@ angular.module('starter.controllers', [])
 
     $scope.userNotLogged = false;
 
-    console.log('username ---> '+$scope.authorization.username);
-    console.log('password ---> '+$scope.authorization.password);
-
     /***** DA ELIMINARE *****/
     var roleUser = $scope.authorization.role;
     if(roleUser == 'hostess') {
@@ -75,6 +72,9 @@ angular.module('starter.controllers', [])
     else {
       $scope.userNotLogged = true;
     }
+
+    console.log('username ---> '+$scope.authorization.username);
+    console.log('password ---> '+$scope.authorization.password);
     /***** DA ELIMINARE *****/
 
     if($scope.authorization.username == '' || $scope.authorization.password == '') {
@@ -139,6 +139,63 @@ angular.module('starter.controllers', [])
 .controller('HostessCtrl', function($scope,$rootScope,$ionicLoading,ajaxCallServices,$state,$ionicModal/*,$cordovaNetwork*/) {
   //HOSTESS page
 })
+.controller('ManagersCtrl', function($scope,$rootScope,$ionicLoading,ajaxCallServices,$state/*,$cordovaNetwork*/) {
+  //MANAGER page
+  $scope.role = $rootScope.role;
+})
+.controller('WaitersCtrl', function($scope,$rootScope,$ionicLoading,ajaxCallServices,$state/*,$cordovaNetwork*/) {
+  //WAITERS page
+  $scope.role = $rootScope.role;
+})
+.controller('CustomersCtrl', function($scope,$ionicLoading,ajaxCallServices,$state/*,$cordovaNetwork*/) {
+  //CUSTOMERS page
+})
+.controller('StewardCtrl', function($scope,$ionicLoading,ajaxCallServices,$state/*,$cordovaNetwork*/) {
+  //STEWARD page
+})
+.controller('GuestCtrl', function($scope,$rootScope,$ionicLoading,ajaxCallServices,$state,$ionicPopup/*,$cordovaNetwork*/) {
+  //GUEST page
+  
+  $scope.role = $rootScope.role;
+
+  $scope.openPopupCallWaiter = function(user) {
+    $ionicPopup.confirm({
+      title: 'Call Waiter',
+      content: 'Do you want call your waiter ?',
+      cancelText: 'Cancel',
+      okText: 'Call'
+    })
+    .then(function(result) {
+      if(result) {
+        console.log('Call');
+      } else {
+        console.log('Cancel');
+      }
+    });
+  };
+})
+//MENU page
+.controller('MenuCtrl', function($scope,$ionicLoading,ajaxCallServices,$state,$ionicPopup/*,$cordovaNetwork*/) {
+  //MENU page
+
+  $scope.openPopupChooseItem = function() {
+    $ionicPopup.confirm({
+      title: 'Your choose Prosecco',
+      content: 'Select quantity <input type="number" name="quantity" id="quantity">',
+      cancelText: 'Cancel',
+      okText: 'Order'
+    })
+    .then(function(result) {
+      if(result) {
+        console.log('Order');
+        $state.go('app.order');
+      } else {
+        console.log('Cancel');
+      }
+    });
+  };
+})
+//RESERVATIONS page
 .controller('ReservationsCtrl', function($scope,$rootScope,$ionicLoading,ajaxCallServices,$state,$ionicModal,$ionicPopup,$ionicActionSheet/*,$cordovaNetwork*/) {
 
   // An alert dialog
@@ -192,7 +249,7 @@ angular.module('starter.controllers', [])
     ajaxCallServices.getAllReservation('2015-11-11')
       .success(function (data) {
         console.log('getAllReservation --->'+JSON.stringify(data));
-        $scope.items = data;
+        $scope.items = data.reservationList;
         $ionicLoading.hide();
       }).error(function (error) {
         $ionicLoading.hide();
@@ -259,7 +316,7 @@ angular.module('starter.controllers', [])
       .success(function (data) {
         console.log('getAllGift --->'+JSON.stringify(data));
 
-        $scope.itemsGift = data;
+        $scope.itemsGift = data.giftList;
         $scope.modalGift.show();
         $ionicLoading.hide();
       }).error(function (error) {
@@ -303,7 +360,7 @@ angular.module('starter.controllers', [])
               .success(function (data) {
                 console.log('getAllGift --->'+JSON.stringify(data));
 
-                $scope.itemsGift = data;
+                $scope.itemsGift = data.giftList;
                 $ionicLoading.hide();
                 openPopupAddGift.close();
               }).error(function (error) {
@@ -349,7 +406,7 @@ angular.module('starter.controllers', [])
               .success(function (data) {
                 console.log('getAllGift --->'+JSON.stringify(data));
                 
-                $scope.itemsGift = data;
+                $scope.itemsGift = data.giftList;
                 $ionicLoading.hide();
 
               }).error(function (error) {
@@ -478,9 +535,7 @@ angular.module('starter.controllers', [])
       }
     });
   }
-
 })
-
 //TODO: eliminare
 /*
 .controller('ReservationDetailCtrl', function($scope,$ionicLoading,ajaxCallServices,$state,$ionicModal,$ionicPopup) {
@@ -594,61 +649,6 @@ angular.module('starter.controllers', [])
         console.log('Take on');
       } else {
         console.log('Delete');
-      }
-    });
-  };
-})
-
-.controller('ManagersCtrl', function($scope,$rootScope,$ionicLoading,ajaxCallServices,$state/*,$cordovaNetwork*/) {
-  //MANAGER page
-  $scope.role = $rootScope.role;
-})
-.controller('WaitersCtrl', function($scope,$rootScope,$ionicLoading,ajaxCallServices,$state/*,$cordovaNetwork*/) {
-  //WAITERS page
-  $scope.role = $rootScope.role;
-})
-.controller('CustomersCtrl', function($scope,$ionicLoading,ajaxCallServices,$state/*,$cordovaNetwork*/) {
-  //CUSTOMERS page
-})
-.controller('StewardCtrl', function($scope,$ionicLoading,ajaxCallServices,$state/*,$cordovaNetwork*/) {
-  //STEWARD page
-})
-.controller('GuestCtrl', function($scope,$rootScope,$ionicLoading,ajaxCallServices,$state,$ionicPopup/*,$cordovaNetwork*/) {
-  //GUEST page
-  $scope.role = $rootScope.role;
-
-  $scope.openPopupCallWaiter = function(user) {
-    $ionicPopup.confirm({
-      title: 'Call Waiter',
-      content: 'Do you want call your waiter ?',
-      cancelText: 'Cancel',
-      okText: 'Call'
-    })
-    .then(function(result) {
-      if(result) {
-        console.log('Call');
-      } else {
-        console.log('Cancel');
-      }
-    });
-  };
-})
-.controller('MenuCtrl', function($scope,$ionicLoading,ajaxCallServices,$state,$ionicPopup/*,$cordovaNetwork*/) {
-  //MENU page
-
-  $scope.openPopupChooseItem = function() {
-    $ionicPopup.confirm({
-      title: 'Your choose Prosecco',
-      content: 'Select quantity <input type="number" name="quantity" id="quantity">',
-      cancelText: 'Cancel',
-      okText: 'Order'
-    })
-    .then(function(result) {
-      if(result) {
-        console.log('Order');
-        $state.go('app.order');
-      } else {
-        console.log('Cancel');
       }
     });
   };
