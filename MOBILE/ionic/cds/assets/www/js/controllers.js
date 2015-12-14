@@ -223,11 +223,26 @@ angular.module('starter.controllers', [])
       cancelType: 'button-positive'
     })
     deleteReservationConfirmPopup.then(function(result) {
+      console.log('result: '+result);
       if(result) {
         console.log('CANCELLO');
-        $scope.UpdateReservation.hide();
 
-        $scope.getAllReservation();
+        //TODO: deleteReservation(Reservation)
+        ajaxCallServices.deleteReservation(itemId)
+          .success(function (data) {
+            console.log('deleteReservation --->'+JSON.stringify(data));
+            $scope.items = '';
+
+            $scope.UpdateReservation.hide();
+            $scope.getAllReservation();
+
+            $ionicLoading.hide();
+          }).error(function (error) {
+            $ionicLoading.hide();
+            alert('Unable to load customer data' + error);
+          });
+
+        
           
       } else {
         deleteReservationConfirmPopup.close();

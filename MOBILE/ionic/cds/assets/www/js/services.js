@@ -36,6 +36,7 @@ OK -> getAllGift()                      get all gift of a reservation
 OK -> deleteGift()                      delete a gift given to a reservation
 OK -> addGift()                         add a gift to a guest
 OK -> updateGift()                      update gift 
+- getGift(Gift)                         get gift by id
 - setOrderAsGift()                 		  set order as a gift
 
 DISCOUNT
@@ -50,12 +51,16 @@ ORDER
 - getOrderForWaiter()               		get all order from some table assigned to a given 
 - updateOrder()                       	update the state of an order 
 - makeOrder()                         	send the order
+- makeOrderByHand(Order)
+- deleteOrder                           orderDeletion
+
 
 OTHER
 - getRequest ()        			            get pending tasks for a client
 OK -> getMenu()                         get the menu of the club
 OK -> login()                           login service
-OK -> getRoles()                        ruoli disponibili
+OK -> getRoles()                        ruoli disponibili: NON ESISTE PIU' ???
+- getAvailableTable (Date)
 - getAvailableTable()               		restituisce la lista di tavoli liberi per una data
 - getMap()                              restituisce il percorso dell imagine della mappa
 - getBillPDF()             		          genera un pdf contenente il totale del conto ed il  
@@ -161,8 +166,8 @@ angular.module('starter.factory', [])
     });
   };
   /***** OK: deleteReservation() *****/
-  ajaxCallServices.deleteReservation = function (id_reservation,people_num,date_reservation,code,code_table,userId) {
-    var parameter = JSON.stringify({"id_reservation":id_reservation,"people_num":people_num,"date_reservation":date_reservation,"code":code,"code_table":{"code":code_table},"user":{"id":userId}});
+  ajaxCallServices.deleteReservation = function (id_reservation) {
+    var parameter = JSON.stringify({"id_reservation":id_reservation});
 
     return $http({
       url:urlBase+'nightService/deleteReservation/',
