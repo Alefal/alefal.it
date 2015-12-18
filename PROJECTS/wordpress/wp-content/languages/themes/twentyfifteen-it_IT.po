@@ -100,19 +100,19 @@ msgstr "Commenti più vecchi"
 msgid "Newer Comments"
 msgstr "Nuovi commenti"
 
-#: inc/customizer.php:147
+#: inc/customizer.php:168
 msgid "Blue"
 msgstr "Blu"
 
-#: inc/customizer.php:125
+#: inc/customizer.php:146
 msgid "Pink"
 msgstr "Rosa"
 
-#: inc/customizer.php:103
+#: inc/customizer.php:124
 msgid "Dark"
 msgstr "Scuro"
 
-#: inc/customizer.php:114
+#: inc/customizer.php:135
 msgid "Yellow"
 msgstr "Giallo"
 
@@ -124,11 +124,11 @@ msgstr "Schema colore di base"
 msgid "Featured"
 msgstr "In evidenza"
 
-#: inc/customizer.php:136
+#: inc/customizer.php:157
 msgid "Purple"
 msgstr "Porpora"
 
-#: inc/customizer.php:92
+#: inc/customizer.php:113
 msgid "Default"
 msgstr "Default"
 
@@ -208,7 +208,7 @@ msgstr "Non riusciamo a trovare quello che cerchi. Forse eseguire una ricerca po
 msgid "Widget Area"
 msgstr "Area widget"
 
-#. #-#-#-#-#  twentyfifteen.pot (Twenty Fifteen 1.3)  #-#-#-#-#
+#. #-#-#-#-#  twentyfifteen.pot (Twenty Fifteen 1.4)  #-#-#-#-#
 #. Author URI of the plugin/theme
 #: footer.php:25
 msgid "https://wordpress.org/"
