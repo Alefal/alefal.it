@@ -68,11 +68,11 @@ $id = 15; $p = get_page($id); echo apply_filters('the_content', $p->post_content
                     <img src="<?php echo get_template_directory_uri(); ?>/img/portfolio/1.jpg" class="img-responsive" alt="">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
-                            <div class="project-category text-faded">
-                                Category
+                            <div class="project-category text-faded">                               
+                                Excursions
                             </div>
                             <div class="project-name">
-                                Project Name
+                                Amalfi
                             </div>
                         </div>
                     </div>
@@ -84,10 +84,10 @@ $id = 15; $p = get_page($id); echo apply_filters('the_content', $p->post_content
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
-                                Category
+                                Excursions
                             </div>
                             <div class="project-name">
-                                Project Name
+                                Ravello
                             </div>
                         </div>
                     </div>
@@ -99,10 +99,10 @@ $id = 15; $p = get_page($id); echo apply_filters('the_content', $p->post_content
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
-                                Category
+                                Excursions
                             </div>
                             <div class="project-name">
-                                Project Name
+                                Positano
                             </div>
                         </div>
                     </div>
@@ -114,10 +114,10 @@ $id = 15; $p = get_page($id); echo apply_filters('the_content', $p->post_content
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
-                                Category
+                                Excursions
                             </div>
                             <div class="project-name">
-                                Project Name
+                                Sorrento
                             </div>
                         </div>
                     </div>
@@ -129,10 +129,10 @@ $id = 15; $p = get_page($id); echo apply_filters('the_content', $p->post_content
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
-                                Category
+                                Excursions
                             </div>
                             <div class="project-name">
-                                Project Name
+                                Napoli
                             </div>
                         </div>
                     </div>
@@ -144,10 +144,10 @@ $id = 15; $p = get_page($id); echo apply_filters('the_content', $p->post_content
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
-                                Category
+                                Excursions
                             </div>
                             <div class="project-name">
-                                Project Name
+                                Paestum
                             </div>
                         </div>
                     </div>
