@@ -1,6 +1,10 @@
 angular.module('amalfitourscarservice')
 
 
+  .controller('GenericModalCtrl', function($scope, $translate, ajaxCallServices) {
+    $('#genericModal').modal();
+  })
+    
   .controller('LanguageCtrl', function($scope, $translate, ajaxCallServices) {
     console.log('LanguageCtrl');
     $scope.currentLanguage = $translate.preferredLanguage();

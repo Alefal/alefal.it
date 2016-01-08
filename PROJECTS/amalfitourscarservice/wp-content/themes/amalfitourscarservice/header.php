@@ -57,10 +57,10 @@
 	<header>
         <div class="header-content">
             <div class="header-content-inner">
-                <h1>Benvenuti!</h1>
+                <h1 ng-bind="'HomeMsgTitle' | translate">&nbsp;</h1>
                 <hr>
-                <p style="background-color: rgba(0, 0, 0, 0.8); padding:5px">NCC, Escursioni, Servizi per Hotels... Tutto ciò di cui avete bisogno con la massima <strong>PROFESSIONALITA'</strong> e <strong>COMPETENZA</strong>!</p>
-                <a href="#about" class="btn btn-primary btn-xl page-scroll">Contattaci</a>
+                <p style="background-color: rgba(0, 0, 0, 0.8); padding:5px" ng-bind-html="'HomeMsgContent' | translate">&nbsp;</p>
+                <a href="#about" class="btn btn-primary btn-xl page-scroll" ng-bind="'HomeMsgButton' | translate">&nbsp;</a>
             </div>
         </div>
     </header>

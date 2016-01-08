@@ -69,7 +69,7 @@ $id = 15; $p = get_page($id); echo apply_filters('the_content', $p->post_content
                 <div class="service-box">
                     <i class="fa fa-4x fa-car wow bounceIn text-primary"></i>
                     <h3>NCC</h3>
-                    <p class="text-muted">Servizi di noleggio auto con conducente...</p>
+                    <p class="text-muted" style="min-height: 50px;">Servizi di noleggio auto con conducente...</p>
                     <br />
                     <a href="#" class="btn btn-primary btn-xl wow tada">Scopri di più!</a>
                 </div>
@@ -78,7 +78,7 @@ $id = 15; $p = get_page($id); echo apply_filters('the_content', $p->post_content
                 <div class="service-box">
                     <i class="fa fa-4x fa-map wow bounceIn text-primary" data-wow-delay=".1s"></i>
                     <h3>Escursioni</h3>
-                    <p class="text-muted">Disponibile ad un'ampia varietà di escursioni personalizzate...</p>
+                    <p class="text-muted" style="min-height: 50px;">Disponibile ad un'ampia varietà di escursioni personalizzate...</p>
                     <br />
                     <a href="#" class="btn btn-primary btn-xl wow tada">Scopri di più!</a>
                 </div>
@@ -87,7 +87,7 @@ $id = 15; $p = get_page($id); echo apply_filters('the_content', $p->post_content
                 <div class="service-box">
                     <i class="fa fa-4x fa-bed wow bounceIn text-primary" data-wow-delay=".2s"></i>
                     <h3>Hotels</h3>
-                    <p class="text-muted">City tour; Shopping tour...</p>
+                    <p class="text-muted" style="min-height: 50px;">City tour; Shopping tour...</p>
                     <br />
                     <a href="#" class="btn btn-primary btn-xl wow tada">Scopri di più!</a>
                 </div>
@@ -96,7 +96,7 @@ $id = 15; $p = get_page($id); echo apply_filters('the_content', $p->post_content
                 <div class="service-box">
                     <i class="fa fa-4x fa-plane wow bounceIn text-primary" data-wow-delay=".2s"></i>
                     <h3>Servizi</h3>
-                    <p class="text-muted">Trasferimenti per Aeroporto, Stazione treni e Imbarchi...</p>
+                    <p class="text-muted" style="min-height: 50px;">Trasferimenti per Aeroporto, Stazione treni e Imbarchi...</p>
                     <br />
                     <a href="#" class="btn btn-primary btn-xl wow tada">Scopri di più!</a>
                 </div>

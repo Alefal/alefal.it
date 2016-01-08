@@ -15,16 +15,24 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a class="page-scroll" href="#about">Chi Siamo</a>
+                    <a class="page-scroll" href="#about" ng-bind="'NavAbout' | translate">&nbsp;</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#services">Servizi</a>
+                    <a class="page-scroll" href="#services" ng-bind="'NavServices' | translate">&nbsp;</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#excursions">Escursioni</a>
+                    <a class="page-scroll" href="#excursions" ng-bind="'NavExcursions' | translate">&nbsp;</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#contact">Contatti</a>
+                    <a class="page-scroll" href="#contact" ng-bind="'NavContact' | translate">&nbsp;</a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ng-bind="'NavLanguage' | translate">&nbsp;<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="javascript:void(0);" ng-click="changeLanguage('it')">Italiano</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="javascript:void(0);" ng-click="changeLanguage('en')">English</a></li>
+                    </ul>
                 </li>
             </ul>
         </div>
