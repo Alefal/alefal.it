@@ -474,3 +474,10 @@ img::-moz-selection {
 body {
     webkit-tap-highlight-color: #222;
 }
+
+@media screen and (min-width: 1600px){
+  .modal-lg {
+    width: 1200px;
+    margin: 30px auto;
+  }
+}

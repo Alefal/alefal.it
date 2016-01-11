@@ -2,17 +2,104 @@ angular.module('amalfitourscarservice')
 
 
   .controller('GenericModalCtrl', function($scope, $translate, ajaxCallServices) {
-    $('#genericModal').modal();
+    //
   })
     
-  .controller('LanguageCtrl', function($scope, $translate, ajaxCallServices) {
-    console.log('LanguageCtrl');
-    $scope.currentLanguage = $translate.preferredLanguage();
+  .controller('LanguageCtrl', function($scope, $translate, ajaxCallServices, $window) {
+
+    var lang = $window.navigator.language || $window.navigator.userLanguage;
+
+    console.log('LanguageCtrl: '+lang);
+    //$scope.currentLanguage = $translate.preferredLanguage();
+
+    if(lang.indexOf('en') > -1) {
+      $scope.currentLanguage = 'en';
+      $translate.use('en');
+    }
+    else if(lang.indexOf('it') > -1) {
+      $scope.currentLanguage = 'it';
+      $translate.use('it');
+    }
+    else {
+      $scope.currentLanguage = 'it';
+      $translate.use('it');
+    }
 
     $scope.changeLanguage = function(language){
       console.log('changeLanguage: '+language);
-      $translate.use(language);
       $scope.currentLanguage = language;
+      $translate.use(language);
+    };
+
+  })
+
+  .controller('ServicesCtrl', function($scope,$translate,$filter,ajaxCallServices,$window) {
+    $scope.modalTitle = '';
+
+    $scope.descriptionService = function(service){
+      console.log(service);
+
+      if(service == 'ncc') {
+        $scope.modalTitle   = $filter('translate')('ServiceTitleNCC');
+        $scope.modalContent = $filter('translate')('ServiceContentNCC');
+
+      } else if(service == 'excursions') {
+        $scope.modalTitle   = $filter('translate')('ServiceTitleExcursions');
+        $scope.modalContent = $filter('translate')('ServiceContentExcursions');
+
+      } else if(service == 'hotels') {
+        $scope.modalTitle   = $filter('translate')('ServiceTitleHotels');
+        $scope.modalContent = $filter('translate')('ServiceContentHotels');
+
+      } else if(service == 'service') {
+        $scope.modalTitle   = $filter('translate')('ServiceTitleOther');
+        $scope.modalContent = $filter('translate')('ServiceContentOther');
+
+      }
+      
+      $scope.showModalServices = false;
+      $scope.showModalServices = !$scope.showModalServices;
+      
+      //$('#genericModal').modal();
+    };
+
+  })
+
+  .controller('ExcursionsCtrl', function($scope,$translate,$filter,ajaxCallServices,$window) {
+    $scope.excursionAmalfi  = false;
+    $scope.excursionRavello = false;
+
+    $scope.descriptionExcursions = function(where){
+
+      ajaxCallServices.getExcursions(where)
+        .success(function (detailsExcursion) {
+          //console.log('listExcursions: '+JSON.stringify(detailsExcursion));
+          $scope.detailsExcursion = detailsExcursion;
+        }).error(function (error) {
+          console.log('Error');
+        });
+
+      /*
+      if(excursions == 'amalfi') {
+        $scope.modalTitle   = $filter('translate')('ExcursionTitleAmalfi');
+        $scope.modalContent = $filter('translate')('ExcursionContentAmalfi');
+
+        $scope.excursionAmalfi = true;
+        $scope.excursionRavello = false;
+
+      } else if(excursions == 'ravello') {
+        $scope.modalTitle   = $filter('translate')('ExcursionTitleRavello');
+        $scope.modalContent = $filter('translate')('ExcursionContentRavello');
+
+        $scope.excursionRavello = true;
+        $scope.excursionAmalfi  = false;
+      }
+      */
+      
+      $scope.showModalExcursions = false;
+      $scope.showModalExcursions = !$scope.showModalExcursions;
+      
+      //$('#genericModal').modal();
     };
 
   })

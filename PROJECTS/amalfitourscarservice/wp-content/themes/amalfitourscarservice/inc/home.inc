@@ -1,9 +1,8 @@
 <?php 
-/*
 $id = 15; $p = get_page($id); echo apply_filters('the_content', $p->post_content); 
-*/
 ?>
 
+<!--
 <section class="bg-primary" id="about">
     <div class="container">
         <div class="row">
@@ -16,6 +15,7 @@ $id = 15; $p = get_page($id); echo apply_filters('the_content', $p->post_content
         </div>
     </div>
 </section>
+-->
 
 <section class="no-padding">
     <div class="container-fluid">
@@ -54,7 +54,11 @@ $id = 15; $p = get_page($id); echo apply_filters('the_content', $p->post_content
     </div>
 </section>
 
-<section id="services">
+<section id="services" ng-controller="ServicesCtrl">
+    <modal title="{{modalTitle}}" visible="showModalServices">
+        <div ng-bind-html="modalContent"></div>
+    </modal>
+
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
@@ -71,7 +75,7 @@ $id = 15; $p = get_page($id); echo apply_filters('the_content', $p->post_content
                     <h3>NCC</h3>
                     <p class="text-muted" style="min-height: 50px;">Servizi di noleggio auto con conducente...</p>
                     <br />
-                    <a href="#" class="btn btn-primary btn-xl wow tada">Scopri di più!</a>
+                    <a href="javascript:void(0);" ng-click="descriptionService('ncc')" class="btn btn-primary btn-xl wow tada">Scopri di più!</a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 text-center">
@@ -80,7 +84,7 @@ $id = 15; $p = get_page($id); echo apply_filters('the_content', $p->post_content
                     <h3>Escursioni</h3>
                     <p class="text-muted" style="min-height: 50px;">Disponibile ad un'ampia varietà di escursioni personalizzate...</p>
                     <br />
-                    <a href="#" class="btn btn-primary btn-xl wow tada">Scopri di più!</a>
+                    <a href="javascript:void(0);" ng-click="descriptionService('excursions')" class="btn btn-primary btn-xl wow tada">Scopri di più!</a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 text-center">
@@ -89,7 +93,7 @@ $id = 15; $p = get_page($id); echo apply_filters('the_content', $p->post_content
                     <h3>Hotels</h3>
                     <p class="text-muted" style="min-height: 50px;">City tour; Shopping tour...</p>
                     <br />
-                    <a href="#" class="btn btn-primary btn-xl wow tada">Scopri di più!</a>
+                    <a href="javascript:void(0);" ng-click="descriptionService('hotels')" class="btn btn-primary btn-xl wow tada">Scopri di più!</a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 text-center">
@@ -98,18 +102,26 @@ $id = 15; $p = get_page($id); echo apply_filters('the_content', $p->post_content
                     <h3>Servizi</h3>
                     <p class="text-muted" style="min-height: 50px;">Trasferimenti per Aeroporto, Stazione treni e Imbarchi...</p>
                     <br />
-                    <a href="#" class="btn btn-primary btn-xl wow tada">Scopri di più!</a>
+                    <a href="javascript:void(0);" ng-click="descriptionService('service')" class="btn btn-primary btn-xl wow tada">Scopri di più!</a>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<section class="no-padding" id="excursions">
+<section class="no-padding" id="excursions" ng-controller="ExcursionsCtrl">
+    <modal title="{{modalTitle}}" visible="showModalExcursions">
+        <div ng-repeat="element in detailsExcursion.posts">
+            <h3>{{element.title}}</h3>
+            <p ng-if="currentLanguage == 'it'" ng-bind-html="element.custom_fields.descrizione"></p>
+            <p ng-if="currentLanguage == 'en'" ng-bind-html="element.custom_fields.description"></p>
+        </div>
+    </modal>
+
     <div class="container-fluid">
         <div class="row no-gutter">
             <div class="col-lg-4 col-sm-6">
-                <a href="#" class="portfolio-box">
+                <a <a href="javascript:void(0);" ng-click="descriptionExcursions('Amalfi')" class="portfolio-box">
                     <img src="<?php echo get_template_directory_uri(); ?>/img/portfolio/1.jpg" class="img-responsive" alt="">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
@@ -124,7 +136,7 @@ $id = 15; $p = get_page($id); echo apply_filters('the_content', $p->post_content
                 </a>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <a href="#" class="portfolio-box">
+                <a href="javascript:void(0);" ng-click="descriptionExcursions('ravello')" class="portfolio-box">
                     <img src="<?php echo get_template_directory_uri(); ?>/img/portfolio/2.jpg" class="img-responsive" alt="">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
