@@ -56,7 +56,17 @@ $id = 15; $p = get_page($id); echo apply_filters('the_content', $p->post_content
 
 <section id="services" ng-controller="ServicesCtrl">
     <modal title="{{modalTitle}}" visible="showModalServices">
-        <div ng-bind-html="modalContent"></div>
+        <div ng-repeat="element in detailsService.posts">
+            <div class="row">   
+                <div class="col-md-6">
+                    <img src="http://www.amalfitourscarservice.it/wp-content/uploads/2015/10/cropped-DSCF1524-400x270.jpg">
+                </div> 
+                <div class="col-md-6">
+                    <p ng-if="currentLanguage == 'it'" ng-bind-html="element.custom_fields.descrizione"></p>
+                    <p ng-if="currentLanguage == 'en'" ng-bind-html="element.custom_fields.description"></p>
+                </div>
+            </div>            
+        </div>
     </modal>
 
     <div class="container">
@@ -72,37 +82,37 @@ $id = 15; $p = get_page($id); echo apply_filters('the_content', $p->post_content
             <div class="col-lg-3 col-md-6 text-center">
                 <div class="service-box">
                     <i class="fa fa-4x fa-car wow bounceIn text-primary"></i>
-                    <h3>NCC</h3>
-                    <p class="text-muted" style="min-height: 50px;">Servizi di noleggio auto con conducente...</p>
+                    <h3 ng-bind="'ServiceTitleNCC' | translate">&nbsp;</h3>
+                    <p class="text-muted" style="min-height: 50px;" ng-bind="'ServiceContentNCC' | translate">&nbsp;</p>
                     <br />
-                    <a href="javascript:void(0);" ng-click="descriptionService('ncc')" class="btn btn-primary btn-xl wow tada">Scopri di più!</a>
+                    <a href="javascript:void(0);" ng-click="descriptionService('ncc')" class="btn btn-primary btn-xl wow tada" ng-bind-html="'ButtonReadMore' | translate">&nbsp;</a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 text-center">
                 <div class="service-box">
                     <i class="fa fa-4x fa-map wow bounceIn text-primary" data-wow-delay=".1s"></i>
-                    <h3>Escursioni</h3>
-                    <p class="text-muted" style="min-height: 50px;">Disponibile ad un'ampia varietà di escursioni personalizzate...</p>
+                    <h3 ng-bind="'ServiceTitleExcursions' | translate">&nbsp;</h3>
+                    <p class="text-muted" style="min-height: 50px;" ng-bind="'ServiceContentExcursions' | translate">&nbsp;</p>
                     <br />
-                    <a href="javascript:void(0);" ng-click="descriptionService('excursions')" class="btn btn-primary btn-xl wow tada">Scopri di più!</a>
+                    <a href="javascript:void(0);" ng-click="descriptionService('excursions')" class="btn btn-primary btn-xl wow tada" ng-bind-html="'ButtonReadMore' | translate">&nbsp;</a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 text-center">
                 <div class="service-box">
                     <i class="fa fa-4x fa-bed wow bounceIn text-primary" data-wow-delay=".2s"></i>
-                    <h3>Hotels</h3>
-                    <p class="text-muted" style="min-height: 50px;">City tour; Shopping tour...</p>
+                    <h3 ng-bind="'ServiceTitleHotels' | translate">&nbsp;</h3>
+                    <p class="text-muted" style="min-height: 50px;" ng-bind="'ServiceContentHotels' | translate">&nbsp;</p>
                     <br />
-                    <a href="javascript:void(0);" ng-click="descriptionService('hotels')" class="btn btn-primary btn-xl wow tada">Scopri di più!</a>
+                    <a href="javascript:void(0);" ng-click="descriptionService('hotels')" class="btn btn-primary btn-xl wow tada" ng-bind-html="'ButtonReadMore' | translate">&nbsp;</a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 text-center">
                 <div class="service-box">
                     <i class="fa fa-4x fa-plane wow bounceIn text-primary" data-wow-delay=".2s"></i>
-                    <h3>Servizi</h3>
-                    <p class="text-muted" style="min-height: 50px;">Trasferimenti per Aeroporto, Stazione treni e Imbarchi...</p>
+                    <h3 ng-bind="'ServiceTitleOther' | translate">&nbsp;</h3>
+                    <p class="text-muted" style="min-height: 50px;" ng-bind="'ServiceContentOther' | translate">&nbsp;</p>
                     <br />
-                    <a href="javascript:void(0);" ng-click="descriptionService('service')" class="btn btn-primary btn-xl wow tada">Scopri di più!</a>
+                    <a href="javascript:void(0);" ng-click="descriptionService('service')" class="btn btn-primary btn-xl wow tada" ng-bind-html="'ButtonReadMore' | translate">&nbsp;</a>
                 </div>
             </div>
         </div>

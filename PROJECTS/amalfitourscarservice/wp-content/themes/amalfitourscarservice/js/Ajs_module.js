@@ -31,37 +31,15 @@ var lechicchedielena = angular.module('amalfitourscarservice', ['ngSanitize', 'p
 		PlaceholderInfo: 'Information',
 
 		ServiceTitleNCC: 'NCC',
+		ServiceContentNCC: 'Service NCC...',
 		ServiceTitleExcursions: 'Excursions',
-		ServiceTitleHotels: 'Hotels',
-		ServiceTitleOther: 'Service',
-		ServiceContentNCC: ''+
-			'<div class="row">'+
-  			'	<div class="col-md-6"><img src="http://www.amalfitourscarservice.it/wp-content/uploads/2015/10/cropped-DSCF1524-400x270.jpg" /></div>'+
-  			'	<div class="col-md-6">'+
-  					'<ul>'+
-					'	<li>Servizi di escursioni private</li>'+
-					'	<li>Trasferimenti per Aeroporto/ Stazione treni e imbarchi</li>'+
-					'	<li>Transfer in occasioni di matrimoni, meeting, party e congressi</li>'+
-					'	<li>City tour</li>'+
-					'	<li>Shopping tour</li>'+
-					'</ul>'+
-  			'	</div>'+
-			'</div>',
 		ServiceContentExcursions: 'Excursions content',
+		ServiceTitleHotels: 'Hotels',
 		ServiceContentHotels: 'Hotels content',
+		ServiceTitleOther: 'Service',
 		ServiceContentOther: 'Service content',
 
-		ExcursionTitleAmalfi: '',
-		ExcursionContentAmalfi: ''+
-			'<div class="row">'+
-  			'	<div class="col-md-6"><img src="http://www.amalfitourscarservice.it/wp-content/uploads/2015/12/amalfi.jpg" /></div>'+
-  			'	<div class="col-md-6">'+
-  			'		<h1>Amalfi</h1>'+
-  			'		<p>Tempo medio: 2:30</p>'+
-  			'		<br />'+
-  			'		<div>Amalfi è diventata meta di un turismo di classe, con artisti di ogni parte del mondo, personaggi del cinema e della cultura che la scelgono come luogo dove soggiornare grazie anche alla natura incontaminata del suo territorio, al suo mare cristallino e al suo clima mite che dilata incredibilmente le estati</div>'+
-  			'	</div>'+
-			'</div>',
+		ButtonReadMore: 'Read more!'
 
 	});
 	$translateProvider.translations('it', {
@@ -88,20 +66,15 @@ var lechicchedielena = angular.module('amalfitourscarservice', ['ngSanitize', 'p
 		PlaceholderInfo: 'Informazioni',
 
 		ServiceTitleNCC: 'NCC',
-		ServiceTitleExcursions: 'Escursioni',
+		ServiceContentNCC: 'Servizi di noleggio auto con conducente...',
+		ServiceTitleExcursions: 'Excursions',
+		ServiceContentExcursions: 'Excursions content',
 		ServiceTitleHotels: 'Hotels',
-		ServiceTitleOther: 'Servizi',
-		ServiceContentNCC: ''+
-			'<ul>'+
-			'	<li>Servizi di escursioni private</li>'+
-			'	<li>Trasferimenti per Aeroporto/ Stazione treni e imbarchi</li>'+
-			'	<li>Transfer in occasioni di matrimoni, meeting, party e congressi</li>'+
-			'	<li>City tour</li>'+
-			'	<li>Shopping tour</li>'+
-			'</ul>',
-		ServiceContentExcursions: 'Escursioni content',
 		ServiceContentHotels: 'Hotels content',
-		ServiceContentOther: 'Servizi content'
+		ServiceTitleOther: 'Service',
+		ServiceContentOther: 'Service content',
+
+		ButtonReadMore: 'Scopri di più!'
     });
   	//$translateProvider.preferredLanguage('it');
   	//$translateProvider.fallbackLanguage('it');

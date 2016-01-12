@@ -46,9 +46,9 @@ DISCOUNT
 
 ORDER
 - getOrders()                 		      getAllOrders of a reservation
-- getAllOrders()                        getAllOrders of a day
+TODO -> getAllOrders()                        getAllOrders of a day
+TODO -> getOrderForWaiter()               		get all order from some table assigned to a given 
 - getOrdinationType()                   get all the available type of the staff to order
-- getOrderForWaiter()               		get all order from some table assigned to a given 
 - updateOrder()                       	update the state of an order 
 - makeOrder()                         	send the order
 - makeOrderByHand(Order)

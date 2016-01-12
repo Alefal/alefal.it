@@ -27,7 +27,7 @@
                     <a class="page-scroll" href="#contact" ng-bind="'NavContact' | translate">&nbsp;</a>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ng-bind="'NavLanguage' | translate">&nbsp;<span class="caret"></span></a>
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ng-bind="'NavLanguage' | translate">&nbsp;<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="javascript:void(0);" ng-click="changeLanguage('it')">Italiano</a></li>
                         <li role="separator" class="divider"></li>

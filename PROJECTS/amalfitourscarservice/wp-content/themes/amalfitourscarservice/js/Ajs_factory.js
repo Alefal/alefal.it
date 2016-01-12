@@ -4,10 +4,30 @@ angular.module('amalfitourscarservice')
 
         var ajaxCallServices = {};
         
-        /***** getExcursions ****/
-        ajaxCallServices.getExcursions = function(where) {
-            //Category: excursionAmalfi | excursionRavello
+        /***** getExcursion ****/
+        ajaxCallServices.getExcursion = function(where) {
+            /*****
+            TAGS: 
+            OK -> excursionAmalfi
+            excursionRavello
+            excursionPositano
+            excursionSorrento
+            excursionNapoli
+            excursionPaestum
+            *****/
             return $http.get($rootScope.server+'?json=get_tag_posts&tag_slug=excursion'+where+'&status=publish');
+        };
+
+        /***** getService ****/
+        ajaxCallServices.getService = function(service) {
+            /*****
+            TAGS: 
+            OK -> servicesNCC
+            servicesExcursion
+            servicesHotels
+            servicesOther
+            *****/
+            return $http.get($rootScope.server+'?json=get_tag_posts&tag_slug=services'+service+'&status=publish');
         };
 
         return ajaxCallServices;

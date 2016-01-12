@@ -34,74 +34,35 @@ angular.module('amalfitourscarservice')
   })
 
   .controller('ServicesCtrl', function($scope,$translate,$filter,ajaxCallServices,$window) {
-    $scope.modalTitle = '';
-
     $scope.descriptionService = function(service){
-      console.log(service);
-
-      if(service == 'ncc') {
-        $scope.modalTitle   = $filter('translate')('ServiceTitleNCC');
-        $scope.modalContent = $filter('translate')('ServiceContentNCC');
-
-      } else if(service == 'excursions') {
-        $scope.modalTitle   = $filter('translate')('ServiceTitleExcursions');
-        $scope.modalContent = $filter('translate')('ServiceContentExcursions');
-
-      } else if(service == 'hotels') {
-        $scope.modalTitle   = $filter('translate')('ServiceTitleHotels');
-        $scope.modalContent = $filter('translate')('ServiceContentHotels');
-
-      } else if(service == 'service') {
-        $scope.modalTitle   = $filter('translate')('ServiceTitleOther');
-        $scope.modalContent = $filter('translate')('ServiceContentOther');
-
-      }
+      
+      ajaxCallServices.getService(service)
+        .success(function (detailsService) {
+          //console.log('detailsService: '+JSON.stringify(detailsService));
+          $scope.detailsService = detailsService;
+        }).error(function (error) {
+          console.log('Error');
+        });
       
       $scope.showModalServices = false;
       $scope.showModalServices = !$scope.showModalServices;
-      
-      //$('#genericModal').modal();
     };
-
   })
 
   .controller('ExcursionsCtrl', function($scope,$translate,$filter,ajaxCallServices,$window) {
-    $scope.excursionAmalfi  = false;
-    $scope.excursionRavello = false;
-
     $scope.descriptionExcursions = function(where){
 
-      ajaxCallServices.getExcursions(where)
+      ajaxCallServices.getExcursion(where)
         .success(function (detailsExcursion) {
           //console.log('listExcursions: '+JSON.stringify(detailsExcursion));
           $scope.detailsExcursion = detailsExcursion;
         }).error(function (error) {
           console.log('Error');
         });
-
-      /*
-      if(excursions == 'amalfi') {
-        $scope.modalTitle   = $filter('translate')('ExcursionTitleAmalfi');
-        $scope.modalContent = $filter('translate')('ExcursionContentAmalfi');
-
-        $scope.excursionAmalfi = true;
-        $scope.excursionRavello = false;
-
-      } else if(excursions == 'ravello') {
-        $scope.modalTitle   = $filter('translate')('ExcursionTitleRavello');
-        $scope.modalContent = $filter('translate')('ExcursionContentRavello');
-
-        $scope.excursionRavello = true;
-        $scope.excursionAmalfi  = false;
-      }
-      */
       
       $scope.showModalExcursions = false;
       $scope.showModalExcursions = !$scope.showModalExcursions;
-      
-      //$('#genericModal').modal();
     };
-
   })
 
   .controller('ContactCtrl', function($scope, $rootScope, $translate, ajaxCallServices,$rootScope,$http) {
@@ -179,5 +140,4 @@ angular.module('amalfitourscarservice')
 
       }
     };
-
-  });  
+  });
