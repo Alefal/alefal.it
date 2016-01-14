@@ -21,19 +21,19 @@
 // ** dal proprio fornitore di hosting ** //
 /** Il nome del database di WordPress */
 define('DB_NAME', 'amalfitourscarservice');
-//define('DB_NAME', 'Sql907166_1');
+//define('DB_NAME', 'Sql932507_1');
 
 /** Nome utente del database MySQL */
 define('DB_USER', 'root');
-//define('DB_USER', 'Sql907166');
+//define('DB_USER', 'Sql932507');
 
 /** Password del database MySQL */
 define('DB_PASSWORD', '');
-//define('DB_PASSWORD', 'u8k8858262');
+//define('DB_PASSWORD', '96q726s878');
 
 /** Hostname MySQL  */
 define('DB_HOST', 'localhost');
-//define('DB_HOST', '62.149.150.246');
+//define('DB_HOST', '62.149.150.176');
 
 /** Charset del Database da utilizare nella creazione delle tabelle. */
 define('DB_CHARSET', 'utf8mb4');
