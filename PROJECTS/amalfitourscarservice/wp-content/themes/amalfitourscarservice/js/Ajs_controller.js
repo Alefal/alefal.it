@@ -34,6 +34,12 @@ angular.module('amalfitourscarservice')
   })
 
   .controller('ServicesCtrl', function($scope,$translate,$filter,ajaxCallServices,$window) {
+
+    $scope.replaceStr = function(str){
+      console.log(str);
+      return str;
+    };
+
     $scope.descriptionService = function(service){
       
       ajaxCallServices.getService(service)

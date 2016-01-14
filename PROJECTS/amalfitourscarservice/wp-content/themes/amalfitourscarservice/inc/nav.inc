@@ -26,6 +26,12 @@
                 <li>
                     <a class="page-scroll" href="#contact" ng-bind="'NavContact' | translate">&nbsp;</a>
                 </li>
+                <li style="padding:15px">
+                    <span class="flag-icon flag-icon-it" style="font-size: 20px;" ng-click="changeLanguage('it')"></span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="flag-icon flag-icon-gb" style="font-size: 20px;" ng-click="changeLanguage('en')"></span>
+                </li>
+                <!--
                 <li class="dropdown">
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ng-bind="'NavLanguage' | translate">&nbsp;<span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -34,6 +40,7 @@
                         <li><a href="javascript:void(0);" ng-click="changeLanguage('en')">English</a></li>
                     </ul>
                 </li>
+                -->
             </ul>
         </div>
         <!-- /.navbar-collapse -->

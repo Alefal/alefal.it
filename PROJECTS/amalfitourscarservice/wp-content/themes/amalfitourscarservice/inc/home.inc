@@ -59,7 +59,7 @@ $id = 15; $p = get_page($id); echo apply_filters('the_content', $p->post_content
         <div ng-repeat="element in detailsService.posts">
             <div class="row">   
                 <div class="col-md-6">
-                    <img src="http://www.amalfitourscarservice.it/wp-content/uploads/2015/10/cropped-DSCF1524-400x270.jpg">
+                    <img ng-src="{{element.custom_fields.imgurl[0]}}" style="width:100%" />
                 </div> 
                 <div class="col-md-6">
                     <p ng-if="currentLanguage == 'it'" ng-bind-html="element.custom_fields.descrizione"></p>
