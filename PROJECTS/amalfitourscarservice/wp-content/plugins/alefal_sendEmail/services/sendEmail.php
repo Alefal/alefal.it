@@ -40,7 +40,7 @@ $resultArray = array();
 if($contactName != '') {
     
     $message = $contactEmail.' - '.$contactName.' - '.$contactInfo;
-    $sent_message = wp_mail( 'lechicchedielenaravello@gmail.com', $detailTitle, $message );
+    $sent_message = wp_mail( 'alefalwebmaster@gmail.com', $detailTitle, $message );
 
     if ( $sent_message ) {
 	    // The message was sent.

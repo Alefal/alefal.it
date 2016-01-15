@@ -94,7 +94,7 @@ $id = 15; $p = get_page($id); echo apply_filters('the_content', $p->post_content
                     <h3 ng-bind="'ServiceTitleExcursions' | translate">&nbsp;</h3>
                     <p class="text-muted" style="min-height: 50px;" ng-bind="'ServiceContentExcursions' | translate">&nbsp;</p>
                     <br />
-                    <a href="javascript:void(0);" ng-click="descriptionService('excursions')" class="btn btn-primary btn-xl wow tada" ng-bind-html="'ButtonReadMore' | translate">&nbsp;</a>
+                    <a href="javascript:void(0);" ng-click="descriptionService('excursion')" class="btn btn-primary btn-xl wow tada" ng-bind-html="'ButtonReadMore' | translate">&nbsp;</a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 text-center">
@@ -112,7 +112,7 @@ $id = 15; $p = get_page($id); echo apply_filters('the_content', $p->post_content
                     <h3 ng-bind="'ServiceTitleOther' | translate">&nbsp;</h3>
                     <p class="text-muted" style="min-height: 50px;" ng-bind="'ServiceContentOther' | translate">&nbsp;</p>
                     <br />
-                    <a href="javascript:void(0);" ng-click="descriptionService('service')" class="btn btn-primary btn-xl wow tada" ng-bind-html="'ButtonReadMore' | translate">&nbsp;</a>
+                    <a href="javascript:void(0);" ng-click="descriptionService('other')" class="btn btn-primary btn-xl wow tada" ng-bind-html="'ButtonReadMore' | translate">&nbsp;</a>
                 </div>
             </div>
         </div>
@@ -131,7 +131,7 @@ $id = 15; $p = get_page($id); echo apply_filters('the_content', $p->post_content
     <div class="container-fluid">
         <div class="row no-gutter">
             <div class="col-lg-4 col-sm-6">
-                <a <a href="javascript:void(0);" ng-click="descriptionExcursions('Amalfi')" class="portfolio-box">
+                <a <a href="javascript:void(0);" ng-click="descriptionExcursions('amalfi')" class="portfolio-box">
                     <img src="<?php echo get_template_directory_uri(); ?>/img/portfolio/1.jpg" class="img-responsive" alt="">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
@@ -161,7 +161,7 @@ $id = 15; $p = get_page($id); echo apply_filters('the_content', $p->post_content
                 </a>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <a href="#" class="portfolio-box">
+                <a href="javascript:void(0);" ng-click="descriptionExcursions('positano')" class="portfolio-box">
                     <img src="<?php echo get_template_directory_uri(); ?>/img/portfolio/3.jpg" class="img-responsive" alt="">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
@@ -176,7 +176,7 @@ $id = 15; $p = get_page($id); echo apply_filters('the_content', $p->post_content
                 </a>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <a href="#" class="portfolio-box">
+                <a href="javascript:void(0);" ng-click="descriptionExcursions('sorrento')" class="portfolio-box">
                     <img src="<?php echo get_template_directory_uri(); ?>/img/portfolio/4.jpg" class="img-responsive" alt="">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
@@ -191,7 +191,7 @@ $id = 15; $p = get_page($id); echo apply_filters('the_content', $p->post_content
                 </a>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <a href="#" class="portfolio-box">
+                <a href="javascript:void(0);" ng-click="descriptionExcursions('napoli')" class="portfolio-box">
                     <img src="<?php echo get_template_directory_uri(); ?>/img/portfolio/5.jpg" class="img-responsive" alt="">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
@@ -206,7 +206,7 @@ $id = 15; $p = get_page($id); echo apply_filters('the_content', $p->post_content
                 </a>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <a href="#" class="portfolio-box">
+                <a href="javascript:void(0);" ng-click="descriptionExcursions('paestum')" class="portfolio-box">
                     <img src="<?php echo get_template_directory_uri(); ?>/img/portfolio/6.jpg" class="img-responsive" alt="">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
