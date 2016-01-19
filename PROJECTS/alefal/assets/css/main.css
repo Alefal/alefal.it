@@ -271,24 +271,54 @@ a:after {
    ========================================================================== */
 
 #headerwrap {
-	background: url(../img/header_bg.jpg) no-repeat center top;
-	margin-top: -50px;
-	padding-top:120px;
+	background: url(../img/web_design.png) no-repeat center top;
+
+	margin-top: 30px;
+    margin-bottom: -50px;
+
 	text-align:center;
 	background-attachment: relative;
 	background-position: center center;
-	min-height: 650px;
+	
 	width: 100%;
+    height: 650px;
 	
     -webkit-background-size: 100%;
     -moz-background-size: 100%;
     -o-background-size: 100%;
     background-size: 100%;
 
+    /*
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    */
+}
+@media only screen and (max-width: 600px) {
+    #headerwrap {
+        height: 480px;
+    }
+}
+@media only screen and (max-width: 350px) {
+    #headerwrap {
+        height: 320px;
+    }
+}
+@media only screen and (min-width: 1200px) {
+    #headerwrap {
+        height: 750px;
+    }
+}
+@media only screen and (min-width: 1400px) {
+    #headerwrap {
+        height: 850px;
+    }
+}
+@media only screen and (min-width: 1600px) {
+    #headerwrap {
+        height: 950px;
+    }
 }
 
 #headerwrap h1 {
@@ -421,7 +451,12 @@ a:after {
 
 .divider3 {
 	background-image: url('../img/bg/divider3.jpg');
-	margin-top: 0px;
+    background-image: url('../img/app_1.jpg');
+    /*background-image: url('../img/app_2.png');*/
+
+    height: 440px;
+    margin-top: 0px;
+	padding: 0px;
 }
 
 .divider4 {
