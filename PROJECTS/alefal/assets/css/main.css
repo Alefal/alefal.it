@@ -271,7 +271,8 @@ a:after {
    ========================================================================== */
 
 #headerwrap {
-	background: url(../img/web_design.png) no-repeat center top;
+	background: url(../img/creating-a-website.jpg) no-repeat center top;
+    background-color: #A5C6DA;
 
 	margin-top: 30px;
     margin-bottom: -50px;
