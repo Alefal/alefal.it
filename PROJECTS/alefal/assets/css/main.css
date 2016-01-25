@@ -237,6 +237,11 @@ blockquote cite:before {
 }
 
 /* Links */
+.btn a,
+.btn a:hover,
+.btn a:focus {
+    color: #fff;   
+}
 a {
     color: #3498db;
     word-wrap: break-word;
@@ -270,7 +275,7 @@ a:after {
    Wrap Sections
    ========================================================================== */
 
-#headerwrap {
+.headerwrap {
 	background: url(../img/creating-a-website.jpg) no-repeat center top;
     background-color: #A5C6DA;
 
@@ -297,32 +302,32 @@ a:after {
     */
 }
 @media only screen and (max-width: 600px) {
-    #headerwrap {
+    .headerwrap {
         height: 480px;
     }
 }
 @media only screen and (max-width: 350px) {
-    #headerwrap {
+    .headerwrap {
         height: 320px;
     }
 }
 @media only screen and (min-width: 1200px) {
-    #headerwrap {
+    .headerwrap {
         height: 750px;
     }
 }
 @media only screen and (min-width: 1400px) {
-    #headerwrap {
+    .headerwrap {
         height: 850px;
     }
 }
 @media only screen and (min-width: 1600px) {
-    #headerwrap {
+    .headerwrap {
         height: 950px;
     }
 }
 
-#headerwrap h1 {
+.headerwrap h1 {
 	color:#ffffff;
 	margin-top: 90px;
 	padding-bottom: 30px;
@@ -332,7 +337,7 @@ a:after {
 	text-shadow: 2px 2px 2px #000;
 }
 
-#headerwrap p {
+.headerwrap p {
 	color:#ffffff;
 	font-size: 40px;
 	font-weight: 400;
@@ -343,7 +348,7 @@ a:after {
 	text-shadow: 1px 1px 1px #000;
 }
 
-#greywrap {
+.greywrap {
 	background: #f5f5f5;
 	margin-top: 0px;
 	padding-top: 40px;
@@ -351,11 +356,11 @@ a:after {
 	text-align: center;
 }
 
-#greywrap .callout {
+.greywrap .callout {
 	margin-bottom: 20px;
 }
 
-#greywrap p {
+.greywrap p {
 	margin-left: 30px;
 	margin-right: 30px;
 	letter-spacing: 1px;
@@ -363,13 +368,13 @@ a:after {
 	padding-bottom: 15px;
 }
 
-#greywrap .icon {
+.greywrap .icon {
 	font-size: 60px;
 	line-height: 30px;
 	margin-bottom: 10px;
 }
 
-#footerwrap {
+.footerwrap {
 	background: #2b2b2b;
 	margin-top: 0px;
 	padding-top: 40px;
@@ -378,7 +383,7 @@ a:after {
 	text-align: center;
 }
 
-#footerwrap h4 {
+.footerwrap h4 {
 	color: white;
 }
 
@@ -662,10 +667,10 @@ a:after {
 }
 
 @media screen and (max-width:769px) {
-	#headerwrap h1 {
+	.headerwrap h1 {
 		font-size: 80px;
 	}
-	#headerwrap p {
+	.headerwrap p {
 		font-size: 30px;
 		line-height: 38px;
 	}

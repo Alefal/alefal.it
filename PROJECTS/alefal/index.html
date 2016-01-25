@@ -49,7 +49,10 @@
 			<li> <a href="#services" class="smoothScroll"> Services</a></li>
 			<li> <a href="#apps" class="smoothScroll"> Apps</a></li>
 			<li> <a href="#portfolio" class="smoothScroll"> Portfolio</a></li>
+			<!--
 			<li> <a href="#blog" class="smoothScroll"> Blog</a></li>
+			-->
+			<li> <a href="#contact" class="smoothScroll"> Contattaci</a></li>
         </div><!--/.nav-collapse -->
       </div>
     </div>
@@ -58,13 +61,13 @@
   
   
 		<!-- ==== HEADERWRAP ==== -->
-	    <div id="headerwrap" id="home" name="home">
+	    <div class="headerwrap" id="home" name="home">
 			<header class="clearfix">&nbsp;</header>	    
 	    </div><!-- /headerwrap -->
 
 		<!-- ==== GREYWRAP ==== -->
-		<div id="greywrap">
-			<div class="row" id="services" name="services">
+		<div id="services" name="services" class="greywrap">
+			<div class="row">
 				<div class="col-lg-4 callout">
 					<span class="icon icon-stack"></span>
 					<h2>WEB STATICO</h2>
@@ -86,15 +89,15 @@
 
 			<div class="row">
 				<div class="col-lg-4 callout">
-					<button class="btn btn-primary">Request</button>
+					<button class="btn btn-primary"><a href="mailto:alefalwebmaster@gmail.com">Contattaci</a></button>
 				</div><!-- col-lg-4 -->
 					
 				<div class="col-lg-4 callout">
-					<button class="btn btn-primary">Request</button>
+					<button class="btn btn-primary"><a href="mailto:alefalwebmaster@gmail.com">Contattaci</a></button>
 				</div><!-- col-lg-4 -->	
 				
 				<div class="col-lg-4 callout">
-					<button class="btn btn-primary">Request</button>
+					<button class="btn btn-primary"><a href="mailto:alefalwebmaster@gmail.com">Contattaci</a></button>
 				</div><!-- col-lg-4 -->	
 			</div><!-- row -->
 
@@ -112,13 +115,13 @@
 					<img class="img-responsive" src="assets/img/iphone.png" alt="">
 					<br>
 					<p>Richiedi la tua app sia per Android che iOS.</p>
-					<button class="btn btn-success">Request</button>
+					<button class="btn btn-success"><a href="mailto:alefalwebmaster@gmail.com">Contattaci</a></button>
 				</div><!-- col-lg -->
 			</div><!-- row -->
 			
 			
 		</div><!-- container -->
-  		
+		  		
 
 		<!-- ==== PORTFOLIO ==== -->
 		<div id="portfolio" name="portfolio">
@@ -139,23 +142,25 @@
 							<figure>
 								<img class="img-responsive" src="assets/img/portfolio/folio01.jpg" alt="">
 								<figcaption>
-									<h5>DASHBOARD</h5>
-									<a data-toggle="modal" href="#myModal" class="btn btn-primary btn-lg">Take a Look</a>
+									<h5>Le Chicche di Elena</h5>
+									<a href="http://www.lechicchedielena.it/" target="_blank" class="btn btn-primary btn-lg">Visita sito</a>
+									<!--
+									<a data-toggle="modal" href="#modalLeChiccheDiElena" class="btn btn-primary btn-lg">Dettagli</a>
+									-->
 								</figcaption><!-- /figcaption -->
 							</figure><!-- /figure -->
 				    	</div><!-- /grid-mask -->
 					</div><!-- /col -->
 					
 					
-							 <!-- MODAL SHOW THE PORTFOLIO IMAGE. In this demo, all links point to this modal. You should create
-							      a modal for each of your projects. -->
+							 	<!-- 
 							      
-							  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							  <div class="modal fade" id="modalLeChiccheDiElena" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 							    <div class="modal-dialog">
 							      <div class="modal-content">
 							        <div class="modal-header">
 							          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-							          <h4 class="modal-title">Project Title</h4>
+							          <h4 class="modal-title">Le Chicche di Elena</h4>
 							        </div>
 							        <div class="modal-body">
 							          <p><img class="img-responsive" src="assets/img/portfolio/folio01.jpg" alt=""></p>
@@ -165,9 +170,10 @@
 							        <div class="modal-footer">
 							          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 							        </div>
-							      </div><!-- /.modal-content -->
-							    </div><!-- /.modal-dialog -->
-							  </div><!-- /.modal -->
+							      </div>
+							    </div>
+							  </div>
+							  -->
 					
 					
 					<!-- PORTFOLIO IMAGE 2 -->
@@ -176,8 +182,8 @@
 							<figure>
 								<img class="img-responsive" src="assets/img/portfolio/folio02.jpg" alt="">
 								<figcaption>
-									<h5>UI DESIGN</h5>
-									<a data-toggle="modal" href="#myModal" class="btn btn-primary btn-lg">Take a Look</a>
+									<h5>Agriturismo Acquabona</h5>
+									<a href="http://www.agriturismoacquabona.it/" target="_blank" class="btn btn-primary btn-lg">Visita sito</a>
 								</figcaption><!-- /figcaption -->
 							</figure><!-- /figure -->
 				    	</div><!-- /grid-mask -->
@@ -189,8 +195,8 @@
 							<figure>
 								<img class="img-responsive" src="assets/img/portfolio/folio03.jpg" alt="">
 								<figcaption>
-									<h5>ANDROID PAGE</h5>
-									<a data-toggle="modal" href="#myModal" class="btn btn-primary btn-lg">Take a Look</a>
+									<h5>Amalfi Tours Car Service</h5>
+									<a href="http://www.amalfitourscarservice.it" target="_blank" class="btn btn-primary btn-lg">Visita sito</a>
 								</figcaption><!-- /figcaption -->
 							</figure><!-- /figure -->
 				    	</div><!-- /grid-mask -->
@@ -204,6 +210,7 @@
 		</div><!-- /container -->
 		
 		<!-- ==== CONTACT ==== -->
+		<!--
 		<div class="container" id="blog" name="blog">
 			<div class="row">
 				<br>
@@ -214,27 +221,28 @@
 				<div class="col-lg-4">
 					<h3>Title</h3>
 					<p>Lorem ipsum...</p>
-				</div><!-- col -->
+				</div>
 				
 				<div class="col-lg-4">
 					<h3>Title</h3>
 					<p>Lorem ipsum...</p>
-				</div><!-- col -->
+				</div>
 
 				<div class="col-lg-4">
 					<h3>Title</h3>
 					<p>Lorem ipsum...</p>
-				</div><!-- col -->
+				</div>
 
-			</div><!-- row -->
+			</div>
+			-->
 			<br>
 			<br>
 
 		</div><!-- container -->
 
-		<div id="footerwrap">
+		<div class="footerwrap" id="contact">
 			<div class="container">
-				<h4>Created by <a href="http://blacktie.co">BlackTie.co</a> - Copyright 2014</h4>
+				<h4>Alefal.it - Copyright 2016 - <a href="mailto:alefalwebmaster@gmail.com">Contattaci</a></h4>
 			</div>
 		</div>
 
