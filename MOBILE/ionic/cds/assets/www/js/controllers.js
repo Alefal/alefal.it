@@ -138,6 +138,57 @@ angular.module('starter.controllers', [])
 })
 .controller('HostessCtrl', function($scope,$rootScope,$ionicLoading,ajaxCallServices,$state,$ionicModal/*,$cordovaNetwork*/) {
   //HOSTESS page
+  //InsertReservation
+  $ionicModal.fromTemplateUrl('templates/pages/commons/reservationInsert.html', {
+    scope: $scope //recupera lo scope del padre
+  }).then(function(InsertReservation) {
+    $scope.InsertReservation = InsertReservation;
+  });
+
+  $scope.openInsertReservation = function(item) {
+    console.log('InsertReservation --->'+JSON.stringify(item));
+    console.log('TODO ---> tableList');
+    $scope.InsertReservation.show();
+  };
+
+  $scope.closeInsertReservation = function(operation) {
+    if(operation == 'insertReservation') {
+
+      /*
+      console.log(item.id_reservation);
+      console.log(angular.element(document.querySelector('#TRNumber')).val());
+      console.log(item.date_reservation);
+      console.log(item.code);
+      console.log(item.code_table.code);
+      console.log(item.user.id);
+      console.log(angular.element(document.querySelector('#TRName')).val());  //NON USATO
+      console.log(angular.element(document.querySelector('#TRTime')).val());  //NON USATO
+
+      var people_num        = angular.element(document.querySelector('#TRNumber')).val();
+      var date_reservation  = item.date_reservation;
+      var code              = item.code;
+      var code_table        = item.code_table.code;
+      var userId            = item.user.id;
+      */
+
+      var people_num        = '5';
+      var date_reservation  = '2016-01-26';
+      var code              = 'Ale';
+      var code_table        = 'A02';
+      var userId            = '5';
+
+      //updateReservation(id_reservation,people_num,date_reservation,code,code_table,userId)
+      ajaxCallServices.insertReservation(people_num,date_reservation,code,code_table,userId)
+        .success(function (data) {
+          console.log('insertReservation --->'+JSON.stringify(data));
+        }).error(function (error) {
+          $ionicLoading.hide();
+          alert('insertReservation: '+error);
+        });
+    }
+    $scope.InsertReservation.hide();
+  };
+
 })
 .controller('ManagersCtrl', function($scope,$rootScope,$ionicLoading,ajaxCallServices,$state/*,$cordovaNetwork*/) {
   //MANAGER page
@@ -197,6 +248,13 @@ angular.module('starter.controllers', [])
 })
 //RESERVATIONS page
 .controller('ReservationsCtrl', function($scope,$rootScope,$ionicLoading,ajaxCallServices,$state,$ionicModal,$ionicPopup,$ionicActionSheet/*,$cordovaNetwork*/) {
+
+  var today = new Date();
+  var dd    = today.getDate(); 
+  var mm    = today.getMonth()+1; 
+  var yyyy  = today.getFullYear(); 
+  
+  var dataRicercaPrenotazione = yyyy+'-'+mm+'-'+dd; //TODO: cambiare la data di ricerca; dovrebbe essere TODAY
 
   // An alert dialog
   $scope.showAlertMessage = function(title,message) {
@@ -260,8 +318,8 @@ angular.module('starter.controllers', [])
       template: 'Loading...'
     });
 
-    //TODO: cambiare la data di ricerca; dovrebbe essere TODAY
-    ajaxCallServices.getAllReservation('2015-11-11')
+    
+    ajaxCallServices.getAllReservation(dataRicercaPrenotazione)
       .success(function (data) {
         console.log('getAllReservation --->'+JSON.stringify(data));
         $scope.items = data.reservationList;
@@ -284,18 +342,36 @@ angular.module('starter.controllers', [])
   }).then(function(UpdateReservation) {
     $scope.UpdateReservation = UpdateReservation;
   });
-  $scope.closeUpdateReservation = function(operation) {
+  $scope.closeUpdateReservation = function(item,operation) {
     if(operation == 'updateReservation') {
 
-      /*
-      item.id_reservation;
+      console.log(item.id_reservation);
       console.log(angular.element(document.querySelector('#TRNumber')).val());
-      item.date_reservation
-      item.code
-      item.code_table.code
-      console.log(angular.element(document.querySelector('#TRName')).val());
-      console.log(angular.element(document.querySelector('#TRTime')).val());
-      */
+      console.log(item.date_reservation);
+      console.log(item.code);
+      console.log(item.code_table.code);
+      console.log(item.user.id);
+      console.log(angular.element(document.querySelector('#TRName')).val());  //NON USATO
+      console.log(angular.element(document.querySelector('#TRTime')).val());  //NON USATO
+
+      var id_reservation    = item.id_reservation;
+      var people_num        = angular.element(document.querySelector('#TRNumber')).val();
+      var date_reservation  = item.date_reservation;
+      var code              = item.code;
+      var code_table        = item.code_table.code;
+      var userId            = item.user.id;
+
+      //updateReservation(id_reservation,people_num,date_reservation,code,code_table,userId)
+      ajaxCallServices.updateReservation(id_reservation,people_num,date_reservation,code,code_table,userId)
+        .success(function (data) {
+          console.log('updateReservation --->'+JSON.stringify(data));
+
+          $scope.getAllReservation();
+
+        }).error(function (error) {
+          $ionicLoading.hide();
+          alert('updateReservation: '+error);
+        });
     }
     $scope.UpdateReservation.hide();
   };
@@ -321,13 +397,7 @@ angular.module('starter.controllers', [])
       template: 'Loading...'
     });
 
-    //TODO: problema data + 1
-    var ar = [];
-    ar = $scope.item.date_reservation.split('-');
-    var dataPiuUno = ar[0]+'-'+ar[1]+'-'+(parseInt(ar[2])+1);
-    console.log('getAllGift -> '+$scope.item.date_reservation+' - '+$scope.item.code+'! PROBLEMA: data + 1: '+dataPiuUno);
-
-    ajaxCallServices.getAllGift(dataPiuUno,$scope.item.code)
+    ajaxCallServices.getAllGift(dataRicercaPrenotazione,$scope.item.code)
       .success(function (data) {
         console.log('getAllGift --->'+JSON.stringify(data));
 
@@ -360,18 +430,12 @@ angular.module('starter.controllers', [])
           template: 'Loading...'
         });
 
-        //TODO: problema data + 1
-        var ar = [];
-        ar = $scope.item.date_reservation.split('-');
-        var dataPiuUno = ar[0]+'-'+ar[1]+'-'+(parseInt(ar[2])+1);
-        console.log('addGift -> '+$scope.item.date_reservation+' - '+$scope.item.code+'! PROBLEMA: data + 1: '+dataPiuUno);
-
         //date_reservation,code,qty,name,login
-        ajaxCallServices.addGift(dataPiuUno,$scope.item.code,$scope.gift.qty,$scope.gift.nome,$scope.item.user.login)
+        ajaxCallServices.addGift(dataRicercaPrenotazione,$scope.item.code,$scope.gift.qty,$scope.gift.nome,$scope.item.user.login)
           .success(function (data) {
             console.log('addGift --->'+JSON.stringify(data));
 
-            ajaxCallServices.getAllGift(dataPiuUno,$scope.item.code)
+            ajaxCallServices.getAllGift(dataRicercaPrenotazione,$scope.item.code)
               .success(function (data) {
                 console.log('getAllGift --->'+JSON.stringify(data));
 
@@ -411,13 +475,7 @@ angular.module('starter.controllers', [])
           .success(function (data) {
             console.log('deleteGift --->'+JSON.stringify(data));
 
-            //TODO: problema data + 1
-            var ar = [];
-            ar = $scope.item.date_reservation.split('-');
-            var dataPiuUno = ar[0]+'-'+ar[1]+'-'+(parseInt(ar[2])+1);
-            console.log('getAllGift -> '+$scope.item.date_reservation+' - '+$scope.item.code+'! PROBLEMA: data + 1: '+dataPiuUno);
-            
-            ajaxCallServices.getAllGift(dataPiuUno,$scope.item.code)
+            ajaxCallServices.getAllGift(dataRicercaPrenotazione,$scope.item.code)
               .success(function (data) {
                 console.log('getAllGift --->'+JSON.stringify(data));
                 
@@ -457,13 +515,7 @@ angular.module('starter.controllers', [])
           .success(function (data) {
             console.log('deleteGift --->'+JSON.stringify(data));
 
-            //TODO: problema data + 1
-            var ar = [];
-            ar = $scope.item.date_reservation.split('-');
-            var dataPiuUno = ar[0]+'-'+ar[1]+'-'+(parseInt(ar[2])+1);
-            console.log('getAllGift -> '+$scope.item.date_reservation+' - '+$scope.item.code+'! PROBLEMA: data + 1: '+dataPiuUno);
-            
-            ajaxCallServices.getAllGift(dataPiuUno,$scope.item.code)
+            ajaxCallServices.getAllGift(dataRicercaPrenotazione,$scope.item.code)
               .success(function (data) {
                 console.log('getAllGift --->'+JSON.stringify(data));
                 

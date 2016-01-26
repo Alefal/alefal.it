@@ -16,6 +16,12 @@
 
                 <i class="icon ion-ios-arrow-right"></i>
             </ion-item>
+
+            <div class="message-info message-info-striped" ng-show="!items.length">
+                <i class="icon ion-information-circled" style="font-size: 25px;"></i>
+                <span ng-bind-html="'ListEmpty' | translate">&nbsp;</span>
+            </div>
+
         </ion-list>
     	
   	</ion-content>

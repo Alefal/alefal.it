@@ -76,12 +76,14 @@ angular.module('starter', ['ionic','starter.controllers','starter.state','starte
 .config(function($translateProvider) {
   $translateProvider.translations('en', {
     AuthenticationFailed: 'Authentication failed!',
+    ListEmpty: 'No result found',
     Role: 'Role',
     SignIn: 'Sign In',
     Registration: 'Registration'
   });
   $translateProvider.translations('it', {
     AuthenticationFailed: 'Autenticazione fallita!',
+    ListEmpty: 'Nessun risultato trovato',
     Role: 'Ruolo',
     SignIn: 'Accedi',
     Registration: 'Registrazione'

@@ -1,0 +1,56 @@
+<ion-modal-view class="eventForm">
+
+    <ion-header-bar class="bar-positive">
+        <h1 class="title">Inserisci prenotazione</h1>
+        <a ng-click="closeInsertReservation('')" class="power button"><i class="ion-close"></i></a> 
+    </ion-header-bar>
+
+    <ion-content class="padding scrollModal">
+
+        <div ng-if="role == 'hostess'">
+            <h4>Tavolo:</h4>
+            <div class="list list-inset">
+                <label class="item item-input">
+                    <i class="icon ion-android-contact placeholder-icon"></i>
+                    <input type="text" id="" />
+                </label>
+            </div>
+            <div class="spacerVertical"></div>
+
+            <h4>Riservato:</h4>
+            <div class="list list-inset">
+                <label class="item item-input">
+                    <i class="icon ion-android-contact placeholder-icon"></i>
+                    <input type="text" id="" />
+                </label>
+            </div>
+            <div class="spacerVertical"></div>
+
+            <h4>Arrivo:</h4>
+            <div class="list list-inset">
+                <label class="item item-input">
+                    <i class="icon ion-ios-clock-outline placeholder-icon"></i>
+                    <!-- TODO: nel json manca l'orario di arrivo -->
+                    <input type="time" id="" />
+                </label>
+            </div>
+            <div class="spacerVertical"></div>
+
+            <h4>Persone:</h4>
+            <div class="list list-inset">
+                <label class="item item-input">
+                    <i class="icon ion-android-contacts placeholder-icon"></i>
+                    <input type="number" id="" />
+                </label>
+            </div>
+            <div class="spacerVertical"></div>
+
+            <div class="row eventTab">
+                <div class="col">
+                    <button class="button button-block button-balanced icon-left ion-android-done" ng-click="closeInsertReservation('insertReservation')"> Inserisci</button>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+
+</ion-modal-view>

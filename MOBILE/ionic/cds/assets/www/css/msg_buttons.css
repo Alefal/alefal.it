@@ -30,6 +30,12 @@
     background-size: 40px 40px;
 }
 
+.message-info span,
+.message-danger span {
+    padding-left: 10px;
+    font-size: 15px;
+}
+
 /* assertive -> RIGHT - TOP */
 .button-float-assertive-top {
     background: #ef473a !important;

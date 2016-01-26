@@ -60,7 +60,6 @@ OTHER
 OK -> getMenu()                         get the menu of the club
 OK -> login()                           login service
 OK -> getRoles()                        ruoli disponibili: NON ESISTE PIU' ???
-- getAvailableTable (Date)
 - getAvailableTable()               		restituisce la lista di tavoli liberi per una data
 - getMap()                              restituisce il percorso dell imagine della mappa
 - getBillPDF()             		          genera un pdf contenente il totale del conto ed il  

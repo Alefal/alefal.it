@@ -23,6 +23,11 @@
         </ion-item>
     </ion-list>
 
+    <div class="message-info message-info-striped" ng-show="!itemsGift.length">
+        <i class="icon ion-information-circled" style="font-size: 25px;"></i>
+        <span ng-bind-html="'ListEmpty' | translate">&nbsp;</span>
+    </div>
+
     <div align="center">
       <button class="button btnSubmit button-assertive icon-left ion-checkmark-circled" ng-click="openPopupAddGift()" ng-if="role == 'managers'"> Add</button>
     </div>
