@@ -2,11 +2,11 @@
 # BEGIN WordPress
 <IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteBase /alefal.it/PROJECTS/lechicchedielena/
+RewriteBase /alefal.it/PROJECTS/amalfitourscarservice/
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /alefal.it/PROJECTS/lechicchedielena/index.php [L]
+RewriteRule . /alefal.it/PROJECTS/amalfitourscarservice/index.php [L]
 </IfModule>
 
 # END WordPress

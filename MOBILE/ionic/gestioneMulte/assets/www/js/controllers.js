@@ -837,6 +837,8 @@ angular.module('starter.controllers', [])
       template: 'Attendere...'
     });
 
+    $scope.items = new Array();
+    
     ModalService
       .init(item, $scope)
       .then(function(modal) {
@@ -860,11 +862,13 @@ angular.module('starter.controllers', [])
 
                 $ionicLoading.hide();
               } else {
-                $scope.items = 'ERROR';
+                $scope.loading = false;
+                $ionicLoading.hide();
               }
 
             }).error(function (error) {
-              $scope.status = 'Unable to load customer data' + error;
+              $scope.loading = false;
+              $ionicLoading.hide();
             });
 
             modal.show();
@@ -975,6 +979,7 @@ angular.module('starter.controllers', [])
   $scope.openModalItem = function(item) {
 
     $scope.loading = true;
+    $scope.items = new Array();
 
     $ionicLoading.show({
       template: 'Attendere...'
@@ -995,10 +1000,14 @@ angular.module('starter.controllers', [])
 
                 $ionicLoading.hide();
               } else {
-                $scope.items = 'ERROR';
+                $scope.loading = false;
+                $ionicLoading.hide();
               }
 
             }).error(function (error) {
+              $scope.loading = false;
+              $ionicLoading.hide();
+
               $scope.status = 'Unable to load customer data' + error;
             });
 

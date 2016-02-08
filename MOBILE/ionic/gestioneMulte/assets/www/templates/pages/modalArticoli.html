@@ -7,7 +7,7 @@
 
   	<ion-content class="padding" ng-show="!loading">
     
-    	<div class="list list-inset" style="border:none;">
+    	<div class="list list-inset" style="border:none;" ng-show="items.length">
 			<label class="item item-input">
 				<i class="icon ion-funnel placeholder-icon"></i>
 				<input type="search" ng-model="q" placeholder="Filtra i risultati...">
@@ -15,6 +15,8 @@
 		</div>
 		
     	<ion-list class="card">
+
+    		<div ng-show="!items.length">No Items</div>
 
     		<ion-item ng-repeat="item in items | filter:q as results" class="itemModal item-icon-right">
 
