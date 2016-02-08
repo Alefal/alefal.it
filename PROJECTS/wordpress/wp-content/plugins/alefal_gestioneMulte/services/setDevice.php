@@ -29,7 +29,7 @@ $resultArray = array();
 if($COD_UID_DEVICE != '') {
     
     $sql = $wpdb->prepare(
-        "INSERT INTO $table_name (
+        "REPLACE INTO $table_name (
             `COD_UID_DEVICE`,
             `DESC_DEVICE`,
             `COD_ENTE`,
