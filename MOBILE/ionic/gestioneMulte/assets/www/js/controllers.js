@@ -157,7 +157,8 @@ angular.module('starter.controllers', [])
 
             //MEMORIZZO I DATI NEL LOCAL STORAGE PER NAVIGAZIONE OFFLINE
             $scope.openModalItem = function(item) {
-              localStorage.removeItem(item);
+              //SE RIMUOVO NON FUNZIONA LA MODALITA' OFFLINE
+              //localStorage.removeItem(item);
 
               ModalService
                 .init(item, $scope)

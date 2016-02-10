@@ -279,11 +279,11 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
     },
     bluetoothPrinter: function(section,verbaleCompleto) {
       //TEST WITH BROWSER
-      
+      /*****
       console.log(verbaleCompleto);
       $rootScope.globFunc.templateStampa(verbaleCompleto);
       return false;
-      /**********/
+      *****/
 
       $ionicLoading.show({
         template: 'Attendere...'
@@ -398,17 +398,18 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
                 resultTest += 'listFailure <br/>';
             });
 
-
+            $rootScope.checkPrintTestResult = resultTest;
         },
         function() {
           $rootScope.globFunc.showInformationMessage('Errore','Attivare bluetooth e riprovare!','blthDisable');
           $ionicLoading.hide();
           resultTest += 'Bluetooth is *not* enabled';
+
+          $rootScope.checkPrintTestResult = resultTest;
         }
       );
 
       $rootScope.resultPrintTestShow = true;
-      $rootScope.checkPrintTestResult = resultTest;
 
     },
     templateStampa: function(verbaleCompleto) {
