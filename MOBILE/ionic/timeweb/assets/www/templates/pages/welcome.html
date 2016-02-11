@@ -1,62 +1,21 @@
 <ion-view view-title="Welcome" hide-nav-bar="true" class="eventForm">
 
 	<ion-header-bar class="bar-positive">
-    	<h1 class="title">Gestione multe</h1>
+    	<h1 class="title">Time Web</h1>
     	<a ng-click="globFunc.exitApp()" class="power button"><i class="ion-power"></i></a>
     </ion-header-bar>
 
     <ion-content style="{{marginMessageNoConnection}}">
 
       <div class="row eventTab">
-        <div class="col col-50">
-          <div class="tabtext" ng-click="globFunc.goto('app.insert')">
-            <div class="icon"><i class="ion-android-create"></i></div>
-            <h3>Nuovo</h3>
-          </div>
-        </div>
-        <div class="col col-50">
-          <div class="tabtext" ng-click="globFunc.goto('app.search')">
-            <div class="icon"><i class="ion-search"></i></div>
-            <h3>Ricerca</h3>
-          </div>
-        </div>
-      </div>
-
-      <div class="row eventTab">
-        <div class="col col-50">
-          <div class="tabtext" ng-click="globFunc.goto('app.verbali')">
-            <div class="icon"><i class="ion-clipboard"></i></div>
-            <h3>Verbali</h3>
-          </div>
-        </div>
-        <div class="col col-50">
-          <div class="tabtext" ng-click="globFunc.goto('app.stampante')">
-            <div class="icon"><i class="ion-android-print"></i></div>
-            <h3>Stampante</h3>
-          </div>
-        </div>
-      </div>
-
-      <div class="row eventTab">
         <div class="col">
-          <div class="tabtext" ng-click="sincronizzaDati()" ng-show="datiVerbaleOffline">
-            <div class="icon"><i class="ion-arrow-swap"></i></div>
-            <h3>Sincronizza dati</h3>
+          <div class="tabtext" ng-click="getBadge()">
+            <div class="icon"><i class="ion-search"></i></div>
+            <h3>INFORMAZIONI</h3>
           </div>
         </div>
-      </div>
-
-      <div class="message-info message-info-striped padding" ng-show="viewMessageSincronizzazione" ng-bind-html="messageSincronizzazione" style="margin:10px">
       </div>
 
     </ion-content>
-
-    <ion-footer-bar class="bar-balanced">
-      <div class="title agentLogged">
-        Agente: <strong>{{agent_nome}}</strong>
-        <br />
-        Matricola: <strong>{{agent_matr}}</strong>
-      </div>
-    </ion-footer-bar>
 
 </ion-view>

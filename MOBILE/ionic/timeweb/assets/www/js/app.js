@@ -89,38 +89,67 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 
     var url = 'http://presenze.its.na.it/twits/TwNet.dll';
     var xsrf = {
-      TIPOAUT: 0,
-      AZIONE: 'RICHIESTAAUTENTIFICAZIONE',
-      NOMEPAGATTUALE: 'MOSTRALOGIN',
-      USERNAME: username,
-      PASSWORD: password,
-      btnConf: 'Conferma',
+      TIPOAUT:0,
+      AZIONE:'RICHIESTAAUTENTIFICAZIONE',
+      NOMEPAGATTUALE:'MOSTRALOGIN',
+      USERNAME:username,
+      PASSWORD:password,
+      btnConf:'Login',
       JSESSIONID: 'ciaoBelli'
     };
 
     return $http({
       method: 'POST',
       url: url,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      transformRequest: function(obj) {
+          var str = [];
+          for(var p in obj)
+          str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+          return str.join("&");
+      },
       data: xsrf
     });
 
   }; 
 
+  /***** getUserId ****/
+  ajaxCallServices.getUserId = function () {
+    return $http.get('http://presenze.its.na.it/twits/TWNET.DLL?AZIONE=GESTIONETIMBRATURE');
+  };
+
   /***** getBadge ****/
   ajaxCallServices.getBadge = function() {
-    var data = $.param({
-        DATAINIZIO: '01/09/2015',
-        DATAFINE: '01/10/2015',
-        IDDIPSELECTED: 15004,
-        GRIDTIMBRELAB: 'DATA',
-        AZIONE: 'CARTELLINO',
-        NOMEPAGATTUALE: 'VISUALIZZA TPAGINACARTELLINO',
-        STAMPA: 'sconosciuta'
-      });
-    $http.post("http://presenze.its.na.it/twits/TwNet.dll", data).success(function(data, status) {
-      console.log(data);
-    })
-  };
+
+    var url = 'http://presenze.its.na.it/twits/TwNet.dll';
+    var xsrf = {
+      DATAINIZIO: '01/09/2015',
+      DATAFINE: '01/10/2015',
+      IDDIPSELECTED: 15004,
+      GRIDTIMBRELAB: 'DATA',
+      AZIONE: 'CARTELLINO',
+      NOMEPAGATTUALE: 'VISUALIZZA TPAGINACARTELLINO',
+      STAMPA: 'sconosciuta'
+    };
+
+    return $http({
+      method: 'POST',
+      url: url,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      transformRequest: function(obj) {
+          var str = [];
+          for(var p in obj)
+          str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+          return str.join("&");
+      },
+      data: xsrf
+    });
+
+  }; 
 
   return ajaxCallServices;
 })
