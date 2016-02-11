@@ -1,5 +1,9 @@
 angular.module('starter.controllers', [])
 
+.controller('StartCtrl', function() {
+  console.log('StartCtrl');
+})
+
 .controller('LoginCtrl', function($scope,$rootScope,$ionicLoading,$ionicPopup,ajaxCallServices,$state,$timeout) {
 
   $scope.authorization = {
@@ -26,16 +30,50 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('WelcomeCtrl', function($scope,$rootScope,$ionicLoading,$ionicModal,$ionicPopup,ajaxCallServices,$state) {
+.controller('WelcomeCtrl', function($scope,$rootScope,$ionicLoading,$ionicModal,$ionicPopup,ajaxCallServices,$timeout,$sce) {
 
-  console.log('welcome');
+  console.log('WelcomeCtrl');
+
+  $ionicLoading.show({
+    template: 'Attendere...'
+  });
 
   ajaxCallServices.getUserId()
-    .success(function (HTML_userId) {
-      console.log('userId -> '+HTML_userId);
+    .success(function (timeWebHtmlResponse) {
+      $scope.timeWebHtmlResponse = $sce.trustAsHtml(timeWebHtmlResponse);
+
+      $timeout(function() {
+        var timeWebUserId = $('#timeWebHtmlResponse').find('#99999').children().val();
+        console.log('timeWebUserId -> '+timeWebUserId);
+        localStorage.setItem('timeWebUserId', timeWebUserId);
+        $('#timeWebHtmlResponse').html('');
+
+        ajaxCallServices.getBadge()
+          .success(function (timeWebHtmlResponse) {
+            $scope.timeWebHtmlResponse = $sce.trustAsHtml(timeWebHtmlResponse);
+
+            $timeout(function() {
+              var timeWebToday = $('#timeWebHtmlResponse').find('#divDatiTB').find('tbody').find('tr:first td:nth-child(3)').html();
+              $scope.timeWebToday = timeWebToday;
+
+              $ionicLoading.hide();
+              $('#timeWebHtmlResponse').html('');
+            }, 0);
+
+          }).error(function (error) {
+            $ionicLoading.hide();
+            console.log('error -> '+error);
+          });
+
+      }, 0);
+
+      $('#divDatiTB').find('tbody').find('tr:first td:nth-child(3)')
+
     }).error(function (error) {
+      $ionicLoading.hide();
       console.log('error -> '+error);
     });
+
 
   $scope.getBadge = function() {
     $ionicLoading.show({

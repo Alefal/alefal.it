@@ -278,13 +278,14 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
       $state.go('app.welcome');
     },
     bluetoothPrinter: function(section,verbaleCompleto) {
-      //TEST WITH BROWSER
-      /*****
+      //START: TEST WITH BROWSER
+      /*****/ 
       console.log(verbaleCompleto);
       $rootScope.globFunc.templateStampa(verbaleCompleto);
       return false;
-      *****/
-
+      /*****/
+      //END: TEST WITH BROWSER
+      
       $ionicLoading.show({
         template: 'Attendere...'
       });

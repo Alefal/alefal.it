@@ -7,6 +7,10 @@
 
     <ion-content style="{{marginMessageNoConnection}}">
 
+      <div align="center">
+        <h3 ng-bind-html="timeWebToday"></h3>
+      </div>
+
       <div class="row eventTab">
         <div class="col">
           <div class="tabtext" ng-click="getBadge()">
@@ -15,6 +19,8 @@
           </div>
         </div>
       </div>
+
+      <div id="timeWebHtmlResponse" ng-bind-html="timeWebHtmlResponse" style="display:none"></div>
 
     </ion-content>
 

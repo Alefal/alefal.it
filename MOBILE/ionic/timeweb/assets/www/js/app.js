@@ -53,7 +53,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
       cache: false,
       url: '/app',
       templateUrl: 'templates/container.html',
-      controller: 'WelcomeCtrl'
+      controller: 'StartCtrl'
     })
     .state('app.login', {
       url: '/login',
@@ -125,9 +125,9 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 
     var url = 'http://presenze.its.na.it/twits/TwNet.dll';
     var xsrf = {
-      DATAINIZIO: '01/09/2015',
-      DATAFINE: '01/10/2015',
-      IDDIPSELECTED: 15004,
+      DATAINIZIO: '11/02/2016',
+      DATAFINE: '11/02/2016',
+      IDDIPSELECTED: localStorage.getItem('timeWebUserId'),
       GRIDTIMBRELAB: 'DATA',
       AZIONE: 'CARTELLINO',
       NOMEPAGATTUALE: 'VISUALIZZA TPAGINACARTELLINO',
