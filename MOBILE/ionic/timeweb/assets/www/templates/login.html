@@ -1,0 +1,39 @@
+<ion-view view-title="Login" class="eventForm">
+
+	<ion-content class="center" style="padding:5% 5% 0 5%;">
+
+    <div align="center" class="padding">
+      <img src="img/icon.png" />
+
+      <div class="spacerVertical"></div>
+
+      <div class="message-danger message-danger-striped" ng-show="userLoggedFailed">
+          <i class="icon ion-android-warning" style="font-size: 25px;"></i>
+          <span ng-bind-html="'AuthenticationFailed' | translate">&nbsp;</span>
+      </div>
+      
+      <label class="item item-input">
+        <i class="ion-android-contact placeholder-icon"></i>
+        <input type="text" name="username" id="username" placeholder="Username" ng-model="authorization.username">
+      </label>
+
+      <div class="spacerVertical"></div>
+      <label class="item item-input">
+        <i class="ion-android-lock placeholder-icon"></i>
+        <input type="password" name="password" id="password" placeholder="Password" ng-model="authorization.password">
+      </label>
+
+      <div class="spacerVertical"></div>
+      <button class="button button-block button-positive left-right ion-locked" ng-click="login()">
+        <span ng-bind-html="'SignIn' | translate">&nbsp;</span>
+      </button>
+
+      <br />
+      v.1.0
+
+    </div>
+
+
+  </ion-content>
+
+</ion-view>
