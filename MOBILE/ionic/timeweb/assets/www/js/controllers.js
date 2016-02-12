@@ -48,7 +48,7 @@ angular.module('starter.controllers', [])
         localStorage.setItem('timeWebUserId', timeWebUserId);
         $('#timeWebHtmlResponse').html('');
 
-        ajaxCallServices.getBadge()
+        ajaxCallServices.getTodayBadge()
           .success(function (timeWebHtmlResponse) {
             $scope.timeWebHtmlResponse = $sce.trustAsHtml(timeWebHtmlResponse);
 

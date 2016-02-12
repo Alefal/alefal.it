@@ -8,7 +8,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 
   $ionicPlatform.ready(function() {
 
-    $rootScope.server = 'http://localhost';
+    $rootScope.server = 'http://localhost/twits';
     //$rootScope.server = 'http://presenze.its.na.it/twits/TwNet.dll';
 
     console.info('ionicPlatform.ready');
@@ -87,7 +87,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
   /***** autenticationTimeWeb ****/
   ajaxCallServices.autenticationTimeWeb = function(username,password) {
 
-    var url = 'http://presenze.its.na.it/twits/TwNet.dll';
+    var url = $rootScope.server+'/TwNet.dll';
     var xsrf = {
       TIPOAUT:0,
       AZIONE:'RICHIESTAAUTENTIFICAZIONE',
@@ -117,16 +117,29 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 
   /***** getUserId ****/
   ajaxCallServices.getUserId = function () {
-    return $http.get('http://presenze.its.na.it/twits/TWNET.DLL?AZIONE=GESTIONETIMBRATURE');
+    return $http.get($rootScope.server+'/TWNET.DLL?AZIONE=GESTIONETIMBRATURE');
   };
 
   /***** getBadge ****/
-  ajaxCallServices.getBadge = function() {
+  ajaxCallServices.getTodayBadge = function() {
 
-    var url = 'http://presenze.its.na.it/twits/TwNet.dll';
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+
+    var yyyy = today.getFullYear();
+    if(dd<10){
+      dd='0'+dd
+    } 
+    if(mm<10){
+      mm='0'+mm
+    } 
+    var today = dd+'/'+mm+'/'+yyyy;
+
+    var url = $rootScope.server+'/TwNet.dll';
     var xsrf = {
-      DATAINIZIO: '11/02/2016',
-      DATAFINE: '11/02/2016',
+      DATAINIZIO: today,
+      DATAFINE: today,
       IDDIPSELECTED: localStorage.getItem('timeWebUserId'),
       GRIDTIMBRELAB: 'DATA',
       AZIONE: 'CARTELLINO',
@@ -151,12 +164,30 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 
   }; 
 
+  /***** getLogout ****/
+  ajaxCallServices.getLogout = function () {
+    return $http.get($rootScope.server+'/TWNET.DLL?AZIONE=LOGOUT');
+  };
+
   return ajaxCallServices;
 })
-.factory('globalFunction', function($state,$rootScope,$ionicPopup,$ionicLoading) {
+.factory('globalFunction', function($state,$rootScope,$ionicPopup,$ionicLoading,ajaxCallServices) {
   return {
     exitApp: function() {
-      $state.go('app.login');
+
+      $ionicLoading.show({
+        template: 'Attendere...'
+      });
+
+      ajaxCallServices.getLogout()
+        .success(function (success) {
+          $ionicLoading.hide();
+          $state.go('app.login');
+        }).error(function (error) {
+          $ionicLoading.hide();
+          $state.go('app.login');
+        });
+
     },
     goto: function(url) {
       $state.go(url);
