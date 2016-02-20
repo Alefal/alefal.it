@@ -30,14 +30,23 @@ var lechicchedielena = angular.module('amalfitourscarservice', ['ngSanitize', 'p
 		PlaceholderEmail: 'Email',
 		PlaceholderInfo: 'Information',
 
-		ServiceTitleNCC: 'NCC',
-		ServiceContentNCC: 'Service NCC...',
-		ServiceTitleExcursions: 'Excursions',
-		ServiceContentExcursions: 'Excursions content',
-		ServiceTitleHotels: 'Hotels',
-		ServiceContentHotels: 'Hotels content',
-		ServiceTitleOther: 'Service',
-		ServiceContentOther: 'Service content',
+		ServiceTitle_1: 		'Transfer',
+		ServiceContent_1: 		'Transfer content',
+
+		ServiceTitle_2: 		'Wine tour class',
+		ServiceContent_2: 		'Wine tour class content',
+
+		ServiceTitle_3: 		'Lemon tour',
+		ServiceContent_3: 		'Lemon tour content',
+
+		ServiceTitle_4: 		'Cooking class',
+		ServiceContent_4: 		'Cooking class content',
+
+		ServiceTitle_5: 		'Mozzarella class',
+		ServiceContent_5: 		'Mozzarella class content',
+
+		ServiceTitle_6: 		'Happy hour cheese tasting',
+		ServiceContent_6: 		'Happy hour cheese tasting content',
 
 		ButtonReadMore: 'Read more!'
 
@@ -65,14 +74,23 @@ var lechicchedielena = angular.module('amalfitourscarservice', ['ngSanitize', 'p
 		PlaceholderEmail: 'Email',
 		PlaceholderInfo: 'Informazioni',
 
-		ServiceTitleNCC: 'NCC',
-		ServiceContentNCC: 'Servizi di noleggio auto con conducente...',
-		ServiceTitleExcursions: 'Excursions',
-		ServiceContentExcursions: 'Excursions content',
-		ServiceTitleHotels: 'Hotels',
-		ServiceContentHotels: 'Hotels content',
-		ServiceTitleOther: 'Service',
-		ServiceContentOther: 'Service content',
+		ServiceTitle_1: 		'Transfer',
+		ServiceContent_1: 		'Transfer content',
+
+		ServiceTitle_2: 		'Wine tour class',
+		ServiceContent_2: 		'Wine tour class content',
+
+		ServiceTitle_3: 		'Lemon tour',
+		ServiceContent_3: 		'Lemon tour content',
+
+		ServiceTitle_4: 		'Cooking class',
+		ServiceContent_4: 		'Cooking class content',
+
+		ServiceTitle_5: 		'Mozzarella class',
+		ServiceContent_5: 		'Mozzarella class content',
+
+		ServiceTitle_6: 		'Happy hour cheese tasting',
+		ServiceContent_6: 		'Happy hour cheese tasting content',
 
 		ButtonReadMore: 'Scopri di più!'
     });

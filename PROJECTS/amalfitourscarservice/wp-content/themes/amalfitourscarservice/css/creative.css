@@ -296,12 +296,12 @@ header .header-content .header-content-inner p {
 
 .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-category {
     text-transform: uppercase;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 600;
 }
 
 .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name {
-    font-size: 18px;
+    font-size: 15px;
 }
 
 .portfolio-box:hover .portfolio-box-caption {
@@ -310,11 +310,11 @@ header .header-content .header-content-inner p {
 
 @media(min-width:768px) {
     .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-category {
-        font-size: 16px;
+        font-size: 18px;
     }
 
     .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name {
-        font-size: 22px;
+        font-size: 15px;
     }
 }
 
@@ -480,4 +480,20 @@ body {
     width: 1200px;
     margin: 30px auto;
   }
+}
+
+.header-content-inner iframe {
+    border: 1px solid white;
+}
+@media screen and (max-width: 768px){
+  .header-content-inner iframe {
+    width: 75%;
+  }
+}
+
+.titleOurServices {
+    cursor: pointer;
+}
+.titleOurServices:hover {
+    text-decoration: underline;
 }

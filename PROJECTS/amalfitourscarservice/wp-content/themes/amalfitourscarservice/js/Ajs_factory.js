@@ -22,7 +22,7 @@ angular.module('amalfitourscarservice')
         ajaxCallServices.getService = function(service) {
             /*****
             TAGS: 
-            OK -> servicesNCC
+            OK -> servicesTransfer
             servicesExcursion
             servicesHotels
             servicesOther

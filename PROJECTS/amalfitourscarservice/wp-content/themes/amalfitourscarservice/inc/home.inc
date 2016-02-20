@@ -1,21 +1,21 @@
 <?php 
-$id = 15; $p = get_page($id); echo apply_filters('the_content', $p->post_content); 
+//$id = 15; $p = get_page($id); echo apply_filters('the_content', $p->post_content); 
+//$id = 15; $p = get_page($id); echo apply_filters('the_content', $p->descrizione); 
+//$id = 15; $p = get_page($id); echo apply_filters('the_content', $p->descrhtmlit); 
 ?>
 
-<!--
 <section class="bg-primary" id="about">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 text-center">
-                <h2 class="section-heading">Tutto ciò di cui avete bisogno!</h2>
-                <hr class="light">
-                <p class="text-faded">Lascia a casa la tua auto al resto ci pensa Giosy! Professionalità e competenza... Per maggiori informazioni contattatemi al numero</p>
-                <a href="tel:+393391774387" class="btn btn-default btn-xl">339 177 43 87</a>
-            </div>
-        </div>
+    <div class="container" ng-if="currentLanguage == 'it'">
+        <?php 
+        $id = 15; $p = get_page($id); echo apply_filters('the_content', $p->descrhtmlit); 
+        ?>
+    </div>
+    <div class="container" ng-if="currentLanguage == 'en'">
+        <?php 
+        $id = 15; $p = get_page($id); echo apply_filters('the_content', $p->descrhtmlen); 
+        ?>
     </div>
 </section>
--->
 
 <section class="no-padding">
     <div class="container-fluid">
@@ -26,10 +26,10 @@ $id = 15; $p = get_page($id); echo apply_filters('the_content', $p->post_content
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">                               
-                                Servizi
+                                Transfer
                             </div>
                             <div class="project-name">
-                                Noleggio Con Conducente
+                                per raggiungere velocemente ed in assoluta comodità la vostra destinazione (aeroporto, stazione ferroviaria, porto, hotel o ristorante)
                             </div>
                         </div>
                     </div>
@@ -41,10 +41,10 @@ $id = 15; $p = get_page($id); echo apply_filters('the_content', $p->post_content
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
-                                Servizi
+                                Escursioni
                             </div>
                             <div class="project-name">
-                                Servizi per Hotels
+                                verso le località più conosciute della regione, per ammirarne il ricco patrimonio artistico, storico e naturalistico
                             </div>
                         </div>
                     </div>
@@ -79,40 +79,51 @@ $id = 15; $p = get_page($id); echo apply_filters('the_content', $p->post_content
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-lg-3 col-md-6 text-center">
+            <div class="col-lg-4 col-md-6 text-center">
                 <div class="service-box">
-                    <i class="fa fa-4x fa-car wow bounceIn text-primary"></i>
-                    <h3 ng-bind="'ServiceTitleNCC' | translate">&nbsp;</h3>
-                    <p class="text-muted" style="min-height: 50px;" ng-bind="'ServiceContentNCC' | translate">&nbsp;</p>
-                    <br />
-                    <a href="javascript:void(0);" ng-click="descriptionService('ncc')" class="btn btn-primary btn-xl wow tada" ng-bind-html="'ButtonReadMore' | translate">&nbsp;</a>
+                    <img src="<?php echo get_template_directory_uri(); ?>/img/portfolio/services/transfer.png" style="width:200px;height:200px" class="img img-circle"> 
+                    <h3 class="titleOurServices" ng-click="descriptionService('transfer')" ng-bind="'ServiceTitle_1' | translate">&nbsp;</h3>
+                    <p class="text-muted" style="min-height: 50px;" ng-bind="'ServiceContent_1' | translate">&nbsp;</p>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 text-center">
+            <div class="col-lg-4 col-md-6 text-center">
                 <div class="service-box">
-                    <i class="fa fa-4x fa-map wow bounceIn text-primary" data-wow-delay=".1s"></i>
-                    <h3 ng-bind="'ServiceTitleExcursions' | translate">&nbsp;</h3>
-                    <p class="text-muted" style="min-height: 50px;" ng-bind="'ServiceContentExcursions' | translate">&nbsp;</p>
-                    <br />
-                    <a href="javascript:void(0);" ng-click="descriptionService('excursion')" class="btn btn-primary btn-xl wow tada" ng-bind-html="'ButtonReadMore' | translate">&nbsp;</a>
+                    <img src="<?php echo get_template_directory_uri(); ?>/img/portfolio/services/winetour.png" style="width:200px;height:200px" class="img img-circle"> 
+                    <h3 class="titleOurServices" ng-click="descriptionService('winetour')" ng-bind="'ServiceTitle_2' | translate">&nbsp;</h3>
+                    <p class="text-muted" style="min-height: 50px;" ng-bind="'ServiceContent_2' | translate">&nbsp;</p>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 text-center">
+            <div class="col-lg-4 col-md-6 text-center">
                 <div class="service-box">
-                    <i class="fa fa-4x fa-bed wow bounceIn text-primary" data-wow-delay=".2s"></i>
-                    <h3 ng-bind="'ServiceTitleHotels' | translate">&nbsp;</h3>
-                    <p class="text-muted" style="min-height: 50px;" ng-bind="'ServiceContentHotels' | translate">&nbsp;</p>
-                    <br />
-                    <a href="javascript:void(0);" ng-click="descriptionService('hotels')" class="btn btn-primary btn-xl wow tada" ng-bind-html="'ButtonReadMore' | translate">&nbsp;</a>
+                    <img src="<?php echo get_template_directory_uri(); ?>/img/portfolio/services/lemontour.png" style="width:200px;height:200px" class="img img-circle"> 
+                    <h3 class="titleOurServices" ng-click="descriptionService('lemontour')" ng-bind="'ServiceTitle_3' | translate">&nbsp;</h3>
+                    <p class="text-muted" style="min-height: 50px;" ng-bind="'ServiceContent_3' | translate">&nbsp;</p>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 text-center">
+        </div>
+
+        <hr />
+
+        <div class="row">
+            <div class="col-lg-4 col-md-6 text-center">
                 <div class="service-box">
-                    <i class="fa fa-4x fa-plane wow bounceIn text-primary" data-wow-delay=".2s"></i>
-                    <h3 ng-bind="'ServiceTitleOther' | translate">&nbsp;</h3>
-                    <p class="text-muted" style="min-height: 50px;" ng-bind="'ServiceContentOther' | translate">&nbsp;</p>
-                    <br />
-                    <a href="javascript:void(0);" ng-click="descriptionService('other')" class="btn btn-primary btn-xl wow tada" ng-bind-html="'ButtonReadMore' | translate">&nbsp;</a>
+                    <img src="<?php echo get_template_directory_uri(); ?>/img/portfolio/services/cookingclass.png" style="width:200px;height:200px" class="img img-circle"> 
+                    <h3 class="titleOurServices" ng-click="descriptionService('cookingclass')" ng-bind="'ServiceTitle_4' | translate">&nbsp;</h3>
+                    <p class="text-muted" style="min-height: 50px;" ng-bind="'ServiceContent_4' | translate">&nbsp;</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 text-center">
+                <div class="service-box">
+                    <img src="<?php echo get_template_directory_uri(); ?>/img/portfolio/services/mozzarellaclass.png" style="width:200px;height:200px" class="img img-circle"> 
+                    <h3 class="titleOurServices" ng-click="descriptionService('mozzarellaclass')" ng-bind="'ServiceTitle_5' | translate">&nbsp;</h3>
+                    <p class="text-muted" style="min-height: 50px;" ng-bind="'ServiceContent_5' | translate">&nbsp;</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 text-center">
+                <div class="service-box">
+                    <img src="<?php echo get_template_directory_uri(); ?>/img/portfolio/services/cheese.png" style="width:200px;height:200px" class="img img-circle"> 
+                    <h3 class="titleOurServices" ng-click="descriptionService('cheese')" ng-bind="'ServiceTitle_6' | translate">&nbsp;</h3>
+                    <p class="text-muted" style="min-height: 50px;" ng-bind="'ServiceContent_6' | translate">&nbsp;</p>
                 </div>
             </div>
         </div>
