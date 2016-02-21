@@ -132,3 +132,9 @@ function register_my_menu() {
    register_nav_menu('header-menu',__( 'Menu' ));
 }
 add_action( 'init', 'register_my_menu' );
+
+//Rimuove editor nella creazione di un articolo 
+function admin_init(){
+	remove_post_type_support('post', 'editor');
+}
+add_action("admin_init", "admin_init");

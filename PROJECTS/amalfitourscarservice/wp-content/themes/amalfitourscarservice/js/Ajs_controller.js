@@ -46,10 +46,12 @@ angular.module('amalfitourscarservice')
         .success(function (detailsService) {
           //console.log('detailsService: '+JSON.stringify(detailsService));
           $scope.detailsService = detailsService;
+          $scope.modalTitle = detailsService.posts[0].title;
         }).error(function (error) {
           console.log('Error');
         });
       
+
       $scope.showModalServices = false;
       $scope.showModalServices = !$scope.showModalServices;
     };
@@ -62,6 +64,7 @@ angular.module('amalfitourscarservice')
         .success(function (detailsExcursion) {
           //console.log('listExcursions: '+JSON.stringify(detailsExcursion));
           $scope.detailsExcursion = detailsExcursion;
+          $scope.modalTitle = detailsExcursion.posts[0].title;
         }).error(function (error) {
           console.log('Error');
         });

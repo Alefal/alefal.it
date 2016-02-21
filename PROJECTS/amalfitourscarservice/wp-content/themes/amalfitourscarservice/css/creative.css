@@ -491,7 +491,8 @@ body {
   }
 }
 
-.titleOurServices {
+.titleOurServices,
+.service-box img {
     cursor: pointer;
 }
 .titleOurServices:hover {
