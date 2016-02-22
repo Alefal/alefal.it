@@ -5,15 +5,13 @@
 ?>
 
 <section class="bg-primary" id="about">
-    <div class="container" ng-if="currentLanguage == 'it'">
-        <?php 
-        $id = 15; $p = get_page($id); echo apply_filters('the_content', $p->descrhtmlit); 
-        ?>
-    </div>
-    <div class="container" ng-if="currentLanguage == 'en'">
-        <?php 
-        $id = 15; $p = get_page($id); echo apply_filters('the_content', $p->descrhtmlen); 
-        ?>
+    <div class="container">
+        <div ng-if="currentLanguage == 'it'">
+            <?php $id = 15; $p = get_page($id); echo apply_filters('the_content', $p->descrhtmlit); ?>
+        </div>
+        <div ng-if="currentLanguage == 'en'">
+            <?php $id = 15; $p = get_page($id); echo apply_filters('the_content', $p->descrhtmlen); ?>
+        </div>
     </div>
 </section>
 
@@ -25,12 +23,14 @@
                     <img src="<?php echo get_template_directory_uri(); ?>/img/taxi_1.jpg" class="img-responsive" alt="">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
-                            <div class="project-category text-faded">                               
-                                <span ng-bind-html="'About_serviceTitle_1' | translate">&nbsp;</span>
+                            <div ng-if="currentLanguage == 'it'">
+                                <?php $id = 220; $p = get_page($id); echo apply_filters('the_content', $p->descrhtmlit); ?>
                             </div>
-                            <div class="project-name">
-                                <span ng-bind-html="'About_serviceContent_1' | translate">&nbsp;</span>
+                            <div class="row no-gutter" ng-if="currentLanguage == 'en'">
+                                <?php $id = 220; $p = get_page($id); echo apply_filters('the_content', $p->descrhtmlen); ?>
                             </div>
+
+                            
                         </div>
                     </div>
                 </a>
@@ -40,11 +40,11 @@
                     <img src="<?php echo get_template_directory_uri(); ?>/img/taxi_2.jpg" class="img-responsive" alt="">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
-                            <div class="project-category text-faded">
-                                <span ng-bind-html="'About_serviceTitle_2' | translate">&nbsp;</span>
+                            <div ng-if="currentLanguage == 'it'">
+                                <?php $id = 228; $p = get_page($id); echo apply_filters('the_content', $p->descrhtmlit); ?>
                             </div>
-                            <div class="project-name">
-                                <span ng-bind-html="'About_serviceContent_2' | translate">&nbsp;</span>
+                            <div class="row no-gutter" ng-if="currentLanguage == 'en'">
+                                <?php $id = 228; $p = get_page($id); echo apply_filters('the_content', $p->descrhtmlen); ?>
                             </div>
                         </div>
                     </div>
@@ -82,22 +82,64 @@
             <div class="col-lg-4 col-md-6 text-center">
                 <div class="service-box">
                     <img ng-click="descriptionService('transfer')" src="<?php echo get_template_directory_uri(); ?>/img/portfolio/services/transfer.png" style="width:200px;height:200px" class="img img-circle"> 
-                    <h3 class="titleOurServices" ng-click="descriptionService('transfer')" ng-bind-html="'ServiceTitle_1' | translate">&nbsp;</h3>
-                    <p class="text-muted serviceContent" ng-bind-html="'ServiceContent_1' | translate">&nbsp;</p>
+                    <div  ng-if="currentLanguage == 'it'">
+                        <h3 class="titleOurServices" ng-click="descriptionService('transfer')">
+                            <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicetitletransferit); ?>
+                        </h3>
+                        <p class="text-muted serviceContent">
+                            <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicecontenttransferit); ?>
+                        </p>
+                    </div>
+                    <div  ng-if="currentLanguage == 'en'">
+                        <h3 class="titleOurServices" ng-click="descriptionService('transfer')">
+                            <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicetitletransferen); ?>
+                        </h3>
+                        <p class="text-muted serviceContent">
+                            <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicecontenttransferen); ?>
+                        </p>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 text-center">
                 <div class="service-box">
                     <img ng-click="descriptionService('winetour')" src="<?php echo get_template_directory_uri(); ?>/img/portfolio/services/winetour.png" style="width:200px;height:200px" class="img img-circle"> 
-                    <h3 class="titleOurServices" ng-click="descriptionService('winetour')" ng-bind-html="'ServiceTitle_2' | translate">&nbsp;</h3>
-                    <p class="text-muted serviceContent" ng-bind-html="'ServiceContent_2' | translate">&nbsp;</p>
+                    <div  ng-if="currentLanguage == 'it'">
+                        <h3 class="titleOurServices" ng-click="descriptionService('winetour')">
+                            <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicetitlewinetourit); ?>
+                        </h3>
+                        <p class="text-muted serviceContent">
+                            <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicecontentwinetourit); ?>
+                        </p>
+                    </div>
+                    <div  ng-if="currentLanguage == 'en'">
+                        <h3 class="titleOurServices" ng-click="descriptionService('winetour')">
+                            <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicetitlewinetouren); ?>
+                        </h3>
+                        <p class="text-muted serviceContent">
+                            <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicecontentwinetouren); ?>
+                        </p>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 text-center">
                 <div class="service-box">
                     <img ng-click="descriptionService('lemontour')" src="<?php echo get_template_directory_uri(); ?>/img/portfolio/services/lemontour.png" style="width:200px;height:200px" class="img img-circle"> 
-                    <h3 class="titleOurServices" ng-click="descriptionService('lemontour')" ng-bind-html="'ServiceTitle_3' | translate">&nbsp;</h3>
-                    <p class="text-muted serviceContent" ng-bind-html="'ServiceContent_3' | translate">&nbsp;</p>
+                    <div  ng-if="currentLanguage == 'it'">
+                        <h3 class="titleOurServices" ng-click="descriptionService('lemontour')">
+                            <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicetitlelemonetourit); ?>
+                        </h3>
+                        <p class="text-muted serviceContent">
+                            <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicecontentlemontourit); ?>
+                        </p>
+                    </div>
+                    <div  ng-if="currentLanguage == 'en'">
+                        <h3 class="titleOurServices" ng-click="descriptionService('lemontour')">
+                            <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicetitlelemonetouren); ?>
+                        </h3>
+                        <p class="text-muted serviceContent">
+                            <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicecontentlemontouren); ?>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -108,22 +150,64 @@
             <div class="col-lg-4 col-md-6 text-center">
                 <div class="service-box">
                     <img ng-click="descriptionService('cookingclass')" src="<?php echo get_template_directory_uri(); ?>/img/portfolio/services/cookingclass.png" style="width:200px;height:200px" class="img img-circle"> 
-                    <h3 class="titleOurServices" ng-click="descriptionService('cookingclass')" ng-bind-html="'ServiceTitle_4' | translate">&nbsp;</h3>
-                    <p class="text-muted serviceContent" ng-bind-html="'ServiceContent_4' | translate">&nbsp;</p>
+                    <div  ng-if="currentLanguage == 'it'">
+                        <h3 class="titleOurServices" ng-click="descriptionService('cookingclass')">
+                            <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicetitlecookingit); ?>
+                        </h3>
+                        <p class="text-muted serviceContent">
+                            <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicecontentcookingit); ?>
+                        </p>
+                    </div>
+                    <div  ng-if="currentLanguage == 'en'">
+                        <h3 class="titleOurServices" ng-click="descriptionService('cookingclass')">
+                            <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicetitlecookingen); ?>
+                        </h3>
+                        <p class="text-muted serviceContent">
+                            <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicecontentcookingen); ?>
+                        </p>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 text-center">
                 <div class="service-box">
                     <img ng-click="descriptionService('mozzarellaclass')" src="<?php echo get_template_directory_uri(); ?>/img/portfolio/services/mozzarellaclass.png" style="width:200px;height:200px" class="img img-circle"> 
-                    <h3 class="titleOurServices" ng-click="descriptionService('mozzarellaclass')" ng-bind-html="'ServiceTitle_5' | translate">&nbsp;</h3>
-                    <p class="text-muted serviceContent" ng-bind-html="'ServiceContent_5' | translate">&nbsp;</p>
+                    <div  ng-if="currentLanguage == 'it'">
+                        <h3 class="titleOurServices" ng-click="descriptionService('mozzarellaclass')">
+                            <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicetitlemozzarellait); ?>
+                        </h3>
+                        <p class="text-muted serviceContent">
+                            <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicecontentmozzarellait); ?>
+                        </p>
+                    </div>
+                    <div  ng-if="currentLanguage == 'en'">
+                        <h3 class="titleOurServices" ng-click="descriptionService('mozzarellaclass')">
+                            <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicetitlemozzarellaen); ?>
+                        </h3>
+                        <p class="text-muted serviceContent">
+                            <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicecontentmozzarellaen); ?>
+                        </p>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 text-center">
                 <div class="service-box">
                     <img ng-click="descriptionService('cheese')" src="<?php echo get_template_directory_uri(); ?>/img/portfolio/services/cheese.png" style="width:200px;height:200px" class="img img-circle"> 
-                    <h3 class="titleOurServices" ng-click="descriptionService('cheese')" ng-bind-html="'ServiceTitle_6' | translate">&nbsp;</h3>
-                    <p class="text-muted serviceContent" ng-bind-html="'ServiceContent_6' | translate">&nbsp;</p>
+                    <div  ng-if="currentLanguage == 'it'">
+                        <h3 class="titleOurServices" ng-click="descriptionService('cheese')">
+                            <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicetitlecheeseit); ?>
+                        </h3>
+                        <p class="text-muted serviceContent">
+                            <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicecontentcheeseit); ?>
+                        </p>
+                    </div>
+                    <div  ng-if="currentLanguage == 'en'">
+                        <h3 class="titleOurServices" ng-click="descriptionService('cheese')">
+                            <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicetitlecheeseen); ?>
+                        </h3>
+                        <p class="text-muted serviceContent">
+                            <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicecontentcheeseen); ?>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
