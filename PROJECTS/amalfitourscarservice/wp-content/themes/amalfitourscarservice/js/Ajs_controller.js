@@ -30,47 +30,51 @@ angular.module('amalfitourscarservice')
       $scope.currentLanguage = language;
       $translate.use(language);
     };
-
   })
 
   .controller('ServicesCtrl', function($scope,$translate,$filter,ajaxCallServices,$window) {
 
-    $scope.replaceStr = function(str){
+   $scope.replaceStr = function(str){
       console.log(str);
       return str;
     };
 
     $scope.descriptionService = function(service){
       
+      $scope.detailsService   = '';
+      $scope.modalTitle       = '';
+
       ajaxCallServices.getService(service)
         .success(function (detailsService) {
           //console.log('detailsService: '+JSON.stringify(detailsService));
           $scope.detailsService = detailsService;
           $scope.modalTitle = detailsService.posts[0].title;
+      
+          $scope.showModalServices = false;
+          $scope.showModalServices = !$scope.showModalServices;
         }).error(function (error) {
           console.log('Error');
         });
-      
-
-      $scope.showModalServices = false;
-      $scope.showModalServices = !$scope.showModalServices;
     };
   })
 
   .controller('ExcursionsCtrl', function($scope,$translate,$filter,ajaxCallServices,$window) {
+
     $scope.descriptionExcursions = function(where){
+      $scope.detailsExcursion   = '';
+      $scope.modalTitle       = '';
 
       ajaxCallServices.getExcursion(where)
         .success(function (detailsExcursion) {
           //console.log('listExcursions: '+JSON.stringify(detailsExcursion));
           $scope.detailsExcursion = detailsExcursion;
           $scope.modalTitle = detailsExcursion.posts[0].title;
+          
+          $scope.showModalExcursions = false;
+          $scope.showModalExcursions = !$scope.showModalExcursions;
         }).error(function (error) {
           console.log('Error');
         });
-      
-      $scope.showModalExcursions = false;
-      $scope.showModalExcursions = !$scope.showModalExcursions;
     };
   })
 

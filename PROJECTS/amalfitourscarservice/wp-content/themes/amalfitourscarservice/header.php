@@ -10,10 +10,10 @@
  */
 ?><!DOCTYPE html>
 <!--[if IE 7]>
-<html class="ie ie7" <?php language_attributes(); ?>>
+<html class="ie ie7" <?php language_attributes(); ?> ng-app="amalfitourscarservice">
 <![endif]-->
 <!--[if IE 8]>
-<html class="ie ie8" <?php language_attributes(); ?>>
+<html class="ie ie8" <?php language_attributes(); ?> ng-app="amalfitourscarservice">
 <![endif]-->
 <!--[if !(IE 7) & !(IE 8)]><!-->
 <html <?php language_attributes(); ?> ng-app="amalfitourscarservice">
@@ -28,8 +28,8 @@
 	<script src="<?php echo get_template_directory_uri(); ?>/js/html5.js"></script>
 	<![endif]-->
 	<?php wp_head(); ?>
-
 	<!-- Bootstrap Core CSS -->
+
     <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/bootstrap.min.css" type="text/css">
 
 	<!-- Custom Fonts -->

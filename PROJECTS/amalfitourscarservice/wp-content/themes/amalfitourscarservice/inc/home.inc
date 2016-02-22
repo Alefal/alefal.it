@@ -26,10 +26,10 @@
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">                               
-                                Transfer
+                                <span ng-bind-html="'About_serviceTitle_1' | translate">&nbsp;</span>
                             </div>
                             <div class="project-name">
-                                per raggiungere velocemente ed in assoluta comodità la vostra destinazione (aeroporto, stazione ferroviaria, porto, hotel o ristorante)
+                                <span ng-bind-html="'About_serviceContent_1' | translate">&nbsp;</span>
                             </div>
                         </div>
                     </div>
@@ -41,10 +41,10 @@
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
-                                Escursioni
+                                <span ng-bind-html="'About_serviceTitle_2' | translate">&nbsp;</span>
                             </div>
                             <div class="project-name">
-                                verso le località più conosciute della regione, per ammirarne il ricco patrimonio artistico, storico e naturalistico
+                                <span ng-bind-html="'About_serviceContent_2' | translate">&nbsp;</span>
                             </div>
                         </div>
                     </div>
@@ -72,7 +72,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h2 class="section-heading">I nostri servizi</h2>
+                <h2 class="section-heading" ng-bind-html="'ServicesTitle' | translate">&nbsp;</h2>
                 <hr class="primary">
             </div>
         </div>
@@ -82,22 +82,22 @@
             <div class="col-lg-4 col-md-6 text-center">
                 <div class="service-box">
                     <img ng-click="descriptionService('transfer')" src="<?php echo get_template_directory_uri(); ?>/img/portfolio/services/transfer.png" style="width:200px;height:200px" class="img img-circle"> 
-                    <h3 class="titleOurServices" ng-click="descriptionService('transfer')" ng-bind="'ServiceTitle_1' | translate">&nbsp;</h3>
-                    <p class="text-muted" style="min-height: 50px;" ng-bind="'ServiceContent_1' | translate">&nbsp;</p>
+                    <h3 class="titleOurServices" ng-click="descriptionService('transfer')" ng-bind-html="'ServiceTitle_1' | translate">&nbsp;</h3>
+                    <p class="text-muted serviceContent" ng-bind-html="'ServiceContent_1' | translate">&nbsp;</p>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 text-center">
                 <div class="service-box">
                     <img ng-click="descriptionService('winetour')" src="<?php echo get_template_directory_uri(); ?>/img/portfolio/services/winetour.png" style="width:200px;height:200px" class="img img-circle"> 
-                    <h3 class="titleOurServices" ng-click="descriptionService('winetour')" ng-bind="'ServiceTitle_2' | translate">&nbsp;</h3>
-                    <p class="text-muted" style="min-height: 50px;" ng-bind="'ServiceContent_2' | translate">&nbsp;</p>
+                    <h3 class="titleOurServices" ng-click="descriptionService('winetour')" ng-bind-html="'ServiceTitle_2' | translate">&nbsp;</h3>
+                    <p class="text-muted serviceContent" ng-bind-html="'ServiceContent_2' | translate">&nbsp;</p>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 text-center">
                 <div class="service-box">
                     <img ng-click="descriptionService('lemontour')" src="<?php echo get_template_directory_uri(); ?>/img/portfolio/services/lemontour.png" style="width:200px;height:200px" class="img img-circle"> 
-                    <h3 class="titleOurServices" ng-click="descriptionService('lemontour')" ng-bind="'ServiceTitle_3' | translate">&nbsp;</h3>
-                    <p class="text-muted" style="min-height: 50px;" ng-bind="'ServiceContent_3' | translate">&nbsp;</p>
+                    <h3 class="titleOurServices" ng-click="descriptionService('lemontour')" ng-bind-html="'ServiceTitle_3' | translate">&nbsp;</h3>
+                    <p class="text-muted serviceContent" ng-bind-html="'ServiceContent_3' | translate">&nbsp;</p>
                 </div>
             </div>
         </div>
@@ -108,22 +108,22 @@
             <div class="col-lg-4 col-md-6 text-center">
                 <div class="service-box">
                     <img ng-click="descriptionService('cookingclass')" src="<?php echo get_template_directory_uri(); ?>/img/portfolio/services/cookingclass.png" style="width:200px;height:200px" class="img img-circle"> 
-                    <h3 class="titleOurServices" ng-click="descriptionService('cookingclass')" ng-bind="'ServiceTitle_4' | translate">&nbsp;</h3>
-                    <p class="text-muted" style="min-height: 50px;" ng-bind="'ServiceContent_4' | translate">&nbsp;</p>
+                    <h3 class="titleOurServices" ng-click="descriptionService('cookingclass')" ng-bind-html="'ServiceTitle_4' | translate">&nbsp;</h3>
+                    <p class="text-muted serviceContent" ng-bind-html="'ServiceContent_4' | translate">&nbsp;</p>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 text-center">
                 <div class="service-box">
                     <img ng-click="descriptionService('mozzarellaclass')" src="<?php echo get_template_directory_uri(); ?>/img/portfolio/services/mozzarellaclass.png" style="width:200px;height:200px" class="img img-circle"> 
-                    <h3 class="titleOurServices" ng-click="descriptionService('mozzarellaclass')" ng-bind="'ServiceTitle_5' | translate">&nbsp;</h3>
-                    <p class="text-muted" style="min-height: 50px;" ng-bind="'ServiceContent_5' | translate">&nbsp;</p>
+                    <h3 class="titleOurServices" ng-click="descriptionService('mozzarellaclass')" ng-bind-html="'ServiceTitle_5' | translate">&nbsp;</h3>
+                    <p class="text-muted serviceContent" ng-bind-html="'ServiceContent_5' | translate">&nbsp;</p>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 text-center">
                 <div class="service-box">
                     <img ng-click="descriptionService('cheese')" src="<?php echo get_template_directory_uri(); ?>/img/portfolio/services/cheese.png" style="width:200px;height:200px" class="img img-circle"> 
-                    <h3 class="titleOurServices" ng-click="descriptionService('cheese')" ng-bind="'ServiceTitle_6' | translate">&nbsp;</h3>
-                    <p class="text-muted" style="min-height: 50px;" ng-bind="'ServiceContent_6' | translate">&nbsp;</p>
+                    <h3 class="titleOurServices" ng-click="descriptionService('cheese')" ng-bind-html="'ServiceTitle_6' | translate">&nbsp;</h3>
+                    <p class="text-muted serviceContent" ng-bind-html="'ServiceContent_6' | translate">&nbsp;</p>
                 </div>
             </div>
         </div>
@@ -153,7 +153,7 @@
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">                               
-                                Excursions
+                                <span ng-bind-html="'ExcursionTitle' | translate">&nbsp;</span>
                             </div>
                             <div class="project-name">
                                 Amalfi
@@ -168,7 +168,7 @@
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
-                                Excursions
+                                <span ng-bind-html="'ExcursionTitle' | translate">&nbsp;</span>
                             </div>
                             <div class="project-name">
                                 Ravello
@@ -183,7 +183,7 @@
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
-                                Excursions
+                                <span ng-bind-html="'ExcursionTitle' | translate">&nbsp;</span>
                             </div>
                             <div class="project-name">
                                 Positano
@@ -198,7 +198,7 @@
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
-                                Excursions
+                                <span ng-bind-html="'ExcursionTitle' | translate">&nbsp;</span>
                             </div>
                             <div class="project-name">
                                 Sorrento
@@ -213,7 +213,7 @@
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
-                                Excursions
+                                <span ng-bind-html="'ExcursionTitle' | translate">&nbsp;</span>
                             </div>
                             <div class="project-name">
                                 Napoli
@@ -228,7 +228,7 @@
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
-                                Excursions
+                                <span ng-bind-html="'ExcursionTitle' | translate">&nbsp;</span>
                             </div>
                             <div class="project-name">
                                 Paestum

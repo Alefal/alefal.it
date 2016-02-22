@@ -498,3 +498,15 @@ body {
 .titleOurServices:hover {
     text-decoration: underline;
 }
+
+.serviceContent {
+    display: -webkit-box;
+    max-width: 275px;
+    margin: 0 auto;
+    font-size: 15px;
+    line-height: 1.4;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

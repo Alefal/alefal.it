@@ -33,36 +33,6 @@ $('a[href*=#]:not([href=#])').click(function() {
     }
 });
 
-var map;
-function initialize() {
-  var myLatlng = new google.maps.LatLng(40.650160,14.611770);
-  var mapOptions = {
-    zoom: 17,
-    center: myLatlng,
-    styles: [{
-      stylers: [{
-        saturation: -75
-      }]
-    }],
-    mapTypeControl: false,
-    zoomControl: false,
-    scrollwheel: false,
-    navigationControl: false,
-    scaleControl: false
-  }
-  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-  var image = 'wp-content/themes/lechicchedielena/img/gmap-marker.png';
-
-  var marker = new google.maps.Marker({
-      position: myLatlng,
-      map: map,
-      title: 'Le Chicche di Elena',
-      icon: image
-  });
-}
-
-google.maps.event.addDomListener(window, 'load', initialize);
-
 $(function () {
   $('[data-toggle="tooltip"]').tooltip();
   $('[data-toggle="popover"]').popover();
