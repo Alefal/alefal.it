@@ -139,7 +139,9 @@ function admin_init(){
 }
 add_action("admin_init", "admin_init");
 
+/*
 remove_filter('the_content', 'wpautop' );
 remove_filter('the_content', 'wptexturize');
 remove_filter('the_excerpt', 'wpautop' );
 remove_filter('the_excerpt', 'wptexturize');
+*/

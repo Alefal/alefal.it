@@ -86,17 +86,17 @@
                         <h3 class="titleOurServices" ng-click="descriptionService('transfer')">
                             <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicetitletransferit); ?>
                         </h3>
-                        <p class="text-muted serviceContent">
+                        <div class="text-muted serviceContent">
                             <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicecontenttransferit); ?>
-                        </p>
+                        </div>
                     </div>
                     <div  ng-if="currentLanguage == 'en'">
                         <h3 class="titleOurServices" ng-click="descriptionService('transfer')">
                             <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicetitletransferen); ?>
                         </h3>
-                        <p class="text-muted serviceContent">
+                        <div class="text-muted serviceContent">
                             <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicecontenttransferen); ?>
-                        </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -107,17 +107,17 @@
                         <h3 class="titleOurServices" ng-click="descriptionService('winetour')">
                             <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicetitlewinetourit); ?>
                         </h3>
-                        <p class="text-muted serviceContent">
+                        <div class="text-muted serviceContent">
                             <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicecontentwinetourit); ?>
-                        </p>
+                        </div>
                     </div>
                     <div  ng-if="currentLanguage == 'en'">
                         <h3 class="titleOurServices" ng-click="descriptionService('winetour')">
                             <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicetitlewinetouren); ?>
                         </h3>
-                        <p class="text-muted serviceContent">
+                        <div class="text-muted serviceContent">
                             <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicecontentwinetouren); ?>
-                        </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -128,17 +128,17 @@
                         <h3 class="titleOurServices" ng-click="descriptionService('lemontour')">
                             <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicetitlelemonetourit); ?>
                         </h3>
-                        <p class="text-muted serviceContent">
+                        <div class="text-muted serviceContent">
                             <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicecontentlemontourit); ?>
-                        </p>
+                        </div>
                     </div>
                     <div  ng-if="currentLanguage == 'en'">
                         <h3 class="titleOurServices" ng-click="descriptionService('lemontour')">
                             <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicetitlelemonetouren); ?>
                         </h3>
-                        <p class="text-muted serviceContent">
+                        <div class="text-muted serviceContent">
                             <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicecontentlemontouren); ?>
-                        </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -154,17 +154,17 @@
                         <h3 class="titleOurServices" ng-click="descriptionService('cookingclass')">
                             <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicetitlecookingit); ?>
                         </h3>
-                        <p class="text-muted serviceContent">
+                        <div class="text-muted serviceContent">
                             <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicecontentcookingit); ?>
-                        </p>
+                        </div>
                     </div>
                     <div  ng-if="currentLanguage == 'en'">
                         <h3 class="titleOurServices" ng-click="descriptionService('cookingclass')">
                             <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicetitlecookingen); ?>
                         </h3>
-                        <p class="text-muted serviceContent">
+                        <div class="text-muted serviceContent">
                             <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicecontentcookingen); ?>
-                        </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -175,17 +175,17 @@
                         <h3 class="titleOurServices" ng-click="descriptionService('mozzarellaclass')">
                             <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicetitlemozzarellait); ?>
                         </h3>
-                        <p class="text-muted serviceContent">
+                        <div class="text-muted serviceContent">
                             <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicecontentmozzarellait); ?>
-                        </p>
+                        </div>
                     </div>
                     <div  ng-if="currentLanguage == 'en'">
                         <h3 class="titleOurServices" ng-click="descriptionService('mozzarellaclass')">
                             <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicetitlemozzarellaen); ?>
                         </h3>
-                        <p class="text-muted serviceContent">
+                        <div class="text-muted serviceContent">
                             <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicecontentmozzarellaen); ?>
-                        </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -196,17 +196,17 @@
                         <h3 class="titleOurServices" ng-click="descriptionService('cheese')">
                             <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicetitlecheeseit); ?>
                         </h3>
-                        <p class="text-muted serviceContent">
+                        <div class="text-muted serviceContent">
                             <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicecontentcheeseit); ?>
-                        </p>
+                        </div>
                     </div>
                     <div  ng-if="currentLanguage == 'en'">
                         <h3 class="titleOurServices" ng-click="descriptionService('cheese')">
                             <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicetitlecheeseen); ?>
                         </h3>
-                        <p class="text-muted serviceContent">
+                        <div class="text-muted serviceContent">
                             <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicecontentcheeseen); ?>
-                        </p>
+                        </div>
                     </div>
                 </div>
             </div>
