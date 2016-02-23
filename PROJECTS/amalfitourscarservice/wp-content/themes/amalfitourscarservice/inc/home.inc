@@ -19,7 +19,7 @@
     <div class="container-fluid">
         <div class="row no-gutter">
             <div class="col-lg-6 col-sm-6">
-                <a href="#" class="portfolio-box">
+                <div class="portfolio-box">
                     <img src="<?php echo get_template_directory_uri(); ?>/img/taxi_1.jpg" class="img-responsive" alt="">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
@@ -33,10 +33,10 @@
                             
                         </div>
                     </div>
-                </a>
+                </div>
             </div>
             <div class="col-lg-6 col-sm-6">
-                <a href="#" class="portfolio-box">
+                <div class="portfolio-box">
                     <img src="<?php echo get_template_directory_uri(); ?>/img/taxi_2.jpg" class="img-responsive" alt="">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
@@ -48,7 +48,7 @@
                             </div>
                         </div>
                     </div>
-                </a>
+                </div>
             </div>
         </div>
     </div>
