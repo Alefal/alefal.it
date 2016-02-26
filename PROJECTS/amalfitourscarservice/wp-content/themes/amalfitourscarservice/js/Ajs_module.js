@@ -2,8 +2,8 @@ var lechicchedielena = angular.module('amalfitourscarservice', ['ngSanitize', 'p
 
 .run(function($rootScope,$window){
 	$rootScope._ = _;
-	$rootScope.server = 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice';
-	//$rootScope.server = 'http://www.amalfitourscarservice.it/demo';
+	//$rootScope.server = 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice';
+	$rootScope.server = 'http://www.amalfitourscarservice.it';
 })
 .config(function($translateProvider) {
 

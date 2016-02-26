@@ -33,14 +33,14 @@ $dataJsonDecode         = json_decode($data);
 $contactName         	= isset($dataJsonDecode->contactName)	? $dataJsonDecode->contactName 	: '';
 $contactEmail           = isset($dataJsonDecode->contactEmail) 	? $dataJsonDecode->contactEmail : '';
 $contactInfo            = isset($dataJsonDecode->contactInfo) 	? $dataJsonDecode->contactInfo 	: '';
-$detailTitle            = isset($dataJsonDecode->detailTitle) 	? $dataJsonDecode->detailTitle 	: '';
+$detailTitle            = 'Email inviata dal sito';
 
 $resultArray = array();
 
 if($contactName != '') {
     
     $message = $contactEmail.' - '.$contactName.' - '.$contactInfo;
-    $sent_message = wp_mail( 'alefalwebmaster@gmail.com', $detailTitle, $message );
+    $sent_message = wp_mail( 'amalfitourscarservice@gmail.com', $detailTitle, $message );
 
     if ( $sent_message ) {
 	    // The message was sent.
