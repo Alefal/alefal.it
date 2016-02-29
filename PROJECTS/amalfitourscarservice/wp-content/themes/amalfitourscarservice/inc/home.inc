@@ -12,6 +12,11 @@
         <div ng-if="currentLanguage == 'en'">
             <?php $id = 15; $p = get_page($id); echo apply_filters('the_content', $p->descrhtmlen); ?>
         </div>
+
+        <div class="header-content-inner">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/R6NLv3qbQSc" frameborder="0" allowfullscreen></iframe>
+         </div>
+
     </div>
 </section>
 
@@ -79,6 +84,7 @@
     </div>
     <div class="container">
         <div class="row">
+            <!--
             <div class="col-lg-4 col-md-6 text-center">
                 <div class="service-box">
                     <img ng-click="descriptionService('transfer')" src="<?php echo get_template_directory_uri(); ?>/img/portfolio/services/transfer.png" style="width:200px;height:200px" class="img img-circle"> 
@@ -96,6 +102,28 @@
                         </h3>
                         <div class="text-muted serviceContent">
                             <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicecontenttransferen); ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            -->
+            <div class="col-lg-4 col-md-6 text-center">
+                <div class="service-box">
+                    <img ng-click="descriptionService('pizza')" src="<?php echo get_template_directory_uri(); ?>/img/portfolio/services/pizza.png" style="width:200px;height:200px" class="img img-circle"> 
+                    <div  ng-if="currentLanguage == 'it'">
+                        <h3 class="titleOurServices" ng-click="descriptionService('pizza')">
+                            <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicetitlepizzait); ?>
+                        </h3>
+                        <div class="text-muted serviceContent">
+                            <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicecontentpizzait); ?>
+                        </div>
+                    </div>
+                    <div  ng-if="currentLanguage == 'en'">
+                        <h3 class="titleOurServices" ng-click="descriptionService('pizza')">
+                            <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicetitlepizzaen); ?>
+                        </h3>
+                        <div class="text-muted serviceContent">
+                            <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicecontentpizzaen); ?>
                         </div>
                     </div>
                 </div>

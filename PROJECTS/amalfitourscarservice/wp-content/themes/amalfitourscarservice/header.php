@@ -62,15 +62,11 @@
 	<header>
         <div class="header-content">
             <div class="header-content-inner">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/R6NLv3qbQSc" frameborder="0" allowfullscreen></iframe>
-                
-                <!--
                 <h1 ng-bind="'HomeMsgTitle' | translate">&nbsp;</h1>
                 <hr>
                 <p style="background-color: rgba(0, 0, 0, 0.8); padding:5px" ng-bind-html="'HomeMsgContent' | translate">&nbsp;</p>
 
                 <a href="#about" class="btn btn-primary btn-xl page-scroll" ng-bind="'HomeMsgButton' | translate">&nbsp;</a>
-                -->
             </div>
         </div>
     </header>
