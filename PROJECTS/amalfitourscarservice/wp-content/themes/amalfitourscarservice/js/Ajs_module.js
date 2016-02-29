@@ -15,22 +15,22 @@ var lechicchedielena = angular.module('amalfitourscarservice', ['ngSanitize', 'p
 
 		NavAbout: 			'About',
 		NavServices: 		'Services',
-		NavExcursions: 		'Excursions',
+		NavExcursions: 		'Excursions / Tours',
 		NavContact: 		'Contact',
 		NavLanguage: 		'Language',
 
-		/*
+		
 		HomeMsgTitle: 'Welcome!',
-		HomeMsgContent: 'NCC, Excursions, Services...',
+		HomeMsgContent: 'NCC, Excursions, Tours, Pizza Class, Wine and Lemon Tour, Services for hotels and much more... All which you need with maximum <strong>PROFESSIONAL</strong> and <strong>COMPETENCE</strong>.',
 		HomeMsgButton: 'Contact Us',
-
+		/*
 		About_serviceTitle_1: 'Transfer',
 		About_serviceContent_1: 'to reach your destination (airport, railway station, port, hotel or restaurant) in a fast and comfortable way',
 		About_serviceTitle_2: 'Excursions',
 		About_serviceContent_2: 'to the most famous places of the area to enjoy the rich cultural, artistic and natural heritage',
 		*/
 
-		ExcursionTitle: 	'Excursion',
+		ExcursionTitle: 	'Excursions / Tours',
 		ServicesTitle: 		'Our services',
 
 		ContactTitle: 		'Contact us in touch!',
@@ -76,15 +76,15 @@ var lechicchedielena = angular.module('amalfitourscarservice', ['ngSanitize', 'p
 
 		NavAbout: 			'Chi Siamo',
 		NavServices: 		'Servizi',
-		NavExcursions: 		'Escursioni',
+		NavExcursions: 		'Escursioni / Tours',
 		NavContact: 		'Contatti',
 		NavLanguage: 		'Lingua',
 		
-		/*
+		
 		HomeMsgTitle: 'Benvenuti!',
-		HomeMsgContent: 'NCC, Escursioni, Servizi per Hotels... Tutto cio\' di cui avete bisogno con la massima <strong>PROFESSIONALITA\'</strong> e <strong>COMPETENZA</strong>!',
+		HomeMsgContent: 'NCC, Escursioni, Tours, Pizza Class, Wine a Lemon Tour, Servizi per Hotels e molto altro... Tutto cio\' di cui avete bisogno con la massima <strong>PROFESSIONALITA\'</strong> e <strong>COMPETENZA</strong>!',
 		HomeMsgButton: 'Contattaci',
-
+		/*
 		About_serviceTitle_1: 'Transfer',
 		About_serviceContent_1: 'per raggiungere velocemente ed in assoluta comodita\' la vostra destinazione (aeroporto, stazione ferroviaria, porto, hotel o ristorante)',
 		About_serviceTitle_2: 'Escursioni',
@@ -92,7 +92,7 @@ var lechicchedielena = angular.module('amalfitourscarservice', ['ngSanitize', 'p
 		*/
 
 		ServicesTitle: 		'I nostri servizi',
-		ExcursionTitle: 	'Escursione',
+		ExcursionTitle: 	'Escursioni / Tours',
 		
 		ContactTitle: 		'Contattaci in un Tocco!',
 		ContactMsg: 		'Sei pronto a vivere un\'esperienza indimenticabile ? Non esitare a contattarci!',

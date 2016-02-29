@@ -13,46 +13,63 @@
             <?php $id = 15; $p = get_page($id); echo apply_filters('the_content', $p->descrhtmlen); ?>
         </div>
 
-        <div class="header-content-inner">
+        <hr class="light" />
+        <div class="header-content-inner" align="center">
             <iframe width="560" height="315" src="https://www.youtube.com/embed/R6NLv3qbQSc" frameborder="0" allowfullscreen></iframe>
-         </div>
+        </div>
 
     </div>
 </section>
 
-<section class="no-padding">
+<section class="no-padding" ng-controller="AboutCtrl">
+    <modal title="{{modalTitle}}" visible="showModalAbout" tabindex='-1'>
+        <div ng-repeat="element in detailsService.posts">
+            <div class="row">   
+                <div class="col-lg-12 col-md-12">
+                    <img ng-src="{{element.custom_fields.imgurl[0]}}" style="width:100%" />
+                </div> 
+                <div class="col-lg-12 col-md-12">
+                    <p ng-if="currentLanguage == 'it'" ng-bind-html="element.custom_fields.descrhtmlit"></p>
+                    <p ng-if="currentLanguage == 'en'" ng-bind-html="element.custom_fields.descrhtmlen"></p>
+                </div>
+            </div>            
+        </div>
+    </modal>
+
     <div class="container-fluid">
         <div class="row no-gutter">
             <div class="col-lg-6 col-sm-6">
                 <div class="portfolio-box">
-                    <img src="<?php echo get_template_directory_uri(); ?>/img/taxi_1.jpg" class="img-responsive" alt="">
-                    <div class="portfolio-box-caption">
-                        <div class="portfolio-box-caption-content">
-                            <div ng-if="currentLanguage == 'it'">
-                                <?php $id = 220; $p = get_page($id); echo apply_filters('the_content', $p->descrhtmlit); ?>
+                    <a href="javascript:void(0);" ng-click="descriptionAbout('abouttransfer')" class="portfolio-box">
+                        <img src="<?php echo get_template_directory_uri(); ?>/img/taxi_1.jpg" class="img-responsive" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="row no-gutter serviceContent" ng-if="currentLanguage == 'it'">
+                                    <?php $id = 220; $p = get_page($id); echo apply_filters('the_content', $p->descrhtmlit); ?>
+                                </div>
+                                <div class="row no-gutter serviceContent" ng-if="currentLanguage == 'en'">
+                                    <?php $id = 220; $p = get_page($id); echo apply_filters('the_content', $p->descrhtmlen); ?>
+                                </div>                            
                             </div>
-                            <div class="row no-gutter" ng-if="currentLanguage == 'en'">
-                                <?php $id = 220; $p = get_page($id); echo apply_filters('the_content', $p->descrhtmlen); ?>
-                            </div>
-
-                            
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
             <div class="col-lg-6 col-sm-6">
                 <div class="portfolio-box">
-                    <img src="<?php echo get_template_directory_uri(); ?>/img/taxi_2.jpg" class="img-responsive" alt="">
-                    <div class="portfolio-box-caption">
-                        <div class="portfolio-box-caption-content">
-                            <div ng-if="currentLanguage == 'it'">
-                                <?php $id = 228; $p = get_page($id); echo apply_filters('the_content', $p->descrhtmlit); ?>
-                            </div>
-                            <div class="row no-gutter" ng-if="currentLanguage == 'en'">
-                                <?php $id = 228; $p = get_page($id); echo apply_filters('the_content', $p->descrhtmlen); ?>
+                    <a href="javascript:void(0);" ng-click="descriptionAbout('aboutexcursion')" class="portfolio-box">
+                        <img src="<?php echo get_template_directory_uri(); ?>/img/taxi_2.jpg" class="img-responsive" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="row no-gutter serviceContent" ng-if="currentLanguage == 'it'">
+                                    <?php $id = 228; $p = get_page($id); echo apply_filters('the_content', $p->descrhtmlit); ?>
+                                </div>
+                                <div class="row no-gutter serviceContent" ng-if="currentLanguage == 'en'">
+                                    <?php $id = 228; $p = get_page($id); echo apply_filters('the_content', $p->descrhtmlen); ?>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -109,9 +126,9 @@
             -->
             <div class="col-lg-4 col-md-6 text-center">
                 <div class="service-box">
-                    <img ng-click="descriptionService('pizza')" src="<?php echo get_template_directory_uri(); ?>/img/portfolio/services/pizza.png" style="width:200px;height:200px" class="img img-circle"> 
+                    <img ng-click="descriptionService('pizzaclass')" src="<?php echo get_template_directory_uri(); ?>/img/portfolio/services/pizza.png" style="width:200px;height:200px" class="img img-circle"> 
                     <div  ng-if="currentLanguage == 'it'">
-                        <h3 class="titleOurServices" ng-click="descriptionService('pizza')">
+                        <h3 class="titleOurServices" ng-click="descriptionService('pizzaclass')">
                             <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicetitlepizzait); ?>
                         </h3>
                         <div class="text-muted serviceContent">
@@ -119,7 +136,7 @@
                         </div>
                     </div>
                     <div  ng-if="currentLanguage == 'en'">
-                        <h3 class="titleOurServices" ng-click="descriptionService('pizza')">
+                        <h3 class="titleOurServices" ng-click="descriptionService('pizzaclass')">
                             <?php $id = 245; $p = get_page($id); echo apply_filters('the_content', $p->servicetitlepizzaen); ?>
                         </h3>
                         <div class="text-muted serviceContent">
@@ -260,7 +277,7 @@
     <div class="container-fluid">
         <div class="row no-gutter">
             <div class="col-lg-4 col-sm-6">
-                <a <a href="javascript:void(0);" ng-click="descriptionExcursions('amalfi')" class="portfolio-box">
+                <a href="javascript:void(0);" ng-click="descriptionExcursions('amalfi')" class="portfolio-box">
                     <img src="<?php echo get_template_directory_uri(); ?>/img/portfolio/1.jpg" class="img-responsive" alt="">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">

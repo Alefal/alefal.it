@@ -32,6 +32,31 @@ angular.module('amalfitourscarservice')
     };
   })
 
+  .controller('AboutCtrl', function($scope,$translate,$filter,ajaxCallServices,$window) {
+   $scope.replaceStr = function(str){
+      console.log(str);
+      return str;
+    };
+
+    $scope.descriptionAbout = function(service){
+      
+      $scope.detailsService   = '';
+      $scope.modalTitle       = '';
+
+      ajaxCallServices.getService(service)
+        .success(function (detailsService) {
+          //console.log('detailsService: '+JSON.stringify(detailsService));
+          $scope.detailsService = detailsService;
+          $scope.modalTitle = detailsService.posts[0].title;
+      
+          $scope.showModalAbout = false;
+          $scope.showModalAbout = !$scope.showModalAbout;
+        }).error(function (error) {
+          console.log('Error');
+        });
+    };
+  })
+
   .controller('ServicesCtrl', function($scope,$translate,$filter,ajaxCallServices,$window) {
 
    $scope.replaceStr = function(str){

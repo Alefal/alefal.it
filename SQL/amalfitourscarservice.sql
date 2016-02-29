@@ -1,23 +1,23 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.7.1
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
--- Host: 62.149.150.176
--- Generato il: Feb 29, 2016 alle 13:17
--- Versione del server: 5.5.45
--- Versione PHP: 5.3.8
+-- Host: 127.0.0.1
+-- Creato il: Feb 29, 2016 alle 23:32
+-- Versione del server: 10.1.8-MariaDB
+-- Versione PHP: 5.6.14
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `Sql932507_1`
+-- Database: `amalfitourscarservice`
 --
 
 -- --------------------------------------------------------
@@ -26,15 +26,12 @@ SET time_zone = "+00:00";
 -- Struttura della tabella `wp_commentmeta`
 --
 
-CREATE TABLE IF NOT EXISTS `wp_commentmeta` (
-  `meta_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `comment_id` bigint(20) unsigned NOT NULL DEFAULT '0',
+CREATE TABLE `wp_commentmeta` (
+  `meta_id` bigint(20) UNSIGNED NOT NULL,
+  `comment_id` bigint(20) UNSIGNED NOT NULL DEFAULT '0',
   `meta_key` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `meta_value` longtext COLLATE utf8mb4_unicode_ci,
-  PRIMARY KEY (`meta_id`),
-  KEY `comment_id` (`comment_id`),
-  KEY `meta_key` (`meta_key`(191))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+  `meta_value` longtext COLLATE utf8mb4_unicode_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -42,9 +39,9 @@ CREATE TABLE IF NOT EXISTS `wp_commentmeta` (
 -- Struttura della tabella `wp_comments`
 --
 
-CREATE TABLE IF NOT EXISTS `wp_comments` (
-  `comment_ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `comment_post_ID` bigint(20) unsigned NOT NULL DEFAULT '0',
+CREATE TABLE `wp_comments` (
+  `comment_ID` bigint(20) UNSIGNED NOT NULL,
+  `comment_post_ID` bigint(20) UNSIGNED NOT NULL DEFAULT '0',
   `comment_author` tinytext COLLATE utf8mb4_unicode_ci NOT NULL,
   `comment_author_email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `comment_author_url` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
@@ -56,15 +53,9 @@ CREATE TABLE IF NOT EXISTS `wp_comments` (
   `comment_approved` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1',
   `comment_agent` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `comment_type` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `comment_parent` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `user_id` bigint(20) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`comment_ID`),
-  KEY `comment_post_ID` (`comment_post_ID`),
-  KEY `comment_approved_date_gmt` (`comment_approved`,`comment_date_gmt`),
-  KEY `comment_date_gmt` (`comment_date_gmt`),
-  KEY `comment_parent` (`comment_parent`),
-  KEY `comment_author_email` (`comment_author_email`(10))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+  `comment_parent` bigint(20) UNSIGNED NOT NULL DEFAULT '0',
+  `user_id` bigint(20) UNSIGNED NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -72,23 +63,21 @@ CREATE TABLE IF NOT EXISTS `wp_comments` (
 -- Struttura della tabella `wp_links`
 --
 
-CREATE TABLE IF NOT EXISTS `wp_links` (
-  `link_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `wp_links` (
+  `link_id` bigint(20) UNSIGNED NOT NULL,
   `link_url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `link_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `link_image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `link_target` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `link_description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `link_visible` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Y',
-  `link_owner` bigint(20) unsigned NOT NULL DEFAULT '1',
+  `link_owner` bigint(20) UNSIGNED NOT NULL DEFAULT '1',
   `link_rating` int(11) NOT NULL DEFAULT '0',
   `link_updated` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `link_rel` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `link_notes` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `link_rss` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  PRIMARY KEY (`link_id`),
-  KEY `link_visible` (`link_visible`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+  `link_rss` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -96,26 +85,24 @@ CREATE TABLE IF NOT EXISTS `wp_links` (
 -- Struttura della tabella `wp_options`
 --
 
-CREATE TABLE IF NOT EXISTS `wp_options` (
-  `option_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `wp_options` (
+  `option_id` bigint(20) UNSIGNED NOT NULL,
   `option_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `option_value` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `autoload` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'yes',
-  PRIMARY KEY (`option_id`),
-  UNIQUE KEY `option_name` (`option_name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1387 ;
+  `autoload` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'yes'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dump dei dati per la tabella `wp_options`
 --
 
 INSERT INTO `wp_options` (`option_id`, `option_name`, `option_value`, `autoload`) VALUES
-(1, 'siteurl', 'http://www.amalfitourscarservice.it/', 'yes'),
-(2, 'home', 'http://www.amalfitourscarservice.it/', 'yes'),
+(1, 'siteurl', 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/', 'yes'),
+(2, 'home', 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/', 'yes'),
 (3, 'blogname', 'amalfitourscarservice', 'yes'),
 (4, 'blogdescription', 'amalfitourscarservice', 'yes'),
 (5, 'users_can_register', '0', 'yes'),
-(6, 'admin_email', 'amalfitourscarservice@gmail.com', 'yes'),
+(6, 'admin_email', 'alefalwebmaster@gmail.com', 'yes'),
 (7, 'start_of_week', '1', 'yes'),
 (8, 'use_balanceTags', '0', 'yes'),
 (9, 'use_smilies', '1', 'yes'),
@@ -204,7 +191,7 @@ INSERT INTO `wp_options` (`option_id`, `option_name`, `option_value`, `autoload`
 (94, 'widget_archives', 'a:2:{i:2;a:3:{s:5:"title";s:0:"";s:5:"count";i:0;s:8:"dropdown";i:0;}s:12:"_multiwidget";i:1;}', 'yes'),
 (95, 'widget_meta', 'a:2:{i:2;a:1:{s:5:"title";s:0:"";}s:12:"_multiwidget";i:1;}', 'yes'),
 (96, 'sidebars_widgets', 'a:3:{s:19:"wp_inactive_widgets";a:0:{}s:18:"orphaned_widgets_1";a:6:{i:0;s:8:"search-2";i:1;s:14:"recent-posts-2";i:2;s:17:"recent-comments-2";i:3;s:10:"archives-2";i:4;s:12:"categories-2";i:5;s:6:"meta-2";}s:13:"array_version";i:3;}', 'yes'),
-(98, 'cron', 'a:4:{i:1456749809;a:3:{s:16:"wp_version_check";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}s:17:"wp_update_plugins";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}s:16:"wp_update_themes";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}}i:1456749819;a:1:{s:19:"wp_scheduled_delete";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}}i:1456749913;a:1:{s:30:"wp_scheduled_auto_draft_delete";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}}s:7:"version";i:2;}', 'yes'),
+(98, 'cron', 'a:4:{i:1456793009;a:3:{s:16:"wp_version_check";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}s:17:"wp_update_plugins";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}s:16:"wp_update_themes";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}}i:1456836219;a:1:{s:19:"wp_scheduled_delete";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}}i:1456836313;a:1:{s:30:"wp_scheduled_auto_draft_delete";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}}s:7:"version";i:2;}', 'yes'),
 (108, '_transient_random_seed', '43a42f1354d744000a7afd08116a6dfd', 'yes'),
 (122, 'auto_core_update_notified', 'a:4:{s:4:"type";s:7:"success";s:5:"email";s:25:"alefalwebmaster@gmail.com";s:7:"version";s:5:"4.2.4";s:9:"timestamp";i:1438692231;}', 'yes'),
 (134, 'recently_activated', 'a:3:{s:48:"views-output-formats/wp-views-output-formats.php";i:1456152978;s:21:"raw-html/raw_html.php";i:1456152773;s:33:"wp-unformatted/wp-unformatted.php";i:1456152469;}', 'yes'),
@@ -356,15 +343,13 @@ INSERT INTO `wp_options` (`option_id`, `option_name`, `option_value`, `autoload`
 (986, '_site_transient_browser_c6e0d466c988c4043691b020b1fec366', 'a:9:{s:8:"platform";s:7:"Windows";s:4:"name";s:6:"Chrome";s:7:"version";s:13:"47.0.2526.106";s:10:"update_url";s:28:"http://www.google.com/chrome";s:7:"img_src";s:49:"http://s.wordpress.org/images/browsers/chrome.png";s:11:"img_src_ssl";s:48:"https://wordpress.org/images/browsers/chrome.png";s:15:"current_version";s:2:"18";s:7:"upgrade";b:0;s:8:"insecure";b:0;}', 'yes'),
 (1101, '_site_transient_timeout_browser_7bbf6b91fb6a8a8334413fe6497a718d', '1456562318', 'yes'),
 (1102, '_site_transient_browser_7bbf6b91fb6a8a8334413fe6497a718d', 'a:9:{s:8:"platform";s:7:"Windows";s:4:"name";s:6:"Chrome";s:7:"version";s:13:"48.0.2564.109";s:10:"update_url";s:28:"http://www.google.com/chrome";s:7:"img_src";s:49:"http://s.wordpress.org/images/browsers/chrome.png";s:11:"img_src_ssl";s:48:"https://wordpress.org/images/browsers/chrome.png";s:15:"current_version";s:2:"18";s:7:"upgrade";b:0;s:8:"insecure";b:0;}', 'yes'),
-(1133, '_site_transient_timeout_browser_e3ae366e66d1c39ce6cf9f9706edbba9', '1456667461', 'yes'),
-(1134, '_site_transient_browser_e3ae366e66d1c39ce6cf9f9706edbba9', 'a:9:{s:8:"platform";s:7:"Windows";s:4:"name";s:6:"Chrome";s:7:"version";s:13:"48.0.2564.116";s:10:"update_url";s:28:"http://www.google.com/chrome";s:7:"img_src";s:49:"http://s.wordpress.org/images/browsers/chrome.png";s:11:"img_src_ssl";s:48:"https://wordpress.org/images/browsers/chrome.png";s:15:"current_version";s:2:"18";s:7:"upgrade";b:0;s:8:"insecure";b:0;}', 'yes'),
-(1209, '_site_transient_update_themes', 'O:8:"stdClass":4:{s:12:"last_checked";i:1456747859;s:7:"checked";a:1:{s:21:"amalfitourscarservice";s:3:"1.5";}s:8:"response";a:0:{}s:12:"translations";a:0:{}}', 'yes'),
+(1209, '_site_transient_update_themes', 'O:8:"stdClass":4:{s:12:"last_checked";i:1456780028;s:7:"checked";a:1:{s:21:"amalfitourscarservice";s:3:"1.5";}s:8:"response";a:0:{}s:12:"translations";a:0:{}}', 'yes'),
 (1211, '_site_transient_timeout_browser_06d3d9617a2883877c8f5e774e52c741', '1456753612', 'yes'),
 (1212, '_site_transient_browser_06d3d9617a2883877c8f5e774e52c741', 'a:9:{s:8:"platform";s:7:"Windows";s:4:"name";s:6:"Chrome";s:7:"version";s:13:"48.0.2564.116";s:10:"update_url";s:28:"http://www.google.com/chrome";s:7:"img_src";s:49:"http://s.wordpress.org/images/browsers/chrome.png";s:11:"img_src_ssl";s:48:"https://wordpress.org/images/browsers/chrome.png";s:15:"current_version";s:2:"18";s:7:"upgrade";b:0;s:8:"insecure";b:0;}', 'yes'),
-(1228, '_site_transient_update_core', 'O:8:"stdClass":4:{s:7:"updates";a:1:{i:0;O:8:"stdClass":10:{s:8:"response";s:6:"latest";s:8:"download";s:65:"https://downloads.wordpress.org/release/it_IT/wordpress-4.4.2.zip";s:6:"locale";s:5:"it_IT";s:8:"packages";O:8:"stdClass":5:{s:4:"full";s:65:"https://downloads.wordpress.org/release/it_IT/wordpress-4.4.2.zip";s:10:"no_content";b:0;s:11:"new_bundled";b:0;s:7:"partial";b:0;s:8:"rollback";b:0;}s:7:"current";s:5:"4.4.2";s:7:"version";s:5:"4.4.2";s:11:"php_version";s:5:"5.2.4";s:13:"mysql_version";s:3:"5.0";s:11:"new_bundled";s:3:"4.4";s:15:"partial_version";s:0:"";}}s:12:"last_checked";i:1456709275;s:15:"version_checked";s:5:"4.4.2";s:12:"translations";a:0:{}}', 'yes'),
+(1228, '_site_transient_update_core', 'O:8:"stdClass":4:{s:7:"updates";a:1:{i:0;O:8:"stdClass":10:{s:8:"response";s:6:"latest";s:8:"download";s:65:"https://downloads.wordpress.org/release/it_IT/wordpress-4.4.2.zip";s:6:"locale";s:5:"it_IT";s:8:"packages";O:8:"stdClass":5:{s:4:"full";s:65:"https://downloads.wordpress.org/release/it_IT/wordpress-4.4.2.zip";s:10:"no_content";b:0;s:11:"new_bundled";b:0;s:7:"partial";b:0;s:8:"rollback";b:0;}s:7:"current";s:5:"4.4.2";s:7:"version";s:5:"4.4.2";s:11:"php_version";s:5:"5.2.4";s:13:"mysql_version";s:3:"5.0";s:11:"new_bundled";s:3:"4.4";s:15:"partial_version";s:0:"";}}s:12:"last_checked";i:1456780020;s:15:"version_checked";s:5:"4.4.2";s:12:"translations";a:0:{}}', 'yes'),
 (1239, '_site_transient_timeout_poptags_40cd750bba9870f18aada2478b24840a', '1456163134', 'yes'),
 (1240, '_site_transient_poptags_40cd750bba9870f18aada2478b24840a', 'a:100:{s:6:"widget";a:3:{s:4:"name";s:6:"widget";s:4:"slug";s:6:"widget";s:5:"count";s:4:"5703";}s:4:"post";a:3:{s:4:"name";s:4:"Post";s:4:"slug";s:4:"post";s:5:"count";s:4:"3563";}s:6:"plugin";a:3:{s:4:"name";s:6:"plugin";s:4:"slug";s:6:"plugin";s:5:"count";s:4:"3517";}s:5:"admin";a:3:{s:4:"name";s:5:"admin";s:4:"slug";s:5:"admin";s:5:"count";s:4:"3018";}s:5:"posts";a:3:{s:4:"name";s:5:"posts";s:4:"slug";s:5:"posts";s:5:"count";s:4:"2749";}s:9:"shortcode";a:3:{s:4:"name";s:9:"shortcode";s:4:"slug";s:9:"shortcode";s:5:"count";s:4:"2246";}s:7:"sidebar";a:3:{s:4:"name";s:7:"sidebar";s:4:"slug";s:7:"sidebar";s:5:"count";s:4:"2172";}s:6:"google";a:3:{s:4:"name";s:6:"google";s:4:"slug";s:6:"google";s:5:"count";s:4:"2019";}s:7:"twitter";a:3:{s:4:"name";s:7:"twitter";s:4:"slug";s:7:"twitter";s:5:"count";s:4:"1970";}s:4:"page";a:3:{s:4:"name";s:4:"page";s:4:"slug";s:4:"page";s:5:"count";s:4:"1955";}s:6:"images";a:3:{s:4:"name";s:6:"images";s:4:"slug";s:6:"images";s:5:"count";s:4:"1952";}s:8:"comments";a:3:{s:4:"name";s:8:"comments";s:4:"slug";s:8:"comments";s:5:"count";s:4:"1904";}s:5:"image";a:3:{s:4:"name";s:5:"image";s:4:"slug";s:5:"image";s:5:"count";s:4:"1805";}s:8:"facebook";a:3:{s:4:"name";s:8:"Facebook";s:4:"slug";s:8:"facebook";s:5:"count";s:4:"1608";}s:3:"seo";a:3:{s:4:"name";s:3:"seo";s:4:"slug";s:3:"seo";s:5:"count";s:4:"1521";}s:9:"wordpress";a:3:{s:4:"name";s:9:"wordpress";s:4:"slug";s:9:"wordpress";s:5:"count";s:4:"1504";}s:11:"woocommerce";a:3:{s:4:"name";s:11:"woocommerce";s:4:"slug";s:11:"woocommerce";s:5:"count";s:4:"1477";}s:6:"social";a:3:{s:4:"name";s:6:"social";s:4:"slug";s:6:"social";s:5:"count";s:4:"1318";}s:5:"links";a:3:{s:4:"name";s:5:"links";s:4:"slug";s:5:"links";s:5:"count";s:4:"1267";}s:7:"gallery";a:3:{s:4:"name";s:7:"gallery";s:4:"slug";s:7:"gallery";s:5:"count";s:4:"1256";}s:5:"email";a:3:{s:4:"name";s:5:"email";s:4:"slug";s:5:"email";s:5:"count";s:4:"1158";}s:7:"widgets";a:3:{s:4:"name";s:7:"widgets";s:4:"slug";s:7:"widgets";s:5:"count";s:4:"1075";}s:5:"pages";a:3:{s:4:"name";s:5:"pages";s:4:"slug";s:5:"pages";s:5:"count";s:4:"1053";}s:6:"jquery";a:3:{s:4:"name";s:6:"jquery";s:4:"slug";s:6:"jquery";s:5:"count";s:3:"984";}s:5:"media";a:3:{s:4:"name";s:5:"media";s:4:"slug";s:5:"media";s:5:"count";s:3:"948";}s:3:"rss";a:3:{s:4:"name";s:3:"rss";s:4:"slug";s:3:"rss";s:5:"count";s:3:"904";}s:9:"ecommerce";a:3:{s:4:"name";s:9:"ecommerce";s:4:"slug";s:9:"ecommerce";s:5:"count";s:3:"900";}s:4:"ajax";a:3:{s:4:"name";s:4:"AJAX";s:4:"slug";s:4:"ajax";s:5:"count";s:3:"888";}s:5:"video";a:3:{s:4:"name";s:5:"video";s:4:"slug";s:5:"video";s:5:"count";s:3:"881";}s:7:"content";a:3:{s:4:"name";s:7:"content";s:4:"slug";s:7:"content";s:5:"count";s:3:"872";}s:5:"login";a:3:{s:4:"name";s:5:"login";s:4:"slug";s:5:"login";s:5:"count";s:3:"864";}s:10:"javascript";a:3:{s:4:"name";s:10:"javascript";s:4:"slug";s:10:"javascript";s:5:"count";s:3:"814";}s:10:"buddypress";a:3:{s:4:"name";s:10:"buddypress";s:4:"slug";s:10:"buddypress";s:5:"count";s:3:"767";}s:10:"responsive";a:3:{s:4:"name";s:10:"responsive";s:4:"slug";s:10:"responsive";s:5:"count";s:3:"766";}s:8:"security";a:3:{s:4:"name";s:8:"security";s:4:"slug";s:8:"security";s:5:"count";s:3:"752";}s:5:"photo";a:3:{s:4:"name";s:5:"photo";s:4:"slug";s:5:"photo";s:5:"count";s:3:"735";}s:4:"feed";a:3:{s:4:"name";s:4:"feed";s:4:"slug";s:4:"feed";s:5:"count";s:3:"730";}s:4:"spam";a:3:{s:4:"name";s:4:"spam";s:4:"slug";s:4:"spam";s:5:"count";s:3:"729";}s:7:"youtube";a:3:{s:4:"name";s:7:"youtube";s:4:"slug";s:7:"youtube";s:5:"count";s:3:"726";}s:4:"link";a:3:{s:4:"name";s:4:"link";s:4:"slug";s:4:"link";s:5:"count";s:3:"721";}s:5:"share";a:3:{s:4:"name";s:5:"Share";s:4:"slug";s:5:"share";s:5:"count";s:3:"710";}s:10:"e-commerce";a:3:{s:4:"name";s:10:"e-commerce";s:4:"slug";s:10:"e-commerce";s:5:"count";s:3:"709";}s:6:"photos";a:3:{s:4:"name";s:6:"photos";s:4:"slug";s:6:"photos";s:5:"count";s:3:"680";}s:8:"category";a:3:{s:4:"name";s:8:"category";s:4:"slug";s:8:"category";s:5:"count";s:3:"678";}s:9:"analytics";a:3:{s:4:"name";s:9:"analytics";s:4:"slug";s:9:"analytics";s:5:"count";s:3:"662";}s:5:"embed";a:3:{s:4:"name";s:5:"embed";s:4:"slug";s:5:"embed";s:5:"count";s:3:"657";}s:4:"form";a:3:{s:4:"name";s:4:"form";s:4:"slug";s:4:"form";s:5:"count";s:3:"656";}s:3:"css";a:3:{s:4:"name";s:3:"CSS";s:4:"slug";s:3:"css";s:5:"count";s:3:"645";}s:6:"search";a:3:{s:4:"name";s:6:"search";s:4:"slug";s:6:"search";s:5:"count";s:3:"640";}s:9:"slideshow";a:3:{s:4:"name";s:9:"slideshow";s:4:"slug";s:9:"slideshow";s:5:"count";s:3:"631";}s:6:"custom";a:3:{s:4:"name";s:6:"custom";s:4:"slug";s:6:"custom";s:5:"count";s:3:"617";}s:6:"slider";a:3:{s:4:"name";s:6:"slider";s:4:"slug";s:6:"slider";s:5:"count";s:3:"610";}s:5:"stats";a:3:{s:4:"name";s:5:"stats";s:4:"slug";s:5:"stats";s:5:"count";s:3:"599";}s:6:"button";a:3:{s:4:"name";s:6:"button";s:4:"slug";s:6:"button";s:5:"count";s:3:"593";}s:7:"comment";a:3:{s:4:"name";s:7:"comment";s:4:"slug";s:7:"comment";s:5:"count";s:3:"591";}s:5:"theme";a:3:{s:4:"name";s:5:"theme";s:4:"slug";s:5:"theme";s:5:"count";s:3:"583";}s:4:"menu";a:3:{s:4:"name";s:4:"menu";s:4:"slug";s:4:"menu";s:5:"count";s:3:"577";}s:4:"tags";a:3:{s:4:"name";s:4:"tags";s:4:"slug";s:4:"tags";s:5:"count";s:3:"576";}s:9:"dashboard";a:3:{s:4:"name";s:9:"dashboard";s:4:"slug";s:9:"dashboard";s:5:"count";s:3:"570";}s:10:"categories";a:3:{s:4:"name";s:10:"categories";s:4:"slug";s:10:"categories";s:5:"count";s:3:"560";}s:10:"statistics";a:3:{s:4:"name";s:10:"statistics";s:4:"slug";s:10:"statistics";s:5:"count";s:3:"549";}s:6:"mobile";a:3:{s:4:"name";s:6:"mobile";s:4:"slug";s:6:"mobile";s:5:"count";s:3:"541";}s:3:"ads";a:3:{s:4:"name";s:3:"ads";s:4:"slug";s:3:"ads";s:5:"count";s:3:"541";}s:6:"editor";a:3:{s:4:"name";s:6:"editor";s:4:"slug";s:6:"editor";s:5:"count";s:3:"526";}s:4:"user";a:3:{s:4:"name";s:4:"user";s:4:"slug";s:4:"user";s:5:"count";s:3:"526";}s:5:"users";a:3:{s:4:"name";s:5:"users";s:4:"slug";s:5:"users";s:5:"count";s:3:"515";}s:7:"picture";a:3:{s:4:"name";s:7:"picture";s:4:"slug";s:7:"picture";s:5:"count";s:3:"507";}s:4:"list";a:3:{s:4:"name";s:4:"list";s:4:"slug";s:4:"list";s:5:"count";s:3:"503";}s:7:"plugins";a:3:{s:4:"name";s:7:"plugins";s:4:"slug";s:7:"plugins";s:5:"count";s:3:"502";}s:9:"affiliate";a:3:{s:4:"name";s:9:"affiliate";s:4:"slug";s:9:"affiliate";s:5:"count";s:3:"500";}s:6:"simple";a:3:{s:4:"name";s:6:"simple";s:4:"slug";s:6:"simple";s:5:"count";s:3:"483";}s:9:"multisite";a:3:{s:4:"name";s:9:"multisite";s:4:"slug";s:9:"multisite";s:5:"count";s:3:"483";}s:12:"contact-form";a:3:{s:4:"name";s:12:"contact form";s:4:"slug";s:12:"contact-form";s:5:"count";s:3:"477";}s:12:"social-media";a:3:{s:4:"name";s:12:"social media";s:4:"slug";s:12:"social-media";s:5:"count";s:3:"468";}s:8:"pictures";a:3:{s:4:"name";s:8:"pictures";s:4:"slug";s:8:"pictures";s:5:"count";s:3:"458";}s:7:"contact";a:3:{s:4:"name";s:7:"contact";s:4:"slug";s:7:"contact";s:5:"count";s:3:"457";}s:10:"navigation";a:3:{s:4:"name";s:10:"navigation";s:4:"slug";s:10:"navigation";s:5:"count";s:3:"432";}s:3:"url";a:3:{s:4:"name";s:3:"url";s:4:"slug";s:3:"url";s:5:"count";s:3:"432";}s:4:"html";a:3:{s:4:"name";s:4:"html";s:4:"slug";s:4:"html";s:5:"count";s:3:"426";}s:4:"shop";a:3:{s:4:"name";s:4:"shop";s:4:"slug";s:4:"shop";s:5:"count";s:3:"426";}s:5:"flash";a:3:{s:4:"name";s:5:"flash";s:4:"slug";s:5:"flash";s:5:"count";s:3:"425";}s:3:"api";a:3:{s:4:"name";s:3:"api";s:4:"slug";s:3:"api";s:5:"count";s:3:"418";}s:10:"newsletter";a:3:{s:4:"name";s:10:"newsletter";s:4:"slug";s:10:"newsletter";s:5:"count";s:3:"413";}s:9:"marketing";a:3:{s:4:"name";s:9:"marketing";s:4:"slug";s:9:"marketing";s:5:"count";s:3:"411";}s:4:"meta";a:3:{s:4:"name";s:4:"meta";s:4:"slug";s:4:"meta";s:5:"count";s:3:"409";}s:8:"calendar";a:3:{s:4:"name";s:8:"calendar";s:4:"slug";s:8:"calendar";s:5:"count";s:3:"406";}s:6:"events";a:3:{s:4:"name";s:6:"events";s:4:"slug";s:6:"events";s:5:"count";s:3:"401";}s:3:"tag";a:3:{s:4:"name";s:3:"tag";s:4:"slug";s:3:"tag";s:5:"count";s:3:"400";}s:4:"news";a:3:{s:4:"name";s:4:"News";s:4:"slug";s:4:"news";s:5:"count";s:3:"398";}s:8:"tracking";a:3:{s:4:"name";s:8:"tracking";s:4:"slug";s:8:"tracking";s:5:"count";s:3:"393";}s:10:"shortcodes";a:3:{s:4:"name";s:10:"shortcodes";s:4:"slug";s:10:"shortcodes";s:5:"count";s:3:"391";}s:11:"advertising";a:3:{s:4:"name";s:11:"advertising";s:4:"slug";s:11:"advertising";s:5:"count";s:3:"389";}s:9:"thumbnail";a:3:{s:4:"name";s:9:"thumbnail";s:4:"slug";s:9:"thumbnail";s:5:"count";s:3:"388";}s:4:"text";a:3:{s:4:"name";s:4:"text";s:4:"slug";s:4:"text";s:5:"count";s:3:"384";}s:6:"upload";a:3:{s:4:"name";s:6:"upload";s:4:"slug";s:6:"upload";s:5:"count";s:3:"381";}s:4:"code";a:3:{s:4:"name";s:4:"code";s:4:"slug";s:4:"code";s:5:"count";s:3:"381";}s:9:"automatic";a:3:{s:4:"name";s:9:"automatic";s:4:"slug";s:9:"automatic";s:5:"count";s:3:"378";}s:8:"lightbox";a:3:{s:4:"name";s:8:"lightbox";s:4:"slug";s:8:"lightbox";s:5:"count";s:3:"376";}s:6:"paypal";a:3:{s:4:"name";s:6:"paypal";s:4:"slug";s:6:"paypal";s:5:"count";s:3:"375";}s:7:"sharing";a:3:{s:4:"name";s:7:"sharing";s:4:"slug";s:7:"sharing";s:5:"count";s:3:"374";}}', 'yes'),
-(1248, '_site_transient_update_plugins', 'O:8:"stdClass":4:{s:12:"last_checked";i:1456709279;s:8:"response";a:0:{}s:12:"translations";a:0:{}s:9:"no_update";a:6:{s:30:"advanced-custom-fields/acf.php";O:8:"stdClass":6:{s:2:"id";s:5:"21367";s:4:"slug";s:22:"advanced-custom-fields";s:6:"plugin";s:30:"advanced-custom-fields/acf.php";s:11:"new_version";s:5:"4.4.5";s:3:"url";s:53:"https://wordpress.org/plugins/advanced-custom-fields/";s:7:"package";s:71:"https://downloads.wordpress.org/plugin/advanced-custom-fields.4.4.5.zip";}s:33:"acf-qtranslate/acf-qtranslate.php";O:8:"stdClass":6:{s:2:"id";s:5:"45939";s:4:"slug";s:14:"acf-qtranslate";s:6:"plugin";s:33:"acf-qtranslate/acf-qtranslate.php";s:11:"new_version";s:5:"1.7.9";s:3:"url";s:45:"https://wordpress.org/plugins/acf-qtranslate/";s:7:"package";s:63:"https://downloads.wordpress.org/plugin/acf-qtranslate.1.7.9.zip";}s:19:"akismet/akismet.php";O:8:"stdClass":6:{s:2:"id";s:2:"15";s:4:"slug";s:7:"akismet";s:6:"plugin";s:19:"akismet/akismet.php";s:11:"new_version";s:5:"3.1.7";s:3:"url";s:38:"https://wordpress.org/plugins/akismet/";s:7:"package";s:56:"https://downloads.wordpress.org/plugin/akismet.3.1.7.zip";}s:9:"hello.php";O:8:"stdClass":6:{s:2:"id";s:4:"3564";s:4:"slug";s:11:"hello-dolly";s:6:"plugin";s:9:"hello.php";s:11:"new_version";s:3:"1.6";s:3:"url";s:42:"https://wordpress.org/plugins/hello-dolly/";s:7:"package";s:58:"https://downloads.wordpress.org/plugin/hello-dolly.1.6.zip";}s:21:"json-api/json-api.php";O:8:"stdClass":7:{s:2:"id";s:5:"11250";s:4:"slug";s:8:"json-api";s:6:"plugin";s:21:"json-api/json-api.php";s:11:"new_version";s:5:"1.1.1";s:3:"url";s:39:"https://wordpress.org/plugins/json-api/";s:7:"package";s:57:"https://downloads.wordpress.org/plugin/json-api.1.1.3.zip";s:14:"upgrade_notice";s:35:"Added support for custom taxonomies";}s:29:"wp-mail-smtp/wp_mail_smtp.php";O:8:"stdClass":7:{s:2:"id";s:3:"951";s:4:"slug";s:12:"wp-mail-smtp";s:6:"plugin";s:29:"wp-mail-smtp/wp_mail_smtp.php";s:11:"new_version";s:5:"0.9.5";s:3:"url";s:43:"https://wordpress.org/plugins/wp-mail-smtp/";s:7:"package";s:61:"https://downloads.wordpress.org/plugin/wp-mail-smtp.0.9.6.zip";s:14:"upgrade_notice";s:38:"Minor security fix, hat tip JD Grimes.";}}}', 'yes'),
+(1248, '_site_transient_update_plugins', 'O:8:"stdClass":4:{s:12:"last_checked";i:1456780025;s:8:"response";a:0:{}s:12:"translations";a:0:{}s:9:"no_update";a:6:{s:30:"advanced-custom-fields/acf.php";O:8:"stdClass":6:{s:2:"id";s:5:"21367";s:4:"slug";s:22:"advanced-custom-fields";s:6:"plugin";s:30:"advanced-custom-fields/acf.php";s:11:"new_version";s:5:"4.4.5";s:3:"url";s:53:"https://wordpress.org/plugins/advanced-custom-fields/";s:7:"package";s:71:"https://downloads.wordpress.org/plugin/advanced-custom-fields.4.4.5.zip";}s:33:"acf-qtranslate/acf-qtranslate.php";O:8:"stdClass":6:{s:2:"id";s:5:"45939";s:4:"slug";s:14:"acf-qtranslate";s:6:"plugin";s:33:"acf-qtranslate/acf-qtranslate.php";s:11:"new_version";s:5:"1.7.9";s:3:"url";s:45:"https://wordpress.org/plugins/acf-qtranslate/";s:7:"package";s:63:"https://downloads.wordpress.org/plugin/acf-qtranslate.1.7.9.zip";}s:19:"akismet/akismet.php";O:8:"stdClass":6:{s:2:"id";s:2:"15";s:4:"slug";s:7:"akismet";s:6:"plugin";s:19:"akismet/akismet.php";s:11:"new_version";s:5:"3.1.7";s:3:"url";s:38:"https://wordpress.org/plugins/akismet/";s:7:"package";s:56:"https://downloads.wordpress.org/plugin/akismet.3.1.7.zip";}s:9:"hello.php";O:8:"stdClass":6:{s:2:"id";s:4:"3564";s:4:"slug";s:11:"hello-dolly";s:6:"plugin";s:9:"hello.php";s:11:"new_version";s:3:"1.6";s:3:"url";s:42:"https://wordpress.org/plugins/hello-dolly/";s:7:"package";s:58:"https://downloads.wordpress.org/plugin/hello-dolly.1.6.zip";}s:21:"json-api/json-api.php";O:8:"stdClass":7:{s:2:"id";s:5:"11250";s:4:"slug";s:8:"json-api";s:6:"plugin";s:21:"json-api/json-api.php";s:11:"new_version";s:5:"1.1.1";s:3:"url";s:39:"https://wordpress.org/plugins/json-api/";s:7:"package";s:57:"https://downloads.wordpress.org/plugin/json-api.1.1.3.zip";s:14:"upgrade_notice";s:35:"Added support for custom taxonomies";}s:29:"wp-mail-smtp/wp_mail_smtp.php";O:8:"stdClass":7:{s:2:"id";s:3:"951";s:4:"slug";s:12:"wp-mail-smtp";s:6:"plugin";s:29:"wp-mail-smtp/wp_mail_smtp.php";s:11:"new_version";s:5:"0.9.5";s:3:"url";s:43:"https://wordpress.org/plugins/wp-mail-smtp/";s:7:"package";s:61:"https://downloads.wordpress.org/plugin/wp-mail-smtp.0.9.6.zip";s:14:"upgrade_notice";s:38:"Minor security fix, hat tip JD Grimes.";}}}', 'yes'),
 (1254, 'category_children', 'a:0:{}', 'yes'),
 (1275, '_site_transient_timeout_browser_9db1e73107cd717e7b5a1ffa9d8049e8', '1456767619', 'yes'),
 (1276, '_site_transient_browser_9db1e73107cd717e7b5a1ffa9d8049e8', 'a:9:{s:8:"platform";s:7:"Windows";s:4:"name";s:7:"Firefox";s:7:"version";s:4:"43.0";s:10:"update_url";s:23:"http://www.firefox.com/";s:7:"img_src";s:50:"http://s.wordpress.org/images/browsers/firefox.png";s:11:"img_src_ssl";s:49:"https://wordpress.org/images/browsers/firefox.png";s:15:"current_version";s:2:"16";s:7:"upgrade";b:0;s:8:"insecure";b:0;}', 'yes'),
@@ -393,8 +378,10 @@ INSERT INTO `wp_options` (`option_id`, `option_name`, `option_value`, `autoload`
 (1373, '_transient_feed_mod_b9388c83948825c1edaef0d856b7b109', '1456745109', 'no'),
 (1374, '_transient_timeout_dash_29eefda0bdc5977617f778df7e755d87', '1456788309', 'no'),
 (1375, '_transient_dash_29eefda0bdc5977617f778df7e755d87', '<div class="rss-widget"><ul><li><a class=''rsswidget'' href=''https://it.wordpress.org/news/2016/02/wordcamp-torino-2016/''>WordCamp Torino 2016</a> <span class="rss-date">22 febbraio 2016</span><div class="rssSummary">Dopo 3 anni, tornano in Italia i WordCamp: per la prima volta a Torino, da Toolbox, la sede che tutti i mesi ospita il Meetup della Community torinese. L’evento si svolgerà su due giorni: Venerdì 1 aprile: Contributor Day. Lavoreremo insieme, dividendoci nei diversi team che contribuiscono al progetto Open Source. Come per l’incontro di [&hellip;]</div></li></ul></div><div class="rss-widget"><ul><li><a class=''rsswidget'' href=''http://wptavern.com/mandrill-to-discontinue-free-tier-for-transactional-emails-developers-seek-alternatives''>WPTavern: Mandrill to Discontinue Free Tier for Transactional Emails, Developers Seek Alternatives</a></li><li><a class=''rsswidget'' href=''http://wptavern.com/austin-wordpress-meetup-to-host-charity-hackathon-april-8-2016''>WPTavern: Austin WordPress Meetup to Host Charity Hackathon April 8, 2016</a></li><li><a class=''rsswidget'' href=''http://wptavern.com/the-wordpress-plugin-directory-is-getting-a-makeover''>WPTavern: The WordPress Plugin Directory Is Getting a Makeover</a></li></ul></div><div class="rss-widget"><ul><li class=''dashboard-news-plugin''><span>Plugin popolare:</span> <a href=''https://wordpress.org/plugins/siteorigin-panels/'' class=''dashboard-news-plugin-link''>Page Builder by SiteOrigin</a>&nbsp;<span>(<a href=''plugin-install.php?tab=plugin-information&amp;plugin=siteorigin-panels&amp;_wpnonce=44c47af7ac&amp;TB_iframe=true&amp;width=600&amp;height=800'' class=''thickbox'' title=''Page Builder by SiteOrigin''>Installa</a>)</span></li></ul></div>', 'no'),
-(1384, '_site_transient_timeout_theme_roots', '1456749658', 'yes'),
-(1385, '_site_transient_theme_roots', 'a:1:{s:21:"amalfitourscarservice";s:7:"/themes";}', 'yes');
+(1389, '_site_transient_timeout_theme_roots', '1456781821', 'yes'),
+(1390, '_site_transient_theme_roots', 'a:1:{s:21:"amalfitourscarservice";s:7:"/themes";}', 'yes'),
+(1391, '_site_transient_timeout_browser_e3ae366e66d1c39ce6cf9f9706edbba9', '1457384836', 'yes'),
+(1392, '_site_transient_browser_e3ae366e66d1c39ce6cf9f9706edbba9', 'a:9:{s:8:"platform";s:7:"Windows";s:4:"name";s:6:"Chrome";s:7:"version";s:13:"48.0.2564.116";s:10:"update_url";s:28:"http://www.google.com/chrome";s:7:"img_src";s:49:"http://s.wordpress.org/images/browsers/chrome.png";s:11:"img_src_ssl";s:48:"https://wordpress.org/images/browsers/chrome.png";s:15:"current_version";s:2:"18";s:7:"upgrade";b:0;s:8:"insecure";b:0;}', 'yes');
 
 -- --------------------------------------------------------
 
@@ -402,15 +389,12 @@ INSERT INTO `wp_options` (`option_id`, `option_name`, `option_value`, `autoload`
 -- Struttura della tabella `wp_postmeta`
 --
 
-CREATE TABLE IF NOT EXISTS `wp_postmeta` (
-  `meta_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `post_id` bigint(20) unsigned NOT NULL DEFAULT '0',
+CREATE TABLE `wp_postmeta` (
+  `meta_id` bigint(20) UNSIGNED NOT NULL,
+  `post_id` bigint(20) UNSIGNED NOT NULL DEFAULT '0',
   `meta_key` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `meta_value` longtext COLLATE utf8mb4_unicode_ci,
-  PRIMARY KEY (`meta_id`),
-  KEY `post_id` (`post_id`),
-  KEY `meta_key` (`meta_key`(191))
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=2734 ;
+  `meta_value` longtext COLLATE utf8mb4_unicode_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dump dei dati per la tabella `wp_postmeta`
@@ -437,7 +421,7 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (39, 14, '_menu_item_url', ''),
 (40, 14, '_menu_item_orphaned', '1439296817'),
 (41, 15, '_edit_last', '1'),
-(42, 15, '_edit_lock', '1456164135:1'),
+(42, 15, '_edit_lock', '1456782745:1'),
 (135, 43, '_edit_last', '1'),
 (139, 43, 'position', 'normal'),
 (140, 43, 'layout', 'no_box'),
@@ -555,7 +539,7 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (813, 134, '_menu_item_xfn', ''),
 (814, 134, '_menu_item_url', ''),
 (833, 137, '_edit_last', '1'),
-(834, 137, '_edit_lock', '1456161227:1'),
+(834, 137, '_edit_lock', '1456782705:1'),
 (837, 138, 'immagine', '111'),
 (838, 138, '_immagine', 'field_55d1c81541a8b'),
 (839, 138, 'descrizione', 'Tempo medio: 2:30\r\n\r\nAmalfi è diventata meta di un turismo di classe, con artisti di ogni parte del mondo, personaggi del cinema e della cultura che la scelgono come luogo dove soggiornare grazie anche alla natura incontaminata del suo territorio, al suo mare cristallino e al suo clima mite che dilata incredibilmente le estati'),
@@ -581,7 +565,7 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (867, 140, 'description', ''),
 (868, 140, '_description', 'field_55d1c4b0bee1d'),
 (869, 141, '_edit_last', '1'),
-(870, 141, '_edit_lock', '1456746323:1'),
+(870, 141, '_edit_lock', '1456782692:1'),
 (873, 142, 'immagine', ''),
 (874, 142, '_immagine', 'field_55d1c81541a8b'),
 (875, 142, 'descrizione', ''),
@@ -633,7 +617,7 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (942, 149, '_description', 'field_55d1c4b0bee1d'),
 (943, 149, 'imgurl', 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/wp-content/uploads/2016/01/taxi_1.jpg'),
 (944, 149, '_imgurl', 'field_56965a3cbacd7'),
-(945, 141, 'imgurl', 'http://www.amalfitourscarservice.it/wp-content/uploads/2016/01/transfetHeader.png'),
+(945, 141, 'imgurl', 'wp-content/uploads/2016/01/transfetHeader.png'),
 (946, 141, '_imgurl', 'field_56965a3cbacd7'),
 (947, 43, 'field_56965b5a7c9f4', 'a:11:{s:3:"key";s:19:"field_56965b5a7c9f4";s:5:"label";s:8:"Immagine";s:4:"name";s:8:"immagine";s:4:"type";s:5:"image";s:12:"instructions";s:0:"";s:8:"required";s:1:"0";s:11:"save_format";s:3:"url";s:12:"preview_size";s:6:"medium";s:7:"library";s:3:"all";s:17:"conditional_logic";a:3:{s:6:"status";s:1:"0";s:5:"rules";a:1:{i:0;a:3:{s:5:"field";s:4:"null";s:8:"operator";s:2:"==";s:5:"value";s:0:"";}}s:8:"allorany";s:3:"all";}s:8:"order_no";i:2;}'),
 (951, 150, 'immagine', '147'),
@@ -723,7 +707,7 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (1059, 158, '_', 'field_56c82a0501779'),
 (1062, 141, '_wp_old_slug', 'ncc'),
 (1063, 160, '_edit_last', '1'),
-(1064, 160, '_edit_lock', '1456676360:1'),
+(1064, 160, '_edit_lock', '1456782656:1'),
 (1067, 161, 'descrhtmlit', 'Wine Tour IT'),
 (1068, 161, '_descrhtmlit', 'field_56c829c901778'),
 (1069, 161, 'descrhtmlen', 'Wine Tour EN'),
@@ -739,7 +723,7 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (1079, 160, '_descrhtmlen', 'field_56c82ab66e595'),
 (1080, 160, 'immagine', '173'),
 (1081, 160, '_immagine', 'field_56965b5a7c9f4'),
-(1082, 160, 'imgurl', 'http://www.amalfitourscarservice.it/wp-content/uploads/2016/02/winetourHeader.png'),
+(1082, 160, 'imgurl', 'wp-content/uploads/2016/02/winetourHeader.png'),
 (1083, 160, '_imgurl', 'field_56965a3cbacd7'),
 (1084, 160, '_', 'field_56c82a0501779'),
 (1087, 162, 'descrhtmlit', 'aaa'),
@@ -768,7 +752,7 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (1112, 164, '_imgurl', 'field_56965a3cbacd7'),
 (1113, 164, '_', 'field_56c82a0501779'),
 (1114, 165, '_edit_last', '1'),
-(1115, 165, '_edit_lock', '1456745552:1'),
+(1115, 165, '_edit_lock', '1456782642:1'),
 (1118, 166, 'descrhtmlit', '<h3 class="titleOurServices ng-binding">Happy hour cheese tasting IT</h3>'),
 (1119, 166, '_descrhtmlit', 'field_56c829c901778'),
 (1120, 166, 'descrhtmlen', '<h3 class="titleOurServices ng-binding">Happy hour cheese tasting EN</h3>'),
@@ -784,7 +768,7 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (1130, 165, '_descrhtmlen', 'field_56c82ab66e595'),
 (1131, 165, 'immagine', '163'),
 (1132, 165, '_immagine', 'field_56965b5a7c9f4'),
-(1133, 165, 'imgurl', 'http://www.amalfitourscarservice.it/wp-content/uploads/2016/01/cheeseHeader.png'),
+(1133, 165, 'imgurl', 'wp-content/uploads/2016/01/cheeseHeader.png'),
 (1134, 165, '_imgurl', 'field_56965a3cbacd7'),
 (1135, 165, '_', 'field_56c82a0501779'),
 (1138, 167, 'descrhtmlit', 'aaaaa'),
@@ -846,7 +830,7 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (1204, 174, '_imgurl', 'field_56965a3cbacd7'),
 (1205, 174, '_', 'field_56c82a0501779'),
 (1206, 175, '_edit_last', '1'),
-(1207, 175, '_edit_lock', '1456676220:1'),
+(1207, 175, '_edit_lock', '1456782628:1'),
 (1208, 176, '_wp_attached_file', '2016/02/lemontourHeader.png'),
 (1209, 176, '_wp_attachment_metadata', 'a:5:{s:5:"width";i:1200;s:6:"height";i:250;s:4:"file";s:27:"2016/02/lemontourHeader.png";s:5:"sizes";a:4:{s:9:"thumbnail";a:4:{s:4:"file";s:27:"lemontourHeader-150x150.png";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:9:"image/png";}s:6:"medium";a:4:{s:4:"file";s:26:"lemontourHeader-300x63.png";s:5:"width";i:300;s:6:"height";i:63;s:9:"mime-type";s:9:"image/png";}s:12:"medium_large";a:4:{s:4:"file";s:27:"lemontourHeader-768x160.png";s:5:"width";i:768;s:6:"height";i:160;s:9:"mime-type";s:9:"image/png";}s:5:"large";a:4:{s:4:"file";s:28:"lemontourHeader-1024x213.png";s:5:"width";i:1024;s:6:"height";i:213;s:9:"mime-type";s:9:"image/png";}}s:10:"image_meta";a:12:{s:8:"aperture";i:0;s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";i:0;s:9:"copyright";s:0:"";s:12:"focal_length";i:0;s:3:"iso";i:0;s:13:"shutter_speed";i:0;s:5:"title";s:0:"";s:11:"orientation";i:0;s:8:"keywords";a:0:{}}}'),
 (1212, 177, 'descrhtmlit', 'LT it'),
@@ -864,11 +848,11 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (1224, 175, '_descrhtmlen', 'field_56c82ab66e595'),
 (1225, 175, 'immagine', '176'),
 (1226, 175, '_immagine', 'field_56965b5a7c9f4'),
-(1227, 175, 'imgurl', 'http://www.amalfitourscarservice.it/wp-content/uploads/2016/02/lemontourHeader.png'),
+(1227, 175, 'imgurl', 'wp-content/uploads/2016/02/lemontourHeader.png'),
 (1228, 175, '_imgurl', 'field_56965a3cbacd7'),
 (1229, 175, '_', 'field_56c82a0501779'),
 (1230, 178, '_edit_last', '1'),
-(1231, 178, '_edit_lock', '1456745745:1'),
+(1231, 178, '_edit_lock', '1456782599:1'),
 (1232, 179, '_wp_attached_file', '2016/02/cookingclassHeader.png'),
 (1233, 179, '_wp_attachment_metadata', 'a:5:{s:5:"width";i:1200;s:6:"height";i:250;s:4:"file";s:30:"2016/02/cookingclassHeader.png";s:5:"sizes";a:4:{s:9:"thumbnail";a:4:{s:4:"file";s:30:"cookingclassHeader-150x150.png";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:9:"image/png";}s:6:"medium";a:4:{s:4:"file";s:29:"cookingclassHeader-300x63.png";s:5:"width";i:300;s:6:"height";i:63;s:9:"mime-type";s:9:"image/png";}s:12:"medium_large";a:4:{s:4:"file";s:30:"cookingclassHeader-768x160.png";s:5:"width";i:768;s:6:"height";i:160;s:9:"mime-type";s:9:"image/png";}s:5:"large";a:4:{s:4:"file";s:31:"cookingclassHeader-1024x213.png";s:5:"width";i:1024;s:6:"height";i:213;s:9:"mime-type";s:9:"image/png";}}s:10:"image_meta";a:12:{s:8:"aperture";i:0;s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";i:0;s:9:"copyright";s:0:"";s:12:"focal_length";i:0;s:3:"iso";i:0;s:13:"shutter_speed";i:0;s:5:"title";s:0:"";s:11:"orientation";i:0;s:8:"keywords";a:0:{}}}'),
 (1236, 180, 'descrhtmlit', 'CC it'),
@@ -886,11 +870,11 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (1248, 178, '_descrhtmlen', 'field_56c82ab66e595'),
 (1249, 178, 'immagine', '179'),
 (1250, 178, '_immagine', 'field_56965b5a7c9f4'),
-(1251, 178, 'imgurl', 'http://www.amalfitourscarservice.it/wp-content/uploads/2016/02/cookingclassHeader.png'),
+(1251, 178, 'imgurl', 'wp-content/uploads/2016/02/cookingclassHeader.png'),
 (1252, 178, '_imgurl', 'field_56965a3cbacd7'),
 (1253, 178, '_', 'field_56c82a0501779'),
 (1254, 181, '_edit_last', '1'),
-(1255, 181, '_edit_lock', '1456745180:1'),
+(1255, 181, '_edit_lock', '1456782584:1'),
 (1256, 182, '_wp_attached_file', '2016/02/mozzarellaHeader.png'),
 (1257, 182, '_wp_attachment_metadata', 'a:5:{s:5:"width";i:1200;s:6:"height";i:250;s:4:"file";s:28:"2016/02/mozzarellaHeader.png";s:5:"sizes";a:4:{s:9:"thumbnail";a:4:{s:4:"file";s:28:"mozzarellaHeader-150x150.png";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:9:"image/png";}s:6:"medium";a:4:{s:4:"file";s:27:"mozzarellaHeader-300x63.png";s:5:"width";i:300;s:6:"height";i:63;s:9:"mime-type";s:9:"image/png";}s:12:"medium_large";a:4:{s:4:"file";s:28:"mozzarellaHeader-768x160.png";s:5:"width";i:768;s:6:"height";i:160;s:9:"mime-type";s:9:"image/png";}s:5:"large";a:4:{s:4:"file";s:29:"mozzarellaHeader-1024x213.png";s:5:"width";i:1024;s:6:"height";i:213;s:9:"mime-type";s:9:"image/png";}}s:10:"image_meta";a:12:{s:8:"aperture";i:0;s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";i:0;s:9:"copyright";s:0:"";s:12:"focal_length";i:0;s:3:"iso";i:0;s:13:"shutter_speed";i:0;s:5:"title";s:0:"";s:11:"orientation";i:0;s:8:"keywords";a:0:{}}}'),
 (1260, 183, 'descrhtmlit', 'MC it'),
@@ -908,7 +892,7 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (1272, 181, '_descrhtmlen', 'field_56c82ab66e595'),
 (1273, 181, 'immagine', '182'),
 (1274, 181, '_immagine', 'field_56965b5a7c9f4'),
-(1275, 181, 'imgurl', 'http://www.amalfitourscarservice.it/wp-content/uploads/2016/02/mozzarellaHeader.png'),
+(1275, 181, 'imgurl', 'wp-content/uploads/2016/02/mozzarellaHeader.png'),
 (1276, 181, '_imgurl', 'field_56965a3cbacd7'),
 (1277, 181, '_', 'field_56c82a0501779'),
 (1280, 184, 'descrhtmlit', 'Escursione'),
@@ -935,9 +919,9 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (1305, 185, 'imgurl', ''),
 (1306, 185, '_imgurl', 'field_56965a3cbacd7'),
 (1307, 185, 'galleria_immagini', '<a href="http://localhost/alefal.it/PROJECTS/amalfitourscarservice/wp-content/uploads/2016/02/mozzarellaHeader.png" rel="attachment wp-att-182"><img class="alignnone size-medium wp-image-182" src="http://localhost/alefal.it/PROJECTS/amalfitourscarservice/wp-content/uploads/2016/02/mozzarellaHeader-300x63.png" alt="mozzarellaHeader" width="300" height="63" /></a> <a href="http://localhost/alefal.it/PROJECTS/amalfitourscarservice/wp-content/uploads/2016/02/cookingclassHeader.png" rel="attachment wp-att-179"><img class="alignnone size-medium wp-image-179" src="http://localhost/alefal.it/PROJECTS/amalfitourscarservice/wp-content/uploads/2016/02/cookingclassHeader-300x63.png" alt="cookingclassHeader" width="300" height="63" /></a> <a href="http://localhost/alefal.it/PROJECTS/amalfitourscarservice/wp-content/uploads/2016/02/lemontourHeader.png" rel="attachment wp-att-176"><img class="alignnone size-medium wp-image-176" src="http://localhost/alefal.it/PROJECTS/amalfitourscarservice/wp-content/uploads/2016/02/lemontourHeader-300x63.png" alt="lemontourHeader" width="300" height="63" /></a> <a href="http://localhost/alefal.it/PROJECTS/amalfitourscarservice/wp-content/uploads/2016/02/winetourHeader.png" rel="attachment wp-att-173"><img class="alignnone size-medium wp-image-173" src="http://localhost/alefal.it/PROJECTS/amalfitourscarservice/wp-content/uploads/2016/02/winetourHeader-300x63.png" alt="winetourHeader" width="300" height="63" /></a> <a href="http://localhost/alefal.it/PROJECTS/amalfitourscarservice/wp-content/uploads/2016/01/transfetHeader.png" rel="attachment wp-att-169"><img class="alignnone size-medium wp-image-169" src="http://localhost/alefal.it/PROJECTS/amalfitourscarservice/wp-content/uploads/2016/01/transfetHeader-300x63.png" alt="transfetHeader" width="300" height="63" /></a> <a href="http://localhost/alefal.it/PROJECTS/amalfitourscarservice/wp-content/uploads/2016/01/cheeseHeader.png" rel="attachment wp-att-163"><img class="alignnone size-medium wp-image-163" src="http://localhost/alefal.it/PROJECTS/amalfitourscarservice/wp-content/uploads/2016/01/cheeseHeader-300x63.png" alt="cheeseHeader" width="300" height="63" /></a>'),
-(1308, 185, '_galleria_immagini', 'field_56c9d198431ec');
+(1308, 185, '_galleria_immagini', 'field_56c9d198431ec'),
+(1309, 137, 'galleria_immagini', '<div class="row">\r\n<div class="col-lg-4 col-md-6 text-center"><img class="img-thumbnail" style="width: 100%;" src="wp-content/themes/amalfitourscarservice/img/portfolio/excursions/amalfi_1.jpg" alt="" /></div>\r\n<div class="col-lg-4 col-md-6 text-center"><img class="img-thumbnail" style="width: 100%;" src="wp-content/themes/amalfitourscarservice/img/portfolio/excursions/amalfi_2.jpg" alt="" /></div>\r\n<div class="col-lg-4 col-md-6 text-center"><img class="img-thumbnail" style="width: 100%;" src="wp-content/themes/amalfitourscarservice/img/portfolio/excursions/amalfi_3.jpg" alt="" /></div>\r\n</div>');
 INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUES
-(1309, 137, 'galleria_immagini', '<div class="row">\r\n<div class="col-lg-4 col-md-6 text-center"><img class="img-thumbnail" style="width: 100%;" src="wp-content/themes/amalfitourscarservice/img/portfolio/excursions/amalfi_1.jpg" alt="" /></div>\r\n<div class="col-lg-4 col-md-6 text-center"><img class="img-thumbnail" style="width: 100%;" src="wp-content/themes/amalfitourscarservice/img/portfolio/excursions/amalfi_2.jpg" alt="" /></div>\r\n<div class="col-lg-4 col-md-6 text-center"><img class="img-thumbnail" style="width: 100%;" src="wp-content/themes/amalfitourscarservice/img/portfolio/excursions/amalfi_3.jpg" alt="" /></div>\r\n</div>'),
 (1310, 137, '_galleria_immagini', 'field_56c9d198431ec'),
 (1313, 186, 'descrhtmlit', 'Escursione'),
 (1314, 186, '_descrhtmlit', 'field_56c829c901778'),
@@ -1048,7 +1032,7 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (1429, 194, 'galleria_immagini', '<div class="row">\r\n<div class="col-lg-4 col-md-6 text-center"><img class="img-thumbnail" style="width: 100%;" src="wp-content/themes/amalfitourscarservice/img/portfolio/excursions/paestum_1.jpg" alt="" /></div>\r\n<div class="col-lg-4 col-md-6 text-center"><img class="img-thumbnail" style="width: 100%;" src="wp-content/themes/amalfitourscarservice/img/portfolio/excursions/paestum_2.jpg" alt="" /></div>\r\n<div class="col-lg-4 col-md-6 text-center"><img class="img-thumbnail" style="width: 100%;" src="wp-content/themes/amalfitourscarservice/img/portfolio/excursions/paestum_3.jpg" alt="" /></div>\r\n</div>'),
 (1430, 194, '_galleria_immagini', 'field_56c9d198431ec'),
 (1431, 196, '_edit_last', '1'),
-(1432, 196, '_edit_lock', '1456164790:1'),
+(1432, 196, '_edit_lock', '1456782560:1'),
 (1435, 197, 'descrhtmlit', 'n'),
 (1436, 197, '_descrhtmlit', 'field_56c829c901778'),
 (1437, 197, 'descrhtmlen', 'n'),
@@ -1223,8 +1207,7 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (1636, 215, '_immagine', 'field_56965b5a7c9f4'),
 (1637, 215, 'imgurl', ''),
 (1638, 215, '_imgurl', 'field_56965a3cbacd7'),
-(1639, 215, 'galleria_immagini', '<div class="row">\r\n<div class="col-lg-4 col-md-6 text-center"><img class="img-thumbnail" style="width: 100%;" src="wp-content/themes/amalfitourscarservice/img/portfolio/excursions/sorrento_1.jpg" alt="" /></div>\r\n<div class="col-lg-4 col-md-6 text-center"><img class="img-thumbnail" style="width: 100%;" src="wp-content/themes/amalfitourscarservice/img/portfolio/excursions/sorrento_2.jpg" alt="" /></div>\r\n<div class="col-lg-4 col-md-6 text-center"><img class="img-thumbnail" style="width: 100%;" src="wp-content/themes/amalfitourscarservice/img/portfolio/excursions/sorrento_3.jpg" alt="" /></div>\r\n</div>');
-INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUES
+(1639, 215, 'galleria_immagini', '<div class="row">\r\n<div class="col-lg-4 col-md-6 text-center"><img class="img-thumbnail" style="width: 100%;" src="wp-content/themes/amalfitourscarservice/img/portfolio/excursions/sorrento_1.jpg" alt="" /></div>\r\n<div class="col-lg-4 col-md-6 text-center"><img class="img-thumbnail" style="width: 100%;" src="wp-content/themes/amalfitourscarservice/img/portfolio/excursions/sorrento_2.jpg" alt="" /></div>\r\n<div class="col-lg-4 col-md-6 text-center"><img class="img-thumbnail" style="width: 100%;" src="wp-content/themes/amalfitourscarservice/img/portfolio/excursions/sorrento_3.jpg" alt="" /></div>\r\n</div>'),
 (1640, 215, '_galleria_immagini', 'field_56c9d198431ec'),
 (1643, 216, 'descrhtmlit', 'Escursione'),
 (1644, 216, '_descrhtmlit', 'field_56c829c901778'),
@@ -1233,7 +1216,8 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (1647, 216, 'immagine', '111'),
 (1648, 216, '_immagine', 'field_56965b5a7c9f4'),
 (1649, 216, 'imgurl', ''),
-(1650, 216, '_imgurl', 'field_56965a3cbacd7'),
+(1650, 216, '_imgurl', 'field_56965a3cbacd7');
+INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUES
 (1651, 216, 'galleria_immagini', '<div class="row">\r\n<div class="col-lg-4 col-md-6 text-center"><img class="img-thumbnail" style="width: 100%;" src="wp-content/themes/amalfitourscarservice/img/portfolio/excursions/amalfi_1.jpg" alt="" /></div>\r\n<div class="col-lg-4 col-md-6 text-center"><img class="img-thumbnail" style="width: 100%;" src="wp-content/themes/amalfitourscarservice/img/portfolio/excursions/amalfi_2.jpg" alt="" /></div>\r\n<div class="col-lg-4 col-md-6 text-center"><img class="img-thumbnail" style="width: 100%;" src="wp-content/themes/amalfitourscarservice/img/portfolio/excursions/amalfi_3.jpg" alt="" /></div>\r\n</div>'),
 (1652, 216, '_galleria_immagini', 'field_56c9d198431ec'),
 (1655, 217, 'descrhtmlit', 'p'),
@@ -1267,7 +1251,7 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (1687, 219, 'galleria_immagini', '<div class="row">\r\n<div class="col-lg-4 col-md-6 text-center"><img class="img-thumbnail" style="width: 100%;" src="wp-content/themes/amalfitourscarservice/img/portfolio/excursions/paestum_1.jpg" alt="" /></div>\r\n<div class="col-lg-4 col-md-6 text-center"><img class="img-thumbnail" style="width: 100%;" src="wp-content/themes/amalfitourscarservice/img/portfolio/excursions/paestum_2.jpg" alt="" /></div>\r\n<div class="col-lg-4 col-md-6 text-center"><img class="img-thumbnail" style="width: 100%;" src="wp-content/themes/amalfitourscarservice/img/portfolio/excursions/paestum_3.jpg" alt="" /></div>\r\n</div>'),
 (1688, 219, '_galleria_immagini', 'field_56c9d198431ec'),
 (1689, 220, '_edit_last', '1'),
-(1690, 220, '_edit_lock', '1456153838:1'),
+(1690, 220, '_edit_lock', '1456782545:1'),
 (1693, 221, 'descrhtmlit', '<div class="col-lg-6 col-sm-6"><a class="portfolio-box" href="#"> <img class="img-responsive" src="&lt;?php echo get_template_directory_uri(); ?&gt;/img/taxi_1.jpg" alt="" /></a>\r\n<div class="portfolio-box-caption">\r\n<div class="portfolio-box-caption-content">\r\n<div class="project-category text-faded">Transfer</div>\r\n<div class="project-name">per raggiungere velocemente ed in assoluta comodita'' la vostra destinazione (aeroporto, stazione ferroviaria, porto, hotel o ristorante)</div>\r\n</div>\r\n</div>\r\n</div>\r\n<div class="col-lg-6 col-sm-6"><a class="portfolio-box" href="#"> <img class="img-responsive" src="&lt;?php echo get_template_directory_uri(); ?&gt;/img/taxi_2.jpg" alt="" /></a>\r\n<div class="portfolio-box-caption">\r\n<div class="portfolio-box-caption-content">\r\n<div class="project-category text-faded">Escursioni</div>\r\n<div class="project-name">verso le localita'' piu'' conosciute della regione, per ammirarne il ricco patrimonio artistico, storico e naturalistico</div>\r\n</div>\r\n</div>\r\n</div>'),
 (1694, 221, '_descrhtmlit', 'field_56c829c901778'),
 (1695, 221, 'descrhtmlen', '<div class="col-lg-6 col-sm-6"><a class="portfolio-box" href="#"> <img class="img-responsive" src="&lt;?php echo get_template_directory_uri(); ?&gt;/img/taxi_1.jpg" alt="" /></a>\r\n<div class="portfolio-box-caption">\r\n<div class="portfolio-box-caption-content">\r\n<div class="project-category text-faded">Transfer</div>\r\n<div class="project-name">to reach your destination (airport, railway station, port, hotel or restaurant) in a fast and comfortable way</div>\r\n</div>\r\n</div>\r\n</div>\r\n<div class="col-lg-6 col-sm-6"><a class="portfolio-box" href="#"> <img class="img-responsive" src="&lt;?php echo get_template_directory_uri(); ?&gt;/img/taxi_2.jpg" alt="" /></a>\r\n<div class="portfolio-box-caption">\r\n<div class="portfolio-box-caption-content">\r\n<div class="project-category text-faded">Excursions</div>\r\n<div class="project-name">to the most famous places of the area to enjoy the rich cultural, artistic and natural heritage</div>\r\n</div>\r\n</div>\r\n</div>'),
@@ -1282,9 +1266,9 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (1704, 220, '_descrhtmlit', 'field_56c829c901778'),
 (1705, 220, 'descrhtmlen', '<div class="project-category text-faded">Transfer</div>\r\n<div class="project-name">to reach your destination (airport, railway station, port, hotel or restaurant) in a fast and comfortable way</div>'),
 (1706, 220, '_descrhtmlen', 'field_56c82ab66e595'),
-(1707, 220, 'immagine', ''),
+(1707, 220, 'immagine', '169'),
 (1708, 220, '_immagine', 'field_56965b5a7c9f4'),
-(1709, 220, 'imgurl', ''),
+(1709, 220, 'imgurl', 'wp-content/uploads/2016/01/transfetHeader.png'),
 (1710, 220, '_imgurl', 'field_56965a3cbacd7'),
 (1711, 220, 'galleria_immagini', ''),
 (1712, 220, '_galleria_immagini', 'field_56c9d198431ec'),
@@ -1349,7 +1333,7 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (1783, 227, 'galleria_immagini', ''),
 (1784, 227, '_galleria_immagini', 'field_56c9d198431ec'),
 (1785, 228, '_edit_last', '1'),
-(1786, 228, '_edit_lock', '1456154359:1'),
+(1786, 228, '_edit_lock', '1456783174:1'),
 (1789, 229, 'descrhtmlit', '<div class="project-category text-faded">Escursioni</div>\r\n<div class="project-name">verso le località più conosciute della regione, per ammirarne il ricco patrimonio artistico, storico e naturalistico</div>'),
 (1790, 229, '_descrhtmlit', 'field_56c829c901778'),
 (1791, 229, 'descrhtmlen', '<div class="project-category text-faded">Excursions</div>\r\n<div class="project-name">to the most famous places of the area to enjoy the rich cultural, artistic and natural heritage</div>'),
@@ -1364,9 +1348,9 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (1800, 228, '_descrhtmlit', 'field_56c829c901778'),
 (1801, 228, 'descrhtmlen', '<div class="project-category text-faded">Excursions</div>\r\n<div class="project-name">to the most famous places of the area to enjoy the rich cultural, artistic and natural heritage</div>'),
 (1802, 228, '_descrhtmlen', 'field_56c82ab66e595'),
-(1803, 228, 'immagine', ''),
+(1803, 228, 'immagine', '320'),
 (1804, 228, '_immagine', 'field_56965b5a7c9f4'),
-(1805, 228, 'imgurl', ''),
+(1805, 228, 'imgurl', 'wp-content/uploads/2016/02/excursionHeader.png'),
 (1806, 228, '_imgurl', 'field_56965a3cbacd7'),
 (1807, 228, 'galleria_immagini', ''),
 (1808, 228, '_galleria_immagini', 'field_56c9d198431ec'),
@@ -1468,7 +1452,7 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (1925, 245, '_servicetitletransfer', 'field_56cb25f54d5ff'),
 (1926, 245, 'servicecontenttransfer', 'per raggiungere velocemente ed in assoluta comodita'' la vostra destinazione (aeroporto, stazione ferroviaria, porto, hotel o ristorante)'),
 (1927, 245, '_servicecontenttransfer', 'field_56cb261f4d600'),
-(1928, 245, '_edit_lock', '1456746711:1'),
+(1928, 245, '_edit_lock', '1456782529:1'),
 (1931, 239, 'field_56cb28dd4660a', 'a:13:{s:3:"key";s:19:"field_56cb28dd4660a";s:5:"label";s:21:"Transfer Contenuto EN";s:4:"name";s:24:"servicecontenttransferen";s:4:"type";s:8:"textarea";s:12:"instructions";s:0:"";s:8:"required";s:1:"0";s:13:"default_value";s:0:"";s:11:"placeholder";s:0:"";s:9:"maxlength";s:0:"";s:4:"rows";s:1:"1";s:10:"formatting";s:4:"none";s:17:"conditional_logic";a:3:{s:6:"status";s:1:"0";s:5:"rules";a:1:{i:0;a:3:{s:5:"field";s:4:"null";s:8:"operator";s:2:"==";s:5:"value";s:0:"";}}s:8:"allorany";s:3:"all";}s:8:"order_no";i:3;}'),
 (1935, 247, 'servicetitletransferit', 'Transfer'),
 (1936, 247, '_servicetitletransferit', 'field_56cb25f54d5ff'),
@@ -1723,11 +1707,11 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (2219, 261, 'galleria_immagini', '<div class="row">\r\n<div class="col-lg-4 col-md-6 text-center"><img class="img-thumbnail" style="width: 100%;" src="wp-content/themes/amalfitourscarservice/img/portfolio/excursions/napoli_1.jpg" alt="" /></div>\r\n<div class="col-lg-4 col-md-6 text-center"><img class="img-thumbnail" style="width: 100%;" src="wp-content/themes/amalfitourscarservice/img/portfolio/excursions/napoli_2.jpg" alt="" /></div>\r\n<div class="col-lg-4 col-md-6 text-center"><img class="img-thumbnail" style="width: 100%;" src="wp-content/themes/amalfitourscarservice/img/portfolio/excursions/napoli_3.jpg" alt="" /></div>\r\n</div>'),
 (2220, 261, '_galleria_immagini', 'field_56c9d198431ec'),
 (2221, 262, 'descrhtmlit', 'n\r\n\r\nn\r\n\r\nn\r\n\r\nn'),
-(2222, 262, '_descrhtmlit', 'field_56c829c901778');
-INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUES
+(2222, 262, '_descrhtmlit', 'field_56c829c901778'),
 (2223, 262, 'descrhtmlen', 'Naples has a thousand faces, it’s the result of centuries of history that we read from its streets, churches, palaces and castles. It offers generous to those who wish to explore: the royal <strong>Plebiscite Square</strong> and the <strong>Royal Palace</strong>. The mysterious <strong>Castel dell ‘Ovo</strong>. The <strong>waterfront</strong> and the cozy <strong>Mergellina</strong>, through the trendy district of <strong>Chiaia</strong>. The charming hill of <strong>Posillipo</strong>, the island of Nisida former industrial area of <strong>Bagnoli</strong>. A stroll through the shops of the <strong>Vomero</strong>and the picturesque village perched on the <strong>Petraio</strong> beautiful stone stairs. A stop at the <strong>Reggia di Capodimonte.</strong> Only a few of the many routes that this city has to offer. Naples is a reality out of the ordinary to live with all the senses: art, music, entertainment, delicacies, secret places, an ideal destination for those looking for new ideas and emotions.\r\n\r\n<hr />\r\n\r\n<h3><span class="underline">ATTRACTIONS</span></h3>\r\n<strong>The New Castle:</strong> Named to distinguish it from the oldest royal residences, is also known as Maschio Angioino, the ancient fortress built by Charles of Anjou in 1279.\r\n\r\n<strong>Castel dell ‘Ovo:</strong> The oldest of the city, which lies on the island of “Megaride”, opposite the famous district of Saint Lucia. Now connected to the mainland by a bridge, the island was chosen by the Roman patrician Licinius Lucullus to build a villa. The Castle was transformed into a monastery by the monks of St. Basil. With the Normans became a fortified palace in the 12<sup>th</sup>. century.\r\n\r\n<strong>The Galleria Umberto l° :</strong> It has a beautiful iron and glass roof, 57 meters high, which is accompanied by an elegant marble floor inlay. Many inside stores are located here, cafes, libraries. Incorporated in the block of the gallery, the church of Santa Brigida where the beautiful fresco by Luca Giordano’s paradise is preserved.\r\n\r\n<strong>The Teatro San Carlo:</strong> Opened November 4 th., 1737, thanks to Charles of Bourbon, is the oldest opera house in the world. In the first half of the 800’s the Teatro San Carlo lived a memorable season of glory, with the director Domenico Barbaja, who hired musicians like Rossini and Gaetano Donizetti.\r\n\r\n<strong>National Archaeological Museum:</strong> The largest museum in the world for classical archeology. Charles of Bourbon placed in this building (the old “Palazzo degli Studi”, University) the largest collection of art in Italy. To this was added over the years the capital’s largest archaeological collection of the time, the remains of the towns and villas buried by Vesuvius in 79 AD. The most precious section of the museum is represented by the mosaics, paintings, jewelry, items recovered from the houses of Pompeii and Herculaneum. A unique collection in the world, which naturally attracts millions of visitors.\r\n\r\n<strong>Plebiscito Square:</strong> The largest of the city, the spectacular setting of cultural events and concerts. To admire the church of San Francesco di Paola, with its neoclassical columns and the interior inspired by the Pantheon in Rome. In the center the two equestrian statues of Charles of Bourbon and Ferdinand I. Construction began in the early ‘600, designed by Domenico Fontana. Enriched by Gioacchino Murat and Carolina Bonaparte with neoclassical furniture and decorations, was damaged by fire in 1837 and restored by Gaetano Genovese.\r\n\r\n<strong>Piazza Cavour:</strong> Attractions in this area, the beautiful 17<sup>th</sup>. century church of Santa Maria della Sanità, with a sumptuous double curved staircasesurrounding the crypt. From the church, access to the catacombs of San Gaudioso. In the district are the 18<sup>th</sup>. century Palace of the Spanish and Sanfelice , impressive architecture used for theatrical productions.\r\n\r\n<strong>Piazza del Gesù Nuovo:</strong> It’s the gateway to the heart of Old part of the City.\r\n\r\n<strong>Church of Santa Chiara:</strong> was built in 1310 by Robert of Anjou in Provence having a Gothic style with baroque decorations and transformed in the mid-700. Damaged by bombing in 1943, was later restored to the original style.\r\n\r\n<strong>Sansevero Chapel Museum:</strong> Located in the heart of the historical center of Naples, Sansevero Chapel Museum is a jewel of the world’s artistic heritage. Baroque Creativity , beauty and mystery blend to create a unique atmosphere, almost out of time. Among masterpieces like the famous Veiled Christ, Sansevero Chapel is one of the most singular monuments that human ingenuity has ever devised.\r\n\r\n<strong>Via San Gregorio Armeno:</strong> With its bustling scene, it is the heart of Naples artisan, characterized by the same name of the church bell tower roof. In the two months preceding Christmas, San Gregorio Armeno, the street becomes more lively and the old town is filled with stalls selling figurines and decorations for the Nativity scene. Alongside the traditional Baby Jesus, Mary and Joseph, artisans compete to expose as ‘shepherds’ figurines of characters suggested by events. In the convent of San Gregorio Armeno, attached to the church, characterized by sumptuous Baroque nave and the extraordinary coffered ceiling, not to be missed is the visit of the cloister gardens, orchards and citrus groves.\r\n\r\n<strong>Via Caracciolo:</strong> It has one of the most beautiful views of Naples, from Vesuvius to the hill of Posillipo dotted with houses surrounded by green, framed by the deep blue sea.\r\n\r\n<strong>The Underground of Naples:</strong> It ‘s an experience of great beauty that reveals secrets, stories and legends of the city. No one knows the actual size of the underground area of Naples, but recently, cavers have counted about 700 cavity for a space of one million cubic meters.'),
 (2224, 262, '_descrhtmlen', 'field_56c82ab66e595'),
-(2225, 262, 'immagine', ''),
+(2225, 262, 'immagine', '');
+INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUES
 (2226, 262, '_immagine', 'field_56965b5a7c9f4'),
 (2227, 262, 'imgurl', ''),
 (2228, 262, '_imgurl', 'field_56965a3cbacd7'),
@@ -2048,8 +2032,7 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (2603, 295, 'imgurl', 'http://www.amalfitourscarservice.it/wp-content/uploads/2016/02/cookingclassHeader.png'),
 (2604, 295, '_imgurl', 'field_56965a3cbacd7'),
 (2605, 295, 'galleria_immagini', ''),
-(2606, 295, '_galleria_immagini', 'field_56c9d198431ec');
-INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUES
+(2606, 295, '_galleria_immagini', 'field_56c9d198431ec'),
 (2609, 296, 'descrhtmlit', '<hr />\r\n\r\nUn giorno ai fornelli a preparare le ricette tipiche della Costiera Amalfitana che combinano armonicamente ingredienti di terra e di mare.\r\n\r\nUn giorno con lo Chef, visita al giardino biologico, odori e spezie prodotte in Costiera Amalfitana.\r\n\r\nLa scoperta dei sapori della cucina Mediterranea, un ‘esperienza unica da trascorrere in un angolo di Paradiso "Furore".\r\n\r\nInteragire con lo chef nella preparazione dei piatti tipici della Divina Costa , la degustazione di questi fantastici piatti preparati con amore e dedizione come un tempo si faceva. Dagli antipasti preparati a base di verdure provenienti dal giardino biologico alle paste fatte a mano , dal pescato del giorno ai dolci , delizie del nostro territorio.\r\n\r\nUn welcome drink accoglierà gli ospiti su un meraviglioso terrazzo con una spettacolare vista di una stupenda Villa Privata di Furore.\r\n\r\nAl menù verrà servito vino locale e rosoli vari includendo caffè e quant’altro .\r\n\r\nGli orari sono molto flessibili : DALLE 10:30 ALLE 14:30 OPPURE  dalle 18:30 alle 22:30.'),
 (2610, 296, '_descrhtmlit', 'field_56c829c901778'),
 (2611, 296, 'descrhtmlen', '<hr />\r\n\r\nOne day in the kitchen to prepare the recipes of the Amalfi Coast that combine harmoniously ingredients of land and sea.\r\n\r\nA day with the chef, visit the organic garden, herbs and spices produced in the Amalfi Coast.\r\n\r\nThe discovery of the flavors of Mediterranean cuisine, a ''unique experience to spend in a corner of paradise "Furore".\r\n\r\nInteract with the chef in the preparation of typical dishes of the Divine Coast, the tasting of these fantastic dishes prepared with love and dedication as in years gone by. By appetizers prepared with vegetables from the organic garden to handmade pasta, the catch of the day to the sweet delights of our territory.\r\n\r\nA welcome drink will welcome guests on a wonderful terrace with a spectacular view of a beautiful private villa of Furore.\r\n\r\nOn the menu you will be served local wine and liqueurs including various coffee and whatnot.\r\n\r\nThe hours are very flexible: FROM 10:30 TO 14:30 OR 18:30 to 22:30.'),
@@ -2081,7 +2064,8 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (2643, 297, '_servicetitlewinetouren', 'field_56cb2b69d31ca'),
 (2644, 297, 'servicecontentwinetouren', 'to better know the native vines and winemakers of the Amalfi coast, as well as the wine, the precious fruit of their work'),
 (2645, 297, '_servicecontentwinetouren', 'field_56cb2c95d9b4f'),
-(2646, 297, 'servicetitlelemonetourit', 'Lemon tour'),
+(2646, 297, 'servicetitlelemonetourit', 'Lemon tour');
+INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUES
 (2647, 297, '_servicetitlelemonetourit', 'field_56cb2ae233ff5'),
 (2648, 297, 'servicecontentlemontourit', 'alla scoperta dell''oro giallo della Costiera Amalfitana, dei suggestivi giardini terrazzati a picco sul mare su cui sono coltivati, delle sue benefiche proprietà e dei tanti modi di utilizzo in cucina'),
 (2649, 297, '_servicecontentlemontourit', 'field_56cb2bf0ca817'),
@@ -2130,7 +2114,7 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (2692, 245, 'servicecontentpizzaen', 'A unique experience to spend in a corner of paradise "Furore"'),
 (2693, 245, '_servicecontentpizzaen', 'field_56d430f9f69e8'),
 (2694, 298, '_edit_last', '1'),
-(2695, 298, '_edit_lock', '1456747823:1'),
+(2695, 298, '_edit_lock', '1456783056:1'),
 (2698, 299, 'descrhtmlit', 'Esperienza unica da trascorrere in un angolo di Paradiso "Furore".\r\nInteragire con lo chef nella preparazione del piatto più famoso al mondo "La Pizza"\r\nDivertimento assicurato.\r\nStoria e cultura della stessa e modi di cottura.\r\nAngolo Barbecue, dove gli ospiti potranno scegliere ed interagire con lo chef nella preparazione e cottura delle nostre carni, formaggi grigliati in foglia di limone.\r\nUn welcome drink accoglierà gli ospiti su un meraviglioso terrazzo con una spettacolare vista di una stupenda Villa Privata di Furore.\r\nCon la Pizza verrà servito vino locale o prosecco , alla fine rosoli vari includendo caffè e quant’altro .\r\nGli orari sono molto flessibili: DALLE 10:30 ALLE 14:30 OPPURE dalle 18:30 alle 22:30.'),
 (2699, 299, '_descrhtmlit', 'field_56c829c901778'),
 (2700, 299, 'descrhtmlen', 'Esperienza unica da trascorrere in un angolo di Paradiso "Furore".\r\nInteragire con lo chef nella preparazione del piatto più famoso al mondo "La Pizza"\r\nDivertimento assicurato.\r\nStoria e cultura della stessa e modi di cottura.\r\nAngolo Barbecue, dove gli ospiti potranno scegliere ed interagire con lo chef nella preparazione e cottura delle nostre carni, formaggi grigliati in foglia di limone.\r\nUn welcome drink accoglierà gli ospiti su un meraviglioso terrazzo con una spettacolare vista di una stupenda Villa Privata di Furore.\r\nCon la Pizza verrà servito vino locale o prosecco , alla fine rosoli vari includendo caffè e quant’altro .\r\nGli orari sono molto flessibili: DALLE 10:30 ALLE 14:30 OPPURE dalle 18:30 alle 22:30.'),
@@ -2143,16 +2127,14 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (2707, 299, '_galleria_immagini', 'field_56c9d198431ec'),
 (2708, 298, 'descrhtmlit', 'Esperienza unica da trascorrere in un angolo di Paradiso "Furore".\r\nInteragire con lo chef nella preparazione del piatto più famoso al mondo "La Pizza"\r\nDivertimento assicurato.\r\nStoria e cultura della stessa e modi di cottura.\r\nAngolo Barbecue, dove gli ospiti potranno scegliere ed interagire con lo chef nella preparazione e cottura delle nostre carni, formaggi grigliati in foglia di limone.\r\nUn welcome drink accoglierà gli ospiti su un meraviglioso terrazzo con una spettacolare vista di una stupenda Villa Privata di Furore.\r\nCon la Pizza verrà servito vino locale o prosecco , alla fine rosoli vari includendo caffè e quant’altro .\r\nGli orari sono molto flessibili: DALLE 10:30 ALLE 14:30 OPPURE dalle 18:30 alle 22:30.'),
 (2709, 298, '_descrhtmlit', 'field_56c829c901778'),
-(2710, 298, 'descrhtmlen', 'Esperienza unica da trascorrere in un angolo di Paradiso "Furore".\r\nInteragire con lo chef nella preparazione del piatto più famoso al mondo "La Pizza"\r\nDivertimento assicurato.\r\nStoria e cultura della stessa e modi di cottura.\r\nAngolo Barbecue, dove gli ospiti potranno scegliere ed interagire con lo chef nella preparazione e cottura delle nostre carni, formaggi grigliati in foglia di limone.\r\nUn welcome drink accoglierà gli ospiti su un meraviglioso terrazzo con una spettacolare vista di una stupenda Villa Privata di Furore.\r\nCon la Pizza verrà servito vino locale o prosecco , alla fine rosoli vari includendo caffè e quant’altro .\r\nGli orari sono molto flessibili: DALLE 10:30 ALLE 14:30 OPPURE dalle 18:30 alle 22:30.'),
+(2710, 298, 'descrhtmlen', 'Unique experience to spend in a corner of paradise "Furore" . Interact with the chef in the preparation of the most famous dish in the world "Pizza " Great fun . History and culture of same and ways of cooking . Barbecue corner , where guests can select and interact with the chef in the preparation and cooking of our meats , grilled cheese in lemon leaves . A welcome drink will welcome guests on a wonderful terrace with a spectacular view of a beautiful private villa of Furore . Pizza will be served with local wine or prosecco at the end various liqueurs including coffee and whatnot. The hours are very flexible : FROM 10:30 TO 14:30 OR 18:30 to 22:30.'),
 (2711, 298, '_descrhtmlen', 'field_56c82ab66e595'),
 (2712, 298, 'immagine', '300'),
 (2713, 298, '_immagine', 'field_56965b5a7c9f4'),
-(2714, 298, 'imgurl', 'http://www.amalfitourscarservice.it/wp-content/uploads/2016/02/pizzaHeader-300x63.png'),
+(2714, 298, 'imgurl', 'wp-content/uploads/2016/02/pizzaHeader.png'),
 (2715, 298, '_imgurl', 'field_56965a3cbacd7'),
 (2716, 298, 'galleria_immagini', ''),
 (2717, 298, '_galleria_immagini', 'field_56c9d198431ec'),
-(2718, 300, '_wp_attached_file', '2016/02/pizzaHeader.png'),
-(2719, 300, '_wp_attachment_metadata', 'a:5:{s:5:"width";i:1200;s:6:"height";i:250;s:4:"file";s:23:"2016/02/pizzaHeader.png";s:5:"sizes";a:4:{s:9:"thumbnail";a:4:{s:4:"file";s:23:"pizzaHeader-150x150.png";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:9:"image/png";}s:6:"medium";a:4:{s:4:"file";s:22:"pizzaHeader-300x63.png";s:5:"width";i:300;s:6:"height";i:63;s:9:"mime-type";s:9:"image/png";}s:12:"medium_large";a:4:{s:4:"file";s:23:"pizzaHeader-768x160.png";s:5:"width";i:768;s:6:"height";i:160;s:9:"mime-type";s:9:"image/png";}s:5:"large";a:4:{s:4:"file";s:24:"pizzaHeader-1024x213.png";s:5:"width";i:1024;s:6:"height";i:213;s:9:"mime-type";s:9:"image/png";}}s:10:"image_meta";a:12:{s:8:"aperture";s:1:"0";s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";s:1:"0";s:9:"copyright";s:0:"";s:12:"focal_length";s:1:"0";s:3:"iso";s:1:"0";s:13:"shutter_speed";s:1:"0";s:5:"title";s:0:"";s:11:"orientation";s:1:"0";s:8:"keywords";a:0:{}}}'),
 (2722, 301, 'descrhtmlit', 'Esperienza unica da trascorrere in un angolo di Paradiso "Furore".\r\nInteragire con lo chef nella preparazione del piatto più famoso al mondo "La Pizza"\r\nDivertimento assicurato.\r\nStoria e cultura della stessa e modi di cottura.\r\nAngolo Barbecue, dove gli ospiti potranno scegliere ed interagire con lo chef nella preparazione e cottura delle nostre carni, formaggi grigliati in foglia di limone.\r\nUn welcome drink accoglierà gli ospiti su un meraviglioso terrazzo con una spettacolare vista di una stupenda Villa Privata di Furore.\r\nCon la Pizza verrà servito vino locale o prosecco , alla fine rosoli vari includendo caffè e quant’altro .\r\nGli orari sono molto flessibili: DALLE 10:30 ALLE 14:30 OPPURE dalle 18:30 alle 22:30.'),
 (2723, 301, '_descrhtmlit', 'field_56c829c901778'),
 (2724, 301, 'descrhtmlen', 'Esperienza unica da trascorrere in un angolo di Paradiso "Furore".\r\nInteragire con lo chef nella preparazione del piatto più famoso al mondo "La Pizza"\r\nDivertimento assicurato.\r\nStoria e cultura della stessa e modi di cottura.\r\nAngolo Barbecue, dove gli ospiti potranno scegliere ed interagire con lo chef nella preparazione e cottura delle nostre carni, formaggi grigliati in foglia di limone.\r\nUn welcome drink accoglierà gli ospiti su un meraviglioso terrazzo con una spettacolare vista di una stupenda Villa Privata di Furore.\r\nCon la Pizza verrà servito vino locale o prosecco , alla fine rosoli vari includendo caffè e quant’altro .\r\nGli orari sono molto flessibili: DALLE 10:30 ALLE 14:30 OPPURE dalle 18:30 alle 22:30.'),
@@ -2162,7 +2144,183 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (2728, 301, 'imgurl', 'http://www.amalfitourscarservice.it/wp-content/uploads/2016/02/pizzaHeader-300x63.png'),
 (2729, 301, '_imgurl', 'field_56965a3cbacd7'),
 (2730, 301, 'galleria_immagini', ''),
-(2731, 301, '_galleria_immagini', 'field_56c9d198431ec');
+(2731, 301, '_galleria_immagini', 'field_56c9d198431ec'),
+(2736, 302, 'descrhtmlit', 'Esperienza unica da trascorrere in un angolo di Paradiso "Furore".\r\nInteragire con lo chef nella preparazione del piatto più famoso al mondo "La Pizza"\r\nDivertimento assicurato.\r\nStoria e cultura della stessa e modi di cottura.\r\nAngolo Barbecue, dove gli ospiti potranno scegliere ed interagire con lo chef nella preparazione e cottura delle nostre carni, formaggi grigliati in foglia di limone.\r\nUn welcome drink accoglierà gli ospiti su un meraviglioso terrazzo con una spettacolare vista di una stupenda Villa Privata di Furore.\r\nCon la Pizza verrà servito vino locale o prosecco , alla fine rosoli vari includendo caffè e quant’altro .\r\nGli orari sono molto flessibili: DALLE 10:30 ALLE 14:30 OPPURE dalle 18:30 alle 22:30.'),
+(2737, 302, '_descrhtmlit', 'field_56c829c901778'),
+(2738, 302, 'descrhtmlen', 'Unique experience to spend in a corner of paradise "Furore" . Interact with the chef in the preparation of the most famous dish in the world "Pizza " Great fun . History and culture of same and ways of cooking . Barbecue corner , where guests can select and interact with the chef in the preparation and cooking of our meats , grilled cheese in lemon leaves . A welcome drink will welcome guests on a wonderful terrace with a spectacular view of a beautiful private villa of Furore . Pizza will be served with local wine or prosecco at the end various liqueurs including coffee and whatnot. The hours are very flexible : FROM 10:30 TO 14:30 OR 18:30 to 22:30.'),
+(2739, 302, '_descrhtmlen', 'field_56c82ab66e595'),
+(2740, 302, 'immagine', '300'),
+(2741, 302, '_immagine', 'field_56965b5a7c9f4'),
+(2742, 302, 'imgurl', 'http://www.amalfitourscarservice.it/wp-content/uploads/2016/02/pizzaHeader-300x63.png'),
+(2743, 302, '_imgurl', 'field_56965a3cbacd7'),
+(2744, 302, 'galleria_immagini', ''),
+(2745, 302, '_galleria_immagini', 'field_56c9d198431ec'),
+(2748, 303, 'descrhtmlit', '<div class="project-category text-faded">Escursioni</div>\r\n<div class="project-name">verso le località più conosciute della regione, per ammirarne il ricco patrimonio artistico, storico e naturalistico</div>\r\n<!-- Button trigger modal --><button class="btn btn-primary btn-lg" type="button" data-toggle="modal" data-target="#myModal"> Launch demo modal </button>\r\n\r\n<!-- Modal -->\r\n<div id="myModal" class="modal fade" tabindex="-1">\r\n<div class="modal-dialog">\r\n<div class="modal-content">\r\n<div class="modal-header"><button class="close" type="button" data-dismiss="modal">×</button>\r\n<h4 id="myModalLabel" class="modal-title">Modal title</h4>\r\n</div>\r\n<div class="modal-body">...</div>\r\n<div class="modal-footer"><button class="btn btn-default" type="button" data-dismiss="modal">Close</button> <button class="btn btn-primary" type="button">Save changes</button></div>\r\n</div>\r\n</div>\r\n</div>'),
+(2749, 303, '_descrhtmlit', 'field_56c829c901778'),
+(2750, 303, 'descrhtmlen', '<div class="project-category text-faded">Excursions</div>\r\n<div class="project-name">to the most famous places of the area to enjoy the rich cultural, artistic and natural heritage</div>'),
+(2751, 303, '_descrhtmlen', 'field_56c82ab66e595'),
+(2752, 303, 'immagine', ''),
+(2753, 303, '_immagine', 'field_56965b5a7c9f4'),
+(2754, 303, 'imgurl', ''),
+(2755, 303, '_imgurl', 'field_56965a3cbacd7'),
+(2756, 303, 'galleria_immagini', ''),
+(2757, 303, '_galleria_immagini', 'field_56c9d198431ec'),
+(2760, 304, 'descrhtmlit', '<div class="project-category text-faded">Escursioni</div>\r\n<div class="project-name">verso le località più conosciute della regione, per ammirarne il ricco patrimonio artistico, storico e naturalistico</div>'),
+(2761, 304, '_descrhtmlit', 'field_56c829c901778'),
+(2762, 304, 'descrhtmlen', '<div class="project-category text-faded">Excursions</div>\r\n<div class="project-name">to the most famous places of the area to enjoy the rich cultural, artistic and natural heritage</div>'),
+(2763, 304, '_descrhtmlen', 'field_56c82ab66e595'),
+(2764, 304, 'immagine', ''),
+(2765, 304, '_immagine', 'field_56965b5a7c9f4'),
+(2766, 304, 'imgurl', ''),
+(2767, 304, '_imgurl', 'field_56965a3cbacd7'),
+(2768, 304, 'galleria_immagini', ''),
+(2769, 304, '_galleria_immagini', 'field_56c9d198431ec'),
+(2776, 305, 'descrhtmlit', '<div class="project-category text-faded">Transfer</div>\r\n<div class="project-name">per raggiungere velocemente ed in assoluta comodita'' la vostra destinazione (aeroporto, stazione ferroviaria, porto, hotel o ristorante)</div>'),
+(2777, 305, '_descrhtmlit', 'field_56c829c901778'),
+(2778, 305, 'descrhtmlen', '<div class="project-category text-faded">Transfer</div>\r\n<div class="project-name">to reach your destination (airport, railway station, port, hotel or restaurant) in a fast and comfortable way</div>'),
+(2779, 305, '_descrhtmlen', 'field_56c82ab66e595'),
+(2780, 305, 'immagine', ''),
+(2781, 305, '_immagine', 'field_56965b5a7c9f4'),
+(2782, 305, 'imgurl', ''),
+(2783, 305, '_imgurl', 'field_56965a3cbacd7'),
+(2784, 305, 'galleria_immagini', ''),
+(2785, 305, '_galleria_immagini', 'field_56c9d198431ec'),
+(2788, 306, 'descrhtmlit', '<div class="project-category text-faded">Escursioni</div>\r\n<div class="project-name">verso le località più conosciute della regione, per ammirarne il ricco patrimonio artistico, storico e naturalistico</div>'),
+(2789, 306, '_descrhtmlit', 'field_56c829c901778'),
+(2790, 306, 'descrhtmlen', '<div class="project-category text-faded">Excursions</div>\r\n<div class="project-name">to the most famous places of the area to enjoy the rich cultural, artistic and natural heritage</div>'),
+(2791, 306, '_descrhtmlen', 'field_56c82ab66e595'),
+(2792, 306, 'immagine', ''),
+(2793, 306, '_immagine', 'field_56965b5a7c9f4'),
+(2794, 306, 'imgurl', ''),
+(2795, 306, '_imgurl', 'field_56965a3cbacd7'),
+(2796, 306, 'galleria_immagini', ''),
+(2797, 306, '_galleria_immagini', 'field_56c9d198431ec'),
+(2800, 307, 'descrhtmlit', '<div class="project-category text-faded">Escursioni</div>\r\n<div class="project-name">verso le località più conosciute della regione, per ammirarne il ricco patrimonio artistico, storico e naturalistico</div>'),
+(2801, 307, '_descrhtmlit', 'field_56c829c901778'),
+(2802, 307, 'descrhtmlen', '<div class="project-category text-faded">Excursions</div>\r\n<div class="project-name">to the most famous places of the area to enjoy the rich cultural, artistic and natural heritage</div>'),
+(2803, 307, '_descrhtmlen', 'field_56c82ab66e595'),
+(2804, 307, 'immagine', '169'),
+(2805, 307, '_immagine', 'field_56965b5a7c9f4'),
+(2806, 307, 'imgurl', 'wp-content/uploads/2016/01/transfetHeader-300x63.png'),
+(2807, 307, '_imgurl', 'field_56965a3cbacd7'),
+(2808, 307, 'galleria_immagini', ''),
+(2809, 307, '_galleria_immagini', 'field_56c9d198431ec'),
+(2812, 308, 'descrhtmlit', '<div class="project-category text-faded">Escursioni</div>\r\n<div class="project-name">verso le località più conosciute della regione, per ammirarne il ricco patrimonio artistico, storico e naturalistico</div>'),
+(2813, 308, '_descrhtmlit', 'field_56c829c901778'),
+(2814, 308, 'descrhtmlen', '<div class="project-category text-faded">Excursions</div>\r\n<div class="project-name">to the most famous places of the area to enjoy the rich cultural, artistic and natural heritage</div>'),
+(2815, 308, '_descrhtmlen', 'field_56c82ab66e595'),
+(2816, 308, 'immagine', '169'),
+(2817, 308, '_immagine', 'field_56965b5a7c9f4'),
+(2818, 308, 'imgurl', 'wp-content/uploads/2016/01/transfetHeader.png'),
+(2819, 308, '_imgurl', 'field_56965a3cbacd7'),
+(2820, 308, 'galleria_immagini', ''),
+(2821, 308, '_galleria_immagini', 'field_56c9d198431ec'),
+(2826, 309, 'descrhtmlit', '<div class="project-category text-faded">Transfer</div>\r\n<div class="project-name">per raggiungere velocemente ed in assoluta comodita'' la vostra destinazione (aeroporto, stazione ferroviaria, porto, hotel o ristorante)</div>'),
+(2827, 309, '_descrhtmlit', 'field_56c829c901778'),
+(2828, 309, 'descrhtmlen', '<div class="project-category text-faded">Transfer</div>\r\n<div class="project-name">to reach your destination (airport, railway station, port, hotel or restaurant) in a fast and comfortable way</div>'),
+(2829, 309, '_descrhtmlen', 'field_56c82ab66e595'),
+(2830, 309, 'immagine', '169'),
+(2831, 309, '_immagine', 'field_56965b5a7c9f4'),
+(2832, 309, 'imgurl', 'wp-content/uploads/2016/01/transfetHeader.png'),
+(2833, 309, '_imgurl', 'field_56965a3cbacd7'),
+(2834, 309, 'galleria_immagini', ''),
+(2835, 309, '_galleria_immagini', 'field_56c9d198431ec'),
+(2838, 310, 'descrhtmlit', 'Esperienza unica da trascorrere in un angolo di Paradiso "Furore".\r\nInteragire con lo chef nella preparazione del piatto più famoso al mondo "La Pizza"\r\nDivertimento assicurato.\r\nStoria e cultura della stessa e modi di cottura.\r\nAngolo Barbecue, dove gli ospiti potranno scegliere ed interagire con lo chef nella preparazione e cottura delle nostre carni, formaggi grigliati in foglia di limone.\r\nUn welcome drink accoglierà gli ospiti su un meraviglioso terrazzo con una spettacolare vista di una stupenda Villa Privata di Furore.\r\nCon la Pizza verrà servito vino locale o prosecco , alla fine rosoli vari includendo caffè e quant’altro .\r\nGli orari sono molto flessibili: DALLE 10:30 ALLE 14:30 OPPURE dalle 18:30 alle 22:30.'),
+(2839, 310, '_descrhtmlit', 'field_56c829c901778'),
+(2840, 310, 'descrhtmlen', 'Unique experience to spend in a corner of paradise "Furore" . Interact with the chef in the preparation of the most famous dish in the world "Pizza " Great fun . History and culture of same and ways of cooking . Barbecue corner , where guests can select and interact with the chef in the preparation and cooking of our meats , grilled cheese in lemon leaves . A welcome drink will welcome guests on a wonderful terrace with a spectacular view of a beautiful private villa of Furore . Pizza will be served with local wine or prosecco at the end various liqueurs including coffee and whatnot. The hours are very flexible : FROM 10:30 TO 14:30 OR 18:30 to 22:30.'),
+(2841, 310, '_descrhtmlen', 'field_56c82ab66e595'),
+(2842, 310, 'immagine', '300'),
+(2843, 310, '_immagine', 'field_56965b5a7c9f4'),
+(2844, 310, 'imgurl', 'wp-content/uploads/2016/02/pizzaHeader-300x63.png'),
+(2845, 310, '_imgurl', 'field_56965a3cbacd7'),
+(2846, 310, 'galleria_immagini', ''),
+(2847, 310, '_galleria_immagini', 'field_56c9d198431ec'),
+(2850, 311, 'descrhtmlit', '<hr />\r\n\r\nDivertimento assicurato su come preparare la mozzarella, nelle aziende casearie della Costiera Amalfitana.\r\n\r\nMozzarella class si svolge a Ravello , dove potrete imparare a fare la mozzarella con le vostre mani e il divertimento è assicurato !!!\r\n\r\nMozzarella class comprende anche una degustazione di formaggi , finger food , vino e acqua.'),
+(2851, 311, '_descrhtmlit', 'field_56c829c901778'),
+(2852, 311, 'descrhtmlen', '<hr />\r\n\r\nA very exciting day is waiting for you: you will learn how to prepare the mozzarella, tasting and visiting dairy farms in Amalfi Coast.\r\n\r\nThe class is held in Ravello where you will learn how to make mozzarella and you will prepare your own having lots of fun!!!\r\n\r\nMozzarella class also includes a cheese tasting, finger food, wine and water.'),
+(2853, 311, '_descrhtmlen', 'field_56c82ab66e595'),
+(2854, 311, 'immagine', '182'),
+(2855, 311, '_immagine', 'field_56965b5a7c9f4'),
+(2856, 311, 'imgurl', 'wp-content/uploads/2016/02/mozzarellaHeader.png'),
+(2857, 311, '_imgurl', 'field_56965a3cbacd7'),
+(2858, 311, 'galleria_immagini', ''),
+(2859, 311, '_galleria_immagini', 'field_56c9d198431ec'),
+(2862, 312, 'descrhtmlit', '<hr />\r\n\r\nUn giorno ai fornelli a preparare le ricette tipiche della Costiera Amalfitana che combinano armonicamente ingredienti di terra e di mare.\r\n\r\nUn giorno con lo Chef, visita al giardino biologico, odori e spezie prodotte in Costiera Amalfitana.\r\n\r\nLa scoperta dei sapori della cucina Mediterranea, un ‘esperienza unica da trascorrere in un angolo di Paradiso "Furore".\r\n\r\nInteragire con lo chef nella preparazione dei piatti tipici della Divina Costa , la degustazione di questi fantastici piatti preparati con amore e dedizione come un tempo si faceva. Dagli antipasti preparati a base di verdure provenienti dal giardino biologico alle paste fatte a mano , dal pescato del giorno ai dolci , delizie del nostro territorio.\r\n\r\nUn welcome drink accoglierà gli ospiti su un meraviglioso terrazzo con una spettacolare vista di una stupenda Villa Privata di Furore.\r\n\r\nAl menù verrà servito vino locale e rosoli vari includendo caffè e quant’altro .\r\n\r\nGli orari sono molto flessibili : DALLE 10:30 ALLE 14:30 OPPURE  dalle 18:30 alle 22:30.'),
+(2863, 312, '_descrhtmlit', 'field_56c829c901778'),
+(2864, 312, 'descrhtmlen', '<hr />\r\n\r\nOne day in the kitchen to prepare the recipes of the Amalfi Coast that combine harmoniously ingredients of land and sea.\r\n\r\nA day with the chef, visit the organic garden, herbs and spices produced in the Amalfi Coast.\r\n\r\nThe discovery of the flavors of Mediterranean cuisine, a ''unique experience to spend in a corner of paradise "Furore".\r\n\r\nInteract with the chef in the preparation of typical dishes of the Divine Coast, the tasting of these fantastic dishes prepared with love and dedication as in years gone by. By appetizers prepared with vegetables from the organic garden to handmade pasta, the catch of the day to the sweet delights of our territory.\r\n\r\nA welcome drink will welcome guests on a wonderful terrace with a spectacular view of a beautiful private villa of Furore.\r\n\r\nOn the menu you will be served local wine and liqueurs including various coffee and whatnot.\r\n\r\nThe hours are very flexible: FROM 10:30 TO 14:30 OR 18:30 to 22:30.'),
+(2865, 312, '_descrhtmlen', 'field_56c82ab66e595'),
+(2866, 312, 'immagine', '179'),
+(2867, 312, '_immagine', 'field_56965b5a7c9f4'),
+(2868, 312, 'imgurl', 'wp-content/uploads/2016/02/cookingclassHeader.png'),
+(2869, 312, '_imgurl', 'field_56965a3cbacd7'),
+(2870, 312, 'galleria_immagini', ''),
+(2871, 312, '_galleria_immagini', 'field_56c9d198431ec'),
+(2874, 313, 'descrhtmlit', '<hr />\r\n\r\nAlla scoperta dell’oro giallo della Costiera Amalfitana, dei suggestivi giardini terrazzati a picco sul mare su cui sono coltivati, delle sue benefiche proprietà e dei tanti modi di utilizzo in cucina'),
+(2875, 313, '_descrhtmlit', 'field_56c829c901778'),
+(2876, 313, 'descrhtmlen', '<hr />\r\n\r\nDiscovering the so called “yellow gold” of the Amalfi Coast, the beautiful terraced gardens overlooking the sea on which they are grown, the healthy properties and many ways of use in cooking'),
+(2877, 313, '_descrhtmlen', 'field_56c82ab66e595'),
+(2878, 313, 'immagine', '176'),
+(2879, 313, '_immagine', 'field_56965b5a7c9f4'),
+(2880, 313, 'imgurl', 'wp-content/uploads/2016/02/lemontourHeader.png'),
+(2881, 313, '_imgurl', 'field_56965a3cbacd7'),
+(2882, 313, 'galleria_immagini', ''),
+(2883, 313, '_galleria_immagini', 'field_56c9d198431ec'),
+(2886, 314, 'descrhtmlit', '<hr />\r\n\r\nGiornata di gusto con gli assaggi di formaggi tipici nelle aziende casearia della Costiera Amalfitana.\r\n\r\nL''happy hour cheese tasting consiste nella degustazione di 4 formaggi da pasta semi dura a quella stagionata o a quelle disponibili al momento:\r\n<ul>\r\n	<li>Formaggio di pecora ( a pecorino )</li>\r\n	<li>Formaggio di mucca (vacca)</li>\r\n	<li>Formaggio di capra.</li>\r\n</ul>\r\nAlla degustazione , a seguire una serie di finger food tra cui:\r\n<ul>\r\n	<li>Mozzarelline fritte</li>\r\n	<li>Mozzarella grigliate in foglia di limone</li>\r\n	<li>Bruschettine con pomodorini</li>\r\n	<li>Prodotti locali</li>\r\n</ul>\r\nCome drink invece c''è una libera scelta da un bicchiere di vino ad un prosecco , dalla birra ad un software drink ecc ecc .'),
+(2887, 314, '_descrhtmlit', 'field_56c829c901778'),
+(2888, 314, 'descrhtmlen', '<hr />\r\n\r\nDay of Taste With tastings of local cheeses in the Amalfi Coast.\r\n\r\nHappy hour tasting of cheese is the tasting of 4 cheeses to pasta hard seeds that a seasoned or an those available as at :\r\n<ul>\r\n	<li>sheep cheese ( a cheese )</li>\r\n	<li>cow cheese ( cow )</li>\r\n	<li>goat cheese .</li>\r\n</ul>\r\nAt the tasting, a followed a series of finger food including :\r\n<ul>\r\n	<li>fried mozzarella</li>\r\n	<li>grilled mozzarella in lemon leaf</li>\r\n	<li>bruschetta with tomatoes</li>\r\n	<li>local products</li>\r\n</ul>\r\nCome and drink instead there is a free choice from a wine glass at a prosecco, from beer to a software drinks etc etc .'),
+(2889, 314, '_descrhtmlen', 'field_56c82ab66e595'),
+(2890, 314, 'immagine', '163'),
+(2891, 314, '_immagine', 'field_56965b5a7c9f4'),
+(2892, 314, 'imgurl', 'wp-content/uploads/2016/01/cheeseHeader.png'),
+(2893, 314, '_imgurl', 'field_56965a3cbacd7'),
+(2894, 314, 'galleria_immagini', ''),
+(2895, 314, '_galleria_immagini', 'field_56c9d198431ec'),
+(2898, 315, 'descrhtmlit', '<hr />\r\n\r\nPer conoscere da vicino i vitigni autoctoni ed vignaioli della Costiera Amalfitana, nonchè il vino, il prezioso frutto del loro lavoro'),
+(2899, 315, '_descrhtmlit', 'field_56c829c901778'),
+(2900, 315, 'descrhtmlen', '<hr />\r\n\r\nTo better know the native vines and winemakers of the Amalfi coast, as well as the wine, the precious fruit of their work'),
+(2901, 315, '_descrhtmlen', 'field_56c82ab66e595'),
+(2902, 315, 'immagine', '173'),
+(2903, 315, '_immagine', 'field_56965b5a7c9f4'),
+(2904, 315, 'imgurl', 'wp-content/uploads/2016/02/winetourHeader.png'),
+(2905, 315, '_imgurl', 'field_56965a3cbacd7'),
+(2906, 315, 'galleria_immagini', ''),
+(2907, 315, '_galleria_immagini', 'field_56c9d198431ec'),
+(2910, 316, 'descrhtmlit', '<hr />\r\n\r\nPer raggiungere velocemente ed in assoluta comodita’ la vostra destinazione (aeroporto, stazione ferroviaria, porto, hotel o ristorante)'),
+(2911, 316, '_descrhtmlit', 'field_56c829c901778'),
+(2912, 316, 'descrhtmlen', '<hr />\r\n\r\nTo reach your destination (airport, railway station, port, hotel or restaurant) in a fast and comfortable way'),
+(2913, 316, '_descrhtmlen', 'field_56c82ab66e595'),
+(2914, 316, 'immagine', '169'),
+(2915, 316, '_immagine', 'field_56965b5a7c9f4'),
+(2916, 316, 'imgurl', 'wp-content/uploads/2016/01/transfetHeader.png'),
+(2917, 316, '_imgurl', 'field_56965a3cbacd7'),
+(2918, 316, 'galleria_immagini', ''),
+(2919, 316, '_galleria_immagini', 'field_56c9d198431ec'),
+(2920, 141, '_wp_trash_meta_status', 'publish'),
+(2921, 141, '_wp_trash_meta_time', '1456782844'),
+(2925, 318, '_wp_attached_file', '2016/02/pizzaHeader.png'),
+(2926, 318, '_wp_attachment_metadata', 'a:5:{s:5:"width";i:1200;s:6:"height";i:250;s:4:"file";s:23:"2016/02/pizzaHeader.png";s:5:"sizes";a:4:{s:9:"thumbnail";a:4:{s:4:"file";s:23:"pizzaHeader-150x150.png";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:9:"image/png";}s:6:"medium";a:4:{s:4:"file";s:22:"pizzaHeader-300x63.png";s:5:"width";i:300;s:6:"height";i:63;s:9:"mime-type";s:9:"image/png";}s:12:"medium_large";a:4:{s:4:"file";s:23:"pizzaHeader-768x160.png";s:5:"width";i:768;s:6:"height";i:160;s:9:"mime-type";s:9:"image/png";}s:5:"large";a:4:{s:4:"file";s:24:"pizzaHeader-1024x213.png";s:5:"width";i:1024;s:6:"height";i:213;s:9:"mime-type";s:9:"image/png";}}s:10:"image_meta";a:12:{s:8:"aperture";s:1:"0";s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";s:1:"0";s:9:"copyright";s:0:"";s:12:"focal_length";s:1:"0";s:3:"iso";s:1:"0";s:13:"shutter_speed";s:1:"0";s:5:"title";s:0:"";s:11:"orientation";s:1:"0";s:8:"keywords";a:0:{}}}'),
+(2929, 319, 'descrhtmlit', 'Esperienza unica da trascorrere in un angolo di Paradiso "Furore".\r\nInteragire con lo chef nella preparazione del piatto più famoso al mondo "La Pizza"\r\nDivertimento assicurato.\r\nStoria e cultura della stessa e modi di cottura.\r\nAngolo Barbecue, dove gli ospiti potranno scegliere ed interagire con lo chef nella preparazione e cottura delle nostre carni, formaggi grigliati in foglia di limone.\r\nUn welcome drink accoglierà gli ospiti su un meraviglioso terrazzo con una spettacolare vista di una stupenda Villa Privata di Furore.\r\nCon la Pizza verrà servito vino locale o prosecco , alla fine rosoli vari includendo caffè e quant’altro .\r\nGli orari sono molto flessibili: DALLE 10:30 ALLE 14:30 OPPURE dalle 18:30 alle 22:30.'),
+(2930, 319, '_descrhtmlit', 'field_56c829c901778'),
+(2931, 319, 'descrhtmlen', 'Unique experience to spend in a corner of paradise "Furore" . Interact with the chef in the preparation of the most famous dish in the world "Pizza " Great fun . History and culture of same and ways of cooking . Barbecue corner , where guests can select and interact with the chef in the preparation and cooking of our meats , grilled cheese in lemon leaves . A welcome drink will welcome guests on a wonderful terrace with a spectacular view of a beautiful private villa of Furore . Pizza will be served with local wine or prosecco at the end various liqueurs including coffee and whatnot. The hours are very flexible : FROM 10:30 TO 14:30 OR 18:30 to 22:30.'),
+(2932, 319, '_descrhtmlen', 'field_56c82ab66e595'),
+(2933, 319, 'immagine', '300'),
+(2934, 319, '_immagine', 'field_56965b5a7c9f4'),
+(2935, 319, 'imgurl', 'wp-content/uploads/2016/02/pizzaHeader.png'),
+(2936, 319, '_imgurl', 'field_56965a3cbacd7'),
+(2937, 319, 'galleria_immagini', ''),
+(2938, 319, '_galleria_immagini', 'field_56c9d198431ec'),
+(2939, 320, '_wp_attached_file', '2016/02/excursionHeader.png'),
+(2940, 320, '_wp_attachment_metadata', 'a:5:{s:5:"width";i:1200;s:6:"height";i:250;s:4:"file";s:27:"2016/02/excursionHeader.png";s:5:"sizes";a:4:{s:9:"thumbnail";a:4:{s:4:"file";s:27:"excursionHeader-150x150.png";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:9:"image/png";}s:6:"medium";a:4:{s:4:"file";s:26:"excursionHeader-300x63.png";s:5:"width";i:300;s:6:"height";i:63;s:9:"mime-type";s:9:"image/png";}s:12:"medium_large";a:4:{s:4:"file";s:27:"excursionHeader-768x160.png";s:5:"width";i:768;s:6:"height";i:160;s:9:"mime-type";s:9:"image/png";}s:5:"large";a:4:{s:4:"file";s:28:"excursionHeader-1024x213.png";s:5:"width";i:1024;s:6:"height";i:213;s:9:"mime-type";s:9:"image/png";}}s:10:"image_meta";a:12:{s:8:"aperture";s:1:"0";s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";s:1:"0";s:9:"copyright";s:0:"";s:12:"focal_length";s:1:"0";s:3:"iso";s:1:"0";s:13:"shutter_speed";s:1:"0";s:5:"title";s:0:"";s:11:"orientation";s:1:"0";s:8:"keywords";a:0:{}}}'),
+(2943, 321, 'descrhtmlit', '<div class="project-category text-faded">Escursioni</div>\r\n<div class="project-name">verso le località più conosciute della regione, per ammirarne il ricco patrimonio artistico, storico e naturalistico</div>'),
+(2944, 321, '_descrhtmlit', 'field_56c829c901778'),
+(2945, 321, 'descrhtmlen', '<div class="project-category text-faded">Excursions</div>\r\n<div class="project-name">to the most famous places of the area to enjoy the rich cultural, artistic and natural heritage</div>'),
+(2946, 321, '_descrhtmlen', 'field_56c82ab66e595'),
+(2947, 321, 'immagine', '320'),
+(2948, 321, '_immagine', 'field_56965b5a7c9f4'),
+(2949, 321, 'imgurl', 'wp-content/uploads/2016/02/excursionHeader.png'),
+(2950, 321, '_imgurl', 'field_56965a3cbacd7'),
+(2951, 321, 'galleria_immagini', ''),
+(2952, 321, '_galleria_immagini', 'field_56c9d198431ec');
 
 -- --------------------------------------------------------
 
@@ -2170,9 +2328,9 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 -- Struttura della tabella `wp_posts`
 --
 
-CREATE TABLE IF NOT EXISTS `wp_posts` (
-  `ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `post_author` bigint(20) unsigned NOT NULL DEFAULT '0',
+CREATE TABLE `wp_posts` (
+  `ID` bigint(20) UNSIGNED NOT NULL,
+  `post_author` bigint(20) UNSIGNED NOT NULL DEFAULT '0',
   `post_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `post_date_gmt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `post_content` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -2188,18 +2346,13 @@ CREATE TABLE IF NOT EXISTS `wp_posts` (
   `post_modified` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `post_modified_gmt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `post_content_filtered` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `post_parent` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `post_parent` bigint(20) UNSIGNED NOT NULL DEFAULT '0',
   `guid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `menu_order` int(11) NOT NULL DEFAULT '0',
   `post_type` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'post',
   `post_mime_type` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `comment_count` bigint(20) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`ID`),
-  KEY `post_name` (`post_name`(191)),
-  KEY `type_status_date` (`post_type`,`post_status`,`post_date`,`ID`),
-  KEY `post_parent` (`post_parent`),
-  KEY `post_author` (`post_author`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=302 ;
+  `comment_count` bigint(20) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dump dei dati per la tabella `wp_posts`
@@ -2236,7 +2389,7 @@ INSERT INTO `wp_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `post
 (138, 1, '2016-01-11 17:36:51', '2016-01-11 16:36:51', '<div class="row"></div>', 'Amalfi', '', 'inherit', 'closed', 'closed', '', '137-revision-v1', '', '', '2016-01-11 17:36:51', '2016-01-11 16:36:51', '', 137, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/01/11/137-revision-v1/', 0, 'revision', '', 0),
 (139, 1, '2016-01-11 18:06:50', '2016-01-11 17:06:50', '<section class="bg-primary" id="about">\r\n    <div class="container">\r\n        <div class="row">\r\n            <div class="col-lg-8 col-lg-offset-2 text-center">\r\n                <h2 class="section-heading">Tutto ciò di cui avete bisogno!</h2>\r\n                <hr class="light">\r\n                <p class="text-faded">Lascia a casa la tua auto al resto ci pensa Giosy! Professionalità e competenza... Per maggiori informazioni contattatemi al numero</p>\r\n                <a href="tel:+393391774387" class="btn btn-default btn-xl">339 177 43 87</a>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</section>', 'sectionAbout', '', 'inherit', 'closed', 'closed', '', '15-revision-v1', '', '', '2016-01-11 18:06:50', '2016-01-11 17:06:50', '', 15, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/01/11/15-revision-v1/', 0, 'revision', '', 0),
 (140, 1, '2016-01-11 18:07:52', '2016-01-11 17:07:52', '<section id="about" class="bg-primary">\r\n<div class="container">\r\n<div class="row">\r\n<div class="col-lg-8 col-lg-offset-2 text-center">\r\n<h2 class="section-heading">Tutto ciò di cui avete bisogno!!!!!!!!</h2>\r\n\r\n<hr class="light" />\r\n<p class="text-faded">Lascia a casa la tua auto al resto ci pensa Giosy! Professionalità e competenza... Per maggiori informazioni contattatemi al numero</p>\r\n<a class="btn btn-default btn-xl" href="tel:+393391774387">339 177 43 87</a>\r\n\r\n</div>\r\n</div>\r\n</div>\r\n</section>', 'sectionAbout', '', 'inherit', 'closed', 'closed', '', '15-revision-v1', '', '', '2016-01-11 18:07:52', '2016-01-11 17:07:52', '', 15, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/01/11/15-revision-v1/', 0, 'revision', '', 0),
-(141, 1, '2016-01-12 09:36:37', '2016-01-12 08:36:37', '', 'Transfer', '', 'publish', 'open', 'open', '', 'transfer', '', '', '2016-02-28 17:22:21', '2016-02-28 16:22:21', '', 0, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/?p=141', 0, 'post', '', 0),
+(141, 1, '2016-01-12 09:36:37', '2016-01-12 08:36:37', '', 'Transfer', '', 'trash', 'open', 'open', '', 'transfer', '', '', '2016-02-29 22:54:04', '2016-02-29 21:54:04', '', 0, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/?p=141', 0, 'post', '', 0),
 (142, 1, '2016-01-12 09:36:37', '2016-01-12 08:36:37', '<div class="row">	<div class="col-md-6"><img src="http://www.amalfitourscarservice.it/wp-content/uploads/2015/10/cropped-DSCF1524-400x270.jpg"></div>	<div class="col-md-6"><ul>	<li>Servizi di escursioni private</li>	<li>Trasferimenti per Aeroporto/ Stazione treni e imbarchi</li>	<li>Transfer in occasioni di matrimoni, meeting, party e congressi</li>	<li>City tour</li>	<li>Shopping tour</li></ul>	</div></div>', 'NCC', '', 'inherit', 'closed', 'closed', '', '141-revision-v1', '', '', '2016-01-12 09:36:37', '2016-01-12 08:36:37', '', 141, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/01/12/141-revision-v1/', 0, 'revision', '', 0),
 (143, 1, '2016-01-12 09:42:57', '2016-01-12 08:42:57', '', 'Amalfi', '', 'inherit', 'closed', 'closed', '', '137-revision-v1', '', '', '2016-01-12 09:42:57', '2016-01-12 08:42:57', '', 137, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/01/12/137-revision-v1/', 0, 'revision', '', 0),
 (144, 1, '2016-01-12 09:43:22', '2016-01-12 08:43:22', '', 'NCC', '', 'inherit', 'closed', 'closed', '', '141-revision-v1', '', '', '2016-01-12 09:43:22', '2016-01-12 08:43:22', '', 141, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/01/12/141-revision-v1/', 0, 'revision', '', 0),
@@ -2253,12 +2406,12 @@ INSERT INTO `wp_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `post
 (157, 1, '2016-02-20 10:21:56', '2016-02-20 09:21:56', '', 'sectionAbout', '', 'inherit', 'closed', 'closed', '', '15-revision-v1', '', '', '2016-02-20 10:21:56', '2016-02-20 09:21:56', '', 15, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/20/15-revision-v1/', 0, 'revision', '', 0),
 (158, 1, '2016-02-20 10:22:31', '2016-02-20 09:22:31', '', 'sectionAbout', '', 'inherit', 'closed', 'closed', '', '15-revision-v1', '', '', '2016-02-20 10:22:31', '2016-02-20 09:22:31', '', 15, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/20/15-revision-v1/', 0, 'revision', '', 0),
 (159, 1, '2016-02-21 14:55:46', '2016-02-21 13:55:46', '', 'Transfer', '', 'inherit', 'closed', 'closed', '', '141-revision-v1', '', '', '2016-02-21 14:55:46', '2016-02-21 13:55:46', '', 141, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/21/141-revision-v1/', 0, 'revision', '', 0),
-(160, 1, '2016-02-21 14:56:36', '2016-02-21 13:56:36', '', 'Wine Tour', '', 'publish', 'open', 'open', '', 'wine-tour', '', '', '2016-02-28 17:21:34', '2016-02-28 16:21:34', '', 0, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/?p=160', 0, 'post', '', 0),
+(160, 1, '2016-02-21 14:56:36', '2016-02-21 13:56:36', '', 'Wine Tour', '', 'publish', 'open', 'open', '', 'wine-tour', '', '', '2016-02-29 22:53:15', '2016-02-29 21:53:15', '', 0, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/?p=160', 0, 'post', '', 0),
 (161, 1, '2016-02-21 14:56:36', '2016-02-21 13:56:36', '', 'Wine Tour', '', 'inherit', 'closed', 'closed', '', '160-revision-v1', '', '', '2016-02-21 14:56:36', '2016-02-21 13:56:36', '', 160, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/21/160-revision-v1/', 0, 'revision', '', 0),
 (162, 1, '2016-02-21 14:59:35', '2016-02-21 13:59:35', '', 'Transfer', '', 'inherit', 'closed', 'closed', '', '141-revision-v1', '', '', '2016-02-21 14:59:35', '2016-02-21 13:59:35', '', 141, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/21/141-revision-v1/', 0, 'revision', '', 0),
 (163, 1, '2016-02-21 15:19:14', '2016-02-21 14:19:14', '', '', '', 'inherit', 'open', 'closed', '', 'cheeseheader', '', '', '2016-02-21 16:18:02', '2016-02-21 15:18:02', '', 141, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/wp-content/uploads/2016/01/cheeseHeader.png', 0, 'attachment', 'image/png', 0),
 (164, 1, '2016-02-21 15:19:56', '2016-02-21 14:19:56', '', 'Transfer', '', 'inherit', 'closed', 'closed', '', '141-revision-v1', '', '', '2016-02-21 15:19:56', '2016-02-21 14:19:56', '', 141, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/21/141-revision-v1/', 0, 'revision', '', 0),
-(165, 1, '2016-02-21 15:21:00', '2016-02-21 14:21:00', '', 'Happy hour cheese tasting', '', 'publish', 'open', 'open', '', 'happy-hour-cheese-tasting', '', '', '2016-02-29 12:32:33', '2016-02-29 11:32:33', '', 0, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/?p=165', 0, 'post', '', 0),
+(165, 1, '2016-02-21 15:21:00', '2016-02-21 14:21:00', '', 'Happy hour cheese tasting', '', 'publish', 'open', 'open', '', 'happy-hour-cheese-tasting', '', '', '2016-02-29 22:53:01', '2016-02-29 21:53:01', '', 0, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/?p=165', 0, 'post', '', 0),
 (166, 1, '2016-02-21 15:21:00', '2016-02-21 14:21:00', '', 'Happy hour cheese tasting', '', 'inherit', 'closed', 'closed', '', '165-revision-v1', '', '', '2016-02-21 15:21:00', '2016-02-21 14:21:00', '', 165, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/21/165-revision-v1/', 0, 'revision', '', 0),
 (167, 1, '2016-02-21 15:23:31', '2016-02-21 14:23:31', '', 'Transfer', '', 'inherit', 'closed', 'closed', '', '141-revision-v1', '', '', '2016-02-21 15:23:31', '2016-02-21 14:23:31', '', 141, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/21/141-revision-v1/', 0, 'revision', '', 0),
 (168, 1, '2016-02-21 15:26:33', '2016-02-21 14:26:33', '', 'Transfer', '', 'inherit', 'closed', 'closed', '', '141-revision-v1', '', '', '2016-02-21 15:26:33', '2016-02-21 14:26:33', '', 141, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/21/141-revision-v1/', 0, 'revision', '', 0),
@@ -2268,13 +2421,13 @@ INSERT INTO `wp_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `post
 (172, 1, '2016-02-21 15:34:09', '2016-02-21 14:34:09', '', 'Happy hour cheese tasting', '', 'inherit', 'closed', 'closed', '', '165-revision-v1', '', '', '2016-02-21 15:34:09', '2016-02-21 14:34:09', '', 165, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/21/165-revision-v1/', 0, 'revision', '', 0),
 (173, 1, '2016-02-21 15:36:32', '2016-02-21 14:36:32', '', '', '', 'inherit', 'open', 'closed', '', 'winetourheader', '', '', '2016-02-21 16:18:41', '2016-02-21 15:18:41', '', 160, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/wp-content/uploads/2016/02/winetourHeader.png', 0, 'attachment', 'image/png', 0),
 (174, 1, '2016-02-21 15:36:42', '2016-02-21 14:36:42', '', 'Wine Tour', '', 'inherit', 'closed', 'closed', '', '160-revision-v1', '', '', '2016-02-21 15:36:42', '2016-02-21 14:36:42', '', 160, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/21/160-revision-v1/', 0, 'revision', '', 0),
-(175, 1, '2016-02-21 15:40:09', '2016-02-21 14:40:09', '', 'Lemon Tour', '', 'publish', 'open', 'open', '', 'lemon-tour', '', '', '2016-02-28 17:19:14', '2016-02-28 16:19:14', '', 0, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/?p=175', 0, 'post', '', 0),
+(175, 1, '2016-02-21 15:40:09', '2016-02-21 14:40:09', '', 'Lemon Tour', '', 'publish', 'open', 'open', '', 'lemon-tour', '', '', '2016-02-29 22:52:46', '2016-02-29 21:52:46', '', 0, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/?p=175', 0, 'post', '', 0),
 (176, 1, '2016-02-21 15:40:01', '2016-02-21 14:40:01', '', '', '', 'inherit', 'open', 'closed', '', 'lemontourheader', '', '', '2016-02-21 16:18:37', '2016-02-21 15:18:37', '', 175, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/wp-content/uploads/2016/02/lemontourHeader.png', 0, 'attachment', 'image/png', 0),
 (177, 1, '2016-02-21 15:40:09', '2016-02-21 14:40:09', '', 'Lemon Tour', '', 'inherit', 'closed', 'closed', '', '175-revision-v1', '', '', '2016-02-21 15:40:09', '2016-02-21 14:40:09', '', 175, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/21/175-revision-v1/', 0, 'revision', '', 0),
-(178, 1, '2016-02-21 15:42:52', '2016-02-21 14:42:52', '', 'Cooking class', '', 'publish', 'open', 'open', '', 'cooking-class', '', '', '2016-02-29 12:36:45', '2016-02-29 11:36:45', '', 0, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/?p=178', 0, 'post', '', 0),
+(178, 1, '2016-02-21 15:42:52', '2016-02-21 14:42:52', '', 'Cooking class', '', 'publish', 'open', 'open', '', 'cooking-class', '', '', '2016-02-29 22:52:17', '2016-02-29 21:52:17', '', 0, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/?p=178', 0, 'post', '', 0),
 (179, 1, '2016-02-21 15:42:43', '2016-02-21 14:42:43', '', '', '', 'inherit', 'open', 'closed', '', 'cookingclassheader', '', '', '2016-02-21 16:18:32', '2016-02-21 15:18:32', '', 178, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/wp-content/uploads/2016/02/cookingclassHeader.png', 0, 'attachment', 'image/png', 0),
 (180, 1, '2016-02-21 15:42:52', '2016-02-21 14:42:52', '', 'Cooking class', '', 'inherit', 'closed', 'closed', '', '178-revision-v1', '', '', '2016-02-21 15:42:52', '2016-02-21 14:42:52', '', 178, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/21/178-revision-v1/', 0, 'revision', '', 0),
-(181, 1, '2016-02-21 15:53:34', '2016-02-21 14:53:34', '', 'Mozzarella Class', '', 'publish', 'open', 'open', '', 'mozzarella-class', '', '', '2016-02-29 12:27:33', '2016-02-29 11:27:33', '', 0, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/?p=181', 0, 'post', '', 0),
+(181, 1, '2016-02-21 15:53:34', '2016-02-21 14:53:34', '', 'Mozzarella Class', '', 'publish', 'open', 'open', '', 'mozzarella-class', '', '', '2016-02-29 22:52:05', '2016-02-29 21:52:05', '', 0, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/?p=181', 0, 'post', '', 0),
 (182, 1, '2016-02-21 15:53:27', '2016-02-21 14:53:27', '', '', '', 'inherit', 'open', 'closed', '', 'mozzarellaheader', '', '', '2016-02-21 16:18:28', '2016-02-21 15:18:28', '', 181, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/wp-content/uploads/2016/02/mozzarellaHeader.png', 0, 'attachment', 'image/png', 0),
 (183, 1, '2016-02-21 15:53:34', '2016-02-21 14:53:34', '', 'Mozzarella Class', '', 'inherit', 'closed', 'closed', '', '181-revision-v1', '', '', '2016-02-21 15:53:34', '2016-02-21 14:53:34', '', 181, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/21/181-revision-v1/', 0, 'revision', '', 0),
 (184, 1, '2016-02-21 15:59:48', '2016-02-21 14:59:48', '', 'Amalfi', '', 'inherit', 'closed', 'closed', '', '137-revision-v1', '', '', '2016-02-21 15:59:48', '2016-02-21 14:59:48', '', 137, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/21/137-revision-v1/', 0, 'revision', '', 0),
@@ -2313,7 +2466,7 @@ INSERT INTO `wp_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `post
 (217, 1, '2016-02-21 16:38:23', '2016-02-21 15:38:23', '', 'Positano', '', 'inherit', 'closed', 'closed', '', '190-revision-v1', '', '', '2016-02-21 16:38:23', '2016-02-21 15:38:23', '', 190, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/21/190-revision-v1/', 0, 'revision', '', 0),
 (218, 1, '2016-02-21 16:38:43', '2016-02-21 15:38:43', '', 'Ravello', '', 'inherit', 'closed', 'closed', '', '188-revision-v1', '', '', '2016-02-21 16:38:43', '2016-02-21 15:38:43', '', 188, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/21/188-revision-v1/', 0, 'revision', '', 0),
 (219, 1, '2016-02-21 16:39:02', '2016-02-21 15:39:02', '', 'Paestum', '', 'inherit', 'closed', 'closed', '', '194-revision-v1', '', '', '2016-02-21 16:39:02', '2016-02-21 15:39:02', '', 194, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/21/194-revision-v1/', 0, 'revision', '', 0),
-(220, 1, '2016-02-22 14:56:46', '2016-02-22 13:56:46', '', 'sectionAboutTransfer', '', 'publish', 'open', 'open', '', 'sectionaboutservices', '', '', '2016-02-22 15:21:05', '2016-02-22 14:21:05', '', 0, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/?p=220', 0, 'post', '', 0),
+(220, 1, '2016-02-22 14:56:46', '2016-02-22 13:56:46', '', 'Transfer', '', 'publish', 'open', 'open', '', 'sectionaboutservices', '', '', '2016-02-29 22:50:23', '2016-02-29 21:50:23', '', 0, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/?p=220', 0, 'post', '', 0),
 (221, 1, '2016-02-22 14:56:46', '2016-02-22 13:56:46', '', 'sectionAboutServices', '', 'inherit', 'closed', 'closed', '', '220-revision-v1', '', '', '2016-02-22 14:56:46', '2016-02-22 13:56:46', '', 220, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/22/220-revision-v1/', 0, 'revision', '', 0),
 (222, 1, '2016-02-22 15:01:31', '2016-02-22 14:01:31', '', 'sectionAboutServices', '', 'inherit', 'closed', 'closed', '', '220-revision-v1', '', '', '2016-02-22 15:01:31', '2016-02-22 14:01:31', '', 220, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/22/220-revision-v1/', 0, 'revision', '', 0),
 (223, 1, '2016-02-22 15:02:10', '2016-02-22 14:02:10', '', 'sectionAboutServices', '', 'inherit', 'closed', 'closed', '', '220-revision-v1', '', '', '2016-02-22 15:02:10', '2016-02-22 14:02:10', '', 220, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/22/220-revision-v1/', 0, 'revision', '', 0),
@@ -2321,7 +2474,7 @@ INSERT INTO `wp_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `post
 (225, 1, '2016-02-22 15:09:47', '2016-02-22 14:09:47', '', 'sectionAboutServices', '', 'inherit', 'closed', 'closed', '', '220-revision-v1', '', '', '2016-02-22 15:09:47', '2016-02-22 14:09:47', '', 220, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/22/220-revision-v1/', 0, 'revision', '', 0),
 (226, 1, '2016-02-22 15:20:19', '2016-02-22 14:20:19', '', 'sectionAboutServices', '', 'inherit', 'closed', 'closed', '', '220-revision-v1', '', '', '2016-02-22 15:20:19', '2016-02-22 14:20:19', '', 220, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/22/220-revision-v1/', 0, 'revision', '', 0),
 (227, 1, '2016-02-22 15:21:05', '2016-02-22 14:21:05', '', 'sectionAboutTransfer', '', 'inherit', 'closed', 'closed', '', '220-revision-v1', '', '', '2016-02-22 15:21:05', '2016-02-22 14:21:05', '', 220, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/22/220-revision-v1/', 0, 'revision', '', 0),
-(228, 1, '2016-02-22 15:23:01', '2016-02-22 14:23:01', '', 'sectionAboutExcursions', '', 'publish', 'open', 'open', '', 'sectionaboutexcursions', '', '', '2016-02-22 15:23:01', '2016-02-22 14:23:01', '', 0, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/?p=228', 0, 'post', '', 0),
+(228, 1, '2016-02-22 15:23:01', '2016-02-22 14:23:01', '', 'Excursions', '', 'publish', 'open', 'open', '', 'sectionaboutexcursions', '', '', '2016-02-29 23:00:34', '2016-02-29 22:00:34', '', 0, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/?p=228', 0, 'post', '', 0),
 (229, 1, '2016-02-22 15:23:01', '2016-02-22 14:23:01', '', 'sectionAboutExcursions', '', 'inherit', 'closed', 'closed', '', '228-revision-v1', '', '', '2016-02-22 15:23:01', '2016-02-22 14:23:01', '', 228, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/22/228-revision-v1/', 0, 'revision', '', 0),
 (230, 1, '2016-02-22 15:36:46', '2016-02-22 14:36:46', '', 'sectionServices', '', 'trash', 'open', 'open', '', 'secdtionservices', '', '', '2016-02-22 16:06:20', '2016-02-22 15:06:20', '', 0, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/?p=230', 0, 'post', '', 0),
 (231, 1, '2016-02-22 15:36:46', '2016-02-22 14:36:46', '', 'secdtionServices', '', 'inherit', 'closed', 'closed', '', '230-revision-v1', '', '', '2016-02-22 15:36:46', '2016-02-22 14:36:46', '', 230, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/22/230-revision-v1/', 0, 'revision', '', 0),
@@ -2331,11 +2484,8 @@ INSERT INTO `wp_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `post
 (237, 1, '2016-02-22 15:57:00', '2016-02-22 14:57:00', '', 'sectionServices', '', 'inherit', 'closed', 'closed', '', '230-revision-v1', '', '', '2016-02-22 15:57:00', '2016-02-22 14:57:00', '', 230, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/22/230-revision-v1/', 0, 'revision', '', 0),
 (238, 1, '2016-02-22 15:59:43', '2016-02-22 14:59:43', '', 'sectionServices', '', 'inherit', 'closed', 'closed', '', '230-revision-v1', '', '', '2016-02-22 15:59:43', '2016-02-22 14:59:43', '', 230, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/22/230-revision-v1/', 0, 'revision', '', 0),
 (239, 1, '2016-02-22 16:16:44', '2016-02-22 15:16:44', '', 'Services', '', 'publish', 'closed', 'closed', '', 'acf_services', '', '', '2016-02-29 12:52:55', '2016-02-29 11:52:55', '', 0, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/?post_type=acf&#038;p=239', 0, 'acf', '', 0),
-(240, 1, '2016-02-22 16:17:32', '0000-00-00 00:00:00', '', 'Bozza automatica', '', 'auto-draft', 'open', 'open', '', '', '', '', '2016-02-22 16:17:32', '0000-00-00 00:00:00', '', 0, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/?p=240', 0, 'post', '', 0),
 (241, 1, '2016-02-22 16:19:08', '2016-02-22 15:19:08', '', 'DeveloperServices', '', 'trash', 'open', 'open', '', 'developerservices', '', '', '2016-02-22 16:20:11', '2016-02-22 15:20:11', '', 0, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/?p=241', 0, 'post', '', 0),
 (242, 1, '2016-02-22 16:20:11', '2016-02-22 15:20:11', '', 'DeveloperServices', '', 'inherit', 'closed', 'closed', '', '241-revision-v1', '', '', '2016-02-22 16:20:11', '2016-02-22 15:20:11', '', 241, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/22/241-revision-v1/', 0, 'revision', '', 0),
-(243, 1, '2016-02-22 16:20:19', '0000-00-00 00:00:00', '', 'Bozza automatica', '', 'auto-draft', 'open', 'open', '', '', '', '', '2016-02-22 16:20:19', '0000-00-00 00:00:00', '', 0, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/?p=243', 0, 'post', '', 0),
-(244, 1, '2016-02-22 16:21:50', '0000-00-00 00:00:00', '', 'Bozza automatica', '', 'auto-draft', 'open', 'open', '', '', '', '', '2016-02-22 16:21:50', '0000-00-00 00:00:00', '', 0, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/?p=244', 0, 'post', '', 0),
 (245, 1, '2016-02-22 16:23:55', '2016-02-22 15:23:55', '', 'SectionServices', '', 'publish', 'open', 'open', '', '245', '', '', '2016-02-29 12:54:11', '2016-02-29 11:54:11', '', 0, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/?p=245', 0, 'post', '', 0),
 (246, 1, '2016-02-22 16:23:55', '2016-02-22 15:23:55', '', '', '', 'inherit', 'closed', 'closed', '', '245-revision-v1', '', '', '2016-02-22 16:23:55', '2016-02-22 15:23:55', '', 245, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/22/245-revision-v1/', 0, 'revision', '', 0),
 (247, 1, '2016-02-22 16:28:47', '2016-02-22 15:28:47', '', 'SectionServices', '', 'inherit', 'closed', 'closed', '', '245-revision-v1', '', '', '2016-02-22 16:28:47', '2016-02-22 15:28:47', '', 245, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/22/245-revision-v1/', 0, 'revision', '', 0),
@@ -2353,10 +2503,10 @@ INSERT INTO `wp_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `post
 (259, 1, '2016-02-22 18:26:10', '2016-02-22 17:26:10', '', 'Napoli', '', 'inherit', 'closed', 'closed', '', '196-revision-v1', '', '', '2016-02-22 18:26:10', '2016-02-22 17:26:10', '', 196, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/22/196-revision-v1/', 0, 'revision', '', 0),
 (260, 1, '2016-02-22 18:27:49', '2016-02-22 17:27:49', '', 'Napoli', '', 'inherit', 'closed', 'closed', '', '196-revision-v1', '', '', '2016-02-22 18:27:49', '2016-02-22 17:27:49', '', 196, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/22/196-revision-v1/', 0, 'revision', '', 0),
 (261, 1, '2016-02-22 18:30:45', '2016-02-22 17:30:45', '', 'Napoli', '', 'inherit', 'closed', 'closed', '', '196-revision-v1', '', '', '2016-02-22 18:30:45', '2016-02-22 17:30:45', '', 196, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/22/196-revision-v1/', 0, 'revision', '', 0),
-(262, 1, '2016-02-22 18:35:04', '2016-02-22 17:35:04', '', 'Napoli', '', 'inherit', 'closed', 'closed', '', '196-autosave-v1', '', '', '2016-02-22 18:35:04', '2016-02-22 17:35:04', '', 196, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/22/196-autosave-v1/', 0, 'revision', '', 0);
-INSERT INTO `wp_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `post_content`, `post_title`, `post_excerpt`, `post_status`, `comment_status`, `ping_status`, `post_password`, `post_name`, `to_ping`, `pinged`, `post_modified`, `post_modified_gmt`, `post_content_filtered`, `post_parent`, `guid`, `menu_order`, `post_type`, `post_mime_type`, `comment_count`) VALUES
+(262, 1, '2016-02-22 18:35:04', '2016-02-22 17:35:04', '', 'Napoli', '', 'inherit', 'closed', 'closed', '', '196-autosave-v1', '', '', '2016-02-22 18:35:04', '2016-02-22 17:35:04', '', 196, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/22/196-autosave-v1/', 0, 'revision', '', 0),
 (263, 1, '2016-02-22 18:35:17', '2016-02-22 17:35:17', '', 'Napoli', '', 'inherit', 'closed', 'closed', '', '196-revision-v1', '', '', '2016-02-22 18:35:17', '2016-02-22 17:35:17', '', 196, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/22/196-revision-v1/', 0, 'revision', '', 0),
-(264, 2, '2016-02-22 18:40:20', '2016-02-22 17:40:20', '', 'Bozza automatica', '', 'trash', 'open', 'open', '', 'bozza-automatica', '', '', '2016-02-26 14:21:42', '2016-02-26 13:21:42', '', 0, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/?p=264', 0, 'post', '', 0),
+(264, 2, '2016-02-22 18:40:20', '2016-02-22 17:40:20', '', 'Bozza automatica', '', 'trash', 'open', 'open', '', 'bozza-automatica', '', '', '2016-02-26 14:21:42', '2016-02-26 13:21:42', '', 0, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/?p=264', 0, 'post', '', 0);
+INSERT INTO `wp_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `post_content`, `post_title`, `post_excerpt`, `post_status`, `comment_status`, `ping_status`, `post_password`, `post_name`, `to_ping`, `pinged`, `post_modified`, `post_modified_gmt`, `post_content_filtered`, `post_parent`, `guid`, `menu_order`, `post_type`, `post_mime_type`, `comment_count`) VALUES
 (265, 1, '2016-02-22 18:42:39', '2016-02-22 17:42:39', '', 'Paestum', '', 'inherit', 'closed', 'closed', '', '194-revision-v1', '', '', '2016-02-22 18:42:39', '2016-02-22 17:42:39', '', 194, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/22/194-revision-v1/', 0, 'revision', '', 0),
 (266, 1, '2016-02-22 18:43:26', '2016-02-22 17:43:26', '', 'Transfer', '', 'inherit', 'closed', 'closed', '', '141-revision-v1', '', '', '2016-02-22 18:43:26', '2016-02-22 17:43:26', '', 141, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/22/141-revision-v1/', 0, 'revision', '', 0),
 (267, 1, '2016-02-22 18:49:09', '2016-02-22 17:49:09', '', 'Transfer', '', 'inherit', 'closed', 'closed', '', '141-revision-v1', '', '', '2016-02-22 18:49:09', '2016-02-22 17:49:09', '', 141, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/22/141-revision-v1/', 0, 'revision', '', 0),
@@ -2390,10 +2540,28 @@ INSERT INTO `wp_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `post
 (295, 1, '2016-02-29 12:35:48', '2016-02-29 11:35:48', '', 'Cooking class', '', 'inherit', 'closed', 'closed', '', '178-revision-v1', '', '', '2016-02-29 12:35:48', '2016-02-29 11:35:48', '', 178, 'http://www.amalfitourscarservice.it/2016/02/29/178-revision-v1/', 0, 'revision', '', 0),
 (296, 1, '2016-02-29 12:36:45', '2016-02-29 11:36:45', '', 'Cooking class', '', 'inherit', 'closed', 'closed', '', '178-revision-v1', '', '', '2016-02-29 12:36:45', '2016-02-29 11:36:45', '', 178, 'http://www.amalfitourscarservice.it/2016/02/29/178-revision-v1/', 0, 'revision', '', 0),
 (297, 1, '2016-02-29 12:54:11', '2016-02-29 11:54:11', '', 'SectionServices', '', 'inherit', 'closed', 'closed', '', '245-revision-v1', '', '', '2016-02-29 12:54:11', '2016-02-29 11:54:11', '', 245, 'http://www.amalfitourscarservice.it/2016/02/29/245-revision-v1/', 0, 'revision', '', 0),
-(298, 1, '2016-02-29 12:57:32', '2016-02-29 11:57:32', '', 'Pizza Class', '', 'publish', 'open', 'open', '', 'pizza-class', '', '', '2016-02-29 13:12:43', '2016-02-29 12:12:43', '', 0, 'http://www.amalfitourscarservice.it/?p=298', 0, 'post', '', 0),
+(298, 1, '2016-02-29 12:57:32', '2016-02-29 11:57:32', '', 'Pizza Class', '', 'publish', 'open', 'open', '', 'pizza-class', '', '', '2016-02-29 22:56:25', '2016-02-29 21:56:25', '', 0, 'http://www.amalfitourscarservice.it/?p=298', 0, 'post', '', 0),
 (299, 1, '2016-02-29 12:57:32', '2016-02-29 11:57:32', '', 'Pizza Class', '', 'inherit', 'closed', 'closed', '', '298-revision-v1', '', '', '2016-02-29 12:57:32', '2016-02-29 11:57:32', '', 298, 'http://www.amalfitourscarservice.it/2016/02/29/298-revision-v1/', 0, 'revision', '', 0),
-(300, 1, '2016-02-29 13:02:40', '2016-02-29 12:02:40', '', 'pizzaHeader', '', 'inherit', 'open', 'closed', '', 'pizzaheader', '', '', '2016-02-29 13:02:40', '2016-02-29 12:02:40', '', 298, 'http://www.amalfitourscarservice.it/wp-content/uploads/2016/02/pizzaHeader.png', 0, 'attachment', 'image/png', 0),
-(301, 1, '2016-02-29 13:02:54', '2016-02-29 12:02:54', '', 'Pizza Class', '', 'inherit', 'closed', 'closed', '', '298-revision-v1', '', '', '2016-02-29 13:02:54', '2016-02-29 12:02:54', '', 298, 'http://www.amalfitourscarservice.it/2016/02/29/298-revision-v1/', 0, 'revision', '', 0);
+(301, 1, '2016-02-29 13:02:54', '2016-02-29 12:02:54', '', 'Pizza Class', '', 'inherit', 'closed', 'closed', '', '298-revision-v1', '', '', '2016-02-29 13:02:54', '2016-02-29 12:02:54', '', 298, 'http://www.amalfitourscarservice.it/2016/02/29/298-revision-v1/', 0, 'revision', '', 0),
+(302, 1, '2016-02-29 22:20:07', '2016-02-29 21:20:07', '', 'Pizza Class', '', 'inherit', 'closed', 'closed', '', '298-revision-v1', '', '', '2016-02-29 22:20:07', '2016-02-29 21:20:07', '', 298, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/29/298-revision-v1/', 0, 'revision', '', 0),
+(303, 1, '2016-02-29 22:23:53', '2016-02-29 21:23:53', '', 'sectionAboutExcursions', '', 'inherit', 'closed', 'closed', '', '228-revision-v1', '', '', '2016-02-29 22:23:53', '2016-02-29 21:23:53', '', 228, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/29/228-revision-v1/', 0, 'revision', '', 0),
+(304, 1, '2016-02-29 22:25:42', '2016-02-29 21:25:42', '', 'sectionAboutExcursions', '', 'inherit', 'closed', 'closed', '', '228-revision-v1', '', '', '2016-02-29 22:25:42', '2016-02-29 21:25:42', '', 228, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/29/228-revision-v1/', 0, 'revision', '', 0),
+(305, 1, '2016-02-29 22:44:06', '2016-02-29 21:44:06', '', 'Transfer', '', 'inherit', 'closed', 'closed', '', '220-revision-v1', '', '', '2016-02-29 22:44:06', '2016-02-29 21:44:06', '', 220, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/29/220-revision-v1/', 0, 'revision', '', 0),
+(306, 1, '2016-02-29 22:44:22', '2016-02-29 21:44:22', '', 'Excursions', '', 'inherit', 'closed', 'closed', '', '228-revision-v1', '', '', '2016-02-29 22:44:22', '2016-02-29 21:44:22', '', 228, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/29/228-revision-v1/', 0, 'revision', '', 0),
+(307, 1, '2016-02-29 22:45:39', '2016-02-29 21:45:39', '', 'Excursions', '', 'inherit', 'closed', 'closed', '', '228-revision-v1', '', '', '2016-02-29 22:45:39', '2016-02-29 21:45:39', '', 228, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/29/228-revision-v1/', 0, 'revision', '', 0),
+(308, 1, '2016-02-29 22:48:32', '2016-02-29 21:48:32', '', 'Excursions', '', 'inherit', 'closed', 'closed', '', '228-revision-v1', '', '', '2016-02-29 22:48:32', '2016-02-29 21:48:32', '', 228, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/29/228-revision-v1/', 0, 'revision', '', 0),
+(309, 1, '2016-02-29 22:50:23', '2016-02-29 21:50:23', '', 'Transfer', '', 'inherit', 'closed', 'closed', '', '220-revision-v1', '', '', '2016-02-29 22:50:23', '2016-02-29 21:50:23', '', 220, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/29/220-revision-v1/', 0, 'revision', '', 0),
+(310, 1, '2016-02-29 22:51:03', '2016-02-29 21:51:03', '', 'Pizza Class', '', 'inherit', 'closed', 'closed', '', '298-revision-v1', '', '', '2016-02-29 22:51:03', '2016-02-29 21:51:03', '', 298, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/29/298-revision-v1/', 0, 'revision', '', 0),
+(311, 1, '2016-02-29 22:52:05', '2016-02-29 21:52:05', '', 'Mozzarella Class', '', 'inherit', 'closed', 'closed', '', '181-revision-v1', '', '', '2016-02-29 22:52:05', '2016-02-29 21:52:05', '', 181, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/29/181-revision-v1/', 0, 'revision', '', 0),
+(312, 1, '2016-02-29 22:52:17', '2016-02-29 21:52:17', '', 'Cooking class', '', 'inherit', 'closed', 'closed', '', '178-revision-v1', '', '', '2016-02-29 22:52:17', '2016-02-29 21:52:17', '', 178, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/29/178-revision-v1/', 0, 'revision', '', 0),
+(313, 1, '2016-02-29 22:52:46', '2016-02-29 21:52:46', '', 'Lemon Tour', '', 'inherit', 'closed', 'closed', '', '175-revision-v1', '', '', '2016-02-29 22:52:46', '2016-02-29 21:52:46', '', 175, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/29/175-revision-v1/', 0, 'revision', '', 0),
+(314, 1, '2016-02-29 22:53:01', '2016-02-29 21:53:01', '', 'Happy hour cheese tasting', '', 'inherit', 'closed', 'closed', '', '165-revision-v1', '', '', '2016-02-29 22:53:01', '2016-02-29 21:53:01', '', 165, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/29/165-revision-v1/', 0, 'revision', '', 0),
+(315, 1, '2016-02-29 22:53:15', '2016-02-29 21:53:15', '', 'Wine Tour', '', 'inherit', 'closed', 'closed', '', '160-revision-v1', '', '', '2016-02-29 22:53:15', '2016-02-29 21:53:15', '', 160, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/29/160-revision-v1/', 0, 'revision', '', 0),
+(316, 1, '2016-02-29 22:53:39', '2016-02-29 21:53:39', '', 'Transfer', '', 'inherit', 'closed', 'closed', '', '141-revision-v1', '', '', '2016-02-29 22:53:39', '2016-02-29 21:53:39', '', 141, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/29/141-revision-v1/', 0, 'revision', '', 0),
+(318, 1, '2016-02-29 22:56:02', '2016-02-29 21:56:02', '', 'pizzaHeader', '', 'inherit', 'open', 'closed', '', 'pizzaheader', '', '', '2016-02-29 22:56:02', '2016-02-29 21:56:02', '', 0, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/wp-content/uploads/2016/02/pizzaHeader.png', 0, 'attachment', 'image/png', 0),
+(319, 1, '2016-02-29 22:56:25', '2016-02-29 21:56:25', '', 'Pizza Class', '', 'inherit', 'closed', 'closed', '', '298-revision-v1', '', '', '2016-02-29 22:56:25', '2016-02-29 21:56:25', '', 298, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/29/298-revision-v1/', 0, 'revision', '', 0),
+(320, 1, '2016-02-29 23:00:08', '2016-02-29 22:00:08', '', 'excursionHeader', '', 'inherit', 'open', 'closed', '', 'excursionheader', '', '', '2016-02-29 23:00:08', '2016-02-29 22:00:08', '', 0, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/wp-content/uploads/2016/02/excursionHeader.png', 0, 'attachment', 'image/png', 0),
+(321, 1, '2016-02-29 23:00:34', '2016-02-29 22:00:34', '', 'Excursions', '', 'inherit', 'closed', 'closed', '', '228-revision-v1', '', '', '2016-02-29 23:00:34', '2016-02-29 22:00:34', '', 228, 'http://localhost/alefal.it/PROJECTS/amalfitourscarservice/2016/02/29/228-revision-v1/', 0, 'revision', '', 0);
 
 -- --------------------------------------------------------
 
@@ -2401,15 +2569,12 @@ INSERT INTO `wp_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `post
 -- Struttura della tabella `wp_termmeta`
 --
 
-CREATE TABLE IF NOT EXISTS `wp_termmeta` (
-  `meta_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `term_id` bigint(20) unsigned NOT NULL DEFAULT '0',
+CREATE TABLE `wp_termmeta` (
+  `meta_id` bigint(20) UNSIGNED NOT NULL,
+  `term_id` bigint(20) UNSIGNED NOT NULL DEFAULT '0',
   `meta_key` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `meta_value` longtext COLLATE utf8mb4_unicode_ci,
-  PRIMARY KEY (`meta_id`),
-  KEY `term_id` (`term_id`),
-  KEY `meta_key` (`meta_key`(191))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+  `meta_value` longtext COLLATE utf8mb4_unicode_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -2417,15 +2582,12 @@ CREATE TABLE IF NOT EXISTS `wp_termmeta` (
 -- Struttura della tabella `wp_terms`
 --
 
-CREATE TABLE IF NOT EXISTS `wp_terms` (
-  `term_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `wp_terms` (
+  `term_id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `slug` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `term_group` bigint(10) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`term_id`),
-  KEY `slug` (`slug`(191)),
-  KEY `name` (`name`(191))
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=27 ;
+  `term_group` bigint(10) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dump dei dati per la tabella `wp_terms`
@@ -2449,7 +2611,9 @@ INSERT INTO `wp_terms` (`term_id`, `name`, `slug`, `term_group`) VALUES
 (23, 'ExcursionNapoli', 'excursionnapoli', 0),
 (24, 'ExcursionPaestum', 'excursionpaestum', 0),
 (25, 'DeveloperServices', 'developerservices', 0),
-(26, 'ServicesPizzaClass', 'servicespizzaclass', 0);
+(26, 'ServicesPizzaClass', 'servicespizzaclass', 0),
+(27, 'servicesaboutexcursion', 'servicesaboutexcursion', 0),
+(28, 'servicesabouttransfer', 'servicesabouttransfer', 0);
 
 -- --------------------------------------------------------
 
@@ -2457,12 +2621,10 @@ INSERT INTO `wp_terms` (`term_id`, `name`, `slug`, `term_group`) VALUES
 -- Struttura della tabella `wp_term_relationships`
 --
 
-CREATE TABLE IF NOT EXISTS `wp_term_relationships` (
-  `object_id` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `term_taxonomy_id` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `term_order` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`object_id`,`term_taxonomy_id`),
-  KEY `term_taxonomy_id` (`term_taxonomy_id`)
+CREATE TABLE `wp_term_relationships` (
+  `object_id` bigint(20) UNSIGNED NOT NULL DEFAULT '0',
+  `term_taxonomy_id` bigint(20) UNSIGNED NOT NULL DEFAULT '0',
+  `term_order` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -2498,7 +2660,9 @@ INSERT INTO `wp_term_relationships` (`object_id`, `term_taxonomy_id`, `term_orde
 (196, 12, 0),
 (196, 23, 0),
 (220, 5, 0),
+(220, 28, 0),
 (228, 5, 0),
+(228, 27, 0),
 (230, 5, 0),
 (241, 1, 0),
 (245, 25, 0),
@@ -2512,29 +2676,26 @@ INSERT INTO `wp_term_relationships` (`object_id`, `term_taxonomy_id`, `term_orde
 -- Struttura della tabella `wp_term_taxonomy`
 --
 
-CREATE TABLE IF NOT EXISTS `wp_term_taxonomy` (
-  `term_taxonomy_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `term_id` bigint(20) unsigned NOT NULL DEFAULT '0',
+CREATE TABLE `wp_term_taxonomy` (
+  `term_taxonomy_id` bigint(20) UNSIGNED NOT NULL,
+  `term_id` bigint(20) UNSIGNED NOT NULL DEFAULT '0',
   `taxonomy` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `description` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `parent` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `count` bigint(20) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`term_taxonomy_id`),
-  UNIQUE KEY `term_id_taxonomy` (`term_id`,`taxonomy`),
-  KEY `taxonomy` (`taxonomy`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=27 ;
+  `parent` bigint(20) UNSIGNED NOT NULL DEFAULT '0',
+  `count` bigint(20) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dump dei dati per la tabella `wp_term_taxonomy`
 --
 
 INSERT INTO `wp_term_taxonomy` (`term_taxonomy_id`, `term_id`, `taxonomy`, `description`, `parent`, `count`) VALUES
-(1, 1, 'category', '', 0, 7),
+(1, 1, 'category', '', 0, 6),
 (4, 4, 'nav_menu', '', 0, 2),
 (5, 5, 'category', '', 0, 3),
 (12, 12, 'category', '', 0, 6),
 (13, 13, 'post_tag', '', 0, 1),
-(14, 14, 'post_tag', '', 0, 1),
+(14, 14, 'post_tag', '', 0, 0),
 (15, 15, 'post_tag', '', 0, 1),
 (16, 16, 'post_tag', '', 0, 1),
 (17, 17, 'post_tag', '', 0, 1),
@@ -2546,7 +2707,9 @@ INSERT INTO `wp_term_taxonomy` (`term_taxonomy_id`, `term_id`, `taxonomy`, `desc
 (23, 23, 'post_tag', '', 0, 1),
 (24, 24, 'post_tag', '', 0, 1),
 (25, 25, 'category', '', 0, 1),
-(26, 26, 'post_tag', '', 0, 1);
+(26, 26, 'post_tag', '', 0, 1),
+(27, 27, 'post_tag', '', 0, 1),
+(28, 28, 'post_tag', '', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -2554,15 +2717,12 @@ INSERT INTO `wp_term_taxonomy` (`term_taxonomy_id`, `term_id`, `taxonomy`, `desc
 -- Struttura della tabella `wp_usermeta`
 --
 
-CREATE TABLE IF NOT EXISTS `wp_usermeta` (
-  `umeta_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) unsigned NOT NULL DEFAULT '0',
+CREATE TABLE `wp_usermeta` (
+  `umeta_id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL DEFAULT '0',
   `meta_key` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `meta_value` longtext COLLATE utf8mb4_unicode_ci,
-  PRIMARY KEY (`umeta_id`),
-  KEY `user_id` (`user_id`),
-  KEY `meta_key` (`meta_key`(191))
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=31 ;
+  `meta_value` longtext COLLATE utf8mb4_unicode_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dump dei dati per la tabella `wp_usermeta`
@@ -2591,7 +2751,8 @@ INSERT INTO `wp_usermeta` (`umeta_id`, `user_id`, `meta_key`, `meta_value`) VALU
 (23, 1, 'closedpostboxes_acf', 'a:1:{i:0;s:11:"acf_options";}'),
 (24, 1, 'metaboxhidden_acf', 'a:1:{i:0;s:7:"slugdiv";}'),
 (26, 1, 'wp_booking_win_wpbc-panel-get-started', '1'),
-(27, 1, 'wp_media_library_mode', 'list');
+(27, 1, 'wp_media_library_mode', 'list'),
+(31, 1, 'session_tokens', 'a:1:{s:64:"ca95a59e6a1f10c2aad146c80329d97c6defef1b95146d77be12bc90c5670851";a:4:{s:10:"expiration";i:1456952835;s:2:"ip";s:3:"::1";s:2:"ua";s:110:"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36";s:5:"login";i:1456780035;}}');
 
 -- --------------------------------------------------------
 
@@ -2599,8 +2760,8 @@ INSERT INTO `wp_usermeta` (`umeta_id`, `user_id`, `meta_key`, `meta_value`) VALU
 -- Struttura della tabella `wp_users`
 --
 
-CREATE TABLE IF NOT EXISTS `wp_users` (
-  `ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `wp_users` (
+  `ID` bigint(20) UNSIGNED NOT NULL,
   `user_login` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `user_pass` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `user_nicename` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
@@ -2609,19 +2770,177 @@ CREATE TABLE IF NOT EXISTS `wp_users` (
   `user_registered` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `user_activation_key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `user_status` int(11) NOT NULL DEFAULT '0',
-  `display_name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  PRIMARY KEY (`ID`),
-  KEY `user_login_key` (`user_login`),
-  KEY `user_nicename` (`user_nicename`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=2 ;
+  `display_name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dump dei dati per la tabella `wp_users`
 --
 
 INSERT INTO `wp_users` (`ID`, `user_login`, `user_pass`, `user_nicename`, `user_email`, `user_url`, `user_registered`, `user_activation_key`, `user_status`, `display_name`) VALUES
-(1, 'admin', '$P$Be.yTw/NTpC58Qegdt.jLHLnuyMoZ/.', 'admin', 'amalfitourscarservice@gmail.com', '', '2015-08-04 12:43:25', '', 0, 'admin');
+(1, 'admin', '$P$B5gPhRc1fppeF.ofphl50EgD4cNY.j.', 'admin', 'amalfitourscarservice@gmail.com', '', '2015-08-04 12:43:25', '', 0, 'admin');
 
+--
+-- Indici per le tabelle scaricate
+--
+
+--
+-- Indici per le tabelle `wp_commentmeta`
+--
+ALTER TABLE `wp_commentmeta`
+  ADD PRIMARY KEY (`meta_id`),
+  ADD KEY `comment_id` (`comment_id`),
+  ADD KEY `meta_key` (`meta_key`(191));
+
+--
+-- Indici per le tabelle `wp_comments`
+--
+ALTER TABLE `wp_comments`
+  ADD PRIMARY KEY (`comment_ID`),
+  ADD KEY `comment_post_ID` (`comment_post_ID`),
+  ADD KEY `comment_approved_date_gmt` (`comment_approved`,`comment_date_gmt`),
+  ADD KEY `comment_date_gmt` (`comment_date_gmt`),
+  ADD KEY `comment_parent` (`comment_parent`),
+  ADD KEY `comment_author_email` (`comment_author_email`(10));
+
+--
+-- Indici per le tabelle `wp_links`
+--
+ALTER TABLE `wp_links`
+  ADD PRIMARY KEY (`link_id`),
+  ADD KEY `link_visible` (`link_visible`);
+
+--
+-- Indici per le tabelle `wp_options`
+--
+ALTER TABLE `wp_options`
+  ADD PRIMARY KEY (`option_id`),
+  ADD UNIQUE KEY `option_name` (`option_name`);
+
+--
+-- Indici per le tabelle `wp_postmeta`
+--
+ALTER TABLE `wp_postmeta`
+  ADD PRIMARY KEY (`meta_id`),
+  ADD KEY `post_id` (`post_id`),
+  ADD KEY `meta_key` (`meta_key`(191));
+
+--
+-- Indici per le tabelle `wp_posts`
+--
+ALTER TABLE `wp_posts`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `post_name` (`post_name`(191)),
+  ADD KEY `type_status_date` (`post_type`,`post_status`,`post_date`,`ID`),
+  ADD KEY `post_parent` (`post_parent`),
+  ADD KEY `post_author` (`post_author`);
+
+--
+-- Indici per le tabelle `wp_termmeta`
+--
+ALTER TABLE `wp_termmeta`
+  ADD PRIMARY KEY (`meta_id`),
+  ADD KEY `term_id` (`term_id`),
+  ADD KEY `meta_key` (`meta_key`(191));
+
+--
+-- Indici per le tabelle `wp_terms`
+--
+ALTER TABLE `wp_terms`
+  ADD PRIMARY KEY (`term_id`),
+  ADD KEY `slug` (`slug`(191)),
+  ADD KEY `name` (`name`(191));
+
+--
+-- Indici per le tabelle `wp_term_relationships`
+--
+ALTER TABLE `wp_term_relationships`
+  ADD PRIMARY KEY (`object_id`,`term_taxonomy_id`),
+  ADD KEY `term_taxonomy_id` (`term_taxonomy_id`);
+
+--
+-- Indici per le tabelle `wp_term_taxonomy`
+--
+ALTER TABLE `wp_term_taxonomy`
+  ADD PRIMARY KEY (`term_taxonomy_id`),
+  ADD UNIQUE KEY `term_id_taxonomy` (`term_id`,`taxonomy`),
+  ADD KEY `taxonomy` (`taxonomy`);
+
+--
+-- Indici per le tabelle `wp_usermeta`
+--
+ALTER TABLE `wp_usermeta`
+  ADD PRIMARY KEY (`umeta_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `meta_key` (`meta_key`(191));
+
+--
+-- Indici per le tabelle `wp_users`
+--
+ALTER TABLE `wp_users`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `user_login_key` (`user_login`),
+  ADD KEY `user_nicename` (`user_nicename`);
+
+--
+-- AUTO_INCREMENT per le tabelle scaricate
+--
+
+--
+-- AUTO_INCREMENT per la tabella `wp_commentmeta`
+--
+ALTER TABLE `wp_commentmeta`
+  MODIFY `meta_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT per la tabella `wp_comments`
+--
+ALTER TABLE `wp_comments`
+  MODIFY `comment_ID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT per la tabella `wp_links`
+--
+ALTER TABLE `wp_links`
+  MODIFY `link_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT per la tabella `wp_options`
+--
+ALTER TABLE `wp_options`
+  MODIFY `option_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1413;
+--
+-- AUTO_INCREMENT per la tabella `wp_postmeta`
+--
+ALTER TABLE `wp_postmeta`
+  MODIFY `meta_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2953;
+--
+-- AUTO_INCREMENT per la tabella `wp_posts`
+--
+ALTER TABLE `wp_posts`
+  MODIFY `ID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=322;
+--
+-- AUTO_INCREMENT per la tabella `wp_termmeta`
+--
+ALTER TABLE `wp_termmeta`
+  MODIFY `meta_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT per la tabella `wp_terms`
+--
+ALTER TABLE `wp_terms`
+  MODIFY `term_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+--
+-- AUTO_INCREMENT per la tabella `wp_term_taxonomy`
+--
+ALTER TABLE `wp_term_taxonomy`
+  MODIFY `term_taxonomy_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+--
+-- AUTO_INCREMENT per la tabella `wp_usermeta`
+--
+ALTER TABLE `wp_usermeta`
+  MODIFY `umeta_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+--
+-- AUTO_INCREMENT per la tabella `wp_users`
+--
+ALTER TABLE `wp_users`
+  MODIFY `ID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
