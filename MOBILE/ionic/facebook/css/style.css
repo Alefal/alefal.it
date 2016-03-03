@@ -63,6 +63,7 @@ p {
 
 /* Login
 ==================================*/
+/*
 .app-icon {
     background-color: #fff;
     background: url('../img/crown.jpg') center;
@@ -72,7 +73,15 @@ p {
     margin: 0 auto;
     width: 125px;
 }
-
+*/
+.app-icon {
+    background-color: #fff;
+    background: url('../img/facebook_2.png') center;
+    background-repeat: no-repeat;
+    height: 150px;
+    margin: 0 auto;
+    width: 150px;
+}
 .social-login {
     position: fixed;
     bottom: 0;
