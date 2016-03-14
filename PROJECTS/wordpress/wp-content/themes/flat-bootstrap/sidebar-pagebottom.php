@@ -17,6 +17,7 @@ global $xsbf_theme_options;
 $sidebar_pagebottom = get_dynamic_sidebar( 'sidebar-4' );
 if ( $sidebar_pagebottom ) :
 ?>
+
 	<div id="sidebar-pagebottom" class="sidebar-pagebottom">
 		<?php echo apply_filters( 'xsbf_pagebottom', $sidebar_pagebottom ); ?>
 	</div><!-- .sidebar-pagebottom -->
@@ -25,6 +26,7 @@ if ( $sidebar_pagebottom ) :
 /* Otherwise, if user is previewing this theme, then show an example */
 elseif ( $xsbf_theme_options['sample_widgets'] ) :
 ?>
+	<!--
 	<div id="sidebar-pagebottom" class="sidebar-pagebottom">
 
 		<aside id="sample-text" class="widget widget_text section bg-lightgreen centered clearfix">
@@ -35,12 +37,12 @@ elseif ( $xsbf_theme_options['sample_widgets'] ) :
 		<div class="col-lg-8 col-lg-offset-2">
 		<p><?php _e( "This is just an example shown for the theme preview. You can add text widgets here to put whatever you'd like.", 'flat-bootstrap' ); ?></p>
 		<p><button type="button" class="btn btn-hollow btn-lg"><?php _e( 'Call To Action Button', 'flat-bootstrap' ); ?></button></p>
-		</div><!-- col-lg-8 -->
-		</div><!-- row -->
-		</div><!-- textwidget -->
-		</div><!-- container -->
+		</div>
+		</div>
+		</div>
+		</div>
 		</aside>
 
-	</div><!-- .sidebar-pagebottom -->
-
+	</div>
+	-->
 <?php endif;?>

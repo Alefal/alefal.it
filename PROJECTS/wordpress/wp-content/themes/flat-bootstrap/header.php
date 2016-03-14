@@ -17,13 +17,87 @@
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 
 <?php wp_head(); ?>
+
+<!-- Bootstrap core CSS -->
+<link href="<?php echo get_template_directory_uri(); ?>/assets/css/bootstrap.css" rel="stylesheet">
+<link href="<?php echo get_template_directory_uri(); ?>/assets/css/font-awesome.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="<?php echo get_template_directory_uri(); ?>/assets/css/main.css" rel="stylesheet">
+
+<script src="<?php echo get_template_directory_uri(); ?>/assets/js/Chart.js"></script>
+
 </head>
 
-<body <?php body_class(); ?>>
+<body <?php body_class(); ?> id="page">
+
+<?php
+/**
+  * ALWAYS DISPLAY THE NAV BAR
+  */
+	?>	
+<nav id="site-navigation" class="main-navigation" role="navigation">
+
+	<h1 class="menu-toggle sr-only screen-reader-text"><?php _e( 'Primary Menu', 'flat-bootstrap' ); ?></h1>
+	<div class="skip-link"><a class="screen-reader-text sr-only" href="#content"><?php _e( 'Skip to content', 'flat-bootstrap' ); ?></a></div>
+
+<?php
+// Collapsed navbar menu toggle
+global $xsbf_theme_options;
+$navbar = '<div class="navbar ' . $xsbf_theme_options['navbar_classes'] . ' navbar-inverse navbar-fixed-top">'
+	.'<div class="container">'
+	.'<div class="navbar-header">'
+  	.'<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">'
+    .'<span class="icon-bar"></span>'
+    .'<span class="icon-bar"></span>'
+    .'<span class="icon-bar"></span>'
+  	.'</button>';
+
+// Site title (Bootstrap "brand") in navbar. Hidden by default. Customizer will
+// display it if user turns off the main site title and tagline.
+$navbar .= '<a class="navbar-brand" href="'
+	.esc_url( home_url( '/' ) )
+	.'" rel="home">'
+	.get_bloginfo( 'name' )
+	.'</a>';
+
+$navbar .= '</div><!-- navbar-header -->';
+
+// Display the desktop navbar
+$navbar .= '<div class="navbar-collapse collapse">';
+$navbar .= wp_nav_menu( 
+	array(  'theme_location' => 'primary',
+	//'container_class' => 'navbar-collapse collapse', //<nav> or <div> class
+	'menu_class' => 'nav navbar-nav navbar-right', //<ul> class
+	'walker' => new wp_bootstrap_navwalker(),
+	'fallback_cb' => 'wp_bootstrap_navwalker::fallback',
+	'echo'	=> false
+	) 
+);
+		
+echo apply_filters( 'xsbf_navbar', $navbar );
+?>
+
+</div><!-- .container -->
+</div><!-- .navbar -->
+</nav><!-- #site-navigation -->
+
+<div id="headerwrap">
+	<div class="container">
+		<div class="row centered">
+			<div class="col-lg-8 col-lg-offset-2">
+			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' )?></a></h1>
+			<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
+			</div>
+		</div><!-- row -->
+	</div><!-- container -->
+</div><!-- headerwrap -->
+
 <div id="page" class="hfeed site">
 
 	<?php do_action( 'before' ); ?>
 	
+	<!--
 	<header id="masthead" class="site-header" role="banner">
 
 		<?php
@@ -64,64 +138,13 @@
 			<?php
 			} //endif get_header_image()
 			?>
-			</div><!-- .site-branding -->
+			</div>
 
 		<?php			
 		endif; // $custom_header_location
 		?>			
 
-		<?php
-		/**
-		  * ALWAYS DISPLAY THE NAV BAR
-		  */
- 		?>	
-		<nav id="site-navigation" class="main-navigation" role="navigation">
-
-			<h1 class="menu-toggle sr-only screen-reader-text"><?php _e( 'Primary Menu', 'flat-bootstrap' ); ?></h1>
-			<div class="skip-link"><a class="screen-reader-text sr-only" href="#content"><?php _e( 'Skip to content', 'flat-bootstrap' ); ?></a></div>
-
-		<?php
-		// Collapsed navbar menu toggle
-		global $xsbf_theme_options;
-		$navbar = '<div class="navbar ' . $xsbf_theme_options['navbar_classes'] . '">'
-			.'<div class="container">'
-        	.'<div class="navbar-header">'
-          	.'<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">'
-            .'<span class="icon-bar"></span>'
-            .'<span class="icon-bar"></span>'
-            .'<span class="icon-bar"></span>'
-          	.'</button>';
-
-		// Site title (Bootstrap "brand") in navbar. Hidden by default. Customizer will
-		// display it if user turns off the main site title and tagline.
-		$navbar .= '<a class="navbar-brand" href="'
-			.esc_url( home_url( '/' ) )
-			.'" rel="home">'
-			.get_bloginfo( 'name' )
-			.'</a>';
-		
-        $navbar .= '</div><!-- navbar-header -->';
-
-		// Display the desktop navbar
-		$navbar .= '<div class="navbar-collapse collapse">';
-		$navbar .= wp_nav_menu( 
-			array(  'theme_location' => 'primary',
-			//'container_class' => 'navbar-collapse collapse', //<nav> or <div> class
-			'menu_class' => 'nav navbar-nav', //<ul> class
-			'walker' => new wp_bootstrap_navwalker(),
-			'fallback_cb' => 'wp_bootstrap_navwalker::fallback',
-			'echo'	=> false
-			) 
-		);
-				
-		echo apply_filters( 'xsbf_navbar', $navbar );
-		?>
-
-		</div><!-- .container -->
-		</div><!-- .navbar -->
-		</nav><!-- #site-navigation -->
-
-	</header><!-- #masthead -->
-
+	</header>
+	-->
 	<?php // Set up the content area (but don't put it in a container) ?>	
 	<div id="content" class="site-content">

@@ -214,12 +214,14 @@
 
 	elseif ( $title ) :
 	?>
+		<!--
 		<header class="content-header">
 		<div class="container">
 		<h1 class="page-title"><?php echo $title; ?></h1>
 		<?php if ( $subtitle ) printf( '<h3 class="page-subtitle taxonomy-description">%s</h3>', $subtitle ); ?>
 		</div>
 		</header>
+		-->
 
 	<?php endif; // $image_url ?>
 
