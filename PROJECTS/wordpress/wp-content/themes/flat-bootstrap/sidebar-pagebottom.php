@@ -17,7 +17,6 @@ global $xsbf_theme_options;
 $sidebar_pagebottom = get_dynamic_sidebar( 'sidebar-4' );
 if ( $sidebar_pagebottom ) :
 ?>
-
 	<div id="sidebar-pagebottom" class="sidebar-pagebottom">
 		<?php echo apply_filters( 'xsbf_pagebottom', $sidebar_pagebottom ); ?>
 	</div><!-- .sidebar-pagebottom -->

@@ -40,9 +40,11 @@
  * 		'content-header', displays it below the navbar in place of the colored content-
  *		header section.
  * 
- * image_keyboard_nav - Whether to load javascript for using the keyboard to navigate image attachment pages
+ * image_keyboard_nav - Whether to load javascript for using the keyboard to navigate
+ 		image attachment pages
  * 
- * sample_widgets - Whether to display sample widgets in the footer and page-bottom widet areas.
+ * sample_widgets - Whether to display sample widgets in the footer and page-bottom widet
+ 		areas.
  * 
  * sample_footer_menu - Whether to display sample footer menu with Top and Home links
  * 
