@@ -179,7 +179,9 @@ p.screen-reader-text {
 
 /* Limit the page for really wide screens, such as an iMac */
 #page, .navbar, .after-footer {
+	/*
 	max-width: 1600px;
+	*/
 	margin: 0 auto;
 }
 

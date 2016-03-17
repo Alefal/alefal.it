@@ -11,10 +11,12 @@
 <header class="entry-header">
 	<div class="entry-meta">
 	
+		<h1 class="entry-title"><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h1>
+		<!--
 		<?php if ( !is_single() AND !is_page() ) : ?>
 		<h1 class="entry-title"><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h1>
 		<?php endif; ?>
-
+		-->
 		<?php if ( ! in_array( get_post_type(), array ( 'jetpack-testimonial', 'jetpack-portfolio' ) ) ) : ?>
 
 			<?php $the_date = get_the_date(); ?>

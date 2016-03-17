@@ -25,19 +25,22 @@
 
 // ** Impostazioni MySQL - È possibile ottenere queste informazioni dal proprio fornitore di hosting ** //
 /** Il nome del database di WordPress */
-define('DB_NAME', 'wordpress');
+//define('DB_NAME', 'wordpress');
+define('DB_NAME', 'c1alefalwp');
 
 /** Nome utente del database MySQL */
-define('DB_USER', 'root');
+//define('DB_USER', 'root');
+define('DB_USER', 'c1alefal');
 
 /** Password del database MySQL */
-define('DB_PASSWORD', '');
+//define('DB_PASSWORD', '');
+define('DB_PASSWORD', 'lafela123');
 
 /** Hostname MySQL  */
 define('DB_HOST', 'localhost');
 
 /** Charset del Database da utilizzare nella creazione delle tabelle. */
-define('DB_CHARSET', 'utf8mb4');
+define('DB_CHARSET', '');
 
 /** Il tipo di Collazione del Database. Da non modificare se non si ha idea di cosa sia. */
 define('DB_COLLATE', '');
