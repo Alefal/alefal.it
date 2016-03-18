@@ -9,6 +9,44 @@
  * @package flat-bootstrap
  */
 ?>
+	
+<?php
+if ( is_page( 'Home' ) ) {
+?>
+	<div id="lg">
+		<div class="container">
+			<div class="row centered">
+				<h4>ULTIMI POSTS DAL BLOG</h4>
+
+				<?php query_posts('tag=featured');?>
+				<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+  				
+  				<div class="col-lg-3">	
+  					<header class="entry-header">
+						<div class="entry-meta">
+							<h4 class="entry-title"><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h4>
+							<span class="posted-on"><span class="glyphicon glyphicon-user"></span>&nbsp;
+							<?php the_author_link(); ?> 
+							<p>
+								<?php the_excerpt()?>
+							</p>
+						</div>
+	  				</header>
+				</div>
+				<?php endwhile; ?>
+				<?php else : ?>
+				<?php endif; ?>
+
+			</div>
+		<!-- row -->
+		</div>
+		<!-- container -->
+	</div>
+	<!-- dg -->
+<?php
+} 
+?>
+	
 	</div><!-- #content -->
 
 	<?php // Page bottom (before footer) widget area 
