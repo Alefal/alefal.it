@@ -15,20 +15,34 @@ if ( is_page( 'Home' ) ) {
 ?>
 	<div id="lg">
 		<div class="container">
-			<div class="row centered">
+			<div class="row centered" id="ultimeDalBlog">
 				<h4>ULTIMI POSTS DAL BLOG</h4>
-
 				<?php query_posts('tag=featured');?>
 				<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
   				
   				<div class="col-lg-3">	
   					<header class="entry-header">
 						<div class="entry-meta">
-							<h4 class="entry-title"><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h4>
+							<h4 class="entry-title" style="height: 45px;"><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h4>
+
+							<?php $the_date = get_the_date(); ?>
+							<span class="posted-on"><span class="glyphicon glyphicon-calendar"></span>&nbsp;
+							<?php echo $the_date; ?> 
+							</span>
+							
 							<span class="posted-on"><span class="glyphicon glyphicon-user"></span>&nbsp;
 							<?php the_author_link(); ?> 
+							<!--
 							<p>
 								<?php the_excerpt()?>
+							</p>
+							-->
+							<hr />
+							<p>
+								<?php 
+								echo substr(get_the_excerpt(), 0,100).'... '; 
+								?>
+								<a class="read-more" href="<?php the_permalink(); ?>">Read More</a>
 							</p>
 						</div>
 	  				</header>
