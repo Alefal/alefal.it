@@ -1,0 +1,318 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+
+html, body {
+	font-family: 'Indie Flower', cursive;
+	height: 100%;
+	background: #301717;
+}
+
+.skrollr-desktop body {
+	height: 100% !important;
+}
+
+a.menu_links{
+	cursor: pointer;
+}
+
+body {
+	font-family: 'Indie Flower', cursive;
+}
+
+p {
+	margin: 1em 0;
+}
+
+.parallax-image-wrapper {
+	position: fixed;
+	left: 0;
+	width: 100%;
+	overflow: hidden;
+}
+
+.parallax-image-wrapper-50 {
+	height: 50%;
+	top: -50%;
+}
+
+.parallax-image-wrapper-100 {
+	height: 100%;
+	top: -100%;
+}
+
+.parallax-image {
+	display: none;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+.parallax-image-50 {
+	height: 200%;
+	top: -50%;
+}
+
+.parallax-image-100 {
+	height: 100%;
+	top: 0;
+}
+
+.parallax-image.skrollable-between {
+	display: block;
+}
+
+.no-skrollr .parallax-image-wrapper {
+	display: none !important;
+}
+
+#skrollr-body {
+	height: 100%;
+	overflow: visible;
+	position: relative;
+}
+
+#scroll {
+	margin-top: 15%;
+	margin-left: 44%;
+}
+
+.gap {
+	background: transparent center no-repeat;
+	background-size: cover;
+	position: relative;
+}
+
+.skrollr .gap {
+	background: transparent !important;
+}
+
+.gap-50 {
+	height: 50%;
+}
+
+.gap-100 {
+	height: 100%;
+}
+
+.content-end {
+	background: #fff;
+	padding: 20px 30px;
+}
+
+.content {
+	background: #301717;
+	padding: 1em;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.content-full {
+	height: 100%;
+} /* this  change the height of the box to 100% but broken animation */
+header {
+	background-color: #fff;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 100;
+	text-align: center;
+	font-size: 18px;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
+
+.header {
+	position: fixed;
+	top: 0;
+}
+
+#nav {
+	cursor: pointer;
+	display: block;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+}
+
+#nav>li {
+	display: inline-block;
+	padding: 1em;
+	margin: 0;
+}
+
+#nav li a {
+	text-transform: uppercase;
+	text-decoration: none;
+	color: #333
+}
+
+.container {
+	width: 100%;
+	position: relative;
+	border: 1px solid red;
+}
+
+/* Button Responsive Menu*/
+.btn-responsive-menu {
+	display: none;
+	float: right;
+	padding: 5px;
+	cursor: pointer;
+	margin: 10px 10px 10px 0;
+	color: #000;
+	z-index: 100
+}
+
+.icon-bar {
+	display: block;
+	width: 18px;
+	height: 2px;
+	margin: 5px;
+	background-color: #c0c0c0;
+	-webkit-border-radius: 1px;
+	-moz-border-radius: 1px;
+	border-radius: 1px;
+}
+
+/* animate text box*/
+.box {
+	width: 50%;
+	margin-left: 25%;
+	margin-top: 20%;
+	position: absolute;
+	font-family: 'Indie Flower', cursive;
+	color: white;
+	text-align: center;
+}
+
+.box-home {
+	text-align: center;
+	width: 50%;
+	margin-left: 25%;
+	margin-top: 10%;
+	position: absolute;
+	font-family: 'Indie Flower', cursive;
+	color: white;
+	width: 50%;
+}
+
+/* #H2IlPiuBelViaggio { */
+/* 	font-weight: bold; */
+/* 	font-size: 3em; */
+/* 	text-align: center; */
+/* 	position: fixed; */
+/* 	font-family: 'Indie Flower', cursive; */
+/* } */
+.box h2, .box-home h2 {
+	font-size: 50px;
+	font-weight: 300;
+}
+
+.box h4, .box-home h4 {
+	font-size: 50px;
+	font-weight: 300;
+	margin-top: 45%;
+}
+
+.box h3, .box-home h3 {
+	font-size: 32px;
+	font-weight: 300;
+}
+
+.end h2 {
+	color: #fff
+}
+
+@media ( max-width :767px) {
+	html, body {
+		font-family: 'Josefin Slab' !important;
+		height: 100%;
+		background: #301717;
+	}
+
+	/* Menu */
+	#nav {
+		display: none;
+		margin: 0px 0 0px 0px;
+		padding: 0;
+		float: left;
+		width: 100%;
+		list-style: none;
+		background: #301717 !important;
+		font-family: 'Josefin Slab' !important;
+	}
+	#nav>li {
+		float: left;
+		margin: 0 0px 0 0;
+		padding: 0;
+		position: relative;
+		display: block;
+		width: 100%;
+	}
+	#nav a {
+		color: #000;
+		display: block;
+		font: 14px;
+		padding: 14px 20px;
+	}
+	#nav a:hover {
+		background: #666;
+	}
+	.btn-responsive-menu {
+		display: block
+	}
+	.box h2, .box-home h2 {
+		font-size: 30px;
+		font-weight: 300;
+		margin-top: 55%;
+	}
+	.box h3, .box-home h3 {
+		font-size: 25px;
+		font-weight: 300;
+	}
+	.box h4, .box-home h4 {
+		font-size: 35px;
+		font-weight: 300;
+		margin-top: 80%;
+	}
+	.end h2 {
+		color: #fff
+	}
+	.box {
+		width: 50%;
+		margin-left: 25%;
+		margin-top: 27%;
+		position: absolute;
+		color: white;
+		text-align: center;
+		font-family: 'Indie Flower', cursive;
+	}
+	.box-home {
+		width: 50%;
+		margin-left: 25%;
+		margin-top: 27%;
+		position: absolute;
+		color: white;
+		text-align: center;
+		font-family: 'Indie Flower', cursive;
+	}
+	#respoAudio {
+		width: 83%;
+	}
+	#scroll {
+		margin-top: 20%;
+		margin-left: 44%;
+		width: 20%;
+	}
+}
