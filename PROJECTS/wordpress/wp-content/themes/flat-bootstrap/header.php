@@ -25,6 +25,10 @@
 <!-- Custom styles for this template -->
 <link href="<?php echo get_template_directory_uri(); ?>/assets/css/main.css" rel="stylesheet">
 
+<!-- Google Fonts -->
+<link href='https://fonts.googleapis.com/css?family=Cinzel' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+
 <script src="<?php echo get_template_directory_uri(); ?>/assets/js/Chart.js"></script>
 
 </head>

@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+    
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Parallax Scroll with Text Animation - Skrollr</title>
+    
+    
+    <link href="style.css" rel="stylesheet"> 
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500' rel='stylesheet' type='text/css'>  
+
+   
+</head>
+<body>
+
+
+    <!--
+		We position the images fixed and therefore need to place them outside of #skrollr-body.
+		We will then use data-anchor-target to display the correct image matching the current section (.gap element).
+	-->
+	
+	<!-- home -->
+	<div
+		class="parallax-image-wrapper parallax-image-wrapper-100"
+		data-anchor-target="#home"
+		data-bottom-top="transform:translate3d(0px, 200%, 0px)"
+		data-top-bottom="transform:translate3d(0px, 0%, 0px)">
+
+		<div
+			class="parallax-image parallax-image-100"
+			style="background-image:url(img/1.jpg)"
+			data-anchor-target="#home"
+			data-bottom-top="transform: translate3d(0px, -80%, 0px);"
+			data-top-bottom="transform: translate3d(0px, 80%, 0px);"
+		></div>
+		<!--the +/-80% translation can be adjusted to control the speed difference of the image-->
+	</div>
+	
+	
+	<!-- slide 2 -->
+	<div
+		class="parallax-image-wrapper parallax-image-wrapper-100"
+		data-anchor-target="#amsterdam"
+		data-bottom-top="transform:translate3d(0px, 200%, 0px)"
+		data-top-bottom="transform:translate3d(0px, 0%, 0px)">
+
+		<div
+			class="parallax-image parallax-image-100"
+			style="background-image:url(img/2.jpg)"
+			data-anchor-target="#amsterdam"
+			data-bottom-top="transform: translate3d(0px, -80%, 0px);"
+			data-top-bottom="transform: translate3d(0px, 80%, 0px);"
+		></div>
+	</div>
+	
+	
+	<!-- slide 3 -->
+	<div
+		class="parallax-image-wrapper parallax-image-wrapper-100"
+		data-anchor-target="#beautiful"
+		data-bottom-top="transform:translate3d(0px, 200%, 0px)"
+		data-top-bottom="transform:translate3d(0px, 0%, 0px)">
+
+		<div
+			class="parallax-image parallax-image-100"
+			style="background-image:url(img/3.jpg)"
+			data-anchor-target="#beautiful"
+			data-bottom-top="transform: translate3d(0px, -80%, 0px);"
+			data-top-bottom="transform: translate3d(0px, 80%, 0px);"
+		></div>
+	</div>
+
+
+		
+	
+	<!-- Nav /-->
+	<header data-0="background-color: rgba(255,255,255,0.25);" data-150="background-color: rgba(252, 252, 252, 1);">
+
+		<div class="btn-responsive-menu">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </div>
+		
+		<ul id="nav" data-0="padding:20px 0;" data-150="padding: 0 0;">
+					
+			<li><a href="#home">Home</a></li>
+			<li><a href="#amsterdam">Amsterdam</a></li>
+			<li><a href="#beautiful">Beautiful</a></li>
+
+		</ul>
+		
+	</header>
+				
+
+	<div id="skrollr-body">
+	
+		
+		<!-- Home /-->
+		<div id="home" class="gap gap-100" style="background-image:url(img/1.jpg);" id="top">
+
+	         	<div class="box-home">
+		         	
+		         	<h2>Pavia why don't you use Ticino like..</h2>
+		         	
+	         	</div>
+
+		</div>
+		
+		
+				
+		<!-- Slide 2 /-->
+		<div id="amsterdam" class="gap gap-100" style="background-image:url(img/2.jpg);">
+		
+			 <div id="container-1">	 
+	         	
+	         	<div class="box" data-anchor-target="#container-1">
+		         	
+		         	<h2>Amsterdam uses his...</h2>
+		         	
+	         	</div>
+	         	
+             </div>
+
+		</div>
+		
+		
+				
+		<!-- Slide 3 /-->
+		<div id="beautiful" class="gap gap-100" style="background-image:url(img/3.jpg);">
+		
+			 <div id="container-2">	 
+	         	
+	         	<div class="box end" data-anchor-target="#container-2" data-bottom="right:100%;bottom:10%;" data-top="right:45%;bottom:20%">
+		         	
+		         	<h2>Beautilful Canal.</h2>
+		         	
+	         	</div>
+	         	
+             </div>
+
+		</div>
+		
+		<div class="content">
+		
+			<p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+			Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+			Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		
+		</div>
+		
+	</div>
+
+	
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="js/skrollr.min.js"></script>
+<script src="js/skrollr.menu.min.js"></script>
+
+<script type="text/javascript">
+$(function(){
+		
+	var s = skrollr.init({
+		smoothScrolling: false
+	});
+
+	//The options (second parameter) are all optional. The values shown are the default values.
+	skrollr.menu.init(s, {
+	    //skrollr will smoothly animate to the new position using `animateTo`.
+	    animate: true,
+	
+	    //The easing function to use.
+	    easing: 'sqrt',
+	
+	    //Multiply your data-[offset] values so they match those set in skrollr.init
+	    scale: 2,
+	
+	    //How long the animation should take in ms.
+	    duration: function(currentTop, targetTop) {
+	        //By default, the duration is hardcoded at 500ms.
+	        return 500;
+	
+	        //But you could calculate a value based on the current scroll position (`currentTop`) and the target scroll position (`targetTop`).
+	        //return Math.abs(currentTop - targetTop) * 10;
+	    },
+	
+	    //If you pass a handleLink function you'll disable `data-menu-top` and `data-menu-offset`.
+	    //You are in control where skrollr will scroll to. You get the clicked link as a parameter and are expected to return a number.
+	    /*
+	    handleLink: function(link) {
+	        return 400;//Hardcoding 400 doesn't make much sense.
+	    }*/
+	});
+	
+	//When btn is clicked
+		$(".btn-responsive-menu").click(function() {
+			$("#nav").slideToggle('fast', function() {});
+		
+		});
+		
+
+	});
+	</script>
+</body>
+</html>
