@@ -349,12 +349,6 @@ if ( !class_exists( 'WPSL_Frontend' ) ) {
                         $store_meta['description'] = apply_filters( 'the_content', strip_shortcodes( $page_object->post_content ) );
                     }
 
-                    //START:    Fix: Alessandro - Visualizza il content del post
-                    $page_object                = get_post( $store->ID );
-                    $store_meta['description']  = apply_filters( 'the_content', strip_shortcodes( $page_object->post_content ) );
-                    $store_meta['excerpt']      = apply_filters( 'the_content', strip_shortcodes( $page_object->post_excerpt  ) );
-                    //END:    Fix: Alessandro - Visualizza il content del post
-
                     $store_meta['store'] = get_the_title( $store->ID );
                     $store_meta['thumb'] = $this->get_store_thumb( $store->ID, $store_meta['store'] );
                     $store_meta['id']    = $store->ID;

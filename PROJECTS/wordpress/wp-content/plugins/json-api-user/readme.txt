@@ -6,7 +6,7 @@ Tags: json api, RESTful user registration, authentication, RESTful Facebook Logi
 
 Contributors: parorrey
 
-Stable tag: 2.2
+Stable tag: 2.4
 
 Requires at least: 3.0.1
 
@@ -91,6 +91,14 @@ To install JSON API User just follow these steps:
 
 
 ==Changelog==
+
+= 2.4 =
+* Changing error message for 'generate_auth_cookie' endpoint.
+
+= 2.3 =
+* Updated 'generate_auth_cookie' endpoint to make it secure for https protocol and support POST method for sending username and password, you can still bypass SSL requirement by passing insecure=cool.
+* Updated 'generate_auth_cookie' to allow cookie generation using both user_name or email account with password.
+* Added documentation 'register' endpoint for registering with user provided password.
 
 = 2.2 =
 * Updated 'retrieve_password' endpoint to fix the bug finally, no more invalid key error.
@@ -226,6 +234,9 @@ To disbale registration email notification to user:
 
 http://localhost/api/user/register/?username=john&email=john@domain.com&nonce=8bdfeb4e16&display_name=John&notify=no
 
+To register with user provided password:
+
+http://localhost/api/user/register/?username=john&email=john@domain.com&nonce=8bdfeb4e16&display_name=John&notify=both&user_pass=YOUR-PASSWORD
 
 = Method: fb_connect =
 

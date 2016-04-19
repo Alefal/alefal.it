@@ -46,12 +46,6 @@ function wpsl_create_underscore_templates( $template ) {
         $listing_template .= "\t\t" . '<div class="wpsl-store-location">' . "\r\n";
         $listing_template .= "\t\t\t" . '<p><%= thumb %>' . "\r\n";
         $listing_template .= "\t\t\t\t" . wpsl_store_header_template( 'listing' ) . "\r\n"; // Check which header format we use
-        //START:    Fix: Alessandro - Visualizza il content del post
-        $listing_template .= "\t\t\t" . '<%= description %>' . "\r\n";
-        $listing_template .= "\t\t\t <hr /> \r\n";
-        $listing_template .= "\t\t\t" . '<%= excerpt %> Read more (modal)' . "\r\n";
-        $listing_template .= "\t\t\t <hr /> \r\n";
-        //END:      Fix: Alessandro - Visualizza il content del post
         $listing_template .= "\t\t\t\t" . '<span class="wpsl-street"><%= address %></span>' . "\r\n";
         $listing_template .= "\t\t\t\t" . '<% if ( address2 ) { %>' . "\r\n";
         $listing_template .= "\t\t\t\t" . '<span class="wpsl-street"><%= address2 %></span>' . "\r\n";

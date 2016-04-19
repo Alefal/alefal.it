@@ -6,7 +6,7 @@ WordPress plugin that provides shortcodes for easier use of the Bootstrap styles
 ## Requirements
 This plugin won't do anything if you don't have WordPress theme built with the [Bootstrap](http://getbootstrap.com/) framework. **This plugin does not include the Bootstrap framework**.
 
-The plugin is tested to work with ```Bootstrap 3.2``` and ```WordPress 4.0```.
+The plugin is tested to work with ```Bootstrap 3``` and ```WordPress 4```.
 
 This plugin contains a ```composer.json``` file for those of you who manage your PHP dependencies with [Composer](https://getcomposer.org).
 
@@ -20,6 +20,7 @@ This plugin contains a ```composer.json``` file for those of you who manage your
 * [Tables](#tables)
 * [Buttons](#buttons)
 * [Images](#images)
+* [Responsive Embeds](#responsive-embeds)
 * [Responsive utilities](#responsive-utilities)
 
 ### Components
@@ -213,6 +214,21 @@ xclass | Any extra classes you want to add | optional | any text | none
 data | Data attribute and value pairs separated by a comma. Pairs separated by pipe (see example at [Button Dropdowns](#button-dropdowns)). | optional | any text | none
 
 [Bootstrap images documentation](http://getbootstrap.com/css/#images)
+
+* * *
+
+### Responsive Embeds
+	[embed-responsive ratio="16by9"] ... [/embed-responsive]
+
+Wrap ```<iframe>```, ```<embed>```, ```<video>```, and ```<object>``` elements to make them responsive.
+#### [responsive-embed] parameters
+Parameter | Description | Required | Values | Default
+--- | --- | --- | --- | ---
+ratio | Maintain the aspect ratio of the embed | optional | 16by9, 4by3 | false
+xclass | Any extra classes you want to add | optional | any text | none
+data | Data attribute and value pairs separated by a comma. Pairs separated by pipe (see example at [Button Dropdowns](#button-dropdowns)). | optional | any text | none
+
+[Bootstrap responsive embed documentation](http://getbootstrap.com/components/#responsive-embed)
 
 * * *
 
@@ -759,6 +775,13 @@ html | Insert HTML into the tooltip | optional | true, false | false
 * * *
 
 ### Collapse
+
+#### Single Collapse
+	  [collapse title="Collapse 1" active="true"]
+	    ...
+	  [/collapse]
+      
+#### Set of Collapsibles
 	[collapsibles]
 	  [collapse title="Collapse 1" active="true"]
 	    ...

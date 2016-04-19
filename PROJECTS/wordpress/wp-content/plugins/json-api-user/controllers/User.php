@@ -17,7 +17,21 @@ class JSON_API_User_Controller {
 	 * @param String user_pass: user_pass to be set (optional)
      * @param String display_name: display_name for user
      */   
-
+public function __construct() {
+		global $json_api;
+		// allow only connection over https. because, well, you care about your passwords and sniffing.
+		// turn this sanity-check off if you feel safe inside your localhost or intranet.
+		// send an extra POST parameter: insecure=cool
+		if (empty($_SERVER['HTTPS']) ||
+		    (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'off')) {
+			if (empty($_REQUEST['insecure']) || $_REQUEST['insecure'] != 'cool') {
+				$json_api->error("SSL is not enabled. Either use _https_ or provide 'insecure' var as insecure=cool to confirm you want to use http protocol.");
+			}
+		}
+	
+		
+	}
+	
 public function info(){	  
 
 	  	global $json_api;
@@ -348,19 +362,17 @@ public function validate_auth_cookie() {
 public function generate_auth_cookie() {
 		
 		global $json_api;
-
-		/*
-		$nonce_id = $json_api->get_nonce_id('user', 'generate_auth_cookie');
-
-		if (!wp_verify_nonce($json_api->query->nonce, $nonce_id)) {
-
-			$json_api->error("Your 'nonce' value was incorrect. Use the 'get_nonce' API method.");
-		}*/
+		
+		foreach($_POST as $k=>$val) {
+			if (isset($_POST[$k])) {
+				$json_api->query->$k = $val;
+			}
+		}
 
 
-		if (!$json_api->query->username) {
+		if (!$json_api->query->username && !$json_api->query->email) {
 
-			$json_api->error("You must include a 'username' var in your request.");
+			$json_api->error("You must include 'username' or 'email' var in your request to generate cookie.");
 
 		}
 
@@ -375,13 +387,28 @@ public function generate_auth_cookie() {
 
 		else $seconds = 1209600;//14 days
 
+       if ( $json_api->query->email ) {
+		   
+		 
+		 if ( is_email(  $json_api->query->email ) ) {
+		  if( !email_exists( $json_api->query->email))  {
+			 $json_api->error("email does not exist."); 
+			  }
+		 }else  $json_api->error("Invalid email address."); 
+		   
+        $user_obj = get_user_by( 'email', $json_api->query->email );
+		
+		
+		$user = wp_authenticate($user_obj->data->user_login, $json_api->query->password);
+    }else {
+		
+		 $user = wp_authenticate($json_api->query->username, $json_api->query->password);
+		}
 
-
-    	$user = wp_authenticate($json_api->query->username, $json_api->query->password);
 
     	if (is_wp_error($user)) {
 
-    		$json_api->error("Invalid username and/or password.", 'error', '401');
+    		$json_api->error("Invalid username/email and/or password.", 'error', '401');
 
     		remove_action('wp_login_failed', $json_api->query->username);
 
@@ -392,8 +419,8 @@ public function generate_auth_cookie() {
 
     	$cookie = wp_generate_auth_cookie($user->ID, $expiration, 'logged_in');
 
-		preg_match('|src="(.+?)"|', get_avatar( $user->ID, 32 ), $avatar);	
-
+		preg_match('|src="(.+?)"|', get_avatar( $user->ID, 512 ), $avatar);	
+		
 		return array(
 			"cookie" => $cookie,
 			"cookie_name" => LOGGED_IN_COOKIE,

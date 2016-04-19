@@ -1,11 +1,11 @@
-=== WP Store Locator ===
+﻿=== WP Store Locator ===
 Plugin URI: https://wpstorelocator.co
 Contributors: tijmensmit
 Donate link: https://www.paypal.me/tijmensmit
 Tags: google maps, store locator, business locations, geocoding, stores, geo, zipcode locator, dealer locater, geocode, gmaps, google map, google map plugin, location finder, map tools, shop locator, wp google map
 Requires at least: 3.7
-Tested up to: 4.4.1
-Stable tag: 2.2
+Tested up to: 4.5
+Stable tag: 2.2.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 
@@ -120,6 +120,9 @@ If you find a plugin or theme that causes a conflict, please report it on the [s
 4. The plugin settings
 
 == Changelog ==
+
+= 2.2.1, March 24, 2016 =
+* Fixed: A JS bug that sometimes resulted in duplicate results showing up in the search results.
 
 = 2.2, March 20, 2016 =
 * New: The option to show the categories with checkboxes instead of a dropdown.

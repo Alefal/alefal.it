@@ -598,7 +598,8 @@ function handleGeolocationQuery( startLatLng, position, resetMap, infoWindow ) {
  * @returns {void}
  */
 function searchLocationBtn( infoWindow ) {
-	$( "#wpsl-search-btn" ).on( "click", function() {
+	
+	$( "#wpsl-search-btn" ).unbind( "click" ).bind( "click", function( e ) {
 		var keepStartMarker = false;
 
 		$( "#wpsl-search-input" ).removeClass();
@@ -630,7 +631,7 @@ function searchLocationBtn( infoWindow ) {
 				codeAddress( infoWindow );
 			}
 		}
-		
+
 		return false;
 	});
 }
@@ -1226,6 +1227,9 @@ function makeAjaxRequest( startLatLng, resetMap, autoLoad, infoWindow ) {
 			});
 
 			$( "#wpsl-result-list" ).off( "click", ".wpsl-directions" );
+
+			// Remove the old search results.
+			$storeList.empty();
 
 			// Add the html for the store listing to the <ul>.
 			$storeList.append( storeData );
@@ -2047,15 +2051,6 @@ function directionErrors( status ) {
 
     alert( msg );	
 }
-
-// Trigger the search when the user presses "enter" on the keyboard.
-$( "#wpsl-search-input" ).keydown( function ( event ) {
-    var keypressed = event.keyCode || event.which;
-	
-    if ( keypressed == 13 ) {
-		$( "#wpsl-search-btn" ).trigger( "click" );
-    }
-});
 
 $( "#wpsl-stores" ).on( "click", ".wpsl-store-details", function() {	
 	var i, len,
