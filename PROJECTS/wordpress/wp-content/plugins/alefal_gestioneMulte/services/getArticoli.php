@@ -18,7 +18,7 @@ if($items) {
     );
 
 	foreach ($items as $item) {
-		
+		//echo $item->COD_ART;
 		$itemsArray[] = array(
 	        'ID'			=> $item->ID,
 	        'COD_ART'		=> $item->COD_ART,
@@ -40,9 +40,11 @@ if($items) {
     );
 }
 
+
 $finalArray[] = array(
     'response'   => $resultArray,
     'items'   => $itemsArray
 );
+
 echo json_encode($finalArray);
 exit();
