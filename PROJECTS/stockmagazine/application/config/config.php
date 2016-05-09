@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://10.80.18.107/alefal.it/PROJECTS/stockmagazine/';
+$config['base_url']	= 'http://10.80.18.147/alefal.it/PROJECTS/stockmagazine/';
 //$config['base_url']	= 'http://www.amalficoastapp.it/comingsoon/stockmagazine/';
 
 /*
