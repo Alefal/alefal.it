@@ -433,6 +433,23 @@ function remove_menus(){
   //remove_menu_page( 'users.php' );                  //Users
   remove_menu_page( 'tools.php' );                  //Tools
   remove_menu_page( 'options-general.php' );        //Settings
+
+  remove_menu_page( 'admin.php?page=loco-translate' );        //Loco Translate
   
 }
-add_action( 'admin_menu', 'remove_menus' );
+//add_action( 'admin_menu', 'remove_menus' );
+
+// Code to be placed in functions.php of your theme or a custom plugin file.
+add_filter( 'load_textdomain_mofile', 'load_woocommerce_translation_file', 10, 2 );
+
+/*
+ * Replace 'textdomain' with your plugin's textdomain. e.g. 'woocommerce'. 
+ * File to be named, for example, yourtranslationfile-en_GB.mo
+ * File to be placed, for example, wp-content/lanaguages/textdomain/yourtranslationfile-en_GB.mo
+ */
+function load_woocommerce_translation_file( $mofile, $domain ) {
+	//if ( 'twentysixteen' === $domain ) {
+    	$mofile = WP_LANG_DIR . '/woocommerce/woocommerce-IT.mo';
+  	//}
+  	return $mofile;
+}
