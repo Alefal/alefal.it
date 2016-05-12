@@ -258,7 +258,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('WelcomeCtrl', function($scope,$rootScope,$ionicLoading,$ionicModal,$ionicPopup,ajaxCallServices,$state,ModalService/*,$cordovaFileTransfer,$cordovaNetwork*/) {
+.controller('WelcomeCtrl', function($scope,$rootScope,$ionicLoading,$ionicModal,$ionicPopup,ajaxCallServices,$state,ModalService,$cordovaFileTransfer,$cordovaNetwork) {
 
   $scope.deviceRegisteredError = false;
   $scope.deviceRegisteredErrorMessage = '';
@@ -327,7 +327,7 @@ angular.module('starter.controllers', [])
           console.log(JSON.stringify(result));
           console.log(result[0].message);
 
-          //document.addEventListener('deviceready', function () {
+          document.addEventListener('deviceready', function () {
 
               if(angular.isNumber(result[0].message)) {
 
@@ -367,7 +367,7 @@ angular.module('starter.controllers', [])
 
               $rootScope.datiVerbaleOffline = false;
               localStorage.removeItem('datiVerbaleOffline');
-          //}, false);
+          }, false);
 
         }).error(function (error) {
           $ionicLoading.hide();
@@ -378,7 +378,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('InsertCtrl', function($scope,$rootScope,$ionicLoading,$ionicScrollDelegate,$state,$ionicPopup,ModalService,ajaxCallServices,$timeout/*,$cordovaFileTransfer,$cordovaCamera,$cordovaGeolocation,$cordovaBluetoothSerial,$cordovaPrinter*/) {
+.controller('InsertCtrl', function($scope,$rootScope,$ionicLoading,$ionicScrollDelegate,$state,$ionicPopup,ModalService,ajaxCallServices,$timeout,$cordovaFileTransfer,$cordovaCamera,$cordovaGeolocation,$cordovaBluetoothSerial,$cordovaPrinter) {
 
   console.log('InsertCtrl');
 
@@ -458,7 +458,7 @@ angular.module('starter.controllers', [])
           }
         } else {
           console.log('KO');
-          $scope.showAlertMessage('Numero verbale','Numero verbale non trovato! Contattare l\'amministratore!',false);
+          $scope.showAlertMessage('Numero verbale','Numero verbale non trovato! Contattare l\'amministratore!',true);
         }
 
       }).error(function (error) {
@@ -466,7 +466,6 @@ angular.module('starter.controllers', [])
         $ionicLoading.hide();
 
         $scope.showAlertMessage('Connessione debole','Accedere in modalità offline per compilare il verbale.',true);
-        
       });
   } else {
     //No connection
@@ -510,7 +509,7 @@ angular.module('starter.controllers', [])
    /* COMMENTATO PER RICORDARE ULTIMO SELEZIONATO
   $rootScope.idAgente2      = '';
   $rootScope.nomeAgente2    = '';
-  
+
   $rootScope.art1               = '';
   $rootScope.codArt1            = '';
   $rootScope.descrArt1          = '';
@@ -536,7 +535,7 @@ angular.module('starter.controllers', [])
   //$scope.picData      = 'img/icon.png'; //TEST BROWSER
 
   //GEOLOCATION
-/***** 
+/***** *****/
   var posOptions = {timeout: 30000, enableHighAccuracy: false};
   $cordovaGeolocation
     .getCurrentPosition(posOptions)
@@ -547,7 +546,7 @@ angular.module('starter.controllers', [])
     }, function(err) {
       //alert('code: '    + err.code    + '\n' + 'message: ' + err.message + '\n');
     });
-*****/
+
   $scope.takePicture = function() {
 
     var options = {
@@ -714,7 +713,7 @@ angular.module('starter.controllers', [])
           var numVerbIncremento = parseInt(localStorage.getItem('numeroVerbale')) + 1;
           localStorage.setItem('numeroVerbale',numVerbIncremento);
 
-          //document.addEventListener('deviceready', function () {
+          document.addEventListener('deviceready', function () {
 
               if(angular.isNumber(result[0].message)) {
 
@@ -729,7 +728,7 @@ angular.module('starter.controllers', [])
                 options.headers = {
                   Connection: 'close'
                 }
-                
+
                 if (filePath != '') {
                   $cordovaFileTransfer.upload(server, filePath, options)
                     .then(function(result) {
@@ -754,7 +753,7 @@ angular.module('starter.controllers', [])
                 $ionicLoading.hide();
                 $scope.showAlert('Salvataggio verbale','Verbale salvato correttamente!',true);
               }
-          //}, false);
+          }, false);
 
         }).error(function (error) {
           $ionicLoading.hide();
@@ -840,8 +839,7 @@ angular.module('starter.controllers', [])
       template: 'Attendere...'
     });
 
-    $scope.items = new Array();
-    
+	  $scope.items = new Array();
     ModalService
       .init(item, $scope)
       .then(function(modal) {
@@ -982,7 +980,7 @@ angular.module('starter.controllers', [])
   $scope.openModalItem = function(item) {
 
     $scope.loading = true;
-    $scope.items = new Array();
+	  $scope.items = new Array();
 
     $ionicLoading.show({
       template: 'Attendere...'
@@ -1008,9 +1006,8 @@ angular.module('starter.controllers', [])
               }
 
             }).error(function (error) {
-              $scope.loading = false;
+			  $scope.loading = false;
               $ionicLoading.hide();
-
               $scope.status = 'Unable to load customer data' + error;
             });
 

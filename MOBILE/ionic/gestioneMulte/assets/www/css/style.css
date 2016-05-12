@@ -26,7 +26,7 @@ body { background: #fff; }
     /* text-align: left !important; */
     padding: 20px;
 }
-.bar.bar-stable, .bar-header { background: #1773ba; border-bottom: 1px solid #0f8dc1; z-index: 11; }
+.bar.bar-stable, .bar-header { background: #1773ba; border-bottom: 1px solid #0f8dc1;  z-index: 11; }
 .bar.bar-stable .title, .bar.bar-header h1.title { font-family: 'Open Sans', sans-serif; color: #fff; font-size: 20px; font-weight: 700; }
 .bar.bar-header h1.title { left: 30px; right: 30px; font-family: 'Open Sans', sans-serif; color: #fff; font-size: 20px; font-weight: 300 }
 .loginHome .scroll-content { background: url(../img/bg.jpg) no-repeat center bottom #fff; background-size: 100% auto; }
@@ -104,7 +104,7 @@ body { background: #fff; }
 }
 .bar-subheader {
     position: absolute;
-    background:#E9E9E9; 
+    background:#E9E9E9;
     padding:10px;
     border: none;
     height: 80px;

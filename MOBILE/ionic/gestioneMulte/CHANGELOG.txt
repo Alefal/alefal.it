@@ -1,0 +1,29 @@
+﻿v.1.1
+- Start
+
+v.1.1.02
+- Stampa bluethoot
+
+v.1.1.03
+- bottone SALVA in alto nella pagina sempre in evidenza
+- bottone ANNULLA in fondo alla pagina
+- messaggio "Connessione debole" e ritorno nella home dell'app
+
+v.1.1.04
+- BUG: attesa infinita quando non vengono trovati dati da visualizzare
+- aggiunte nuove informazioni (sconto 30% entro 5 giorni) nella stampa del verbale
+
+v.1.1.05
+- BUG: errore nella stampa bluetooth
+- perdita dei dati in offline quando si preme LOGOUT
+
+v.1.1.06 - TODO:
+
+1. IMPOSTARE APP IN MODALITA’ OFFLINE
+l’App dovrebbe lavorare in modalità offline, per permettere un più fluido utilizzo. Il principio dovrebbe essere: Al momento del primo ACCESSO l’app salva la banca dati (VIE, ARTICOLI, ecc) poi passa in modalità offline e salva tutto in locale, poi la sincronizzazione dei verbali emessi deve avvenire in maniere manuale non automatica. Aggiungerei una sezione (IMPOSTAZIONI) dove inserire il tasto SINCRONIZZA TABELLE (VIE, ARTICOLI, ecc).
+
+2. IMPOSTARE CARTELLA DI DESTINAZIONE FOTO DIVERSE PER COMUNE
+Al momento tutte le foto vengono salvate nelle stessa cartella ed è un po’ un casino :D...quindi stavo pensando di creare una cartella per comune, tipo: se abbiamo due comuni, RAVELLO e SCALA, questi due comuni nella tabella “p_enti” hanno il codice identificativo del Comune, quindi pensavo di utilizzare questo codice come nome della cartella in modo da ritrovare più facilmente le foto relative ai verbali dei vari comuni.
+
+3. AGGIUNGERE NELLA STAMPA ANCHE IL LOGO DEL COMUNE, IN ALTO
+I loghi li trovi già nel Data Base nella tabella “p_ente” – Campo: “logo_ente”(BLOB)

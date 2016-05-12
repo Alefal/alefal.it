@@ -1,0 +1,46 @@
+"Comando Polizia Locale  di " @@##ENTE##@@
+"Violation of the traffic law/Violation du code de la rue."
+
+"Avviso accertamento di  violazione al Cod. della Strada N.:" @@##NUMVERBALE##@@
+
+"Il giorno " @@##DATAVERBALE##@@ " alle ore " @@##ORAVERBALE##@@ " in " @@##VIAVERBALE##@@ " civico " @@##CIVICOVERBALE##@@
+
+@@##TIPOVEICOLO##@@ @@##MARCAVEICOLO##@@ "Targa: " @@##TARGAVEICOLO##@@
+
+"ha violato art. " @@##CODART1##@@/@@##CODCOMMA1##@@ " del C.d.S perche': "
+Oppure
+"ha violato gli art. " @@##CODART1##@@/@@##CODCOMMA1##@@  e " @@##CODART2##@@/@@##CODCOMMA2##@@ " del CdS perche':"
+@@##DESART##@@
+"La violazione non e' stata immediatamente contestata a causa : " @@##DESMANCATACONTESTAZIONE##@@
+
+@@##DESSANZIONEACCESSORIA##@@
+@@##DESANNOTAZIONE##@@
+@@##DESPUNTI##@@
+
+"E' ammesso pagamento in misura ridotta di Euro  " @@##IMPORTO##@@ " (Vedi Avvertenze)"
+TUTTAVIA, SE SI EFFETTUA IL PAGAMENTO ENTRO 5 GIORNI DALLA DATA DI NOTIFICA/CONTESTAZIONE, SI PUO' GODERE DELLO SCONTO DEL 30%.
+Importo minimo scontato Euro @@##IMPORTOSCONTO30##@@.
+
+
+"Gli accertatori:" @@##NOMEAGE1##@@/@@##NOMEAGE2##@@
+    OPPURE
+"L'accertatore:" @@##NOMEAGE1##@@
+"Firma _______________________________________"
+
+"AVVERTENZE PER AVVISO"
+"L 'importo totale del pagamento in misura ridotta va versato, entro 10 gg. dalla data di accertamento direttamente al 
+ Comando Polizia Locale @@##DESPAG##@@ oppure sul c/c postale @@##DESCCP##@@ N. @@##CCPNUM##@@ intestato a:
+ Comune di @@##ENTE##@@ Polizia Locale Servizio Contravvenzioni. Nella causale del versamento indicare sempre il numero del 
+ presente avviso e la targa del veicolo. Trascorso il suddetto termine si procedera' alla notifica del verbale all'intestatario 
+ del veicolo con spese a carico del destinatario"
+---------------------------------------------------
+
+
+
+@@##TIPOVEICOLO##@@ ------> "AUTOVEICOLO" oppure "CICLOMOTORE" oppure "MOTOVEICOLO" oppure "RIMORCHIO"
+@@##DESMANCATACONTESTAZIONE##@@ ---> "Assenza del Trasgressore"
+@@##DESSANZIONEACCESSORIA##@@ ---> SE GLI ARTICOLI PREVEDONO UNA SANZIONE ACCESSORIA IL CAMPO ASSUME IL VALORE : 
+                            "Sanzioni accessoria: " @@##DESACCESSORIA##@@
+@@##DESANNOTAZIONE##@@ ---> SE è STATA INSERITA UNA NOTA IL CAMPO ASSUME IL VALORE : "Annotazioni:  @@##DESNOTA##@@
+@@##DESPUNTI##@@ ---> SE GLI ARTICOLI PREVEDONO DECURTATZIONE PUNTI IL CAMPO ASSUME IL VALORE : 
+                      "L'infrazione comporta la decurtazione di punti " @@##PUNTI##@@

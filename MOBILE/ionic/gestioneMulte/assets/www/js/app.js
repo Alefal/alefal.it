@@ -1,36 +1,33 @@
 // Ionic Starter App
-angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalprecht.translate'/*,'ngCordova'*/])
+angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalprecht.translate','ngCordova'])
 
-.run(function($ionicPlatform,$ionicPopup,$ionicLoading,$rootScope/*,$cordovaNetwork,$cordovaDevice*/) {
+.run(function($ionicPlatform,$ionicPopup,$ionicLoading,$rootScope,$cordovaNetwork,$cordovaDevice) {
   $ionicPlatform.registerBackButtonAction(function (event) {
     event.preventDefault();
   }, 100);
 
   $ionicPlatform.ready(function() {
 
-    //$rootScope.server = 'http://localhost';
-    $rootScope.server = 'http://localhost/alefal.it/PROJECTS/wordpress';
-    //$rootScope.server = 'http://10.80.18.107/alefal.it/PROJECTS/wordpress-4.2.3';
-    //$rootScope.server = 'http://192.168.1.188/alefal.it/PROJECTS/wordpress-4.2.3';
-    //$rootScope.server = 'http://cdsmobile.swstudio.net';
+    //$rootScope.server = 'http://192.168.1.187/alefal.it/PROJECTS/wordpress';
+    $rootScope.server = 'http://cdsmobile.swstudio.net';
     //$rootScope.server = 'http://95.110.159.203';
 
     //TEST WITH BROWSER: device
-    
+/*****
     $rootScope.device = {
       model: 'HTC ONE',
       platform: 'android',
       uuid: '1234567890',
       version: '1.1'
     };
-/*****
+*****/
     $rootScope.device = {
       model: $cordovaDevice.getModel(),
       platform: $cordovaDevice.getPlatform(),
       uuid: $cordovaDevice.getUUID(),
       version: $cordovaDevice.getVersion()
     };
-*****/
+
     localStorage.setItem('deviceModel',$rootScope.device.model);
     localStorage.setItem('devicePlatform',$rootScope.device.platform);
     localStorage.setItem('deviceUUID',$rootScope.device.uuid);
@@ -49,16 +46,17 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
     }
 
     //TEST WITH BROWSER: Check Connection
+ /*****
     //NO CONNECTION
     //$rootScope.checkNoConnection          = true;
     //$rootScope.marginMessageNoConnection  = 'margin-top:60px';
-    //$rootScope.barSubheaderNoConnection   = 'margin-top:75px';
+    //$rootScope.barSubheaderNoConnection   = 'margin-top: 75px';
     //SI CONNECTION
     $rootScope.checkNoConnection          = false;
     $rootScope.marginMessageNoConnection  = 'margin-top:0px';
     $rootScope.barSubheaderNoConnection   = 'margin-top:15px;';
-    
-/*****
+*****/
+
     document.addEventListener('deviceready', function () {
       $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
         $rootScope.checkNoConnection = false;
@@ -81,7 +79,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
       })
 
     }, false);
-*****/
+
   });
 })
 .config(function($httpProvider) {
@@ -192,7 +190,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
   ajaxCallServices.getItems = function (item) {
 
     var service = '';
-    
+
     var ente      = localStorage.getItem('agent_ente');
     var device    = localStorage.getItem('deviceUUID');
     var agenteId  = localStorage.getItem('agent_id');
@@ -233,8 +231,8 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
     //return $http({url:$rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/setVerbale.php',method:'POST',params:{verbaleCompleto: verbaleCompleto}});
     return $http({
       url:$rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/setVerbale.php',
-      //timeout: timeoutCall,
       method:'POST',
+      //timeout: timeoutCall,
       data: {verbaleCompleto:verbaleCompleto},
       headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' }
     });
@@ -259,7 +257,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 
   return ajaxCallServices;
 })
-.factory('globalFunction', function($state,$rootScope,$ionicPopup,$ionicLoading/*,$cordovaBluetoothSerial*/) {
+.factory('globalFunction', function($state,$rootScope,$ionicPopup,$ionicLoading,$cordovaBluetoothSerial) {
   return {
     exitApp: function() {
       /* NON LI CANCELLO PER ACCESSO OFFLINE...
@@ -278,14 +276,13 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
       $state.go('app.welcome');
     },
     bluetoothPrinter: function(section,verbaleCompleto) {
-      //START: TEST WITH BROWSER
-      /*****/ 
+      //TEST WITH BROWSER
+      /*****
       console.log(verbaleCompleto);
       $rootScope.globFunc.templateStampa(verbaleCompleto);
       return false;
-      /*****/
-      //END: TEST WITH BROWSER
-      
+      *****/
+
       $ionicLoading.show({
         template: 'Attendere...'
       });
@@ -399,6 +396,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
                 resultTest += 'listFailure <br/>';
             });
 
+            $rootScope.resultPrintTestShow = true;
             $rootScope.checkPrintTestResult = resultTest;
         },
         function() {
@@ -411,6 +409,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
       );
 
       $rootScope.resultPrintTestShow = true;
+
 
     },
     templateStampa: function(verbaleCompleto) {
