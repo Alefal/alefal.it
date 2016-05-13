@@ -2,6 +2,34 @@ angular.module('starter.controllers', [])
 
 .controller('LoginCtrl', function($scope,$rootScope,$ionicLoading,$ionicPopup,ajaxCallServices,$state,ModalService,$timeout) {
 
+  ////////// TODO - START: per versione 1.1.06
+  $scope.getDataUri = function(url, callback) {
+    var image = new Image();
+
+    image.onload = function () {
+        var canvas = document.createElement('canvas');
+        canvas.width = this.naturalWidth; // or 'width' if you want a special/scaled size
+        canvas.height = this.naturalHeight; // or 'height' if you want a special/scaled size
+
+        canvas.getContext('2d').drawImage(this, 0, 0);
+
+        // Get raw image data
+        callback(canvas.toDataURL('image/png').replace(/^data:image\/(png|jpg);base64,/, ''));
+
+        // ... or get as Data URI
+        callback(canvas.toDataURL('image/png'));
+    };
+
+    image.src = url;
+  };
+
+  $scope.getDataUri('img/ionic.png', function(dataUri) {
+    // Do whatever you'd like with the Data URI!
+    $scope.image64 = dataUri;
+    console.log('dataUri: '+dataUri);
+  });
+   ////////// TODO - END: per versione 1.1.06
+
   $scope.showAlertMessage = function(title,message,back) {
     var alertPopupMessage = $ionicPopup.alert({
        title: title,
@@ -286,7 +314,8 @@ angular.module('starter.controllers', [])
     $scope.agent_matr = localStorage.getItem('agent_matr');
 
     if (localStorage.getItem('datiVerbaleOffline')) {
-      if(!$rootScope.checkNoConnection) {
+      //C'è connessione
+      if(!$rootScope.checkNoConnection) { 
         $rootScope.datiVerbaleOffline = true;
       }
     } else {
@@ -494,30 +523,28 @@ angular.module('starter.controllers', [])
   $scope.tipoVeicolo      = '';
   $scope.modelloVeicolo   = '';
 
-  /* COMMENTATO PER RICORDARE ULTIMO SELEZIONATO
-  $rootScope.indirizzoId      = '';
-  $rootScope.indirizzo        = '';
-  $rootScope.indirizzoCivico  = '';
-  $rootScope.indirizzoDescr   = '';
-  */
+  // COMMENTATO PER RICORDARE ULTIMO SELEZIONATO
+  //$rootScope.indirizzoId      = '';
+  //$rootScope.indirizzo        = '';
+  //$rootScope.indirizzoCivico  = '';
+  //$rootScope.indirizzoDescr   = '';
 
   $scope.tipoVeicoloCode  = 'A';
   $scope.tipoVeicoloDescr = 'AUTOVEICOLO';
 
   $scope.mancataContestazione = true;
 
-   /* COMMENTATO PER RICORDARE ULTIMO SELEZIONATO
-  $rootScope.idAgente2      = '';
-  $rootScope.nomeAgente2    = '';
+  // COMMENTATO PER RICORDARE ULTIMO SELEZIONATO
+  //$rootScope.idAgente2      = '';
+  //$rootScope.nomeAgente2    = '';
 
-  $rootScope.art1               = '';
-  $rootScope.codArt1            = '';
-  $rootScope.descrArt1          = '';
-  $rootScope.puntiArt1          = '';
-  $rootScope.importoArt1        = '';
-  $rootScope.sanzAccIdArt1      = '';
-  $rootScope.sanzAccDescrArt1   = '';
-  */
+  //$rootScope.art1               = '';
+  //$rootScope.codArt1            = '';
+  //$rootScope.descrArt1          = '';
+  //$rootScope.puntiArt1          = '';
+  //$rootScope.importoArt1        = '';
+  //$rootScope.sanzAccIdArt1      = '';
+  //$rootScope.sanzAccDescrArt1   = '';
 
   $scope.art2               = '';
   $scope.codArt2            = '';
@@ -535,7 +562,6 @@ angular.module('starter.controllers', [])
   //$scope.picData      = 'img/icon.png'; //TEST BROWSER
 
   //GEOLOCATION
-/***** *****/
   var posOptions = {timeout: 30000, enableHighAccuracy: false};
   $cordovaGeolocation
     .getCurrentPosition(posOptions)
