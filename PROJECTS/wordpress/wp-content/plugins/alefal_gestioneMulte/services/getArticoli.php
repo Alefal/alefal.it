@@ -24,13 +24,13 @@ if($items) {
 	        'COD_ART'		=> $item->COD_ART,
 	        'COD_COM'		=> $item->COD_COM,
 	        'COMMA'			=> $item->COMMA,
-	        'DES_ART1'		=> $item->DES_ART1,
-	        'DES_ART2'		=> $item->DES_ART2,
-	        'DES_RID'		=> $item->DES_RID,
+	        'DES_ART1'		=> /*str_replace("'","",*/$item->DES_ART1/*)*/,
+	        'DES_ART2'		=> /*str_replace("'","",*/$item->DES_ART2/*)*/,
+	        'DES_RID'		=> /*str_replace("'","",*/$item->DES_RID/*)*/,
 	        'IMP_ART'		=> $item->IMP_ART,
 	        'PUNT_ART'		=> $item->PUNT_ART,
 	        'ID_SANZ'		=> $item->mcID,
-	        'DESCR_SANZ'	=> $item->mcDescr
+	        'DESCR_SANZ'	=> /*str_replace("'","",*/$item->mcDescr/*)*/
 	    );
 	}
 } else {
@@ -46,5 +46,8 @@ $finalArray[] = array(
     'items'   => $itemsArray
 );
 
+//C'è un problema con i caratteri accentati: se il json non torna nulla c'è qualche carattere accentato; sostituirlo con l'apice!
+//print_r($finalArray);
 echo json_encode($finalArray);
+
 exit();

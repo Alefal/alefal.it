@@ -2,34 +2,6 @@ angular.module('starter.controllers', [])
 
 .controller('LoginCtrl', function($scope,$rootScope,$ionicLoading,$ionicPopup,ajaxCallServices,$state,ModalService,$timeout) {
 
-  ////////// TODO - START: per versione 1.1.06
-  $scope.getDataUri = function(url, callback) {
-    var image = new Image();
-
-    image.onload = function () {
-        var canvas = document.createElement('canvas');
-        canvas.width = this.naturalWidth; // or 'width' if you want a special/scaled size
-        canvas.height = this.naturalHeight; // or 'height' if you want a special/scaled size
-
-        canvas.getContext('2d').drawImage(this, 0, 0);
-
-        // Get raw image data
-        callback(canvas.toDataURL('image/png').replace(/^data:image\/(png|jpg);base64,/, ''));
-
-        // ... or get as Data URI
-        callback(canvas.toDataURL('image/png'));
-    };
-
-    image.src = url;
-  };
-
-  $scope.getDataUri('img/ionic.png', function(dataUri) {
-    // Do whatever you'd like with the Data URI!
-    $scope.image64 = dataUri;
-    console.log('dataUri: '+dataUri);
-  });
-   ////////// TODO - END: per versione 1.1.06
-
   $scope.showAlertMessage = function(title,message,back) {
     var alertPopupMessage = $ionicPopup.alert({
        title: title,
@@ -149,8 +121,8 @@ angular.module('starter.controllers', [])
 
 
   $scope.authorization = {
-    username: '',
-    password : ''
+    username: 'alefal',
+    password : 'alefal'
   };
 
   $scope.login = function() {
@@ -315,7 +287,7 @@ angular.module('starter.controllers', [])
 
     if (localStorage.getItem('datiVerbaleOffline')) {
       //C'è connessione
-      if(!$rootScope.checkNoConnection) { 
+      if(!$rootScope.checkNoConnection) {
         $rootScope.datiVerbaleOffline = true;
       }
     } else {
@@ -350,8 +322,7 @@ angular.module('starter.controllers', [])
       console.log('imageVerbale -> '+imageVerbale.replace(/"/g, ''));
 
       console.log('$scope.verbaleCompleto -> '+$scope.verbaleCompleto);
-      ajaxCallServices.salvaVerbale($scope.verbaleCompleto)
-        .success(function (result) {
+      ajaxCallServices.salvaVerbale($scope.verbaleCompleto).success(function (result) {
 
           console.log(JSON.stringify(result));
           console.log(result[0].message);
@@ -365,7 +336,7 @@ angular.module('starter.controllers', [])
                 console.log(filePath);
 
 
-                /***** Picture Upload Error Code: 3 - Aggiungere all'header *****/
+                // Picture Upload Error Code: 3 - Aggiungere all'header
                 var options = new FileUploadOptions();
                 options.chunkedMode = false;
                 options.headers = {
@@ -1221,8 +1192,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('StampanteCtrl', function($scope,$rootScope,$ionicLoading,ModalService,ajaxCallServices) {
-
+.controller('ConfigurationCtrl', function($scope,$rootScope,$ionicLoading,$ionicPopup,ModalService,ajaxCallServices) {
   $rootScope.checkPrintTestResult = '';
   $scope.checkPrintFound          = false;
   $rootScope.resultPrintTestShow  = false;
@@ -1238,11 +1208,65 @@ angular.module('starter.controllers', [])
   } else {
     $scope.checkPrintMessage  = 'Nessuna stampante bluetooth associata al device <strong>'+localStorage.getItem('deviceUUID')+'</strong>! <br />Contattare l\'amministratore.';
   }
-
+  //Test print
   $scope.bluetoothPrinter = function() {
     console.log('bluetoothPrinter');
     $rootScope.resultPrintTestShow = false;
     $rootScope.globFunc.bluetoothPrinter('stampante');
   }
+  //Clear logs
+  $scope.clearBluetoothPrinterLogs = function() {
+    console.log('clearBluetoothPrinterLogs');
+    $rootScope.checkPrintTestResult = '';
+    $rootScope.resultPrintTestShow = false;
+  }
+  //Alert Message
+  $scope.showAlertMessage = function(title,message) {
+    var alertPopupMessage = $ionicPopup.alert({
+       title: title,
+       template: message,
+       okText: 'Chiudi',
+       okType: 'button-positive'
+    });
+    alertPopupMessage.then(function(res) {
+      alertPopupMessage.close();
+    });
+  };
 
+  //Refresh data element
+  $scope.sincronizzaDatiOffline = function(item) {
+    console.log('sincronizzaDatiOffline');
+
+    $ionicLoading.show({
+      template: 'Sincronizzazione'
+    });
+
+    // articoli | artpref | marche | autorizzati | vie | obbligato | trasgres | agenti | tipoVeicolo
+
+    if(!$rootScope.checkNoConnection) { //C'è connessione
+      ModalService
+        .init(item, $scope)
+        .then(function(modal) {
+
+          ajaxCallServices.getItems(item)
+            .success(function (items) {
+
+              $ionicLoading.hide();
+              if(items[0].response[0].result == 'OK') {
+                localStorage.setItem(item,JSON.stringify(items[0]));
+                $scope.showAlertMessage('Sincronizzazione','Sincronizzazione dati effettuata');
+              } else {
+                $scope.showAlertMessage('Sincronizzazione','Problemi durante la sincronizzazione dei dati');
+              }
+
+            }).error(function (error) {
+              $ionicLoading.hide();
+              $scope.showAlertMessage('Sincronizzazione','Problemi durante la sincronizzazione dei dati');
+            });
+      });
+    } else {
+      $ionicLoading.hide();
+      $scope.showAlertMessage('Sincronizzazione','Devi essere online per sincronizzare i dati');
+    }
+  }
 });
