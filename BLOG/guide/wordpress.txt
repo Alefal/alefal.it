@@ -1,0 +1,103 @@
+WordPress: utilizzo dei tag condizionali
+
+is_home()
+se si sta visualizzando la home page del sito
+
+is_front_page()
+se si sta visualizzando la home page del sito e se la home page è una pagina statica
+if( is_home() || is_front_page() ) { ... }
+
+is_admin()
+viene visualizzata la sezione amministrativa
+
+is_single()
+si visualizza un post singolo
+is_single( 17 )
+is_single( 'Test' )
+is_single( 'test-slug' )
+is_single( array( 17, 'test-slug', 'Test' ) )
+
+is_sticky()
+post è stato marcato come “in evidenza”
+
+is_page()
+si visualizza una pagina
+
+is_category()
+si visualizza una categoria
+
+in_category()
+la condizione è vera quando un post appartiene ad una determinata categoria
+in_category( 5 )
+in_category( array( 2, 3, 4 ) )
+
+is_tag()
+si visualizza l’archivio di un determinato tag
+is_tag( 'test' )
+
+has_tag()
+un post abbia un determinato tag
+
+is_tax()
+si sta visualizzando la pagina di archivio di una tassonomia
+
+has_term()
+un post abbia determinati termini relativi alle sue tassonomie
+
+is_author()
+viene visualizzata la pagina di archivio dei post di un autore
+is_author( 4 )
+is_author( 'mario-rossi' )
+is_author( array( 4, 'mario-rossi', 'Mario' ) )
+
+is_archive()
+ci troviamo in una pagina d’archivio
+
+is_search()
+stiamo visualizzando la pagina dei risultati 
+
+is_404()
+pagina di errore 404 (gestita dal file 404.php nei temi)
+
+is_paged()
+true quando una sezione presenta la paginazione dei post creata dopo un Loop
+
+is_main_query()
+viene restituito true quando il Loop creato da una query è il Loop principale del sito
+
+has_excerpt()
+true quando un post ha un riassunto
+
+has_post_thumbnail( $id )
+true se il post il cui ID viene specificato come parametro ha un’immagine in evidenza impostata4
+
+
+// functions.php
+ 
+function add_scripts() {
+    wp_enqueue_script( 'jquery' );
+    if( is_page( 8 ) ) { // pagina specifica con ID 8
+        wp_register_script( 'google-maps', get_template_directory_uri() . '/js/gmap.js', array( 'jquery' ), '2.0', false );
+        wp_enqueue_script( 'google-maps' );
+    }
+     
+    //...
+}
+ 
+add_action( 'wp_enqueue_scripts', 'add_scripts' );
+
+// functions.php
+ 
+function add_social_media( $content ) {
+    $social = social_plugin();
+    if( is_page() ) { // qualsiasi pagina
+        $content = $social . $content;
+    }
+    if( is_single() ) { // qualsiasi post singolo
+        $content = $content . $social;
+    }
+     
+    return $content;
+}
+ 
+add_filter( 'the_content', 'add_social_media' );

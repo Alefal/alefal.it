@@ -492,10 +492,10 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
       return data;
     },
     templateTestStampa: function() {
-      var data = '';
+      //var data = '';
 
-      data += '\n START \n';
-      data += '\n Test stampa...\n';
+      //data += '\n START \n';
+      //data += '\n Test stampa...\n';
 
       var url = 'img/ionic.png';
       $http.get(url, {responseType: 'arraybuffer'} ).then(function(response) {
@@ -513,7 +513,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
         }
         console.log('templateTestStampa: '+window.btoa( binary ));
         $rootScope.image64 = window.btoa( binary );
-        data += window.btoa( binary );
+        data = window.btoa( binary );
 
       });
       /*
@@ -523,7 +523,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
         data += '\n'+dataUri+'\n';
 
       });*/
-      data += '\n END \n';
+      //data += '\n END \n';
       console.log('templateTestStampa: '+data);
       return data;
     },

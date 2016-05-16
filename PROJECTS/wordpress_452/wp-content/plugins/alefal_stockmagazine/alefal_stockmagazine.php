@@ -29,8 +29,8 @@ function get_wc_api_client() {
     require_once( 'lib/woocommerce-api.php' );
 
     $store_url = 'http://localhost/alefal.it/PROJECTS/wordpress_452/'; // Add the home URL to the store you want to connect to here
-    $consumer_key = 'ck_a298412bab15e6cfd83408cdc0c2162d68166ab9';
-    $consumer_secret = 'cs_80119e1e99ab6109eb63c6355e963a4b39693642';
+    $consumer_key = 'ck_5cc0e38263967f383b462afdc0e675d285abe74e';
+    $consumer_secret = 'cs_1dad9ee308f82440c99d58e6d1e10b4a6e5bc0ba';
     $options = array(
         'ssl_verify'      => false,
     );
