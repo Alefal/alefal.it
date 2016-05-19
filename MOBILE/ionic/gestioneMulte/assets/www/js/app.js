@@ -46,20 +46,20 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
     }
 
     //TEST WITH BROWSER: Check Connection
- /*****
-    //NO CONNECTION
-    //$rootScope.checkNoConnection          = true;
-    //$rootScope.marginMessageNoConnection  = 'margin-top:60px';
-    //$rootScope.barSubheaderNoConnection   = 'margin-top: 75px';
+/*****
     //SI CONNECTION
-    $rootScope.checkNoConnection          = false;
+    $rootScope.foundConnection          = true;
     $rootScope.marginMessageNoConnection  = 'margin-top:0px';
     $rootScope.barSubheaderNoConnection   = 'margin-top:15px;';
+    //NO CONNECTION
+    //$rootScope.foundConnection          = false;
+    //$rootScope.marginMessageNoConnection  = 'margin-top:60px';
+    //$rootScope.barSubheaderNoConnection   = 'margin-top: 75px';
 *****/
 
     document.addEventListener('deviceready', function () {
       $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
-        $rootScope.checkNoConnection = false;
+        $rootScope.foundConnection = true;
         $rootScope.marginMessageNoConnection  = 'margin-top:0px;';
         $rootScope.barSubheaderNoConnection   = 'margin-top:15px;';
 
@@ -72,7 +72,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 
       // listen for Offline event
       $rootScope.$on('$cordovaNetwork:offline', function(event, networkState){
-        $rootScope.checkNoConnection = true;
+        $rootScope.foundConnection = false;
         $rootScope.marginMessageNoConnection  = 'margin-top:60px;';
         $rootScope.barSubheaderNoConnection   = 'margin-top:75px;';
         $rootScope.datiVerbaleOffline = false;

@@ -84,7 +84,8 @@ angular.module('starter.controllers', [])
     var deviceUUID  = localStorage.getItem('deviceUUID');
     var deviceModel = localStorage.getItem('deviceModel');
 
-    if(!$rootScope.checkNoConnection) {
+    //Per la registrazione del device si deve essere SEMPRE ONLINE !
+    if($rootScope.foundConnection) {
       ajaxCallServices.registraDevice(deviceUUID,deviceModel)
         .success(function (operation) {
 
@@ -142,7 +143,8 @@ angular.module('starter.controllers', [])
       return false;
     }
 
-    if(!$rootScope.checkNoConnection) {
+    //Per la login non verifico la modalità attiva
+    if($rootScope.foundConnection) {
       ajaxCallServices.checkUserAccess($scope.authorization.username,$scope.authorization.password)
         .success(function (access) {
 
@@ -286,8 +288,9 @@ angular.module('starter.controllers', [])
     $scope.agent_matr = localStorage.getItem('agent_matr');
 
     if (localStorage.getItem('datiVerbaleOffline')) {
-      //C'è connessione
-      if(!$rootScope.checkNoConnection) {
+      //Visualizzo il pulsante SINCRONIZZA SSE: c'è connessione | la MO è disattivata (false)
+      var modalitaOfflineCheck = localStorage.getItem('modalitaOffline');
+      if($rootScope.foundConnection && !modalitaOfflineCheck) {
         $rootScope.datiVerbaleOffline = true;
       }
     } else {
@@ -331,7 +334,10 @@ angular.module('starter.controllers', [])
 
               if(angular.isNumber(result[0].message)) {
 
-                var server = $rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/upload.php?id='+result[0].message;
+                var ente = localStorage.getItem('agent_ente');
+                console.log('ente: '+ente);
+
+                var server = $rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/upload.php?id='+result[0].message+'&ente'+ente;
                 var filePath = imageVerbale.replace(/"/g, '');
                 console.log(filePath);
 
@@ -429,7 +435,9 @@ angular.module('starter.controllers', [])
   };
 
   //Verificare se sono online e se ci sono dati in memoria da sincronizzare: necessario per mantenere il numero di verbale aggiornato sia ONLINE che OFFLINE
-  if(!$rootScope.checkNoConnection) {
+  //Se c'è connessione e la MODALITA' OFFLINE è disattivata (false) lavoro ONLINE
+  var modalitaOfflineCheck = localStorage.getItem('modalitaOffline');
+  if($rootScope.foundConnection && !modalitaOfflineCheck) {
     //Connection
     if (localStorage.getItem('datiVerbaleOffline')) {
       //Si devono PRIMA sincronizzare i dati
@@ -443,7 +451,9 @@ angular.module('starter.controllers', [])
   //$scope.numeroVerbale = Math.floor((Math.random() * 1000000) + 1);
   $scope.numeroVerbale = '';
 
-  if(!$rootScope.checkNoConnection) {
+  //Se c'è connessione e la MODALITA' OFFLINE è disattivata (false) lavoro ONLINE
+  var modalitaOfflineCheck = localStorage.getItem('modalitaOffline');
+  if($rootScope.foundConnection && !modalitaOfflineCheck) {
     ajaxCallServices.getItems('device')
       .success(function (device) {
 
@@ -695,10 +705,12 @@ angular.module('starter.controllers', [])
         'deviceUUID'          : localStorage.getItem('deviceUUID')  //device da localStorage
       };
 
-    //console.log('Check connection: '+$rootScope.checkNoConnection);
+    //console.log('Check connection: '+$rootScope.foundConnection);
     //console.log('verbaleCompleto: '+JSON.stringify($scope.verbaleCompleto));
 
-    if(!$rootScope.checkNoConnection) {
+    //Se c'è connessione e la MODALITA' OFFLINE è disattivata (false) lavoro ONLINE
+    var modalitaOfflineCheck = localStorage.getItem('modalitaOffline');
+    if($rootScope.foundConnection && !modalitaOfflineCheck) {
 
       ajaxCallServices.salvaVerbale($scope.verbaleCompleto)
         .success(function (result) {
@@ -714,7 +726,10 @@ angular.module('starter.controllers', [])
 
               if(angular.isNumber(result[0].message)) {
 
-                var server = $rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/upload.php?id='+result[0].message;
+                var ente = localStorage.getItem('agent_ente');
+                console.log('ente: '+ente);
+
+                var server = $rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/upload.php?id='+result[0].message+'&ente'+ente;
                 var filePath = $scope.picData;
                 console.log(filePath);
                 var options = {};
@@ -987,7 +1002,7 @@ angular.module('starter.controllers', [])
       .init(item, $scope)
       .then(function(modal) {
 
-        //Memorizzo le info nel localStorage in fase di login: successivamente utilizzo i dati memorizzati
+        //Memorizzo le info nel localStorage in fase di login: successivamente utilizzo i dati memorizzati (ci dovrebbero essere sempre)
         if(!localStorage.getItem(item)) {
           ajaxCallServices.getItems(item)
             .success(function (items) {
@@ -1003,7 +1018,7 @@ angular.module('starter.controllers', [])
               }
 
             }).error(function (error) {
-			  $scope.loading = false;
+			        $scope.loading = false;
               $ionicLoading.hide();
               $scope.status = 'Unable to load customer data' + error;
             });
@@ -1037,27 +1052,30 @@ angular.module('starter.controllers', [])
   $scope.verbaliOfflineFound = false;
   $scope.verbaliOfflineNotFound = false;
 
-  //VERBALI ONLINE
-  ajaxCallServices.getItems('verbale')
-    .success(function (items) {
+  //VERBALI ONLINE: verifico solo se c'è connessione
+  if($rootScope.foundConnection) {
+    ajaxCallServices.getItems('verbale')
+      .success(function (items) {
 
-      if(items[0].response[0].result == 'OK') {
-        $scope.verbaliOnlineFound = true;
+        if(items[0].response[0].result == 'OK') {
+          $scope.verbaliOnlineFound = true;
 
-        $scope.items = items[0].items;
-        $scope.loading = false;
+          $scope.items = items[0].items;
+          $scope.loading = false;
 
+          $ionicLoading.hide();
+        } else {
+          $scope.verbaliOnlineNotFound = true;
+          $ionicLoading.hide();
+        }
+
+      }).error(function (error) {
         $ionicLoading.hide();
-      } else {
-        $scope.verbaliOnlineNotFound = true;
-        $ionicLoading.hide();
-      }
-
-    }).error(function (error) {
-      $ionicLoading.hide();
-      $scope.status = 'Unable to load customer data' + error;
-    });
-
+        $scope.status = 'Unable to load customer data' + error;
+      });
+    } else {
+      //Mi stampa l'errore definito da $scope.verbaliOnlineFound = false;
+    }
 
     //VERBALI OFFLINE
     if (localStorage.getItem('datiVerbaleOffline')) {
@@ -1197,6 +1215,35 @@ angular.module('starter.controllers', [])
   $scope.checkPrintFound          = false;
   $rootScope.resultPrintTestShow  = false;
 
+  //Alert Message
+  $scope.showAlertMessage = function(title,message) {
+    var alertPopupMessage = $ionicPopup.alert({
+       title: title,
+       template: message,
+       okText: 'Chiudi',
+       okType: 'button-positive'
+    });
+    alertPopupMessage.then(function(res) {
+      alertPopupMessage.close();
+    });
+  };
+
+  //Offline
+  $scope.modalitaOffline = false;
+  $scope.setModalitaOffline = function() {
+    if ($scope.modalitaOffline == false) {
+      $scope.modalitaOffline = true;
+      localStorage.setItem('modalitaOffline',true);
+      $scope.showAlertMessage('Modalit&agrave; Offline','Attivata la "Modalit&agrave; Offline"!');
+    } else {
+      $scope.modalitaOffline = false;
+      localStorage.setItem('modalitaOffline',false);
+      $scope.showAlertMessage('Modalit&agrave; Offline','Disattivata la "Modalit&agrave; Offline", necessaria connessione a internet!');
+    }
+    console.log('modalitaOffline: ' + $scope.modalitaOffline);
+  };
+
+  //Stampante
   var stampanteBluetoothName = localStorage.getItem('stampanteBluetooth');
 
   if(localStorage.getItem('stampanteBluetooth') &&
@@ -1220,18 +1267,6 @@ angular.module('starter.controllers', [])
     $rootScope.checkPrintTestResult = '';
     $rootScope.resultPrintTestShow = false;
   }
-  //Alert Message
-  $scope.showAlertMessage = function(title,message) {
-    var alertPopupMessage = $ionicPopup.alert({
-       title: title,
-       template: message,
-       okText: 'Chiudi',
-       okType: 'button-positive'
-    });
-    alertPopupMessage.then(function(res) {
-      alertPopupMessage.close();
-    });
-  };
 
   //Refresh data element
   $scope.sincronizzaDatiOffline = function(item) {
@@ -1243,7 +1278,8 @@ angular.module('starter.controllers', [])
 
     // articoli | artpref | marche | autorizzati | vie | obbligato | trasgres | agenti | tipoVeicolo
 
-    if(!$rootScope.checkNoConnection) { //C'è connessione
+    //Per SINCRONIZZARE i dati devo essere online senza verifica la MO
+    if($rootScope.foundConnection) {
       ModalService
         .init(item, $scope)
         .then(function(modal) {

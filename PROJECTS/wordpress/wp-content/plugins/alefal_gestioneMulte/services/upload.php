@@ -1,14 +1,15 @@
 <?php
 header('Access-Control-Allow-Origin: *'); 
 
-$target_dir = '../uploads/';
-
 require_once('../../../../wp-config.php');
 
 global $wpdb;
 $table_name = 'p_verb';
 
-echo $_GET['id'];
+//echo $_GET['id'];
+//echo $_GET['ente'];
+$target_dir = '../uploads/'.$_GET['ente'].'/';
+
 //print_r($_FILES);  
 
 if ($_FILES) {

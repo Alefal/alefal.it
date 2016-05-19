@@ -7,12 +7,17 @@
 
     <ion-content class="padding" style="{{marginMessageNoConnection}}">
 
+        <!-- OFFLINE -->
         <h3><i class="ion-android-plane"></i> Offline</h3>
         <div class="list">
-          <ion-toggle toggle-class="toggle-assertive">Abilita modalit&agrave; offline</ion-toggle>
+          <ion-toggle toggle-class="toggle-assertive" 
+                ng-model="modalitaOffline" 
+                ng-checked="modalitaOffline" 
+                ng-change="setModalitaOffline()"> Abilita modalit&agrave; offline ({{modalitaOffline}}) </ion-toggle>
         </div>
         <hr />
 
+        <!-- STAMPANTE -->
         <h3><i class="ion-bluetooth"></i> Stampante</h3>
         <h5 ng-bind-html="checkPrintMessage">&nbsp;</h5>
         <div class="spacerVertical"></div>
@@ -26,6 +31,7 @@
         <button class="button button-assertive left-right ion-trash-a" ng-click="clearBluetoothPrinterLogs()" ng-show="checkPrintFound"> Pulisci log </button>
         <hr />
 
+        <!-- SINCRONIZZA -->
         <h3><i class="ion-refresh"></i> Sincronizza</h3>
         Sincronizza tutti i dati
         <div class="list">
