@@ -8,8 +8,8 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 
   $ionicPlatform.ready(function() {
 
-    $rootScope.server = 'http://192.168.1.187/alefal.it/PROJECTS/wordpress';
-    //$rootScope.server = 'http://cdsmobile.swstudio.net';
+    //$rootScope.server = 'http://192.168.1.187/alefal.it/PROJECTS/wordpress';
+    $rootScope.server = 'http://cdsmobile.swstudio.net';
     //$rootScope.server = 'http://95.110.159.203';
 
     //TEST WITH BROWSER: device
@@ -57,6 +57,8 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
     //$rootScope.barSubheaderNoConnection   = 'margin-top: 75px';
 *****/
 
+    $rootScope.foundConnection = true;
+
     document.addEventListener('deviceready', function () {
       $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
         $rootScope.foundConnection = true;
@@ -77,7 +79,6 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
         $rootScope.barSubheaderNoConnection   = 'margin-top:75px;';
         $rootScope.datiVerbaleOffline = false;
       })
-
     }, false);
 
   });

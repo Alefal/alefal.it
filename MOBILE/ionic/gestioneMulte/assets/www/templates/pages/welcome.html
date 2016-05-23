@@ -15,18 +15,18 @@
           </div>
         </div>
         <div class="col col-50">
-          <div class="tabtext" ng-click="globFunc.goto('app.search')">
-            <div class="icon"><i class="ion-search"></i></div>
-            <h3>Ricerca</h3>
+          <div class="tabtext" ng-click="globFunc.goto('app.verbali')">
+            <div class="icon"><i class="ion-clipboard"></i></div>
+            <h3>Verbali</h3>
           </div>
         </div>
       </div>
 
       <div class="row eventTab">
         <div class="col col-50">
-          <div class="tabtext" ng-click="globFunc.goto('app.verbali')">
-            <div class="icon"><i class="ion-clipboard"></i></div>
-            <h3>Verbali</h3>
+          <div class="tabtext" ng-click="globFunc.goto('app.search')">
+            <div class="icon"><i class="ion-search"></i></div>
+            <h3>Ricerca</h3>
           </div>
         </div>
         <div class="col col-50">
@@ -53,9 +53,7 @@
 
     <ion-footer-bar class="bar-balanced">
       <div class="title agentLogged">
-        Agente: <strong>{{agent_nome}}</strong>
-        <br />
-        Matricola: <strong>{{agent_matr}}</strong>
+        Agente: <strong>{{agent_nome}}</strong> | Matr: <strong>{{agent_matr}}</strong>
       </div>
     </ion-footer-bar>
 

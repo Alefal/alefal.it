@@ -8,9 +8,11 @@ $table_name = 'p_verb';
 
 //echo $_GET['id'];
 //echo $_GET['ente'];
-$target_dir = '../uploads/'.$_GET['ente'].'/';
+$target_dir = '../uploads/'.$_POST['ente'].'/';
 
 //print_r($_FILES);  
+echo $target_dir.' ------- '.$_POST['ente'].' ------- '.$_GET['ente'];
+//die();
 
 if ($_FILES) {
   $imageCapture = $_FILES['file']['tmp_name'];

@@ -122,8 +122,8 @@ angular.module('starter.controllers', [])
 
 
   $scope.authorization = {
-    username: 'alefal',
-    password : 'alefal'
+    username: '',
+    password : ''
   };
 
   $scope.login = function() {
@@ -290,8 +290,10 @@ angular.module('starter.controllers', [])
     if (localStorage.getItem('datiVerbaleOffline')) {
       //Visualizzo il pulsante SINCRONIZZA SSE: c'è connessione | la MO è disattivata (false)
       var modalitaOfflineCheck = localStorage.getItem('modalitaOffline');
-      if($rootScope.foundConnection && !modalitaOfflineCheck) {
+      if($rootScope.foundConnection && modalitaOfflineCheck == 'false') {
         $rootScope.datiVerbaleOffline = true;
+      } else {
+        $rootScope.datiVerbaleOffline = false;
       }
     } else {
       $rootScope.datiVerbaleOffline = false;
@@ -341,10 +343,13 @@ angular.module('starter.controllers', [])
                 var filePath = imageVerbale.replace(/"/g, '');
                 console.log(filePath);
 
-
                 // Picture Upload Error Code: 3 - Aggiungere all'header
                 var options = new FileUploadOptions();
                 options.chunkedMode = false;
+                options.httpMethod = 'GET';
+                options.params = {
+                  'ente':ente
+                }
                 options.headers = {
                   Connection: 'close'
                 }
@@ -353,6 +358,7 @@ angular.module('starter.controllers', [])
                   $cordovaFileTransfer.upload(server, filePath, options)
                     .then(function(result) {
                       // Result
+                      console.log(result);
                       $scope.messageSincronizzazione += 'Verbale '+JSON.stringify(items['numeroVerbale'])+' salvato correttamente! <br/>';
                       $scope.viewMessageSincronizzazione = true;
                     }, function(err) {
@@ -437,7 +443,7 @@ angular.module('starter.controllers', [])
   //Verificare se sono online e se ci sono dati in memoria da sincronizzare: necessario per mantenere il numero di verbale aggiornato sia ONLINE che OFFLINE
   //Se c'è connessione e la MODALITA' OFFLINE è disattivata (false) lavoro ONLINE
   var modalitaOfflineCheck = localStorage.getItem('modalitaOffline');
-  if($rootScope.foundConnection && !modalitaOfflineCheck) {
+  if($rootScope.foundConnection && modalitaOfflineCheck == 'false') {
     //Connection
     if (localStorage.getItem('datiVerbaleOffline')) {
       //Si devono PRIMA sincronizzare i dati
@@ -453,7 +459,7 @@ angular.module('starter.controllers', [])
 
   //Se c'è connessione e la MODALITA' OFFLINE è disattivata (false) lavoro ONLINE
   var modalitaOfflineCheck = localStorage.getItem('modalitaOffline');
-  if($rootScope.foundConnection && !modalitaOfflineCheck) {
+  if($rootScope.foundConnection && modalitaOfflineCheck == 'false') {
     ajaxCallServices.getItems('device')
       .success(function (device) {
 
@@ -710,7 +716,7 @@ angular.module('starter.controllers', [])
 
     //Se c'è connessione e la MODALITA' OFFLINE è disattivata (false) lavoro ONLINE
     var modalitaOfflineCheck = localStorage.getItem('modalitaOffline');
-    if($rootScope.foundConnection && !modalitaOfflineCheck) {
+    if($rootScope.foundConnection && modalitaOfflineCheck == 'false') {
 
       ajaxCallServices.salvaVerbale($scope.verbaleCompleto)
         .success(function (result) {
@@ -729,7 +735,7 @@ angular.module('starter.controllers', [])
                 var ente = localStorage.getItem('agent_ente');
                 console.log('ente: '+ente);
 
-                var server = $rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/upload.php?id='+result[0].message+'&ente'+ente;
+                var server = $rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/upload.php?id='+result[0].message;
                 var filePath = $scope.picData;
                 console.log(filePath);
                 var options = {};
@@ -737,6 +743,10 @@ angular.module('starter.controllers', [])
                 /***** Picture Upload Error Code: 3 - Aggiungere all'header *****/
                 var options = new FileUploadOptions();
                 options.chunkedMode = false;
+                options.httpMethod = 'GET';
+                options.params = {
+                  'ente':ente
+                }
                 options.headers = {
                   Connection: 'close'
                 }
@@ -1229,7 +1239,13 @@ angular.module('starter.controllers', [])
   };
 
   //Offline
-  $scope.modalitaOffline = false;
+  if (localStorage.getItem('modalitaOffline') && localStorage.getItem('modalitaOffline') == 'true') {
+    $rootScope.modalitaOffline = true;
+  } else {
+    $rootScope.modalitaOffline = false;
+  }
+
+  //$scope.modalitaOffline = false;
   $scope.setModalitaOffline = function() {
     if ($scope.modalitaOffline == false) {
       $scope.modalitaOffline = true;
