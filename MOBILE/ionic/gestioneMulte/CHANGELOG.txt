@@ -21,3 +21,9 @@ v.1.1.06 (24/05/2016):
 - sezione per attivazione della modalità offline
 - upload in cartelle di destinazione diverse per ogni comune (ID dei comuni); modifica al servizio UPLOAD.PHP nel plugin WP
 - TODO: stampa del logo del comune
+
+v.1.1.07 TODO:
+- aggiungere in LOADING quando si clicca su SINCRONIZZA (risolvo il problema dei duplicati: se si clicca N volte sul tasto, partone N richieste e N memorizzazioni di verbali con lo stesso ID)
+- se sono in modalità OFFLINE e faccio LOGOUT, al rientro non mi trova il numero di verbale (al secondo tentativo ha funzionato)ù
+- nel footer diminuire il font (non si vede la matricola se il nome è troppo lungo)
+- la modalità offline non viene annullata al LOGUT / LOGIN

@@ -305,12 +305,19 @@ angular.module('starter.controllers', [])
   $ionicLoading.hide();
 
   $scope.sincronizzaDati = function() {
+
+    //TODO: verificare che appare il loading
+    $ionicLoading.show({
+      template: 'Attendere...'
+    });
+
     $scope.verbaleCompletoArray = [];
 
     if (localStorage.getItem('datiVerbaleOffline')) {
       $scope.verbaleCompletoArray = angular.fromJson(localStorage.getItem('datiVerbaleOffline'));
     } else {
       $scope.showAlert('Sincronizza dati','Dati offline non trovati!');
+      $ionicLoading.hide();
     }
 
     $scope.messageSincronizzazione      = '';
@@ -386,6 +393,8 @@ angular.module('starter.controllers', [])
         });
 
     });
+
+    $ionicLoading.hide();
   };
 
 })
@@ -470,10 +479,12 @@ angular.module('starter.controllers', [])
           $scope.numeroVerbale = device[0].items[0].NUM_VERB;
 
           if($scope.numeroVerbale == '' || $scope.numeroVerbale == 0) {
+            //TODO: in questo caso recuperare quello memorizzato in memoria; se non c'è o è 0 allora appare il messaggio
             $scope.showAlertMessage('Numero verbale','Numero verbale non trovato! Contattare l\'amministratore!',true);
           }
         } else {
           console.log('KO');
+          //TODO: in questo caso recuperare quello memorizzato in memoria; se non c'è o è 0 allora appare il messaggio
           $scope.showAlertMessage('Numero verbale','Numero verbale non trovato! Contattare l\'amministratore!',true);
         }
 
@@ -481,7 +492,7 @@ angular.module('starter.controllers', [])
         console.log('KO');
         $ionicLoading.hide();
 
-        $scope.showAlertMessage('Connessione debole','Accedere in modalità offline per compilare il verbale.',true);
+        $scope.showAlertMessage('Connessione debole','Attivare la modalità offline in IMPOSTAZIONI per compilare il verbale.',true);
       });
   } else {
     //No connection
