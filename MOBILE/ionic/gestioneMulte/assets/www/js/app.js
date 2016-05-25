@@ -429,56 +429,64 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 
       var data = '';
 
-      data += 'Comando Polizia Locale di '+verbaleCompleto.enteNomeVerbale+'\n';
-      data += 'Violation of the traffic law/Violation du code de la rue.\n\n';
+      data += 'COMANDO POLIZIA LOCALE\n';
+      data += 'COMUNE DI '+verbaleCompleto.enteNomeVerbale+'\n\n';
 
-      data += 'Avviso accertamento di  violazione al Cod. della Strada N.: '+verbaleCompleto.numeroVerbale+'\n\n';
+      data += 'Violation du Cod. de la rue.\n';
+      data += 'Violation of the traffic law.\n\n';
 
-      data += 'Il giorno '+verbaleCompleto.dataVerbale+' ';
-      data += 'alle ore '+verbaleCompleto.oraVerbale+' ';
-      data += 'in '+verbaleCompleto.indirizzoNome+' '+verbaleCompleto.indirizzoDescr+' ';
-      data += 'civico '+verbaleCompleto.indirizzoCivico+'\n\n';
+      data += 'Avviso accertamento di violazione al Cod. della Strada N.:\n';
+      data += verbaleCompleto.numeroVerbale+'\n\n';
 
-      data += verbaleCompleto.tipoDescrVeicolo+' ';
-      data += verbaleCompleto.modelloVeicolo+' ';
+      data += 'Il Giorno '+verbaleCompleto.dataVerbale+'\n';
+      data += 'alle ore '+verbaleCompleto.oraVerbale+'\n';
+      data += 'in '+verbaleCompleto.indirizzoNome+' '+verbaleCompleto.indirizzoDescr+' '+verbaleCompleto.indirizzoCivico+'\n\n';
+
+      data += verbaleCompleto.tipoDescrVeicolo+' '+verbaleCompleto.modelloVeicolo+'\n';
       data += 'Targa: '+verbaleCompleto.targaVeicolo+'\n\n';
-
 
       if(verbaleCompleto.art2 != 0) {
         data += 'ha violato gli art. ';
         data += verbaleCompleto.art1+' '+verbaleCompleto.codArt1+' e ';
-        data += verbaleCompleto.art2+' '+verbaleCompleto.codArt2+' del CdS perche\': ';
-        data += verbaleCompleto.descrArt1+' '+verbaleCompleto.descrArt2+'\n\n';
+        data += verbaleCompleto.art2+' '+verbaleCompleto.codArt2+' del CdS perch&egrave;: \n';
+        data += verbaleCompleto.descrArt1+'\n';
+        data += +verbaleCompleto.descrArt2+'\n\n';
       } else {
-        data += 'ha violato art. '+verbaleCompleto.art1+' '+verbaleCompleto.codArt1+'  del CdS perche\': '+verbaleCompleto.descrArt1+'\n\n';
+        data += 'ha violato art. '+verbaleCompleto.art1+' '+verbaleCompleto.codArt1+'  del CdS perch&egrave;: \n';
+        data += verbaleCompleto.descrArt1+'\n\n';
       }
 
-      if(verbaleCompleto.descrMancataCont != '')
-        data += 'La violazione non e\' stata immediatamente contestata a causa : '+verbaleCompleto.descrMancataCont+' \n\n';
+      if(verbaleCompleto.descrMancataCont != '') {
+        data += 'La violazione non e\' stata immediatamente contestata a causa: \n';
+        data += verbaleCompleto.descrMancataCont+' \n\n';
+      }
 
       var puntiTotali         = (parseInt(verbaleCompleto.puntiArt1) || 0) + (parseInt(verbaleCompleto.puntiArt2) || 0);
+      var importoArt1         = (parseFloat(verbaleCompleto.importoArt1) || 0) ;
+      var importoAr2         = (parseFloat(verbaleCompleto.importoArt2) || 0) ;
       var importoTotale       = (parseFloat(verbaleCompleto.importoArt1) || 0) + (parseFloat(verbaleCompleto.importoArt2) || 0);
       var importoSconto       = importoTotale * 30 / 100;
       var importoTotaleSconto = importoTotale - importoSconto;
 
       if(verbaleCompleto.sanzAccDescrArt1 != '')
-        data += 'Sanzioni accessoria: '+verbaleCompleto.sanzAccDescrArt1+' \n';
+        data += 'Sanzione accessoria: \n'+verbaleCompleto.sanzAccDescrArt1+' \n\n';
 
       if(verbaleCompleto.sanzAccDescrArt2 != '')
-        data += 'Sanzioni accessoria: '+verbaleCompleto.sanzAccDescrArt2+' \n';
+        data += 'Sanzione accessoria: \n'+verbaleCompleto.sanzAccDescrArt2+' \n\n';
 
       if(verbaleCompleto.noteVerbale != '')
-        data += 'Annotazioni: '+verbaleCompleto.noteVerbale+' \n';
+        data += 'Annotazioni: \n'+verbaleCompleto.noteVerbale+' \n\n';
 
       if(puntiTotali > 0)
         data += 'L\'infrazione comporta la decurtazione di punti : '+puntiTotali+' \n\n';
 
-      data += 'E\' ammesso pagamento in misura ridotta di Euro '+importoTotale+' (Vedi Avvertenze) \n';
+      //data += 'E\' ammesso Pagamento in misura ridotta di Euro '+importoTotale+' (Vedi Avvertenze) \n';
+      data += 'E\' ammesso Pagamento in misura ridotta di Euro '+importoArt1+' + '+importoAr2+'\n (Vedi Avvertenze) \n';
       data += 'TUTTAVIA, SE SI EFFETTUA IL PAGAMENTO ENTRO 5 GIORNI DALLA DATA DI NOTIFICA/CONTESTAZIONE, SI PUO\' GODERE DELLO SCONTO DEL 30%. \n';
-      data += 'Importo minimo scontato Euro '+importoTotaleSconto.toFixed(2)+' \n\n';
+      data += 'Importo minimo scontato:\n Euro '+importoTotaleSconto.toFixed(2)+' \n\n';
 
       if(verbaleCompleto.agente2Verbale != 0)
-        data += 'Gli accertatori: '+verbaleCompleto.agenteNomeVerbale+' / '+verbaleCompleto.agente2NomeVerbale+' \n';
+        data += 'Gli accertatori: \n'+verbaleCompleto.agenteNomeVerbale+' \n '+verbaleCompleto.agente2NomeVerbale+' \n\n';
       else
         data += 'L\'accertatore: '+verbaleCompleto.agenteNomeVerbale+' \n\n';
 

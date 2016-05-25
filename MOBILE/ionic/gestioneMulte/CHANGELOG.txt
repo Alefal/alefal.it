@@ -27,3 +27,4 @@ v.1.1.07 TODO:
 - se sono in modalità OFFLINE e faccio LOGOUT, al rientro non mi trova il numero di verbale (al secondo tentativo ha funzionato)ù
 - nel footer diminuire il font (non si vede la matricola se il nome è troppo lungo)
 - la modalità offline non viene annullata al LOGUT / LOGIN
+- Modifica template di stampa (verificare le lettere accentate e gli accapo; vedi email di Marco)
