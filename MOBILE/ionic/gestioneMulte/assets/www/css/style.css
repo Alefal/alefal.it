@@ -22,13 +22,19 @@ body { background: #fff; }
 .agentLogged {
     white-space: normal !important;
     overflow: visible !important;
-    line-height: 25px !important;
+    line-height: 10px !important;
     /* text-align: left !important; */
-    padding: 20px;
+    padding: 10px;
+    font-size: 10px !important;
 }
 .bar.bar-stable, .bar-header { background: #1773ba; border-bottom: 1px solid #0f8dc1;  z-index: 11; }
 .bar.bar-stable .title, .bar.bar-header h1.title { font-family: 'Open Sans', sans-serif; color: #fff; font-size: 20px; font-weight: 700; }
 .bar.bar-header h1.title { left: 30px; right: 30px; font-family: 'Open Sans', sans-serif; color: #fff; font-size: 20px; font-weight: 300 }
+
+.popover h1.title {
+  font-size: 15px !important;
+}
+
 .loginHome .scroll-content { background: url(../img/bg.jpg) no-repeat center bottom #fff; background-size: 100% auto; }
 .logoLogin { padding: 0 70px; margin: 35% 0 10% 0; text-align: center; }
 .logoLogin img { max-width: 200px; width: 100%; }
@@ -63,7 +69,12 @@ body { background: #fff; }
 .eventForm { background: #e9e9e9 }
 
 
-.eventForm .bar.bar-footer { background: none; border: none; /*height: 100px;*/ padding: 5px 10px; }
+.eventForm .bar.bar-footer {
+  background: none;
+  border: none;
+  height: 25px !important;
+  padding: 5px 10px;
+}
 /*
 .eventForm .bar.bar-footer div { display: block; padding: 0; width: 100%; }
 */
@@ -135,6 +146,7 @@ body { background: #fff; }
     border-radius: 10px;
     color: white;
     border: 3px solid #B0A1EF;
+    font-size: 12px;
 }
 .message-info-striped {
     background-image: -webkit-linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);

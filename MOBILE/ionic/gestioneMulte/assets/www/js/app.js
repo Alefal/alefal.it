@@ -256,6 +256,22 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
     });
   };
 
+  /***** aggiornaNumeroVerbale ****/
+  ajaxCallServices.aggiornaNumeroVerbale = function (deviceUUID, numeroVerbale) {
+    return $http({
+      url:$rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/setNumeroVerbale.php',
+      timeout: timeoutCall,
+      method:'POST',
+      data: {COD_UID_DEVICE: deviceUUID, NUM_VERBALE: numeroVerbale},
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' }
+    });
+  };
+
+  /***** aggiornaNomeStampante ****/
+  ajaxCallServices.aggiornaNomeStampante = function () {
+    return $http.get($rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/getNomeStampante.php', { timeout: timeoutCall });
+  };
+
   return ajaxCallServices;
 })
 .factory('globalFunction', function($state,$rootScope,$http,$ionicPopup,$ionicLoading,$cordovaBluetoothSerial) {
@@ -399,7 +415,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
               })
               if(!printerFound) {
                 console.log('-> stampante '+stampanteBluetoothName+' non trovata');
-                $rootScope.globFunc.showInformationMessage('Errore','Stampante '+stampanteBluetoothName+' non trovata. Verificare che il nome della stampante associata al device sia la stessa visualizzata nella sezione "Stampante"!','notFound');
+                $rootScope.globFunc.showInformationMessage('Errore','Stampante '+stampanteBluetoothName+' non trovata. Verificare che il nome della stampante associata al device sia la stessa visualizzata nella sezione "Impostazioni"!','notFound');
                 $ionicLoading.hide();
                 resultTest += 'Stampante "'+stampanteBluetoothName+'" non trovata <br/>';
                 $rootScope.checkPrintTestResult = resultTest;
@@ -429,8 +445,10 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 
       var data = '';
 
+      data += '____________________________\n';
       data += 'COMANDO POLIZIA LOCALE\n';
-      data += 'COMUNE DI '+verbaleCompleto.enteNomeVerbale+'\n\n';
+      data += verbaleCompleto.enteNomeVerbale+'\n';
+      data += '____________________________\n\n';
 
       data += 'Violation du Cod. de la rue.\n';
       data += 'Violation of the traffic law.\n\n';
@@ -440,7 +458,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 
       data += 'Il Giorno '+verbaleCompleto.dataVerbale+'\n';
       data += 'alle ore '+verbaleCompleto.oraVerbale+'\n';
-      data += 'in '+verbaleCompleto.indirizzoNome+' '+verbaleCompleto.indirizzoDescr+' '+verbaleCompleto.indirizzoCivico+'\n\n';
+      data += 'in '+verbaleCompleto.indirizzoNome+' '+verbaleCompleto.indirizzoCivico+' '+verbaleCompleto.indirizzoDescr+'\n\n';
 
       data += verbaleCompleto.tipoDescrVeicolo+' '+verbaleCompleto.modelloVeicolo+'\n';
       data += 'Targa: '+verbaleCompleto.targaVeicolo+'\n\n';
@@ -448,11 +466,11 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
       if(verbaleCompleto.art2 != 0) {
         data += 'ha violato gli art. ';
         data += verbaleCompleto.art1+' '+verbaleCompleto.codArt1+' e ';
-        data += verbaleCompleto.art2+' '+verbaleCompleto.codArt2+' del CdS perch&egrave;: \n';
+        data += verbaleCompleto.art2+' '+verbaleCompleto.codArt2+' del CdS perche\': \n';
         data += verbaleCompleto.descrArt1+'\n';
         data += +verbaleCompleto.descrArt2+'\n\n';
       } else {
-        data += 'ha violato art. '+verbaleCompleto.art1+' '+verbaleCompleto.codArt1+'  del CdS perch&egrave;: \n';
+        data += 'ha violato art. '+verbaleCompleto.art1+' '+verbaleCompleto.codArt1+'  del CdS perche\': \n';
         data += verbaleCompleto.descrArt1+'\n\n';
       }
 
@@ -480,17 +498,18 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
       if(puntiTotali > 0)
         data += 'L\'infrazione comporta la decurtazione di punti : '+puntiTotali+' \n\n';
 
-      //data += 'E\' ammesso Pagamento in misura ridotta di Euro '+importoTotale+' (Vedi Avvertenze) \n';
-      data += 'E\' ammesso Pagamento in misura ridotta di Euro '+importoArt1+' + '+importoAr2+'\n (Vedi Avvertenze) \n';
+      data += 'E\' ammesso Pagamento in misura ridotta di Euro '+importoTotale+' (Vedi Avvertenze) \n';
+      //data += 'E\' ammesso Pagamento in misura ridotta di Euro '+importoArt1+' + '+importoAr2+'\n (Vedi Avvertenze) \n';
       data += 'TUTTAVIA, SE SI EFFETTUA IL PAGAMENTO ENTRO 5 GIORNI DALLA DATA DI NOTIFICA/CONTESTAZIONE, SI PUO\' GODERE DELLO SCONTO DEL 30%. \n';
       data += 'Importo minimo scontato:\n Euro '+importoTotaleSconto.toFixed(2)+' \n\n';
 
-      if(verbaleCompleto.agente2Verbale != 0)
-        data += 'Gli accertatori: \n'+verbaleCompleto.agenteNomeVerbale+' \n '+verbaleCompleto.agente2NomeVerbale+' \n\n';
+      console.log('verbaleCompleto.agente2Verbale: '+verbaleCompleto.agente2Verbale);
+      if( typeof verbaleCompleto.agente2Verbale === 'undefined' || verbaleCompleto.agente2Verbale === null )
+        data += 'L\'accertatore: \n'+verbaleCompleto.agenteNomeVerbale+' \n\n';
       else
-        data += 'L\'accertatore: '+verbaleCompleto.agenteNomeVerbale+' \n\n';
+        data += 'Gli accertatori: \n'+verbaleCompleto.agenteNomeVerbale+' \n '+verbaleCompleto.agente2NomeVerbale+' \n\n';
 
-      data += 'Firma _______________________________________ \n\n';
+      data += 'Firma \n\n ____________________________ \n\n ____________________________ \n\n\n';
 
       data += 'AVVERTENZE PER AVVISO \n';
       data += 'L \'importo totale del pagamento in misura ridotta va versato, entro 10 gg. dalla data di accertamento direttamente al Comando Polizia Locale '+verbaleCompleto.enteNomeVerbale+' oppure sul c/c postale '+verbaleCompleto.enteCCPVerbale+' N. '+verbaleCompleto.enteIBANVerbale+' intestato a: '+verbaleCompleto.enteNomeVerbale+' Polizia Locale Servizio Contravvenzioni. Nella causale del versamento indicare sempre il numero del presente avviso e la targa del veicolo. Trascorso il suddetto termine si procedera\' alla notifica del verbale all\'intestatario del veicolo con spese a carico del destinatario \n';
@@ -501,18 +520,17 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
       return data;
     },
     templateTestStampa: function() {
-      //var data = '';
+      var data = '';
 
-      //data += '\n START \n';
-      //data += '\n Test stampa...\n';
+      data += '\n START \n';
+      data += '\n Test stampa...\n';
 
+      /*
       var url = 'img/ionic.png';
       $http.get(url, {responseType: 'arraybuffer'} ).then(function(response) {
         //$rootScope.image64 = response.data;
         console.log('templateTestStampa: '+response);
         console.log('templateTestStampa: '+response.data);
-
-
 
         var binary = '';
         var bytes = new Uint8Array( response.data );
@@ -525,14 +543,17 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
         data = window.btoa( binary );
 
       });
+      */
+
       /*
       $rootScope.globFunc.getDataUri('img/ionic.png', function(dataUri) {
         // Do whatever you'd like with the Data URI!
         $rootScope.image64 = dataUri;
         data += '\n'+dataUri+'\n';
 
-      });*/
-      //data += '\n END \n';
+      });
+      */
+      data += '\n END \n';
       console.log('templateTestStampa: '+data);
       return data;
     },

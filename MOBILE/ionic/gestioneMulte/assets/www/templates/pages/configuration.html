@@ -10,9 +10,9 @@
         <!-- OFFLINE -->
         <h3><i class="ion-android-plane"></i> Offline</h3>
         <div class="list">
-          <ion-toggle toggle-class="toggle-assertive" 
-                ng-model="modalitaOffline" 
-                ng-checked="modalitaOffline" 
+          <ion-toggle toggle-class="toggle-assertive"
+                ng-model="modalitaOffline"
+                ng-checked="modalitaOffline"
                 ng-change="setModalitaOffline()"> Abilita modalit&agrave; offline ({{modalitaOffline}}) </ion-toggle>
         </div>
         <hr />
@@ -33,7 +33,8 @@
 
         <!-- SINCRONIZZA -->
         <h3><i class="ion-refresh"></i> Sincronizza</h3>
-        Sincronizza tutti i dati
+        Sincronizza dati per navigazione offline:
+        <br /><br />
         <div class="list">
           <ion-toggle ng-click="sincronizzaDatiOffline('articoli')" toggle-class="toggle-positive"><i class="icon ion-clipboard"></i> Articoli</ion-toggle>
           <ion-toggle ng-click="sincronizzaDatiOffline('artpref')" toggle-class="toggle-energized"><i class="icon ion-star"></i> Articoli Preferiti</ion-toggle>
@@ -41,9 +42,18 @@
           <ion-toggle ng-click="sincronizzaDatiOffline('marche')" toggle-class="toggle-calm"><i class="icon ion-android-checkbox-outline"></i> Marche</ion-toggle>
           <ion-toggle ng-click="sincronizzaDatiOffline('vie')" toggle-class="toggle-balanced"><i class="icon ion-map"></i> Vie</ion-toggle>
           <ion-toggle ng-click="sincronizzaDatiOffline('agenti')" toggle-class="toggle-dark"><i class="icon ion-android-hand"></i> Agenti</ion-toggle>
+
+          <ion-toggle ng-click="sincronizzaDatiOnlineOffline('stampante')" toggle-class="toggle-dark"><i class="icon ion-android-print"></i> Stampante</ion-toggle>
           <!--
           Autorizzati | Obbligati | Trasgressori
           -->
+        </div>
+        <hr />
+        <br />
+        Sincronizza dati locali sul server:
+        <br /><br />
+        <div class="list">
+          <ion-toggle ng-click="sincronizzaDatiOnlineOffline('verbale')" toggle-class="toggle-positive"><i class="icon ion-android-create"></i> Numero Verbale</ion-toggle>
         </div>
 
     </ion-content>

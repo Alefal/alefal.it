@@ -22,9 +22,9 @@ v.1.1.06 (24/05/2016):
 - upload in cartelle di destinazione diverse per ogni comune (ID dei comuni); modifica al servizio UPLOAD.PHP nel plugin WP
 - TODO: stampa del logo del comune
 
-v.1.1.07 TODO:
-- aggiungere in LOADING quando si clicca su SINCRONIZZA (risolvo il problema dei duplicati: se si clicca N volte sul tasto, partone N richieste e N memorizzazioni di verbali con lo stesso ID)
-- se sono in modalità OFFLINE e faccio LOGOUT, al rientro non mi trova il numero di verbale (al secondo tentativo ha funzionato)ù
-- nel footer diminuire il font (non si vede la matricola se il nome è troppo lungo)
-- la modalità offline non viene annullata al LOGUT / LOGIN
-- Modifica template di stampa (verificare le lettere accentate e gli accapo; vedi email di Marco)
+v.1.1.07 (26/05/2016):
+- loading quando si clicca su SINCRONIZZA (risolvo il problema dei duplicati: se si clicca N volte sul tasto, partono N richieste e N memorizzazioni di verbali con lo stesso ID)
+- diminuito il font del footer
+- ad ogni login la "modalità offline" viene disattivata
+- aggiornato template di stampa
+- l'id del verbale da utilizzare viene recuperato dalla memoria del dispositivo; aggiunta sezione "Sincronizza dati online" > "Numero Verbale" in modo da poter aggiornare il numero di verbale della tabella p_device; aggiunto servizio "setNumeroVerbale.php"

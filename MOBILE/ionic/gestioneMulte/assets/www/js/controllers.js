@@ -2,6 +2,9 @@ angular.module('starter.controllers', [])
 
 .controller('LoginCtrl', function($scope,$rootScope,$ionicLoading,$ionicPopup,ajaxCallServices,$state,ModalService,$timeout) {
 
+  //Ad ogni avvio disabilito la MODALITA' OFFLINE
+  localStorage.setItem('modalitaOffline',false);
+
   $scope.showAlertMessage = function(title,message,back) {
     var alertPopupMessage = $ionicPopup.alert({
        title: title,
@@ -158,6 +161,36 @@ angular.module('starter.controllers', [])
             localStorage.setItem('agent_matr', access[0].items[0].MATR);
 
             //MEMORIZZO I DATI NEL LOCAL STORAGE PER NAVIGAZIONE OFFLINE
+            if (localStorage.getItem('numeroVerbale') && localStorage.getItem('numeroVerbale') > 0) {
+              console.log('Numero di verbale già recuperato in precedenza: '+localStorage.getItem('numeroVerbale'));
+            } else {
+              console.log('Numero di verbale recuperato dal server');
+
+              ajaxCallServices.getItems('device')
+                .success(function (device) {
+
+                  if(device[0].response[0].result == 'OK') {
+                    console.log('OK: '+device[0].items[0].NUM_VERB+' - '+device[0].items[0].STAMPANTE_BLUETOOTH);
+                    localStorage.setItem('numeroVerbale',device[0].items[0].NUM_VERB);
+                    localStorage.setItem('stampanteBluetooth',device[0].items[0].STAMPANTE_BLUETOOTH);
+
+                    console.log('NUMERO VERBALE: '+device[0].items[0].NUM_VERB);
+                  } else {
+                    console.log('KO');
+                    $scope.showAlertMessage('Device','Problemi di connessione al server. Riprovare!',false);
+                    localStorage.setItem('numeroVerbale',0);
+                    localStorage.setItem('stampanteBluetooth','');
+                  }
+
+                }).error(function (error) {
+                  console.log('KO: '+error);
+                  $scope.showAlertMessage('Device','Problemi di connessione al server. Riprovare!',false);
+                  localStorage.setItem('numeroVerbale',0);
+                  localStorage.setItem('stampanteBluetooth','');
+                });
+            }
+
+            //MEMORIZZO I DATI NEL LOCAL STORAGE PER NAVIGAZIONE OFFLINE
             $scope.openModalItem = function(item) {
               //SE RIMUOVO NON FUNZIONA LA MODALITA' OFFLINE
               //localStorage.removeItem(item);
@@ -208,27 +241,6 @@ angular.module('starter.controllers', [])
                 console.log('KO');
               });
 
-
-            //MEMORIZZO I DATI NEL LOCAL STORAGE PER NAVIGAZIONE OFFLINE
-            ajaxCallServices.getItems('device')
-              .success(function (device) {
-
-                if(device[0].response[0].result == 'OK') {
-                  console.log('OK: '+device[0].items[0].NUM_VERB+' - '+device[0].items[0].STAMPANTE_BLUETOOTH);
-                  localStorage.setItem('numeroVerbale',device[0].items[0].NUM_VERB);
-                  localStorage.setItem('stampanteBluetooth',device[0].items[0].STAMPANTE_BLUETOOTH);
-                } else {
-                  console.log('KO');
-                  localStorage.setItem('numeroVerbale',0);
-                  localStorage.setItem('stampanteBluetooth','');
-                }
-
-              }).error(function (error) {
-                console.log('KO');
-                localStorage.setItem('numeroVerbale',0);
-                localStorage.setItem('stampanteBluetooth','');
-              });
-
             $ionicLoading.hide();
             $state.go('app.welcome');
           } else {
@@ -260,7 +272,16 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('WelcomeCtrl', function($scope,$rootScope,$ionicLoading,$ionicModal,$ionicPopup,ajaxCallServices,$state,ModalService,$cordovaFileTransfer,$cordovaNetwork) {
+.controller('WelcomeCtrl', function($scope,$rootScope,$ionicLoading,$ionicModal,$ionicPopup,$ionicPopover,ajaxCallServices,$state,ModalService,$cordovaFileTransfer,$cordovaNetwork) {
+
+  $ionicPopover.fromTemplateUrl('my-popover.html', {
+    scope: $scope
+  }).then(function(popover) {
+    $scope.popover = popover;
+  });
+  $scope.openPopover = function($event) {
+    $scope.popover.show($event);
+  };
 
   $scope.deviceRegisteredError = false;
   $scope.deviceRegisteredErrorMessage = '';
@@ -269,9 +290,7 @@ angular.module('starter.controllers', [])
   $scope.deviceCompleteRegistered = false;
   $scope.userLoggedFailed = false;
 
-  $ionicLoading.show({
-    template: 'Attendere...'
-  });
+  $scope.startSincronizzazione = false;
 
   $scope.showAlert = function(title,message) {
      var alertPopup = $ionicPopup.alert({
@@ -302,14 +321,16 @@ angular.module('starter.controllers', [])
      $state.go('app.login');
   }
 
-  $ionicLoading.hide();
-
+  //SINCRONIZZAZIONE dati con il server
   $scope.sincronizzaDati = function() {
 
-    //TODO: verificare che appare il loading
-    $ionicLoading.show({
-      template: 'Attendere...'
-    });
+    $scope.messageSincronizzazione      = '';
+    $scope.viewMessageSincronizzazione  = false;
+
+    //Nascondo bottone al click per evitare N click simultanei
+    $rootScope.datiVerbaleOffline = false;
+    //Visualizzo spinner loading
+    $scope.startSincronizzazione = true;
 
     $scope.verbaleCompletoArray = [];
 
@@ -317,11 +338,8 @@ angular.module('starter.controllers', [])
       $scope.verbaleCompletoArray = angular.fromJson(localStorage.getItem('datiVerbaleOffline'));
     } else {
       $scope.showAlert('Sincronizza dati','Dati offline non trovati!');
-      $ionicLoading.hide();
+      $scope.startSincronizzazione = false;
     }
-
-    $scope.messageSincronizzazione      = '';
-    $scope.viewMessageSincronizzazione  = false;
 
     angular.forEach($scope.verbaleCompletoArray, function (items, indexP) {
 
@@ -336,7 +354,7 @@ angular.module('starter.controllers', [])
       console.log('$scope.verbaleCompleto -> '+$scope.verbaleCompleto);
       ajaxCallServices.salvaVerbale($scope.verbaleCompleto).success(function (result) {
 
-          console.log(JSON.stringify(result));
+          console.log('RESULT: '+JSON.stringify(result));
           console.log(result[0].message);
 
           document.addEventListener('deviceready', function () {
@@ -365,23 +383,24 @@ angular.module('starter.controllers', [])
                   $cordovaFileTransfer.upload(server, filePath, options)
                     .then(function(result) {
                       // Result
-                      console.log(result);
-                      $scope.messageSincronizzazione += 'Verbale '+JSON.stringify(items['numeroVerbale'])+' salvato correttamente! <br/>';
-                      $scope.viewMessageSincronizzazione = true;
+                      console.log('$cordovaFileTransfer.upload: '+result);
+                      $scope.messageSincronizzazione += 'Verbale '+JSON.stringify(items['numeroVerbale'])+' salvato! <br/>';
+                      $scope.startSincronizzazione = false;
                     }, function(err) {
                       // Error
-                      $scope.messageSincronizzazione += 'Errore nel salvataggio del verbale '+JSON.stringify(items['numeroVerbale'])+'! <br/>';
-                      $scope.viewMessageSincronizzazione = true;
+                      $scope.messageSincronizzazione += 'Errore verbale '+JSON.stringify(items['numeroVerbale'])+'! <br/>';
+                      $scope.startSincronizzazione = false;
                     }, function (progress) {
                       // constant progress updates
                     });
                   } else {
-                    $scope.messageSincronizzazione += 'Verbale '+JSON.stringify(items['numeroVerbale'])+' salvato correttamente! <br/>';
-                    $scope.viewMessageSincronizzazione = true;
+                    console.log('Verbale: '+JSON.stringify(items['numeroVerbale']));
+                    $scope.messageSincronizzazione += 'Verbale '+JSON.stringify(items['numeroVerbale'])+' salvato! <br/>';
+                    $scope.startSincronizzazione = false;
                   }
               } else {
-                $scope.messageSincronizzazione += 'Verbale '+JSON.stringify(items['numeroVerbale'])+' salvato correttamente! <br/>';
-                $scope.viewMessageSincronizzazione = true;
+                $scope.messageSincronizzazione += 'Verbale '+JSON.stringify(items['numeroVerbale'])+' salvato! <br/>';
+                $scope.startSincronizzazione = false;
               }
 
               $rootScope.datiVerbaleOffline = false;
@@ -389,14 +408,13 @@ angular.module('starter.controllers', [])
           }, false);
 
         }).error(function (error) {
-          $ionicLoading.hide();
+          $scope.messageSincronizzazione += 'Error '+error;
+          $scope.startSincronizzazione = false;
         });
-
     });
 
-    $ionicLoading.hide();
+    //$ionicLoading.hide();
   };
-
 })
 
 .controller('InsertCtrl', function($scope,$rootScope,$ionicLoading,$ionicScrollDelegate,$state,$ionicPopup,ModalService,ajaxCallServices,$timeout,$cordovaFileTransfer,$cordovaCamera,$cordovaGeolocation,$cordovaBluetoothSerial,$cordovaPrinter) {
@@ -419,7 +437,7 @@ angular.module('starter.controllers', [])
       alertPopup.then(function(res) {
         //$state.go('app.verbali');
 
-        //TODO: Testare STAMPARE VERBALE
+        //STAMPA VERBALE
         $rootScope.globFunc.bluetoothPrinter('verbale',$scope.verbaleCompleto);
         $state.go('app.welcome');
       });
@@ -457,16 +475,24 @@ angular.module('starter.controllers', [])
     if (localStorage.getItem('datiVerbaleOffline')) {
       //Si devono PRIMA sincronizzare i dati
       $ionicLoading.hide();
-      $scope.showAlertMessage('Sincronizzare dati','Trovati dei dati salvati in memoria. Devono essere sincronizzati tali dati prima di procedere alla stesura di un nuovo verbale',true);
+      $scope.showAlertMessage('Sincronizzare dati','Trovati dati salvati in memoria. E\' necessaria la sincronizzazione prima di procedere alla stesura di un nuovo verbale',true);
     }
   }
 
-  $scope.messageBluetoothSerialEnable = 'Abilita il bluetooth per stampare il verbale...';
+  $scope.messageBluetoothSerialEnable = 'Abilita il bluetooth per stampare il verbale.';
 
   //$scope.numeroVerbale = Math.floor((Math.random() * 1000000) + 1);
   $scope.numeroVerbale = '';
 
+  //RECUPERO IL NUMERO DI VERBALE SEMPRE DA LOCALE
+  $ionicLoading.hide();
+  $scope.numeroVerbale = localStorage.getItem('numeroVerbale');
+
+  if($scope.numeroVerbale == '' || $scope.numeroVerbale == 0) {
+    $scope.showAlertMessage('Numero verbale','Numero verbale non trovato! Contattare l\'amministratore!',true);
+  }
   //Se c'è connessione e la MODALITA' OFFLINE è disattivata (false) lavoro ONLINE
+  /*****
   var modalitaOfflineCheck = localStorage.getItem('modalitaOffline');
   if($rootScope.foundConnection && modalitaOfflineCheck == 'false') {
     ajaxCallServices.getItems('device')
@@ -478,13 +504,13 @@ angular.module('starter.controllers', [])
           console.log('OK: '+device[0].items[0].NUM_VERB);
           $scope.numeroVerbale = device[0].items[0].NUM_VERB;
 
+          console.log('NUMERO VERBALE 2: '+device[0].items[0].NUM_VERB);
+
           if($scope.numeroVerbale == '' || $scope.numeroVerbale == 0) {
-            //TODO: in questo caso recuperare quello memorizzato in memoria; se non c'è o è 0 allora appare il messaggio
             $scope.showAlertMessage('Numero verbale','Numero verbale non trovato! Contattare l\'amministratore!',true);
           }
         } else {
           console.log('KO');
-          //TODO: in questo caso recuperare quello memorizzato in memoria; se non c'è o è 0 allora appare il messaggio
           $scope.showAlertMessage('Numero verbale','Numero verbale non trovato! Contattare l\'amministratore!',true);
         }
 
@@ -503,6 +529,7 @@ angular.module('starter.controllers', [])
       $scope.showAlertMessage('Numero verbale','Numero verbale non trovato! Contattare l\'amministratore!',true);
     }
   }
+  *****/
 
   var localDate = new Date();
   $scope.dataVerbale      = $rootScope.globFunc.formattedDate(localDate);
@@ -739,6 +766,8 @@ angular.module('starter.controllers', [])
           var numVerbIncremento = parseInt(localStorage.getItem('numeroVerbale')) + 1;
           localStorage.setItem('numeroVerbale',numVerbIncremento);
 
+          console.log('NUMERO VERBALE 3: '+numVerbIncremento);
+
           document.addEventListener('deviceready', function () {
 
               if(angular.isNumber(result[0].message)) {
@@ -805,11 +834,13 @@ angular.module('starter.controllers', [])
         console.log($scope.verbaleCompletoArray);
 
         localStorage.setItem('datiVerbaleOffline',JSON.stringify($scope.verbaleCompletoArray));
-        var numVerbIncremente = parseInt(localStorage.getItem('numeroVerbale')) + 1;
-        localStorage.setItem('numeroVerbale',numVerbIncremente);
+        var numVerbIncremento = parseInt(localStorage.getItem('numeroVerbale')) + 1;
+        localStorage.setItem('numeroVerbale',numVerbIncremento);
+
+        console.log('NUMERO VERBALE 4: '+numVerbIncremento);
 
         $ionicLoading.hide();
-        $scope.showAlert('Salvataggio verbale','Il tuo verbale &egrave; stato salvato in memoria! Ricordati di premere "Sincronizza" appena entri sotto copertura rete.',true);
+        $scope.showAlert('Salvataggio verbale','Il tuo verbale &egrave; stato salvato in memoria! Premi "Sincronizza" appena entri sotto copertura rete per caricare i dati.',true);
         $scope.annullaVerbale();
       }
 
@@ -1330,6 +1361,51 @@ angular.module('starter.controllers', [])
     } else {
       $ionicLoading.hide();
       $scope.showAlertMessage('Sincronizzazione','Devi essere online per sincronizzare i dati');
+    }
+  }
+
+  $scope.sincronizzaDatiOnlineOffline = function(item) {
+
+    console.log('sincronizzaDatiOnline');
+
+    $ionicLoading.show({
+      template: 'Sincronizzazione'
+    });
+
+    if(item == 'verbale') {
+      //Sincronizzo il NUMERO VERBALE memorizzato in locale sul server
+      var deviceUUID = localStorage.getItem('deviceUUID');
+      var numeroVerbale = localStorage.getItem('numeroVerbale');
+      console.log('deviceUUID: '+deviceUUID);
+      console.log('numeroVerbale: '+numeroVerbale);
+
+      ajaxCallServices.aggiornaNumeroVerbale(deviceUUID, numeroVerbale)
+        .success(function (items) {
+          $ionicLoading.hide();
+          if(items[0].response[0].result == 'OK') {
+            $scope.showAlertMessage('Sincronizzazione','Sincronizzazione dati effettuata');
+          } else {
+            $scope.showAlertMessage('Sincronizzazione','Problemi durante la sincronizzazione dei dati');
+          }
+        }).error(function (error) {
+          $ionicLoading.hide();
+          $scope.showAlertMessage('Sincronizzazione','Problemi durante la sincronizzazione dei dati');
+        });
+    } else if(item == 'stampante') {
+       //Sincronizzo il NOME STAMPANTE del server con quello locale
+       ajaxCallServices.getItems('device')
+         .success(function (device) {
+           $ionicLoading.hide();
+           if(device[0].response[0].result == 'OK') {
+             localStorage.setItem('stampanteBluetooth',device[0].items[0].STAMPANTE_BLUETOOTH);
+             $scope.showAlertMessage('Sincronizzazione','Sincronizzazione dati effettuata');
+           } else {
+             $scope.showAlertMessage('Sincronizzazione','Problemi durante la sincronizzazione dei dati');
+           }
+         }).error(function (error) {
+           $ionicLoading.hide();
+           $scope.showAlertMessage('Sincronizzazione','Problemi durante la sincronizzazione dei dati');
+         });
     }
   }
 });
