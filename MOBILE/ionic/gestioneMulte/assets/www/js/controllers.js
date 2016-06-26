@@ -1127,6 +1127,7 @@ angular.module('starter.controllers', [])
       });
     } else {
       //Mi stampa l'errore definito da $scope.verbaliOnlineFound = false;
+      $ionicLoading.hide();
     }
 
     //VERBALI OFFLINE

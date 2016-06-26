@@ -31,3 +31,6 @@ v.1.1.07 (26/05/2016):
 
 v.1.1.08 (26/05/2016):
 - in IMPOSTAZIONE aggiunta funzionalità AGGIORNA NOME STAMPANTE
+
+v.1.1.09 (26/06/2016):
+- In modalità offline cellulare, il loading della sezione "Verbali" non scompariva non permettendo l'utilizzo dell'app
