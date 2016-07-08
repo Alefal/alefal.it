@@ -1,0 +1,4 @@
+Formatting code:
+SHIFT + ALT + F
+
+F1 per i comandi disponibili
