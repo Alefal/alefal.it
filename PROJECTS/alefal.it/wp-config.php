@@ -25,7 +25,7 @@
 
 // ** Impostazioni MySQL - È possibile ottenere queste informazioni dal proprio fornitore di hosting ** //
 /** Il nome del database di WordPress */
-define('DB_NAME', 'wordpress');
+define('DB_NAME', 'alefal.it');
 //define('DB_NAME', 'c1alefalwp');
 
 /** Nome utente del database MySQL */
