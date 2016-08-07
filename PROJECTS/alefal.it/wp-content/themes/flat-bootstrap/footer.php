@@ -13,6 +13,11 @@
 <?php
 if ( is_page( 'Home' ) ) {
 ?>
+	<style>
+	#ultimeDalBlog .col-lg-3 {
+    	width: 23% !important;
+	}
+	</style>
 	<div id="lg">
 		<div class="container">
 			<div class="row centered" id="ultimeDalBlog">
