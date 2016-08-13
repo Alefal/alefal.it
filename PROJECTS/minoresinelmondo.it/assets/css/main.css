@@ -681,7 +681,7 @@ a.navbar-brand {
 	position:relative;
 	border-bottom:5px solid #dcdcdc;	
 }
-
+/*
 .list-image:after {
 	position:absolute;
 	content:"";
@@ -758,12 +758,13 @@ a.navbar-brand {
 .list-image.border-three:before {
 	left:49%;
 }
-
+*/
 .list-info {
 	background-color: #fff;
 	border-color: #cfd2d8;
 	border-width: 0 1px 1px;
 	padding: 25px;
+	min-height: 200px;
 }
 
 .list-info h2 {
