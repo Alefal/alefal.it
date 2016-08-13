@@ -1056,6 +1056,7 @@ angular.module('starter.controllers', [])
 
         //Memorizzo le info nel localStorage in fase di login: successivamente utilizzo i dati memorizzati (ci dovrebbero essere sempre)
         if(!localStorage.getItem(item)) {
+          console.log('Item '+item+' non trovato in memoria. Chiamata al server!');
           ajaxCallServices.getItems(item)
             .success(function (items) {
 
@@ -1077,7 +1078,7 @@ angular.module('starter.controllers', [])
 
           modal.show();
         } else {
-
+          console.log('Item '+item+'trovato in memoria!');
           var jsObject = angular.fromJson(localStorage.getItem(item));
           console.log(jsObject.items);
 

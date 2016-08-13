@@ -1,3 +1,14 @@
+########## ACCESSO ##########
+PizzoferroRAF / 12345
+
+Matricola 
+
+2
+
+CalifanoANNA / 12345
+
+
+########## PLUGINS ##########
 Vedi la cartella plugin per capire quali plugins installare
 
 Plugin necessari:

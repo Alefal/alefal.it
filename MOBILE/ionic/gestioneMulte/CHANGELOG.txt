@@ -18,9 +18,12 @@ v.1.1.05
 - perdita dei dati in offline quando si preme LOGOUT
 
 v.1.1.06 (24/05/2016):
-- sezione per attivazione della modalità offline
+- IMPOSTAZIONI:
+-- sezione per attivazione della modalità offline
+-- sezione stampamnte bluethoot
+-- sezione per sincronizzazione dati per navigazione offline
 - upload in cartelle di destinazione diverse per ogni comune (ID dei comuni); modifica al servizio UPLOAD.PHP nel plugin WP
-- TODO: stampa del logo del comune
+- NO: stampa del logo del comune (non si può fare)
 
 v.1.1.07 (26/05/2016):
 - loading quando si clicca su SINCRONIZZA (risolvo il problema dei duplicati: se si clicca N volte sul tasto, partono N richieste e N memorizzazioni di verbali con lo stesso ID)
@@ -33,4 +36,7 @@ v.1.1.08 (26/05/2016):
 - in IMPOSTAZIONE aggiunta funzionalità AGGIORNA NOME STAMPANTE
 
 v.1.1.09 (26/06/2016):
-- In modalità offline cellulare, il loading della sezione "Verbali" non scompariva non permettendo l'utilizzo dell'app
+- In modalità offline, il loading della sezione "Verbali" non scompariva non permettendo l'utilizzo dell'app
+
+v.1.1.10 (13/08/2016):
+- Sezione "Autorizzati" in modalità offline; aggiunta sezione per l'update in IMPOSTAZIONI > SINCRONIZZA 
