@@ -40,3 +40,4 @@ v.1.1.09 (26/06/2016):
 
 v.1.1.10 (13/08/2016):
 - Sezione "Autorizzati" in modalità offline; aggiunta sezione per l'update in IMPOSTAZIONI > SINCRONIZZA 
+- aggiunto in config.xml gli allow-intent (http, https, tel, sms, mailto, geo)
