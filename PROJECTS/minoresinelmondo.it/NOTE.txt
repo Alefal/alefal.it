@@ -1,0 +1,61 @@
+########## Gulp SASS ##########
+$ npm install gulp-sass --save-dev
+$ npm install gulp --save-dev
+$ npm install gulp-cli --save-dev
+$ npm install gulp-cli --global
+
+I comandi installano gulp e inseriscono le dipendenze nel file package.json:
+"devDependencies": {
+    ...
+    "gulp": "^3.9.1",
+    "gulp-cli": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    ...
+    
+}
+
+########## File gulpfile.js ##########
+'use strict';
+ 
+var gulp = require('gulp');
+var sass = require('gulp-sass');
+ 
+gulp.task('sass', function () {
+  return gulp.src('./app/**/*.scss')
+    .pipe(sass.sync().on('error', sass.logError))
+    .pipe(gulp.dest('./css'));
+});
+ 
+gulp.task('sass:watch', function () {
+  gulp.watch('./app/**/*.scss', ['sass']);
+});
+
+########## Task ##########
+$ gulp sass
+Vengono compilati tutti i files *.sass o *.scss presenti nella directory app e vengono generati i corrispondenti files *.css nella directory /css/
+
+########## Start WEB PROJECT ##########
+https://angular.io/docs/ts/latest/quickstart.html
+
+Dopo aver generato tutti i files della guida:
+$ npm install
+
+Per compilare:
+$ gulp sass
+$ npm start
+
+Per eseguire il gulp command direttamente con npm start, modificare lo SCRIPTS > START del file package.json aggiungendo il command gulp col task da eseguire:
+"scripts": {
+   "start": "tsc && concurrently \"gulp sass\" \"npm run tsc:w\" \"npm run lite\" ",
+   ...
+}
+...
+
+La modifica al package permette l'esecuzione di tutti i comandi definiti in start:
+
+[0] Using gulpfile d:\...\gulpfile.js
+[0] Starting 'sass'...
+[0] Finished 'sass' after 31 ms
+[0] gulp sass exited with code 0
+[1] > tsc -w
+[2] > lite-server
