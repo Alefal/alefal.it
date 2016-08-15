@@ -1,0 +1,29 @@
+$ gulp build
+$ gulp wordpress
+
+<?php 
+echo 'ciao';
+//$id = 15; $p = get_page($id); echo apply_filters('the_content', $p->post_content); 
+?>
+
+NAVBAR
+menu du wordpress ? aggiungere un link BLOG per visualizzare tutti i post
+
+CAROUSEL
+ARC: 4 immagini; 4 link; Descrizione IT, Descrizione EN; (le immagini devono essere 1920x1280)
+
+WHO WE ARE
+template HTML: categoria 'chisiamo' e post per 'Chi Siamo'
+
+YOUTUBE CHANNEL
+ARC: 4 immagini; 4 link; Descrizione IT, Descrizione EN; (le immagini devono essere 1920x1280)
+
+RECENT POST (eventi e ultime dal blog)
+
+OUR MEMBER
+
+OUR PARTNER
+
+PHOTO GALLERY
+
+CONTACT

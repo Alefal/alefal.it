@@ -51,7 +51,7 @@ gulp.task("resourcesCss", () => {
         .pipe(gulp.dest("build/css"))
 });
 gulp.task("resourcesHtml", () => {
-    return gulp.src(["app/**/*.html"])
+    return gulp.src(["app/**/*.php"])
         .pipe(gulp.dest("build/app"))
 });
 /**
@@ -96,10 +96,13 @@ gulp.task("libs", () => {
         .pipe(gulp.dest("build/js/lib"));
 });
 gulp.task("libsrxjs", () => {
-    return gulp.src([
-            'node_modules/rxjs/**/*'
-        ])
+    return gulp.src(['node_modules/rxjs/**/*'])
         .pipe(gulp.dest("build/js/lib/rxjs"));
+});
+
+gulp.task("wordpress", () => {
+    return gulp.src(['build/**/*'])
+        .pipe(gulp.dest("CMS/wp-content/themes/html5blank-stable"));
 });
 /**
  * Build the project.

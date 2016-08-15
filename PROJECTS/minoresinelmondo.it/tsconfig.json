@@ -12,7 +12,11 @@
   "exclude": [
     "gulpfile.ts",
     "node_modules",
+    "build",
     "typings/global",
-    "typings/global.d.ts"
+    "typings/global.d.ts",
+    "angular2",
+    "rxjs",
+    "typings"
   ]
 }
