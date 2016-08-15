@@ -8,19 +8,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var AppComponent = (function () {
-    function AppComponent() {
+const core_1 = require('@angular/core');
+let AppComponent = class AppComponent {
+    constructor() {
         alert('eccomi');
     }
-    AppComponent = __decorate([
-        core_1.Component({
-            selector: 'mnm',
-            templateUrl: 'app/app.component.html'
-        }), 
-        __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
-}());
+};
+AppComponent = __decorate([
+    core_1.Component({
+        selector: 'mnm',
+        templateUrl: 'app/app.component.html'
+    }), 
+    __metadata('design:paramtypes', [])
+], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

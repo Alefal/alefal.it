@@ -8,22 +8,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var RemoveSpaces = (function () {
-    function RemoveSpaces() {
-    }
-    RemoveSpaces.prototype.transform = function (value) {
+const core_1 = require('@angular/core');
+let RemoveSpaces = class RemoveSpaces {
+    transform(value) {
         //return value.replace(/ /g, '');               //space
         return value.replace(/(\r\n|\n|\r)/gm, ''); //\n \r
-    };
-    RemoveSpaces = __decorate([
-        core_1.Pipe({
-            name: 'removeSpaces',
-            pure: false
-        }), 
-        __metadata('design:paramtypes', [])
-    ], RemoveSpaces);
-    return RemoveSpaces;
-}());
+    }
+};
+RemoveSpaces = __decorate([
+    core_1.Pipe({
+        name: 'removeSpaces',
+        pure: false
+    }), 
+    __metadata('design:paramtypes', [])
+], RemoveSpaces);
 exports.RemoveSpaces = RemoveSpaces;
 //# sourceMappingURL=removespaces.pipe.js.map
