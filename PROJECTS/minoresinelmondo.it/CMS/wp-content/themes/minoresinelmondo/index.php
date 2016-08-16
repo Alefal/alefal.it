@@ -16,7 +16,59 @@
 						<h1>Eventi</h1>
 					</div>
 					<div id="event-carousel" class="carousel slide" data-ride="carousel">
-						AJAX CALL
+
+						<?php 
+						$thePosts = query_posts('tag=events');
+						global $wp_query; 
+         				$count_posts_event = $wp_query->found_posts;
+						?>
+						<ol class="carousel-indicators">
+							<?php
+							$countSlide = 0;
+							for ($i = 0; $i < $count_posts_event; $i+=4) {
+								$activeSlide = '';
+								if($i == 0) {
+									$activeSlide = 'active';
+								} else {
+									$activeSlide = '';
+								}
+								echo '<li data-target="#event-carousel" data-slide-to="'.$countSlide.'" class="'.$activeSlide.'"></li>';
+								$countSlide++;
+							}
+							?>
+						</ol>
+						<div class="carousel-inner">
+							<?php
+							$countSlide = 0;
+							for ($i = 0; $i < $count_posts_event; $i+=4) {
+								$activeSlide = '';
+								if($i == 0) {
+									$activeSlide = 'active';
+								} else {
+									$activeSlide = '';
+								}
+								echo '<div class="item '.$activeSlide.'">';
+							?>
+
+								<?php $j = $i; while (have_posts() && $j < $i+4) : the_post(); ?>
+									<a href="<?php the_permalink(); ?>" class="single-event">
+										<div class="pull-left event-date">
+											<!--<p>Aug <span>01</span></p>-->	
+											<?php the_field('data'); ?>								
+										</div>
+										<div class="event-info">
+											<p class="event-time"><?php the_field('orario'); ?></p>
+											<p><?php the_title(); ?></p>
+										</div>
+									</a>
+								<?php $j++; endwhile; ?>
+
+							<?php
+								echo '</div>';
+								$countSlide++;
+							}
+							?>
+						</div>
 					</div>
 				</div>
 				<div class="col-sm-6 col-md-9">

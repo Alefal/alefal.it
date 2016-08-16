@@ -9,7 +9,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="http://demo.themeregion.com/humanity-updated/index.html">
+                <a class="navbar-brand" href="<?php echo get_home_url(); ?>">
                     <h1><img class="img-responsive" src="<?php echo get_template_directory_uri(); ?>/assets/images/logoMNM.png" alt="logo"></h1>
                 </a>                    
             </div>  

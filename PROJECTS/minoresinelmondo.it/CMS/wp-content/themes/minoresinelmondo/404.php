@@ -1,21 +1,27 @@
 <?php
-get_header();
-?>
+/**
+ * Theme: Flat Bootstrap
+ * 
+ * The template for displaying 404 pages (Not Found).
+ *
+ * @package flat-bootstrap
+ */
 
-<section class="container-fluid" id="sectionHome">
-    <div class="v-center">
-        <h1 class="text-center" ng-bind="'TitleChiccheElena' | translate">&nbsp;</h1>
-        <h2 class="text-center lato animate slideInDown" ng-bind="'Page404' | translate">&nbsp;</h2>
-    </div>
-    <a href="<?php echo home_url(); ?>">
-		<div class="scroll-down bounceInDown animated">
-            <span>
-                <i class="fa fa-angle-up fa-2x"></i>
-            </span>
+get_header(); ?>
+
+<div class="padding-bottom padding-top" style="margin-top: 50px;">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 col-md-6">
+				<div class="section-title event-title">
+					<h1>Ops!</h1>
+				</div>
+				<div class="single-post">
+					 404 pagina non trovata!
+				</div>
+			</div>
 		</div>
-    </a>
-</section>
-<?
-get_sidebar();
-get_footer(); 
-?>
+	</div>
+</div>
+
+<?php get_footer(); ?>

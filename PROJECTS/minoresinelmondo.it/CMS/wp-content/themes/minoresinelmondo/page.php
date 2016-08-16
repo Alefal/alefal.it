@@ -5,7 +5,7 @@ get_header();
 //}
 
 if(is_home()) {
-	require get_template_directory() . '/inc/home.inc';
+	//require get_template_directory() . '/inc/home.inc';
 }
 
 get_footer(); 
