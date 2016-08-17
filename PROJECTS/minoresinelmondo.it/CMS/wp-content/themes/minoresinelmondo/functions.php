@@ -133,9 +133,17 @@ function register_my_menu() {
 }
 add_action( 'init', 'register_my_menu' );
 
+/**
+ * Rimuove il tag <p> in caso di nuova linea nell'editor'
+ */
 remove_filter('the_content', 'wpautop' );
 remove_filter('the_excerpt', 'wpautop' );
 /*
 remove_filter('the_content', 'wptexturize');
 remove_filter('the_excerpt', 'wptexturize');
 */
+
+/**
+ * Permette l'inserimento di un'immagine di evidenza in un post
+ */
+add_theme_support( 'post-thumbnails' );
