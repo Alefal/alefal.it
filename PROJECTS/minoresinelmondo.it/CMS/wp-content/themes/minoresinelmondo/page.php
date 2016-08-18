@@ -6,6 +6,10 @@ get_header();
 
 if(is_home()) {
 	//require get_template_directory() . '/inc/home.inc';
+} elseif ( is_page( 'Blog' ) ) {
+	require get_template_directory() . '/inc/blog.inc';
+} else {
+	//require get_template_directory() . '/inc/home.inc';
 }
 
 get_footer(); 

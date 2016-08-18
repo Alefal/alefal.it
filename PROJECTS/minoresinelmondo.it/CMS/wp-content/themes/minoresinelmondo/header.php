@@ -39,33 +39,58 @@
 	?>
 		<div id="carousel-wrapper">
 			<div id="main-carousel" class="carousel slide" data-ride="carousel">
+				<?php 
+				$args = array(
+					'post_type' => 'attachment',
+					'posts_per_page' => '-1',
+					'post_status' => 'any',
+					'tax_query' => array(
+						array(
+							'taxonomy' => 'mnm', // your taxonomy
+							'field' => 'id',
+							'terms' => 19 // term id (id of the media category)
+						)
+					)
+				);
+				$the_query = new WP_Query( $args );
+				$count_posts_main = $the_query->found_posts;
+				?>
 				<ol class="carousel-indicators">
-					<li data-target="#main-carousel" data-slide-to="0" class="active"></li>
-					<li data-target="#main-carousel" data-slide-to="1"></li>
-					<li data-target="#main-carousel" data-slide-to="2"></li>
-					<li data-target="#main-carousel" data-slide-to="3"></li>
+					<?php
+					$countSlide = 0;
+					for ($i = 0; $i < $count_posts_main; $i++) {
+						$activeSlide = '';
+						if($i == 0) {
+							$activeSlide = 'active';
+						} else {
+							$activeSlide = '';
+						}
+						echo '<li data-target="#main-carousel" data-slide-to="'.$countSlide.'" class="'.$activeSlide.'"></li>';
+						$countSlide++;
+					}
+					?>
 				</ol>
 				<div class="carousel-inner">
-					<div class="item active" style="height: 1200px; background-image: url(&quot;<?php echo get_template_directory_uri(); ?>/assets/images/home/minori_01.jpg&quot;);">
-						<div class="carousel-caption container">
-							<h1 class="animated rollIn">Minori, veduta dall'alto</h1>
-						</div>					
-					</div>
-					<div class="item" style="height: 1200px; background-image: url(&quot;<?php echo get_template_directory_uri(); ?>/assets/images/home/minori_02.jpg&quot;);">
-						<div class="carousel-caption container">
-							<h1 class="animated rollIn">Minori, spiaggia</h1>
-						</div>					
-					</div>
-					<div class="item" style="height: 1200px; background-image: url(&quot;<?php echo get_template_directory_uri(); ?>/assets/images/home/minori_03.jpg&quot;);">
-						<div class="carousel-caption container">
-							<h1 class="animated rollIn">Minori, campanile</h1>
-						</div>					
-					</div>
-					<div class="item" style="height: 1200px; background-image: url(&quot;<?php echo get_template_directory_uri(); ?>/assets/images/home/minori_04.jpg&quot;);">
-						<div class="carousel-caption container">
-							<h1 class="animated rollIn">Minori, paese intero</h1>
-						</div>					
-					</div>
+					<?php 
+					$j = 0;
+					while ($the_query->have_posts()) : $the_query->the_post(); 
+						if($j == 0) {
+							$activeSlide = 'active';
+						} else {
+							$activeSlide = '';
+						}
+						$postid = get_the_ID();
+						$src = wp_get_attachment_image_src( $attachment_ID, 'full' )[0];
+						echo '<div class="item '.$activeSlide.'" style="height: 1200px; background-image: url(&quot;'.$src.'&quot;);">';
+					?>
+							<div class="carousel-caption container">
+								<h1 class="animated rollIn"><?php the_title(); ?></h1>
+							</div>
+					<?php 
+						$j++; 
+						echo '</div>';
+					endwhile; 
+					?>
 				</div>	
 			</div> <!--/#main-carousel--> 
 		</div><!--/#carousel-wrapper--> 

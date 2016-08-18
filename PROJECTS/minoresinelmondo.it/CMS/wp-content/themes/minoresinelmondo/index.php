@@ -78,12 +78,12 @@
 						<?php 
 						$thePosts = query_posts('tag=news');
 						global $wp_query; 
-         				$count_posts_event = $wp_query->found_posts;
+         				$count_posts_news = $wp_query->found_posts;
 						?>
 						<ol class="carousel-indicators">
 							<?php
 							$countSlide = 0;
-							for ($i = 0; $i < $count_posts_event; $i+=4) {
+							for ($i = 0; $i < $count_posts_news; $i+=4) {
 								$activeSlide = '';
 								if($i == 0) {
 									$activeSlide = 'active';
@@ -98,7 +98,7 @@
 						<div class="carousel-inner">
 							<?php
 							$countSlide = 0;
-							for ($i = 0; $i < $count_posts_event; $i+=4) {
+							for ($i = 0; $i < $count_posts_news; $i+=4) {
 								$activeSlide = '';
 								if($i == 0) {
 									$activeSlide = 'active';
@@ -259,14 +259,25 @@
 			</div>
 			<div id="partner-carousel" class="carousel slide" data-ride="carousel">
 				<?php 
-				$thePosts = query_posts('tag=partners');
-				global $wp_query; 
-				$count_posts_event = $wp_query->found_posts;
+				$args = array(
+					'post_type' => 'attachment',
+					'posts_per_page' => '-1',
+					'post_status' => 'any',
+					'tax_query' => array(
+						array(
+							'taxonomy' => 'mnm', // your taxonomy
+							'field' => 'id',
+							'terms' => 17 // term id (id of the media category)
+						)
+					)
+				);
+				$the_query = new WP_Query( $args );
+				$count_posts_partner = $the_query->found_posts;
 				?>
 				<ol class="carousel-indicators">
 					<?php
 					$countSlide = 0;
-					for ($i = 0; $i < $count_posts_event; $i+=4) {
+					for ($i = 0; $i < $count_posts_partner; $i+=6) {
 						$activeSlide = '';
 						if($i == 0) {
 							$activeSlide = 'active';
@@ -281,7 +292,7 @@
 				<div class="carousel-inner">
 					<?php
 					$countSlide = 0;
-					for ($i = 0; $i < $count_posts_event; $i+=4) {
+					for ($i = 0; $i < $count_posts_partner; $i+=6) {
 						$activeSlide = '';
 						if($i == 0) {
 							$activeSlide = 'active';
@@ -292,11 +303,14 @@
 					?>
 					<?php 
 						$j = $i; 
-						while (have_posts() && $j < $i+4) : the_post(); 
+						while ($the_query->have_posts() && $j < $i+6) : $the_query->the_post(); 
 						$postid = get_the_ID();
 					?>
 							<div class="col-sm-2">
-								<img class="img-responsive" src="assets/images/partner/1.png" alt="">
+								<?php 
+								$src = wp_get_attachment_image_src( $attachment_ID, 'full' )[0];
+								echo '<img class="img-responsive" src="'.$src.'">';
+								?>
 							</div>
 						<?php $j++; endwhile; ?>
 					<?php
@@ -310,7 +324,53 @@
 	</div><!--/#our-partner--> 
 	
 	<div id="photo-gallery" class="padding-top-two">
-		<?php $post_id = 20; echo get_post_field('post_content', $post_id); ?>
+		<div class="container-fluid">
+			<div class="row">
+				<?php 
+				$args = array(
+					'post_type' => 'attachment',
+					'posts_per_page' => '-1',
+					'post_status' => 'any',
+					'tax_query' => array(
+						array(
+							'taxonomy' => 'mnm', // your taxonomy
+							'field' => 'id',
+							'terms' => 18 // term id (id of the media category)
+						)
+					)
+				);
+				$the_query = new WP_Query( $args );
+				//$count_posts_event = $the_query->found_posts;
+				//echo '------------->>>>>>>>>>>> '.$count_posts_event;
+				
+				if ( $the_query->have_posts() ) {
+					while ( $the_query->have_posts() ) {
+						$the_query->the_post();
+				?>
+							<div class="col-sm-3 col-md-2">
+								<div class="single-photo">
+									<div class="gallery-content">
+										<?php 
+										//echo wp_get_attachment_image( get_the_ID(), array('', ''), array( 'class' => 'img-responsive' ) ); 
+										$src = wp_get_attachment_image_src( $attachment_ID, 'full' )[0];
+										echo '<img class="img-responsive" src="'.$src.'">';
+										?>
+										<div class="photo-info">							
+											<a href="<?php echo $src; ?>" data-gallery="prettyPhoto"><i class="fa fa-camera"></i></a>
+											<h4><?php the_title(); ?></h4>
+										</div>
+									</div>
+								</div>
+							</div>
+				<?php	
+					}
+				} else {
+					// no attachments found
+				}
+				wp_reset_postdata();
+				?>
+			</div>
+		</div>
 	</div><!--/#Photo-Gallery--> 
 
 <?php get_sidebar(); ?>

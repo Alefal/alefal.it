@@ -147,3 +147,23 @@ remove_filter('the_excerpt', 'wptexturize');
  * Permette l'inserimento di un'immagine di evidenza in un post
  */
 add_theme_support( 'post-thumbnails' );
+
+/**
+ * Navbar
+ */
+if ( ! function_exists('xsbf_load_includes') ) :
+function xsbf_load_includes() {
+	require_once get_template_directory() . '/inc/bootstrap-navmenu.php';
+} 
+xsbf_load_includes();
+endif;
+
+/**
+ * Register widgetized areas
+ */
+if ( ! function_exists('xsbf_widgets_init') ) :
+function xsbf_widgets_init() {
+	require_once get_template_directory() . '/inc/sidebars.php';
+}
+add_action( 'widgets_init', 'xsbf_widgets_init' );
+endif;

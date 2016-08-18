@@ -1,29 +1,34 @@
-$ gulp build
-$ gulp wordpress
-
-<?php 
-echo 'ciao';
-//$id = 15; $p = get_page($id); echo apply_filters('the_content', $p->post_content); 
-?>
-
 NAVBAR
-menu du wordpress ? aggiungere un link BLOG per visualizzare tutti i post
+OK -> menu du wordpress; aggiungere un link BLOG per visualizzare tutti i post
 
 CAROUSEL
-ARC: 4 immagini; 4 link; Descrizione IT, Descrizione EN; (le immagini devono essere 1920x1280)
+OK -> Media gallery con TAG "carousel" e "title"
 
 WHO WE ARE
-template HTML: categoria 'chisiamo' e post per 'Chi Siamo'
+OK -> post
 
 YOUTUBE CHANNEL
-ARC: 4 immagini; 4 link; Descrizione IT, Descrizione EN; (le immagini devono essere 1920x1280)
+OK -> post
 
 RECENT POST (eventi e ultime dal blog)
+OK -> tag "events" e tag "news"
 
 OUR MEMBER
+OK -> tag "members"
 
 OUR PARTNER
+OK -> tag "partners"
 
 PHOTO GALLERY
+OK -> Media gallery con TAG "gallery" e "title"
 
-CONTACT
+
+TODO:
+- CONTACT
+vedi plugin per AmafiToursCarService
+
+- SIGLE PAGE
+
+- LIST POSTS e SIDEBAR e SEARCH
+
+- TRANSLATION
