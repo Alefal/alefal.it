@@ -20,22 +20,21 @@ get_header(); ?>
 </header>
 
 <?php /* Now display the main page and sidebar */ ?>
-<div class="container">
-<div id="main-grid" class="row">
-
-	<div id="primary" class="content-area col-md-8">
-		<main id="main" class="site-main" role="main">
+<div id="recent-post" class="padding-bottom padding-top" style="margin-top: 150px;">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-8 col-md-8">
 
 			<p><?php _e( 'It looks like nothing was found at this location. Maybe try a search or one of the links below?', 'flat-bootstrap' ); ?></p>
 
 			<?php get_template_part( 'content', 'siteindex' ); ?>
 				
-		</main><!-- #main -->
-	</div><!-- #primary -->
+			</div>
 
-	<?php get_sidebar(); ?>
-		
-</div><!-- .row -->
+			<?php get_sidebar(); ?>
+		</div>
+
+	</div><!-- .row -->
 </div><!-- .container -->
 
 <?php get_footer(); ?>

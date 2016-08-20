@@ -11,36 +11,35 @@ get_header(); ?>
 
 <?php get_template_part( 'content', 'header' ); ?>
 
-<div class="container">
-<div id="main-grid" class="row">
+<div id="recent-post" class="padding-bottom padding-top">
+	<div class="container">
+		<div class="row" style="margin-top: 50px;">
+			<div class="col-sm-8 col-md-8">
 
-	<section id="primary" class="content-area col-md-8">
-		<main id="main" class="site-main" role="main">
+			<?php if ( have_posts() ) : ?>
 
-		<?php if ( have_posts() ) : ?>
+				<?php // Start the Loop ?>
+				<?php while ( have_posts() ) : the_post(); ?>
 
-			<?php // Start the Loop ?>
-			<?php while ( have_posts() ) : the_post(); ?>
+					<?php //get_template_part( 'content', 'search' ); ?>
+					<?php get_template_part( 'content', 'page-posts' ); ?>
 
-				<?php //get_template_part( 'content', 'search' ); ?>
-				<?php get_template_part( 'content', 'page-posts' ); ?>
+				<?php endwhile; ?>
 
-			<?php endwhile; ?>
+				<?php get_template_part( 'content', 'index-nav' ); ?>
 
-			<?php get_template_part( 'content', 'index-nav' ); ?>
+			<?php else : ?>
 
-		<?php else : ?>
+				<?php get_template_part( 'no-results', 'search' ); ?>
 
-			<?php get_template_part( 'no-results', 'search' ); ?>
+			<?php endif; ?>
 
-		<?php endif; ?>
+			</div>
 
-		</main><!-- #main -->
-	</section><!-- #primary -->
+			<?php get_sidebar(); ?>
+		</div>
 
-<?php get_sidebar(); ?>
-
-</div><!-- .row -->
+	</div><!-- .row -->
 </div><!-- .container -->
 
 <?php get_footer(); ?>

@@ -35,31 +35,39 @@ $(document).ready(function($) {
 	{
 		var windowWidth = $(window).width();
 
-		if(windowWidth > 767 ){
-			$(window).on('scroll', function(){
-				if( $(window).scrollTop()>405 ){
-					$('.navbar').addClass('navbar-fixed-top animated fadeIn');
-					$('.navbar').removeClass('main-nav');
-				} else {
-					$('.navbar').removeClass('navbar-fixed-top');
-					$('.navbar').addClass('main-nav');
-				}
-			});
-		}else{			
-			$('.navbar').addClass('navbar-fixed-top');	
+		console.log(window.location.pathname);
+
+		if ( window.location.pathname == '/' || window.location.pathname == '/index.php' || window.location.pathname == '/alefal.it/PROJECTS/minoresinelmondo.it/CMS/') {
+
+			if(windowWidth > 767 ){
+				$(window).on('scroll', function(){
+					if( $(window).scrollTop()>405 ){
+						$('.navbar').addClass('navbar-fixed-top animated fadeIn');
+						$('.navbar').removeClass('main-nav');
+					} else {
+						$('.navbar').removeClass('navbar-fixed-top');
+						$('.navbar').addClass('main-nav');
+					}
+				});
+			}else{			
+				$('.navbar').addClass('navbar-fixed-top');	
+				$('.navbar').removeClass('main-nav');
+			};
+			if(windowWidth > 767 ){
+				$(window).on('scroll', function(){
+					if( $(window).scrollTop()>405 ){
+						$('.top-bar').addClass('top-bar-hide');
+					} else {
+						$('.top-bar').removeClass('top-bar-hide');
+					}
+				});
+			}else{			
+				$('.top-bar').addClass(this);				
+			};
+		} else {
+			$('.navbar').addClass('navbar-fixed-top animated fadeIn');
 			$('.navbar').removeClass('main-nav');
-		};
-		if(windowWidth > 767 ){
-			$(window).on('scroll', function(){
-				if( $(window).scrollTop()>405 ){
-					$('.top-bar').addClass('top-bar-hide');
-				} else {
-					$('.top-bar').removeClass('top-bar-hide');
-				}
-			});
-		}else{			
-			$('.top-bar').addClass(this);				
-		};
+		}
 			
 	}
 

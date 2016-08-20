@@ -11,14 +11,9 @@ get_header(); ?>
 
 <?php get_template_part( 'content', 'header' ); ?>
 
-<style>
-.become-volunteer {
-    max-height: none;
-}
-</style>
-<div id="recent-post" class="padding-bottom padding-top" style="margin-top: 150px;">
+<div id="recent-post" class="padding-bottom padding-top">
 	<div class="container">
-		<div class="row">
+		<div class="row" style="margin-top: 50px;">
 			<div class="col-sm-8 col-md-8">
 
 				<?php while ( have_posts() ) : the_post(); ?>

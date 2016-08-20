@@ -371,7 +371,7 @@ a.navbar-brand {
 	line-height:24px;
 }
 
-.search{
+.searchHome{
 	position: absolute;
 	top: 72px;
 	z-index: 1;
@@ -379,15 +379,15 @@ a.navbar-brand {
 	width:300px;
 }
 
-#navigation .navbar-fixed-top .search {
+#navigation .navbar-fixed-top .searchHome {
 	top: 30px;
 }
 
-#navigation .navbar-fixed-top .search .field-toggle{
+#navigation .navbar-fixed-top .searchHome .field-toggle{
 	top: 40px;
 }
 
-.search i{
+.searchHome i{
   color: #fff;
   cursor: pointer;
   position: absolute;
@@ -395,7 +395,7 @@ a.navbar-brand {
   top: 2px;
 }
 
-#navigation .navbar-fixed-top .search i:hover {
+#navigation .navbar-fixed-top .searchHome i:hover {
 	color: #fff;
 }
 
@@ -1105,7 +1105,7 @@ a.navbar-brand {
 	padding:45px 40px;
 	color:#fff;
 	margin-top:28px;
-	max-height:452px;	
+	max-height:none;	
 }
 
 .become-volunteer img {

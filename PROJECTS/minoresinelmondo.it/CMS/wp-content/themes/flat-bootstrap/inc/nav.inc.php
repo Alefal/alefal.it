@@ -59,7 +59,7 @@
                 echo apply_filters( 'xsbf_navbar', $navbar );
                 ?>            
             </nav>
-            <div class="search">
+            <div class="searchHome">
                 <form role="form">
                     <i class="fa fa-search"></i>
                     <div class="field-toggle">
