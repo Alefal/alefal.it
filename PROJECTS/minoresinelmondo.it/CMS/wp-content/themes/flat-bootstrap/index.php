@@ -25,13 +25,19 @@ get_header();
     max-height: none;
 }
 </style>
-<div id="recent-post" class="padding-bottom padding-top" style="margin-top: 150px;">
+<div id="recent-post" class="padding-bottom padding-top" style="margin-top: 50px;">
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-8 col-md-8">
 
 				<?php 
-				$thePosts = query_posts('tag=news');
+				$pagename = get_query_var('pagename');  
+				
+				if( $pagename == 'blog' ) {
+					$thePosts = query_posts('tag=events');
+				} else if( $pagename == 'events' ) {
+					$thePosts = query_posts('tag=events');
+				}
 				if ( have_posts() ) : 
 				?>
 

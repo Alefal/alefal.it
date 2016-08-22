@@ -125,7 +125,7 @@ class wp_bootstrap_navwalker extends Walker_Nav_Menu {
 				}
 			}
 
-			$item_output = $args->before;
+			
 
 			/*
 			 * Bootstrap Glyphicons AND Font-Awesome Icons
@@ -136,17 +136,18 @@ class wp_bootstrap_navwalker extends Walker_Nav_Menu {
 			 * or font-awesome icon.
 			 */
 			if ( ! empty( $item->attr_title ) AND stripos ( $item->attr_title, 'glyphicon-' ) !== false) {
-				$item_output .= '<a'. $attributes .'><span class="glyphicon ' . esc_attr( $item->attr_title ) . '"></span>&nbsp;';
+				$item_output = '<a'. $attributes .'><span class="glyphicon ' . esc_attr( $item->attr_title ) . '"></span>&nbsp;';
 			} elseif ( ! empty( $item->attr_title ) AND stripos ( $item->attr_title, 'fa-' ) !== false ) {
-				$item_output .= '<a'. $attributes .'><span class="fa ' . esc_attr( $item->attr_title ) . '"></span>&nbsp;';
+				$item_output = '<a'. $attributes .'><span class="fa ' . esc_attr( $item->attr_title ) . '"></span>&nbsp;';
 			} else {
-				$item_output .= '<a'. $attributes .'>';
+				$item_output = '<a'. $attributes .'>';
+				$item_output .= $args->before;
 			}
 			
 			$item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
 			//$item_output .= ( $args->has_children && 0 === $depth ) ? ' <span class="caret"></span></a>' : '</a>';
-			$item_output .= ( $args->has_children && 0 === $depth && $args->depth != 1 ) ? ' <span class="caret"></span></a>' : '</a>';
 			$item_output .= $args->after;
+			$item_output .= ( $args->has_children && 0 === $depth && $args->depth != 1 ) ? ' <span class="caret"></span></a>' : '</a>';
 
 			$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
 		}

@@ -20,7 +20,7 @@ get_header(); ?>
 </header>
 
 <?php /* Now display the main page and sidebar */ ?>
-<div id="recent-post" class="padding-bottom padding-top" style="margin-top: 150px;">
+<div id="recent-post" class="padding-bottom padding-top" style="margin-top: 75px;">
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-8 col-md-8">

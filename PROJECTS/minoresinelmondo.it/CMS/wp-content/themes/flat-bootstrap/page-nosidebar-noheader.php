@@ -16,12 +16,11 @@ get_header(); ?>
 
 <?php get_sidebar( 'home' ); ?>
 
-<div class="container">
-<div id="main-grid" class="row">
-
-	<div id="primary" class="content-area-wide col-md-12">
-		<main id="main" class="site-main" role="main">
-
+<div id="recent-post" class="padding-bottom padding-top" style="margin-top: 50px;">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-8 col-md-8">
+7
 			<?php while ( have_posts() ) : the_post(); ?>
 
 				<?php /*get_template_part( 'content', 'page-fullwidth' ); */ ?>
@@ -33,17 +32,17 @@ get_header(); ?>
 				?>
 				<div class="comments-wrap">
 				<?php comments_template(); ?>
-				</div><!-- .comments-wrap"
+				</div><!-- .comments-wrap"-->
 				<?php endif; ?>
 
 			<?php endwhile; // end of the loop. ?>
 
-		</main><!-- #main -->
-	</div><!-- #primary -->
+		</div>
 
-	<?php //get_sidebar(); ?>
+			<?php //get_sidebar(); ?>
+		</div>
 
-</div><!-- .row -->
+	</div><!-- .row -->
 </div><!-- .container -->
 
 <?php get_footer(); ?>

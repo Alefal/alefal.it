@@ -13,12 +13,40 @@
                     <h1><img class="img-responsive" src="<?php echo get_template_directory_uri(); ?>/assets/images/logoMNM.png" alt="logo"></h1>
                 </a>                    
             </div>  
-            <nav class="collapse navbar-collapse navbar-right">                 
+            <nav class="collapse navbar-collapse navbar-right">  
+                <!--           
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="<?php echo get_home_url(); ?>"><span>Home</span></a></li>                      
+                    <li class="active"><a href="<?php echo get_home_url(); ?>"><span>Home</span></a></li>
                     <li><a href="#contact"><span>Contatti</span></a></li>                   
-                </ul>                   
+                </ul>         
+                -->
+                <?php
+                //Fix: Use different menu for each page
+                $navMenuName = '';
+                $pagename = get_query_var('pagename');  
+                
+                if( $pagename == 'blog' || $pagename == 'eventi' ) {
+                   $navMenuName = 'Blog Menu';
+                } else {
+                     $navMenuName = 'Nav Menu';
+                }
+
+                $navbar = wp_nav_menu( 
+                    array(  'theme_location' => 'primary',
+                    'menu_class' => 'nav navbar-nav', //<ul> class
+                    'walker' => new wp_bootstrap_navwalker(),
+                    'fallback_cb' => 'wp_bootstrap_navwalker::fallback',
+                    'echo'  => false,
+                    'before' => '<span>',
+                    'after' => '</span>',
+                    'menu' => $navMenuName //Fix: Use different menu for each page
+                    ) 
+                );
+                        
+                echo apply_filters( 'xsbf_navbar', $navbar );
+                ?>               
             </nav>
+            <!--
             <div class="search">
                 <form role="form">
                     <i class="fa fa-search"></i>
@@ -27,6 +55,7 @@
                     </div>
                 </form>
             </div>
+            -->
         </div>
     </div>
 </header><!--/#navigation--> 

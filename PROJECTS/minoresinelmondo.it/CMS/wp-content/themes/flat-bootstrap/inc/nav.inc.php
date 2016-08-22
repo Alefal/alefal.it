@@ -38,10 +38,10 @@
                 <?php
                 //Fix: Use different menu for each page
                 $navMenuName = '';
-                if ( is_page( 'Home' ) ) {
-                    $navMenuName = 'Nav Menu';
-                } elseif ( is_page( 'Blog' ) ) {
-                    $navMenuName = 'Blog Menu';
+                $pagename = get_query_var('pagename');  
+                
+                if( $pagename == 'blog' || $pagename == 'eventi' ) {
+                   $navMenuName = 'Blog Menu';
                 } else {
                      $navMenuName = 'Nav Menu';
                 }
@@ -51,14 +51,17 @@
                     'menu_class' => 'nav navbar-nav', //<ul> class
                     'walker' => new wp_bootstrap_navwalker(),
                     'fallback_cb' => 'wp_bootstrap_navwalker::fallback',
-                    'echo'	=> false,
+                    'echo'  => false,
+                    'before' => '<span>',
+                    'after' => '</span>',
                     'menu' => $navMenuName //Fix: Use different menu for each page
                     ) 
                 );
                         
                 echo apply_filters( 'xsbf_navbar', $navbar );
-                ?>            
+                ?>          
             </nav>
+            <!--
             <div class="searchHome">
                 <form role="form">
                     <i class="fa fa-search"></i>
@@ -67,6 +70,7 @@
                     </div>
                 </form>
             </div>
+            -->
         </div>
     </div>
 

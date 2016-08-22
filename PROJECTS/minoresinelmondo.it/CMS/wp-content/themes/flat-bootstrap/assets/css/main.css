@@ -145,7 +145,7 @@ h1, h2, h3, h4, h5, h6 {
 	border-width:2px;
 	border-radius: 0;
 	color: #fff;
-	padding: 14px 54px;	
+	/*padding: 14px 54px;*/
 	font-size:16px;
 	-webkit-transition: all 0.5s ease-in-out;
 	-moz-transition: all 0.5s ease-in-out;
@@ -408,7 +408,7 @@ a.navbar-brand {
 }
 
 .search-form{
-  padding-left: 10px;
+  /*padding-left: 10px;*/
   height:50px;
   font-size: 14px;
   color: #818285;

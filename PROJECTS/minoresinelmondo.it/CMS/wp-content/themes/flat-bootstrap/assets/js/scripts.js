@@ -35,9 +35,13 @@ $(document).ready(function($) {
 	{
 		var windowWidth = $(window).width();
 
-		console.log(window.location.pathname);
+		var checkUrl = window.location.pathname+''+window.location.search;
+		console.log('checkUrl: '+checkUrl);
 
-		if ( window.location.pathname == '/' || window.location.pathname == '/index.php' || window.location.pathname == '/alefal.it/PROJECTS/minoresinelmondo.it/CMS/') {
+		if ( checkUrl == '/' 
+				|| checkUrl == '/index.php' 
+				|| checkUrl == '/alefal.it/PROJECTS/minoresinelmondo.it/CMS/'
+				|| checkUrl == '/alefal.it/PROJECTS/minoresinelmondo.it/CMS/?s=') {
 
 			if(windowWidth > 767 ){
 				$(window).on('scroll', function(){

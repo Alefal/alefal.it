@@ -375,3 +375,30 @@ function xsbf_load_includes() {
 } // end function
 xsbf_load_includes();
 endif; // end ! function_exists
+
+add_filter('query_vars', 'mnmCatNewsSearch_query_var');
+function mnmCatNewsSearch_query_var($public_query_vars) {
+	$public_query_vars[] = 'mnmCatNewsSearch';
+	return $public_query_vars;
+}
+
+add_action( 'pre_get_posts', 'alter_search_query' );
+function alter_search_query( $query ) {
+  // not an admin page and is the main query
+  if (!is_admin() && $query->is_main_query()){
+    if(is_search()){
+    	$mnmCatNewsSearch = get_query_var('mnmCatNewsSearch');
+    	if($mnmCatNewsSearch != '') {
+      	$query->set('cat', 6); //id category "news"
+      }
+    }
+  }
+}
+
+add_filter('nav_menu_css_class' , 'special_nav_class' , 10 , 2);
+function special_nav_class($classes, $item){
+     if( in_array('current-menu-item', $classes) ){
+             $classes[] = 'active ';
+     }
+     return $classes;
+}
