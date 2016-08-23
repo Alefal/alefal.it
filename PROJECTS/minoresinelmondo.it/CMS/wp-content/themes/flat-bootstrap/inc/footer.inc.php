@@ -1,39 +1,39 @@
 <div id="contact">
     <div class="container">
         <div class="section-title">
-            <h1>Contattaci</h1>
+            <h1><?php echo constant('TTL_CONTACT'); ?></h1>
         </div>
         <div class="row">
             <div class="col-sm-10 col-sm-offset-1">
                 <div class="row contact-details">
                     <div class="col-sm-4">
                         <span><i class="fa fa-map-marker"></i></span>
-                        <p class="contact-info">1234 Street Name, City Name</p>
+                        <p class="contact-info"><?php echo constant('INFO_ADDRESS'); ?></p>
                     </div>
                     <div class="col-sm-4">
                         <span><i class="fa fa-phone"></i></span>
-                        <p class="contact-info">+(123) 456-7890 </p>
+                        <p class="contact-info"><?php echo constant('INFO_PHONE'); ?></p>
                     </div>
                     <div class="col-sm-4">
                         <span><i class="fa fa-envelope"></i></span>
-                        <a class="contact-info" href="#">minoresinelmondo@gmail.com</a>
+                        <a class="contact-info" href="#"><?php echo constant('INFO_EMAIL'); ?></a>
                     </div>
                 </div>
                 <div class="contact-form">
                     <form id="contact-form" class="contact-form" name="contact-form" method="post" action="#">
                         <div class="row">
                             <div class="form-group col-sm-6">
-                                <input type="text" name="name" class="form-control" required="required" placeholder="Name">
+                                <input type="text" name="name" class="form-control" required="required" placeholder="<?php echo constant('EMAIL_NAME'); ?>">
                             </div>
                             <div class="form-group col-sm-6">
-                                <input type="email" name="email" class="form-control" required="required" placeholder="Email Address">
+                                <input type="email" name="email" class="form-control" required="required" placeholder="<?php echo constant('EMAIL_ADDRESS'); ?>">
                             </div>
                             <div class="form-group col-sm-12">
-                                <textarea name="message" id="message" required="required" class="form-control" rows="8" placeholder="Message"></textarea>
+                                <textarea name="message" id="message" required="required" class="form-control" rows="8" placeholder="<?php echo constant('EMAIL_MESSAGE'); ?>"></textarea>
                             </div> 
                         </div>                                                 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Invia il Tuo Messaggio</button>
+                            <button type="submit" class="btn btn-primary"><?php echo constant('EMAIL_BUTTON'); ?></button>
                         </div>
                     </form> 
                 </div>
@@ -50,7 +50,7 @@
             </div>
             <div class="col-sm-4">
                 <div class="copyright-text">
-                    <p>© Copyright 2016 by <a href="#"> Minoresi Nel Mondo.</a> <br />All rights reserved.</p>
+                    <p><?php echo constant('INFO_COPYRIGHT'); ?></p>
                 </div>                  
             </div>
             <div class="col-sm-4">

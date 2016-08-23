@@ -123,8 +123,14 @@ $(document).ready(function($) {
 	
 	$(document).ready(function () {
 		$(".navbar-nav li a").click(function(event) {
-		$(".navbar-collapse").collapse('hide');
+			$(".navbar-collapse").collapse('hide');
 		});
+
+		var userLang = navigator.language || navigator.userLanguage; 
+		if(getCookie('language') == '') {
+			console.log('setCookie: '+userLang);
+			setCookie('language', userLang, 365);
+		}
 	});
 	
 	//style-chooser
@@ -142,6 +148,32 @@ $(document).ready(function($) {
 		$('#css-preset').removeAttr('href').attr('href', 'assets/css/presets/preset' + $(this).parent().data('preset') + '.css');
 	})
 	
-		
+	
 });
 
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + "; " + expires;
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function changeLanguage(lang) {
+	setCookie('language', lang, 365);
+	location.reload();
+}

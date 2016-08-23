@@ -20,7 +20,7 @@ if ( $sidebar_footer ) :
 	<div class="sidebar-footer clearfix">
 	<div class="container">
 		<div class="row">
-		<?php echo apply_filters( 'xsbf_footer', $sidebar_footer ); ?>
+		1 <?php echo apply_filters( 'xsbf_footer', $sidebar_footer ); ?>
 		</div><!-- .row -->
 	</div><!-- .container -->
 	</div><!-- .sidebar-footer -->

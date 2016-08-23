@@ -402,3 +402,21 @@ function special_nav_class($classes, $item){
      }
      return $classes;
 }
+
+/** Hook widget category **/
+add_filter( 'widget_categories_args', 'wpsites_exclude_widget_category', 10, 1 );
+add_filter( 'widget_categories_dropdown_args', 'wpsites_exclude_widget_category', 10, 1 );
+function wpsites_exclude_widget_category( $cat_args ) {
+	$cat_args['exclude'] = array(
+		'8', //Members
+		'2' //Template
+	); //the categories removed
+	return $cat_args;
+}
+
+/** Hook widget recent post **/
+add_filter('widget_posts_args', 'filter_recent_posts_widget_parameters'); 
+function filter_recent_posts_widget_parameters($params) {
+   $params['category_name'] = 'news, events';
+   return $params;
+}

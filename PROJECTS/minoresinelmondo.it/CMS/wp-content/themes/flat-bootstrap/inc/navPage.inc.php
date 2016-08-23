@@ -21,14 +21,19 @@
                 </ul>         
                 -->
                 <?php
-                //Fix: Use different menu for each page
-                $navMenuName = '';
-                $pagename = get_query_var('pagename');  
-                
-                if( $pagename == 'blog' || $pagename == 'eventi' ) {
-                   $navMenuName = 'Blog Menu';
+                $cookie_name = "language";
+                if(is_front_page()) {
+                    if($_COOKIE[$cookie_name] == 'it') {
+                        $navMenuName = 'NavMenuIT';
+                    } else {
+                        $navMenuName = 'NavMenuEN';
+                    }
                 } else {
-                     $navMenuName = 'Nav Menu';
+                    if($_COOKIE[$cookie_name] == 'it') {
+                        $navMenuName = 'BlogMenuIT';
+                    } else {
+                        $navMenuName = 'BlogMenuEN';
+                    }
                 }
 
                 $navbar = wp_nav_menu( 

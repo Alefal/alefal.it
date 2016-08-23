@@ -16,7 +16,25 @@
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 
-<?php wp_head(); ?>
+<?php 
+wp_head(); 
+$cookie_name = "language";
+if(!isset($_COOKIE[$cookie_name])) { 
+	$lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+	if($lang == 'it') {
+       	require_once('inc/language_it.inc.php');
+    } else {
+    	require_once('inc/language_en.inc.php');
+    }
+}
+else {    
+    if($_COOKIE[$cookie_name] == 'it') {
+       	require_once('inc/language_it.inc.php');
+    } else {
+    	require_once('inc/language_en.inc.php');
+    }
+}		
+?>
 
 <!--CSS-->
 <link href="<?php echo get_template_directory_uri(); ?>/assets/css/bootstrap.min.css" rel="stylesheet">
@@ -45,7 +63,8 @@
 <body <?php body_class(); ?> id="page">
 
 <?php
-	if(is_page('Home')) {
+	
+	if(is_front_page()) {
 		require get_template_directory() . '/inc/nav.inc.php';
 	?>
 		<div id="carousel-wrapper">

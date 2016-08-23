@@ -25,42 +25,67 @@ get_header();
     max-height: none;
 }
 </style>
-<div id="recent-post" class="padding-bottom padding-top" style="margin-top: 50px;">
+
+<div style="margin-top: 25px;">
+	<img src="<?php echo get_template_directory_uri(); ?>/assets/images/headerNews.jpg">
+</div>
+<div id="recent-post" class="padding-bottom padding-top">
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-8 col-md-8">
+INDEX
+				<article>
 
-				<?php 
-				$pagename = get_query_var('pagename');  
-				
-				if( $pagename == 'blog' ) {
-					$thePosts = query_posts('tag=events');
-				} else if( $pagename == 'events' ) {
-					$thePosts = query_posts('tag=events');
-				}
-				if ( have_posts() ) : 
-				?>
+					<?php 
+					$pagename = get_query_var('pagename');  
+					$cookie_name = "language";
+					$tagQuery = '';
+					if( $pagename == 'blog' ) {
+						$tagQuery = '';
+						if($_COOKIE[$cookie_name] == 'it') {
+				            $tagQuery = '&tag=newsIT';
+				        } else {
+				            $tagQuery = '&tag=newsEN'; 
+				        }
+					} else if( $pagename == 'eventi' ) {
+						$tagQuery = '';
+						if($_COOKIE[$cookie_name] == 'it') {
+				            $tagQuery = '&tag=eventsIT';
+				        } else {
+				            $tagQuery = '&tag=eventsEN'; 
+				        }
+					}
 
-					<?php /* Start the Loop */ ?>
-					<?php while ( have_posts() ) : the_post(); ?>
+					$posts_per_page = get_option( 'posts_per_page' );
+					
+					$wp_query = new WP_Query(); 
+					$wp_query->query('showposts='.$posts_per_page.''.$tagQuery.'&paged='.$paged);
+					while ($wp_query->have_posts()) : $wp_query->the_post(); 
+					?>
 
-						<?php
-							/* Include the Post-Format-specific template for the content.
-							* If you want to override this in a child theme, then include a file
-							* called content-___.php (where ___ is the Post Format name) and that will be used instead.
-							*/
-							get_template_part( 'content', get_post_format() );
-						?>
+						<h2><a href="<?php the_permalink(); ?>" title="Read more"><?php the_title(); ?></a></h2>
+						<?php the_excerpt(); ?>
 
 					<?php endwhile; ?>
 
-					<?php get_template_part( 'content', 'index-nav' ); ?>
+					<?php if ($paged > 1) { ?>
 
-				<?php else : ?>
+						<nav id="nav-posts">
+							<div class="prev"><?php next_posts_link('&laquo; Previous Posts'); ?></div>
+							<div class="next"><?php previous_posts_link('Newer Posts &raquo;'); ?></div>
+						</nav>
 
-					<?php get_template_part( 'no-results', 'index' ); ?>
+					<?php } else { ?>
 
-				<?php endif; ?>
+						<nav id="nav-posts">
+							<div class="prev"><?php next_posts_link('&laquo; Previous Posts'); ?></div>
+						</nav>
+
+					<?php } ?>
+
+					<?php wp_reset_postdata(); ?>
+
+				</article>
 
 			</div>
 

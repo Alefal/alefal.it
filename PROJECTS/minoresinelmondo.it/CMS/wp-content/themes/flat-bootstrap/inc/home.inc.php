@@ -1,9 +1,35 @@
+<?php 
+$cookie_name = "language";
+?>
+
 <div id="who-we-are">
-    <?php $post_id = 8; echo get_post_field('post_content', $post_id); ?>
+    <?php 
+    if(!isset($_COOKIE[$cookie_name])) { /* Caso limite: non dovrebbe mai verificarsi */ }
+    else {    
+        if($_COOKIE[$cookie_name] == 'it') {
+            $post_id = 8; 
+            echo get_post_field('post_content', $post_id); 
+        } else {
+            $post_id = 172; 
+            echo get_post_field('post_content', $post_id);    
+        }
+    }
+    ?>
 </div>
 
 <div id="yt-channel" class="padding-bottom padding-top-two">
-    <?php $post_id = 18; echo get_post_field('post_content', $post_id); ?>
+    <?php 
+    if(!isset($_COOKIE[$cookie_name])) { /* Caso limite: non dovrebbe mai verificarsi */ }
+    else {    
+        if($_COOKIE[$cookie_name] == 'it') {
+            $post_id = 18; 
+            echo get_post_field('post_content', $post_id); 
+        } else {
+             $post_id = 174; 
+            echo get_post_field('post_content', $post_id);   
+        }
+    } 
+    ?>
 </div>
 
 <div id="recent-post" class="padding-bottom padding-top-two">
@@ -11,11 +37,20 @@
         <div class="row">
             <div class="col-sm-6 col-md-3">
                 <div class="section-title event-title">
-                    <h1>Eventi</h1>
+                    <h1><?php echo constant('TTL_EVENTS'); ?></h1>
                 </div>
                 <div id="event-carousel" class="carousel slide" data-ride="carousel">
                     <?php 
-                    $thePosts = query_posts('tag=events');
+                    $thePosts = '';
+                    if(!isset($_COOKIE[$cookie_name])) { /* Caso limite: non dovrebbe mai verificarsi */ }
+                    else {    
+                        if($_COOKIE[$cookie_name] == 'it') {
+                            $thePosts = query_posts('tag=eventsIT');
+                        } else {
+                            $thePosts = query_posts('tag=eventsEN');  
+                        }
+                    } 
+
                     global $wp_query; 
                     $count_posts_event = $wp_query->found_posts;
                     ?>
@@ -70,11 +105,20 @@
             </div>
             <div class="col-sm-6 col-md-9">
                 <div class="section-title">
-                    <h1>Ultime dal Blog</h1>
+                    <h1><?php echo constant('TTL_NEWS'); ?></h1>
                 </div>					
                 <div id="recent-post-carousel" class="carousel slide" data-ride="carousel">
                     <?php 
-                    $thePosts = query_posts('tag=news');
+                    $thePosts = '';
+                    if(!isset($_COOKIE[$cookie_name])) { /* Caso limite: non dovrebbe mai verificarsi */ }
+                    else {    
+                        if($_COOKIE[$cookie_name] == 'it') {
+                            $thePosts = query_posts('tag=newsIT');
+                        } else {
+                            $thePosts = query_posts('tag=newsEN');  
+                        }
+                    } 
+
                     global $wp_query; 
                     $count_posts_news = $wp_query->found_posts;
                     ?>
@@ -165,7 +209,7 @@
         <div class="row">
             <div class="col-sm-8">
                 <div class="section-title">
-                    <h1>I Minoresi</h1>
+                    <h1><?php echo constant('TTL_MEMBERS'); ?></h1>
                 </div>
                 <div id="member-carousel" class="carousel slide" data-ride="carousel">
                     <?php 
@@ -241,9 +285,9 @@
             <div class="col-sm-4">
                 <div class="become-volunteer">
                     <img class="img-responsive" src="<?php echo get_template_directory_uri(); ?>/assets/images/logo-icon.png" alt="">
-                    <h1><span>Entra nella nostra</span>Famiglia</h1>
-                    <p>Vuoi far parte anche tu della nostra grande famiglia per condividere le rue esperienze ed emozioni ?</p>
-                    <a href="http://localhost/alefal.it/PROJECTS/minoresinelmondo.it/#contact" class="btn btn-default">Contattaci</a>
+                    <h1><?php echo constant('TXT_FAMIGLIA_TITOLO'); ?></h1>
+                    <p><?php echo constant('TXT_FAMIGLIA_DESCR'); ?></p>
+                    <a href="http://localhost/alefal.it/PROJECTS/minoresinelmondo.it/#contact" class="btn btn-default"><?php echo constant('TXT_FAMIGLIA_BUTTON'); ?></a>
                 </div>
             </div>
         </div>
@@ -253,7 +297,7 @@
 <div id="our-partner" class="padding-bottom padding-top-two">
     <div class="container">
         <div class="section-title">
-            <h1>I Nostri Partner</h1>
+            <h1><?php echo constant('TTL_PARTNERS'); ?></h1>
         </div>
         <div id="partner-carousel" class="carousel slide" data-ride="carousel">
             <?php 

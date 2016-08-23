@@ -18,7 +18,7 @@ $sidebar_pagebottom = get_dynamic_sidebar( 'sidebar-4' );
 if ( $sidebar_pagebottom ) :
 ?>
 	<div id="sidebar-pagebottom" class="sidebar-pagebottom">
-		<?php echo apply_filters( 'xsbf_pagebottom', $sidebar_pagebottom ); ?>
+		4 <?php echo apply_filters( 'xsbf_pagebottom', $sidebar_pagebottom ); ?>
 	</div><!-- .sidebar-pagebottom -->
 
 <?php

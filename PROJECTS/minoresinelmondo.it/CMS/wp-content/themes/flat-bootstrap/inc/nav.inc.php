@@ -14,12 +14,35 @@
                 </a>                    
             </div>  
             <div class="top-bar">   
-                <div class="dropdown language-dropdown">                        
-                    <a data-toggle="dropdown" href="http://localhost/alefal.it/PROJECTS/minoresinelmondo.it/#"><span class="change-text">Italiano </span><i class="fa fa-angle-down"></i></a>
-                    <ul class="dropdown-menu language-change">
-                        <li><a href="http://localhost/alefal.it/PROJECTS/minoresinelmondo.it/#">English </a></li>
-                    </ul>                               
-                </div>
+                <?php
+                $cookie_name = "language";
+                if(!isset($_COOKIE[$cookie_name])) {
+                ?>
+                    
+                <?php
+                } else {    
+                    if($_COOKIE[$cookie_name] == 'it') {
+                ?>
+                        <div class="dropdown language-dropdown">                        
+                            <a data-toggle="dropdown" href="javascript:void(0);"><span class="change-text">Italiano </span><i class="fa fa-angle-down"></i></a>
+                            <ul class="dropdown-menu language-change">
+                                <li><a href="javascript:void(0);" onclick="changeLanguage('en');">English </a></li>
+                            </ul>                               
+                        </div>
+                <?php
+                    } else {
+                ?>
+                    <div class="dropdown language-dropdown">                        
+                        <a data-toggle="dropdown" href="javascript:void(0);"><span class="change-text">English </span><i class="fa fa-angle-down"></i></a>
+                        <ul class="dropdown-menu language-change">
+                            <li><a href="javascript:void(0);" onclick="changeLanguage('it');">Italiano </a></li>
+                        </ul>                               
+                    </div>
+                <?php
+                    }
+                }
+                ?>
+                
                 <span class="contact-mail"><a href="http://localhost/alefal.it/PROJECTS/minoresinelmondo.it/#"><i class="fa fa-envelope-o"></i>minoresinelmondo@gmail.com</a></span>
                 <span><i class="fa fa-phone"></i> (123) 456-7890</span>
             </div>
@@ -36,14 +59,19 @@
                 </ul>      
                 --> 
                 <?php
-                //Fix: Use different menu for each page
-                $navMenuName = '';
-                $pagename = get_query_var('pagename');  
-                
-                if( $pagename == 'blog' || $pagename == 'eventi' ) {
-                   $navMenuName = 'Blog Menu';
+                $cookie_name = "language";
+                if(is_front_page()) {
+                    if($_COOKIE[$cookie_name] == 'it') {
+                        $navMenuName = 'NavMenuIT';
+                    } else {
+                        $navMenuName = 'NavMenuEN';
+                    }
                 } else {
-                     $navMenuName = 'Nav Menu';
+                    if($_COOKIE[$cookie_name] == 'it') {
+                        $navMenuName = 'BlogMenuIT';
+                    } else {
+                        $navMenuName = 'BlogMenuEN';
+                    }
                 }
 
                 $navbar = wp_nav_menu( 

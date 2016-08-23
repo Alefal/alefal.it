@@ -7,7 +7,7 @@
  * @package flat-bootstrap
  */
 ?>
-	<div id="secondary" class="widget-area col-md-4 become-volunteer" role="complementary">
+	<div id="secondary" class="widget-area col-md-4 become-volunteer" role="complementary">6
 		<?php do_action( 'before_sidebar' ); ?>
 		<?php if ( ! dynamic_sidebar( 'sidebar-1' ) ) : ?>
 
@@ -25,7 +25,11 @@
 
 			<aside id="tag_cloud" class="widget widget_tag_cloud">
 				<h2 class="widget-title"><?php _e( 'Categories', 'flat-bootstrap' ); ?></h2>
-					<?php wp_tag_cloud( array( 'separator' => ' ', 'taxonomy' => 'category' ) ); ?>
+					<?php 
+					wp_tag_cloud( array( 
+						'separator' => ' ', 
+						'taxonomy' 	=> 'category'
+					) ); ?>
 			</aside>
 
 		<?php endif; // end sidebar widget area ?>

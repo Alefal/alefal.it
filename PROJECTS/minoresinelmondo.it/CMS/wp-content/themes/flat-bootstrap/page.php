@@ -18,24 +18,68 @@ get_header(); ?>
 
 <?php get_sidebar( 'home' ); ?>
 
-<div id="recent-post" class="padding-bottom padding-top" style="margin-top: 50px;">
+<div style="margin-top: 25px;">
+	<img src="<?php echo get_template_directory_uri(); ?>/assets/images/headerEvents.jpg">
+</div>
+<div id="recent-post" class="padding-bottom padding-top">
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-8 col-md-8">
 9
-			<?php while ( have_posts() ) : the_post(); ?>
+				<article>
 
-				<?php get_template_part( 'content', 'page' ); ?>
+					<?php 
+					$pagename = get_query_var('pagename');  
+					$cookie_name = "language";
+					$tagQuery = '';
+					if( $pagename == 'blog' ) {
+						$tagQuery = '';
+						if($_COOKIE[$cookie_name] == 'it') {
+				            $tagQuery = '&tag=newsIT';
+				        } else {
+				            $tagQuery = '&tag=newsEN'; 
+				        }
+					} else if( $pagename == 'eventi' ) {
+						$tagQuery = '';
+						if($_COOKIE[$cookie_name] == 'it') {
+				            $tagQuery = '&tag=eventsIT';
+				        } else {
+				            $tagQuery = '&tag=eventsEN'; 
+				        }
+					}
 
-				<?php
-					// If comments are open or we have at least one comment, load up the comment template
-					if ( comments_open() || '0' != get_comments_number() )
-						comments_template();
-				?>
+					$posts_per_page = get_option( 'posts_per_page' );
+					
+					$wp_query = new WP_Query(); 
+					$wp_query->query('showposts='.$posts_per_page.''.$tagQuery.'&paged='.$paged);
+					while ($wp_query->have_posts()) : $wp_query->the_post(); 
+					?>
 
-			<?php endwhile; // end of the loop. ?>
+						<h2><a href="<?php the_permalink(); ?>" title="Read more"><?php the_title(); ?></a></h2>
+						<?php the_excerpt(); ?>
 
-		</div>
+					<?php endwhile; ?>
+
+					<?php if ($paged > 1) { ?>
+
+						<nav id="nav-posts">
+							<div class="prev"><?php next_posts_link('&laquo; Previous Posts'); ?></div>
+							<div class="next"><?php previous_posts_link('Newer Posts &raquo;'); ?></div>
+						</nav>
+
+					<?php } else { ?>
+
+						<nav id="nav-posts">
+							<div class="prev"><?php next_posts_link('&laquo; Previous Posts'); ?></div>
+						</nav>
+
+					<?php } ?>
+
+					<?php wp_reset_postdata(); ?>
+
+				</article>
+
+			</div>
 
 			<?php get_sidebar(); ?>
 		</div>

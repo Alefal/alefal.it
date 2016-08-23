@@ -79,7 +79,7 @@ $table_prefix  = 'mnm_';
  * È fortemente raccomandato agli svilupaptori di temi e plugin di utilizare
  * WP_DEBUG all’interno dei loro ambienti di sviluppo.
  */
-define('WP_DEBUG', true);
+define('WP_DEBUG', false);
 
 /* Finito, interrompere le modifiche! Buon blogging. */
 

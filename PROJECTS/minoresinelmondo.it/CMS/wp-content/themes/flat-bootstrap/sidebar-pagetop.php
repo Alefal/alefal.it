@@ -18,7 +18,7 @@ $sidebar_pagetop = get_dynamic_sidebar( 'sidebar-3' );
 if ( $sidebar_pagetop ) :
 ?>
 	<div id="sidebar-pagetop" class="sidebar-pagetop">
-		<?php echo apply_filters( 'xsbf_pagetop', $sidebar_pagetop ); ?>
+		5 <?php echo apply_filters( 'xsbf_pagetop', $sidebar_pagetop ); ?>
 	</div><!-- .sidebar-pagetop -->
 
 <?php

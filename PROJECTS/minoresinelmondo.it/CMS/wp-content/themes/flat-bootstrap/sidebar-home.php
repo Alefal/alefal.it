@@ -22,7 +22,7 @@ $sidebar_home = get_dynamic_sidebar( 'sidebar-5' );
 if ( $sidebar_home ) :
 ?>
 	<div id="sidebar-home" class="sidebar-home">
-		<?php echo apply_filters( 'xsbf_home', $sidebar_home ); ?>
+		2 <?php echo apply_filters( 'xsbf_home', $sidebar_home ); ?>
 	</div><!-- .sidebar-home -->
 
 <?php
