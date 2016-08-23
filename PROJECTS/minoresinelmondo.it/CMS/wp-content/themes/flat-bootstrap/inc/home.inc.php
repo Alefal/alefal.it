@@ -287,7 +287,7 @@ $cookie_name = "language";
                     <img class="img-responsive" src="<?php echo get_template_directory_uri(); ?>/assets/images/logo-icon.png" alt="">
                     <h1><?php echo constant('TXT_FAMIGLIA_TITOLO'); ?></h1>
                     <p><?php echo constant('TXT_FAMIGLIA_DESCR'); ?></p>
-                    <a href="http://localhost/alefal.it/PROJECTS/minoresinelmondo.it/#contact" class="btn btn-default"><?php echo constant('TXT_FAMIGLIA_BUTTON'); ?></a>
+                    <a href="#contact" class="btn btn-default"><?php echo constant('TXT_FAMIGLIA_BUTTON'); ?></a>
                 </div>
             </div>
         </div>
