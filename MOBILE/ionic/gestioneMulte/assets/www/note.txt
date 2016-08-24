@@ -1,24 +1,7 @@
-NOTE
+### SCALA ###
+PizzoferroRAF / 12345
+Matricola 2
 
-- main page
-
-- map
-
-- reservation 	-> update table information (UPDATE - BACK)
-
-- nightSummary 	-> table page 	-> discounts (DELETE - ADD)
-								-> orders e bill
-								-> gift (DELETE - SET)
-
-- assigned tables	-> table page	-> discounts
-									-> orders e bill (PRINT - ADD)
-									-> gift
-
-- orders -> List orders -> TAKE ON - DELETE
-
-- menu
-
-
-http://graphicdesignjunction.com/2013/05/beautiful-mobile-ui-design-with-amazing-user-experience/
-
-https://github.com/katzer/cordova-plugin-local-notifications
+### RAVELLO ###
+CalifanoANNA / 12345
+Matricola 3
