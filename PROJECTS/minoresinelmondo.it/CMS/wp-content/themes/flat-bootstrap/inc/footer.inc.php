@@ -1,4 +1,4 @@
-<div id="contact">
+<div id="contact" ng-controller="ContactCtrl">
     <div class="container">
         <div class="section-title">
             <h1><?php echo constant('TTL_CONTACT'); ?></h1>
@@ -20,20 +20,28 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form id="contact-form" class="contact-form" name="contact-form" method="post" action="#">
+                    <br />
+                    <div class="alert alert-success" ng-show="messageSendOK"><?php echo constant('EMAIL_SEND_OK'); ?></div>
+                    <div class="alert alert-danger" ng-show="messageSendKO"><?php echo constant('EMAIL_SEND_KO'); ?></div>
+
+                    <div class="progress progress-striped active" style="margin-bottom:0;" ng-show="messageSendWaiting">
+                        <div class="progress-bar" style="width: 100%"></div>
+                    </div>
+                    <br />
+                    <form id="contact-form" class="contact-form ng-pristine ng-valid" name="contactForm">
                         <div class="row">
                             <div class="form-group col-sm-6">
-                                <input type="text" name="name" class="form-control" required="required" placeholder="<?php echo constant('EMAIL_NAME'); ?>">
+                                <input type="text" name="name" class="form-control" required="required" ng-model="contactName" placeholder="<?php echo constant('EMAIL_NAME'); ?>">
                             </div>
                             <div class="form-group col-sm-6">
-                                <input type="email" name="email" class="form-control" required="required" placeholder="<?php echo constant('EMAIL_ADDRESS'); ?>">
+                                <input type="email" name="email" class="form-control" required="required" ng-model="contactEmail" placeholder="<?php echo constant('EMAIL_ADDRESS'); ?>">
                             </div>
                             <div class="form-group col-sm-12">
-                                <textarea name="message" id="message" required="required" class="form-control" rows="8" placeholder="<?php echo constant('EMAIL_MESSAGE'); ?>"></textarea>
+                                <textarea name="message" id="message" required="required" class="form-control" ng-model="contactInfo" rows="8" placeholder="<?php echo constant('EMAIL_MESSAGE'); ?>"></textarea>
                             </div> 
                         </div>                                                 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary"><?php echo constant('EMAIL_BUTTON'); ?></button>
+                            <button class="btn btn-primary" ng-click="sendContactForm()"><?php echo constant('EMAIL_BUTTON'); ?></button>
                         </div>
                     </form> 
                 </div>
@@ -45,15 +53,15 @@
 <footer id="footer">
     <div class="container">
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <a href="#carousel-wrapper"><img class="img-responsive" src="<?php echo get_template_directory_uri(); ?>/assets/images/logoMNM.png" alt=""></a>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <div class="copyright-text">
                     <p><?php echo constant('INFO_COPYRIGHT'); ?></p>
                 </div>                  
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <div class="footer-socials">
                     <ul>
                         <li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -64,6 +72,11 @@
                         <li><a href="#"><i class="fa fa-youtube"></i></a></li>
                     </ul>
                 </div>
+            </div>
+            <div class="col-sm-3" style="margin-top: 25px;" align="right">
+                <a href="#pagetop" title="Top" class="backToTopBtn"> 
+                    <i class=" glyphicon glyphicon-arrow-up"></i> TOP
+                </a>                 
             </div>
         </div>
     </div>

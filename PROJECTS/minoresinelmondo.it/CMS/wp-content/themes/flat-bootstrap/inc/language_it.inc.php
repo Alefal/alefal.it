@@ -16,6 +16,8 @@ define ('EMAIL_NAME', 		'Nome');
 define ('EMAIL_ADDRESS', 	'Email');
 define ('EMAIL_MESSAGE', 	'Messaggio');
 define ('EMAIL_BUTTON', 	'Invia il Tuo Messaggio');
+define ('EMAIL_SEND_OK', 	'Email inviata correttamente');
+define ('EMAIL_SEND_KO', 	'Email non inviata. Riprovare più tardi.');
 
 define ('INFO_ADDRESS', 	'Via Name, City Name, 75');
 define ('INFO_PHONE', 		'+393353322111');

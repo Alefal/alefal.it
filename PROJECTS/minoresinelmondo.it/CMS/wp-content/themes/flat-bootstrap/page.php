@@ -18,8 +18,8 @@ get_header(); ?>
 
 <?php get_sidebar( 'home' ); ?>
 
-<div style="margin-top: 25px;">
-	<img src="<?php echo get_template_directory_uri(); ?>/assets/images/headerEvents.jpg">
+<div style="margin-top: 75px;">
+	<img src="<?php echo get_template_directory_uri(); ?>/assets/images/headerEvents.jpg" style="width: 100%;" />
 </div>
 <div id="recent-post" class="padding-bottom padding-top">
 	<div class="container">

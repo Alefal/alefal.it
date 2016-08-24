@@ -1,0 +1,31 @@
+DA EMAIL:
+--------------------------------------------------------------------------
+### RICHIESTA:  
+Nel sito mi piacerebbe il logo un po' piu' grande.
+### RISPOSTA:   
+nessun problema a fare il logo più grande però non troppo altrimenti diventa un pugno nell'occhio; va bene quello che ho fatto (prendendo spunto da quello che ho visto) o hai un'altro che vorresti inserire ?
+
+### RICHIESTA:  
+una sezione che racchiuda foto e video dei raduni
+### RISPOSTA:   
+possiamo creare una nuova pagina RADUNI dove ci saranno tutti gli articoli che hanno la categoria "raduni" associata; 
+
+### RICHIESTA:  
+un altra sezione con i locali dei minoresi nel mondo , e qui magari si potrebbe mettere i loghi dei ristoranti in prima pagina, visto che saranno 
+### RISPOSTA:   
+quelli che ci daranno qualcosa.. , ma anche una pagina va bene.
+possiamo creare una nuova pagina PARTNERS dove inserire la lista dei locali; la sezione in homepage la potremmo lasciare: magari ci andranno i loghi dei locali che pagano di più... :-)
+
+### RICHIESTA:  
+Poi pensavo ad un altra sezione con i minoresi che fanno parlare di se,  dove inserire i minoresi che hanno canale you tube o un altra che ha il blog 
+### RISPOSTA:   
+ed altri che fanno attivia' che vorrei segnalare.
+se hai la necessità di inserire solamente i link, potremmo sfruttare la sezione in homepage inserendo il link del blog personale e del canale youtube o altro (come da immagine seguente); in alternativa potremmo creare una nuova pagina DICONO DI NOI lasciando comunque la sezione in homepage; dimmi tu!
+
+### RISPOSTA:   
+Il menu HOME con i sottomenu rimane tale.
+
+Le altre voci di menu potrebbero essere:
+HOME | RADUNI | EVENTI | PARTNERS | DICONO DI NOI
+
+Verrebbe quindi eliminata BLOG che era generica.

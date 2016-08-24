@@ -85,6 +85,14 @@ $(document).ready(function($) {
 
 
 	$('.navbar-nav li a').on('click', function(){
+		console.log($(this).attr('title'));
+		if($(this).attr('title') != 'Home') {
+			$('html, body').animate({scrollTop: $(this.hash).offset().top -40}, 500);
+			return false;
+		}
+	});
+
+	$('.backToTopBtn').on('click', function(){
 		$('html, body').animate({scrollTop: $(this.hash).offset().top -40}, 500);
 		return false;
 	});
@@ -146,8 +154,7 @@ $(document).ready(function($) {
 		presets.removeClass('active');
 		$(this).parent().addClass('active');
 		$('#css-preset').removeAttr('href').attr('href', 'assets/css/presets/preset' + $(this).parent().data('preset') + '.css');
-	})
-	
+	});	
 	
 });
 

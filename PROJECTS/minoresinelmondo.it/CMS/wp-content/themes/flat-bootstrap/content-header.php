@@ -227,8 +227,6 @@
 
 <?php endif; // have_posts() ?>
 
-<a id="pagetop"></a>
-
 <?php 
 /** 
  * DISPLAY THE PAGE TOP (AFTER HEADER) WIDGET AREA

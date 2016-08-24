@@ -15,6 +15,8 @@ $cookie_name = "language";
         }
     }
     ?>
+
+    <?php require get_template_directory() . '/inc/back_to_top.inc.php'; ?>
 </div>
 
 <div id="yt-channel" class="padding-bottom padding-top-two">
@@ -30,9 +32,11 @@ $cookie_name = "language";
         }
     } 
     ?>
+
+    <?php require get_template_directory() . '/inc/back_to_top.inc.php'; ?>
 </div>
 
-<div id="recent-post" class="padding-bottom padding-top-two">
+<div id="recent-post" class="padding-top-two">
     <div class="container">
         <div class="row">
             <div class="col-sm-6 col-md-3">
@@ -202,6 +206,7 @@ $cookie_name = "language";
             </div>
         </div>
     </div>
+    <?php require get_template_directory() . '/inc/back_to_top.inc.php'; ?>
 </div>
 
 <div id="our-member" class="padding-top-two padding-bottom-two">
@@ -294,7 +299,7 @@ $cookie_name = "language";
     </div>
 </div><!--/#our-member--> 
 
-<div id="our-partner" class="padding-bottom padding-top-two">
+<div id="our-partner" class="padding-top-two">
     <div class="container">
         <div class="section-title">
             <h1><?php echo constant('TTL_PARTNERS'); ?></h1>
@@ -363,6 +368,7 @@ $cookie_name = "language";
             </div>
         </div>
     </div>
+    <?php require get_template_directory() . '/inc/back_to_top.inc.php'; ?>
 </div><!--/#our-partner--> 
 
 <div id="photo-gallery" class="padding-top-two">
@@ -413,4 +419,5 @@ $cookie_name = "language";
             ?>
         </div>
     </div>
+    <?php require get_template_directory() . '/inc/back_to_top.inc.php'; ?>
 </div><!--/#Photo-Gallery--> 
