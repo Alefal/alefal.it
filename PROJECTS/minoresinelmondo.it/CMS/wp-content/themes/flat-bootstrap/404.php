@@ -9,29 +9,22 @@
 
 get_header(); ?>
 
-<?php /* Display the header full-width to match our theme */ ?>
-<header class="content-header">
-	<div class="container">
-		<section class="error-404 not-found">
-			<h1 class="page-title"><?php _e( 'Oops! That page can&rsquo;t be found.', 'flat-bootstrap' ); ?></h1>
-			<h3 class="page-description"><?php _e( 'Or as techies would say, its a "404 Error"', 'flat-bootstrap' ); ?></h3>
-		</section><!-- .error-404 -->
-	</div><!-- .container -->
-</header>
-
 <?php /* Now display the main page and sidebar */ ?>
-<div id="recent-post" class="padding-bottom padding-top" style="margin-top: 75px;">
+<div id="recent-post" class="padding-bottom padding-top">
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-8 col-md-8">
 
-			<p><?php _e( 'It looks like nothing was found at this location. Maybe try a search or one of the links below?', 'flat-bootstrap' ); ?></p>
-
-			<?php get_template_part( 'content', 'siteindex' ); ?>
+				<section class="error-404 not-found">
+					<header class="page-header">
+						<h1 class="page-title"><?php echo constant('404_TITLE'); ?></h1>
+					</header>
+					<h3 class="page-description"><?php echo constant('404_DESCR'); ?></h3>
+				</section><!-- .error-404 -->
 				
 			</div>
 
-			<?php get_sidebar(); ?>
+			<?php //get_sidebar(); ?>
 		</div>
 
 	</div><!-- .row -->

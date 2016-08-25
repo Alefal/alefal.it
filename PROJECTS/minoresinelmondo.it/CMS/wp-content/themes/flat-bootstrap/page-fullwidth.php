@@ -32,7 +32,7 @@ if ( is_page( 'Home' ) ) {
 			<?php 
 			$pagename = get_query_var('pagename');  
 				
-			if( $pagename == 'blog' ) {
+			if( $pagename == 'news' ) {
 				$thePosts = query_posts('tag=news');
 			} else if( $pagename == 'events' ) {
 				$thePosts = query_posts('tag=events');

@@ -23,3 +23,6 @@ define ('INFO_ADDRESS', 	'1234 Street Name, City Name');
 define ('INFO_PHONE', 		'+(123) 456-7890');
 define ('INFO_EMAIL', 		'info@minoresinelmondo.it');
 define ('INFO_COPYRIGHT', 	'&copy; Copyright 2016 by <a href="#"> Minoresi Nel Mondo.</a> <br />All rights reserved.');
+
+define ('404_TITLE', 		'Oops! Page not found!');
+define ('404_DESCR', 	    'That page can’t be found. Retry or contact administrator.');

@@ -15,6 +15,15 @@
 	<?php endif; ?>
 	
 	<div class="entry-content">
+		<?php if ( has_post_thumbnail() AND !is_search() ) : ?>
+			<a class="post-thumbnail" href="<?php the_permalink(); ?>">
+				<div class="post-thumbnail">
+					<?php 
+					the_post_thumbnail( 'post-thumbnail' , $attr = array( 'class'=>'thumbnail img-responsive' ) );
+					?>
+				</div>
+			</a>
+		<?php endif; ?>
 		<?php the_content(); ?>
 		
 		<?php // Show the categories and tags ?>

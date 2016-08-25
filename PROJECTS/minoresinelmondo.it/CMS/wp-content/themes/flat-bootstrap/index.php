@@ -37,23 +37,35 @@ INDEX
 				<article>
 
 					<?php 
-					$pagename = get_query_var('pagename');  
-					$cookie_name = "language";
-					$tagQuery = '';
-					if( $pagename == 'blog' ) {
-						$tagQuery = '';
-						if($_COOKIE[$cookie_name] == 'it') {
-				            $tagQuery = '&tag=newsIT';
-				        } else {
-				            $tagQuery = '&tag=newsEN'; 
-				        }
-					} else if( $pagename == 'eventi' ) {
-						$tagQuery = '';
-						if($_COOKIE[$cookie_name] == 'it') {
-				            $tagQuery = '&tag=eventsIT';
-				        } else {
-				            $tagQuery = '&tag=eventsEN'; 
-				        }
+					$pagename 		= get_query_var('pagename');  
+					$catName 		= get_the_category()[0]->slug;
+					$cookie_name 	= "language";
+					$tagQuery 		= '';
+
+					if($_COOKIE[$cookie_name] == 'it') {		//IT
+						if( $pagename == 'news' ) {
+							$tagQuery = '&tag=newsIT';
+						} else if( $pagename == 'eventi' ) {
+							$tagQuery = '&tag=eventsIT';
+						} else {
+							if($catName == 'events') {
+								$tagQuery = '&tag=eventsIT';
+							} else if($catName == 'news') {
+								$tagQuery = '&tag=newsIT'; 
+							} 
+						}
+					} else {									//EN
+						if( $pagename == 'news' ) {
+							$tagQuery = '&tag=newsEN'; 
+						} else if( $pagename == 'eventi' ) {
+							$tagQuery = '&tag=eventsEN';
+						} else {
+							if($catName == 'events') {
+								$tagQuery = '&tag=eventsEN';
+							} else if($catName == 'news') {
+								$tagQuery = '&tag=newsEN'; 
+							}
+						}
 					}
 
 					$posts_per_page = get_option( 'posts_per_page' );
@@ -64,6 +76,15 @@ INDEX
 					?>
 
 						<h2><a href="<?php the_permalink(); ?>" title="Read more"><?php the_title(); ?></a></h2>
+						<?php if ( has_post_thumbnail() AND !is_search() ) : ?>
+							<a class="post-thumbnail" href="<?php the_permalink(); ?>">
+								<div class="post-thumbnail">
+									<?php 
+									the_post_thumbnail( 'post-thumbnail' , $attr = array( 'class'=>'thumbnail img-responsive' ) );
+									?>
+								</div>
+							</a>
+						<?php endif; ?>
 						<?php the_excerpt(); ?>
 
 					<?php endwhile; ?>

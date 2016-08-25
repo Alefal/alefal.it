@@ -32,7 +32,7 @@ get_header(); ?>
 					$pagename = get_query_var('pagename');  
 					$cookie_name = "language";
 					$tagQuery = '';
-					if( $pagename == 'blog' ) {
+					if( $pagename == 'news' ) {
 						$tagQuery = '';
 						if($_COOKIE[$cookie_name] == 'it') {
 				            $tagQuery = '&tag=newsIT';
@@ -56,6 +56,16 @@ get_header(); ?>
 					?>
 
 						<h2><a href="<?php the_permalink(); ?>" title="Read more"><?php the_title(); ?></a></h2>
+						<?php if ( has_post_thumbnail() AND !is_search() ) : ?>
+							<a class="post-thumbnail" href="<?php the_permalink(); ?>">
+								<div class="post-thumbnail">
+									<?php 
+									the_post_thumbnail( 'post-thumbnail' , $attr = array( 'class'=>'thumbnail img-responsive' ) );
+									?>
+								</div>
+							</a>
+						<?php endif; ?>
+
 						<?php the_excerpt(); ?>
 
 					<?php endwhile; ?>

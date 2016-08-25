@@ -13,11 +13,15 @@ get_header(); ?>
 
 <div id="recent-post" class="padding-bottom padding-top">
 	<div class="container">
-		<div class="row" style="margin-top: 50px;">
+		<div class="row">
 			<div class="col-sm-8 col-md-8">
 
 			<?php if ( have_posts() ) : ?>
 
+				<header class="page-header">
+					<h1 class="page-title">Search</h1>
+				</header>
+				
 				<?php // Start the Loop ?>
 				<?php while ( have_posts() ) : the_post(); ?>
 
