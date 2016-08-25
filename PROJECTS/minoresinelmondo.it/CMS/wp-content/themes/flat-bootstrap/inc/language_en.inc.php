@@ -16,11 +16,10 @@ define ('EMAIL_NAME', 		'Name');
 define ('EMAIL_ADDRESS', 	'Email Address');
 define ('EMAIL_MESSAGE', 	'Message');
 define ('EMAIL_BUTTON', 	'Send Your Message');
-define ('EMAIL_BUTTON', 	'Send Your Message');
 define ('EMAIL_SEND_OK', 	'Email send');
 define ('EMAIL_SEND_KO', 	'Email not send. Retry.');
 
 define ('INFO_ADDRESS', 	'1234 Street Name, City Name');
 define ('INFO_PHONE', 		'+(123) 456-7890');
-define ('INFO_EMAIL', 		'minoresinelmondo@gmail.com');
+define ('INFO_EMAIL', 		'info@minoresinelmondo.it');
 define ('INFO_COPYRIGHT', 	'&copy; Copyright 2016 by <a href="#"> Minoresi Nel Mondo.</a> <br />All rights reserved.');

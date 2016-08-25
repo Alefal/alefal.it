@@ -43,8 +43,8 @@
                 }
                 ?>
                 
-                <span class="contact-mail"><a href="http://localhost/alefal.it/PROJECTS/minoresinelmondo.it/#"><i class="fa fa-envelope-o"></i>minoresinelmondo@gmail.com</a></span>
-                <span><i class="fa fa-phone"></i> (123) 456-7890</span>
+                <span class="contact-mail"><a href="mailto:<?php echo constant('INFO_EMAIL'); ?>"><i class="fa fa-envelope-o"></i><?php echo constant('INFO_EMAIL'); ?></a></span>
+                <span><i class="fa fa-phone"></i> <a href="tel:<?php echo constant('INFO_PHONE'); ?>"><?php echo constant('INFO_PHONE'); ?></a></span>
             </div>
             <nav class="collapse navbar-collapse navbar-right">    
                 <!--             

@@ -21,5 +21,5 @@ define ('EMAIL_SEND_KO', 	'Email non inviata. Riprovare più tardi.');
 
 define ('INFO_ADDRESS', 	'Via Name, City Name, 75');
 define ('INFO_PHONE', 		'+393353322111');
-define ('INFO_EMAIL', 		'minoresinelmondo@gmail.com');
+define ('INFO_EMAIL', 		'info@minoresinelmondo.it');
 define ('INFO_COPYRIGHT', 	'&copy; Copyright 2016 <a href="#"> Minoresi Nel Mondo.</a> <br />Tutti i diritti riservati.');

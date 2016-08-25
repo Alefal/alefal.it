@@ -1,31 +1,75 @@
 DA EMAIL:
 --------------------------------------------------------------------------
 ### RICHIESTA:  
-Nel sito mi piacerebbe il logo un po' piu' grande.
-### RISPOSTA:   
-nessun problema a fare il logo più grande però non troppo altrimenti diventa un pugno nell'occhio; va bene quello che ho fatto (prendendo spunto da quello che ho visto) o hai un'altro che vorresti inserire ?
-
-### RICHIESTA:  
 una sezione che racchiuda foto e video dei raduni
 ### RISPOSTA:   
-possiamo creare una nuova pagina RADUNI dove ci saranno tutti gli articoli che hanno la categoria "raduni" associata; 
-
-### RICHIESTA:  
-un altra sezione con i locali dei minoresi nel mondo , e qui magari si potrebbe mettere i loghi dei ristoranti in prima pagina, visto che saranno 
-### RISPOSTA:   
-quelli che ci daranno qualcosa.. , ma anche una pagina va bene.
-possiamo creare una nuova pagina PARTNERS dove inserire la lista dei locali; la sezione in homepage la potremmo lasciare: magari ci andranno i loghi dei locali che pagano di più... :-)
+per me va bene che ci sia una pagina 'foto e video' in cui poi mettiamo le gallerie che vanno dai raduni ,agli incontri casuali,alle foto di minori nelle varie festivita'  etc  dei minoresi nel mondo. Praticamente deve fungere da contenitore per evitare la dispersione nei post su fb 
+### TODO:
+- Creare pagina FOTO E VIDEO dove verranno visualizzati tutti i posts con tag INCONTRI
 
 ### RICHIESTA:  
 Poi pensavo ad un altra sezione con i minoresi che fanno parlare di se,  dove inserire i minoresi che hanno canale you tube o un altra che ha il blog 
 ### RISPOSTA:   
-ed altri che fanno attivia' che vorrei segnalare.
-se hai la necessità di inserire solamente i link, potremmo sfruttare la sezione in homepage inserendo il link del blog personale e del canale youtube o altro (come da immagine seguente); in alternativa potremmo creare una nuova pagina DICONO DI NOI lasciando comunque la sezione in homepage; dimmi tu!
+Forse è meglio una pagina che si chiami divesamente ( dicono di noi da' idea solo di articoli).
+Devo avere lo spazio per spiegare di chi parliamo , ad es. Fulvio fortezza docente universitario di minori  ,e poi metto il video in cui è in tv e anche l'immagine del libro da lui scritto. Praticamente una pagina che mi permetta di mettere la sua foto, la sua descrizione (con immagini) e un suo o suoi video.
+### TODO:
+- creare pagina SPECIAL GUESTS dove verranno visualizzati tutti i posts con tag MINORESISPECIAL
 
+### RICHIESTA:  
+poi ci mettiamo un contatore visite.
 ### RISPOSTA:   
-Il menu HOME con i sottomenu rimane tale.
+nei siti moderni il contatore non si usa più... se ti interessano le statistiche, aggiungeremo google analytics collegandolo al tuo account gmail (se non ne hai uno lo creiamo)
+### TODO:
+- Google Analytics ???
 
-Le altre voci di menu potrebbero essere:
-HOME | RADUNI | EVENTI | PARTNERS | DICONO DI NOI
+### RICHIESTA:  
+la sezione blog la possiamo lasciare, che è la nostra bacheca per messaggi..
+### RISPOSTA:   
+ok; invece di BLOG potremmo chiamare la sezione NEWS
+### TODO:
+- ...
 
-Verrebbe quindi eliminata BLOG che era generica.
+--------------------------------------------------------------------------
+
+OK ---> ### RICHIESTA:  
+Nella sezione I minoresi , metteremo i soci fondatori dell'associazione, anche xche' non penso che tutti gli associati diano la loro foto .Bisognerebbe aspettare di chiedere 
+### RISPOSTA:   
+ok; comunque l'inserimento di un nuovo socio con relativa foto viene fatta da amministrazione quindi è una cosa semplice e abbastanza immediata
+
+OK ---> ### RICHIESTA:  
+Bisognera' poi mettere mano alla mail dei contatti con dominio minoresinelmondo.it
+### RISPOSTA:   
+in generale consiglio di creare un account gmail, ad esempio minoresinelmondo@gmail.com, per la facilita di accesso a GMAIL sul web, per il fatto che esiste anche l'app e per la sicurezza che ti fornisce google; hai necessità di creare un account email con dominio minoresinelmondo.it ? se sì bisogna verificare cosa mette a disposizione il tuo account ARUBA (in genere 5 account)
+### TODO:
+- creata info@minoresinelmondo.it / mnminfo2016
+
+OK ---> ### RICHIESTA:  
+ricordati della possibilita' di ascoltare  radio divina fm ( ti serve un codice?)
+### RISPOSTA:   
+sto vedendo se sul sito riesco a recuperare lo stream audio da inserire sul nostro sito
+### TODO:
+- recuperare codice dal sito http://www.divinafm.it/ e inserirlo nel portale con una window.open (non funziona con IE)
+
+OK ---> ### RICHIESTA:  
+Nel sito mi piacerebbe il logo un po' piu' grande.
+### RISPOSTA:   
+VA BENE IL LOGO CHE HAI FATTO. Inseriremo poi la scritta associazione quando la faremo
+
+OK ---> ### RICHIESTA:  
+un altra sezione con i locali dei minoresi nel mondo , e qui magari si potrebbe mettere i loghi dei ristoranti in prima pagina, visto che saranno 
+### RISPOSTA:   
+ho visto dopo il trafiletto dei Partners e va bene nella pagina home , poi bisogna anche valutare che alcuni hanno il loro sito , per cui sulla loro immagine e/o descrizione bisognerebbe inserire il link di riferimento
+### TODO:
+- utilizzato il campo DIDASCALIA della media gallery con MNM category uguale a 'Partners'
+
+OK ---> ### RICHIESTA:  
+Ah ho dimenticato ,dove tu hai messo mappa, poi ci andra' il link della mappa dei minoresi nel mondo ? (è una mappa google)
+https://www.google.it/maps/@45.5955473,5.5866827,5z/data=!3m1!4b1!4m2!6m1!1s1BFQtB0csVpaDmLI1Cq_DnWpJPN8?hl=it
+quella mappa è solo un'immagine per rendere più accattivante la sezione; il click punterà al link che mi hai dato tu
+### TODO:
+- far puntare l'immagine al link in target _blank
+
+OK ---> ### RICHIESTA:  
+Mi piace piu' la struttura a pagine ,che piu' semplice.
+### RISPOSTA:   
+la struttura è a pagine; solo la home ha una struttura in verticale (come si porta oggi) per l'accesso immediato ad alcuni contenuti più importanti; tutte le altre sezioni (RADUNI, EVENTI, BLOG, ecc.) saranno pagine a parte con relativa voce di menu

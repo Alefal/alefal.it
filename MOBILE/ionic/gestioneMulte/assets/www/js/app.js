@@ -203,7 +203,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
     } else if(item == 'marche') {
       service = 'getMarche.php';
     } else if(item == 'autorizzati') {
-      service = 'getAutorizzati.php';
+      service = 'getAutorizzati.php?ente='+ente;
     } else if(item == 'vie') {
       service = 'getVie.php?ente='+ente;
     } else if(item == 'obbligato') {

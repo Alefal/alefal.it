@@ -351,12 +351,29 @@ $cookie_name = "language";
                 <?php 
                     $j = $i; 
                     while ($the_query->have_posts() && $j < $i+6) : $the_query->the_post(); 
-                    $postid = get_the_ID();
+                        $postid = get_the_ID();
                 ?>
                         <div class="col-sm-2">
                             <?php 
+
+                            $attachment=get_post($postid);
+                            $caption = $attachment->post_excerpt;
+                            /*
+                            $alt = get_post_meta($attachment->ID, '_wp_attachment_image_alt', true);
+                            $image_title = $attachment->post_title;
+                            $description = $attachment->post_content;
+                            */
+                            
+                            $caption_pre    = '';
+                            $caption_post   = '';
+
+                            if($caption != '') {
+                                $caption_pre    = '<a href="'.$caption.'" target="_blank">';
+                                $caption_post   = '</a>';
+                            }
+                            
                             $src = wp_get_attachment_image_src( $attachment_ID, 'full' )[0];
-                            echo '<img class="img-responsive" src="'.$src.'">';
+                            echo $caption_pre.'<img class="img-responsive" src="'.$src.'" />'.$caption_post;
                             ?>
                         </div>
                     <?php $j++; endwhile; ?>
