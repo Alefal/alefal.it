@@ -74,7 +74,7 @@
                 </div>
             </div>
             <div class="col-sm-3" style="margin-top: 25px;" align="right">
-                <a href="javascript:void(0);" onclick="javascript:window.open('<?php echo get_template_directory_uri(); ?>/assets/divinaFM/divinaFM.html', 'divinaFM', 'toolbar=1,scrollbars=1,resizable=1,top=100,left=100,width=450,height=180');">
+                <a href="javascript:void(0);" onclick="javascript:talkRadioDivinaFM('<?php echo get_template_directory_uri(); ?>');">
                     <img class="img-responsive" src="<?php echo get_template_directory_uri(); ?>/assets/images/logoDivinaFM.png" alt="">
                 </a>
                 <!--

@@ -13,7 +13,7 @@ Poi pensavo ad un altra sezione con i minoresi che fanno parlare di se,  dove in
 Forse è meglio una pagina che si chiami divesamente ( dicono di noi da' idea solo di articoli).
 Devo avere lo spazio per spiegare di chi parliamo , ad es. Fulvio fortezza docente universitario di minori  ,e poi metto il video in cui è in tv e anche l'immagine del libro da lui scritto. Praticamente una pagina che mi permetta di mettere la sua foto, la sua descrizione (con immagini) e un suo o suoi video.
 ### TODO:
-- creare pagina SPECIAL GUESTS dove verranno visualizzati tutti i posts con tag MINORESISPECIAL
+- creata pagina ECCELLENZE MINORESI dove vengono visualizzati tutti i posts con tag MINORESISPECIAL
 
 ### RICHIESTA:  
 poi ci mettiamo un contatore visite.
@@ -22,14 +22,13 @@ nei siti moderni il contatore non si usa più... se ti interessano le statistich
 ### TODO:
 - Google Analytics ???
 
-### RICHIESTA:  
+--------------------------------------------------------------------------
+OK ---> ### RICHIESTA:  
 la sezione blog la possiamo lasciare, che è la nostra bacheca per messaggi..
 ### RISPOSTA:   
 ok; invece di BLOG potremmo chiamare la sezione NEWS
 ### TODO:
-- ...
-
---------------------------------------------------------------------------
+- cambiato nome a NEWS
 
 OK ---> ### RICHIESTA:  
 Nella sezione I minoresi , metteremo i soci fondatori dell'associazione, anche xche' non penso che tutti gli associati diano la loro foto .Bisognerebbe aspettare di chiedere 

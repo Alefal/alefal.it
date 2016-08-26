@@ -46,29 +46,46 @@ get_header(); ?>
 				        } else {
 				            $tagQuery = '&tag=eventsEN'; 
 				        }
+					} else if( $pagename == 'minoresi' ) {
+						$tagQuery = '';
+						if($_COOKIE[$cookie_name] == 'it') {
+				            $tagQuery = '&tag=minoresispecialIT';
+				        } else {
+				            $tagQuery = '&tag=minoresispecialEN'; 
+				        }
+					} else {
+						$tagQuery = 'noResults';
 					}
 
 					$posts_per_page = get_option( 'posts_per_page' );
 					
 					$wp_query = new WP_Query(); 
-					$wp_query->query('showposts='.$posts_per_page.''.$tagQuery.'&paged='.$paged);
-					while ($wp_query->have_posts()) : $wp_query->the_post(); 
+					if($tagQuery != 'noResults') {
+						$wp_query->query('showposts='.$posts_per_page.''.$tagQuery.'&paged='.$paged);
+					}
+					if ( have_posts() ) :
+						while ($wp_query->have_posts()) : $wp_query->the_post(); 
 					?>
 
-						<h2><a href="<?php the_permalink(); ?>" title="Read more"><?php the_title(); ?></a></h2>
-						<?php if ( has_post_thumbnail() AND !is_search() ) : ?>
-							<a class="post-thumbnail" href="<?php the_permalink(); ?>">
-								<div class="post-thumbnail">
-									<?php 
-									the_post_thumbnail( 'post-thumbnail' , $attr = array( 'class'=>'thumbnail img-responsive' ) );
-									?>
-								</div>
-							</a>
-						<?php endif; ?>
+							<h2><a href="<?php the_permalink(); ?>" title="Read more"><?php the_title(); ?></a></h2>
+							<?php if ( has_post_thumbnail() AND !is_search() ) : ?>
+								<a class="post-thumbnail" href="<?php the_permalink(); ?>">
+									<div class="post-thumbnail">
+										<?php 
+										the_post_thumbnail( 'post-thumbnail' , $attr = array( 'class'=>'thumbnail img-responsive' ) );
+										?>
+									</div>
+								</a>
+							<?php endif; ?>
 
-						<?php the_excerpt(); ?>
+							<?php the_excerpt(); ?>
 
-					<?php endwhile; ?>
+					<?php 
+						endwhile; 
+					else :
+						 get_template_part( 'no-results', 'search' );
+					endif;
+					?>
 
 					<?php if ($paged > 1) { ?>
 

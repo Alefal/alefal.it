@@ -184,3 +184,9 @@ function changeLanguage(lang) {
 	setCookie('language', lang, 365);
 	location.reload();
 }
+
+function talkRadioDivinaFM(get_template_directory_uri) {
+	window.open(get_template_directory_uri+'/assets/divinaFM/divinaFM.html', 'divinaFM', 'toolbar=1,scrollbars=1,resizable=1,top=100,left=100,width=450,height=180');
+	//Test per IE ma non funziona
+	//window.open('http://www.ascoltareradio.com/divina-salerno/', 'divinaFM', 'toolbar=1,scrollbars=1,resizable=1,top=100,left=100,width=450,height=180');
+}
