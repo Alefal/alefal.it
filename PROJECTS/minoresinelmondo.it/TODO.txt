@@ -1,21 +1,6 @@
 DA EMAIL:
 --------------------------------------------------------------------------
 ### RICHIESTA:  
-una sezione che racchiuda foto e video dei raduni
-### RISPOSTA:   
-per me va bene che ci sia una pagina 'foto e video' in cui poi mettiamo le gallerie che vanno dai raduni ,agli incontri casuali,alle foto di minori nelle varie festivita'  etc  dei minoresi nel mondo. Praticamente deve fungere da contenitore per evitare la dispersione nei post su fb 
-### TODO:
-- Creare pagina FOTO E VIDEO dove verranno visualizzati tutti i posts con tag INCONTRI
-
-### RICHIESTA:  
-Poi pensavo ad un altra sezione con i minoresi che fanno parlare di se,  dove inserire i minoresi che hanno canale you tube o un altra che ha il blog 
-### RISPOSTA:   
-Forse è meglio una pagina che si chiami divesamente ( dicono di noi da' idea solo di articoli).
-Devo avere lo spazio per spiegare di chi parliamo , ad es. Fulvio fortezza docente universitario di minori  ,e poi metto il video in cui è in tv e anche l'immagine del libro da lui scritto. Praticamente una pagina che mi permetta di mettere la sua foto, la sua descrizione (con immagini) e un suo o suoi video.
-### TODO:
-- creata pagina ECCELLENZE MINORESI dove vengono visualizzati tutti i posts con tag MINORESISPECIAL
-
-### RICHIESTA:  
 poi ci mettiamo un contatore visite.
 ### RISPOSTA:   
 nei siti moderni il contatore non si usa più... se ti interessano le statistiche, aggiungeremo google analytics collegandolo al tuo account gmail (se non ne hai uno lo creiamo)
@@ -23,6 +8,22 @@ nei siti moderni il contatore non si usa più... se ti interessano le statistich
 - Google Analytics ???
 
 --------------------------------------------------------------------------
+
+OK ---> ### RICHIESTA:  
+una sezione che racchiuda foto e video dei raduni
+### RISPOSTA:   
+per me va bene che ci sia una pagina 'foto e video' in cui poi mettiamo le gallerie che vanno dai raduni ,agli incontri casuali,alle foto di minori nelle varie festivita'  etc  dei minoresi nel mondo. Praticamente deve fungere da contenitore per evitare la dispersione nei post su fb 
+### TODO:
+- Creare pagina FOTO E VIDEO dove verranno visualizzati tutti i posts con tag INCONTRI
+
+OK ---> ### RICHIESTA:  
+Poi pensavo ad un altra sezione con i minoresi che fanno parlare di se,  dove inserire i minoresi che hanno canale you tube o un altra che ha il blog 
+### RISPOSTA:   
+Forse è meglio una pagina che si chiami divesamente ( dicono di noi da' idea solo di articoli).
+Devo avere lo spazio per spiegare di chi parliamo , ad es. Fulvio fortezza docente universitario di minori  ,e poi metto il video in cui è in tv e anche l'immagine del libro da lui scritto. Praticamente una pagina che mi permetta di mettere la sua foto, la sua descrizione (con immagini) e un suo o suoi video.
+### TODO:
+- creata pagina ECCELLENZE MINORESI dove vengono visualizzati tutti i posts con tag MINORESISPECIAL
+
 OK ---> ### RICHIESTA:  
 la sezione blog la possiamo lasciare, che è la nostra bacheca per messaggi..
 ### RISPOSTA:   

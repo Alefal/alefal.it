@@ -9,7 +9,7 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-
+content 2
 	<div class="entry-content">
 
 		<?php the_content(); ?>

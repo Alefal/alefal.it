@@ -19,7 +19,30 @@ get_header(); ?>
 <?php get_sidebar( 'home' ); ?>
 
 <div style="margin-top: 75px;">
-	<img src="<?php echo get_template_directory_uri(); ?>/assets/images/headerEvents.jpg" style="width: 100%;" />
+	<?php 
+	$pagename = get_query_var('pagename');
+	if( $pagename == 'news' ) {
+	?> 
+		<img src="<?php echo get_template_directory_uri(); ?>/assets/images/headerNews.jpg" style="width: 100%;" />
+	<?php 
+	} else if( $pagename == 'eventi' ) {
+	?> 
+		<img src="<?php echo get_template_directory_uri(); ?>/assets/images/headerEvents.jpg" style="width: 100%;" />
+	<?php 
+	} else if( $pagename == 'foto-e-video' ) {
+	?> 
+		<img src="<?php echo get_template_directory_uri(); ?>/assets/images/headerRaduni.jpg" style="width: 100%;" />
+	<?php 
+	} else if( $pagename == 'minoresi' ) {
+	?> 
+		<img src="<?php echo get_template_directory_uri(); ?>/assets/images/headerEccellenze.jpg" style="width: 100%;" />
+	<?php 
+	} else {
+	?> 
+		<img src="<?php echo get_template_directory_uri(); ?>/assets/images/headerNews.jpg" style="width: 100%;" />
+	<?php 
+	}
+	?>
 </div>
 <div id="recent-post" class="padding-bottom padding-top">
 	<div class="container">
@@ -46,12 +69,19 @@ get_header(); ?>
 				        } else {
 				            $tagQuery = '&tag=eventsEN'; 
 				        }
+					} else if( $pagename == 'foto-e-video' ) {
+						$tagQuery = '';
+						if($_COOKIE[$cookie_name] == 'it') {
+				            $tagQuery = '&tag=incontriIT';
+				        } else {
+				            $tagQuery = '&tag=incontriEN'; 
+				        }
 					} else if( $pagename == 'minoresi' ) {
 						$tagQuery = '';
 						if($_COOKIE[$cookie_name] == 'it') {
-				            $tagQuery = '&tag=minoresispecialIT';
+				            $tagQuery = '&tag=minoresiIT';
 				        } else {
-				            $tagQuery = '&tag=minoresispecialEN'; 
+				            $tagQuery = '&tag=minoresiEN'; 
 				        }
 					} else {
 						$tagQuery = 'noResults';

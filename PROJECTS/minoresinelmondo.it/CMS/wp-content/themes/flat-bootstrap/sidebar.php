@@ -7,7 +7,8 @@
  * @package flat-bootstrap
  */
 ?>
-	<div id="secondary" class="widget-area col-md-4 become-volunteer" role="complementary">6
+	<div id="secondary" class="widget-area col-md-4 become-volunteer" role="complementary">
+	66
 		<?php do_action( 'before_sidebar' ); ?>
 		<?php if ( ! dynamic_sidebar( 'sidebar-1' ) ) : ?>
 

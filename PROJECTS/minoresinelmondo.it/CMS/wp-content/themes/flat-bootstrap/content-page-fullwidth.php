@@ -10,7 +10,7 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-
+content 3
 	<div class="entry-content">
 
 		<?php get_sidebar( 'home' ); ?>

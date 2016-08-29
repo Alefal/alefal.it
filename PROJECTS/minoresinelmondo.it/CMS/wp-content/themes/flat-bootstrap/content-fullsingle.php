@@ -9,7 +9,7 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-
+content 1
 	<?php if ( is_single () ) : ?>
 		<div class="container centered padding-top">
 		<?php get_template_part( 'content', 'post-header' ); ?>

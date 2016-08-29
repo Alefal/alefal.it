@@ -9,7 +9,7 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-
+content 5
 	<?php if ( is_single () ) : ?>
 		<?php get_template_part( 'content', 'post-header' ); ?>
 	<?php endif; ?>

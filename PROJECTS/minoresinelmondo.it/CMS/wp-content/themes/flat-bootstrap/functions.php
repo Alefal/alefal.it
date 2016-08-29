@@ -389,8 +389,8 @@ function alter_search_query( $query ) {
     if(is_search()){
     	$mnmCatNewsSearch = get_query_var('mnmCatNewsSearch');
     	if($mnmCatNewsSearch != '') {
-      	$query->set('cat', 6); //id category "news"
-      }
+      		$query->set('cat', '6,3,31,28'); //id category "news", "events", "incontri", "minoresi"
+      	}
     }
   }
 }
@@ -417,6 +417,6 @@ function wpsites_exclude_widget_category( $cat_args ) {
 /** Hook widget recent post **/
 add_filter('widget_posts_args', 'filter_recent_posts_widget_parameters'); 
 function filter_recent_posts_widget_parameters($params) {
-   $params['category_name'] = 'news, events';
+   $params['category_name'] = 'news, events, incontri, minoresi';
    return $params;
 }
