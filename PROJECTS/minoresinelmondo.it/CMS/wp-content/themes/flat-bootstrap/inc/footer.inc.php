@@ -12,11 +12,11 @@
                     </div>
                     <div class="col-sm-4">
                         <span><i class="fa fa-phone"></i></span>
-                        <p class="contact-info"><?php echo constant('INFO_PHONE'); ?></p>
+                        <a class="contact-info" href="tel:<?php echo constant('INFO_PHONE'); ?>"><?php echo constant('INFO_PHONE'); ?></a>
                     </div>
                     <div class="col-sm-4">
                         <span><i class="fa fa-envelope"></i></span>
-                        <a class="contact-info" href="#"><?php echo constant('INFO_EMAIL'); ?></a>
+                        <a class="contact-info" href="mailto:<?php echo constant('INFO_EMAIL'); ?>"><?php echo constant('INFO_EMAIL'); ?></a>
                     </div>
                 </div>
                 <div class="contact-form">
@@ -73,7 +73,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-sm-3" style="margin-top: 25px;" align="right">
+            <div class="col-sm-3" style="margin-top: 15px;" align="right">
                 <a href="javascript:void(0);" onclick="javascript:talkRadioDivinaFM('<?php echo get_template_directory_uri(); ?>');">
                     <img class="img-responsive" src="<?php echo get_template_directory_uri(); ?>/assets/images/logoDivinaFM.png" alt="">
                 </a>
