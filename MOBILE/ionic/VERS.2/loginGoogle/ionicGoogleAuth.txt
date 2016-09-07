@@ -1,0 +1,38 @@
+C:\Program Files\Java\jdk1.8.0_73\bin> keytool -exportcert -alias androiddebugkey -keystore "%USERPROFILE%\.android\debug.keystore" -list -v
+
+usually the debug.keystore password is just "android".
+
+Nome alias: androiddebugkey
+Data di creazione: 5-apr-2016
+Tipo di voce: PrivateKeyEntry
+Lunghezza catena certificati: 1
+Certificato[1]:
+Proprietario: CN=Android Debug, O=Android, C=US
+Autorità emittente: CN=Android Debug, O=Android, C=US
+Numero di serie: 3a261774
+Valido da: Tue Apr 05 17:33:02 CEST 2016 a: Wed Apr 05 17:33:02 CEST 2017
+Impronte digitali certificato:
+         MD5:  A5:82:2F:C4:F2:BD:8F:1C:B2:3C:40:07:02:16:C9:80
+         SHA1: 4A:D2:DC:79:06:0E:8A:D4:5E:C8:5D:58:A6:F5:15:00:4F:D1:9A:36
+         SHA256: 66:1E:C9:B8:0A:C2:5C:47:22:3C:0E:D0:A7:E7:D2:12:06:CC:C9:FE:29:AA:DA:54:48:9E:42:11:9A:74:33:40
+         Nome algoritmo firma: SHA256withRSA
+         Versione: 3
+
+Estensioni:
+
+#1: ObjectId: 2.5.29.14 Criticality=false
+SubjectKeyIdentifier [
+KeyIdentifier [
+0000: FC 49 15 9F DA A8 EE 86   20 98 A9 2F 66 FA 2C 75  .I...... ../f.,u
+0010: C3 A4 59 3A                                        ..Y:
+]
+]
+
+Scaricare file google-services.json e copiarlo nella directory /app
+
+$ ionic plugin add cordova-plugin-googleplus --variable REVERSED_CLIENT_ID=myreversedclientid
+
+dove myreversedclientid è nel file google-services.json alla key client_id
+695879492406-t46pnnetodo7edboanorea8uqfinpoiv.apps.googleusercontent.com
+
+ionic plugin add cordova-plugin-googleplus --variable REVERSED_CLIENT_ID=695879492406-t46pnnetodo7edboanorea8uqfinpoiv.apps.googleusercontent.com

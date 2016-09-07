@@ -16,11 +16,12 @@ export class HomePage {
     platform: Platform,
     fbProvider: FbProvider
   ) {
-    /** Login */
+
+    // Login
     fbProvider.login().then((responseLogin) => {
       console.log('responseLogin: ', JSON.stringify(responseLogin));
 
-      /** Me */
+      // Me
       fbProvider.me().then((responseMe) => {
         console.log('me: ', JSON.stringify(responseMe));
         console.log('Good to see you, ' + responseMe.name + '.');
@@ -32,15 +33,13 @@ export class HomePage {
       console.error('Unable to execute login: ', err);
     });
     
-    /** Posts Page */
+    // Posts Page
     fbProvider.postsPage().then((responsePostsPage) => {
       console.log('me: ', JSON.stringify(responsePostsPage));
       this.posts = responsePostsPage.data;
     }, (err) => {
       console.error('Unable to execute postsPage: ', err);
     });
-
-
 
     /** AppInvite
     fbProvider.appInvite().then((responseAppInvite) => {
