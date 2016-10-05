@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>JavaScript Documentation</title>
+
+<!--CDN links for TweenLite, CSSPlugin, and EasePack-->
+
+<script src="src/jquery-3.1.1.min.js"></script>
+
+<script src="src/uncompressed/plugins/CSSPlugin.js"></script>
+<script src="src/uncompressed/easing/EasePack.js"></script>
+<script src="src/uncompressed/TweenLite.js"></script>
+
+<script type="text/javascript">
+$(function(){
+	var photo = $("#gufo"); //or use jQuery's $("#photo")
+	//TweenLite.to(photo, 1.5, {width:100});
+	TweenLite.to("#gufo", 2, {backgroundColor:"#ff0000", width:"50%", top:"100px", ease:Power2.easeInOut});
+});
+</script>
+
+</head>
+<body>
+
+<div align="center">
+	<img id="gufo" src="gufo.png" width="25%" />
+</div>
+
+</body>
+</html>
