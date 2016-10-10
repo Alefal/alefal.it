@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 10, 2016 at 10:00 AM
+-- Generation Time: Oct 10, 2016 at 12:02 PM
 -- Server version: 10.0.17-MariaDB
 -- PHP Version: 5.6.14
 
@@ -42,7 +42,7 @@ CREATE TABLE `jml_assets` (
 --
 
 INSERT INTO `jml_assets` (`id`, `parent_id`, `lft`, `rgt`, `level`, `name`, `title`, `rules`) VALUES
-(1, 0, 0, 153, 0, 'root.1', 'Root Asset', '{"core.login.site":{"6":1,"2":1},"core.login.admin":{"6":1},"core.login.offline":{"6":1},"core.admin":{"8":1},"core.manage":{"7":1},"core.create":{"6":1,"3":1},"core.delete":{"6":1},"core.edit":{"6":1,"4":1},"core.edit.state":{"6":1,"5":1},"core.edit.own":{"6":1,"3":1}}'),
+(1, 0, 0, 157, 0, 'root.1', 'Root Asset', '{"core.login.site":{"6":1,"2":1},"core.login.admin":{"6":1},"core.login.offline":{"6":1},"core.admin":{"8":1},"core.manage":{"7":1},"core.create":{"6":1,"3":1},"core.delete":{"6":1},"core.edit":{"6":1,"4":1},"core.edit.state":{"6":1,"5":1},"core.edit.own":{"6":1,"3":1}}'),
 (2, 1, 1, 2, 1, 'com_admin', 'com_admin', '{}'),
 (3, 1, 3, 6, 1, 'com_banners', 'com_banners', '{"core.admin":{"7":1},"core.manage":{"6":1},"core.create":[],"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
 (4, 1, 7, 8, 1, 'com_cache', 'com_cache', '{"core.admin":{"7":1},"core.manage":{"7":1}}'),
@@ -57,68 +57,70 @@ INSERT INTO `jml_assets` (`id`, `parent_id`, `lft`, `rgt`, `level`, `name`, `tit
 (13, 1, 49, 50, 1, 'com_mailto', 'com_mailto', '{}'),
 (14, 1, 51, 52, 1, 'com_massmail', 'com_massmail', '{}'),
 (15, 1, 53, 54, 1, 'com_media', 'com_media', '{"core.admin":{"7":1},"core.manage":{"6":1},"core.create":{"3":1},"core.delete":{"5":1}}'),
-(16, 1, 55, 62, 1, 'com_menus', 'com_menus', '{"core.admin":{"7":1},"core.manage":[],"core.create":[],"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
-(17, 1, 63, 64, 1, 'com_messages', 'com_messages', '{"core.admin":{"7":1},"core.manage":{"7":1}}'),
-(18, 1, 65, 118, 1, 'com_modules', 'com_modules', '{"core.admin":{"7":1},"core.manage":[],"core.create":[],"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
-(19, 1, 119, 122, 1, 'com_newsfeeds', 'com_newsfeeds', '{"core.admin":{"7":1},"core.manage":{"6":1},"core.create":[],"core.delete":[],"core.edit":[],"core.edit.state":[],"core.edit.own":[]}'),
-(20, 1, 123, 124, 1, 'com_plugins', 'com_plugins', '{"core.admin":{"7":1},"core.manage":[],"core.edit":[],"core.edit.state":[]}'),
-(21, 1, 125, 126, 1, 'com_redirect', 'com_redirect', '{"core.admin":{"7":1},"core.manage":[]}'),
-(22, 1, 127, 128, 1, 'com_search', 'com_search', '{"core.admin":{"7":1},"core.manage":{"6":1}}'),
-(23, 1, 129, 130, 1, 'com_templates', 'com_templates', '{"core.admin":{"7":1},"core.manage":[],"core.create":[],"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
-(24, 1, 131, 134, 1, 'com_users', 'com_users', '{"core.admin":{"7":1},"core.manage":[],"core.create":[],"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
-(26, 1, 135, 136, 1, 'com_wrapper', 'com_wrapper', '{}'),
+(16, 1, 55, 64, 1, 'com_menus', 'com_menus', '{"core.admin":{"7":1},"core.manage":[],"core.create":[],"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
+(17, 1, 65, 66, 1, 'com_messages', 'com_messages', '{"core.admin":{"7":1},"core.manage":{"7":1}}'),
+(18, 1, 67, 120, 1, 'com_modules', 'com_modules', '{"core.admin":{"7":1},"core.manage":[],"core.create":[],"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
+(19, 1, 121, 124, 1, 'com_newsfeeds', 'com_newsfeeds', '{"core.admin":{"7":1},"core.manage":{"6":1},"core.create":[],"core.delete":[],"core.edit":[],"core.edit.state":[],"core.edit.own":[]}'),
+(20, 1, 125, 126, 1, 'com_plugins', 'com_plugins', '{"core.admin":{"7":1},"core.manage":[],"core.edit":[],"core.edit.state":[]}'),
+(21, 1, 127, 128, 1, 'com_redirect', 'com_redirect', '{"core.admin":{"7":1},"core.manage":[]}'),
+(22, 1, 129, 130, 1, 'com_search', 'com_search', '{"core.admin":{"7":1},"core.manage":{"6":1}}'),
+(23, 1, 131, 132, 1, 'com_templates', 'com_templates', '{"core.admin":{"7":1},"core.manage":[],"core.create":[],"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
+(24, 1, 133, 136, 1, 'com_users', 'com_users', '{"core.admin":{"7":1},"core.manage":[],"core.create":[],"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
+(26, 1, 137, 138, 1, 'com_wrapper', 'com_wrapper', '{}'),
 (27, 8, 18, 27, 2, 'com_content.category.2', 'Non categorizzato', '{"core.create":[],"core.delete":[],"core.edit":[],"core.edit.state":[],"core.edit.own":[]}'),
 (28, 3, 4, 5, 2, 'com_banners.category.3', 'Non categorizzato', '{"core.create":[],"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
 (29, 7, 14, 15, 2, 'com_contact.category.4', 'Non categorizzato', '{"core.create":[],"core.delete":[],"core.edit":[],"core.edit.state":[],"core.edit.own":[]}'),
-(30, 19, 120, 121, 2, 'com_newsfeeds.category.5', 'Non categorizzato', '{"core.create":[],"core.delete":[],"core.edit":[],"core.edit.state":[],"core.edit.own":[]}'),
-(32, 24, 132, 133, 1, 'com_users.category.7', 'Non categorizzato', '{"core.create":[],"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
-(33, 1, 137, 138, 1, 'com_finder', 'com_finder', '{"core.admin":{"7":1},"core.manage":{"6":1}}'),
-(34, 1, 139, 140, 1, 'com_joomlaupdate', 'com_joomlaupdate', '{"core.admin":[],"core.manage":[],"core.delete":[],"core.edit.state":[]}'),
-(35, 1, 141, 142, 1, 'com_tags', 'com_tags', '{"core.admin":[],"core.manage":[],"core.manage":[],"core.delete":[],"core.edit.state":[]}'),
-(36, 1, 143, 144, 1, 'com_contenthistory', 'com_contenthistory', '{}'),
-(37, 1, 145, 146, 1, 'com_ajax', 'com_ajax', '{}'),
-(38, 1, 147, 148, 1, 'com_postinstall', 'com_postinstall', '{}'),
-(39, 18, 66, 67, 2, 'com_modules.module.1', 'Menu Principale', '{"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
-(40, 18, 68, 69, 2, 'com_modules.module.2', 'Login', '{"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
-(41, 18, 70, 71, 2, 'com_modules.module.3', 'I più letti', '{"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
-(42, 18, 72, 73, 2, 'com_modules.module.4', 'Articoli recenti', '{"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
-(43, 18, 74, 75, 2, 'com_modules.module.8', 'Toolbar', '{"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
-(44, 18, 76, 77, 2, 'com_modules.module.9', 'Quick Icons', '{"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
-(45, 18, 78, 79, 2, 'com_modules.module.10', 'Utenti connessi', '{"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
-(46, 18, 80, 81, 2, 'com_modules.module.12', 'Admin Menu', '{"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
-(47, 18, 82, 83, 2, 'com_modules.module.13', 'Admin Submenu', '{"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
-(48, 18, 84, 85, 2, 'com_modules.module.14', 'User Status', '{"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
-(49, 18, 86, 87, 2, 'com_modules.module.15', 'Titolo', '{"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
-(50, 18, 88, 89, 2, 'com_modules.module.16', 'Accesso Utenti', '{"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
-(51, 18, 90, 91, 2, 'com_modules.module.17', 'Percorso', '{"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
-(52, 18, 92, 93, 2, 'com_modules.module.79', 'Stato multilingua', '{"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
-(53, 18, 94, 95, 2, 'com_modules.module.86', 'Joomla Version', '{"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
-(54, 18, 96, 97, 2, 'com_modules.module.87', 'Argomenti Popolari', '{"core.delete":{"6":1},"core.edit":{"6":1,"4":1},"core.edit.state":{"6":1,"5":1}}'),
-(55, 18, 98, 99, 2, 'com_modules.module.88', 'Informazioni del sito', '{"core.delete":{"6":1},"core.edit":{"6":1,"4":1},"core.edit.state":{"6":1,"5":1}}'),
-(56, 18, 100, 101, 2, 'com_modules.module.89', 'Release News', '{"core.delete":{"6":1},"core.edit":{"6":1,"4":1},"core.edit.state":{"6":1,"5":1}}'),
-(57, 18, 102, 103, 2, 'com_modules.module.90', 'Ultimi Articoli', '{"core.delete":{"6":1},"core.edit":{"6":1,"4":1},"core.edit.state":{"6":1,"5":1}}'),
-(58, 18, 104, 105, 2, 'com_modules.module.91', 'Menu Utente', '{"core.delete":{"6":1},"core.edit":{"6":1,"4":1},"core.edit.state":{"6":1,"5":1}}'),
-(59, 18, 106, 107, 2, 'com_modules.module.92', 'Immagine di testata', '{"core.delete":{"6":1},"core.edit":{"6":1,"4":1},"core.edit.state":{"6":1,"5":1}}'),
-(60, 18, 108, 109, 2, 'com_modules.module.93', 'Cerca', '{"core.delete":{"6":1},"core.edit":{"6":1,"4":1},"core.edit.state":{"6":1,"5":1}}'),
+(30, 19, 122, 123, 2, 'com_newsfeeds.category.5', 'Non categorizzato', '{"core.create":[],"core.delete":[],"core.edit":[],"core.edit.state":[],"core.edit.own":[]}'),
+(32, 24, 134, 135, 1, 'com_users.category.7', 'Non categorizzato', '{"core.create":[],"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
+(33, 1, 139, 140, 1, 'com_finder', 'com_finder', '{"core.admin":{"7":1},"core.manage":{"6":1}}'),
+(34, 1, 141, 142, 1, 'com_joomlaupdate', 'com_joomlaupdate', '{"core.admin":[],"core.manage":[],"core.delete":[],"core.edit.state":[]}'),
+(35, 1, 143, 144, 1, 'com_tags', 'com_tags', '{"core.admin":[],"core.manage":[],"core.manage":[],"core.delete":[],"core.edit.state":[]}'),
+(36, 1, 145, 146, 1, 'com_contenthistory', 'com_contenthistory', '{}'),
+(37, 1, 147, 148, 1, 'com_ajax', 'com_ajax', '{}'),
+(38, 1, 149, 150, 1, 'com_postinstall', 'com_postinstall', '{}'),
+(39, 18, 68, 69, 2, 'com_modules.module.1', 'Menu Principale', '{"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
+(40, 18, 70, 71, 2, 'com_modules.module.2', 'Login', '{"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
+(41, 18, 72, 73, 2, 'com_modules.module.3', 'I più letti', '{"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
+(42, 18, 74, 75, 2, 'com_modules.module.4', 'Articoli recenti', '{"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
+(43, 18, 76, 77, 2, 'com_modules.module.8', 'Toolbar', '{"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
+(44, 18, 78, 79, 2, 'com_modules.module.9', 'Quick Icons', '{"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
+(45, 18, 80, 81, 2, 'com_modules.module.10', 'Utenti connessi', '{"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
+(46, 18, 82, 83, 2, 'com_modules.module.12', 'Admin Menu', '{"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
+(47, 18, 84, 85, 2, 'com_modules.module.13', 'Admin Submenu', '{"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
+(48, 18, 86, 87, 2, 'com_modules.module.14', 'User Status', '{"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
+(49, 18, 88, 89, 2, 'com_modules.module.15', 'Titolo', '{"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
+(50, 18, 90, 91, 2, 'com_modules.module.16', 'Accesso Utenti', '{"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
+(51, 18, 92, 93, 2, 'com_modules.module.17', 'Percorso', '{"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
+(52, 18, 94, 95, 2, 'com_modules.module.79', 'Stato multilingua', '{"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
+(53, 18, 96, 97, 2, 'com_modules.module.86', 'Joomla Version', '{"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
+(54, 18, 98, 99, 2, 'com_modules.module.87', 'Argomenti Popolari', '{"core.delete":{"6":1},"core.edit":{"6":1,"4":1},"core.edit.state":{"6":1,"5":1}}'),
+(55, 18, 100, 101, 2, 'com_modules.module.88', 'Informazioni del sito', '{"core.delete":{"6":1},"core.edit":{"6":1,"4":1},"core.edit.state":{"6":1,"5":1}}'),
+(56, 18, 102, 103, 2, 'com_modules.module.89', 'Release News', '{"core.delete":{"6":1},"core.edit":{"6":1,"4":1},"core.edit.state":{"6":1,"5":1}}'),
+(57, 18, 104, 105, 2, 'com_modules.module.90', 'Ultimi Articoli', '{"core.delete":{"6":1},"core.edit":{"6":1,"4":1},"core.edit.state":{"6":1,"5":1}}'),
+(58, 18, 106, 107, 2, 'com_modules.module.91', 'Menu Utente', '{"core.delete":{"6":1},"core.edit":{"6":1,"4":1},"core.edit.state":{"6":1,"5":1}}'),
+(59, 18, 108, 109, 2, 'com_modules.module.92', 'Immagine di testata', '{"core.delete":{"6":1},"core.edit":{"6":1,"4":1},"core.edit.state":{"6":1,"5":1}}'),
+(60, 18, 110, 111, 2, 'com_modules.module.93', 'Cerca', '{"core.delete":{"6":1},"core.edit":{"6":1,"4":1},"core.edit.state":{"6":1,"5":1}}'),
 (61, 27, 19, 20, 3, 'com_content.article.1', 'Benvenuto!', '{"core.delete":{"6":1},"core.edit":{"6":1,"4":1},"core.edit.state":{"6":1,"5":1}}'),
-(62, 1, 149, 150, 1, '#__ucm_content.1', '#__ucm_content.1', '[]'),
-(63, 18, 110, 111, 2, 'com_modules.module.94', 'Language Switcher', '[]'),
-(64, 1, 151, 152, 1, '#__languages.3', '#__languages.3', '{}'),
+(62, 1, 151, 152, 1, '#__ucm_content.1', '#__ucm_content.1', '[]'),
+(63, 18, 112, 113, 2, 'com_modules.module.94', 'Language Switcher', '[]'),
+(64, 1, 153, 154, 1, '#__languages.3', '#__languages.3', '{}'),
 (65, 16, 56, 57, 2, 'com_menus.menu.3', 'Main Menu (en-US)', '{}'),
-(66, 18, 112, 113, 2, 'com_modules.module.95', 'Main menu en-US', '[]'),
+(66, 18, 114, 115, 2, 'com_modules.module.95', 'Main menu en-US', '[]'),
 (67, 8, 28, 31, 2, 'com_content.category.8', 'Category (en-us)', '[]'),
 (68, 67, 29, 30, 3, 'com_content.article.2', 'Article (en-us)', '[]'),
 (69, 16, 58, 59, 2, 'com_menus.menu.4', 'Main Menu (en-GB)', '{}'),
-(70, 18, 114, 115, 2, 'com_modules.module.96', 'Main menu en-GB', '[]'),
+(70, 18, 116, 117, 2, 'com_modules.module.96', 'Main menu en-GB', '[]'),
 (71, 8, 32, 35, 2, 'com_content.category.9', 'Category (en-gb)', '[]'),
 (72, 71, 33, 34, 3, 'com_content.article.3', 'Article (en-gb)', '[]'),
 (73, 16, 60, 61, 2, 'com_menus.menu.5', 'Main Menu (it-IT)', '{}'),
-(74, 18, 116, 117, 2, 'com_modules.module.97', 'Main menu it-IT', '[]'),
+(74, 18, 118, 119, 2, 'com_modules.module.97', 'Main menu it-IT', '[]'),
 (75, 8, 36, 39, 2, 'com_content.category.10', 'Categoria (it-it)', '[]'),
 (76, 75, 37, 38, 3, 'com_content.article.4', 'Articolo (it-it)', '[]'),
 (77, 27, 21, 22, 3, 'com_content.article.5', 'Test (it-IT)', '{"core.admin":{"7":1},"core.manage":{"6":1},"core.create":{"3":1},"core.delete":[],"core.edit":{"4":1},"core.edit.state":{"5":1},"core.edit.own":[]}'),
 (78, 27, 23, 24, 3, 'com_content.article.6', 'Test (en-UK)', '{"core.admin":{"7":1},"core.manage":{"6":1},"core.create":{"3":1},"core.delete":[],"core.edit":{"4":1},"core.edit.state":{"5":1},"core.edit.own":[]}'),
-(79, 27, 25, 26, 3, 'com_content.article.7', 'Test (en-US)', '{"core.admin":{"7":1},"core.manage":{"6":1},"core.create":{"3":1},"core.delete":[],"core.edit":{"4":1},"core.edit.state":{"5":1},"core.edit.own":[]}');
+(79, 27, 25, 26, 3, 'com_content.article.7', 'Test (en-US)', '{"core.admin":{"7":1},"core.manage":{"6":1},"core.create":{"3":1},"core.delete":[],"core.edit":{"4":1},"core.edit.state":{"5":1},"core.edit.own":[]}'),
+(80, 1, 155, 156, 1, 'com_kunena', 'com_kunena', '{}'),
+(81, 16, 62, 63, 2, 'com_menus.menu.6', ' Menu Kunena', '{}');
 
 -- --------------------------------------------------------
 
@@ -545,7 +547,7 @@ INSERT INTO `jml_extensions` (`extension_id`, `name`, `type`, `element`, `folder
 (31, 'com_ajax', 'component', 'com_ajax', '', 1, 1, 1, 1, '{"name":"com_ajax","type":"component","creationDate":"August 2013","author":"Joomla! Project","copyright":"(C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.2.0","description":"COM_AJAX_XML_DESCRIPTION","group":"","filename":"ajax"}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (32, 'com_postinstall', 'component', 'com_postinstall', '', 1, 1, 1, 1, '{"name":"com_postinstall","type":"component","creationDate":"September 2013","author":"Joomla! Project","copyright":"(C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.2.0","description":"COM_POSTINSTALL_XML_DESCRIPTION","group":""}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (102, 'phputf8', 'library', 'phputf8', '', 0, 1, 1, 1, '{"name":"phputf8","type":"library","creationDate":"2006","author":"Harry Fuecks","copyright":"Copyright various authors","authorEmail":"hfuecks@gmail.com","authorUrl":"http:\\/\\/sourceforge.net\\/projects\\/phputf8","version":"0.5","description":"LIB_PHPUTF8_XML_DESCRIPTION","group":"","filename":"phputf8"}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
-(103, 'Joomla! Platform', 'library', 'joomla', '', 0, 1, 1, 1, '{"name":"Joomla! Platform","type":"library","creationDate":"2008","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"https:\\/\\/www.joomla.org","version":"13.1","description":"LIB_JOOMLA_XML_DESCRIPTION","group":"","filename":"joomla"}', '{"mediaversion":"3ddc64c19fece91d13cf6c830f43d586"}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+(103, 'Joomla! Platform', 'library', 'joomla', '', 0, 1, 1, 1, '{"name":"Joomla! Platform","type":"library","creationDate":"2008","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"https:\\/\\/www.joomla.org","version":"13.1","description":"LIB_JOOMLA_XML_DESCRIPTION","group":"","filename":"joomla"}', '{"mediaversion":"3ceb406d5ead6fffb4900a37e69aac83"}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (104, 'IDNA Convert', 'library', 'idna_convert', '', 0, 1, 1, 1, '{"name":"IDNA Convert","type":"library","creationDate":"2004","author":"phlyLabs","copyright":"2004-2011 phlyLabs Berlin, http:\\/\\/phlylabs.de","authorEmail":"phlymail@phlylabs.de","authorUrl":"http:\\/\\/phlylabs.de","version":"0.8.0","description":"LIB_IDNA_XML_DESCRIPTION","group":"","filename":"idna_convert"}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (105, 'FOF', 'library', 'fof', '', 0, 1, 1, 1, '{"name":"FOF","type":"library","creationDate":"2015-04-22 13:15:32","author":"Nicholas K. Dionysopoulos \\/ Akeeba Ltd","copyright":"(C)2011-2015 Nicholas K. Dionysopoulos","authorEmail":"nicholas@akeebabackup.com","authorUrl":"https:\\/\\/www.akeebabackup.com","version":"2.4.3","description":"LIB_FOF_XML_DESCRIPTION","group":"","filename":"fof"}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (106, 'PHPass', 'library', 'phpass', '', 0, 1, 1, 1, '{"name":"PHPass","type":"library","creationDate":"2004-2006","author":"Solar Designer","copyright":"","authorEmail":"solar@openwall.com","authorUrl":"http:\\/\\/www.openwall.com\\/phpass\\/","version":"0.3","description":"LIB_PHPASS_XML_DESCRIPTION","group":"","filename":"phpass"}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
@@ -658,7 +660,27 @@ INSERT INTO `jml_extensions` (`extension_id`, `name`, `type`, `element`, `folder
 (10002, 'Italian Language Pack', 'package', 'pkg_it-IT', '', 0, 1, 1, 0, '{"name":"Italian Language Pack","type":"package","creationDate":"16 agosto 2016","author":"Italian translation team : joomla.it","copyright":"Copyright (C) 2005 - 2016 joomla.it e Open Source Matters. Tutti i diritti riservati","authorEmail":"info@joomla.it","authorUrl":"www.joomla.it","version":"3.6.2.2","description":"Joomla! 3.6 Full Italian (it-IT) Language Package - Version 3.6.2v2","group":"","filename":"pkg_it-IT"}', '{}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (10003, 'EnglishUnitedStates', 'language', 'en-US', '', 1, 1, 0, 0, '{"name":"English (United States)","type":"language","creationDate":"August 2016","author":"stevec4","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"stevec4@comcast.net","authorUrl":"www.joomla.org","version":"3.6.2.1","description":"en-US administrator language","group":"","filename":"install"}', '{}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (10004, 'EnglishUnitedStates', 'language', 'en-US', '', 0, 1, 0, 0, '{"name":"English (United States)","type":"language","creationDate":"August 2016","author":"stevec4","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"stevec4@comcas.net","authorUrl":"www.joomla.org","version":"3.6.2.2","description":"en-US site language","group":"","filename":"install"}', '{}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
-(10005, 'English United States Language Pack', 'package', 'pkg_en-US', '', 0, 1, 1, 0, '{"name":"English United States Language Pack","type":"package","creationDate":"August 2016","author":"stevec4","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"stevec4@comcast.net","authorUrl":"www.joomla.org","version":"3.6.2.2","description":"3.6.2.2 Joomla! English (United States) Language Package","group":"","filename":"pkg_en-US"}', '{}', '', '', 0, '0000-00-00 00:00:00', 0, 0);
+(10005, 'English United States Language Pack', 'package', 'pkg_en-US', '', 0, 1, 1, 0, '{"name":"English United States Language Pack","type":"package","creationDate":"August 2016","author":"stevec4","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"stevec4@comcast.net","authorUrl":"www.joomla.org","version":"3.6.2.2","description":"3.6.2.2 Joomla! English (United States) Language Package","group":"","filename":"pkg_en-US"}', '{}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+(10006, 'plg_installer_webinstaller', 'plugin', 'webinstaller', 'installer', 0, 1, 1, 0, '{"name":"plg_installer_webinstaller","type":"plugin","creationDate":"17 February 2016","author":"Joomla! Project","copyright":"Copyright (C) 2013-2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"1.1.0","description":"PLG_INSTALLER_WEBINSTALLER_XML_DESCRIPTION","group":"","filename":"webinstaller"}', '{"tab_position":"0"}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+(10007, 'plg_system_kunena', 'plugin', 'kunena', 'system', 0, 1, 1, 0, '{"name":"plg_system_kunena","type":"plugin","creationDate":"2016-10-01","author":"Kunena Team","copyright":"www.kunena.org","authorEmail":"Kunena@kunena.org","authorUrl":"https:\\/\\/www.kunena.org","version":"5.0.2","description":"PLG_SYSTEM_KUNENA_DESC","group":"","filename":"kunena"}', '{"jcontentevents":"0","jcontentevent_target":"body"}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+(10008, 'plg_quickicon_kunena', 'plugin', 'kunena', 'quickicon', 0, 1, 1, 0, '{"name":"plg_quickicon_kunena","type":"plugin","creationDate":"2016-10-01","author":"Kunena Team","copyright":"www.kunena.org","authorEmail":"Kunena@kunena.org","authorUrl":"https:\\/\\/www.kunena.org","version":"5.0.2","description":"PLG_QUICKICON_KUNENA_DESC","group":"","filename":"kunena"}', '{"context":"mod_quickicon"}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+(10009, 'Kunena Framework', 'library', 'kunena', '', 0, 1, 1, 0, '{"name":"Kunena Framework","type":"library","creationDate":"2016-10-01","author":"Kunena Team","copyright":"(C) 2008 - 2016 Kunena Team. All rights reserved.","authorEmail":"kunena@kunena.org","authorUrl":"https:\\/\\/www.kunena.org","version":"5.0.2","description":"Kunena Framework.","group":"","filename":"kunena"}', '{}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+(10010, 'Kunena Media Files', 'file', 'kunena_media', '', 0, 1, 0, 0, '{"name":"Kunena Media Files","type":"file","creationDate":"2016-10-01","author":"Kunena Team","copyright":"(C) 2008 - 2016 Kunena Team. All rights reserved.","authorEmail":"kunena@kunena.org","authorUrl":"http:\\/\\/www.kunena.org","version":"5.0.2","description":"Kunena media files.","group":""}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+(10011, 'com_kunena', 'component', 'com_kunena', '', 1, 1, 0, 0, '{"name":"com_kunena","type":"component","creationDate":"2016-10-01","author":"Kunena Team","copyright":"(C) 2008 - 2016 Kunena Team. All rights reserved.","authorEmail":"kunena@kunena.org","authorUrl":"https:\\/\\/www.kunena.org","version":"5.0.2","description":"COM_KUNENA_XML_DESCRIPTION","group":"","filename":"kunena"}', '{}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+(10012, 'Kunena Forum Package', 'package', 'pkg_kunena', '', 0, 1, 1, 0, '{"name":"Kunena Forum Package","type":"package","creationDate":"2016-10-01","author":"Kunena Team","copyright":"(C) 2008 - 2016 Kunena Team. All rights reserved.","authorEmail":"kunena@kunena.org","authorUrl":"http:\\/\\/www.kunena.org","version":"5.0.2","description":"Kunena Forum Package.","group":"","filename":"pkg_kunena"}', '{}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+(10013, 'plg_kunena_alphauserpoints', 'plugin', 'alphauserpoints', 'kunena', 0, 0, 1, 0, '{"name":"plg_kunena_alphauserpoints","type":"plugin","creationDate":"2016-10-01","author":"Kunena Team","copyright":"www.kunena.org","authorEmail":"Kunena@kunena.org","authorUrl":"https:\\/\\/www.kunena.org","version":"5.0.2","description":"PLG_KUNENA_ALPHAUSERPOINTS_DESCRIPTION","group":"","filename":"alphauserpoints"}', '{"activity":"1","avatar":"1","profile":"1","activity_points_limit":"0"}', '', '', 0, '0000-00-00 00:00:00', 1, 0),
+(10014, 'plg_kunena_altauserpoints', 'plugin', 'altauserpoints', 'kunena', 0, 0, 1, 0, '{"name":"plg_kunena_altauserpoints","type":"plugin","creationDate":"2016-10-01","author":"Kunena Team","copyright":"www.kunena.org","authorEmail":"Kunena@kunena.org","authorUrl":"https:\\/\\/www.kunena.org","version":"5.0.2","description":"PLG_KUNENA_ALTAUSERPOINTS_DESCRIPTION","group":"","filename":"altauserpoints"}', '{"activity":"1","avatar":"1","profile":"1","activity_points_limit":"0"}', '', '', 0, '0000-00-00 00:00:00', 1, 0),
+(10015, 'plg_kunena_community', 'plugin', 'community', 'kunena', 0, 0, 1, 0, '{"name":"plg_kunena_community","type":"plugin","creationDate":"2016-10-01","author":"Kunena Team","copyright":"www.kunena.org","authorEmail":"Kunena@kunena.org","authorUrl":"https:\\/\\/www.kunena.org","version":"5.0.2","description":"PLG_KUNENA_COMMUNITY_DESCRIPTION","group":"","filename":"community"}', '{"access":"1","login":"1","activity":"1","avatar":"1","profile":"1","private":"1","activity_points_limit":"0"}', '', '', 0, '0000-00-00 00:00:00', 2, 0),
+(10016, 'plg_kunena_comprofiler', 'plugin', 'comprofiler', 'kunena', 0, 0, 1, 0, '{"name":"plg_kunena_comprofiler","type":"plugin","creationDate":"2016-10-01","author":"Kunena Team","copyright":"www.kunena.org","authorEmail":"Kunena@kunena.org","authorUrl":"https:\\/\\/www.kunena.org","version":"5.0.2","description":"PLG_KUNENA_COMPROFILER_DESCRIPTION","group":"","filename":"comprofiler"}', '{"access":"1","login":"1","activity":"1","avatar":"1","profile":"1","private":"1"}', '', '', 0, '0000-00-00 00:00:00', 3, 0),
+(10017, 'PLG_KUNENA_EASYPROFILE', 'plugin', 'easyprofile', 'kunena', 0, 0, 1, 0, '{"name":"PLG_KUNENA_EASYPROFILE","type":"plugin","creationDate":"2016-10-01","author":"Onlinecommunityhub","copyright":"https:\\/\\/onlinecommunityhub.nl","authorEmail":"info@onlinecommunityhub.nl","authorUrl":"https:\\/\\/onlinecommunityhub.nl","version":"5.0.2","description":"PLG_KUNENA_EASYPROFILE_DESCRIPTION","group":"","filename":"easyprofile"}', '{"avatar":"1","guestavatar":"easyprofile","profile":"1","userlist":"1"}', '', '', 0, '0000-00-00 00:00:00', 4, 0),
+(10018, 'plg_kunena_easysocial', 'plugin', 'easysocial', 'kunena', 0, 0, 1, 0, '{"name":"plg_kunena_easysocial","type":"plugin","creationDate":"2016-10-01","author":"StackIdeas","copyright":"http:\\/\\/stackideas.com","authorEmail":"support@stackideas.com","authorUrl":"http:\\/\\/stackideas.com","version":"5.0.2","description":"PLG_KUNENA_EASYSOCIAL_DESCRIPTION","group":"","filename":"easysocial"}', '{"login":"1","activity":"1","avatar":"1","profile":"1","private":"1","activity_badge_limit":"0","activity_points_limit":"0"}', '', '', 0, '0000-00-00 00:00:00', 5, 0),
+(10019, 'plg_kunena_gravatar', 'plugin', 'gravatar', 'kunena', 0, 0, 1, 0, '{"name":"plg_kunena_gravatar","type":"plugin","creationDate":"2016-10-01","author":"Kunena Team","copyright":"www.kunena.org","authorEmail":"Kunena@kunena.org","authorUrl":"https:\\/\\/www.kunena.org","version":"5.0.2","description":"PLG_KUNENA_GRAVATAR_DESCRIPTION","group":"","filename":"gravatar"}', '{"avatar":"1"}', '', '', 0, '0000-00-00 00:00:00', 6, 0),
+(10020, 'plg_kunena_uddeim', 'plugin', 'uddeim', 'kunena', 0, 0, 1, 0, '{"name":"plg_kunena_uddeim","type":"plugin","creationDate":"2016-10-01","author":"Kunena Team","copyright":"www.kunena.org","authorEmail":"Kunena@kunena.org","authorUrl":"https:\\/\\/www.kunena.org","version":"5.0.2","description":"PLG_KUNENA_UDDEIM_DESCRIPTION","group":"","filename":"uddeim"}', '{"private":"1"}', '', '', 0, '0000-00-00 00:00:00', 7, 0),
+(10021, 'plg_kunena_kunena', 'plugin', 'kunena', 'kunena', 0, 1, 1, 0, '{"name":"plg_kunena_kunena","type":"plugin","creationDate":"2016-10-01","author":"Kunena Team","copyright":"www.kunena.org","authorEmail":"Kunena@kunena.org","authorUrl":"https:\\/\\/www.kunena.org","version":"5.0.2","description":"PLG_KUNENA_KUNENA_DESCRIPTION","group":"","filename":"kunena"}', '{"avatar":"1","profile":"1"}', '', '', 0, '0000-00-00 00:00:00', 8, 0),
+(10022, 'plg_kunena_joomla', 'plugin', 'joomla', 'kunena', 0, 1, 1, 0, '{"name":"plg_kunena_joomla","type":"plugin","creationDate":"2016-10-01","author":"Kunena Team","copyright":"www.kunena.org","authorEmail":"Kunena@kunena.org","authorUrl":"https:\\/\\/www.kunena.org","version":"5.0.2","description":"PLG_KUNENA_JOOMLA_25_30_DESCRIPTION","group":"","filename":"joomla"}', '{"access":"1","login":"1"}', '', '', 0, '0000-00-00 00:00:00', 9, 0),
+(10023, 'Kunena Language - English', 'file', 'com_kunena_en-GB', '', 0, 1, 0, 0, '{"name":"Kunena Language - English","type":"file","creationDate":"2016-10-01","author":"Kunena Team","copyright":"(C) 2008 - 2016 Kunena Team. All rights reserved.","authorEmail":"kunena@kunena.org","authorUrl":"https:\\/\\/www.kunena.org","version":"5.0.2","description":"English language file for Kunena Forum Component","group":""}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+(10024, 'Kunena Language - Italian (Italy)', 'file', 'com_kunena_it-IT', '', 0, 1, 0, 0, '{"name":"Kunena Language - Italian (Italy)","type":"file","creationDate":"2016-10-01","author":"Kunena Team","copyright":"(C) 2008 - 2016 Kunena Team. All rights reserved.","authorEmail":"translations@kunena.org","authorUrl":"https:\\/\\/www.transifex.net\\/projects\\/p\\/Kunena\\/team\\/it_IT\\/","version":"5.0.2","description":"Italian (Italy) language file for Kunena Forum Component","group":""}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+(10025, 'Kunena Language Pack', 'package', 'pkg_kunena_languages', '', 0, 1, 1, 0, '{"name":"Kunena Language Pack","type":"package","creationDate":"2016-10-01","author":"Kunena Team","copyright":"(C) 2008 - 2016 Kunena Team. All rights reserved.","authorEmail":"kunena@kunena.org","authorUrl":"https:\\/\\/www.kunena.org","version":"5.0.2","description":"Language pack for Kunena forum component.","group":""}', '{}', '', '', 0, '0000-00-00 00:00:00', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -1137,6 +1159,655 @@ CREATE TABLE `jml_finder_types` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `jml_kunena_aliases`
+--
+
+CREATE TABLE `jml_kunena_aliases` (
+  `alias` varchar(190) NOT NULL,
+  `type` varchar(10) NOT NULL,
+  `item` varchar(32) NOT NULL,
+  `state` tinyint(4) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `jml_kunena_aliases`
+--
+
+INSERT INTO `jml_kunena_aliases` (`alias`, `type`, `item`, `state`) VALUES
+('announcement', 'view', 'announcement', 1),
+('benvenuto', 'catid', '2', 1),
+('casella-dei-suggerimenti', 'catid', '3', 1),
+('category', 'view', 'category', 1),
+('category/create', 'layout', 'category.create', 1),
+('category/default', 'layout', 'category.default', 1),
+('category/edit', 'layout', 'category.edit', 1),
+('category/manage', 'layout', 'category.manage', 1),
+('category/moderate', 'layout', 'category.moderate', 1),
+('category/user', 'layout', 'category.user', 1),
+('common', 'view', 'common', 1),
+('create', 'layout', 'category.create', 0),
+('credits', 'view', 'credits', 1),
+('default', 'layout', 'category.default', 0),
+('edit', 'layout', 'category.edit', 0),
+('forum-istruzioni-d-uso', 'catid', '5', 0),
+('forum-principale', 'catid', '1', 1),
+('forum-staff', 'catid', '4', 0),
+('home', 'view', 'home', 1),
+('manage', 'layout', 'category.manage', 0),
+('misc', 'view', 'misc', 1),
+('moderate', 'layout', 'category.moderate', 0),
+('search', 'view', 'search', 1),
+('statistics', 'view', 'statistics', 1),
+('topic', 'view', 'topic', 1),
+('topics', 'view', 'topics', 1),
+('user', 'view', 'user', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jml_kunena_announcement`
+--
+
+CREATE TABLE `jml_kunena_announcement` (
+  `id` int(3) NOT NULL,
+  `title` tinytext NOT NULL,
+  `created_by` int(11) NOT NULL DEFAULT '0',
+  `sdescription` text NOT NULL,
+  `description` text NOT NULL,
+  `created` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `published` tinyint(1) NOT NULL DEFAULT '0',
+  `publish_up` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `publish_down` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `ordering` tinyint(4) NOT NULL DEFAULT '0',
+  `showdate` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jml_kunena_attachments`
+--
+
+CREATE TABLE `jml_kunena_attachments` (
+  `id` int(11) NOT NULL,
+  `mesid` int(11) NOT NULL DEFAULT '0',
+  `userid` int(11) NOT NULL DEFAULT '0',
+  `protected` tinyint(4) NOT NULL DEFAULT '0',
+  `hash` char(32) DEFAULT NULL,
+  `size` int(11) DEFAULT NULL,
+  `folder` varchar(255) NOT NULL,
+  `filetype` varchar(20) NOT NULL,
+  `filename` varchar(255) NOT NULL,
+  `filename_real` varchar(255) NOT NULL DEFAULT '',
+  `caption` varchar(255) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jml_kunena_categories`
+--
+
+CREATE TABLE `jml_kunena_categories` (
+  `id` int(11) NOT NULL,
+  `parent_id` int(11) DEFAULT '0',
+  `name` tinytext,
+  `alias` varchar(255) NOT NULL,
+  `icon` varchar(60) NOT NULL,
+  `icon_id` tinyint(4) NOT NULL DEFAULT '0',
+  `locked` tinyint(4) NOT NULL DEFAULT '0',
+  `accesstype` varchar(20) NOT NULL DEFAULT 'joomla.level',
+  `access` int(11) NOT NULL DEFAULT '0',
+  `pub_access` int(11) NOT NULL DEFAULT '1',
+  `pub_recurse` tinyint(4) DEFAULT '1',
+  `admin_access` int(11) NOT NULL DEFAULT '0',
+  `admin_recurse` tinyint(4) DEFAULT '1',
+  `ordering` smallint(6) NOT NULL DEFAULT '0',
+  `published` tinyint(4) NOT NULL DEFAULT '0',
+  `channels` text,
+  `checked_out` tinyint(4) NOT NULL DEFAULT '0',
+  `checked_out_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `review` tinyint(4) NOT NULL DEFAULT '0',
+  `allow_anonymous` tinyint(4) NOT NULL DEFAULT '0',
+  `post_anonymous` tinyint(4) NOT NULL DEFAULT '0',
+  `hits` int(11) NOT NULL DEFAULT '0',
+  `description` text NOT NULL,
+  `headerdesc` text NOT NULL,
+  `class_sfx` varchar(20) NOT NULL,
+  `allow_polls` tinyint(4) NOT NULL DEFAULT '0',
+  `topic_ordering` varchar(16) NOT NULL DEFAULT 'lastpost',
+  `iconset` varchar(255) NOT NULL DEFAULT 'default',
+  `numTopics` mediumint(8) NOT NULL DEFAULT '0',
+  `numPosts` mediumint(8) NOT NULL DEFAULT '0',
+  `last_topic_id` int(11) NOT NULL DEFAULT '0',
+  `last_post_id` int(11) NOT NULL DEFAULT '0',
+  `last_post_time` int(11) NOT NULL DEFAULT '0',
+  `params` text NOT NULL,
+  `allow_ratings` tinyint(4) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `jml_kunena_categories`
+--
+
+INSERT INTO `jml_kunena_categories` (`id`, `parent_id`, `name`, `alias`, `icon`, `icon_id`, `locked`, `accesstype`, `access`, `pub_access`, `pub_recurse`, `admin_access`, `admin_recurse`, `ordering`, `published`, `channels`, `checked_out`, `checked_out_time`, `review`, `allow_anonymous`, `post_anonymous`, `hits`, `description`, `headerdesc`, `class_sfx`, `allow_polls`, `topic_ordering`, `iconset`, `numTopics`, `numPosts`, `last_topic_id`, `last_post_id`, `last_post_time`, `params`, `allow_ratings`) VALUES
+(1, 0, 'chi possiede una MOTO\' è persona fuori dal comune', 'forum-principale', '', 0, 0, 'joomla.group', 1, 1, 1, 0, 1, 1, 1, NULL, 0, '0000-00-00 00:00:00', 0, 0, 0, 0, 'Questa è la categoria principale del forum. Funge da contenitore per le schede individuali o forum. È indicato anche come una categoria di livello 1 ed è un must have per ogni installazione di un Forum Kunena.', 'Al fine di fornire informazioni aggiuntive per gli ospiti e membri, l\'intestazione del forum può essere sfruttata per visualizzare del testo al vertice di una particolare categoria.', '', 0, 'lastpost', 'default', 0, 0, 0, 0, 0, '{"display":{"index":{"parent":"3","children":"3"}}}', 0),
+(2, 1, 'Presentiamoci', 'benvenuto', '', 0, 0, 'joomla.group', 1, 1, 1, 0, 1, 1, 1, 'THIS', 0, '0000-00-00 00:00:00', 0, 0, 0, 0, 'Incoraggiamo i nuovi membri ad inviare una breve presentazione di sé stessi in questa categoria del forum. Vieni a conoscerci e condividiamo interessi comuni.', '[b]Benvenuti sul nostro forum Kunena![/b] \r\n\r\nDì a noi e ai nostri soci chi sei, cosa ti piace e perché sei diventato un membro di questo forum.\r\nDiamo il benvenuto a tutti i nuovi iscritti e speriamo di vederti in giro!', '', 0, 'lastpost', 'default', 1, 1, 1, 1, 1476092614, '{"access_post":["6","2","8"],"access_reply":["6","2","8"],"display":{"index":{"parent":"3","children":"3"}}}', 0),
+(3, 1, 'Censimento e avvistamenti', 'casella-dei-suggerimenti', '', 0, 0, 'joomla.group', 1, 1, 1, 0, 1, 2, 1, 'THIS', 0, '0000-00-00 00:00:00', 0, 0, 0, 0, 'Hai commenti e osservazioni da condividere? \\ N Non essere timido e mandaci una nota. Grazie ai vostri interventi vogliamo rendere il nostro sito migliore e più facile da usare.', 'Questa è l\'intestazione forum facoltativa per la Casella dei Suggerimenti.', '', 1, 'lastpost', 'default', 0, 0, 0, 0, 0, '{"access_post":["6","2","8"],"access_reply":["6","2","8"],"display":{"index":{"parent":"3","children":"3"}}}', 0),
+(4, 0, 'Forum STAFF', 'forum-staff', '', 0, 0, 'joomla.level', 1, 1, 1, 8, 1, 2, 1, 'THIS', 0, '0000-00-00 00:00:00', 0, 0, 0, 0, '', '', '', 0, 'lastpost', 'default', 0, 0, 0, 0, 0, '{"display":{"index":{"parent":"3","children":"3"}}}', 0),
+(5, 4, 'Forum Istruzioni d\'Uso', 'forum-istruzioni-d-uso', '', 0, 0, 'joomla.level', 1, 1, 1, 8, 1, 1, 1, 'THIS', 0, '0000-00-00 00:00:00', 0, 0, 0, 0, '', '', '', 0, 'lastpost', 'default', 0, 0, 0, 0, 0, '{"display":{"index":{"parent":"3","children":"3"}}}', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jml_kunena_configuration`
+--
+
+CREATE TABLE `jml_kunena_configuration` (
+  `id` int(11) NOT NULL DEFAULT '0',
+  `params` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `jml_kunena_configuration`
+--
+
+INSERT INTO `jml_kunena_configuration` (`id`, `params`) VALUES
+(1, '{"board_title":"Kunena","email":"","board_offline":0,"offline_message":"<h2>The Forum is currently offline for maintenance.<\\/h2>\\n<div>Check back soon!<\\/div>","enablerss":1,"threads_per_page":20,"messages_per_page":6,"messages_per_page_search":15,"showhistory":1,"historylimit":6,"shownew":1,"disemoticons":0,"template":"crypsis","showannouncement":1,"avataroncat":0,"catimagepath":"category_images","showchildcaticon":1,"rtewidth":450,"rteheight":300,"enableforumjump":1,"reportmsg":1,"username":1,"askemail":0,"showemail":0,"showuserstats":1,"showkarma":1,"useredit":1,"useredittime":0,"useredittimegrace":600,"editmarkup":1,"allowsubscriptions":1,"subscriptionschecked":1,"allowfavorites":1,"maxsubject":50,"maxsig":300,"regonly":0,"pubwrite":0,"floodprotection":0,"mailmod":0,"mailadmin":0,"captcha":0,"mailfull":1,"allowavatarupload":1,"allowavatargallery":1,"avatarquality":75,"avatarsize":2048,"imageheight":800,"imagewidth":800,"imagesize":150,"filetypes":"txt,rtf,pdf,zip,tar.gz,tgz,tar.bz2","filesize":120,"showranking":1,"rankimages":1,"userlist_rows":30,"userlist_online":1,"userlist_avatar":1,"userlist_posts":1,"userlist_karma":1,"userlist_email":0,"userlist_joindate":1,"userlist_lastvisitdate":1,"userlist_userhits":1,"latestcategory":"","showstats":1,"showwhoisonline":1,"showgenstats":1,"showpopuserstats":1,"popusercount":5,"showpopsubjectstats":1,"popsubjectcount":5,"showspoilertag":1,"showvideotag":1,"showebaytag":1,"trimlongurls":1,"trimlongurlsfront":40,"trimlongurlsback":20,"autoembedyoutube":1,"autoembedebay":1,"ebaylanguagecode":"en-us","sessiontimeout":1800,"highlightcode":0,"rss_type":"topic","rss_timelimit":"month","rss_limit":100,"rss_included_categories":"","rss_excluded_categories":"","rss_specification":"rss2.0","rss_allow_html":1,"rss_author_format":"name","rss_author_in_title":1,"rss_word_count":"0","rss_old_titles":1,"rss_cache":900,"defaultpage":"recent","default_sort":"asc","sef":1,"showimgforguest":1,"showfileforguest":1,"pollnboptions":4,"pollallowvoteone":1,"pollenabled":1,"poppollscount":5,"showpoppollstats":1,"polltimebtvotes":"00:15:00","pollnbvotesbyuser":100,"pollresultsuserslist":1,"maxpersotext":50,"ordering_system":"mesid","post_dateformat":"ago","post_dateformat_hover":"datetime","hide_ip":1,"imagetypes":"jpg,jpeg,gif,png","checkmimetypes":1,"imagemimetypes":"image\\/jpeg,image\\/jpg,image\\/gif,image\\/png","imagequality":50,"thumbheight":32,"thumbwidth":32,"hideuserprofileinfo":"put_empty","boxghostmessage":0,"userdeletetmessage":0,"latestcategory_in":1,"topicicons":1,"debug":0,"catsautosubscribed":0,"showbannedreason":0,"showthankyou":1,"showpopthankyoustats":1,"popthankscount":5,"mod_see_deleted":0,"bbcode_img_secure":"text","listcat_show_moderators":1,"lightbox":1,"show_list_time":720,"show_session_type":2,"show_session_starttime":1800,"userlist_allowed":0,"userlist_count_users":1,"enable_threaded_layouts":0,"category_subscriptions":"post","topic_subscriptions":"every","pubprofile":1,"thankyou_max":10,"email_recipient_count":0,"email_recipient_privacy":"bcc","email_visible_address":"","captcha_post_limit":0,"image_upload":"registered","file_upload":"registered","topic_layout":"flat","time_to_create_page":1,"show_imgfiles_manage_profile":1,"hold_newusers_posts":0,"hold_guest_posts":0,"attachment_limit":8,"pickup_category":0,"article_display":"intro","send_emails":1,"fallback_english":1,"cache":1,"cache_time":60,"ebay_affiliate_id":5337089937,"iptracking":1,"rss_feedburner_url":"","autolink":1,"access_component":1,"statslink_allowed":1,"superadmin_userlist":0,"legacy_urls":1,"attachment_protection":0,"categoryicons":1,"avatarresizemethod":1,"avatarcrop":0,"user_report":1,"searchtime":365,"teaser":0,"ebay_language":0,"ebay_api_key":"","twitter_consumer_key":"","twitter_consumer_secret":"","allow_change_subject":1,"max_links":6,"read_only":0,"ratingenabled":0,"url_subject_topic":0,"log_moderation":0,"attach_start":0,"attach_end":14,"google_map_api_key":"","attachment_utf8":1,"autoembedsoundcloud":1,"emailheader":"\\/media\\/kunena\\/email\\/hero-wide.png","plugins":{"plg_system_kunena":{"jcontentevents":"0","jcontentevent_target":"body"}}}');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jml_kunena_logs`
+--
+
+CREATE TABLE `jml_kunena_logs` (
+  `id` int(11) NOT NULL,
+  `type` tinyint(4) NOT NULL DEFAULT '0',
+  `user_id` int(11) NOT NULL DEFAULT '0',
+  `category_id` int(11) NOT NULL DEFAULT '0',
+  `topic_id` int(11) NOT NULL DEFAULT '0',
+  `target_user` int(11) NOT NULL DEFAULT '0',
+  `ip` varchar(40) NOT NULL DEFAULT '',
+  `time` int(11) NOT NULL DEFAULT '0',
+  `operation` varchar(40) NOT NULL,
+  `data` mediumtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jml_kunena_messages`
+--
+
+CREATE TABLE `jml_kunena_messages` (
+  `id` int(11) NOT NULL,
+  `parent` int(11) DEFAULT '0',
+  `thread` int(11) DEFAULT '0',
+  `catid` int(11) NOT NULL DEFAULT '0',
+  `name` tinytext,
+  `userid` int(11) NOT NULL DEFAULT '0',
+  `email` tinytext,
+  `subject` tinytext,
+  `time` int(11) NOT NULL DEFAULT '0',
+  `ip` varchar(128) DEFAULT NULL,
+  `topic_emoticon` int(11) NOT NULL DEFAULT '0',
+  `locked` tinyint(4) NOT NULL DEFAULT '0',
+  `hold` tinyint(4) NOT NULL DEFAULT '0',
+  `ordering` int(11) DEFAULT '0',
+  `hits` int(11) DEFAULT '0',
+  `moved` tinyint(4) DEFAULT '0',
+  `modified_by` int(7) DEFAULT NULL,
+  `modified_time` int(11) DEFAULT NULL,
+  `modified_reason` tinytext
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `jml_kunena_messages`
+--
+
+INSERT INTO `jml_kunena_messages` (`id`, `parent`, `thread`, `catid`, `name`, `userid`, `email`, `subject`, `time`, `ip`, `topic_emoticon`, `locked`, `hold`, `ordering`, `hits`, `moved`, `modified_by`, `modified_time`, `modified_reason`) VALUES
+(1, 0, 1, 2, 'Kunena', 669, NULL, 'Benvenuti su Kunena!', 1476092614, '127.0.0.1', 0, 0, 0, 0, 0, 0, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jml_kunena_messages_text`
+--
+
+CREATE TABLE `jml_kunena_messages_text` (
+  `mesid` int(11) NOT NULL DEFAULT '0',
+  `message` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `jml_kunena_messages_text`
+--
+
+INSERT INTO `jml_kunena_messages_text` (`mesid`, `message`) VALUES
+(1, '[size=4][b]Benvenuti su Kunena![/b][/size] \n\nGrazie per aver scelto Kunena come forum per il vostro sito Joomla. \n\nKunena, che tradotto dallo Swahili significa “per parlare,” è programmato da un team di professionisti dell\'open source con l\'obiettivo di fornire il vostro sito di un forum di qualità superiore e perfettamente integrato in Joomla.\n\n\n[size=4][b]Risorse addizionali per Kunena[/b][/size] \n\n[b]Documentazione Kunena:[/b] [url]https://www.kunena.org/docs[/url] \n\n[b]Forum di Supporto Kunena[/b]: [url]https://www.kunena.org/forum[/url] \n\n[b]Downloads Kunena:[/b] [url]https://www.kunena.org/download[/url] \n\n[b]Blog Kunena:[/b] [url]https://www.kunena.org/blog[/url] \n\n[b]Segui Kunena su Twitter:[/b] [url]https://www.kunena.org/twitter[/url]');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jml_kunena_polls`
+--
+
+CREATE TABLE `jml_kunena_polls` (
+  `id` int(11) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `threadid` int(11) NOT NULL,
+  `polltimetolive` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jml_kunena_polls_options`
+--
+
+CREATE TABLE `jml_kunena_polls_options` (
+  `id` int(11) NOT NULL,
+  `pollid` int(11) DEFAULT NULL,
+  `text` varchar(100) DEFAULT NULL,
+  `votes` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jml_kunena_polls_users`
+--
+
+CREATE TABLE `jml_kunena_polls_users` (
+  `pollid` int(11) DEFAULT NULL,
+  `userid` int(11) DEFAULT NULL,
+  `votes` int(11) DEFAULT NULL,
+  `lasttime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `lastvote` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jml_kunena_ranks`
+--
+
+CREATE TABLE `jml_kunena_ranks` (
+  `rank_id` mediumint(8) UNSIGNED NOT NULL,
+  `rank_title` varchar(255) NOT NULL DEFAULT '',
+  `rank_min` mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
+  `rank_special` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `rank_image` varchar(255) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `jml_kunena_ranks`
+--
+
+INSERT INTO `jml_kunena_ranks` (`rank_id`, `rank_title`, `rank_min`, `rank_special`, `rank_image`) VALUES
+(1, 'Fresh Boarder', 0, 0, 'rank1.gif'),
+(2, 'Junior Boarder', 20, 0, 'rank2.gif'),
+(3, 'Senior Boarder', 40, 0, 'rank3.gif'),
+(4, 'Expert Boarder', 80, 0, 'rank4.gif'),
+(5, 'Gold Boarder', 160, 0, 'rank5.gif'),
+(6, 'Platinum Boarder', 320, 0, 'rank6.gif'),
+(7, 'Amministratore', 0, 1, 'rankadmin.gif'),
+(8, 'Moderatore', 0, 1, 'rankmod.gif'),
+(9, 'Spammer', 0, 1, 'rankspammer.gif'),
+(10, 'Bannato', 0, 1, 'rankbanned.gif');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jml_kunena_rate`
+--
+
+CREATE TABLE `jml_kunena_rate` (
+  `id` int(11) NOT NULL,
+  `topic_id` int(11) NOT NULL,
+  `userid` int(11) NOT NULL,
+  `rate` mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
+  `time` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jml_kunena_sessions`
+--
+
+CREATE TABLE `jml_kunena_sessions` (
+  `userid` int(11) NOT NULL DEFAULT '0',
+  `allowed` text,
+  `lasttime` int(11) NOT NULL DEFAULT '0',
+  `readtopics` text,
+  `currvisit` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `jml_kunena_sessions`
+--
+
+INSERT INTO `jml_kunena_sessions` (`userid`, `allowed`, `lasttime`, `readtopics`, `currvisit`) VALUES
+(669, 'na', 1474883247, '0', 1476093412);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jml_kunena_smileys`
+--
+
+CREATE TABLE `jml_kunena_smileys` (
+  `id` int(4) NOT NULL,
+  `code` varchar(12) NOT NULL DEFAULT '',
+  `location` varchar(50) NOT NULL DEFAULT '',
+  `greylocation` varchar(60) NOT NULL DEFAULT '',
+  `emoticonbar` tinyint(4) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `jml_kunena_smileys`
+--
+
+INSERT INTO `jml_kunena_smileys` (`id`, `code`, `location`, `greylocation`, `emoticonbar`) VALUES
+(1, 'B)', 'cool.png', 'cool-grey.png', 1),
+(2, '8)', 'cool.png', 'cool-grey.png', 0),
+(3, '8-)', 'cool.png', 'cool-grey.png', 0),
+(4, ':-(', 'sad.png', 'sad-grey.png', 0),
+(5, ':(', 'sad.png', 'sad-grey.png', 1),
+(6, ':sad:', 'sad.png', 'sad-grey.png', 0),
+(7, ':cry:', 'sad.png', 'sad-grey.png', 0),
+(8, ':)', 'smile.png', 'smile-grey.png', 1),
+(9, ':-)', 'smile.png', 'smile-grey.png', 0),
+(10, ':cheer:', 'cheerful.png', 'cheerful-grey.png', 1),
+(11, ';)', 'wink.png', 'wink-grey.png', 1),
+(12, ';-)', 'wink.png', 'wink-grey.png', 0),
+(13, ':wink:', 'wink.png', 'wink-grey.png', 0),
+(14, ';-)', 'wink.png', 'wink-grey.png', 0),
+(15, ':P', 'tongue.png', 'tongue-grey.png', 1),
+(16, ':p', 'tongue.png', 'tongue-grey.png', 0),
+(17, ':-p', 'tongue.png', 'tongue-grey.png', 0),
+(18, ':-P', 'tongue.png', 'tongue-grey.png', 0),
+(19, ':razz:', 'tongue.png', 'tongue-grey.png', 0),
+(20, ':angry:', 'angry.png', 'angry-grey.png', 1),
+(21, ':mad:', 'angry.png', 'angry-grey.png', 0),
+(22, ':unsure:', 'unsure.png', 'unsure-grey.png', 1),
+(23, ':o', 'shocked.png', 'shocked-grey.png', 0),
+(24, ':-o', 'shocked.png', 'shocked-grey.png', 0),
+(25, ':O', 'shocked.png', 'shocked-grey.png', 0),
+(26, ':-O', 'shocked.png', 'shocked-grey.png', 0),
+(27, ':eek:', 'shocked.png', 'shocked-grey.png', 0),
+(28, ':ohmy:', 'shocked.png', 'shocked-grey.png', 1),
+(29, ':huh:', 'wassat.png', 'wassat-grey.png', 1),
+(30, ':?', 'confused.png', 'confused-grey.png', 0),
+(31, ':-?', 'confused.png', 'confused-grey.png', 0),
+(32, ':???', 'confused.png', 'confused-grey.png', 0),
+(33, ':dry:', 'ermm.png', 'ermm-grey.png', 1),
+(34, ':ermm:', 'ermm.png', 'ermm-grey.png', 0),
+(35, ':lol:', 'grin.png', 'grin-grey.png', 1),
+(36, ':X', 'sick.png', 'sick-grey.png', 0),
+(37, ':x', 'sick.png', 'sick-grey.png', 0),
+(38, ':sick:', 'sick.png', 'sick-grey.png', 1),
+(39, ':silly:', 'silly.png', 'silly-grey.png', 1),
+(40, ':y32b4:', 'silly.png', 'silly-grey.png', 0),
+(41, ':blink:', 'blink.png', 'blink-grey.png', 1),
+(42, ':blush:', 'blush.png', 'blush-grey.png', 1),
+(43, ':oops:', 'blush.png', 'blush-grey.png', 1),
+(44, ':kiss:', 'kissing.png', 'kissing-grey.png', 1),
+(45, ':rolleyes:', 'blink.png', 'blink-grey.png', 0),
+(46, ':roll:', 'blink.png', 'blink-grey.png', 0),
+(47, ':woohoo:', 'w00t.png', 'w00t-grey.png', 1),
+(48, ':side:', 'sideways.png', 'sideways-grey.png', 1),
+(49, ':S', 'dizzy.png', 'dizzy-grey.png', 1),
+(50, ':s', 'dizzy.png', 'dizzy-grey.png', 0),
+(51, ':evil:', 'devil.png', 'devil-grey.png', 1),
+(52, ':twisted:', 'devil.png', 'devil-grey.png', 0),
+(53, ':whistle:', 'whistling.png', 'whistling-grey.png', 1),
+(54, ':pinch:', 'pinch.png', 'pinch-grey.png', 1),
+(55, ':D', 'laughing.png', 'laughing-grey.png', 0),
+(56, ':-D', 'laughing.png', 'laughing-grey.png', 0),
+(57, ':grin:', 'laughing.png', 'laughing-grey.png', 0),
+(58, ':laugh:', 'laughing.png', 'laughing-grey.png', 0),
+(59, ':|', 'neutral.png', 'neutral-grey.png', 0),
+(60, ':-|', 'neutral.png', 'neutral-grey.png', 0),
+(61, ':neutral:', 'neutral.png', 'neutral-grey.png', 0),
+(62, ':mrgreen:', 'mrgreen.png', 'mrgreen-grey.png', 0),
+(63, ':?:', 'question.png', 'question-grey.png', 0),
+(64, ':!:', 'exclamation.png', 'exclamation-grey.png', 0),
+(65, ':arrow:', 'arrow.png', 'arrow-grey.png', 0),
+(66, ':idea:', 'idea.png', 'idea-grey.png', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jml_kunena_thankyou`
+--
+
+CREATE TABLE `jml_kunena_thankyou` (
+  `postid` int(11) NOT NULL,
+  `userid` int(11) NOT NULL,
+  `targetuserid` int(11) NOT NULL,
+  `time` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jml_kunena_topics`
+--
+
+CREATE TABLE `jml_kunena_topics` (
+  `id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL DEFAULT '0',
+  `subject` tinytext,
+  `icon_id` int(11) NOT NULL DEFAULT '0',
+  `label_id` int(11) NOT NULL DEFAULT '0',
+  `locked` tinyint(4) NOT NULL DEFAULT '0',
+  `hold` tinyint(4) NOT NULL DEFAULT '0',
+  `ordering` int(11) NOT NULL DEFAULT '0',
+  `posts` int(11) NOT NULL DEFAULT '0',
+  `hits` int(11) NOT NULL DEFAULT '0',
+  `attachments` int(11) NOT NULL DEFAULT '0',
+  `poll_id` int(11) NOT NULL DEFAULT '0',
+  `moved_id` int(11) NOT NULL DEFAULT '0',
+  `first_post_id` int(11) NOT NULL DEFAULT '0',
+  `first_post_time` int(11) NOT NULL DEFAULT '0',
+  `first_post_userid` int(11) NOT NULL DEFAULT '0',
+  `first_post_message` text,
+  `first_post_guest_name` tinytext,
+  `last_post_id` int(11) NOT NULL DEFAULT '0',
+  `last_post_time` int(11) NOT NULL DEFAULT '0',
+  `last_post_userid` int(11) NOT NULL DEFAULT '0',
+  `last_post_message` text,
+  `last_post_guest_name` tinytext,
+  `rating` tinyint(4) NOT NULL,
+  `params` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `jml_kunena_topics`
+--
+
+INSERT INTO `jml_kunena_topics` (`id`, `category_id`, `subject`, `icon_id`, `label_id`, `locked`, `hold`, `ordering`, `posts`, `hits`, `attachments`, `poll_id`, `moved_id`, `first_post_id`, `first_post_time`, `first_post_userid`, `first_post_message`, `first_post_guest_name`, `last_post_id`, `last_post_time`, `last_post_userid`, `last_post_message`, `last_post_guest_name`, `rating`, `params`) VALUES
+(1, 2, 'Benvenuti su Kunena!', 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1476092614, 669, '[size=4][b]Benvenuti su Kunena![/b][/size] \n\nGrazie per aver scelto Kunena come forum per il vostro sito Joomla. \n\nKunena, che tradotto dallo Swahili significa “per parlare,” è programmato da un team di professionisti dell\'open source con l\'obiettivo di fornire il vostro sito di un forum di qualità superiore e perfettamente integrato in Joomla.\n\n\n[size=4][b]Risorse addizionali per Kunena[/b][/size] \n\n[b]Documentazione Kunena:[/b] [url]https://www.kunena.org/docs[/url] \n\n[b]Forum di Supporto Kunena[/b]: [url]https://www.kunena.org/forum[/url] \n\n[b]Downloads Kunena:[/b] [url]https://www.kunena.org/download[/url] \n\n[b]Blog Kunena:[/b] [url]https://www.kunena.org/blog[/url] \n\n[b]Segui Kunena su Twitter:[/b] [url]https://www.kunena.org/twitter[/url]', 'Kunena', 1, 1476092614, 669, '[size=4][b]Benvenuti su Kunena![/b][/size] \n\nGrazie per aver scelto Kunena come forum per il vostro sito Joomla. \n\nKunena, che tradotto dallo Swahili significa “per parlare,” è programmato da un team di professionisti dell\'open source con l\'obiettivo di fornire il vostro sito di un forum di qualità superiore e perfettamente integrato in Joomla.\n\n\n[size=4][b]Risorse addizionali per Kunena[/b][/size] \n\n[b]Documentazione Kunena:[/b] [url]https://www.kunena.org/docs[/url] \n\n[b]Forum di Supporto Kunena[/b]: [url]https://www.kunena.org/forum[/url] \n\n[b]Downloads Kunena:[/b] [url]https://www.kunena.org/download[/url] \n\n[b]Blog Kunena:[/b] [url]https://www.kunena.org/blog[/url] \n\n[b]Segui Kunena su Twitter:[/b] [url]https://www.kunena.org/twitter[/url]', 'Kunena', 0, '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jml_kunena_users`
+--
+
+CREATE TABLE `jml_kunena_users` (
+  `userid` int(11) NOT NULL DEFAULT '0',
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `status_text` varchar(255) NOT NULL,
+  `view` varchar(8) NOT NULL DEFAULT '',
+  `signature` text,
+  `moderator` int(11) DEFAULT '0',
+  `banned` datetime DEFAULT NULL,
+  `ordering` int(11) DEFAULT '0',
+  `posts` int(11) DEFAULT '0',
+  `avatar` varchar(255) DEFAULT NULL,
+  `karma` int(11) DEFAULT '0',
+  `karma_time` int(11) DEFAULT '0',
+  `group_id` int(4) DEFAULT '1',
+  `uhits` int(11) DEFAULT '0',
+  `personalText` tinytext,
+  `gender` tinyint(4) NOT NULL DEFAULT '0',
+  `birthdate` date NOT NULL DEFAULT '0001-01-01',
+  `location` varchar(50) DEFAULT NULL,
+  `aim` varchar(50) DEFAULT NULL,
+  `friendfeed` varchar(50) DEFAULT NULL,
+  `bebo` varchar(50) DEFAULT NULL,
+  `digg` varchar(50) DEFAULT NULL,
+  `icq` varchar(50) DEFAULT NULL,
+  `telegram` varchar(50) DEFAULT NULL,
+  `vk` varchar(50) DEFAULT NULL,
+  `microsoft` varchar(50) DEFAULT NULL,
+  `skype` varchar(50) DEFAULT NULL,
+  `twitter` varchar(50) DEFAULT NULL,
+  `facebook` varchar(50) DEFAULT NULL,
+  `google` varchar(50) DEFAULT NULL,
+  `myspace` varchar(50) DEFAULT NULL,
+  `linkedin` varchar(50) DEFAULT NULL,
+  `delicious` varchar(50) DEFAULT NULL,
+  `instagram` varchar(50) DEFAULT NULL,
+  `qq` varchar(50) DEFAULT NULL,
+  `blogspot` varchar(50) DEFAULT NULL,
+  `flickr` varchar(50) DEFAULT NULL,
+  `apple` varchar(50) DEFAULT NULL,
+  `qzone` varchar(50) DEFAULT NULL,
+  `weibo` varchar(50) DEFAULT NULL,
+  `wechat` varchar(50) DEFAULT NULL,
+  `yim` varchar(50) DEFAULT NULL,
+  `websitename` varchar(50) DEFAULT NULL,
+  `websiteurl` varchar(50) DEFAULT NULL,
+  `rank` tinyint(4) NOT NULL DEFAULT '0',
+  `hideEmail` tinyint(1) NOT NULL DEFAULT '1',
+  `showOnline` tinyint(1) NOT NULL DEFAULT '1',
+  `canSubscribe` tinyint(1) NOT NULL DEFAULT '-1',
+  `userListtime` int(11) DEFAULT '-2',
+  `thankyou` int(11) DEFAULT '0',
+  `ip` varchar(13) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `jml_kunena_users`
+--
+
+INSERT INTO `jml_kunena_users` (`userid`, `status`, `status_text`, `view`, `signature`, `moderator`, `banned`, `ordering`, `posts`, `avatar`, `karma`, `karma_time`, `group_id`, `uhits`, `personalText`, `gender`, `birthdate`, `location`, `aim`, `friendfeed`, `bebo`, `digg`, `icq`, `telegram`, `vk`, `microsoft`, `skype`, `twitter`, `facebook`, `google`, `myspace`, `linkedin`, `delicious`, `instagram`, `qq`, `blogspot`, `flickr`, `apple`, `qzone`, `weibo`, `wechat`, `yim`, `websitename`, `websiteurl`, `rank`, `hideEmail`, `showOnline`, `canSubscribe`, `userListtime`, `thankyou`, `ip`) VALUES
+(669, 0, '', '', NULL, 0, NULL, 0, 1, NULL, 0, 0, 1, 0, NULL, 0, '0001-01-01', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 1, -1, -2, 0, '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jml_kunena_users_banned`
+--
+
+CREATE TABLE `jml_kunena_users_banned` (
+  `id` int(11) NOT NULL,
+  `userid` int(11) DEFAULT NULL,
+  `ip` varchar(128) DEFAULT NULL,
+  `blocked` tinyint(4) NOT NULL DEFAULT '0',
+  `expiration` datetime DEFAULT NULL,
+  `created_by` int(11) NOT NULL,
+  `created_time` datetime NOT NULL,
+  `reason_private` text,
+  `reason_public` text,
+  `modified_by` int(11) DEFAULT NULL,
+  `modified_time` datetime DEFAULT NULL,
+  `comments` text,
+  `params` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jml_kunena_user_categories`
+--
+
+CREATE TABLE `jml_kunena_user_categories` (
+  `user_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `role` tinyint(4) NOT NULL DEFAULT '0',
+  `allreadtime` int(11) NOT NULL DEFAULT '0',
+  `subscribed` tinyint(4) NOT NULL DEFAULT '0',
+  `params` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `jml_kunena_user_categories`
+--
+
+INSERT INTO `jml_kunena_user_categories` (`user_id`, `category_id`, `role`, `allreadtime`, `subscribed`, `params`) VALUES
+(669, 0, 0, 1474883247, 0, '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jml_kunena_user_read`
+--
+
+CREATE TABLE `jml_kunena_user_read` (
+  `user_id` int(11) NOT NULL,
+  `topic_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `message_id` int(11) NOT NULL,
+  `time` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jml_kunena_user_topics`
+--
+
+CREATE TABLE `jml_kunena_user_topics` (
+  `user_id` int(11) NOT NULL DEFAULT '0',
+  `topic_id` int(11) NOT NULL DEFAULT '0',
+  `category_id` int(11) NOT NULL,
+  `posts` mediumint(8) NOT NULL DEFAULT '0',
+  `last_post_id` int(11) NOT NULL DEFAULT '0',
+  `owner` tinyint(4) NOT NULL DEFAULT '0',
+  `favorite` tinyint(4) NOT NULL DEFAULT '0',
+  `subscribed` tinyint(4) NOT NULL DEFAULT '0',
+  `params` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `jml_kunena_user_topics`
+--
+
+INSERT INTO `jml_kunena_user_topics` (`user_id`, `topic_id`, `category_id`, `posts`, `last_post_id`, `owner`, `favorite`, `subscribed`, `params`) VALUES
+(669, 1, 2, 1, 1, 1, 0, 0, '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jml_kunena_version`
+--
+
+CREATE TABLE `jml_kunena_version` (
+  `id` int(11) NOT NULL,
+  `version` varchar(20) NOT NULL,
+  `versiondate` date NOT NULL,
+  `installdate` date NOT NULL,
+  `build` varchar(20) NOT NULL,
+  `versionname` varchar(40) DEFAULT NULL,
+  `state` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `jml_kunena_version`
+--
+
+INSERT INTO `jml_kunena_version` (`id`, `version`, `versiondate`, `installdate`, `build`, `versionname`, `state`) VALUES
+(1, '5.0.2', '2016-10-01', '2016-10-10', '', 'Conure', '');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `jml_languages`
 --
 
@@ -1204,7 +1875,7 @@ CREATE TABLE `jml_menu` (
 --
 
 INSERT INTO `jml_menu` (`id`, `menutype`, `title`, `alias`, `note`, `path`, `link`, `type`, `published`, `parent_id`, `level`, `component_id`, `checked_out`, `checked_out_time`, `browserNav`, `access`, `img`, `template_style_id`, `params`, `lft`, `rgt`, `home`, `language`, `client_id`) VALUES
-(1, '', 'Menu_Item_Root', 'root', '', '', '', '', 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, 0, '', 0, '', 0, 61, 0, '*', 0),
+(1, '', 'Menu_Item_Root', 'root', '', '', '', '', 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, 0, '', 0, '', 0, 109, 0, '*', 0),
 (2, 'menu', 'com_banners', 'Banners', '', 'Banners', 'index.php?option=com_banners', 'component', 0, 1, 1, 4, 0, '0000-00-00 00:00:00', 0, 0, 'class:banners', 0, '', 1, 10, 0, '*', 1),
 (3, 'menu', 'com_banners', 'Banners', '', 'Banners/Banners', 'index.php?option=com_banners', 'component', 0, 2, 2, 4, 0, '0000-00-00 00:00:00', 0, 0, 'class:banners', 0, '', 2, 3, 0, '*', 1),
 (4, 'menu', 'com_banners_categories', 'Categories', '', 'Banners/Categories', 'index.php?option=com_categories&extension=com_banners', 'component', 0, 2, 2, 6, 0, '0000-00-00 00:00:00', 0, 0, 'class:banners-cat', 0, '', 4, 5, 0, '*', 1),
@@ -1232,7 +1903,31 @@ INSERT INTO `jml_menu` (`id`, `menutype`, `title`, `alias`, `note`, `path`, `lin
 (107, 'usermenu', 'Impostazioni Sito', 'impostazioni-sito', '', 'impostazioni-sito', 'index.php?option=com_config&view=config&controller=config.display.config', 'component', 1, 1, 1, 23, 0, '0000-00-00 00:00:00', 0, 6, '', 0, '{"menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"page_title":"","show_page_heading":0,"page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0}', 21, 22, 0, '*', 0),
 (108, 'mainmenu-en-us', 'Home', 'home-en-us', '', 'home-en-us', 'index.php?option=com_content&view=featured', 'component', 1, 1, 1, 22, 0, '0000-00-00 00:00:00', 0, 1, ' ', 0, '{"featured_categories":[""],"layout_type":"blog","num_leading_articles":"1","num_intro_articles":"3","num_columns":"3","num_links":"0","orderby_pri":"","orderby_sec":"front","order_date":"","multi_column_order":"1","show_pagination":"2","show_pagination_results":"1","show_noauth":"","article-allow_ratings":"","article-allow_comments":"","show_feed_link":"1","feed_summary":"","show_title":"","link_titles":"","show_intro":"","show_category":"","link_category":"","show_parent_category":"","link_parent_category":"","show_author":"","show_create_date":"","show_modify_date":"","show_publish_date":"","show_item_navigation":"","show_readmore":"","show_icons":"","show_print_icon":"","show_email_icon":"","show_hits":"","menu-anchor_title":"","menu-anchor_css":"","menu_image":"","show_page_heading":1,"page_title":"","page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0}', 55, 56, 1, 'en-US', 0),
 (109, 'mainmenu-en-gb', 'Home', 'home-en-gb', '', 'home-en-gb', 'index.php?option=com_content&view=featured', 'component', 1, 1, 1, 22, 0, '0000-00-00 00:00:00', 0, 1, ' ', 0, '{"featured_categories":[""],"layout_type":"blog","num_leading_articles":"1","num_intro_articles":"3","num_columns":"3","num_links":"0","orderby_pri":"","orderby_sec":"front","order_date":"","multi_column_order":"1","show_pagination":"2","show_pagination_results":"1","show_noauth":"","article-allow_ratings":"","article-allow_comments":"","show_feed_link":"1","feed_summary":"","show_title":"","link_titles":"","show_intro":"","show_category":"","link_category":"","show_parent_category":"","link_parent_category":"","show_author":"","show_create_date":"","show_modify_date":"","show_publish_date":"","show_item_navigation":"","show_readmore":"","show_icons":"","show_print_icon":"","show_email_icon":"","show_hits":"","menu-anchor_title":"","menu-anchor_css":"","menu_image":"","show_page_heading":1,"page_title":"","page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0}', 57, 58, 1, 'en-GB', 0),
-(110, 'mainmenu-it-it', 'Home', 'home-it-it', '', 'home-it-it', 'index.php?option=com_content&view=featured', 'component', 1, 1, 1, 22, 0, '0000-00-00 00:00:00', 0, 1, ' ', 0, '{"featured_categories":[""],"layout_type":"blog","num_leading_articles":"1","num_intro_articles":"3","num_columns":"3","num_links":"0","orderby_pri":"","orderby_sec":"front","order_date":"","multi_column_order":"1","show_pagination":"2","show_pagination_results":"1","show_noauth":"","article-allow_ratings":"","article-allow_comments":"","show_feed_link":"1","feed_summary":"","show_title":"","link_titles":"","show_intro":"","show_category":"","link_category":"","show_parent_category":"","link_parent_category":"","show_author":"","show_create_date":"","show_modify_date":"","show_publish_date":"","show_item_navigation":"","show_readmore":"","show_icons":"","show_print_icon":"","show_email_icon":"","show_hits":"","menu-anchor_title":"","menu-anchor_css":"","menu_image":"","show_page_heading":1,"page_title":"","page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0}', 59, 60, 1, 'it-IT', 0);
+(110, 'mainmenu-it-it', 'Home', 'home-it-it', '', 'home-it-it', 'index.php?option=com_content&view=featured', 'component', 1, 1, 1, 22, 0, '0000-00-00 00:00:00', 0, 1, ' ', 0, '{"featured_categories":[""],"layout_type":"blog","num_leading_articles":"1","num_intro_articles":"3","num_columns":"3","num_links":"0","orderby_pri":"","orderby_sec":"front","order_date":"","multi_column_order":"1","show_pagination":"2","show_pagination_results":"1","show_noauth":"","article-allow_ratings":"","article-allow_comments":"","show_feed_link":"1","feed_summary":"","show_title":"","link_titles":"","show_intro":"","show_category":"","link_category":"","show_parent_category":"","link_parent_category":"","show_author":"","show_create_date":"","show_modify_date":"","show_publish_date":"","show_item_navigation":"","show_readmore":"","show_icons":"","show_print_icon":"","show_email_icon":"","show_hits":"","menu-anchor_title":"","menu-anchor_css":"","menu_image":"","show_page_heading":1,"page_title":"","page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0}', 59, 60, 1, 'it-IT', 0),
+(111, 'main', 'COM_KUNENA', 'com-kunena', '', 'com-kunena', 'index.php?option=com_kunena', 'component', 0, 1, 1, 10011, 0, '0000-00-00 00:00:00', 0, 1, 'components/com_kunena/media/icons/favicons/kunena-logo-white.png', 0, '{}', 61, 88, 0, '', 1),
+(112, 'main', 'COM_KUNENA_DASHBOARD', 'com-kunena-dashboard', '', 'com-kunena/com-kunena-dashboard', 'index.php?option=com_kunena&view=cpanel', 'component', 0, 111, 2, 10011, 0, '0000-00-00 00:00:00', 0, 1, 'class:component', 0, '{}', 62, 63, 0, '', 1),
+(113, 'main', 'COM_KUNENA_CATEGORY_MANAGER', 'com-kunena-category-manager', '', 'com-kunena/com-kunena-category-manager', 'index.php?option=com_kunena&view=categories', 'component', 0, 111, 2, 10011, 0, '0000-00-00 00:00:00', 0, 1, 'class:component', 0, '{}', 64, 65, 0, '', 1),
+(114, 'main', 'COM_KUNENA_USER_MANAGER', 'com-kunena-user-manager', '', 'com-kunena/com-kunena-user-manager', 'index.php?option=com_kunena&view=users', 'component', 0, 111, 2, 10011, 0, '0000-00-00 00:00:00', 0, 1, 'class:component', 0, '{}', 66, 67, 0, '', 1),
+(115, 'main', 'COM_KUNENA_FILE_MANAGER', 'com-kunena-file-manager', '', 'com-kunena/com-kunena-file-manager', 'index.php?option=com_kunena&view=attachments', 'component', 0, 111, 2, 10011, 0, '0000-00-00 00:00:00', 0, 1, 'class:component', 0, '{}', 68, 69, 0, '', 1),
+(116, 'main', 'COM_KUNENA_EMOTICON_MANAGER', 'com-kunena-emoticon-manager', '', 'com-kunena/com-kunena-emoticon-manager', 'index.php?option=com_kunena&view=smilies', 'component', 0, 111, 2, 10011, 0, '0000-00-00 00:00:00', 0, 1, 'class:component', 0, '{}', 70, 71, 0, '', 1),
+(117, 'main', 'COM_KUNENA_RANK_MANAGER', 'com-kunena-rank-manager', '', 'com-kunena/com-kunena-rank-manager', 'index.php?option=com_kunena&view=ranks', 'component', 0, 111, 2, 10011, 0, '0000-00-00 00:00:00', 0, 1, 'class:component', 0, '{}', 72, 73, 0, '', 1),
+(118, 'main', 'COM_KUNENA_TEMPLATE_MANAGER', 'com-kunena-template-manager', '', 'com-kunena/com-kunena-template-manager', 'index.php?option=com_kunena&view=templates', 'component', 0, 111, 2, 10011, 0, '0000-00-00 00:00:00', 0, 1, 'class:component', 0, '{}', 74, 75, 0, '', 1),
+(119, 'main', 'COM_KUNENA_CONFIGURATION', 'com-kunena-configuration', '', 'com-kunena/com-kunena-configuration', 'index.php?option=com_kunena&view=config', 'component', 0, 111, 2, 10011, 0, '0000-00-00 00:00:00', 0, 1, 'class:component', 0, '{}', 76, 77, 0, '', 1),
+(120, 'main', 'COM_KUNENA_PLUGIN_MANAGER', 'com-kunena-plugin-manager', '', 'com-kunena/com-kunena-plugin-manager', 'index.php?option=com_kunena&view=plugins', 'component', 0, 111, 2, 10011, 0, '0000-00-00 00:00:00', 0, 1, 'class:component', 0, '{}', 78, 79, 0, '', 1),
+(121, 'main', 'COM_KUNENA_LOG_MANAGER', 'com-kunena-log-manager', '', 'com-kunena/com-kunena-log-manager', 'index.php?option=com_kunena&view=logs', 'component', 0, 111, 2, 10011, 0, '0000-00-00 00:00:00', 0, 1, 'class:component', 0, '{}', 80, 81, 0, '', 1),
+(122, 'main', 'COM_KUNENA_MENU_STATISTICS', 'com-kunena-menu-statistics', '', 'com-kunena/com-kunena-menu-statistics', 'index.php?option=com_kunena&view=statistics', 'component', 0, 111, 2, 10011, 0, '0000-00-00 00:00:00', 0, 1, 'class:component', 0, '{}', 82, 83, 0, '', 1),
+(123, 'main', 'COM_KUNENA_FORUM_TOOLS', 'com-kunena-forum-tools', '', 'com-kunena/com-kunena-forum-tools', 'index.php?option=com_kunena&view=tools', 'component', 0, 111, 2, 10011, 0, '0000-00-00 00:00:00', 0, 1, 'class:component', 0, '{}', 84, 85, 0, '', 1),
+(124, 'main', 'COM_KUNENA_TRASH_MANAGER', 'com-kunena-trash-manager', '', 'com-kunena/com-kunena-trash-manager', 'index.php?option=com_kunena&view=trash', 'component', 0, 111, 2, 10011, 0, '0000-00-00 00:00:00', 0, 1, 'class:component', 0, '{}', 86, 87, 0, '', 1),
+(125, 'kunenamenu', 'Forum', 'forum', '', 'forum', 'index.php?option=com_kunena&view=home&defaultmenu=127', 'component', 1, 1, 1, 10011, 0, '0000-00-00 00:00:00', 0, 1, ' ', 0, '{"menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"page_title":"","show_page_heading":0,"page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0,"catids":0}', 89, 106, 0, '*', 0),
+(126, 'kunenamenu', 'Indice delle categorie', 'home', '', 'forum/home', 'index.php?option=com_kunena&view=category&layout=list', 'component', 1, 125, 2, 10011, 0, '0000-00-00 00:00:00', 0, 1, ' ', 0, '{"menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"page_title":"","show_page_heading":0,"page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0}', 90, 91, 0, '*', 0),
+(127, 'kunenamenu', 'Discussioni recenti', 'recente', '', 'forum/recente', 'index.php?option=com_kunena&view=topics&mode=replies', 'component', 1, 125, 2, 10011, 0, '0000-00-00 00:00:00', 0, 1, ' ', 0, '{"menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"page_title":"","show_page_heading":0,"page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0,"topics_catselection":"","topics_categories":"","topics_time":""}', 92, 93, 0, '*', 0),
+(128, 'kunenamenu', 'Nuova discussione', 'nuovadiscussione', '', 'forum/nuovadiscussione', 'index.php?option=com_kunena&view=topic&layout=create', 'component', 1, 125, 2, 10011, 0, '0000-00-00 00:00:00', 0, 2, ' ', 0, '{"menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"page_title":"","show_page_heading":0,"page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0}', 94, 95, 0, '*', 0),
+(129, 'kunenamenu', 'Senza risposta', 'senzarisposte', '', 'forum/senzarisposte', 'index.php?option=com_kunena&view=topics&mode=noreplies', 'component', 1, 125, 2, 10011, 0, '0000-00-00 00:00:00', 0, 2, ' ', 0, '{"menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"page_title":"","show_page_heading":0,"page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0,"topics_catselection":"","topics_categories":"","topics_time":""}', 96, 97, 0, '*', 0),
+(130, 'kunenamenu', 'Mie discussioni', 'mierecenti', '', 'forum/mierecenti', 'index.php?option=com_kunena&view=topics&layout=user&mode=default', 'component', 1, 125, 2, 10011, 0, '0000-00-00 00:00:00', 0, 2, ' ', 0, '{"menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"page_title":"","show_page_heading":0,"page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0,"topics_catselection":"2","topics_categories":"0","topics_time":""}', 98, 99, 0, '*', 0),
+(131, 'kunenamenu', 'Profilo', 'profilo', '', 'forum/profilo', 'index.php?option=com_kunena&view=user', 'component', 1, 125, 2, 10011, 0, '0000-00-00 00:00:00', 0, 2, ' ', 0, '{"menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"page_title":"","show_page_heading":0,"page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0,"integration":1}', 100, 101, 0, '*', 0),
+(132, 'kunenamenu', 'Aiuto', 'aiuto', '', 'forum/aiuto', 'index.php?option=com_kunena&view=misc', 'component', 1, 125, 2, 10011, 0, '0000-00-00 00:00:00', 0, 3, ' ', 0, '{"menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"page_title":"","show_page_heading":0,"page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0,"body":"Questa pagina di aiuto \\u00e8 un menu all\'interno del  [b]Menu Kunena[\\/b], che consente una facile navigazione nel forum\\n\\nPuoi utilizzare il Joomla Menu Manager per modificare gli elementi di questo Menu. Per Favore vai in  [b]Amministrazione[\\/b] >> [b]Menus[\\/b] >> [b]Kunena Menu[\\/b] >> [b]Aiuto[\\/b] per modificare o rimuovere questi elementi \\n\\n In questo menu puoi utilizzare un chiaro menu in BBCode o HTML. Se vuoi avvolgere un menu in questa pagina, puoi anche usare menu in BBCode (con articolo id): [code][article=full]123[\\/article][\\/code] \\n\\nSe vuoi creare un tuo menu personalizzato per Kunena, inizia da [b]Home Pagina[\\/b] per primo. In questa pagina potrai selezionare gli elementi del menu di default, i quali saranno mostrati al tuo ingresso in Kunena","body_format":"bbcode"}', 102, 103, 0, '*', 0),
+(133, 'kunenamenu', 'Ricerca', 'cerca', '', 'forum/cerca', 'index.php?option=com_kunena&view=search', 'component', 1, 125, 2, 10011, 0, '0000-00-00 00:00:00', 0, 1, ' ', 0, '{"menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"page_title":"","show_page_heading":0,"page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0}', 104, 105, 0, '*', 0),
+(134, 'mainmenu', 'Forum', 'kunena-2016-10-10', '', 'kunena-2016-10-10', 'index.php?Itemid=125', 'alias', 1, 1, 1, 0, 0, '0000-00-00 00:00:00', 0, 1, ' ', 0, '{"aliasoptions":"125","menu-anchor_title":"","menu-anchor_css":"","menu_image":""}', 107, 108, 0, '*', 0);
 
 -- --------------------------------------------------------
 
@@ -1257,7 +1952,8 @@ INSERT INTO `jml_menu_types` (`id`, `asset_id`, `menutype`, `title`, `descriptio
 (2, 0, 'usermenu', 'Menu utente', 'Menu per gli utenti connessi'),
 (3, 65, 'mainmenu-en-us', 'Main Menu (en-US)', 'The main menu for the site in language English (United States)'),
 (4, 69, 'mainmenu-en-gb', 'Main Menu (en-GB)', 'The main menu for the site in language English (en-GB)'),
-(5, 73, 'mainmenu-it-it', 'Main Menu (it-IT)', 'The main menu for the site in language Italian (IT)');
+(5, 73, 'mainmenu-it-it', 'Main Menu (it-IT)', 'The main menu for the site in language Italian (IT)'),
+(6, 81, 'kunenamenu', ' Menu Kunena', 'Questo è il menu di default Kunena. È usato come la navigazione in alto. Si può pubblicare in qualsiasi posizione.');
 
 -- --------------------------------------------------------
 
@@ -1535,8 +2231,8 @@ CREATE TABLE `jml_session` (
 --
 
 INSERT INTO `jml_session` (`session_id`, `client_id`, `guest`, `time`, `data`, `userid`, `username`) VALUES
-('ht94khnonska4a7jbdmkpm3sh7', 0, 1, '1476086425', 'joomla|s:2356:"TzoyNDoiSm9vbWxhXFJlZ2lzdHJ5XFJlZ2lzdHJ5IjoyOntzOjc6IgAqAGRhdGEiO086ODoic3RkQ2xhc3MiOjE6e3M6OToiX19kZWZhdWx0IjtPOjg6InN0ZENsYXNzIjo0OntzOjc6InNlc3Npb24iO086ODoic3RkQ2xhc3MiOjM6e3M6NzoiY291bnRlciI7aToyMztzOjU6InRpbWVyIjtPOjg6InN0ZENsYXNzIjozOntzOjU6InN0YXJ0IjtpOjE0NzYwODU5Nzg7czo0OiJsYXN0IjtpOjE0NzYwODY0MTU7czozOiJub3ciO2k6MTQ3NjA4NjQyNTt9czo1OiJ0b2tlbiI7czozMjoibUVSa3U3WXZ6aUN5R01QOW9Fa2lFNjloNGhJbzRyNGMiO31zOjg6InJlZ2lzdHJ5IjtPOjI0OiJKb29tbGFcUmVnaXN0cnlcUmVnaXN0cnkiOjI6e3M6NzoiACoAZGF0YSI7Tzo4OiJzdGRDbGFzcyI6MDp7fXM6OToic2VwYXJhdG9yIjtzOjE6Ii4iO31zOjQ6InVzZXIiO086NToiSlVzZXIiOjE6e3M6MjoiaWQiO2k6MDt9czoxMDoiY29tX21haWx0byI7Tzo4OiJzdGRDbGFzcyI6MTp7czo1OiJsaW5rcyI7YTo2OntzOjQwOiJlNDk1NjBkMDU3NjNkZGM3NjlkMWYwOTAzYzg5MDg0YTQ5ZDMzMTkxIjtPOjg6InN0ZENsYXNzIjoyOntzOjQ6ImxpbmsiO3M6OTQ6Imh0dHA6Ly9sb2NhbGhvc3QvYWxlZmFsLml0L1BST0pFQ1RTL2pvb21sYTM2Mi9pbmRleC5waHAvaXQvMTAtY2F0ZWdvcmlhLWl0LWl0LzQtYXJ0aWNvbG8taXQtaXQiO3M6NjoiZXhwaXJ5IjtpOjE0NzYwODY0MjU7fXM6NDA6ImY4Y2NiZjU4ZDdmYTJmYTEyYjgyMTFkYjU3OTY5MWU2YjdmMDMxYTYiO086ODoic3RkQ2xhc3MiOjI6e3M6NDoibGluayI7czo5NDoiaHR0cDovL2xvY2FsaG9zdC9hbGVmYWwuaXQvUFJPSkVDVFMvam9vbWxhMzYyL2luZGV4LnBocC9lbi11cy84LWNhdGVnb3J5LWVuLXVzLzItYXJ0aWNsZS1lbi11cyI7czo2OiJleHBpcnkiO2k6MTQ3NjA4NjQxMjt9czo0MDoiM2EyMTcyZDdmZmViZDljN2ZlZDUyZjE2MmFlMzIyNDE1ZDQyYzMzMSI7Tzo4OiJzdGRDbGFzcyI6Mjp7czo0OiJsaW5rIjtzOjkxOiJodHRwOi8vbG9jYWxob3N0L2FsZWZhbC5pdC9QUk9KRUNUUy9qb29tbGEzNjIvaW5kZXgucGhwL2VuLzktY2F0ZWdvcnktZW4tZ2IvMy1hcnRpY2xlLWVuLWdiIjtzOjY6ImV4cGlyeSI7aToxNDc2MDg2NDE0O31zOjQwOiJjZGM1MWZkYmUxMTIwYjNlZjU5ZmQzNTZmNmMzZDkzYTRiNWZmOWIwIjtPOjg6InN0ZENsYXNzIjoyOntzOjQ6ImxpbmsiO3M6OTE6Imh0dHA6Ly9sb2NhbGhvc3QvYWxlZmFsLml0L1BST0pFQ1RTL2pvb21sYTM2Mi9pbmRleC5waHAvaXQvMi1ub24tY2F0ZWdvcml6emF0by81LXRlc3QtaXQtaXQiO3M6NjoiZXhwaXJ5IjtpOjE0NzYwODY0MTU7fXM6NDA6ImNkNjVkZGY0N2QwOWNkYzFlZmM5ZThjYWMwODFhNGM3NjFhNDhmODMiO086ODoic3RkQ2xhc3MiOjI6e3M6NDoibGluayI7czo5NDoiaHR0cDovL2xvY2FsaG9zdC9hbGVmYWwuaXQvUFJPSkVDVFMvam9vbWxhMzYyL2luZGV4LnBocC9lbi11cy8yLW5vbi1jYXRlZ29yaXp6YXRvLzctdGVzdC1lbi11cyI7czo2OiJleHBpcnkiO2k6MTQ3NjA4NjM1Nzt9czo0MDoiN2MyMzU2MGViM2U3NWFiMWQxMjRmODk5MjM3ODIxOGM5MjQ5N2I3NSI7Tzo4OiJzdGRDbGFzcyI6Mjp7czo0OiJsaW5rIjtzOjkxOiJodHRwOi8vbG9jYWxob3N0L2FsZWZhbC5pdC9QUk9KRUNUUy9qb29tbGEzNjIvaW5kZXgucGhwL2VuLzItbm9uLWNhdGVnb3JpenphdG8vNi10ZXN0LWVuLXVrIjtzOjY6ImV4cGlyeSI7aToxNDc2MDg2MzYyO319fX19czo5OiJzZXBhcmF0b3IiO3M6MToiLiI7fQ==";', 0, ''),
-('uceafji1pu241m634og0joen84', 1, 0, '1476086423', 'joomla|s:2192:"TzoyNDoiSm9vbWxhXFJlZ2lzdHJ5XFJlZ2lzdHJ5IjoyOntzOjc6IgAqAGRhdGEiO086ODoic3RkQ2xhc3MiOjE6e3M6OToiX19kZWZhdWx0IjtPOjg6InN0ZENsYXNzIjo1OntzOjc6InNlc3Npb24iO086ODoic3RkQ2xhc3MiOjM6e3M6NzoiY291bnRlciI7aTo1MjtzOjU6InRpbWVyIjtPOjg6InN0ZENsYXNzIjozOntzOjU6InN0YXJ0IjtpOjE0NzYwODU5Nzk7czo0OiJsYXN0IjtpOjE0NzYwODY0MjM7czozOiJub3ciO2k6MTQ3NjA4NjQyMzt9czo1OiJ0b2tlbiI7czozMjoiMHZ6TkFvMFRYSXhvN0NQUnhMWkJWcW5ERWJKMVJMNEwiO31zOjg6InJlZ2lzdHJ5IjtPOjI0OiJKb29tbGFcUmVnaXN0cnlcUmVnaXN0cnkiOjI6e3M6NzoiACoAZGF0YSI7Tzo4OiJzdGRDbGFzcyI6Njp7czoxMzoiY29tX2luc3RhbGxlciI7Tzo4OiJzdGRDbGFzcyI6Mjp7czo3OiJtZXNzYWdlIjtzOjA6IiI7czoxNzoiZXh0ZW5zaW9uX21lc3NhZ2UiO3M6MDoiIjt9czo5OiJjb21fbWVudXMiO086ODoic3RkQ2xhc3MiOjE6e3M6NToiaXRlbXMiO086ODoic3RkQ2xhc3MiOjM6e3M6ODoibWVudXR5cGUiO3M6MTQ6Im1haW5tZW51LWVuLWdiIjtzOjEwOiJsaW1pdHN0YXJ0IjtpOjA7czo0OiJsaXN0IjthOjQ6e3M6OToiZGlyZWN0aW9uIjtzOjM6ImFzYyI7czo1OiJsaW1pdCI7czoyOiIyMCI7czo4OiJvcmRlcmluZyI7czo1OiJhLmxmdCI7czo1OiJzdGFydCI7ZDowO319fXM6MTA6ImNvbV9jb25maWciO086ODoic3RkQ2xhc3MiOjE6e3M6NjoiY29uZmlnIjtPOjg6InN0ZENsYXNzIjoxOntzOjY6Imdsb2JhbCI7Tzo4OiJzdGRDbGFzcyI6MTp7czo0OiJkYXRhIjtOO319fXM6MTM6ImNvbV9sYW5ndWFnZXMiO086ODoic3RkQ2xhc3MiOjE6e3M6OToib3ZlcnJpZGVzIjtPOjg6InN0ZENsYXNzIjoxOntzOjY6ImZpbHRlciI7Tzo4OiJzdGRDbGFzcyI6Mjp7czo2OiJjbGllbnQiO3M6MToiMCI7czo4OiJsYW5ndWFnZSI7czo1OiJpdC1JVCI7fX19czoxNDoiY29tX2NhdGVnb3JpZXMiO086ODoic3RkQ2xhc3MiOjE6e3M6MTA6ImNhdGVnb3JpZXMiO086ODoic3RkQ2xhc3MiOjE6e3M6NzoiY29udGVudCI7Tzo4OiJzdGRDbGFzcyI6Mjp7czo2OiJmaWx0ZXIiO086ODoic3RkQ2xhc3MiOjE6e3M6OToiZXh0ZW5zaW9uIjtzOjExOiJjb21fY29udGVudCI7fXM6NDoibGlzdCI7YTo0OntzOjk6ImRpcmVjdGlvbiI7czozOiJhc2MiO3M6NToibGltaXQiO3M6MjoiMjAiO3M6ODoib3JkZXJpbmciO3M6NToiYS5sZnQiO3M6NToic3RhcnQiO2Q6MDt9fX19czoxMToiY29tX2NvbnRlbnQiO086ODoic3RkQ2xhc3MiOjE6e3M6NDoiZWRpdCI7Tzo4OiJzdGRDbGFzcyI6MTp7czo3OiJhcnRpY2xlIjtPOjg6InN0ZENsYXNzIjoyOntzOjQ6ImRhdGEiO047czoyOiJpZCI7YToxOntpOjA7aTo1O319fX19czo5OiJzZXBhcmF0b3IiO3M6MToiLiI7fXM6NDoidXNlciI7Tzo1OiJKVXNlciI6MTp7czoyOiJpZCI7czozOiI2NjkiO31zOjk6ImNvbV9tZWRpYSI7Tzo4OiJzdGRDbGFzcyI6MTp7czoxMDoicmV0dXJuX3VybCI7czoyNjoiaW5kZXgucGhwP29wdGlvbj1jb21fbWVkaWEiO31zOjExOiJhcHBsaWNhdGlvbiI7Tzo4OiJzdGRDbGFzcyI6MTp7czo1OiJxdWV1ZSI7Tjt9fX1zOjk6InNlcGFyYXRvciI7czoxOiIuIjt9";', 669, 'admin');
+('2g51ib1viooh4h0c3d0qt4bq84', 0, 0, '1476093412', 'joomla|s:1964:"TzoyNDoiSm9vbWxhXFJlZ2lzdHJ5XFJlZ2lzdHJ5IjoyOntzOjc6IgAqAGRhdGEiO086ODoic3RkQ2xhc3MiOjE6e3M6OToiX19kZWZhdWx0IjtPOjg6InN0ZENsYXNzIjo0OntzOjc6InNlc3Npb24iO086ODoic3RkQ2xhc3MiOjM6e3M6NzoiY291bnRlciI7aTo0MTtzOjU6InRpbWVyIjtPOjg6InN0ZENsYXNzIjozOntzOjU6InN0YXJ0IjtpOjE0NzYwODc5MjI7czo0OiJsYXN0IjtpOjE0NzYwOTM0MDY7czozOiJub3ciO2k6MTQ3NjA5MzQxMjt9czo1OiJ0b2tlbiI7czozMjoiaWJQNTEwYWhFUk5Icndtc09tcjJFSFZ2bEdodWtKR20iO31zOjg6InJlZ2lzdHJ5IjtPOjI0OiJKb29tbGFcUmVnaXN0cnlcUmVnaXN0cnkiOjI6e3M6NzoiACoAZGF0YSI7Tzo4OiJzdGRDbGFzcyI6Mjp7czo1OiJ1c2VycyI7Tzo4OiJzdGRDbGFzcyI6MTp7czo1OiJsb2dpbiI7Tzo4OiJzdGRDbGFzcyI6MTp7czo0OiJmb3JtIjtPOjg6InN0ZENsYXNzIjoyOntzOjY6InJldHVybiI7czo1OToiaHR0cDovL2xvY2FsaG9zdC9hbGVmYWwuaXQvUFJPSkVDVFMvam9vbWxhMzYyL2luZGV4LnBocC9pdC8iO3M6NDoiZGF0YSI7YTowOnt9fX19czoxMDoiY29tX2t1bmVuYSI7Tzo4OiJzdGRDbGFzcyI6Mjp7czoxMjoidXNlcjY2OV9yZWFkIjthOjU6e2k6MTtpOjE7aTo1O2k6NTtpOjI7aToyO2k6MztpOjM7aTo0O2k6NDt9czoxMDoicG9zdGZpZWxkcyI7Tjt9fXM6OToic2VwYXJhdG9yIjtzOjE6Ii4iO31zOjQ6InVzZXIiO086NToiSlVzZXIiOjE6e3M6MjoiaWQiO3M6MzoiNjY5Ijt9czoxMDoiY29tX21haWx0byI7Tzo4OiJzdGRDbGFzcyI6MTp7czo1OiJsaW5rcyI7YTozOntzOjQwOiJlNDk1NjBkMDU3NjNkZGM3NjlkMWYwOTAzYzg5MDg0YTQ5ZDMzMTkxIjtPOjg6InN0ZENsYXNzIjoyOntzOjQ6ImxpbmsiO3M6OTQ6Imh0dHA6Ly9sb2NhbGhvc3QvYWxlZmFsLml0L1BST0pFQ1RTL2pvb21sYTM2Mi9pbmRleC5waHAvaXQvMTAtY2F0ZWdvcmlhLWl0LWl0LzQtYXJ0aWNvbG8taXQtaXQiO3M6NjoiZXhwaXJ5IjtpOjE0NzYwOTI4NDU7fXM6NDA6ImY4Y2NiZjU4ZDdmYTJmYTEyYjgyMTFkYjU3OTY5MWU2YjdmMDMxYTYiO086ODoic3RkQ2xhc3MiOjI6e3M6NDoibGluayI7czo5NDoiaHR0cDovL2xvY2FsaG9zdC9hbGVmYWwuaXQvUFJPSkVDVFMvam9vbWxhMzYyL2luZGV4LnBocC9lbi11cy84LWNhdGVnb3J5LWVuLXVzLzItYXJ0aWNsZS1lbi11cyI7czo2OiJleHBpcnkiO2k6MTQ3NjA5MjgxMTt9czo0MDoiM2EyMTcyZDdmZmViZDljN2ZlZDUyZjE2MmFlMzIyNDE1ZDQyYzMzMSI7Tzo4OiJzdGRDbGFzcyI6Mjp7czo0OiJsaW5rIjtzOjkxOiJodHRwOi8vbG9jYWxob3N0L2FsZWZhbC5pdC9QUk9KRUNUUy9qb29tbGEzNjIvaW5kZXgucGhwL2VuLzktY2F0ZWdvcnktZW4tZ2IvMy1hcnRpY2xlLWVuLWdiIjtzOjY6ImV4cGlyeSI7aToxNDc2MDkyODEyO319fX19czo5OiJzZXBhcmF0b3IiO3M6MToiLiI7fQ==";', 669, 'admin'),
+('t1iu5c7kma7amtne07luib2p17', 1, 0, '1476093356', 'joomla|s:9292:"TzoyNDoiSm9vbWxhXFJlZ2lzdHJ5XFJlZ2lzdHJ5IjoyOntzOjc6IgAqAGRhdGEiO086ODoic3RkQ2xhc3MiOjE6e3M6OToiX19kZWZhdWx0IjtPOjg6InN0ZENsYXNzIjo1OntzOjc6InNlc3Npb24iO086ODoic3RkQ2xhc3MiOjM6e3M6NzoiY291bnRlciI7aTo2NztzOjU6InRpbWVyIjtPOjg6InN0ZENsYXNzIjozOntzOjU6InN0YXJ0IjtpOjE0NzYwOTIzOTc7czo0OiJsYXN0IjtpOjE0NzYwOTMzNTU7czozOiJub3ciO2k6MTQ3NjA5MzM1NTt9czo1OiJ0b2tlbiI7czozMjoiVlpwdGlPSFI5Z01DN2IwYmpUWDRld25qWEVFYThjY3YiO31zOjg6InJlZ2lzdHJ5IjtPOjI0OiJKb29tbGFcUmVnaXN0cnlcUmVnaXN0cnkiOjI6e3M6NzoiACoAZGF0YSI7Tzo4OiJzdGRDbGFzcyI6Njp7czoxMzoiY29tX2luc3RhbGxlciI7Tzo4OiJzdGRDbGFzcyI6Mzp7czo3OiJtZXNzYWdlIjtzOjA6IiI7czoxNzoiZXh0ZW5zaW9uX21lc3NhZ2UiO3M6MDoiIjtzOjEyOiJyZWRpcmVjdF91cmwiO047fXM6MTA6ImNvbV9rdW5lbmEiO086ODoic3RkQ2xhc3MiOjM6e3M6NzoiaW5zdGFsbCI7Tzo4OiJzdGRDbGFzcyI6OTp7czo2OiJzdGF0dXMiO2E6MzY6e2k6MDthOjQ6e3M6NDoic3RlcCI7aToxO3M6NDoidGFzayI7czoyNToiUHJlcGFyYXJlIGwnaW5zdGFsbGF6aW9uZSI7czo3OiJzdWNjZXNzIjtiOjE7czozOiJtc2ciO3M6MDoiIjt9aToxO2E6NDp7czo0OiJzdGVwIjtpOjI7czo0OiJ0YXNrIjtzOjUxOiJJbnN0YWxsYXppb25lIGRlbGxhIHBsdWdpbiBLdW5lbmEgLSBBbHBoYXVzZXJwb2ludHMiO3M6Nzoic3VjY2VzcyI7YjoxO3M6MzoibXNnIjtzOjA6IiI7fWk6MjthOjQ6e3M6NDoic3RlcCI7aToyO3M6NDoidGFzayI7czo1MDoiSW5zdGFsbGF6aW9uZSBkZWxsYSBwbHVnaW4gS3VuZW5hIC0gQWx0YXVzZXJwb2ludHMiO3M6Nzoic3VjY2VzcyI7YjoxO3M6MzoibXNnIjtzOjA6IiI7fWk6MzthOjQ6e3M6NDoic3RlcCI7aToyO3M6NDoidGFzayI7czo0NToiSW5zdGFsbGF6aW9uZSBkZWxsYSBwbHVnaW4gS3VuZW5hIC0gQ29tbXVuaXR5IjtzOjc6InN1Y2Nlc3MiO2I6MTtzOjM6Im1zZyI7czowOiIiO31pOjQ7YTo0OntzOjQ6InN0ZXAiO2k6MjtzOjQ6InRhc2siO3M6NDc6Ikluc3RhbGxhemlvbmUgZGVsbGEgcGx1Z2luIEt1bmVuYSAtIENvbXByb2ZpbGVyIjtzOjc6InN1Y2Nlc3MiO2I6MTtzOjM6Im1zZyI7czowOiIiO31pOjU7YTo0OntzOjQ6InN0ZXAiO2k6MjtzOjQ6InRhc2siO3M6NDc6Ikluc3RhbGxhemlvbmUgZGVsbGEgcGx1Z2luIEt1bmVuYSAtIEVhc3lwcm9maWxlIjtzOjc6InN1Y2Nlc3MiO2I6MTtzOjM6Im1zZyI7czowOiIiO31pOjY7YTo0OntzOjQ6InN0ZXAiO2k6MjtzOjQ6InRhc2siO3M6NDY6Ikluc3RhbGxhemlvbmUgZGVsbGEgcGx1Z2luIEt1bmVuYSAtIEVhc3lzb2NpYWwiO3M6Nzoic3VjY2VzcyI7YjoxO3M6MzoibXNnIjtzOjA6IiI7fWk6NzthOjQ6e3M6NDoic3RlcCI7aToyO3M6NDoidGFzayI7czo0NDoiSW5zdGFsbGF6aW9uZSBkZWxsYSBwbHVnaW4gS3VuZW5hIC0gR3JhdmF0YXIiO3M6Nzoic3VjY2VzcyI7YjoxO3M6MzoibXNnIjtzOjA6IiI7fWk6ODthOjQ6e3M6NDoic3RlcCI7aToyO3M6NDoidGFzayI7czo0MjoiSW5zdGFsbGF6aW9uZSBkZWxsYSBwbHVnaW4gS3VuZW5hIC0gVWRkZWltIjtzOjc6InN1Y2Nlc3MiO2I6MTtzOjM6Im1zZyI7czowOiIiO31pOjk7YTo0OntzOjQ6InN0ZXAiO2k6MjtzOjQ6InRhc2siO3M6NDI6Ikluc3RhbGxhemlvbmUgZGVsbGEgcGx1Z2luIEt1bmVuYSAtIEt1bmVuYSI7czo3OiJzdWNjZXNzIjtiOjE7czozOiJtc2ciO3M6MDoiIjt9aToxMDthOjQ6e3M6NDoic3RlcCI7aToyO3M6NDoidGFzayI7czo0MjoiSW5zdGFsbGF6aW9uZSBkZWxsYSBwbHVnaW4gS3VuZW5hIC0gSm9vbWxhIjtzOjc6InN1Y2Nlc3MiO2I6MTtzOjM6Im1zZyI7czowOiIiO31pOjExO2E6NDp7czo0OiJzdGVwIjtpOjM7czo0OiJ0YXNrIjtzOjE5OiJDcmVhIGt1bmVuYV9hbGlhc2VzIjtzOjc6InN1Y2Nlc3MiO2I6MTtzOjM6Im1zZyI7czowOiIiO31pOjEyO2E6NDp7czo0OiJzdGVwIjtpOjM7czo0OiJ0YXNrIjtzOjI0OiJDcmVhIGt1bmVuYV9hbm5vdW5jZW1lbnQiO3M6Nzoic3VjY2VzcyI7YjoxO3M6MzoibXNnIjtzOjA6IiI7fWk6MTM7YTo0OntzOjQ6InN0ZXAiO2k6MztzOjQ6InRhc2siO3M6MjM6IkNyZWEga3VuZW5hX2F0dGFjaG1lbnRzIjtzOjc6InN1Y2Nlc3MiO2I6MTtzOjM6Im1zZyI7czowOiIiO31pOjE0O2E6NDp7czo0OiJzdGVwIjtpOjM7czo0OiJ0YXNrIjtzOjIyOiJDcmVhIGt1bmVuYV9jYXRlZ29yaWVzIjtzOjc6InN1Y2Nlc3MiO2I6MTtzOjM6Im1zZyI7czowOiIiO31pOjE1O2E6NDp7czo0OiJzdGVwIjtpOjM7czo0OiJ0YXNrIjtzOjI1OiJDcmVhIGt1bmVuYV9jb25maWd1cmF0aW9uIjtzOjc6InN1Y2Nlc3MiO2I6MTtzOjM6Im1zZyI7czowOiIiO31pOjE2O2E6NDp7czo0OiJzdGVwIjtpOjM7czo0OiJ0YXNrIjtzOjE4OiJDcmVhIGt1bmVuYV90b3BpY3MiO3M6Nzoic3VjY2VzcyI7YjoxO3M6MzoibXNnIjtzOjA6IiI7fWk6MTc7YTo0OntzOjQ6InN0ZXAiO2k6MztzOjQ6InRhc2siO3M6MjA6IkNyZWEga3VuZW5hX21lc3NhZ2VzIjtzOjc6InN1Y2Nlc3MiO2I6MTtzOjM6Im1zZyI7czowOiIiO31pOjE4O2E6NDp7czo0OiJzdGVwIjtpOjM7czo0OiJ0YXNrIjtzOjI1OiJDcmVhIGt1bmVuYV9tZXNzYWdlc190ZXh0IjtzOjc6InN1Y2Nlc3MiO2I6MTtzOjM6Im1zZyI7czowOiIiO31pOjE5O2E6NDp7czo0OiJzdGVwIjtpOjM7czo0OiJ0YXNrIjtzOjE3OiJDcmVhIGt1bmVuYV9wb2xscyI7czo3OiJzdWNjZXNzIjtiOjE7czozOiJtc2ciO3M6MDoiIjt9aToyMDthOjQ6e3M6NDoic3RlcCI7aTozO3M6NDoidGFzayI7czoyNToiQ3JlYSBrdW5lbmFfcG9sbHNfb3B0aW9ucyI7czo3OiJzdWNjZXNzIjtiOjE7czozOiJtc2ciO3M6MDoiIjt9aToyMTthOjQ6e3M6NDoic3RlcCI7aTozO3M6NDoidGFzayI7czoyMzoiQ3JlYSBrdW5lbmFfcG9sbHNfdXNlcnMiO3M6Nzoic3VjY2VzcyI7YjoxO3M6MzoibXNnIjtzOjA6IiI7fWk6MjI7YTo0OntzOjQ6InN0ZXAiO2k6MztzOjQ6InRhc2siO3M6MTc6IkNyZWEga3VuZW5hX3JhbmtzIjtzOjc6InN1Y2Nlc3MiO2I6MTtzOjM6Im1zZyI7czowOiIiO31pOjIzO2E6NDp7czo0OiJzdGVwIjtpOjM7czo0OiJ0YXNrIjtzOjE2OiJDcmVhIGt1bmVuYV9yYXRlIjtzOjc6InN1Y2Nlc3MiO2I6MTtzOjM6Im1zZyI7czowOiIiO31pOjI0O2E6NDp7czo0OiJzdGVwIjtpOjM7czo0OiJ0YXNrIjtzOjIwOiJDcmVhIGt1bmVuYV9zZXNzaW9ucyI7czo3OiJzdWNjZXNzIjtiOjE7czozOiJtc2ciO3M6MDoiIjt9aToyNTthOjQ6e3M6NDoic3RlcCI7aTozO3M6NDoidGFzayI7czoxOToiQ3JlYSBrdW5lbmFfc21pbGV5cyI7czo3OiJzdWNjZXNzIjtiOjE7czozOiJtc2ciO3M6MDoiIjt9aToyNjthOjQ6e3M6NDoic3RlcCI7aTozO3M6NDoidGFzayI7czoyMDoiQ3JlYSBrdW5lbmFfdGhhbmt5b3UiO3M6Nzoic3VjY2VzcyI7YjoxO3M6MzoibXNnIjtzOjA6IiI7fWk6Mjc7YTo0OntzOjQ6InN0ZXAiO2k6MztzOjQ6InRhc2siO3M6Mjc6IkNyZWEga3VuZW5hX3VzZXJfY2F0ZWdvcmllcyI7czo3OiJzdWNjZXNzIjtiOjE7czozOiJtc2ciO3M6MDoiIjt9aToyODthOjQ6e3M6NDoic3RlcCI7aTozO3M6NDoidGFzayI7czoyMToiQ3JlYSBrdW5lbmFfdXNlcl9yZWFkIjtzOjc6InN1Y2Nlc3MiO2I6MTtzOjM6Im1zZyI7czowOiIiO31pOjI5O2E6NDp7czo0OiJzdGVwIjtpOjM7czo0OiJ0YXNrIjtzOjIzOiJDcmVhIGt1bmVuYV91c2VyX3RvcGljcyI7czo3OiJzdWNjZXNzIjtiOjE7czozOiJtc2ciO3M6MDoiIjt9aTozMDthOjQ6e3M6NDoic3RlcCI7aTozO3M6NDoidGFzayI7czoxNzoiQ3JlYSBrdW5lbmFfdXNlcnMiO3M6Nzoic3VjY2VzcyI7YjoxO3M6MzoibXNnIjtzOjA6IiI7fWk6MzE7YTo0OntzOjQ6InN0ZXAiO2k6MztzOjQ6InRhc2siO3M6MjQ6IkNyZWEga3VuZW5hX3VzZXJzX2Jhbm5lZCI7czo3OiJzdWNjZXNzIjtiOjE7czozOiJtc2ciO3M6MDoiIjt9aTozMjthOjQ6e3M6NDoic3RlcCI7aTozO3M6NDoidGFzayI7czoxNjoiQ3JlYSBrdW5lbmFfbG9ncyI7czo3OiJzdWNjZXNzIjtiOjE7czozOiJtc2ciO3M6MDoiIjt9aTozMzthOjQ6e3M6NDoic3RlcCI7aTozO3M6NDoidGFzayI7czoyOToiSW5zdGFsbGF6aW9uZSBkYXRpIGRpIGVzZW1waW8iO3M6Nzoic3VjY2VzcyI7YjoxO3M6MzoibXNnIjtzOjA6IiI7fXM6NzoicmVjb3VudCI7YTo0OntzOjQ6InN0ZXAiO2k6MztzOjQ6InRhc2siO3M6MzE6IlJpY2FsY29sbyBzdGF0aXN0aWNoZSBkZWwgZm9ydW0iO3M6Nzoic3VjY2VzcyI7YjoxO3M6MzoibXNnIjtzOjA6IiI7fWk6MzQ7YTo0OntzOjQ6InN0ZXAiO2k6NDtzOjQ6InRhc2siO3M6Mzg6Ikluc3RhbGxhemlvbmUgY29tcGxldGF0YSBjb24gc3VjY2Vzc28uIjtzOjc6InN1Y2Nlc3MiO2I6MTtzOjM6Im1zZyI7czowOiIiO319czo2OiJhY3Rpb24iO3M6NzoiaW5zdGFsbCI7czo0OiJzdGVwIjtpOjU7czo0OiJ0YXNrIjtpOjA7czo3OiJ2ZXJzaW9uIjtPOjg6InN0ZENsYXNzIjoxMzp7czoyOiJpZCI7aTowO3M6OToiY29tcG9uZW50IjtOO3M6NzoidmVyc2lvbiI7czowOiIiO3M6MTE6InZlcnNpb25kYXRlIjtOO3M6MTE6Imluc3RhbGxkYXRlIjtzOjA6IiI7czoxMToidmVyc2lvbm5hbWUiO3M6MDoiIjtzOjY6InByZWZpeCI7TjtzOjY6ImFjdGlvbiI7czo3OiJJTlNUQUxMIjtzOjU6ImxhYmVsIjtzOjIxOiJJbnN0YWxsYSBLdW5lbmEgNS4wLjIiO3M6MTE6ImRlc2NyaXB0aW9uIjtzOjIyOiJJbnN0YWxsYSBLdW5lbmEgNS4wLjIuIjtzOjQ6ImhpbnQiO3M6MTQ2OiI8c3Ryb25nIGNsYXNzPSJraGludCI+U1VHR0VSSU1FTlRPOjwvc3Ryb25nPiB1c2EgcXVlc3RhIG9wemlvbmUgcGVyIGNvbXBsZXRhcmUgbCdpbnN0YWxsYXppb25lLiBRdWVzdG8gY3JlZXLDoCB1biBudW92byBmb3J1bSBjb24gZGF0aSBkaSBlc2VtcGlvLiI7czo3OiJ3YXJuaW5nIjtzOjI0NDoiPHN0cm9uZyBjbGFzcz0ia3dhcm4iPkFUVEVOWklPTkU6PC9zdHJvbmc+IFNlIGhhaSBnacOgIGluc3RhbGxhdG8gS3VuZW5hIDUuMC4yIGUgcG9pIGhhaSBkZWNpc28gZGkgZmFyZSBpbCBkb3duZ3JhZGUgYSAgLCB0dXR0aSBpIG51b3ZpIG1lc3NhZ2dpIHByaW1hIGRpIHF1ZXN0YSBpbnN0YWxsYXppb25lIG5vbiBzYXJhbm5vIGltcG9ydGF0aS4gUGVyIGZhdm9yZSA8ZW0+bWlncmE8L2VtPiBsYSB2ZWNjaGlhIHZlcnNpb25lLiI7czo0OiJsaW5rIjtzOjEzMjoiL2FsZWZhbC5pdC9QUk9KRUNUUy9qb29tbGEzNjIvYWRtaW5pc3RyYXRvci9pbmRleC5waHA/b3B0aW9uPWNvbV9rdW5lbmEmdmlldz1pbnN0YWxsJnRhc2s9aW5zdGFsbCY1ZDdhMWQ3NjQzYmI5YTZhMzQ3OGQ5ZjM5NGJkN2UwOD0xIjt9czo3OiJhdmF0YXJzIjtPOjg6InN0ZENsYXNzIjo0OntzOjc6Im1pc3NpbmciO2k6MDtzOjY6ImZhaWxlZCI7aTowO3M6ODoibWlncmF0ZWQiO2k6MDtzOjc6ImN1cnJlbnQiO2k6MDt9czoxMToiYXR0YWNobWVudHMiO086ODoic3RkQ2xhc3MiOjQ6e3M6NzoibWlzc2luZyI7aTowO3M6NjoiZmFpbGVkIjtpOjA7czo4OiJtaWdyYXRlZCI7aTowO3M6NzoiY3VycmVudCI7aTowO31zOjc6ImRic3RhdGUiO047czo3OiJyZWNvdW50IjtOO31zOjEyOiJ1c2VyNjY5X3JlYWQiO2E6NTp7aToxO2k6MTtpOjU7aTo1O2k6MjtpOjI7aTozO2k6MztpOjQ7aTo0O31zOjU6ImFkbWluIjtPOjg6InN0ZENsYXNzIjozOntzOjEwOiJjYXRlZ29yaWVzIjtPOjg6InN0ZENsYXNzIjoyOntzOjQ6ImVkaXQiO086ODoic3RkQ2xhc3MiOjE6e3M6NjoiZmlsdGVyIjtPOjg6InN0ZENsYXNzIjoxOntzOjU6ImNhdGlkIjtpOjM7fX1zOjY6ImNyZWF0ZSI7Tzo4OiJzdGRDbGFzcyI6MTp7czo2OiJmaWx0ZXIiO086ODoic3RkQ2xhc3MiOjE6e3M6NToiY2F0aWQiO2k6MDt9fX1zOjc6InBsdWdpbnMiO086ODoic3RkQ2xhc3MiOjE6e3M6ODoib3JkZXJjb2wiO3M6NjoiZm9sZGVyIjt9czo5OiJ0ZW1wbGF0ZXMiO086ODoic3RkQ2xhc3MiOjI6e3M6NDoibGlzdCI7Tzo4OiJzdGRDbGFzcyI6MTp7czo1OiJzdGFydCI7aTowO31zOjQ6ImVkaXQiO086ODoic3RkQ2xhc3MiOjI6e3M6NDoiZWRpdCI7czo3OiJjcnlwc2lzIjtzOjQ6Imxpc3QiO086ODoic3RkQ2xhc3MiOjE6e3M6NToic3RhcnQiO2k6MDt9fX19fXM6MTA6InBrZ19rdW5lbmEiO086ODoic3RkQ2xhc3MiOjE6e3M6MTE6InVwZGF0ZUNoZWNrIjtpOjE0NzYxMTQyODI7fXM6OToiY29tX21lbnVzIjtPOjg6InN0ZENsYXNzIjoxOntzOjU6Iml0ZW1zIjtPOjg6InN0ZENsYXNzIjozOntzOjg6Im1lbnV0eXBlIjtzOjg6Im1haW5tZW51IjtzOjEwOiJsaW1pdHN0YXJ0IjtpOjA7czo0OiJsaXN0IjthOjQ6e3M6OToiZGlyZWN0aW9uIjtzOjM6ImFzYyI7czo1OiJsaW1pdCI7czoyOiIyMCI7czo4OiJvcmRlcmluZyI7czo1OiJhLmxmdCI7czo1OiJzdGFydCI7ZDowO319fXM6MTE6ImNvbV9jb250ZW50IjtPOjg6InN0ZENsYXNzIjoxOntzOjQ6ImVkaXQiO086ODoic3RkQ2xhc3MiOjE6e3M6NzoiYXJ0aWNsZSI7Tzo4OiJzdGRDbGFzcyI6MTp7czo0OiJkYXRhIjtOO319fXM6Njoia3VuZW5hIjtPOjg6InN0ZENsYXNzIjoxOntzOjQ6ImVkaXQiO086ODoic3RkQ2xhc3MiOjE6e3M6ODoidGVtcGxhdGUiO3M6NzoiY3J5cHNpcyI7fX19czo5OiJzZXBhcmF0b3IiO3M6MToiLiI7fXM6NDoidXNlciI7Tzo1OiJKVXNlciI6MTp7czoyOiJpZCI7czozOiI2NjkiO31zOjExOiJhcHBsaWNhdGlvbiI7Tzo4OiJzdGRDbGFzcyI6MTp7czo1OiJxdWV1ZSI7Tjt9czo2OiJrdW5lbmEiO086ODoic3RkQ2xhc3MiOjM6e3M6NjoicmVsb2FkIjtpOjE7czo1OiJxdWV1ZSI7YTowOnt9czo4OiJuZXdxdWV1ZSI7YTowOnt9fX19czo5OiJzZXBhcmF0b3IiO3M6MToiLiI7fQ==";', 669, 'admin');
 
 -- --------------------------------------------------------
 
@@ -1743,76 +2439,82 @@ CREATE TABLE `jml_updates` (
 --
 
 INSERT INTO `jml_updates` (`update_id`, `update_site_id`, `extension_id`, `name`, `description`, `element`, `type`, `folder`, `client_id`, `version`, `data`, `detailsurl`, `infourl`, `extra_query`) VALUES
-(1, 3, 0, 'Malay', '', 'pkg_ms-MY', 'package', '', 0, '3.4.1.2', '', 'https://update.joomla.org/language/details3/ms-MY_details.xml', '', ''),
-(2, 3, 0, 'Romanian', '', 'pkg_ro-RO', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/ro-RO_details.xml', '', ''),
-(3, 3, 0, 'Flemish', '', 'pkg_nl-BE', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/nl-BE_details.xml', '', ''),
-(4, 3, 0, 'Chinese Traditional', '', 'pkg_zh-TW', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/zh-TW_details.xml', '', ''),
-(5, 3, 0, 'French', '', 'pkg_fr-FR', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/fr-FR_details.xml', '', ''),
-(6, 3, 0, 'Galician', '', 'pkg_gl-ES', 'package', '', 0, '3.3.1.2', '', 'https://update.joomla.org/language/details3/gl-ES_details.xml', '', ''),
-(7, 3, 0, 'Georgian', '', 'pkg_ka-GE', 'package', '', 0, '3.6.2.3', '', 'https://update.joomla.org/language/details3/ka-GE_details.xml', '', ''),
-(8, 3, 0, 'Greek', '', 'pkg_el-GR', 'package', '', 0, '3.4.2.1', '', 'https://update.joomla.org/language/details3/el-GR_details.xml', '', ''),
-(9, 3, 0, 'Japanese', '', 'pkg_ja-JP', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/ja-JP_details.xml', '', ''),
-(10, 3, 0, 'Hebrew', '', 'pkg_he-IL', 'package', '', 0, '3.1.1.1', '', 'https://update.joomla.org/language/details3/he-IL_details.xml', '', ''),
-(11, 3, 0, 'Hungarian', '', 'pkg_hu-HU', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/hu-HU_details.xml', '', ''),
-(12, 3, 0, 'Afrikaans', '', 'pkg_af-ZA', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/af-ZA_details.xml', '', ''),
-(13, 3, 0, 'Arabic Unitag', '', 'pkg_ar-AA', 'package', '', 0, '3.6.1.1', '', 'https://update.joomla.org/language/details3/ar-AA_details.xml', '', ''),
-(14, 3, 0, 'Belarusian', '', 'pkg_be-BY', 'package', '', 0, '3.2.1.1', '', 'https://update.joomla.org/language/details3/be-BY_details.xml', '', ''),
-(15, 3, 0, 'Bulgarian', '', 'pkg_bg-BG', 'package', '', 0, '3.4.4.2', '', 'https://update.joomla.org/language/details3/bg-BG_details.xml', '', ''),
-(16, 3, 0, 'Catalan', '', 'pkg_ca-ES', 'package', '', 0, '3.6.1.1', '', 'https://update.joomla.org/language/details3/ca-ES_details.xml', '', ''),
-(17, 3, 0, 'Chinese Simplified', '', 'pkg_zh-CN', 'package', '', 0, '3.4.1.1', '', 'https://update.joomla.org/language/details3/zh-CN_details.xml', '', ''),
-(18, 3, 0, 'Croatian', '', 'pkg_hr-HR', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/hr-HR_details.xml', '', ''),
-(19, 3, 0, 'Czech', '', 'pkg_cs-CZ', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/cs-CZ_details.xml', '', ''),
-(20, 3, 0, 'Danish', '', 'pkg_da-DK', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/da-DK_details.xml', '', ''),
-(21, 3, 0, 'Dutch', '', 'pkg_nl-NL', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/nl-NL_details.xml', '', ''),
-(22, 3, 0, 'Estonian', '', 'pkg_et-EE', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/et-EE_details.xml', '', ''),
-(23, 3, 0, 'Khmer', '', 'pkg_km-KH', 'package', '', 0, '3.4.5.1', '', 'https://update.joomla.org/language/details3/km-KH_details.xml', '', ''),
-(24, 3, 0, 'Korean', '', 'pkg_ko-KR', 'package', '', 0, '3.6.2.2', '', 'https://update.joomla.org/language/details3/ko-KR_details.xml', '', ''),
-(25, 3, 0, 'Latvian', '', 'pkg_lv-LV', 'package', '', 0, '3.6.2.2', '', 'https://update.joomla.org/language/details3/lv-LV_details.xml', '', ''),
-(26, 3, 0, 'Macedonian', '', 'pkg_mk-MK', 'package', '', 0, '3.6.2.2', '', 'https://update.joomla.org/language/details3/mk-MK_details.xml', '', ''),
-(27, 3, 0, 'Norwegian Bokmal', '', 'pkg_nb-NO', 'package', '', 0, '3.5.1.1', '', 'https://update.joomla.org/language/details3/nb-NO_details.xml', '', ''),
-(28, 3, 0, 'Norwegian Nynorsk', '', 'pkg_nn-NO', 'package', '', 0, '3.4.2.1', '', 'https://update.joomla.org/language/details3/nn-NO_details.xml', '', ''),
-(29, 3, 0, 'Persian', '', 'pkg_fa-IR', 'package', '', 0, '3.6.2.2', '', 'https://update.joomla.org/language/details3/fa-IR_details.xml', '', ''),
-(30, 3, 0, 'Polish', '', 'pkg_pl-PL', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/pl-PL_details.xml', '', ''),
-(31, 3, 0, 'Portuguese', '', 'pkg_pt-PT', 'package', '', 0, '3.5.1.4', '', 'https://update.joomla.org/language/details3/pt-PT_details.xml', '', ''),
-(32, 3, 0, 'Russian', '', 'pkg_ru-RU', 'package', '', 0, '3.6.2.2', '', 'https://update.joomla.org/language/details3/ru-RU_details.xml', '', ''),
-(33, 3, 0, 'English AU', '', 'pkg_en-AU', 'package', '', 0, '3.6.2.2', '', 'https://update.joomla.org/language/details3/en-AU_details.xml', '', ''),
-(34, 3, 0, 'Slovak', '', 'pkg_sk-SK', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/sk-SK_details.xml', '', ''),
-(35, 3, 0, 'Swedish', '', 'pkg_sv-SE', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/sv-SE_details.xml', '', ''),
-(36, 3, 0, 'Syriac', '', 'pkg_sy-IQ', 'package', '', 0, '3.4.5.1', '', 'https://update.joomla.org/language/details3/sy-IQ_details.xml', '', ''),
-(37, 3, 0, 'Tamil', '', 'pkg_ta-IN', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/ta-IN_details.xml', '', ''),
-(38, 3, 0, 'Thai', '', 'pkg_th-TH', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/th-TH_details.xml', '', ''),
-(39, 3, 0, 'Turkish', '', 'pkg_tr-TR', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/tr-TR_details.xml', '', ''),
-(40, 3, 0, 'Ukrainian', '', 'pkg_uk-UA', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/uk-UA_details.xml', '', ''),
-(41, 3, 0, 'Uyghur', '', 'pkg_ug-CN', 'package', '', 0, '3.3.0.1', '', 'https://update.joomla.org/language/details3/ug-CN_details.xml', '', ''),
-(42, 3, 0, 'Albanian', '', 'pkg_sq-AL', 'package', '', 0, '3.1.1.1', '', 'https://update.joomla.org/language/details3/sq-AL_details.xml', '', ''),
-(43, 3, 0, 'Basque', '', 'pkg_eu-ES', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/eu-ES_details.xml', '', ''),
-(44, 3, 0, 'Hindi', '', 'pkg_hi-IN', 'package', '', 0, '3.3.6.1', '', 'https://update.joomla.org/language/details3/hi-IN_details.xml', '', ''),
-(45, 3, 0, 'German DE', '', 'pkg_de-DE', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/de-DE_details.xml', '', ''),
-(46, 3, 0, 'Portuguese Brazil', '', 'pkg_pt-BR', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/pt-BR_details.xml', '', ''),
-(47, 3, 0, 'Serbian Latin', '', 'pkg_sr-YU', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/sr-YU_details.xml', '', ''),
-(48, 3, 0, 'Spanish', '', 'pkg_es-ES', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/es-ES_details.xml', '', ''),
-(49, 3, 0, 'Bosnian', '', 'pkg_bs-BA', 'package', '', 0, '3.5.1.1', '', 'https://update.joomla.org/language/details3/bs-BA_details.xml', '', ''),
-(50, 3, 0, 'Serbian Cyrillic', '', 'pkg_sr-RS', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/sr-RS_details.xml', '', ''),
-(51, 3, 0, 'Vietnamese', '', 'pkg_vi-VN', 'package', '', 0, '3.2.1.1', '', 'https://update.joomla.org/language/details3/vi-VN_details.xml', '', ''),
-(52, 3, 0, 'Bahasa Indonesia', '', 'pkg_id-ID', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/id-ID_details.xml', '', ''),
-(53, 3, 0, 'Finnish', '', 'pkg_fi-FI', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/fi-FI_details.xml', '', ''),
-(54, 3, 0, 'Swahili', '', 'pkg_sw-KE', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/sw-KE_details.xml', '', ''),
-(55, 3, 0, 'Montenegrin', '', 'pkg_srp-ME', 'package', '', 0, '3.3.1.1', '', 'https://update.joomla.org/language/details3/srp-ME_details.xml', '', ''),
-(56, 3, 0, 'English CA', '', 'pkg_en-CA', 'package', '', 0, '3.6.2.2', '', 'https://update.joomla.org/language/details3/en-CA_details.xml', '', ''),
-(57, 3, 0, 'French CA', '', 'pkg_fr-CA', 'package', '', 0, '3.5.1.2', '', 'https://update.joomla.org/language/details3/fr-CA_details.xml', '', ''),
-(58, 3, 0, 'Welsh', '', 'pkg_cy-GB', 'package', '', 0, '3.3.0.2', '', 'https://update.joomla.org/language/details3/cy-GB_details.xml', '', ''),
-(59, 3, 0, 'Sinhala', '', 'pkg_si-LK', 'package', '', 0, '3.3.1.1', '', 'https://update.joomla.org/language/details3/si-LK_details.xml', '', ''),
-(60, 3, 0, 'Dari Persian', '', 'pkg_prs-AF', 'package', '', 0, '3.4.4.1', '', 'https://update.joomla.org/language/details3/prs-AF_details.xml', '', ''),
-(61, 3, 0, 'Turkmen', '', 'pkg_tk-TM', 'package', '', 0, '3.5.0.2', '', 'https://update.joomla.org/language/details3/tk-TM_details.xml', '', ''),
-(62, 3, 0, 'Irish', '', 'pkg_ga-IE', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/ga-IE_details.xml', '', ''),
-(63, 3, 0, 'Dzongkha', '', 'pkg_dz-BT', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/dz-BT_details.xml', '', ''),
-(64, 3, 0, 'Slovenian', '', 'pkg_sl-SI', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/sl-SI_details.xml', '', ''),
-(65, 3, 0, 'Spanish CO', '', 'pkg_es-CO', 'package', '', 0, '3.6.1.1', '', 'https://update.joomla.org/language/details3/es-CO_details.xml', '', ''),
-(66, 3, 0, 'German CH', '', 'pkg_de-CH', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/de-CH_details.xml', '', ''),
-(67, 3, 0, 'German AT', '', 'pkg_de-AT', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/de-AT_details.xml', '', ''),
-(68, 3, 0, 'German LI', '', 'pkg_de-LI', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/de-LI_details.xml', '', ''),
-(69, 3, 0, 'German LU', '', 'pkg_de-LU', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/de-LU_details.xml', '', ''),
-(70, 5, 0, 'Armenian', '', 'pkg_hy-AM', 'package', '', 0, '3.4.4.1', '', 'https://update.joomla.org/language/details3/hy-AM_details.xml', '', '');
+(1, 3, 0, 'Polish', '', 'pkg_pl-PL', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/pl-PL_details.xml', '', ''),
+(2, 3, 0, 'Portuguese', '', 'pkg_pt-PT', 'package', '', 0, '3.5.1.4', '', 'https://update.joomla.org/language/details3/pt-PT_details.xml', '', ''),
+(3, 3, 0, 'Russian', '', 'pkg_ru-RU', 'package', '', 0, '3.6.2.2', '', 'https://update.joomla.org/language/details3/ru-RU_details.xml', '', ''),
+(4, 3, 0, 'English AU', '', 'pkg_en-AU', 'package', '', 0, '3.6.2.2', '', 'https://update.joomla.org/language/details3/en-AU_details.xml', '', ''),
+(5, 3, 0, 'Slovak', '', 'pkg_sk-SK', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/sk-SK_details.xml', '', ''),
+(6, 3, 0, 'Swedish', '', 'pkg_sv-SE', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/sv-SE_details.xml', '', ''),
+(7, 3, 0, 'Syriac', '', 'pkg_sy-IQ', 'package', '', 0, '3.4.5.1', '', 'https://update.joomla.org/language/details3/sy-IQ_details.xml', '', ''),
+(8, 3, 0, 'Tamil', '', 'pkg_ta-IN', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/ta-IN_details.xml', '', ''),
+(9, 3, 0, 'Thai', '', 'pkg_th-TH', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/th-TH_details.xml', '', ''),
+(10, 3, 0, 'Turkish', '', 'pkg_tr-TR', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/tr-TR_details.xml', '', ''),
+(11, 3, 0, 'Ukrainian', '', 'pkg_uk-UA', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/uk-UA_details.xml', '', ''),
+(12, 3, 0, 'Uyghur', '', 'pkg_ug-CN', 'package', '', 0, '3.3.0.1', '', 'https://update.joomla.org/language/details3/ug-CN_details.xml', '', ''),
+(13, 3, 0, 'Albanian', '', 'pkg_sq-AL', 'package', '', 0, '3.1.1.1', '', 'https://update.joomla.org/language/details3/sq-AL_details.xml', '', ''),
+(14, 3, 0, 'Basque', '', 'pkg_eu-ES', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/eu-ES_details.xml', '', ''),
+(15, 3, 0, 'Hindi', '', 'pkg_hi-IN', 'package', '', 0, '3.3.6.1', '', 'https://update.joomla.org/language/details3/hi-IN_details.xml', '', ''),
+(16, 3, 0, 'German DE', '', 'pkg_de-DE', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/de-DE_details.xml', '', ''),
+(17, 3, 0, 'Portuguese Brazil', '', 'pkg_pt-BR', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/pt-BR_details.xml', '', ''),
+(18, 3, 0, 'Serbian Latin', '', 'pkg_sr-YU', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/sr-YU_details.xml', '', ''),
+(19, 3, 0, 'Spanish', '', 'pkg_es-ES', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/es-ES_details.xml', '', ''),
+(20, 3, 0, 'Bosnian', '', 'pkg_bs-BA', 'package', '', 0, '3.5.1.1', '', 'https://update.joomla.org/language/details3/bs-BA_details.xml', '', ''),
+(21, 3, 0, 'Serbian Cyrillic', '', 'pkg_sr-RS', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/sr-RS_details.xml', '', ''),
+(22, 3, 0, 'Vietnamese', '', 'pkg_vi-VN', 'package', '', 0, '3.2.1.1', '', 'https://update.joomla.org/language/details3/vi-VN_details.xml', '', ''),
+(23, 3, 0, 'Bahasa Indonesia', '', 'pkg_id-ID', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/id-ID_details.xml', '', ''),
+(24, 3, 0, 'Finnish', '', 'pkg_fi-FI', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/fi-FI_details.xml', '', ''),
+(25, 3, 0, 'Swahili', '', 'pkg_sw-KE', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/sw-KE_details.xml', '', ''),
+(26, 3, 0, 'Montenegrin', '', 'pkg_srp-ME', 'package', '', 0, '3.3.1.1', '', 'https://update.joomla.org/language/details3/srp-ME_details.xml', '', ''),
+(27, 3, 0, 'English CA', '', 'pkg_en-CA', 'package', '', 0, '3.6.2.2', '', 'https://update.joomla.org/language/details3/en-CA_details.xml', '', ''),
+(28, 3, 0, 'French CA', '', 'pkg_fr-CA', 'package', '', 0, '3.5.1.2', '', 'https://update.joomla.org/language/details3/fr-CA_details.xml', '', ''),
+(29, 3, 0, 'Welsh', '', 'pkg_cy-GB', 'package', '', 0, '3.3.0.2', '', 'https://update.joomla.org/language/details3/cy-GB_details.xml', '', ''),
+(30, 3, 0, 'Sinhala', '', 'pkg_si-LK', 'package', '', 0, '3.3.1.1', '', 'https://update.joomla.org/language/details3/si-LK_details.xml', '', ''),
+(31, 3, 0, 'Dari Persian', '', 'pkg_prs-AF', 'package', '', 0, '3.4.4.1', '', 'https://update.joomla.org/language/details3/prs-AF_details.xml', '', ''),
+(32, 3, 0, 'Turkmen', '', 'pkg_tk-TM', 'package', '', 0, '3.5.0.2', '', 'https://update.joomla.org/language/details3/tk-TM_details.xml', '', ''),
+(33, 3, 0, 'Irish', '', 'pkg_ga-IE', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/ga-IE_details.xml', '', ''),
+(34, 3, 0, 'Dzongkha', '', 'pkg_dz-BT', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/dz-BT_details.xml', '', ''),
+(35, 3, 0, 'Slovenian', '', 'pkg_sl-SI', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/sl-SI_details.xml', '', ''),
+(36, 3, 0, 'Spanish CO', '', 'pkg_es-CO', 'package', '', 0, '3.6.1.1', '', 'https://update.joomla.org/language/details3/es-CO_details.xml', '', ''),
+(37, 3, 0, 'German CH', '', 'pkg_de-CH', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/de-CH_details.xml', '', ''),
+(38, 3, 0, 'German AT', '', 'pkg_de-AT', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/de-AT_details.xml', '', ''),
+(39, 3, 0, 'German LI', '', 'pkg_de-LI', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/de-LI_details.xml', '', ''),
+(40, 3, 0, 'German LU', '', 'pkg_de-LU', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/de-LU_details.xml', '', ''),
+(41, 5, 0, 'Armenian', '', 'pkg_hy-AM', 'package', '', 0, '3.4.4.1', '', 'https://update.joomla.org/language/details3/hy-AM_details.xml', '', ''),
+(42, 5, 0, 'Malay', '', 'pkg_ms-MY', 'package', '', 0, '3.4.1.2', '', 'https://update.joomla.org/language/details3/ms-MY_details.xml', '', ''),
+(43, 5, 0, 'Romanian', '', 'pkg_ro-RO', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/ro-RO_details.xml', '', ''),
+(44, 5, 0, 'Flemish', '', 'pkg_nl-BE', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/nl-BE_details.xml', '', ''),
+(45, 5, 0, 'Chinese Traditional', '', 'pkg_zh-TW', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/zh-TW_details.xml', '', ''),
+(46, 5, 0, 'French', '', 'pkg_fr-FR', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/fr-FR_details.xml', '', ''),
+(47, 5, 0, 'Galician', '', 'pkg_gl-ES', 'package', '', 0, '3.3.1.2', '', 'https://update.joomla.org/language/details3/gl-ES_details.xml', '', ''),
+(48, 5, 0, 'Georgian', '', 'pkg_ka-GE', 'package', '', 0, '3.6.2.3', '', 'https://update.joomla.org/language/details3/ka-GE_details.xml', '', ''),
+(49, 5, 0, 'Greek', '', 'pkg_el-GR', 'package', '', 0, '3.6.3.1', '', 'https://update.joomla.org/language/details3/el-GR_details.xml', '', ''),
+(50, 5, 0, 'Japanese', '', 'pkg_ja-JP', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/ja-JP_details.xml', '', ''),
+(51, 5, 0, 'Hebrew', '', 'pkg_he-IL', 'package', '', 0, '3.1.1.1', '', 'https://update.joomla.org/language/details3/he-IL_details.xml', '', ''),
+(52, 5, 0, 'Hungarian', '', 'pkg_hu-HU', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/hu-HU_details.xml', '', ''),
+(53, 5, 0, 'Afrikaans', '', 'pkg_af-ZA', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/af-ZA_details.xml', '', ''),
+(54, 5, 0, 'Arabic Unitag', '', 'pkg_ar-AA', 'package', '', 0, '3.6.1.1', '', 'https://update.joomla.org/language/details3/ar-AA_details.xml', '', ''),
+(55, 5, 0, 'Belarusian', '', 'pkg_be-BY', 'package', '', 0, '3.2.1.1', '', 'https://update.joomla.org/language/details3/be-BY_details.xml', '', ''),
+(56, 5, 0, 'Bulgarian', '', 'pkg_bg-BG', 'package', '', 0, '3.4.4.2', '', 'https://update.joomla.org/language/details3/bg-BG_details.xml', '', ''),
+(57, 5, 0, 'Catalan', '', 'pkg_ca-ES', 'package', '', 0, '3.6.1.1', '', 'https://update.joomla.org/language/details3/ca-ES_details.xml', '', ''),
+(58, 5, 0, 'Chinese Simplified', '', 'pkg_zh-CN', 'package', '', 0, '3.4.1.1', '', 'https://update.joomla.org/language/details3/zh-CN_details.xml', '', ''),
+(59, 5, 0, 'Croatian', '', 'pkg_hr-HR', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/hr-HR_details.xml', '', ''),
+(60, 5, 0, 'Czech', '', 'pkg_cs-CZ', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/cs-CZ_details.xml', '', ''),
+(61, 5, 0, 'Danish', '', 'pkg_da-DK', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/da-DK_details.xml', '', ''),
+(62, 5, 0, 'Dutch', '', 'pkg_nl-NL', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/nl-NL_details.xml', '', ''),
+(63, 5, 0, 'Estonian', '', 'pkg_et-EE', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/et-EE_details.xml', '', ''),
+(64, 5, 0, 'Khmer', '', 'pkg_km-KH', 'package', '', 0, '3.4.5.1', '', 'https://update.joomla.org/language/details3/km-KH_details.xml', '', ''),
+(65, 5, 0, 'Korean', '', 'pkg_ko-KR', 'package', '', 0, '3.6.2.2', '', 'https://update.joomla.org/language/details3/ko-KR_details.xml', '', ''),
+(66, 5, 0, 'Latvian', '', 'pkg_lv-LV', 'package', '', 0, '3.6.2.2', '', 'https://update.joomla.org/language/details3/lv-LV_details.xml', '', ''),
+(67, 5, 0, 'Macedonian', '', 'pkg_mk-MK', 'package', '', 0, '3.6.2.2', '', 'https://update.joomla.org/language/details3/mk-MK_details.xml', '', ''),
+(68, 5, 0, 'Norwegian Bokmal', '', 'pkg_nb-NO', 'package', '', 0, '3.5.1.1', '', 'https://update.joomla.org/language/details3/nb-NO_details.xml', '', ''),
+(69, 5, 0, 'Norwegian Nynorsk', '', 'pkg_nn-NO', 'package', '', 0, '3.4.2.1', '', 'https://update.joomla.org/language/details3/nn-NO_details.xml', '', ''),
+(70, 5, 0, 'Persian', '', 'pkg_fa-IR', 'package', '', 0, '3.6.2.2', '', 'https://update.joomla.org/language/details3/fa-IR_details.xml', '', ''),
+(71, 7, 0, 'Kunena Latest Module', '', 'mod_kunenalatest', 'module', '', 0, '5.0.1', '', 'https://update.kunena.org/5.0/mod_kunenalatest.xml', '', ''),
+(72, 7, 0, 'Kunena Login Module', '', 'mod_kunenalogin', 'module', '', 0, '5.0.1', '', 'https://update.kunena.org/5.0/mod_kunenalogin.xml', '', ''),
+(73, 7, 0, 'Kunena Search Module', '', 'mod_kunenasearch', 'module', '', 0, '5.0.1', '', 'https://update.kunena.org/5.0/mod_kunenasearch.xml', '', ''),
+(74, 7, 0, 'Kunena Statistics Module', '', 'mod_kunenastats', 'module', '', 0, '5.0.1', '', 'https://update.kunena.org/5.0/mod_kunenastats.xml', '', ''),
+(75, 7, 0, 'Content - Kunena Discuss', '', 'kunenadiscuss', 'plugin', 'content', 0, '5.0.1', '', 'https://update.kunena.org/5.0/plg_content_kunenadiscuss.xml', '', ''),
+(76, 7, 0, 'Search - Kunena', '', 'kunena', 'plugin', 'search', 0, '5.0.1', '', 'https://update.kunena.org/5.0/plg_search_kunena.xml', '', '');
 
 -- --------------------------------------------------------
 
@@ -1835,11 +2537,13 @@ CREATE TABLE `jml_update_sites` (
 --
 
 INSERT INTO `jml_update_sites` (`update_site_id`, `name`, `type`, `location`, `enabled`, `last_check_timestamp`, `extra_query`) VALUES
-(1, 'Joomla! Core', 'collection', 'https://update.joomla.org/core/list.xml', 1, 1476086333, ''),
-(2, 'Joomla! Extension Directory', 'collection', 'https://update.joomla.org/jed/list.xml', 1, 1476086333, ''),
-(3, 'Accredited Joomla! Translations', 'collection', 'https://update.joomla.org/language/translationlist_3.xml', 1, 1476086335, ''),
-(4, 'Joomla! Update Component Update Site', 'extension', 'https://update.joomla.org/core/extensions/com_joomlaupdate.xml', 1, 1476086335, ''),
-(5, 'Accredited Joomla! Translations', 'collection', 'http://update.joomla.org/language/translationlist_3.xml', 1, 1476086336, '');
+(1, 'Joomla! Core', 'collection', 'https://update.joomla.org/core/list.xml', 1, 1476092664, ''),
+(2, 'Joomla! Extension Directory', 'collection', 'https://update.joomla.org/jed/list.xml', 1, 1476092665, ''),
+(3, 'Accredited Joomla! Translations', 'collection', 'https://update.joomla.org/language/translationlist_3.xml', 1, 1476092665, ''),
+(4, 'Joomla! Update Component Update Site', 'extension', 'https://update.joomla.org/core/extensions/com_joomlaupdate.xml', 1, 1476092666, ''),
+(5, 'Accredited Joomla! Translations', 'collection', 'http://update.joomla.org/language/translationlist_3.xml', 1, 1476092667, ''),
+(6, 'WebInstaller Update Site', 'extension', 'http://appscdn.joomla.org/webapps/jedapps/webinstaller.xml', 1, 1476092667, ''),
+(7, 'Kunena 5.0 Update Site', 'collection', 'https://update.kunena.org/5.0/list.xml', 1, 1476092668, '');
 
 -- --------------------------------------------------------
 
@@ -1863,7 +2567,9 @@ INSERT INTO `jml_update_sites_extensions` (`update_site_id`, `extension_id`) VAL
 (3, 10002),
 (4, 28),
 (5, 10002),
-(5, 10005);
+(5, 10005),
+(6, 10006),
+(7, 10012);
 
 -- --------------------------------------------------------
 
@@ -1924,7 +2630,7 @@ CREATE TABLE `jml_users` (
 --
 
 INSERT INTO `jml_users` (`id`, `name`, `username`, `email`, `password`, `block`, `sendEmail`, `registerDate`, `lastvisitDate`, `activation`, `params`, `lastResetTime`, `resetCount`, `otpKey`, `otep`, `requireReset`) VALUES
-(669, 'Super User', 'admin', 'alefalwebmaster@gmail.com', '$2y$10$siM5nj6B9IQr./lMW/CbDunuqSrrSxEIZJKix0dRTHup8SA9ums1q', 0, 1, '2016-10-10 07:51:01', '2016-10-10 07:53:20', '0', '', '0000-00-00 00:00:00', 0, '', '', 0);
+(669, 'Super User', 'admin', 'alefalwebmaster@gmail.com', '$2y$10$siM5nj6B9IQr./lMW/CbDunuqSrrSxEIZJKix0dRTHup8SA9ums1q', 0, 1, '2016-10-10 07:51:01', '2016-10-10 09:40:02', '0', '', '0000-00-00 00:00:00', 0, '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -2368,6 +3074,201 @@ ALTER TABLE `jml_finder_types`
   ADD UNIQUE KEY `title` (`title`);
 
 --
+-- Indexes for table `jml_kunena_aliases`
+--
+ALTER TABLE `jml_kunena_aliases`
+  ADD UNIQUE KEY `alias` (`alias`),
+  ADD KEY `state` (`state`),
+  ADD KEY `item` (`item`),
+  ADD KEY `type` (`type`);
+
+--
+-- Indexes for table `jml_kunena_announcement`
+--
+ALTER TABLE `jml_kunena_announcement`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `jml_kunena_attachments`
+--
+ALTER TABLE `jml_kunena_attachments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `mesid` (`mesid`),
+  ADD KEY `userid` (`userid`),
+  ADD KEY `hash` (`hash`),
+  ADD KEY `filename` (`filename`),
+  ADD KEY `filename_real` (`filename_real`);
+
+--
+-- Indexes for table `jml_kunena_categories`
+--
+ALTER TABLE `jml_kunena_categories`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `parent_id` (`parent_id`),
+  ADD KEY `category_access` (`accesstype`,`access`),
+  ADD KEY `published_pubaccess_id` (`published`,`pub_access`,`id`);
+
+--
+-- Indexes for table `jml_kunena_configuration`
+--
+ALTER TABLE `jml_kunena_configuration`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `jml_kunena_logs`
+--
+ALTER TABLE `jml_kunena_logs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `type` (`type`),
+  ADD KEY `category_id` (`category_id`),
+  ADD KEY `topic_id` (`topic_id`),
+  ADD KEY `target_user` (`target_user`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `jml_kunena_messages`
+--
+ALTER TABLE `jml_kunena_messages`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `thread` (`thread`),
+  ADD KEY `ip` (`ip`),
+  ADD KEY `userid` (`userid`),
+  ADD KEY `time` (`time`),
+  ADD KEY `locked` (`locked`),
+  ADD KEY `hold_time` (`hold`,`time`),
+  ADD KEY `parent_hits` (`parent`,`hits`),
+  ADD KEY `catid_parent` (`catid`,`parent`);
+
+--
+-- Indexes for table `jml_kunena_messages_text`
+--
+ALTER TABLE `jml_kunena_messages_text`
+  ADD PRIMARY KEY (`mesid`);
+
+--
+-- Indexes for table `jml_kunena_polls`
+--
+ALTER TABLE `jml_kunena_polls`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `threadid` (`threadid`);
+
+--
+-- Indexes for table `jml_kunena_polls_options`
+--
+ALTER TABLE `jml_kunena_polls_options`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `pollid` (`pollid`);
+
+--
+-- Indexes for table `jml_kunena_polls_users`
+--
+ALTER TABLE `jml_kunena_polls_users`
+  ADD UNIQUE KEY `pollid` (`pollid`,`userid`);
+
+--
+-- Indexes for table `jml_kunena_ranks`
+--
+ALTER TABLE `jml_kunena_ranks`
+  ADD PRIMARY KEY (`rank_id`);
+
+--
+-- Indexes for table `jml_kunena_rate`
+--
+ALTER TABLE `jml_kunena_rate`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `jml_kunena_sessions`
+--
+ALTER TABLE `jml_kunena_sessions`
+  ADD PRIMARY KEY (`userid`),
+  ADD KEY `currvisit` (`currvisit`);
+
+--
+-- Indexes for table `jml_kunena_smileys`
+--
+ALTER TABLE `jml_kunena_smileys`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `jml_kunena_thankyou`
+--
+ALTER TABLE `jml_kunena_thankyou`
+  ADD UNIQUE KEY `postid` (`postid`,`userid`),
+  ADD KEY `userid` (`userid`),
+  ADD KEY `targetuserid` (`targetuserid`);
+
+--
+-- Indexes for table `jml_kunena_topics`
+--
+ALTER TABLE `jml_kunena_topics`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `category_id` (`category_id`),
+  ADD KEY `locked` (`locked`),
+  ADD KEY `hold` (`hold`),
+  ADD KEY `posts` (`posts`),
+  ADD KEY `hits` (`hits`),
+  ADD KEY `first_post_userid` (`first_post_userid`),
+  ADD KEY `last_post_userid` (`last_post_userid`),
+  ADD KEY `first_post_time` (`first_post_time`),
+  ADD KEY `last_post_time` (`last_post_time`),
+  ADD KEY `last_post_id` (`last_post_id`);
+
+--
+-- Indexes for table `jml_kunena_users`
+--
+ALTER TABLE `jml_kunena_users`
+  ADD PRIMARY KEY (`userid`),
+  ADD KEY `group_id` (`group_id`),
+  ADD KEY `posts` (`posts`),
+  ADD KEY `uhits` (`uhits`),
+  ADD KEY `banned` (`banned`),
+  ADD KEY `moderator` (`moderator`);
+
+--
+-- Indexes for table `jml_kunena_users_banned`
+--
+ALTER TABLE `jml_kunena_users_banned`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `userid` (`userid`),
+  ADD KEY `ip` (`ip`),
+  ADD KEY `expiration` (`expiration`),
+  ADD KEY `created_time` (`created_time`);
+
+--
+-- Indexes for table `jml_kunena_user_categories`
+--
+ALTER TABLE `jml_kunena_user_categories`
+  ADD PRIMARY KEY (`user_id`,`category_id`),
+  ADD KEY `category_subscribed` (`category_id`,`subscribed`),
+  ADD KEY `role` (`role`);
+
+--
+-- Indexes for table `jml_kunena_user_read`
+--
+ALTER TABLE `jml_kunena_user_read`
+  ADD UNIQUE KEY `user_topic_id` (`user_id`,`topic_id`),
+  ADD KEY `category_user_id` (`category_id`,`user_id`),
+  ADD KEY `time` (`time`);
+
+--
+-- Indexes for table `jml_kunena_user_topics`
+--
+ALTER TABLE `jml_kunena_user_topics`
+  ADD UNIQUE KEY `user_topic_id` (`user_id`,`topic_id`),
+  ADD KEY `topic_id` (`topic_id`),
+  ADD KEY `posts` (`posts`),
+  ADD KEY `owner` (`owner`),
+  ADD KEY `favorite` (`favorite`),
+  ADD KEY `subscribed` (`subscribed`);
+
+--
+-- Indexes for table `jml_kunena_version`
+--
+ALTER TABLE `jml_kunena_version`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `jml_languages`
 --
 ALTER TABLE `jml_languages`
@@ -2612,7 +3513,7 @@ ALTER TABLE `jml_viewlevels`
 -- AUTO_INCREMENT for table `jml_assets`
 --
 ALTER TABLE `jml_assets`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Primary Key', AUTO_INCREMENT=80;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Primary Key', AUTO_INCREMENT=82;
 --
 -- AUTO_INCREMENT for table `jml_banners`
 --
@@ -2647,7 +3548,7 @@ ALTER TABLE `jml_content_types`
 -- AUTO_INCREMENT for table `jml_extensions`
 --
 ALTER TABLE `jml_extensions`
-  MODIFY `extension_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10006;
+  MODIFY `extension_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10026;
 --
 -- AUTO_INCREMENT for table `jml_finder_filters`
 --
@@ -2674,6 +3575,71 @@ ALTER TABLE `jml_finder_terms`
 ALTER TABLE `jml_finder_types`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `jml_kunena_announcement`
+--
+ALTER TABLE `jml_kunena_announcement`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `jml_kunena_attachments`
+--
+ALTER TABLE `jml_kunena_attachments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `jml_kunena_categories`
+--
+ALTER TABLE `jml_kunena_categories`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `jml_kunena_logs`
+--
+ALTER TABLE `jml_kunena_logs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `jml_kunena_messages`
+--
+ALTER TABLE `jml_kunena_messages`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `jml_kunena_polls`
+--
+ALTER TABLE `jml_kunena_polls`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `jml_kunena_polls_options`
+--
+ALTER TABLE `jml_kunena_polls_options`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `jml_kunena_ranks`
+--
+ALTER TABLE `jml_kunena_ranks`
+  MODIFY `rank_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `jml_kunena_rate`
+--
+ALTER TABLE `jml_kunena_rate`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `jml_kunena_smileys`
+--
+ALTER TABLE `jml_kunena_smileys`
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+--
+-- AUTO_INCREMENT for table `jml_kunena_topics`
+--
+ALTER TABLE `jml_kunena_topics`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `jml_kunena_users_banned`
+--
+ALTER TABLE `jml_kunena_users_banned`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `jml_kunena_version`
+--
+ALTER TABLE `jml_kunena_version`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT for table `jml_languages`
 --
 ALTER TABLE `jml_languages`
@@ -2682,12 +3648,12 @@ ALTER TABLE `jml_languages`
 -- AUTO_INCREMENT for table `jml_menu`
 --
 ALTER TABLE `jml_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
 --
 -- AUTO_INCREMENT for table `jml_menu_types`
 --
 ALTER TABLE `jml_menu_types`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `jml_messages`
 --
@@ -2742,12 +3708,12 @@ ALTER TABLE `jml_ucm_history`
 -- AUTO_INCREMENT for table `jml_updates`
 --
 ALTER TABLE `jml_updates`
-  MODIFY `update_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `update_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 --
 -- AUTO_INCREMENT for table `jml_update_sites`
 --
 ALTER TABLE `jml_update_sites`
-  MODIFY `update_site_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `update_site_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `jml_usergroups`
 --
