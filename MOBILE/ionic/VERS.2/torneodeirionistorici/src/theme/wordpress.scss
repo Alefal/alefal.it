@@ -1,0 +1,265 @@
+.home-view ion-content, .category-view ion-content {
+    background: #EAEAEA;
+    font-family: Roboto, sans-serif;
+    vertical-align: middle;
+}
+.home-view .wp-audio-shortcode, .category-view .wp-audio-shortcode {
+    visibility: visible!important;
+    padding: 0 16px;
+}
+.home-view .card-header, .category-view .card-header {
+    padding: 16px;
+}
+.home-view .card-footer, .category-view .card-footer {
+    border-top: 1px solid #ddd;
+    padding: 16px;
+    margin-top: 20px;
+}
+.home-view .card-button, .category-view .card-button {
+    font-size: 15px;
+    padding: 6px;
+    text-decoration: none;
+    font-weight: 500;
+}
+.home-view .card-button.primary, .category-view .card-button.primary {
+    color: orange;
+}
+.home-view .card-button.secondary, .category-view .card-button.secondary {
+    color: #444;
+}
+.home-view .card-content audio::-webkit-media-controls-panel, .category-view .card-content audio::-webkit-media-controls-panel {
+    width: 100%!important;
+}
+.home-view .card-content p, .category-view .card-content p {
+    padding: 0 16px;
+}
+.home-view .card-content img, .category-view .card-content img {
+    height: auto;
+    width: calc(100% + 32px);
+    margin-left: -16px;
+}
+.home-view .card-content ul, .home-view .card-content ol, .category-view .card-content ul, .category-view .card-content ol {
+    list-style-type: square;
+    padding: 0 0 0 40px;
+    margin: 14px 0;
+}
+.home-view .card-content iframe, .category-view .card-content iframe {
+    height: auto;
+    width: calc(100% + 32px);
+    margin-left: -16px;
+}
+.home-view .card-content blockquote, .category-view .card-content blockquote {
+    font-style: italic;
+    font-weight: 300;
+    margin: 20px 20px;
+    border: none;
+    padding: 0;
+}
+.home-view .card-content blockquote p, .category-view .card-content blockquote p {
+    font-size: 16px;
+}
+.home-view .author, .category-view .author {
+    font-weight: 400;
+    color: #4584b0;
+}
+.home-view a, .category-view a {
+    font-weight: 300;
+    color: #4584b0;
+}
+.home-view h1, .category-view h1 {
+    font-size: 22px;
+    font-weight: 200;
+}
+.home-view h2, .category-view h2 {
+    margin: 0;
+    font-size: 13px;
+    line-height: 2.5;
+    color: #5e5e5e;
+    font-weight: 300;
+}
+.home-view .posts, .category-view .posts {
+    display: block;
+    position: relative;
+    border-radius: .25rem;
+    overflow: hidden;
+    padding: 8px;
+}
+.home-view .post-card, .category-view .post-card {
+    margin: 8px 0 24px 0;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 1px 2px #f2f2f2;
+    background: #FFF;
+    border-radius: 3px;
+}
+.home-view .card-button.bookmark, .category-view .card-button.bookmark {
+    float: right;
+    padding: 0;
+    font-size: 34px;
+    margin-top: -6px;
+}
+.home-view .card-button.bookmark i, .category-view .card-button.bookmark i {
+    padding: 4px;
+}
+.home-view .card-button.comments, .category-view .card-button.comments {
+    padding: 0;
+    color: #444;
+}
+.home-view .card-button.comments i, .category-view .card-button.comments i {
+    padding: 4px;
+}
+.post-view ion-content {
+    background: #EAEAEA;
+    font-family: Roboto, sans-serif;
+    vertical-align: middle;
+}
+.post-view .wp-audio-shortcode {
+    visibility: visible!important;
+    padding: 0 16px;
+}
+.post-view .card-header {
+    padding: 16px;
+}
+.post-view .card-footer {
+    border-top: 1px solid #ddd;
+    padding: 16px;
+    margin-top: 20px;
+}
+.post-view .card-button {
+    font-size: 15px;
+    padding: 6px;
+    text-decoration: none;
+    font-weight: 500;
+}
+.post-view .card-button.primary {
+    color: orange;
+}
+.post-view .card-button.secondary {
+    color: #444;
+}
+.post-view .card-content audio::-webkit-media-controls-panel {
+    width: 100%!important;
+}
+.post-view .card-content p {
+    padding: 0 16px;
+}
+.post-view .card-content img {
+    height: auto;
+    width: calc(100% + 32px);
+    margin-left: -16px;
+}
+.post-view .card-content ul, .post-view .card-content ol {
+    list-style-type: square;
+    padding: 0 0 0 40px;
+    margin: 14px 0;
+}
+.post-view .card-content iframe {
+    height: auto;
+    width: calc(100% + 32px);
+    margin-left: -16px;
+}
+.post-view .card-content blockquote {
+    font-style: italic;
+    font-weight: 300;
+    margin: 20px 20px;
+    border: none;
+    padding: 0;
+}
+.post-view .card-content blockquote p {
+    font-size: 16px;
+}
+.post-view .author {
+    font-weight: 400;
+    color: #4584b0;
+}
+.post-view a {
+    font-weight: 300;
+    color: #4584b0;
+}
+.post-view h1 {
+    font-size: 22px;
+    font-weight: 200;
+}
+.post-view h2 {
+    margin: 0;
+    font-size: 13px;
+    line-height: 2.5;
+    color: #5e5e5e;
+    font-weight: 300;
+}
+.post-view ion-content {
+    background: #FFF;
+}
+.post-view .post {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    padding: 8px;
+    position: relative;
+    z-index: 2;
+    background: #FFF;
+}
+.post-view .post-actions {
+    padding: 16px;
+    background: #FFF;
+    border-top: 1px solid #ddd;
+}
+.post-view .post-actions .comment-count {
+    float: right;
+    padding: 0;
+    color: #444;
+}
+.post-view .post-actions .comment-count i {
+    padding: 4px;
+}
+.post-view .post img {
+    width: calc(100% + 32px + 16px);
+    margin-left: calc(-16px - 8px);
+}
+.post-view .post iframe {
+    width: calc(100% + 32px + 16px);
+    margin-left: calc(-16px - 8px);
+}
+.post-view .comments .item .message-content {
+    overflow: inherit;
+    text-overflow: inherit;
+    white-space: normal;
+}
+.post-view .comments .item .message-content p {
+    overflow: inherit;
+    text-overflow: inherit;
+    white-space: normal;
+}
+.post-view .comments h2 {
+    color: #444;
+    font-weight: 700;
+}
+.post-view .comments .comment-date {
+    color: #777;
+    font-weight: 400;
+    font-size: 12px;
+}
+.post-view .comments .highlighted {
+    background-color: #d7f5df;
+}
+.post-view .new-comment {
+    height: 50px;
+    background-color: #444;
+    background-size: 100% 0;
+}
+.post-view .new-comment .col {
+    padding: 0;
+}
+.post-view .new-comment .new-comment-message {
+    border: 1px solid #1e1e1e;
+    padding: 6px;
+    border-radius: 5px;
+    width: 100%}
+.post-view .new-comment .button-container {
+    text-align: center;
+}
+.post-view .new-comment .button-container .button.send {
+    color: #e6e6e6;
+    font-weight: 500;
+    font-size: 16px;
+}
