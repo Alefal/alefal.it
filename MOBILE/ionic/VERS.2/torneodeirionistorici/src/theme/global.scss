@@ -17,4 +17,27 @@ html {
         color: red;
     }
 
+    @media screen and (orientation:portrait) {
+        .show-page .scroll-content {
+            margin: 0;
+            padding: 0;
+
+            background: url('/assets/img/tdrs_portrait.png') no-repeat center center fixed; 
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            background-size: cover;
+        }
+    }
+
+    @media screen and (orientation:landscape) {
+        .show-page .scroll-content {
+            margin: 0;
+            padding: 0;
+
+            background: url('/assets/img/tdrs_landscape.png') no-repeat center center fixed; 
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            background-size: cover;
+        }
+    }
 }
