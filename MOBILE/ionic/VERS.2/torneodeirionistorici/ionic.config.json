@@ -2,5 +2,9 @@
   "name": "torneodeirionistorici",
   "app_id": "",
   "v2": true,
-  "typescript": true
+  "typescript": true,
+  "proxies": [{
+    "path": "/torneodeirionistorici/rest/",
+    "proxyUrl": "http://torneodeirionistorici.altervista.org"
+  }]
 }

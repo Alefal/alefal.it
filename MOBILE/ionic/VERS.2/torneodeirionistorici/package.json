@@ -40,7 +40,10 @@
     "cordova-plugin-whitelist",
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
-    "ionic-plugin-keyboard"
+    "ionic-plugin-keyboard",
+    "cordova-sqlite-storage",
+    "cordova-plugin-network-information",
+    "phonegap-plugin-push"
   ],
   "cordovaPlatforms": []
 }
