@@ -1,0 +1,18 @@
+<ion-content padding class="home-view">
+	
+	<div class="posts">
+		<div class="post-card">
+			<div class="card-header">
+				<h1 [innerHTML]="title"></h1>
+			</div>
+			<div class="card-content" [innerHTML]="content"></div>
+
+			<div class="card-footer">
+				<a class="card-button primary" (click)="dismiss()">
+					<ion-icon name="close"></ion-icon> CLOSE
+				</a>
+			</div>
+		</div>
+	</div>
+
+</ion-content>

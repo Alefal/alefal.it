@@ -1,15 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, LoadingController, PopoverController } from 'ionic-angular';
-
 import {HttpService} from '../../providers/http-service';
 
-import { ClassificaDetail }     from '../classifica/classificaDetail';
-/*
-  Generated class for the Classifica page.
+import { ClassificaDetail }     from '../classifica/classifica-detail';
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-classifica',
   templateUrl: 'classifica.html'

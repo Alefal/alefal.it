@@ -1,22 +1,49 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, LoadingController } from 'ionic-angular';
+import {HttpService} from '../../providers/http-service';
 
-/*
-  Generated class for the Incontri page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-incontri',
   templateUrl: 'incontri.html'
 })
 export class Incontri {
 
-  constructor(public navCtrl: NavController) {}
+  ranking: any;
+  loading: any;
+  errorMessage: String;
+  errorMessageView: any;
+
+  constructor(
+    public navCtrl: NavController,
+    private httpService: HttpService,
+    public loadingCtrl: LoadingController
+  ) { }
 
   ionViewDidLoad() {
-    console.log('Hello Incontri Page');
+    this.loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    this.loading.present();
+
+    this.httpService
+      .getCallHttp('getRankingRest', '', '','')
+      .then(res => {
+        //console.log('SUCCESS: ' + JSON.stringify(res));
+
+        if(res[0].response[0].result == 'OK') {
+          this.ranking = res[0].ranking;
+        } else {
+          this.ranking = 'Nessun dato! Riprovare più tardi.';
+        }
+
+        this.loading.dismiss();
+      })
+      .catch(error => {
+        console.log('ERROR: ' + error);
+        this.errorMessage = 'Error!';
+        this.errorMessageView = true;
+        this.loading.dismiss();
+      });
   }
 
 }

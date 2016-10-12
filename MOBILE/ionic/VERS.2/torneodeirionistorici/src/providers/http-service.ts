@@ -14,9 +14,9 @@ export class HttpService {
         console.log('getCallHttp: '+call+' | '+teamId+' | '+tipoStat+' | '+matchId);
         
         var host = 'http://torneodeirionistorici.altervista.org';
-        //var host = '/torneodeirionistorici/rest/';
+        //var host = '/torneodeirionistorici/rest';
         var url = '';
-        if(call == 'getReleasesRest') {
+        if(call == 'getComunicatiUfficiali') {
             url = '/wp-json/posts?filter[tag]=comunicatiUfficiali';
         } else if(call == 'getGiornalinoRest') {
              url = '/wp-json/posts?filter[tag]=giornalinoUfficiale';

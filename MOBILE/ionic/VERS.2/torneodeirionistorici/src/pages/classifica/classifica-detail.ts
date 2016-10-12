@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController, PopoverController, NavParams } from 'ionic-angular';
-
-import {HttpService} from '../../providers/http-service';
+import { NavParams } from 'ionic-angular';
+//import {HttpService} from '../../providers/http-service';
 
 @Component({
-  selector: 'page-classificaDetail',
-  templateUrl: 'classificaDetail.html'
+  selector: 'page-classifica-detail',
+  templateUrl: 'classifica-detail.html'
 })
 export class ClassificaDetail {
 

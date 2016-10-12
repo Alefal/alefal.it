@@ -3,10 +3,10 @@ import { NavController, LoadingController } from 'ionic-angular';
 import {HttpService} from '../../providers/http-service';
 
 @Component({
-  selector: 'page-statistiche',
-  templateUrl: 'statistiche.html'
+  selector: 'page-rioni-news',
+  templateUrl: 'rioni-news.html'
 })
-export class Statistiche {
+export class RioniNews {
 
   ranking: any;
   loading: any;
