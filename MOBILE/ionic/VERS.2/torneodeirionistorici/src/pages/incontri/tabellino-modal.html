@@ -1,0 +1,115 @@
+<ion-content padding class="home-view">
+
+	<div class="posts">
+		<div class="post-card">
+			<div class="card-header">
+				<h1>{{teamHome}} - {{teamAway}}</h1>
+			</div>
+			<div class="card-content">
+
+				<ion-grid class="gridHeader">
+					<ion-row>
+						<ion-col>
+
+							<img *ngIf="teamHome == 'Lacco'" src="http://torneodeirionistorici.altervista.org/wp-content/uploads/2014/11/lacco1.jpg"
+								style="border-radius: 0;" />
+							<img *ngIf="teamHome == 'Minuta'" src="http://torneodeirionistorici.altervista.org/wp-content/uploads/2014/11/minuta.png"
+								style="border-radius: 0;" />
+							<img *ngIf="teamHome == 'Monte Brusara'" src="http://torneodeirionistorici.altervista.org/wp-content/uploads/2014/11/monte_brusara1.jpg"
+								style="border-radius: 0;" />
+							<img *ngIf="teamHome == 'Sambuco'" src="http://torneodeirionistorici.altervista.org/wp-content/uploads/2014/11/sambuco1.jpg"
+								style="border-radius: 0;" />
+							<img *ngIf="teamHome == 'Santa Caterina'" src="http://torneodeirionistorici.altervista.org/wp-content/uploads/2014/11/santa_caterina1.jpg"
+								style="border-radius: 0;" />
+							<img *ngIf="teamHome == 'San Pietro'" src="http://torneodeirionistorici.altervista.org/wp-content/uploads/2014/11/san_pietro.jpg"
+								style="border-radius: 0;" />
+							<img *ngIf="teamHome == 'San Cosma'" src="http://torneodeirionistorici.altervista.org/wp-content/uploads/2014/11/san_cosma1.jpg"
+								style="border-radius: 0;" />
+
+						</ion-col>
+						<ion-col width-50>
+							<h1>{{goalHome}} - {{goalAway}}</h1>
+						</ion-col>
+						<ion-col>
+							<img *ngIf="teamAway == 'Lacco'" src="http://torneodeirionistorici.altervista.org/wp-content/uploads/2014/11/lacco1.jpg"
+								style="border-radius: 0;" />
+							<img *ngIf="teamAway == 'Minuta'" src="http://torneodeirionistorici.altervista.org/wp-content/uploads/2014/11/minuta.png"
+								style="border-radius: 0;" />
+							<img *ngIf="teamAway == 'Monte Brusara'" src="http://torneodeirionistorici.altervista.org/wp-content/uploads/2014/11/monte_brusara1.jpg"
+								style="border-radius: 0;" />
+							<img *ngIf="teamAway == 'Sambuco'" src="http://torneodeirionistorici.altervista.org/wp-content/uploads/2014/11/sambuco1.jpg"
+								style="border-radius: 0;" />
+							<img *ngIf="teamAway == 'Santa Caterina'" src="http://torneodeirionistorici.altervista.org/wp-content/uploads/2014/11/santa_caterina1.jpg"
+								style="border-radius: 0;" />
+							<img *ngIf="teamAway == 'San Pietro'" src="http://torneodeirionistorici.altervista.org/wp-content/uploads/2014/11/san_pietro.jpg"
+								style="border-radius: 0;" />
+							<img *ngIf="teamAway == 'San Cosma'" src="http://torneodeirionistorici.altervista.org/wp-content/uploads/2014/11/san_cosma1.jpg"
+								style="border-radius: 0;" />
+						</ion-col>
+					</ion-row>
+				</ion-grid>
+
+				<br />
+				<hr />
+				<br />
+
+				<div class="errorMessage" *ngIf="errorMessageView">{{errorMessage}}</div>
+				
+				<ion-grid class="gridHeader">
+					<ion-row>
+						<ion-col>
+
+							<div *ngFor="let home of tabellinoHome" style="padding:10px">
+								<div align="right">
+									<div>{{home.atletaNome}}</div>
+									<div style="padding:10px">
+										<div *ngIf="home.atletaGoal != 0">
+											{{home.atletaGoal}} <ion-icon name="football"></ion-icon>
+										</div>
+										<div *ngIf="home.atletaAssist != 0"></div>
+										<div *ngIf="home.atletaYellowcards != 0">
+											<ion-icon name="bookmark" style="color:yellow"></ion-icon>
+										</div>
+										<div *ngIf="home.atletaRedcards != 0">
+											<ion-icon name="bookmark" style="color:red"></ion-icon>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</ion-col>
+						<ion-col>
+
+							<div *ngFor="let away of tabellinoAway" style="padding:10px">
+								<div align="left">
+									<div>{{away.atletaNome}}</div>
+									<div style="padding:10px">
+										<div *ngIf="away.atletaGoal != 0">
+											{{away.atletaGoal}} <ion-icon name="football"></ion-icon>
+										</div>
+										<div *ngIf="away.atletaAssist != 0"></div>
+										<div *ngIf="away.atletaYellowcards != 0">
+											<ion-icon name="bookmark" style="color:yellow"></ion-icon>
+										</div>
+										<div *ngIf="away.atletaRedcards != 0">
+											<ion-icon name="bookmark" style="color:red"></ion-icon>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</ion-col>
+					</ion-row>
+				</ion-grid>
+
+			</div>
+
+			<div class="card-footer">
+				<a class="card-button primary" (click)="dismiss()">
+					<ion-icon name="close"></ion-icon> CLOSE
+				</a>
+			</div>
+		</div>
+	</div>
+
+</ion-content>

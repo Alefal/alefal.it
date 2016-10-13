@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController } from 'ionic-angular';
-import {HttpService} from '../../providers/http-service';
+import { NavController, LoadingController, ModalController } from 'ionic-angular';
+
+import { HttpService } from '../../providers/http-service';
+import { TabellinoModal } from './tabellino-modal';
 
 @Component({
   selector: 'page-incontri',
@@ -8,7 +10,7 @@ import {HttpService} from '../../providers/http-service';
 })
 export class Incontri {
 
-  ranking: any;
+  incontri: any;
   loading: any;
   errorMessage: String;
   errorMessageView: any;
@@ -16,7 +18,8 @@ export class Incontri {
   constructor(
     public navCtrl: NavController,
     private httpService: HttpService,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    public modalCtrl: ModalController
   ) { }
 
   ionViewDidLoad() {
@@ -26,14 +29,14 @@ export class Incontri {
     this.loading.present();
 
     this.httpService
-      .getCallHttp('getRankingRest', '', '','')
+      .getCallHttp('getIncontri', '', '','')
       .then(res => {
         //console.log('SUCCESS: ' + JSON.stringify(res));
 
         if(res[0].response[0].result == 'OK') {
-          this.ranking = res[0].ranking;
+          this.incontri = res[0].matchs;
         } else {
-          this.ranking = 'Nessun dato! Riprovare più tardi.';
+          this.incontri = 'Nessun dato! Riprovare più tardi.';
         }
 
         this.loading.dismiss();
@@ -44,6 +47,11 @@ export class Incontri {
         this.errorMessageView = true;
         this.loading.dismiss();
       });
+  }
+
+  vediTabellino(id,teamHome,teamAway,goalHome,goalAway) {
+    let modal = this.modalCtrl.create(TabellinoModal, { id:id,teamHome:teamHome,teamAway:teamAway,goalHome:goalHome,goalAway:goalAway });
+    modal.present();
   }
 
 }

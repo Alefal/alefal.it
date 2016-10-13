@@ -30,7 +30,7 @@ export class Classifica {
     this.loading.present();
 
     this.httpService
-      .getCallHttp('getRankingRest', '', '','')
+      .getCallHttp('getClassifica', '', '','')
       .then(res => {
         //console.log('SUCCESS: ' + JSON.stringify(res));
 

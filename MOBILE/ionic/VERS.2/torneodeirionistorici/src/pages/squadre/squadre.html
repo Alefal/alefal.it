@@ -4,7 +4,20 @@
 	</ion-navbar>
 </ion-header>
 
+<ion-content padding class="home-view">
+	<div class="errorMessage" *ngIf="errorMessageView">{{errorMessage}}</div>
 
-<ion-content padding>
+	<div class="posts" *ngIf="!errorMessageView">
+		<div class="post-card" *ngFor="let team of squadre">
+			<div class="card-header">
+				<h1 [innerHTML]="team.Squadra"></h1>
+			</div>
+			<div class="card-footer">
+				<a class="card-button primary" (click)="vediGiocatori(team.SquadraId,team.Squadra)">
+					<ion-icon name="share-alt"></ion-icon> Giocatori
+				</a>
+			</div>
+		</div>
+	</div>
 
 </ion-content>

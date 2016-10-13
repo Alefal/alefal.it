@@ -4,7 +4,30 @@
 	</ion-navbar>
 </ion-header>
 
+<ion-content padding class="home-view">
+	<div class="errorMessage" *ngIf="errorMessageView">{{errorMessage}}</div>
 
-<ion-content padding>
+	<div class="posts" *ngIf="!errorMessageView">
+		<div class="post-card" *ngFor="let match of incontri">
+			<div class="card-header">
+				<h3>{{match.TeamHome}} - {{match.TeamAway}}</h3>
+            	<h6><ion-icon name="calendar"></ion-icon> {{match.Date | date:'dd-MM-yyyy HH:mm'}}</h6>
+			</div>
+			<div class="card-content">
+				<p>
+              		<span *ngIf="match.GoalHome == '0' && match.GoalAway == '0'">Da giocare...</span>
+              		<span *ngIf="match.GoalHome != '0' || match.GoalAway != '0'">Risultato: <strong>{{match.GoalHome}}</strong> - <strong>{{match.GoalAway}}</strong></span>
+            	</p>
+			</div>
+			<div class="card-footer">
+				<a class="card-button primary" *ngIf="match.GoalHome == '0' && match.GoalAway == '0'">
+					<ion-icon name="more"></ion-icon> Da giocare
+				</a>
+				<a class="card-button primary" *ngIf="match.GoalHome != '0' || match.GoalAway != '0'" (click)="vediTabellino(match.Id,match.TeamHome,match.TeamAway,match.GoalHome,match.GoalAway)">
+					<ion-icon name="share-alt"></ion-icon> Tabellino
+				</a>
+			</div>
+		</div>
+	</div>
 
 </ion-content>

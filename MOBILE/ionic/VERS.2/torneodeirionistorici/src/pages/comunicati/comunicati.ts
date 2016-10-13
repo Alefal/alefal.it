@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController, ModalController  } from 'ionic-angular';
+import { NavController, LoadingController, ModalController } from 'ionic-angular';
 
 import { HttpService } from '../../providers/http-service';
 import { ComunicatoModal } from './comunicato-modal';

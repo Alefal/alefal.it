@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController } from 'ionic-angular';
+import { NavController, LoadingController, ModalController } from 'ionic-angular';
+
 import {HttpService} from '../../providers/http-service';
+import { RioniNewsModal } from './rioni-news-modal';
 
 @Component({
   selector: 'page-rioni-news',
@@ -8,7 +10,7 @@ import {HttpService} from '../../providers/http-service';
 })
 export class RioniNews {
 
-  ranking: any;
+  news: any;
   loading: any;
   errorMessage: String;
   errorMessageView: any;
@@ -16,7 +18,8 @@ export class RioniNews {
   constructor(
     public navCtrl: NavController,
     private httpService: HttpService,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    public modalCtrl: ModalController
   ) { }
 
   ionViewDidLoad() {
@@ -26,16 +29,10 @@ export class RioniNews {
     this.loading.present();
 
     this.httpService
-      .getCallHttp('getRankingRest', '', '','')
+      .getCallHttp('getRioniNews', '', '','')
       .then(res => {
         //console.log('SUCCESS: ' + JSON.stringify(res));
-
-        if(res[0].response[0].result == 'OK') {
-          this.ranking = res[0].ranking;
-        } else {
-          this.ranking = 'Nessun dato! Riprovare più tardi.';
-        }
-
+        this.news = res;
         this.loading.dismiss();
       })
       .catch(error => {
@@ -44,6 +41,11 @@ export class RioniNews {
         this.errorMessageView = true;
         this.loading.dismiss();
       });
+  }
+
+  leggiComunicato(title,content) {
+    let modal = this.modalCtrl.create(RioniNewsModal, { title: title, content: content });
+    modal.present();
   }
 
 }

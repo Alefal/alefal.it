@@ -40,4 +40,13 @@ html {
             background-size: cover;
         }
     }
+
+    .errorMessage {
+        background: #ffffff;
+        margin: 15px;
+        padding: 25px;
+        color: #aa0227;
+        /* font-weight: bold; */
+        border: 5px solid #003d08;
+    }
 }

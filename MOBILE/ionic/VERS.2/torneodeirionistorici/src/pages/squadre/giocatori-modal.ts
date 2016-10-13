@@ -1,42 +1,44 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController, ModalController } from 'ionic-angular';
+import { NavParams, ViewController, LoadingController } from 'ionic-angular';
 
 import { HttpService } from '../../providers/http-service';
-import { GiocatoriModal } from './giocatori-modal';
 
 @Component({
-  selector: 'page-squadre',
-  templateUrl: 'squadre.html'
+  selector: 'page-giocatori-modal',
+  templateUrl: 'giocatori-modal.html'
 })
-export class Squadre {
+export class GiocatoriModal {
 
-  squadre: any;
+  squadraId: number;
+  squadraName: string;
+  giocatori: any;
   loading: any;
   errorMessage: String;
   errorMessageView: any;
 
   constructor(
-    public navCtrl: NavController,
+    params: NavParams,
+    public viewCtrl: ViewController,
     private httpService: HttpService,
     public loadingCtrl: LoadingController,
-    public modalCtrl: ModalController
-  ) { }
+  ) {
+    this.squadraId = params.get('squadraId');
+    this.squadraName = params.get('squadraName');
 
-  ionViewDidLoad() {
     this.loading = this.loadingCtrl.create({
       content: 'Please wait...'
     });
     this.loading.present();
 
     this.httpService
-      .getCallHttp('getSquadre', '', '','')
+      .getCallHttp('getGiocatori', this.squadraId, '','')
       .then(res => {
-        //console.log('SUCCESS: ' + JSON.stringify(res));
+        console.log('SUCCESS: ' + JSON.stringify(res));
 
         if(res[0].response[0].result == 'OK') {
-          this.squadre = res[0].teams;
+          this.giocatori = res[0].atleti;
         } else {
-          this.squadre = 'Nessun dato! Riprovare più tardi.';
+          this.giocatori = 'Nessun dato! Riprovare più tardi.';
         }
         this.loading.dismiss();
       })
@@ -48,8 +50,8 @@ export class Squadre {
       });
   }
 
-  vediGiocatori(squadraId,squadraName) {
-    let modal = this.modalCtrl.create(GiocatoriModal, { squadraId: squadraId, squadraName: squadraName });
-    modal.present();
+  dismiss() {
+    this.viewCtrl.dismiss();
   }
+
 }

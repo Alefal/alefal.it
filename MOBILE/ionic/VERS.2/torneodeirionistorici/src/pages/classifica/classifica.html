@@ -8,20 +8,20 @@
 
   <div class="errorMessage" *ngIf="errorMessageView">{{errorMessage}}</div>
 	
-  <ion-list *ngIf="!errorMessageView">
-	  <ion-grid>
+  <ion-list *ngIf="!errorMessageView" style="margin: 20px;">
+	  <ion-grid class="gridHeader">
 			<ion-row>
 				<ion-col>
-					<h3>PTI</h3>
+					<h6>PTI</h6>
 				</ion-col>
 				<ion-col width-50>
-					<h3>SQUADRA</h3>
+					<h6>SQUADRA</h6>
 				</ion-col>
 				<ion-col>
-					<h3>GIOC</h3>
+					<h6>GIOC</h6>
 				</ion-col>
 				<ion-col>
-					<h3>+/-</h3>
+					<h6>+/-</h6>
 				</ion-col>
 				<ion-col>
 					&nbsp;
@@ -29,11 +29,11 @@
 			</ion-row>
 		</ion-grid>
 
-    <ion-item *ngFor="let rank of ranking">
+    <ion-item *ngFor="let rank of ranking" style="margin: 0 auto; margin-bottom: 5px;">
       <ion-grid>
         <ion-row>
           <ion-col><h3>{{rank.pts}}</h3></ion-col>
-          <ion-col width-50><h3>{{rank.name}}</h3></ion-col>
+          <ion-col width-50><h3 style="font-weight: bold;">{{rank.name}}</h3></ion-col>
           <ion-col><h3>{{rank.gioc}}</h3></ion-col>
           <ion-col><h3>{{rank.diff}}</h3></ion-col>
           <ion-col><ion-icon name="share-alt" (click)="presentPopover(rank)"></ion-icon></ion-col>
