@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 10, 2016 at 12:02 PM
+-- Generation Time: Oct 14, 2016 at 02:34 PM
 -- Server version: 10.0.17-MariaDB
 -- PHP Version: 5.6.14
 
@@ -42,7 +42,7 @@ CREATE TABLE `jml_assets` (
 --
 
 INSERT INTO `jml_assets` (`id`, `parent_id`, `lft`, `rgt`, `level`, `name`, `title`, `rules`) VALUES
-(1, 0, 0, 157, 0, 'root.1', 'Root Asset', '{"core.login.site":{"6":1,"2":1},"core.login.admin":{"6":1},"core.login.offline":{"6":1},"core.admin":{"8":1},"core.manage":{"7":1},"core.create":{"6":1,"3":1},"core.delete":{"6":1},"core.edit":{"6":1,"4":1},"core.edit.state":{"6":1,"5":1},"core.edit.own":{"6":1,"3":1}}'),
+(1, 0, 0, 159, 0, 'root.1', 'Root Asset', '{"core.login.site":{"6":1,"2":1},"core.login.admin":{"6":1},"core.login.offline":{"6":1},"core.admin":{"8":1},"core.manage":{"7":1},"core.create":{"6":1,"3":1},"core.delete":{"6":1},"core.edit":{"6":1,"4":1},"core.edit.state":{"6":1,"5":1},"core.edit.own":{"6":1,"3":1}}'),
 (2, 1, 1, 2, 1, 'com_admin', 'com_admin', '{}'),
 (3, 1, 3, 6, 1, 'com_banners', 'com_banners', '{"core.admin":{"7":1},"core.manage":{"6":1},"core.create":[],"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
 (4, 1, 7, 8, 1, 'com_cache', 'com_cache', '{"core.admin":{"7":1},"core.manage":{"7":1}}'),
@@ -120,7 +120,8 @@ INSERT INTO `jml_assets` (`id`, `parent_id`, `lft`, `rgt`, `level`, `name`, `tit
 (78, 27, 23, 24, 3, 'com_content.article.6', 'Test (en-UK)', '{"core.admin":{"7":1},"core.manage":{"6":1},"core.create":{"3":1},"core.delete":[],"core.edit":{"4":1},"core.edit.state":{"5":1},"core.edit.own":[]}'),
 (79, 27, 25, 26, 3, 'com_content.article.7', 'Test (en-US)', '{"core.admin":{"7":1},"core.manage":{"6":1},"core.create":{"3":1},"core.delete":[],"core.edit":{"4":1},"core.edit.state":{"5":1},"core.edit.own":[]}'),
 (80, 1, 155, 156, 1, 'com_kunena', 'com_kunena', '{}'),
-(81, 16, 62, 63, 2, 'com_menus.menu.6', ' Menu Kunena', '{}');
+(81, 16, 62, 63, 2, 'com_menus.menu.6', ' Menu Kunena', '{}'),
+(82, 1, 157, 158, 1, 'com_phocagallery', 'com_phocagallery', '{}');
 
 -- --------------------------------------------------------
 
@@ -547,7 +548,7 @@ INSERT INTO `jml_extensions` (`extension_id`, `name`, `type`, `element`, `folder
 (31, 'com_ajax', 'component', 'com_ajax', '', 1, 1, 1, 1, '{"name":"com_ajax","type":"component","creationDate":"August 2013","author":"Joomla! Project","copyright":"(C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.2.0","description":"COM_AJAX_XML_DESCRIPTION","group":"","filename":"ajax"}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (32, 'com_postinstall', 'component', 'com_postinstall', '', 1, 1, 1, 1, '{"name":"com_postinstall","type":"component","creationDate":"September 2013","author":"Joomla! Project","copyright":"(C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.2.0","description":"COM_POSTINSTALL_XML_DESCRIPTION","group":""}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (102, 'phputf8', 'library', 'phputf8', '', 0, 1, 1, 1, '{"name":"phputf8","type":"library","creationDate":"2006","author":"Harry Fuecks","copyright":"Copyright various authors","authorEmail":"hfuecks@gmail.com","authorUrl":"http:\\/\\/sourceforge.net\\/projects\\/phputf8","version":"0.5","description":"LIB_PHPUTF8_XML_DESCRIPTION","group":"","filename":"phputf8"}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
-(103, 'Joomla! Platform', 'library', 'joomla', '', 0, 1, 1, 1, '{"name":"Joomla! Platform","type":"library","creationDate":"2008","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"https:\\/\\/www.joomla.org","version":"13.1","description":"LIB_JOOMLA_XML_DESCRIPTION","group":"","filename":"joomla"}', '{"mediaversion":"3ceb406d5ead6fffb4900a37e69aac83"}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+(103, 'Joomla! Platform', 'library', 'joomla', '', 0, 1, 1, 1, '{"name":"Joomla! Platform","type":"library","creationDate":"2008","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"https:\\/\\/www.joomla.org","version":"13.1","description":"LIB_JOOMLA_XML_DESCRIPTION","group":"","filename":"joomla"}', '{"mediaversion":"8f849ce29ce593548fd5731ee029b264"}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (104, 'IDNA Convert', 'library', 'idna_convert', '', 0, 1, 1, 1, '{"name":"IDNA Convert","type":"library","creationDate":"2004","author":"phlyLabs","copyright":"2004-2011 phlyLabs Berlin, http:\\/\\/phlylabs.de","authorEmail":"phlymail@phlylabs.de","authorUrl":"http:\\/\\/phlylabs.de","version":"0.8.0","description":"LIB_IDNA_XML_DESCRIPTION","group":"","filename":"idna_convert"}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (105, 'FOF', 'library', 'fof', '', 0, 1, 1, 1, '{"name":"FOF","type":"library","creationDate":"2015-04-22 13:15:32","author":"Nicholas K. Dionysopoulos \\/ Akeeba Ltd","copyright":"(C)2011-2015 Nicholas K. Dionysopoulos","authorEmail":"nicholas@akeebabackup.com","authorUrl":"https:\\/\\/www.akeebabackup.com","version":"2.4.3","description":"LIB_FOF_XML_DESCRIPTION","group":"","filename":"fof"}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (106, 'PHPass', 'library', 'phpass', '', 0, 1, 1, 1, '{"name":"PHPass","type":"library","creationDate":"2004-2006","author":"Solar Designer","copyright":"","authorEmail":"solar@openwall.com","authorUrl":"http:\\/\\/www.openwall.com\\/phpass\\/","version":"0.3","description":"LIB_PHPASS_XML_DESCRIPTION","group":"","filename":"phpass"}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
@@ -641,7 +642,7 @@ INSERT INTO `jml_extensions` (`extension_id`, `name`, `type`, `element`, `folder
 (449, 'plg_authentication_cookie', 'plugin', 'cookie', 'authentication', 0, 1, 1, 0, '{"name":"plg_authentication_cookie","type":"plugin","creationDate":"July 2013","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.0.0","description":"PLG_AUTH_COOKIE_XML_DESCRIPTION","group":"","filename":"cookie"}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (450, 'plg_twofactorauth_yubikey', 'plugin', 'yubikey', 'twofactorauth', 0, 0, 1, 0, '{"name":"plg_twofactorauth_yubikey","type":"plugin","creationDate":"September 2013","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.2.0","description":"PLG_TWOFACTORAUTH_YUBIKEY_XML_DESCRIPTION","group":"","filename":"yubikey"}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (451, 'plg_search_tags', 'plugin', 'tags', 'search', 0, 1, 1, 0, '{"name":"plg_search_tags","type":"plugin","creationDate":"March 2014","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.0.0","description":"PLG_SEARCH_TAGS_XML_DESCRIPTION","group":"","filename":"tags"}', '{"search_limit":"50","show_tagged_items":"1"}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
-(452, 'plg_system_updatenotification', 'plugin', 'updatenotification', 'system', 0, 1, 1, 0, '{"name":"plg_system_updatenotification","type":"plugin","creationDate":"May 2015","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.5.0","description":"PLG_SYSTEM_UPDATENOTIFICATION_XML_DESCRIPTION","group":"","filename":"updatenotification"}', '{"lastrun":1476085979}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+(452, 'plg_system_updatenotification', 'plugin', 'updatenotification', 'system', 0, 1, 1, 0, '{"name":"plg_system_updatenotification","type":"plugin","creationDate":"May 2015","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.5.0","description":"PLG_SYSTEM_UPDATENOTIFICATION_XML_DESCRIPTION","group":"","filename":"updatenotification"}', '{"lastrun":1476434170}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (453, 'plg_editors-xtd_module', 'plugin', 'module', 'editors-xtd', 0, 1, 1, 0, '{"name":"plg_editors-xtd_module","type":"plugin","creationDate":"October 2015","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.5.0","description":"PLG_MODULE_XML_DESCRIPTION","group":"","filename":"module"}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (454, 'plg_system_stats', 'plugin', 'stats', 'system', 0, 1, 1, 0, '{"name":"plg_system_stats","type":"plugin","creationDate":"November 2013","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.5.0","description":"PLG_SYSTEM_STATS_XML_DESCRIPTION","group":"","filename":"stats"}', '{"mode":3,"lastrun":1476086005,"unique_id":"e8eb818f1dd4c8c574832eb67feb644effd8b6fc","interval":12}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (455, 'plg_installer_packageinstaller', 'plugin', 'packageinstaller', 'installer', 0, 1, 1, 1, '{"name":"plg_installer_packageinstaller","type":"plugin","creationDate":"May 2016","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.6.0","description":"PLG_INSTALLER_PACKAGEINSTALLER_PLUGIN_XML_DESCRIPTION","group":"","filename":"packageinstaller"}', '', '', '', 0, '0000-00-00 00:00:00', 1, 0),
@@ -680,7 +681,9 @@ INSERT INTO `jml_extensions` (`extension_id`, `name`, `type`, `element`, `folder
 (10022, 'plg_kunena_joomla', 'plugin', 'joomla', 'kunena', 0, 1, 1, 0, '{"name":"plg_kunena_joomla","type":"plugin","creationDate":"2016-10-01","author":"Kunena Team","copyright":"www.kunena.org","authorEmail":"Kunena@kunena.org","authorUrl":"https:\\/\\/www.kunena.org","version":"5.0.2","description":"PLG_KUNENA_JOOMLA_25_30_DESCRIPTION","group":"","filename":"joomla"}', '{"access":"1","login":"1"}', '', '', 0, '0000-00-00 00:00:00', 9, 0),
 (10023, 'Kunena Language - English', 'file', 'com_kunena_en-GB', '', 0, 1, 0, 0, '{"name":"Kunena Language - English","type":"file","creationDate":"2016-10-01","author":"Kunena Team","copyright":"(C) 2008 - 2016 Kunena Team. All rights reserved.","authorEmail":"kunena@kunena.org","authorUrl":"https:\\/\\/www.kunena.org","version":"5.0.2","description":"English language file for Kunena Forum Component","group":""}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (10024, 'Kunena Language - Italian (Italy)', 'file', 'com_kunena_it-IT', '', 0, 1, 0, 0, '{"name":"Kunena Language - Italian (Italy)","type":"file","creationDate":"2016-10-01","author":"Kunena Team","copyright":"(C) 2008 - 2016 Kunena Team. All rights reserved.","authorEmail":"translations@kunena.org","authorUrl":"https:\\/\\/www.transifex.net\\/projects\\/p\\/Kunena\\/team\\/it_IT\\/","version":"5.0.2","description":"Italian (Italy) language file for Kunena Forum Component","group":""}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
-(10025, 'Kunena Language Pack', 'package', 'pkg_kunena_languages', '', 0, 1, 1, 0, '{"name":"Kunena Language Pack","type":"package","creationDate":"2016-10-01","author":"Kunena Team","copyright":"(C) 2008 - 2016 Kunena Team. All rights reserved.","authorEmail":"kunena@kunena.org","authorUrl":"https:\\/\\/www.kunena.org","version":"5.0.2","description":"Language pack for Kunena forum component.","group":""}', '{}', '', '', 0, '0000-00-00 00:00:00', 0, 0);
+(10025, 'Kunena Language Pack', 'package', 'pkg_kunena_languages', '', 0, 1, 1, 0, '{"name":"Kunena Language Pack","type":"package","creationDate":"2016-10-01","author":"Kunena Team","copyright":"(C) 2008 - 2016 Kunena Team. All rights reserved.","authorEmail":"kunena@kunena.org","authorUrl":"https:\\/\\/www.kunena.org","version":"5.0.2","description":"Language pack for Kunena forum component.","group":""}', '{}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+(10026, 'com_phocagallery', 'component', 'com_phocagallery', '', 1, 1, 0, 0, '{"name":"com_phocagallery","type":"component","creationDate":"26\\/07\\/2016","author":"Jan Pavelka (www.phoca.cz)","copyright":"Jan Pavelka","authorEmail":"","authorUrl":"www.phoca.cz","version":"4.3.1","description":"Phoca Gallery","group":"","filename":"phocagallery"}', '{"display_image_categories":"5","image_categories_size":"5","display_back_button":"1","display_categories_back_button":"1","display_image_categories_cv":"2","detail_window":"12","boxplus_theme":"lightrounded","enable_custom_css":"1","custom_css":"#phocagallery .pg-cats-name, #phocagallery .pg-name, #phocagallery-statistics .pg-name{   color:#cc0000;  text-align:left;  font-weight: bold;  text-shadow: 1px 1px 1px #fff;  margin: 1px 10px;  text-transform: uppercase; }  #phocagallery .star-rating-small {  margin: 1px 10px; }  #phocagallery .pg-cats-name.small {  float: right;  margin-top: -30px;  padding-left: 20px;  background: url(images\\/icon-folder-small.png) 0% 50% no-repeat; }  #phocagallery .pg-cats-name.medium {  float: right;  margin-bottom: 5px;  padding-left: 20px;  background: url(images\\/icon-folder-small.png) 0% 50% no-repeat; }   #phocagallery .pg-cats-name a:link, #phocagallery .pg-cats-name a:focus, #phocagallery .pg-cats-name a:visited, #phocagallery .pg-cats-name a {  color:#cc0000;  text-decoration: none; }  #phocagallery .detail, #phocagallery-statistics .detail{   margin: 1px 10px; }  .pg-category-view .pg-cats-box-float {  width: 33%; }  #phocagallery .pg-cats-box, #phocagallery .phocagallery-box-file.pg-box-backbtn, #phocagallery .phocagallery-box-file.pg-box-subfolder, #phocagallery .phocagallery-box-file.pg-box-parentfolder, #phocagallery .phocagallery-box-file.pg-box-image, #phocagallery-statistics .phocagallery-box-file.pg-box-mv, #phocagallery-statistics .phocagallery-box-file.pg-box-la {  -moz-border-radius:  3px;  -webkit-border-radius: 3px;  -khtml-border-radius: 3px;  border-radius:   3px;  -moz-box-shadow:  inset 0px 0px 10px 8px #f3f3f3, 2px 2px 2px 1px #c0c0c0;  -webkit-box-shadow: inset 0px 0px 10px 8px #f3f3f3, 2px 2px 2px 1px #c0c0c0;  -khtml-box-shadow:  inset 0px 0px 10px 8px #f3f3f3, 2px 2px 2px 1px #c0c0c0;  box-shadow:   inset 0px 0px 10px 8px #f3f3f3, 2px 2px 2px 1px #c0c0c0;  -webkit-transition: all 1s ease-in-out;  -moz-transition: all 1s ease-in-out;  -o-transition: all 1s ease-in-out;  -ms-transition: all 1s ease-in-out;  transition: all 1s ease-in-out;  padding: 3px;  margin: 7px;  background-color: #f9f9f9;  background: #fff;  text-align: center; }  #phocagallery .pg-cats-box.small, #phocagallery #phocagallery-categories-detail.pg-cats-cv .pg-cats-box {  text-align: left; }  #phocagallery .pg-cats-box:hover, #phocagallery .phocagallery-box-file.pg-box-backbtn:hover, #phocagallery .phocagallery-box-file.pg-box-subfolder:hover, #phocagallery .phocagallery-box-file.pg-box-parentfolder:hover, #phocagallery .phocagallery-box-file.pg-box-image:hover, #phocagallery-statistics .phocagallery-box-file.pg-box-mv:hover, #phocagallery-statistics .phocagallery-box-file.pg-box-la:hover  {  -moz-box-shadow:  inset 0px 0px 10px 8px #f3f3f3, 2px 2px 2px 1px #cc0000;  -webkit-box-shadow: inset 0px 0px 10px 8px #f3f3f3, 2px 2px 2px 1px #cc0000;  -khtml-box-shadow:  inset 0px 0px 10px 8px #f3f3f3, 2px 2px 2px 1px #cc0000;  box-shadow:   inset 0px 0px 10px 8px #f3f3f3, 2px 2px 2px 1px #cc0000; }  #phocagallery-statistics a img.pg-image, #phocagallery a img.pg-image, #phocagallery a img.pg-cat-image, #phocagallery a img.pg-cats-image, #phocagallery .phocagallery-box-file-third a img.pg-image, #phocagallery .phocagallery-box-file-third a img.pg-cat-image {  -moz-border-radius:2px;  -webkit-border-radius:2px;  -khtml-border-radius:2px;  border-radius:2px;  -moz-box-shadow:  0px 0px 2px 1px #ccc;  -webkit-box-shadow: 0px 0px 2px 1px #ccc;  -khtml-box-shadow:  0px 0px 2px 1px #ccc;  box-shadow:   0px 0px 2px 1px #ccc;  border: 0; } #PhocaGalleryobjectPicture, .pg-detail-image {  -moz-box-shadow:  0px 0px 3px 2px #ccc;  -webkit-box-shadow: 0px 0px 3px 2px #ccc;  -khtml-box-shadow:  0px 0px 3px 2px #ccc;  box-shadow:   0px 0px 3px 2px #ccc; } #phocagallery .pg-cats-box-img{  padding: 10px; }  #phocagallery .pg-cat-tags {  text-align: right;  font-size:x-small;  margin: 0px 10px; }  .bgPhocaClass{  background:#fff;  z-index:1000;  -moz-border-radius:2px;  -webkit-border-radius:2px;  -khtml-border-radius:2px;  border-radius:2px;  -moz-box-shadow:  0px 0px 2px 1px #ccc;  -webkit-box-shadow: 0px 0px 2px 1px #ccc;  -khtml-box-shadow:  0px 0px 2px 1px #ccc;  box-shadow:   0px 0px 2px 1px #ccc; } .fgPhocaClass{  background:#fff;  z-index:1000; } .fontPhocaClass{  color:#777;  z-index:1001; } .capfontPhocaClass, .capfontclosePhocaClass{  color:#777;  z-index:1001;  font-weight: bold; }","icon_format":"png","large_image_width":"640","large_image_height":"480","medium_image_width":"200","medium_image_height":"150","small_image_width":"50","small_image_height":"50","responsive":"1","bootstrap_icons":"1","equal_heights":"1","category_box_space":"10","categories_box_space":"10"}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+(10027, 'purity_III', 'template', 'purity_iii', '', 0, 1, 1, 0, '{"name":"purity_III","type":"template","creationDate":"17 Feb 2014","author":"JoomlArt.com","copyright":"Copyright (C), J.O.O.M Solutions Co., Ltd. All Rights Reserved.","authorEmail":"webmaster@joomlart.com","authorUrl":"http:\\/\\/www.t3-framework.org","version":"1.0.0","description":"\\n\\t\\t\\n\\t\\t<div align=\\"center\\">\\n\\t\\t\\t<div class=\\"alert alert-success\\" style=\\"background-color:#DFF0D8;border-color:#D6E9C6;color: #468847;padding: 1px 0;\\">\\n\\t\\t\\t\\t<h2>Purity III Template references<\\/h2>\\n\\t\\t\\t\\t<h4><a href=\\"http:\\/\\/joomla-templates.joomlart.com\\/purity_iii\\/\\" title=\\"Purity III Template demo\\">Live Demo<\\/a> | <a href=\\"http:\\/\\/www.joomlart.com\\/documentation\\/joomla-templates\\/purity-iii\\" title=\\"purity iii template documentation\\">Documentation<\\/a> | <a href=\\"http:\\/\\/www.joomlart.com\\/forums\\/forumdisplay.php?542-Purity-III\\" title=\\"purity iii forum\\">Forum<\\/a> | <a href=\\"http:\\/\\/www.joomlart.com\\/joomla\\/templates\\/purity-iii\\" title=\\"Purity III template more info\\">More Info<\\/a><\\/h4>\\n\\t\\t\\t\\t<p> <\\/p>\\n\\t\\t\\t\\t<span style=\\"color:#FF0000\\">Note: Purity III requires T3 plugin to be installed and enabled.<\\/span>\\n\\t\\t\\t\\t<p> <\\/p>\\n\\t\\t\\t\\t<p>Copyright 2004 - 2014 <a href=\'http:\\/\\/www.joomlart.com\\/\' title=\'Visit Joomlart.com!\'>JoomlArt.com<\\/a>.<\\/p>\\n\\t\\t\\t<\\/div>\\n\\t\\t\\t<style>table.adminform{width: 100%;}<\\/style>\\n\\t\\t<\\/div>\\n\\t\\t\\n\\t","group":"","filename":"templateDetails"}', '{"tpl_article_info_datetime_format":"d M Y"}', '', '', 0, '0000-00-00 00:00:00', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -1490,7 +1493,8 @@ CREATE TABLE `jml_kunena_sessions` (
 --
 
 INSERT INTO `jml_kunena_sessions` (`userid`, `allowed`, `lasttime`, `readtopics`, `currvisit`) VALUES
-(669, 'na', 1474883247, '0', 1476093412);
+(669, 'na', 1476093412, '0', 1476439750),
+(670, 'na', 1475230495, '0', 1476440095);
 
 -- --------------------------------------------------------
 
@@ -1630,7 +1634,7 @@ CREATE TABLE `jml_kunena_topics` (
 --
 
 INSERT INTO `jml_kunena_topics` (`id`, `category_id`, `subject`, `icon_id`, `label_id`, `locked`, `hold`, `ordering`, `posts`, `hits`, `attachments`, `poll_id`, `moved_id`, `first_post_id`, `first_post_time`, `first_post_userid`, `first_post_message`, `first_post_guest_name`, `last_post_id`, `last_post_time`, `last_post_userid`, `last_post_message`, `last_post_guest_name`, `rating`, `params`) VALUES
-(1, 2, 'Benvenuti su Kunena!', 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1476092614, 669, '[size=4][b]Benvenuti su Kunena![/b][/size] \n\nGrazie per aver scelto Kunena come forum per il vostro sito Joomla. \n\nKunena, che tradotto dallo Swahili significa “per parlare,” è programmato da un team di professionisti dell\'open source con l\'obiettivo di fornire il vostro sito di un forum di qualità superiore e perfettamente integrato in Joomla.\n\n\n[size=4][b]Risorse addizionali per Kunena[/b][/size] \n\n[b]Documentazione Kunena:[/b] [url]https://www.kunena.org/docs[/url] \n\n[b]Forum di Supporto Kunena[/b]: [url]https://www.kunena.org/forum[/url] \n\n[b]Downloads Kunena:[/b] [url]https://www.kunena.org/download[/url] \n\n[b]Blog Kunena:[/b] [url]https://www.kunena.org/blog[/url] \n\n[b]Segui Kunena su Twitter:[/b] [url]https://www.kunena.org/twitter[/url]', 'Kunena', 1, 1476092614, 669, '[size=4][b]Benvenuti su Kunena![/b][/size] \n\nGrazie per aver scelto Kunena come forum per il vostro sito Joomla. \n\nKunena, che tradotto dallo Swahili significa “per parlare,” è programmato da un team di professionisti dell\'open source con l\'obiettivo di fornire il vostro sito di un forum di qualità superiore e perfettamente integrato in Joomla.\n\n\n[size=4][b]Risorse addizionali per Kunena[/b][/size] \n\n[b]Documentazione Kunena:[/b] [url]https://www.kunena.org/docs[/url] \n\n[b]Forum di Supporto Kunena[/b]: [url]https://www.kunena.org/forum[/url] \n\n[b]Downloads Kunena:[/b] [url]https://www.kunena.org/download[/url] \n\n[b]Blog Kunena:[/b] [url]https://www.kunena.org/blog[/url] \n\n[b]Segui Kunena su Twitter:[/b] [url]https://www.kunena.org/twitter[/url]', 'Kunena', 0, '');
+(1, 2, 'Benvenuti su Kunena!', 0, 0, 0, 0, 0, 1, 3, 0, 0, 0, 1, 1476092614, 669, '[size=4][b]Benvenuti su Kunena![/b][/size] \n\nGrazie per aver scelto Kunena come forum per il vostro sito Joomla. \n\nKunena, che tradotto dallo Swahili significa “per parlare,” è programmato da un team di professionisti dell\'open source con l\'obiettivo di fornire il vostro sito di un forum di qualità superiore e perfettamente integrato in Joomla.\n\n\n[size=4][b]Risorse addizionali per Kunena[/b][/size] \n\n[b]Documentazione Kunena:[/b] [url]https://www.kunena.org/docs[/url] \n\n[b]Forum di Supporto Kunena[/b]: [url]https://www.kunena.org/forum[/url] \n\n[b]Downloads Kunena:[/b] [url]https://www.kunena.org/download[/url] \n\n[b]Blog Kunena:[/b] [url]https://www.kunena.org/blog[/url] \n\n[b]Segui Kunena su Twitter:[/b] [url]https://www.kunena.org/twitter[/url]', 'Kunena', 1, 1476092614, 669, '[size=4][b]Benvenuti su Kunena![/b][/size] \n\nGrazie per aver scelto Kunena come forum per il vostro sito Joomla. \n\nKunena, che tradotto dallo Swahili significa “per parlare,” è programmato da un team di professionisti dell\'open source con l\'obiettivo di fornire il vostro sito di un forum di qualità superiore e perfettamente integrato in Joomla.\n\n\n[size=4][b]Risorse addizionali per Kunena[/b][/size] \n\n[b]Documentazione Kunena:[/b] [url]https://www.kunena.org/docs[/url] \n\n[b]Forum di Supporto Kunena[/b]: [url]https://www.kunena.org/forum[/url] \n\n[b]Downloads Kunena:[/b] [url]https://www.kunena.org/download[/url] \n\n[b]Blog Kunena:[/b] [url]https://www.kunena.org/blog[/url] \n\n[b]Segui Kunena su Twitter:[/b] [url]https://www.kunena.org/twitter[/url]', 'Kunena', 0, '');
 
 -- --------------------------------------------------------
 
@@ -1697,7 +1701,8 @@ CREATE TABLE `jml_kunena_users` (
 --
 
 INSERT INTO `jml_kunena_users` (`userid`, `status`, `status_text`, `view`, `signature`, `moderator`, `banned`, `ordering`, `posts`, `avatar`, `karma`, `karma_time`, `group_id`, `uhits`, `personalText`, `gender`, `birthdate`, `location`, `aim`, `friendfeed`, `bebo`, `digg`, `icq`, `telegram`, `vk`, `microsoft`, `skype`, `twitter`, `facebook`, `google`, `myspace`, `linkedin`, `delicious`, `instagram`, `qq`, `blogspot`, `flickr`, `apple`, `qzone`, `weibo`, `wechat`, `yim`, `websitename`, `websiteurl`, `rank`, `hideEmail`, `showOnline`, `canSubscribe`, `userListtime`, `thankyou`, `ip`) VALUES
-(669, 0, '', '', NULL, 0, NULL, 0, 1, NULL, 0, 0, 1, 0, NULL, 0, '0001-01-01', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 1, -1, -2, 0, '');
+(669, 0, '', '', NULL, 0, NULL, 0, 1, NULL, 0, 0, 1, 0, NULL, 0, '0001-01-01', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 1, -1, -2, 0, ''),
+(670, 0, '', '', NULL, 0, NULL, 0, 0, NULL, 0, 0, 1, 0, NULL, 0, '0001-01-01', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 1, -1, -2, 0, '');
 
 -- --------------------------------------------------------
 
@@ -1741,7 +1746,8 @@ CREATE TABLE `jml_kunena_user_categories` (
 --
 
 INSERT INTO `jml_kunena_user_categories` (`user_id`, `category_id`, `role`, `allreadtime`, `subscribed`, `params`) VALUES
-(669, 0, 0, 1474883247, 0, '');
+(669, 0, 0, 1474883247, 0, ''),
+(670, 0, 0, 1475230495, 0, '');
 
 -- --------------------------------------------------------
 
@@ -1756,6 +1762,14 @@ CREATE TABLE `jml_kunena_user_read` (
   `message_id` int(11) NOT NULL,
   `time` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `jml_kunena_user_read`
+--
+
+INSERT INTO `jml_kunena_user_read` (`user_id`, `topic_id`, `category_id`, `message_id`, `time`) VALUES
+(669, 1, 2, 1, 1476439750),
+(670, 1, 2, 1, 1476440095);
 
 -- --------------------------------------------------------
 
@@ -1875,7 +1889,7 @@ CREATE TABLE `jml_menu` (
 --
 
 INSERT INTO `jml_menu` (`id`, `menutype`, `title`, `alias`, `note`, `path`, `link`, `type`, `published`, `parent_id`, `level`, `component_id`, `checked_out`, `checked_out_time`, `browserNav`, `access`, `img`, `template_style_id`, `params`, `lft`, `rgt`, `home`, `language`, `client_id`) VALUES
-(1, '', 'Menu_Item_Root', 'root', '', '', '', '', 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, 0, '', 0, '', 0, 109, 0, '*', 0),
+(1, '', 'Menu_Item_Root', 'root', '', '', '', '', 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, 0, '', 0, '', 0, 139, 0, '*', 0),
 (2, 'menu', 'com_banners', 'Banners', '', 'Banners', 'index.php?option=com_banners', 'component', 0, 1, 1, 4, 0, '0000-00-00 00:00:00', 0, 0, 'class:banners', 0, '', 1, 10, 0, '*', 1),
 (3, 'menu', 'com_banners', 'Banners', '', 'Banners/Banners', 'index.php?option=com_banners', 'component', 0, 2, 2, 4, 0, '0000-00-00 00:00:00', 0, 0, 'class:banners', 0, '', 2, 3, 0, '*', 1),
 (4, 'menu', 'com_banners_categories', 'Categories', '', 'Banners/Categories', 'index.php?option=com_categories&extension=com_banners', 'component', 0, 2, 2, 6, 0, '0000-00-00 00:00:00', 0, 0, 'class:banners-cat', 0, '', 4, 5, 0, '*', 1),
@@ -1927,7 +1941,22 @@ INSERT INTO `jml_menu` (`id`, `menutype`, `title`, `alias`, `note`, `path`, `lin
 (131, 'kunenamenu', 'Profilo', 'profilo', '', 'forum/profilo', 'index.php?option=com_kunena&view=user', 'component', 1, 125, 2, 10011, 0, '0000-00-00 00:00:00', 0, 2, ' ', 0, '{"menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"page_title":"","show_page_heading":0,"page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0,"integration":1}', 100, 101, 0, '*', 0),
 (132, 'kunenamenu', 'Aiuto', 'aiuto', '', 'forum/aiuto', 'index.php?option=com_kunena&view=misc', 'component', 1, 125, 2, 10011, 0, '0000-00-00 00:00:00', 0, 3, ' ', 0, '{"menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"page_title":"","show_page_heading":0,"page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0,"body":"Questa pagina di aiuto \\u00e8 un menu all\'interno del  [b]Menu Kunena[\\/b], che consente una facile navigazione nel forum\\n\\nPuoi utilizzare il Joomla Menu Manager per modificare gli elementi di questo Menu. Per Favore vai in  [b]Amministrazione[\\/b] >> [b]Menus[\\/b] >> [b]Kunena Menu[\\/b] >> [b]Aiuto[\\/b] per modificare o rimuovere questi elementi \\n\\n In questo menu puoi utilizzare un chiaro menu in BBCode o HTML. Se vuoi avvolgere un menu in questa pagina, puoi anche usare menu in BBCode (con articolo id): [code][article=full]123[\\/article][\\/code] \\n\\nSe vuoi creare un tuo menu personalizzato per Kunena, inizia da [b]Home Pagina[\\/b] per primo. In questa pagina potrai selezionare gli elementi del menu di default, i quali saranno mostrati al tuo ingresso in Kunena","body_format":"bbcode"}', 102, 103, 0, '*', 0),
 (133, 'kunenamenu', 'Ricerca', 'cerca', '', 'forum/cerca', 'index.php?option=com_kunena&view=search', 'component', 1, 125, 2, 10011, 0, '0000-00-00 00:00:00', 0, 1, ' ', 0, '{"menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"page_title":"","show_page_heading":0,"page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0}', 104, 105, 0, '*', 0),
-(134, 'mainmenu', 'Forum', 'kunena-2016-10-10', '', 'kunena-2016-10-10', 'index.php?Itemid=125', 'alias', 1, 1, 1, 0, 0, '0000-00-00 00:00:00', 0, 1, ' ', 0, '{"aliasoptions":"125","menu-anchor_title":"","menu-anchor_css":"","menu_image":""}', 107, 108, 0, '*', 0);
+(134, 'mainmenu', 'Forum', 'kunena-2016-10-10', '', 'kunena-2016-10-10', 'index.php?Itemid=125', 'alias', 1, 1, 1, 0, 0, '0000-00-00 00:00:00', 0, 1, ' ', 0, '{"aliasoptions":"125","menu-anchor_title":"","menu-anchor_css":"","menu_image":""}', 107, 108, 0, '*', 0),
+(135, 'main', 'COM_PHOCAGALLERY', 'com-phocagallery', '', 'com-phocagallery', 'index.php?option=com_phocagallery', 'component', 0, 1, 1, 10026, 0, '0000-00-00 00:00:00', 0, 1, 'media/com_phocagallery/images/administrator/icon-16-pg-menu.png', 0, '{}', 109, 136, 0, '', 1),
+(136, 'main', 'COM_PHOCAGALLERY_CONTROLPANEL', 'com-phocagallery-controlpanel', '', 'com-phocagallery/com-phocagallery-controlpanel', 'index.php?option=com_phocagallery', 'component', 0, 135, 2, 10026, 0, '0000-00-00 00:00:00', 0, 1, 'media/com_phocagallery/images/administrator/icon-16-pg-control-panel.png', 0, '{}', 110, 111, 0, '', 1),
+(137, 'main', 'COM_PHOCAGALLERY_IMAGES', 'com-phocagallery-images', '', 'com-phocagallery/com-phocagallery-images', 'index.php?option=com_phocagallery&view=phocagalleryimgs', 'component', 0, 135, 2, 10026, 0, '0000-00-00 00:00:00', 0, 1, 'media/com_phocagallery/images/administrator/icon-16-pg-menu-gal.png', 0, '{}', 112, 113, 0, '', 1),
+(138, 'main', 'COM_PHOCAGALLERY_CATEGORIES', 'com-phocagallery-categories', '', 'com-phocagallery/com-phocagallery-categories', 'index.php?option=com_phocagallery&view=phocagallerycs', 'component', 0, 135, 2, 10026, 0, '0000-00-00 00:00:00', 0, 1, 'media/com_phocagallery/images/administrator/icon-16-pg-menu-cat.png', 0, '{}', 114, 115, 0, '', 1),
+(139, 'main', 'COM_PHOCAGALLERY_THEMES', 'com-phocagallery-themes', '', 'com-phocagallery/com-phocagallery-themes', 'index.php?option=com_phocagallery&view=phocagalleryt', 'component', 0, 135, 2, 10026, 0, '0000-00-00 00:00:00', 0, 1, 'media/com_phocagallery/images/administrator/icon-16-pg-menu-theme.png', 0, '{}', 116, 117, 0, '', 1),
+(140, 'main', 'COM_PHOCAGALLERY_CATEGORYRATING', 'com-phocagallery-categoryrating', '', 'com-phocagallery/com-phocagallery-categoryrating', 'index.php?option=com_phocagallery&view=phocagalleryra', 'component', 0, 135, 2, 10026, 0, '0000-00-00 00:00:00', 0, 1, 'media/com_phocagallery/images/administrator/icon-16-pg-menu-vote.png', 0, '{}', 118, 119, 0, '', 1),
+(141, 'main', 'COM_PHOCAGALLERY_IMAGERATING', 'com-phocagallery-imagerating', '', 'com-phocagallery/com-phocagallery-imagerating', 'index.php?option=com_phocagallery&view=phocagalleryraimg', 'component', 0, 135, 2, 10026, 0, '0000-00-00 00:00:00', 0, 1, 'media/com_phocagallery/images/administrator/icon-16-pg-menu-vote-img.png', 0, '{}', 120, 121, 0, '', 1),
+(142, 'main', 'COM_PHOCAGALLERY_CATEGORYCOMMENTS', 'com-phocagallery-categorycomments', '', 'com-phocagallery/com-phocagallery-categorycomments', 'index.php?option=com_phocagallery&view=phocagallerycos', 'component', 0, 135, 2, 10026, 0, '0000-00-00 00:00:00', 0, 1, 'media/com_phocagallery/images/administrator/icon-16-pg-menu-comment.png', 0, '{}', 122, 123, 0, '', 1),
+(143, 'main', 'COM_PHOCAGALLERY_IMAGECOMMENTS', 'com-phocagallery-imagecomments', '', 'com-phocagallery/com-phocagallery-imagecomments', 'index.php?option=com_phocagallery&view=phocagallerycoimgs', 'component', 0, 135, 2, 10026, 0, '0000-00-00 00:00:00', 0, 1, 'media/com_phocagallery/images/administrator/icon-16-pg-menu-comment-img.png', 0, '{}', 124, 125, 0, '', 1),
+(144, 'main', 'COM_PHOCAGALLERY_USERS', 'com-phocagallery-users', '', 'com-phocagallery/com-phocagallery-users', 'index.php?option=com_phocagallery&view=phocagalleryusers', 'component', 0, 135, 2, 10026, 0, '0000-00-00 00:00:00', 0, 1, 'media/com_phocagallery/images/administrator/icon-16-pg-menu-users.png', 0, '{}', 126, 127, 0, '', 1),
+(145, 'main', 'COM_PHOCAGALLERY_FB', 'com-phocagallery-fb', '', 'com-phocagallery/com-phocagallery-fb', 'index.php?option=com_phocagallery&view=phocagalleryfbs', 'component', 0, 135, 2, 10026, 0, '0000-00-00 00:00:00', 0, 1, 'media/com_phocagallery/images/administrator/icon-16-pg-menu-fb.png', 0, '{}', 128, 129, 0, '', 1),
+(146, 'main', 'COM_PHOCAGALLERY_TAGS', 'com-phocagallery-tags', '', 'com-phocagallery/com-phocagallery-tags', 'index.php?option=com_phocagallery&view=phocagallerytags', 'component', 0, 135, 2, 10026, 0, '0000-00-00 00:00:00', 0, 1, 'media/com_phocagallery/images/administrator/icon-16-pg-menu-tags.png', 0, '{}', 130, 131, 0, '', 1),
+(147, 'main', 'COM_PHOCAGALLERY_STYLES', 'com-phocagallery-styles', '', 'com-phocagallery/com-phocagallery-styles', 'index.php?option=com_phocagallery&view=phocagalleryefs', 'component', 0, 135, 2, 10026, 0, '0000-00-00 00:00:00', 0, 1, 'media/com_phocagallery/images/administrator/icon-16-pg-menu-styles.png', 0, '{}', 132, 133, 0, '', 1),
+(148, 'main', 'COM_PHOCAGALLERY_INFO', 'com-phocagallery-info', '', 'com-phocagallery/com-phocagallery-info', 'index.php?option=com_phocagallery&view=phocagalleryin', 'component', 0, 135, 2, 10026, 0, '0000-00-00 00:00:00', 0, 1, 'media/com_phocagallery/images/administrator/icon-16-pg-menu-info.png', 0, '{}', 134, 135, 0, '', 1),
+(149, 'mainmenu-it-it', 'Gallery', 'gallery', '', 'gallery', 'index.php?option=com_phocagallery&view=categories', 'component', 1, 1, 1, 10026, 0, '0000-00-00 00:00:00', 0, 1, ' ', 0, '{"show_pagination_categories":"0","show_pagination_category":"1","show_pagination_limit_categories":"0","show_pagination_limit_category":"1","show_ordering_categories":"0","show_ordering_images":"1","display_menu_link_title":"1","display_cat_name_title":"1","display_cat_name_breadcrumbs":"0","show_parent_categories":"","menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"menu_show":1,"page_title":"","show_page_heading":"","page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0}', 137, 138, 0, '*', 0);
 
 -- --------------------------------------------------------
 
@@ -2144,6 +2173,365 @@ CREATE TABLE `jml_overrider` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `jml_phocagallery`
+--
+
+CREATE TABLE `jml_phocagallery` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `catid` int(11) NOT NULL DEFAULT '0',
+  `sid` int(11) NOT NULL DEFAULT '0',
+  `title` varchar(250) NOT NULL DEFAULT '',
+  `alias` varchar(255) NOT NULL DEFAULT '',
+  `filename` varchar(250) NOT NULL DEFAULT '',
+  `format` tinyint(1) NOT NULL DEFAULT '0',
+  `description` text,
+  `date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `hits` int(11) NOT NULL DEFAULT '0',
+  `latitude` varchar(20) NOT NULL DEFAULT '',
+  `longitude` varchar(20) NOT NULL DEFAULT '',
+  `zoom` int(3) NOT NULL DEFAULT '0',
+  `geotitle` varchar(255) NOT NULL DEFAULT '',
+  `userid` int(11) NOT NULL DEFAULT '0',
+  `videocode` text,
+  `vmproductid` int(11) NOT NULL DEFAULT '0',
+  `imgorigsize` int(11) NOT NULL DEFAULT '0',
+  `published` tinyint(1) NOT NULL DEFAULT '0',
+  `approved` tinyint(1) NOT NULL DEFAULT '0',
+  `checked_out` int(11) NOT NULL DEFAULT '0',
+  `checked_out_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `ordering` int(11) NOT NULL DEFAULT '0',
+  `params` text,
+  `metakey` text,
+  `metadesc` text,
+  `metadata` text,
+  `extlink1` text,
+  `extlink2` text,
+  `extid` varchar(255) NOT NULL DEFAULT '',
+  `exttype` tinyint(1) NOT NULL DEFAULT '0',
+  `extl` varchar(255) NOT NULL DEFAULT '',
+  `extm` varchar(255) NOT NULL DEFAULT '',
+  `exts` varchar(255) NOT NULL DEFAULT '',
+  `exto` varchar(255) NOT NULL DEFAULT '',
+  `extw` varchar(255) NOT NULL DEFAULT '',
+  `exth` varchar(255) NOT NULL DEFAULT '',
+  `language` char(7) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `jml_phocagallery`
+--
+
+INSERT INTO `jml_phocagallery` (`id`, `catid`, `sid`, `title`, `alias`, `filename`, `format`, `description`, `date`, `hits`, `latitude`, `longitude`, `zoom`, `geotitle`, `userid`, `videocode`, `vmproductid`, `imgorigsize`, `published`, `approved`, `checked_out`, `checked_out_time`, `ordering`, `params`, `metakey`, `metadesc`, `metadata`, `extlink1`, `extlink2`, `extid`, `exttype`, `extl`, `extm`, `exts`, `exto`, `extw`, `exth`, `language`) VALUES
+(2, 1, 0, 'EICMA2007', 'eicma2007', 'EICMA2007/EICMA2007001.jpg', 1, NULL, '2016-10-14 09:04:43', 0, '', '', 0, '', 0, NULL, 0, 88451, 1, 1, 0, '0000-00-00 00:00:00', 1, NULL, NULL, NULL, NULL, NULL, NULL, '', 0, '', '', '', '', '', '', '*'),
+(3, 1, 0, 'EICMA2007', 'eicma2007', 'EICMA2007/EICMA2007002.jpg', 1, NULL, '2016-10-14 09:04:43', 1, '', '', 0, '', 0, NULL, 0, 141920, 1, 1, 0, '0000-00-00 00:00:00', 2, NULL, NULL, NULL, NULL, NULL, NULL, '', 0, '', '', '', '', '', '', '*'),
+(4, 1, 0, 'EICMA2007', 'eicma2007', 'EICMA2007/EICMA2007003.jpg', 2, NULL, '2016-10-14 09:04:43', 0, '', '', 0, '', 0, NULL, 0, 73067, 1, 1, 0, '0000-00-00 00:00:00', 3, NULL, NULL, NULL, NULL, NULL, NULL, '', 0, '', '', '', '', '', '', '*'),
+(5, 1, 0, 'EICMA2007', 'eicma2007', 'EICMA2007/EICMA2007004.jpg', 1, NULL, '2016-10-14 09:04:43', 0, '', '', 0, '', 0, NULL, 0, 124524, 1, 1, 0, '0000-00-00 00:00:00', 4, NULL, NULL, NULL, NULL, NULL, NULL, '', 0, '', '', '', '', '', '', '*'),
+(6, 1, 0, 'EICMA2007', 'eicma2007', 'EICMA2007/EICMA2007005.jpg', 1, NULL, '2016-10-14 09:04:43', 0, '', '', 0, '', 0, NULL, 0, 119692, 1, 1, 0, '0000-00-00 00:00:00', 5, NULL, NULL, NULL, NULL, NULL, NULL, '', 0, '', '', '', '', '', '', '*'),
+(7, 1, 0, 'EICMA2007', 'eicma2007', 'EICMA2007/EICMA2007007.jpg', 1, NULL, '2016-10-14 09:04:43', 0, '', '', 0, '', 0, NULL, 0, 108708, 1, 1, 0, '0000-00-00 00:00:00', 6, NULL, NULL, NULL, NULL, NULL, NULL, '', 0, '', '', '', '', '', '', '*'),
+(8, 1, 0, 'EICMA2007', 'eicma2007', 'EICMA2007/EICMA2007008.jpg', 2, NULL, '2016-10-14 09:04:43', 0, '', '', 0, '', 0, NULL, 0, 64805, 1, 1, 0, '0000-00-00 00:00:00', 7, NULL, NULL, NULL, NULL, NULL, NULL, '', 0, '', '', '', '', '', '', '*'),
+(9, 1, 0, 'EICMA2007', 'eicma2007', 'EICMA2007/EICMA2007009.jpg', 2, NULL, '2016-10-14 09:04:43', 0, '', '', 0, '', 0, NULL, 0, 53412, 1, 1, 0, '0000-00-00 00:00:00', 8, NULL, NULL, NULL, NULL, NULL, NULL, '', 0, '', '', '', '', '', '', '*'),
+(10, 1, 0, 'EICMA2007', 'eicma2007', 'EICMA2007/EICMA2007010.jpg', 1, NULL, '2016-10-14 09:04:44', 0, '', '', 0, '', 0, NULL, 0, 110842, 1, 1, 0, '0000-00-00 00:00:00', 9, NULL, NULL, NULL, NULL, NULL, NULL, '', 0, '', '', '', '', '', '', '*'),
+(11, 1, 0, 'EICMA2007', 'eicma2007', 'EICMA2007/EICMA2007011.jpg', 2, NULL, '2016-10-14 09:04:44', 0, '', '', 0, '', 0, NULL, 0, 60392, 1, 1, 0, '0000-00-00 00:00:00', 10, NULL, NULL, NULL, NULL, NULL, NULL, '', 0, '', '', '', '', '', '', '*'),
+(12, 1, 0, 'EICMA2007', 'eicma2007', 'EICMA2007/EICMA2007012.jpg', 2, NULL, '2016-10-14 09:04:44', 2, '', '', 0, '', 0, NULL, 0, 39433, 1, 1, 0, '0000-00-00 00:00:00', 11, NULL, NULL, NULL, NULL, NULL, NULL, '', 0, '', '', '', '', '', '', '*'),
+(13, 1, 0, 'EICMA2007', 'eicma2007', 'EICMA2007/EICMA2007013.jpg', 2, NULL, '2016-10-14 09:04:44', 1, '', '', 0, '', 0, NULL, 0, 49376, 1, 1, 0, '0000-00-00 00:00:00', 12, NULL, NULL, NULL, NULL, NULL, NULL, '', 0, '', '', '', '', '', '', '*'),
+(14, 1, 0, 'EICMA2007', 'eicma2007', 'EICMA2007/EICMA2007014.jpg', 1, NULL, '2016-10-14 09:04:44', 1, '', '', 0, '', 0, NULL, 0, 81240, 1, 1, 0, '0000-00-00 00:00:00', 13, NULL, NULL, NULL, NULL, NULL, NULL, '', 0, '', '', '', '', '', '', '*'),
+(15, 1, 0, 'EICMA2007', 'eicma2007', 'EICMA2007/EICMA2007015.jpg', 2, NULL, '2016-10-14 09:04:44', 1, '', '', 0, '', 0, NULL, 0, 70858, 1, 1, 0, '0000-00-00 00:00:00', 14, NULL, NULL, NULL, NULL, NULL, NULL, '', 0, '', '', '', '', '', '', '*'),
+(16, 1, 0, 'EICMA2007', 'eicma2007', 'EICMA2007/EICMA2007016.jpg', 2, NULL, '2016-10-14 09:04:44', 1, '', '', 0, '', 0, NULL, 0, 42932, 1, 1, 0, '0000-00-00 00:00:00', 15, NULL, NULL, NULL, NULL, NULL, NULL, '', 0, '', '', '', '', '', '', '*'),
+(17, 1, 0, 'EICMA2007', 'eicma2007', 'EICMA2007/EICMA2007017.jpg', 2, NULL, '2016-10-14 09:04:44', 0, '', '', 0, '', 0, NULL, 0, 69810, 1, 1, 0, '0000-00-00 00:00:00', 16, NULL, NULL, NULL, NULL, NULL, NULL, '', 0, '', '', '', '', '', '', '*'),
+(18, 1, 0, 'EICMA2007', 'eicma2007', 'EICMA2007/EICMA2007018.jpg', 2, NULL, '2016-10-14 09:04:44', 0, '', '', 0, '', 0, NULL, 0, 103938, 1, 1, 0, '0000-00-00 00:00:00', 17, NULL, NULL, NULL, NULL, NULL, NULL, '', 0, '', '', '', '', '', '', '*'),
+(19, 1, 0, 'EICMA2007', 'eicma2007', 'EICMA2007/EICMA2007019.jpg', 1, NULL, '2016-10-14 09:04:44', 0, '', '', 0, '', 0, NULL, 0, 44439, 1, 1, 0, '0000-00-00 00:00:00', 18, NULL, NULL, NULL, NULL, NULL, NULL, '', 0, '', '', '', '', '', '', '*'),
+(20, 1, 0, 'EICMA2007', 'eicma2007', 'EICMA2007/EICMA2007020.jpg', 1, NULL, '2016-10-14 09:04:44', 0, '', '', 0, '', 0, NULL, 0, 173309, 1, 1, 0, '0000-00-00 00:00:00', 19, NULL, NULL, NULL, NULL, NULL, NULL, '', 0, '', '', '', '', '', '', '*'),
+(21, 1, 0, 'EICMA2007', 'eicma2007', 'EICMA2007/EICMA2007021.JPG', 2, NULL, '2016-10-14 09:04:44', 0, '', '', 0, '', 0, NULL, 0, 78967, 1, 1, 0, '0000-00-00 00:00:00', 20, NULL, NULL, NULL, NULL, NULL, NULL, '', 0, '', '', '', '', '', '', '*'),
+(22, 3, 0, 'modena2012', 'modena2012', 'modena2012/maranello/GALLERIA FERRARI MARANELLO 002.jpg', 1, NULL, '2016-10-14 09:10:25', 0, '', '', 0, '', 0, NULL, 0, 83113, 1, 1, 0, '0000-00-00 00:00:00', 1, NULL, NULL, NULL, NULL, NULL, NULL, '', 0, '', '', '', '', '', '', '*'),
+(23, 3, 0, 'modena2012', 'modena2012', 'modena2012/maranello/GALLERIA FERRARI MARANELLO 003.jpg', 1, NULL, '2016-10-14 09:10:25', 0, '', '', 0, '', 0, NULL, 0, 56495, 1, 1, 0, '0000-00-00 00:00:00', 2, NULL, NULL, NULL, NULL, NULL, NULL, '', 0, '', '', '', '', '', '', '*'),
+(24, 2, 0, 'modena2012', 'modena2012', 'modena2012/MODENA2012002.JPG', 2, NULL, '2016-10-14 09:10:25', 3, '', '', 0, '', 0, NULL, 0, 133756, 1, 1, 0, '0000-00-00 00:00:00', 1, NULL, NULL, NULL, NULL, NULL, NULL, '', 0, '', '', '', '', '', '', '*'),
+(25, 2, 0, 'modena2012', 'modena2012', 'modena2012/MODENA2012003.JPG', 1, NULL, '2016-10-14 09:10:25', 0, '', '', 0, '', 0, NULL, 0, 173823, 1, 1, 0, '0000-00-00 00:00:00', 2, NULL, NULL, NULL, NULL, NULL, NULL, '', 0, '', '', '', '', '', '', '*');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jml_phocagallery_categories`
+--
+
+CREATE TABLE `jml_phocagallery_categories` (
+  `id` int(11) NOT NULL,
+  `parent_id` int(11) NOT NULL DEFAULT '0',
+  `owner_id` int(11) NOT NULL DEFAULT '0',
+  `image_id` int(11) NOT NULL DEFAULT '0',
+  `title` varchar(255) NOT NULL DEFAULT '',
+  `name` varchar(255) NOT NULL DEFAULT '',
+  `alias` varchar(255) NOT NULL DEFAULT '',
+  `image` varchar(255) NOT NULL DEFAULT '',
+  `section` varchar(50) NOT NULL DEFAULT '',
+  `image_position` varchar(30) NOT NULL DEFAULT '',
+  `description` text,
+  `date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `published` tinyint(1) NOT NULL DEFAULT '0',
+  `approved` tinyint(1) NOT NULL DEFAULT '0',
+  `checked_out` int(11) UNSIGNED NOT NULL DEFAULT '0',
+  `checked_out_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `editor` varchar(50) DEFAULT NULL,
+  `ordering` int(11) NOT NULL DEFAULT '0',
+  `access` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
+  `count` int(11) NOT NULL DEFAULT '0',
+  `hits` int(11) NOT NULL DEFAULT '0',
+  `accessuserid` text,
+  `uploaduserid` text,
+  `deleteuserid` text,
+  `userfolder` text,
+  `latitude` varchar(20) NOT NULL DEFAULT '',
+  `longitude` varchar(20) NOT NULL DEFAULT '',
+  `zoom` int(3) NOT NULL DEFAULT '0',
+  `geotitle` varchar(255) NOT NULL DEFAULT '',
+  `extid` varchar(255) NOT NULL DEFAULT '',
+  `exta` varchar(255) NOT NULL DEFAULT '',
+  `extu` varchar(255) NOT NULL DEFAULT '',
+  `extauth` varchar(255) NOT NULL DEFAULT '',
+  `extfbuid` int(11) NOT NULL DEFAULT '0',
+  `extfbcatid` varchar(255) NOT NULL DEFAULT '',
+  `params` text,
+  `metakey` text,
+  `metadesc` text,
+  `metadata` text,
+  `language` char(7) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `jml_phocagallery_categories`
+--
+
+INSERT INTO `jml_phocagallery_categories` (`id`, `parent_id`, `owner_id`, `image_id`, `title`, `name`, `alias`, `image`, `section`, `image_position`, `description`, `date`, `published`, `approved`, `checked_out`, `checked_out_time`, `editor`, `ordering`, `access`, `count`, `hits`, `accessuserid`, `uploaduserid`, `deleteuserid`, `userfolder`, `latitude`, `longitude`, `zoom`, `geotitle`, `extid`, `exta`, `extu`, `extauth`, `extfbuid`, `extfbcatid`, `params`, `metakey`, `metadesc`, `metadata`, `language`) VALUES
+(1, 0, 0, 2, 'EICMA2007', '', 'eicma2007', '', '', '', '<p>EICMA2007</p>', '2016-10-14 00:00:00', 1, 1, 0, '0000-00-00 00:00:00', NULL, 1, 1, 0, 10, '0', '0', '0', 'EICMA2007', '', '', 0, '', '', '', '', '', 0, '', NULL, '', '', NULL, '*'),
+(2, 0, 0, 0, 'modena2012', '', 'modena2012', '', '', '', '', '2016-10-14 09:09:52', 1, 1, 0, '0000-00-00 00:00:00', NULL, 2, 1, 0, 7, '0', '0', '0', 'modena2012', '', '', 0, '', '', '', '', '', 0, '', NULL, '', '', NULL, '*'),
+(3, 2, 0, 0, 'maranello', '', 'maranello', '', '', '', '', '2016-10-14 00:00:00', 1, 1, 0, '0000-00-00 00:00:00', NULL, 1, 1, 0, 2, '0', '0', '0', 'modena2012/maranello', '', '', 0, '', '', '', '', '', 0, '', NULL, '', '', NULL, '*');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jml_phocagallery_comments`
+--
+
+CREATE TABLE `jml_phocagallery_comments` (
+  `id` int(11) NOT NULL,
+  `catid` int(11) NOT NULL DEFAULT '0',
+  `userid` int(11) NOT NULL DEFAULT '0',
+  `date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `title` varchar(255) NOT NULL DEFAULT '',
+  `alias` varchar(255) NOT NULL DEFAULT '',
+  `comment` text,
+  `published` tinyint(1) NOT NULL DEFAULT '0',
+  `checked_out` int(11) UNSIGNED NOT NULL DEFAULT '0',
+  `checked_out_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `ordering` int(11) NOT NULL DEFAULT '0',
+  `params` text,
+  `language` char(7) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jml_phocagallery_fb_users`
+--
+
+CREATE TABLE `jml_phocagallery_fb_users` (
+  `id` int(11) NOT NULL,
+  `appid` varchar(255) NOT NULL DEFAULT '',
+  `appsid` varchar(255) NOT NULL DEFAULT '',
+  `uid` varchar(255) NOT NULL DEFAULT '',
+  `name` varchar(255) NOT NULL DEFAULT '',
+  `link` varchar(255) NOT NULL DEFAULT '',
+  `secret` varchar(255) NOT NULL DEFAULT '',
+  `base_domain` varchar(255) NOT NULL DEFAULT '',
+  `expires` varchar(100) NOT NULL DEFAULT '',
+  `session_key` text,
+  `access_token` text,
+  `sig` text,
+  `fanpageid` varchar(255) NOT NULL DEFAULT '',
+  `published` tinyint(1) NOT NULL DEFAULT '0',
+  `checked_out` int(11) UNSIGNED NOT NULL DEFAULT '0',
+  `checked_out_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `ordering` int(11) NOT NULL DEFAULT '0',
+  `comments` text,
+  `params` text,
+  `language` char(7) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jml_phocagallery_img_comments`
+--
+
+CREATE TABLE `jml_phocagallery_img_comments` (
+  `id` int(11) NOT NULL,
+  `imgid` int(11) NOT NULL DEFAULT '0',
+  `userid` int(11) NOT NULL DEFAULT '0',
+  `date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `title` varchar(255) NOT NULL DEFAULT '',
+  `alias` varchar(255) NOT NULL DEFAULT '',
+  `comment` text,
+  `published` tinyint(1) NOT NULL DEFAULT '0',
+  `checked_out` int(11) UNSIGNED NOT NULL DEFAULT '0',
+  `checked_out_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `ordering` int(11) NOT NULL DEFAULT '0',
+  `params` text,
+  `language` char(7) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jml_phocagallery_img_votes`
+--
+
+CREATE TABLE `jml_phocagallery_img_votes` (
+  `id` int(11) NOT NULL,
+  `imgid` int(11) NOT NULL DEFAULT '0',
+  `userid` int(11) NOT NULL DEFAULT '0',
+  `date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `rating` tinyint(1) NOT NULL DEFAULT '0',
+  `published` tinyint(1) NOT NULL DEFAULT '0',
+  `checked_out` int(11) UNSIGNED NOT NULL DEFAULT '0',
+  `checked_out_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `ordering` int(11) NOT NULL DEFAULT '0',
+  `params` text,
+  `language` char(7) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jml_phocagallery_img_votes_statistics`
+--
+
+CREATE TABLE `jml_phocagallery_img_votes_statistics` (
+  `id` int(11) NOT NULL,
+  `imgid` int(11) NOT NULL DEFAULT '0',
+  `count` int(11) NOT NULL DEFAULT '0',
+  `average` float(8,6) NOT NULL DEFAULT '0.000000',
+  `language` char(7) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jml_phocagallery_styles`
+--
+
+CREATE TABLE `jml_phocagallery_styles` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL DEFAULT '',
+  `alias` varchar(255) NOT NULL DEFAULT '',
+  `filename` varchar(255) NOT NULL DEFAULT '',
+  `menulink` text,
+  `type` tinyint(1) NOT NULL DEFAULT '0',
+  `published` tinyint(1) NOT NULL DEFAULT '0',
+  `checked_out` int(11) UNSIGNED NOT NULL DEFAULT '0',
+  `checked_out_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `ordering` int(11) NOT NULL DEFAULT '0',
+  `params` text,
+  `language` char(7) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `jml_phocagallery_styles`
+--
+
+INSERT INTO `jml_phocagallery_styles` (`id`, `title`, `alias`, `filename`, `menulink`, `type`, `published`, `checked_out`, `checked_out_time`, `ordering`, `params`, `language`) VALUES
+(1, 'Phocagallery', 'phocagallery', 'phocagallery.css', '', 1, 1, 0, '0000-00-00 00:00:00', 1, NULL, '*'),
+(2, 'Rating', '', 'rating.css', NULL, 1, 1, 0, '0000-00-00 00:00:00', 2, NULL, '*'),
+(3, 'Default', '', 'default.css', NULL, 2, 1, 0, '0000-00-00 00:00:00', 3, NULL, '*'),
+(4, 'Custom_responsive', '', 'custom_responsive.css', NULL, 2, 1, 0, '0000-00-00 00:00:00', 4, NULL, '*');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jml_phocagallery_tags`
+--
+
+CREATE TABLE `jml_phocagallery_tags` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL DEFAULT '',
+  `alias` varchar(255) NOT NULL DEFAULT '',
+  `link_cat` int(11) NOT NULL DEFAULT '0',
+  `link_ext` varchar(255) NOT NULL DEFAULT '',
+  `description` text,
+  `published` tinyint(1) NOT NULL DEFAULT '0',
+  `checked_out` int(11) UNSIGNED NOT NULL DEFAULT '0',
+  `checked_out_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `ordering` int(11) NOT NULL DEFAULT '0',
+  `params` text,
+  `language` char(7) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jml_phocagallery_tags_ref`
+--
+
+CREATE TABLE `jml_phocagallery_tags_ref` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `imgid` int(11) NOT NULL DEFAULT '0',
+  `tagid` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jml_phocagallery_user`
+--
+
+CREATE TABLE `jml_phocagallery_user` (
+  `id` int(11) NOT NULL,
+  `userid` int(11) NOT NULL DEFAULT '0',
+  `avatar` varchar(40) NOT NULL DEFAULT '',
+  `published` tinyint(1) NOT NULL DEFAULT '0',
+  `approved` tinyint(1) NOT NULL DEFAULT '0',
+  `checked_out` int(11) NOT NULL DEFAULT '0',
+  `checked_out_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `ordering` int(11) NOT NULL DEFAULT '0',
+  `params` text,
+  `language` char(7) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jml_phocagallery_votes`
+--
+
+CREATE TABLE `jml_phocagallery_votes` (
+  `id` int(11) NOT NULL,
+  `catid` int(11) NOT NULL DEFAULT '0',
+  `userid` int(11) NOT NULL DEFAULT '0',
+  `date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `rating` tinyint(1) NOT NULL DEFAULT '0',
+  `published` tinyint(1) NOT NULL DEFAULT '0',
+  `checked_out` int(11) UNSIGNED NOT NULL DEFAULT '0',
+  `checked_out_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `ordering` int(11) NOT NULL DEFAULT '0',
+  `params` text,
+  `language` char(7) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jml_phocagallery_votes_statistics`
+--
+
+CREATE TABLE `jml_phocagallery_votes_statistics` (
+  `id` int(11) NOT NULL,
+  `catid` int(11) NOT NULL DEFAULT '0',
+  `count` int(11) NOT NULL DEFAULT '0',
+  `average` float(8,6) NOT NULL DEFAULT '0.000000',
+  `language` char(7) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `jml_postinstall_messages`
 --
 
@@ -2208,7 +2596,8 @@ CREATE TABLE `jml_schemas` (
 --
 
 INSERT INTO `jml_schemas` (`extension_id`, `version_id`) VALUES
-(700, '3.6.0-2016-06-05');
+(700, '3.6.0-2016-06-05'),
+(10026, '4.3.0');
 
 -- --------------------------------------------------------
 
@@ -2231,8 +2620,8 @@ CREATE TABLE `jml_session` (
 --
 
 INSERT INTO `jml_session` (`session_id`, `client_id`, `guest`, `time`, `data`, `userid`, `username`) VALUES
-('2g51ib1viooh4h0c3d0qt4bq84', 0, 0, '1476093412', 'joomla|s:1964:"TzoyNDoiSm9vbWxhXFJlZ2lzdHJ5XFJlZ2lzdHJ5IjoyOntzOjc6IgAqAGRhdGEiO086ODoic3RkQ2xhc3MiOjE6e3M6OToiX19kZWZhdWx0IjtPOjg6InN0ZENsYXNzIjo0OntzOjc6InNlc3Npb24iO086ODoic3RkQ2xhc3MiOjM6e3M6NzoiY291bnRlciI7aTo0MTtzOjU6InRpbWVyIjtPOjg6InN0ZENsYXNzIjozOntzOjU6InN0YXJ0IjtpOjE0NzYwODc5MjI7czo0OiJsYXN0IjtpOjE0NzYwOTM0MDY7czozOiJub3ciO2k6MTQ3NjA5MzQxMjt9czo1OiJ0b2tlbiI7czozMjoiaWJQNTEwYWhFUk5Icndtc09tcjJFSFZ2bEdodWtKR20iO31zOjg6InJlZ2lzdHJ5IjtPOjI0OiJKb29tbGFcUmVnaXN0cnlcUmVnaXN0cnkiOjI6e3M6NzoiACoAZGF0YSI7Tzo4OiJzdGRDbGFzcyI6Mjp7czo1OiJ1c2VycyI7Tzo4OiJzdGRDbGFzcyI6MTp7czo1OiJsb2dpbiI7Tzo4OiJzdGRDbGFzcyI6MTp7czo0OiJmb3JtIjtPOjg6InN0ZENsYXNzIjoyOntzOjY6InJldHVybiI7czo1OToiaHR0cDovL2xvY2FsaG9zdC9hbGVmYWwuaXQvUFJPSkVDVFMvam9vbWxhMzYyL2luZGV4LnBocC9pdC8iO3M6NDoiZGF0YSI7YTowOnt9fX19czoxMDoiY29tX2t1bmVuYSI7Tzo4OiJzdGRDbGFzcyI6Mjp7czoxMjoidXNlcjY2OV9yZWFkIjthOjU6e2k6MTtpOjE7aTo1O2k6NTtpOjI7aToyO2k6MztpOjM7aTo0O2k6NDt9czoxMDoicG9zdGZpZWxkcyI7Tjt9fXM6OToic2VwYXJhdG9yIjtzOjE6Ii4iO31zOjQ6InVzZXIiO086NToiSlVzZXIiOjE6e3M6MjoiaWQiO3M6MzoiNjY5Ijt9czoxMDoiY29tX21haWx0byI7Tzo4OiJzdGRDbGFzcyI6MTp7czo1OiJsaW5rcyI7YTozOntzOjQwOiJlNDk1NjBkMDU3NjNkZGM3NjlkMWYwOTAzYzg5MDg0YTQ5ZDMzMTkxIjtPOjg6InN0ZENsYXNzIjoyOntzOjQ6ImxpbmsiO3M6OTQ6Imh0dHA6Ly9sb2NhbGhvc3QvYWxlZmFsLml0L1BST0pFQ1RTL2pvb21sYTM2Mi9pbmRleC5waHAvaXQvMTAtY2F0ZWdvcmlhLWl0LWl0LzQtYXJ0aWNvbG8taXQtaXQiO3M6NjoiZXhwaXJ5IjtpOjE0NzYwOTI4NDU7fXM6NDA6ImY4Y2NiZjU4ZDdmYTJmYTEyYjgyMTFkYjU3OTY5MWU2YjdmMDMxYTYiO086ODoic3RkQ2xhc3MiOjI6e3M6NDoibGluayI7czo5NDoiaHR0cDovL2xvY2FsaG9zdC9hbGVmYWwuaXQvUFJPSkVDVFMvam9vbWxhMzYyL2luZGV4LnBocC9lbi11cy84LWNhdGVnb3J5LWVuLXVzLzItYXJ0aWNsZS1lbi11cyI7czo2OiJleHBpcnkiO2k6MTQ3NjA5MjgxMTt9czo0MDoiM2EyMTcyZDdmZmViZDljN2ZlZDUyZjE2MmFlMzIyNDE1ZDQyYzMzMSI7Tzo4OiJzdGRDbGFzcyI6Mjp7czo0OiJsaW5rIjtzOjkxOiJodHRwOi8vbG9jYWxob3N0L2FsZWZhbC5pdC9QUk9KRUNUUy9qb29tbGEzNjIvaW5kZXgucGhwL2VuLzktY2F0ZWdvcnktZW4tZ2IvMy1hcnRpY2xlLWVuLWdiIjtzOjY6ImV4cGlyeSI7aToxNDc2MDkyODEyO319fX19czo5OiJzZXBhcmF0b3IiO3M6MToiLiI7fQ==";', 669, 'admin'),
-('t1iu5c7kma7amtne07luib2p17', 1, 0, '1476093356', 'joomla|s:9292:"TzoyNDoiSm9vbWxhXFJlZ2lzdHJ5XFJlZ2lzdHJ5IjoyOntzOjc6IgAqAGRhdGEiO086ODoic3RkQ2xhc3MiOjE6e3M6OToiX19kZWZhdWx0IjtPOjg6InN0ZENsYXNzIjo1OntzOjc6InNlc3Npb24iO086ODoic3RkQ2xhc3MiOjM6e3M6NzoiY291bnRlciI7aTo2NztzOjU6InRpbWVyIjtPOjg6InN0ZENsYXNzIjozOntzOjU6InN0YXJ0IjtpOjE0NzYwOTIzOTc7czo0OiJsYXN0IjtpOjE0NzYwOTMzNTU7czozOiJub3ciO2k6MTQ3NjA5MzM1NTt9czo1OiJ0b2tlbiI7czozMjoiVlpwdGlPSFI5Z01DN2IwYmpUWDRld25qWEVFYThjY3YiO31zOjg6InJlZ2lzdHJ5IjtPOjI0OiJKb29tbGFcUmVnaXN0cnlcUmVnaXN0cnkiOjI6e3M6NzoiACoAZGF0YSI7Tzo4OiJzdGRDbGFzcyI6Njp7czoxMzoiY29tX2luc3RhbGxlciI7Tzo4OiJzdGRDbGFzcyI6Mzp7czo3OiJtZXNzYWdlIjtzOjA6IiI7czoxNzoiZXh0ZW5zaW9uX21lc3NhZ2UiO3M6MDoiIjtzOjEyOiJyZWRpcmVjdF91cmwiO047fXM6MTA6ImNvbV9rdW5lbmEiO086ODoic3RkQ2xhc3MiOjM6e3M6NzoiaW5zdGFsbCI7Tzo4OiJzdGRDbGFzcyI6OTp7czo2OiJzdGF0dXMiO2E6MzY6e2k6MDthOjQ6e3M6NDoic3RlcCI7aToxO3M6NDoidGFzayI7czoyNToiUHJlcGFyYXJlIGwnaW5zdGFsbGF6aW9uZSI7czo3OiJzdWNjZXNzIjtiOjE7czozOiJtc2ciO3M6MDoiIjt9aToxO2E6NDp7czo0OiJzdGVwIjtpOjI7czo0OiJ0YXNrIjtzOjUxOiJJbnN0YWxsYXppb25lIGRlbGxhIHBsdWdpbiBLdW5lbmEgLSBBbHBoYXVzZXJwb2ludHMiO3M6Nzoic3VjY2VzcyI7YjoxO3M6MzoibXNnIjtzOjA6IiI7fWk6MjthOjQ6e3M6NDoic3RlcCI7aToyO3M6NDoidGFzayI7czo1MDoiSW5zdGFsbGF6aW9uZSBkZWxsYSBwbHVnaW4gS3VuZW5hIC0gQWx0YXVzZXJwb2ludHMiO3M6Nzoic3VjY2VzcyI7YjoxO3M6MzoibXNnIjtzOjA6IiI7fWk6MzthOjQ6e3M6NDoic3RlcCI7aToyO3M6NDoidGFzayI7czo0NToiSW5zdGFsbGF6aW9uZSBkZWxsYSBwbHVnaW4gS3VuZW5hIC0gQ29tbXVuaXR5IjtzOjc6InN1Y2Nlc3MiO2I6MTtzOjM6Im1zZyI7czowOiIiO31pOjQ7YTo0OntzOjQ6InN0ZXAiO2k6MjtzOjQ6InRhc2siO3M6NDc6Ikluc3RhbGxhemlvbmUgZGVsbGEgcGx1Z2luIEt1bmVuYSAtIENvbXByb2ZpbGVyIjtzOjc6InN1Y2Nlc3MiO2I6MTtzOjM6Im1zZyI7czowOiIiO31pOjU7YTo0OntzOjQ6InN0ZXAiO2k6MjtzOjQ6InRhc2siO3M6NDc6Ikluc3RhbGxhemlvbmUgZGVsbGEgcGx1Z2luIEt1bmVuYSAtIEVhc3lwcm9maWxlIjtzOjc6InN1Y2Nlc3MiO2I6MTtzOjM6Im1zZyI7czowOiIiO31pOjY7YTo0OntzOjQ6InN0ZXAiO2k6MjtzOjQ6InRhc2siO3M6NDY6Ikluc3RhbGxhemlvbmUgZGVsbGEgcGx1Z2luIEt1bmVuYSAtIEVhc3lzb2NpYWwiO3M6Nzoic3VjY2VzcyI7YjoxO3M6MzoibXNnIjtzOjA6IiI7fWk6NzthOjQ6e3M6NDoic3RlcCI7aToyO3M6NDoidGFzayI7czo0NDoiSW5zdGFsbGF6aW9uZSBkZWxsYSBwbHVnaW4gS3VuZW5hIC0gR3JhdmF0YXIiO3M6Nzoic3VjY2VzcyI7YjoxO3M6MzoibXNnIjtzOjA6IiI7fWk6ODthOjQ6e3M6NDoic3RlcCI7aToyO3M6NDoidGFzayI7czo0MjoiSW5zdGFsbGF6aW9uZSBkZWxsYSBwbHVnaW4gS3VuZW5hIC0gVWRkZWltIjtzOjc6InN1Y2Nlc3MiO2I6MTtzOjM6Im1zZyI7czowOiIiO31pOjk7YTo0OntzOjQ6InN0ZXAiO2k6MjtzOjQ6InRhc2siO3M6NDI6Ikluc3RhbGxhemlvbmUgZGVsbGEgcGx1Z2luIEt1bmVuYSAtIEt1bmVuYSI7czo3OiJzdWNjZXNzIjtiOjE7czozOiJtc2ciO3M6MDoiIjt9aToxMDthOjQ6e3M6NDoic3RlcCI7aToyO3M6NDoidGFzayI7czo0MjoiSW5zdGFsbGF6aW9uZSBkZWxsYSBwbHVnaW4gS3VuZW5hIC0gSm9vbWxhIjtzOjc6InN1Y2Nlc3MiO2I6MTtzOjM6Im1zZyI7czowOiIiO31pOjExO2E6NDp7czo0OiJzdGVwIjtpOjM7czo0OiJ0YXNrIjtzOjE5OiJDcmVhIGt1bmVuYV9hbGlhc2VzIjtzOjc6InN1Y2Nlc3MiO2I6MTtzOjM6Im1zZyI7czowOiIiO31pOjEyO2E6NDp7czo0OiJzdGVwIjtpOjM7czo0OiJ0YXNrIjtzOjI0OiJDcmVhIGt1bmVuYV9hbm5vdW5jZW1lbnQiO3M6Nzoic3VjY2VzcyI7YjoxO3M6MzoibXNnIjtzOjA6IiI7fWk6MTM7YTo0OntzOjQ6InN0ZXAiO2k6MztzOjQ6InRhc2siO3M6MjM6IkNyZWEga3VuZW5hX2F0dGFjaG1lbnRzIjtzOjc6InN1Y2Nlc3MiO2I6MTtzOjM6Im1zZyI7czowOiIiO31pOjE0O2E6NDp7czo0OiJzdGVwIjtpOjM7czo0OiJ0YXNrIjtzOjIyOiJDcmVhIGt1bmVuYV9jYXRlZ29yaWVzIjtzOjc6InN1Y2Nlc3MiO2I6MTtzOjM6Im1zZyI7czowOiIiO31pOjE1O2E6NDp7czo0OiJzdGVwIjtpOjM7czo0OiJ0YXNrIjtzOjI1OiJDcmVhIGt1bmVuYV9jb25maWd1cmF0aW9uIjtzOjc6InN1Y2Nlc3MiO2I6MTtzOjM6Im1zZyI7czowOiIiO31pOjE2O2E6NDp7czo0OiJzdGVwIjtpOjM7czo0OiJ0YXNrIjtzOjE4OiJDcmVhIGt1bmVuYV90b3BpY3MiO3M6Nzoic3VjY2VzcyI7YjoxO3M6MzoibXNnIjtzOjA6IiI7fWk6MTc7YTo0OntzOjQ6InN0ZXAiO2k6MztzOjQ6InRhc2siO3M6MjA6IkNyZWEga3VuZW5hX21lc3NhZ2VzIjtzOjc6InN1Y2Nlc3MiO2I6MTtzOjM6Im1zZyI7czowOiIiO31pOjE4O2E6NDp7czo0OiJzdGVwIjtpOjM7czo0OiJ0YXNrIjtzOjI1OiJDcmVhIGt1bmVuYV9tZXNzYWdlc190ZXh0IjtzOjc6InN1Y2Nlc3MiO2I6MTtzOjM6Im1zZyI7czowOiIiO31pOjE5O2E6NDp7czo0OiJzdGVwIjtpOjM7czo0OiJ0YXNrIjtzOjE3OiJDcmVhIGt1bmVuYV9wb2xscyI7czo3OiJzdWNjZXNzIjtiOjE7czozOiJtc2ciO3M6MDoiIjt9aToyMDthOjQ6e3M6NDoic3RlcCI7aTozO3M6NDoidGFzayI7czoyNToiQ3JlYSBrdW5lbmFfcG9sbHNfb3B0aW9ucyI7czo3OiJzdWNjZXNzIjtiOjE7czozOiJtc2ciO3M6MDoiIjt9aToyMTthOjQ6e3M6NDoic3RlcCI7aTozO3M6NDoidGFzayI7czoyMzoiQ3JlYSBrdW5lbmFfcG9sbHNfdXNlcnMiO3M6Nzoic3VjY2VzcyI7YjoxO3M6MzoibXNnIjtzOjA6IiI7fWk6MjI7YTo0OntzOjQ6InN0ZXAiO2k6MztzOjQ6InRhc2siO3M6MTc6IkNyZWEga3VuZW5hX3JhbmtzIjtzOjc6InN1Y2Nlc3MiO2I6MTtzOjM6Im1zZyI7czowOiIiO31pOjIzO2E6NDp7czo0OiJzdGVwIjtpOjM7czo0OiJ0YXNrIjtzOjE2OiJDcmVhIGt1bmVuYV9yYXRlIjtzOjc6InN1Y2Nlc3MiO2I6MTtzOjM6Im1zZyI7czowOiIiO31pOjI0O2E6NDp7czo0OiJzdGVwIjtpOjM7czo0OiJ0YXNrIjtzOjIwOiJDcmVhIGt1bmVuYV9zZXNzaW9ucyI7czo3OiJzdWNjZXNzIjtiOjE7czozOiJtc2ciO3M6MDoiIjt9aToyNTthOjQ6e3M6NDoic3RlcCI7aTozO3M6NDoidGFzayI7czoxOToiQ3JlYSBrdW5lbmFfc21pbGV5cyI7czo3OiJzdWNjZXNzIjtiOjE7czozOiJtc2ciO3M6MDoiIjt9aToyNjthOjQ6e3M6NDoic3RlcCI7aTozO3M6NDoidGFzayI7czoyMDoiQ3JlYSBrdW5lbmFfdGhhbmt5b3UiO3M6Nzoic3VjY2VzcyI7YjoxO3M6MzoibXNnIjtzOjA6IiI7fWk6Mjc7YTo0OntzOjQ6InN0ZXAiO2k6MztzOjQ6InRhc2siO3M6Mjc6IkNyZWEga3VuZW5hX3VzZXJfY2F0ZWdvcmllcyI7czo3OiJzdWNjZXNzIjtiOjE7czozOiJtc2ciO3M6MDoiIjt9aToyODthOjQ6e3M6NDoic3RlcCI7aTozO3M6NDoidGFzayI7czoyMToiQ3JlYSBrdW5lbmFfdXNlcl9yZWFkIjtzOjc6InN1Y2Nlc3MiO2I6MTtzOjM6Im1zZyI7czowOiIiO31pOjI5O2E6NDp7czo0OiJzdGVwIjtpOjM7czo0OiJ0YXNrIjtzOjIzOiJDcmVhIGt1bmVuYV91c2VyX3RvcGljcyI7czo3OiJzdWNjZXNzIjtiOjE7czozOiJtc2ciO3M6MDoiIjt9aTozMDthOjQ6e3M6NDoic3RlcCI7aTozO3M6NDoidGFzayI7czoxNzoiQ3JlYSBrdW5lbmFfdXNlcnMiO3M6Nzoic3VjY2VzcyI7YjoxO3M6MzoibXNnIjtzOjA6IiI7fWk6MzE7YTo0OntzOjQ6InN0ZXAiO2k6MztzOjQ6InRhc2siO3M6MjQ6IkNyZWEga3VuZW5hX3VzZXJzX2Jhbm5lZCI7czo3OiJzdWNjZXNzIjtiOjE7czozOiJtc2ciO3M6MDoiIjt9aTozMjthOjQ6e3M6NDoic3RlcCI7aTozO3M6NDoidGFzayI7czoxNjoiQ3JlYSBrdW5lbmFfbG9ncyI7czo3OiJzdWNjZXNzIjtiOjE7czozOiJtc2ciO3M6MDoiIjt9aTozMzthOjQ6e3M6NDoic3RlcCI7aTozO3M6NDoidGFzayI7czoyOToiSW5zdGFsbGF6aW9uZSBkYXRpIGRpIGVzZW1waW8iO3M6Nzoic3VjY2VzcyI7YjoxO3M6MzoibXNnIjtzOjA6IiI7fXM6NzoicmVjb3VudCI7YTo0OntzOjQ6InN0ZXAiO2k6MztzOjQ6InRhc2siO3M6MzE6IlJpY2FsY29sbyBzdGF0aXN0aWNoZSBkZWwgZm9ydW0iO3M6Nzoic3VjY2VzcyI7YjoxO3M6MzoibXNnIjtzOjA6IiI7fWk6MzQ7YTo0OntzOjQ6InN0ZXAiO2k6NDtzOjQ6InRhc2siO3M6Mzg6Ikluc3RhbGxhemlvbmUgY29tcGxldGF0YSBjb24gc3VjY2Vzc28uIjtzOjc6InN1Y2Nlc3MiO2I6MTtzOjM6Im1zZyI7czowOiIiO319czo2OiJhY3Rpb24iO3M6NzoiaW5zdGFsbCI7czo0OiJzdGVwIjtpOjU7czo0OiJ0YXNrIjtpOjA7czo3OiJ2ZXJzaW9uIjtPOjg6InN0ZENsYXNzIjoxMzp7czoyOiJpZCI7aTowO3M6OToiY29tcG9uZW50IjtOO3M6NzoidmVyc2lvbiI7czowOiIiO3M6MTE6InZlcnNpb25kYXRlIjtOO3M6MTE6Imluc3RhbGxkYXRlIjtzOjA6IiI7czoxMToidmVyc2lvbm5hbWUiO3M6MDoiIjtzOjY6InByZWZpeCI7TjtzOjY6ImFjdGlvbiI7czo3OiJJTlNUQUxMIjtzOjU6ImxhYmVsIjtzOjIxOiJJbnN0YWxsYSBLdW5lbmEgNS4wLjIiO3M6MTE6ImRlc2NyaXB0aW9uIjtzOjIyOiJJbnN0YWxsYSBLdW5lbmEgNS4wLjIuIjtzOjQ6ImhpbnQiO3M6MTQ2OiI8c3Ryb25nIGNsYXNzPSJraGludCI+U1VHR0VSSU1FTlRPOjwvc3Ryb25nPiB1c2EgcXVlc3RhIG9wemlvbmUgcGVyIGNvbXBsZXRhcmUgbCdpbnN0YWxsYXppb25lLiBRdWVzdG8gY3JlZXLDoCB1biBudW92byBmb3J1bSBjb24gZGF0aSBkaSBlc2VtcGlvLiI7czo3OiJ3YXJuaW5nIjtzOjI0NDoiPHN0cm9uZyBjbGFzcz0ia3dhcm4iPkFUVEVOWklPTkU6PC9zdHJvbmc+IFNlIGhhaSBnacOgIGluc3RhbGxhdG8gS3VuZW5hIDUuMC4yIGUgcG9pIGhhaSBkZWNpc28gZGkgZmFyZSBpbCBkb3duZ3JhZGUgYSAgLCB0dXR0aSBpIG51b3ZpIG1lc3NhZ2dpIHByaW1hIGRpIHF1ZXN0YSBpbnN0YWxsYXppb25lIG5vbiBzYXJhbm5vIGltcG9ydGF0aS4gUGVyIGZhdm9yZSA8ZW0+bWlncmE8L2VtPiBsYSB2ZWNjaGlhIHZlcnNpb25lLiI7czo0OiJsaW5rIjtzOjEzMjoiL2FsZWZhbC5pdC9QUk9KRUNUUy9qb29tbGEzNjIvYWRtaW5pc3RyYXRvci9pbmRleC5waHA/b3B0aW9uPWNvbV9rdW5lbmEmdmlldz1pbnN0YWxsJnRhc2s9aW5zdGFsbCY1ZDdhMWQ3NjQzYmI5YTZhMzQ3OGQ5ZjM5NGJkN2UwOD0xIjt9czo3OiJhdmF0YXJzIjtPOjg6InN0ZENsYXNzIjo0OntzOjc6Im1pc3NpbmciO2k6MDtzOjY6ImZhaWxlZCI7aTowO3M6ODoibWlncmF0ZWQiO2k6MDtzOjc6ImN1cnJlbnQiO2k6MDt9czoxMToiYXR0YWNobWVudHMiO086ODoic3RkQ2xhc3MiOjQ6e3M6NzoibWlzc2luZyI7aTowO3M6NjoiZmFpbGVkIjtpOjA7czo4OiJtaWdyYXRlZCI7aTowO3M6NzoiY3VycmVudCI7aTowO31zOjc6ImRic3RhdGUiO047czo3OiJyZWNvdW50IjtOO31zOjEyOiJ1c2VyNjY5X3JlYWQiO2E6NTp7aToxO2k6MTtpOjU7aTo1O2k6MjtpOjI7aTozO2k6MztpOjQ7aTo0O31zOjU6ImFkbWluIjtPOjg6InN0ZENsYXNzIjozOntzOjEwOiJjYXRlZ29yaWVzIjtPOjg6InN0ZENsYXNzIjoyOntzOjQ6ImVkaXQiO086ODoic3RkQ2xhc3MiOjE6e3M6NjoiZmlsdGVyIjtPOjg6InN0ZENsYXNzIjoxOntzOjU6ImNhdGlkIjtpOjM7fX1zOjY6ImNyZWF0ZSI7Tzo4OiJzdGRDbGFzcyI6MTp7czo2OiJmaWx0ZXIiO086ODoic3RkQ2xhc3MiOjE6e3M6NToiY2F0aWQiO2k6MDt9fX1zOjc6InBsdWdpbnMiO086ODoic3RkQ2xhc3MiOjE6e3M6ODoib3JkZXJjb2wiO3M6NjoiZm9sZGVyIjt9czo5OiJ0ZW1wbGF0ZXMiO086ODoic3RkQ2xhc3MiOjI6e3M6NDoibGlzdCI7Tzo4OiJzdGRDbGFzcyI6MTp7czo1OiJzdGFydCI7aTowO31zOjQ6ImVkaXQiO086ODoic3RkQ2xhc3MiOjI6e3M6NDoiZWRpdCI7czo3OiJjcnlwc2lzIjtzOjQ6Imxpc3QiO086ODoic3RkQ2xhc3MiOjE6e3M6NToic3RhcnQiO2k6MDt9fX19fXM6MTA6InBrZ19rdW5lbmEiO086ODoic3RkQ2xhc3MiOjE6e3M6MTE6InVwZGF0ZUNoZWNrIjtpOjE0NzYxMTQyODI7fXM6OToiY29tX21lbnVzIjtPOjg6InN0ZENsYXNzIjoxOntzOjU6Iml0ZW1zIjtPOjg6InN0ZENsYXNzIjozOntzOjg6Im1lbnV0eXBlIjtzOjg6Im1haW5tZW51IjtzOjEwOiJsaW1pdHN0YXJ0IjtpOjA7czo0OiJsaXN0IjthOjQ6e3M6OToiZGlyZWN0aW9uIjtzOjM6ImFzYyI7czo1OiJsaW1pdCI7czoyOiIyMCI7czo4OiJvcmRlcmluZyI7czo1OiJhLmxmdCI7czo1OiJzdGFydCI7ZDowO319fXM6MTE6ImNvbV9jb250ZW50IjtPOjg6InN0ZENsYXNzIjoxOntzOjQ6ImVkaXQiO086ODoic3RkQ2xhc3MiOjE6e3M6NzoiYXJ0aWNsZSI7Tzo4OiJzdGRDbGFzcyI6MTp7czo0OiJkYXRhIjtOO319fXM6Njoia3VuZW5hIjtPOjg6InN0ZENsYXNzIjoxOntzOjQ6ImVkaXQiO086ODoic3RkQ2xhc3MiOjE6e3M6ODoidGVtcGxhdGUiO3M6NzoiY3J5cHNpcyI7fX19czo5OiJzZXBhcmF0b3IiO3M6MToiLiI7fXM6NDoidXNlciI7Tzo1OiJKVXNlciI6MTp7czoyOiJpZCI7czozOiI2NjkiO31zOjExOiJhcHBsaWNhdGlvbiI7Tzo4OiJzdGRDbGFzcyI6MTp7czo1OiJxdWV1ZSI7Tjt9czo2OiJrdW5lbmEiO086ODoic3RkQ2xhc3MiOjM6e3M6NjoicmVsb2FkIjtpOjE7czo1OiJxdWV1ZSI7YTowOnt9czo4OiJuZXdxdWV1ZSI7YTowOnt9fX19czo5OiJzZXBhcmF0b3IiO3M6MToiLiI7fQ==";', 669, 'admin');
+('022bb3e0lu9f8r4iktke0q8tc4', 1, 0, '1476441197', 'joomla|s:1060:"TzoyNDoiSm9vbWxhXFJlZ2lzdHJ5XFJlZ2lzdHJ5IjoyOntzOjc6IgAqAGRhdGEiO086ODoic3RkQ2xhc3MiOjE6e3M6OToiX19kZWZhdWx0IjtPOjg6InN0ZENsYXNzIjo0OntzOjc6InNlc3Npb24iO086ODoic3RkQ2xhc3MiOjM6e3M6NzoiY291bnRlciI7aToyNTtzOjU6InRpbWVyIjtPOjg6InN0ZENsYXNzIjozOntzOjU6InN0YXJ0IjtpOjE0NzY0NDEwMzk7czo0OiJsYXN0IjtpOjE0NzY0NDExNzg7czozOiJub3ciO2k6MTQ3NjQ0MTE3OTt9czo1OiJ0b2tlbiI7czozMjoiU3dZNm91TEU1R1RWcWpXMWxpU0hpSm1JQ2dFNm9Qb0EiO31zOjg6InJlZ2lzdHJ5IjtPOjI0OiJKb29tbGFcUmVnaXN0cnlcUmVnaXN0cnkiOjI6e3M6NzoiACoAZGF0YSI7Tzo4OiJzdGRDbGFzcyI6Mjp7czoxMzoiY29tX2luc3RhbGxlciI7Tzo4OiJzdGRDbGFzcyI6Mzp7czo3OiJtZXNzYWdlIjtzOjA6IiI7czoxNzoiZXh0ZW5zaW9uX21lc3NhZ2UiO3M6MDoiIjtzOjEyOiJyZWRpcmVjdF91cmwiO047fXM6MTM6ImNvbV90ZW1wbGF0ZXMiO086ODoic3RkQ2xhc3MiOjE6e3M6NDoiZWRpdCI7Tzo4OiJzdGRDbGFzcyI6MTp7czo1OiJzdHlsZSI7Tzo4OiJzdGRDbGFzcyI6Mjp7czoyOiJpZCI7YToxOntpOjA7aTo5O31zOjQ6ImRhdGEiO047fX19fXM6OToic2VwYXJhdG9yIjtzOjE6Ii4iO31zOjQ6InVzZXIiO086NToiSlVzZXIiOjE6e3M6MjoiaWQiO3M6MzoiNjY5Ijt9czoxMToiYXBwbGljYXRpb24iO086ODoic3RkQ2xhc3MiOjE6e3M6NToicXVldWUiO047fX19czo5OiJzZXBhcmF0b3IiO3M6MToiLiI7fQ==";', 669, 'admin'),
+('dva5to624lsiir818pmp1sjsh6', 0, 0, '1476441182', 'joomla|s:1360:"TzoyNDoiSm9vbWxhXFJlZ2lzdHJ5XFJlZ2lzdHJ5IjoyOntzOjc6IgAqAGRhdGEiO086ODoic3RkQ2xhc3MiOjE6e3M6OToiX19kZWZhdWx0IjtPOjg6InN0ZENsYXNzIjo1OntzOjc6InNlc3Npb24iO086ODoic3RkQ2xhc3MiOjM6e3M6NzoiY291bnRlciI7aToxNztzOjU6InRpbWVyIjtPOjg6InN0ZENsYXNzIjozOntzOjU6InN0YXJ0IjtpOjE0NzY0Mzk3NTY7czo0OiJsYXN0IjtpOjE0NzY0NDExODI7czozOiJub3ciO2k6MTQ3NjQ0MTE4Mjt9czo1OiJ0b2tlbiI7czozMjoiRTI4QThtbU42cnlRUHR0bTNJN3JuUE80NGxFQTA2ZmIiO31zOjg6InJlZ2lzdHJ5IjtPOjI0OiJKb29tbGFcUmVnaXN0cnlcUmVnaXN0cnkiOjI6e3M6NzoiACoAZGF0YSI7Tzo4OiJzdGRDbGFzcyI6MTp7czoxMDoiY29tX2t1bmVuYSI7Tzo4OiJzdGRDbGFzcyI6Mzp7czoxMDoidXNlcjBfcmVhZCI7YTo1OntpOjE7aToxO2k6NTtpOjU7aToyO2k6MjtpOjM7aTozO2k6NDtpOjQ7fXM6NToidG9waWMiO086ODoic3RkQ2xhc3MiOjE6e3M6NzoibGFzdGhpdCI7aToxO31zOjEyOiJ1c2VyNjcwX3JlYWQiO2E6NTp7aToxO2k6MTtpOjU7aTo1O2k6MjtpOjI7aTozO2k6MztpOjQ7aTo0O319fXM6OToic2VwYXJhdG9yIjtzOjE6Ii4iO31zOjQ6InVzZXIiO086NToiSlVzZXIiOjE6e3M6MjoiaWQiO3M6MzoiNjcwIjt9czoxMToiYXBwbGljYXRpb24iO086ODoic3RkQ2xhc3MiOjE6e3M6NToicXVldWUiO047fXM6MTA6ImNvbV9tYWlsdG8iO086ODoic3RkQ2xhc3MiOjE6e3M6NToibGlua3MiO2E6MTp7czo0MDoiZTQ5NTYwZDA1NzYzZGRjNzY5ZDFmMDkwM2M4OTA4NGE0OWQzMzE5MSI7Tzo4OiJzdGRDbGFzcyI6Mjp7czo0OiJsaW5rIjtzOjk0OiJodHRwOi8vbG9jYWxob3N0L2FsZWZhbC5pdC9QUk9KRUNUUy9qb29tbGEzNjIvaW5kZXgucGhwL2l0LzEwLWNhdGVnb3JpYS1pdC1pdC80LWFydGljb2xvLWl0LWl0IjtzOjY6ImV4cGlyeSI7aToxNDc2NDQxMTgyO319fX19czo5OiJzZXBhcmF0b3IiO3M6MToiLiI7fQ==";', 670, 'test');
 
 -- --------------------------------------------------------
 
@@ -2303,8 +2692,9 @@ CREATE TABLE `jml_template_styles` (
 INSERT INTO `jml_template_styles` (`id`, `template`, `client_id`, `home`, `title`, `params`) VALUES
 (4, 'beez3', 0, '0', 'Beez3 - Default', '{"wrapperSmall":"53","wrapperLarge":"72","logo":"images\\/joomla_black.png","sitetitle":"Joomla!","sitedescription":"Open Source Content Management","navposition":"left","templatecolor":"personal","html5":"0"}'),
 (5, 'hathor', 1, '0', 'Hathor - Default', '{"showSiteName":"0","colourChoice":"","boldText":"0"}'),
-(7, 'protostar', 0, '1', 'protostar - Default', '{"templateColor":"","logoFile":"","googleFont":"1","googleFontName":"Open+Sans","fluidContainer":"0"}'),
-(8, 'isis', 1, '1', 'isis - Default', '{"templateColor":"","logoFile":""}');
+(7, 'protostar', 0, '0', 'protostar - Default', '{"templateColor":"","logoFile":"","googleFont":"1","googleFontName":"Open+Sans","fluidContainer":"0"}'),
+(8, 'isis', 1, '1', 'isis - Default', '{"templateColor":"","logoFile":""}'),
+(9, 'purity_iii', 0, '1', 'purity_III - Predefinito', '{"tpl_article_info_datetime_format":"d M Y"}');
 
 -- --------------------------------------------------------
 
@@ -2439,82 +2829,388 @@ CREATE TABLE `jml_updates` (
 --
 
 INSERT INTO `jml_updates` (`update_id`, `update_site_id`, `extension_id`, `name`, `description`, `element`, `type`, `folder`, `client_id`, `version`, `data`, `detailsurl`, `infourl`, `extra_query`) VALUES
-(1, 3, 0, 'Polish', '', 'pkg_pl-PL', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/pl-PL_details.xml', '', ''),
-(2, 3, 0, 'Portuguese', '', 'pkg_pt-PT', 'package', '', 0, '3.5.1.4', '', 'https://update.joomla.org/language/details3/pt-PT_details.xml', '', ''),
-(3, 3, 0, 'Russian', '', 'pkg_ru-RU', 'package', '', 0, '3.6.2.2', '', 'https://update.joomla.org/language/details3/ru-RU_details.xml', '', ''),
-(4, 3, 0, 'English AU', '', 'pkg_en-AU', 'package', '', 0, '3.6.2.2', '', 'https://update.joomla.org/language/details3/en-AU_details.xml', '', ''),
-(5, 3, 0, 'Slovak', '', 'pkg_sk-SK', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/sk-SK_details.xml', '', ''),
-(6, 3, 0, 'Swedish', '', 'pkg_sv-SE', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/sv-SE_details.xml', '', ''),
-(7, 3, 0, 'Syriac', '', 'pkg_sy-IQ', 'package', '', 0, '3.4.5.1', '', 'https://update.joomla.org/language/details3/sy-IQ_details.xml', '', ''),
-(8, 3, 0, 'Tamil', '', 'pkg_ta-IN', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/ta-IN_details.xml', '', ''),
-(9, 3, 0, 'Thai', '', 'pkg_th-TH', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/th-TH_details.xml', '', ''),
-(10, 3, 0, 'Turkish', '', 'pkg_tr-TR', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/tr-TR_details.xml', '', ''),
-(11, 3, 0, 'Ukrainian', '', 'pkg_uk-UA', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/uk-UA_details.xml', '', ''),
-(12, 3, 0, 'Uyghur', '', 'pkg_ug-CN', 'package', '', 0, '3.3.0.1', '', 'https://update.joomla.org/language/details3/ug-CN_details.xml', '', ''),
-(13, 3, 0, 'Albanian', '', 'pkg_sq-AL', 'package', '', 0, '3.1.1.1', '', 'https://update.joomla.org/language/details3/sq-AL_details.xml', '', ''),
-(14, 3, 0, 'Basque', '', 'pkg_eu-ES', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/eu-ES_details.xml', '', ''),
-(15, 3, 0, 'Hindi', '', 'pkg_hi-IN', 'package', '', 0, '3.3.6.1', '', 'https://update.joomla.org/language/details3/hi-IN_details.xml', '', ''),
-(16, 3, 0, 'German DE', '', 'pkg_de-DE', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/de-DE_details.xml', '', ''),
-(17, 3, 0, 'Portuguese Brazil', '', 'pkg_pt-BR', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/pt-BR_details.xml', '', ''),
-(18, 3, 0, 'Serbian Latin', '', 'pkg_sr-YU', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/sr-YU_details.xml', '', ''),
-(19, 3, 0, 'Spanish', '', 'pkg_es-ES', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/es-ES_details.xml', '', ''),
-(20, 3, 0, 'Bosnian', '', 'pkg_bs-BA', 'package', '', 0, '3.5.1.1', '', 'https://update.joomla.org/language/details3/bs-BA_details.xml', '', ''),
-(21, 3, 0, 'Serbian Cyrillic', '', 'pkg_sr-RS', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/sr-RS_details.xml', '', ''),
-(22, 3, 0, 'Vietnamese', '', 'pkg_vi-VN', 'package', '', 0, '3.2.1.1', '', 'https://update.joomla.org/language/details3/vi-VN_details.xml', '', ''),
-(23, 3, 0, 'Bahasa Indonesia', '', 'pkg_id-ID', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/id-ID_details.xml', '', ''),
-(24, 3, 0, 'Finnish', '', 'pkg_fi-FI', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/fi-FI_details.xml', '', ''),
-(25, 3, 0, 'Swahili', '', 'pkg_sw-KE', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/sw-KE_details.xml', '', ''),
-(26, 3, 0, 'Montenegrin', '', 'pkg_srp-ME', 'package', '', 0, '3.3.1.1', '', 'https://update.joomla.org/language/details3/srp-ME_details.xml', '', ''),
-(27, 3, 0, 'English CA', '', 'pkg_en-CA', 'package', '', 0, '3.6.2.2', '', 'https://update.joomla.org/language/details3/en-CA_details.xml', '', ''),
-(28, 3, 0, 'French CA', '', 'pkg_fr-CA', 'package', '', 0, '3.5.1.2', '', 'https://update.joomla.org/language/details3/fr-CA_details.xml', '', ''),
-(29, 3, 0, 'Welsh', '', 'pkg_cy-GB', 'package', '', 0, '3.3.0.2', '', 'https://update.joomla.org/language/details3/cy-GB_details.xml', '', ''),
-(30, 3, 0, 'Sinhala', '', 'pkg_si-LK', 'package', '', 0, '3.3.1.1', '', 'https://update.joomla.org/language/details3/si-LK_details.xml', '', ''),
-(31, 3, 0, 'Dari Persian', '', 'pkg_prs-AF', 'package', '', 0, '3.4.4.1', '', 'https://update.joomla.org/language/details3/prs-AF_details.xml', '', ''),
-(32, 3, 0, 'Turkmen', '', 'pkg_tk-TM', 'package', '', 0, '3.5.0.2', '', 'https://update.joomla.org/language/details3/tk-TM_details.xml', '', ''),
-(33, 3, 0, 'Irish', '', 'pkg_ga-IE', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/ga-IE_details.xml', '', ''),
-(34, 3, 0, 'Dzongkha', '', 'pkg_dz-BT', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/dz-BT_details.xml', '', ''),
-(35, 3, 0, 'Slovenian', '', 'pkg_sl-SI', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/sl-SI_details.xml', '', ''),
-(36, 3, 0, 'Spanish CO', '', 'pkg_es-CO', 'package', '', 0, '3.6.1.1', '', 'https://update.joomla.org/language/details3/es-CO_details.xml', '', ''),
-(37, 3, 0, 'German CH', '', 'pkg_de-CH', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/de-CH_details.xml', '', ''),
-(38, 3, 0, 'German AT', '', 'pkg_de-AT', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/de-AT_details.xml', '', ''),
-(39, 3, 0, 'German LI', '', 'pkg_de-LI', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/de-LI_details.xml', '', ''),
-(40, 3, 0, 'German LU', '', 'pkg_de-LU', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/de-LU_details.xml', '', ''),
-(41, 5, 0, 'Armenian', '', 'pkg_hy-AM', 'package', '', 0, '3.4.4.1', '', 'https://update.joomla.org/language/details3/hy-AM_details.xml', '', ''),
-(42, 5, 0, 'Malay', '', 'pkg_ms-MY', 'package', '', 0, '3.4.1.2', '', 'https://update.joomla.org/language/details3/ms-MY_details.xml', '', ''),
-(43, 5, 0, 'Romanian', '', 'pkg_ro-RO', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/ro-RO_details.xml', '', ''),
-(44, 5, 0, 'Flemish', '', 'pkg_nl-BE', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/nl-BE_details.xml', '', ''),
-(45, 5, 0, 'Chinese Traditional', '', 'pkg_zh-TW', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/zh-TW_details.xml', '', ''),
-(46, 5, 0, 'French', '', 'pkg_fr-FR', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/fr-FR_details.xml', '', ''),
-(47, 5, 0, 'Galician', '', 'pkg_gl-ES', 'package', '', 0, '3.3.1.2', '', 'https://update.joomla.org/language/details3/gl-ES_details.xml', '', ''),
-(48, 5, 0, 'Georgian', '', 'pkg_ka-GE', 'package', '', 0, '3.6.2.3', '', 'https://update.joomla.org/language/details3/ka-GE_details.xml', '', ''),
-(49, 5, 0, 'Greek', '', 'pkg_el-GR', 'package', '', 0, '3.6.3.1', '', 'https://update.joomla.org/language/details3/el-GR_details.xml', '', ''),
-(50, 5, 0, 'Japanese', '', 'pkg_ja-JP', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/ja-JP_details.xml', '', ''),
-(51, 5, 0, 'Hebrew', '', 'pkg_he-IL', 'package', '', 0, '3.1.1.1', '', 'https://update.joomla.org/language/details3/he-IL_details.xml', '', ''),
-(52, 5, 0, 'Hungarian', '', 'pkg_hu-HU', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/hu-HU_details.xml', '', ''),
-(53, 5, 0, 'Afrikaans', '', 'pkg_af-ZA', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/af-ZA_details.xml', '', ''),
-(54, 5, 0, 'Arabic Unitag', '', 'pkg_ar-AA', 'package', '', 0, '3.6.1.1', '', 'https://update.joomla.org/language/details3/ar-AA_details.xml', '', ''),
-(55, 5, 0, 'Belarusian', '', 'pkg_be-BY', 'package', '', 0, '3.2.1.1', '', 'https://update.joomla.org/language/details3/be-BY_details.xml', '', ''),
-(56, 5, 0, 'Bulgarian', '', 'pkg_bg-BG', 'package', '', 0, '3.4.4.2', '', 'https://update.joomla.org/language/details3/bg-BG_details.xml', '', ''),
-(57, 5, 0, 'Catalan', '', 'pkg_ca-ES', 'package', '', 0, '3.6.1.1', '', 'https://update.joomla.org/language/details3/ca-ES_details.xml', '', ''),
-(58, 5, 0, 'Chinese Simplified', '', 'pkg_zh-CN', 'package', '', 0, '3.4.1.1', '', 'https://update.joomla.org/language/details3/zh-CN_details.xml', '', ''),
-(59, 5, 0, 'Croatian', '', 'pkg_hr-HR', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/hr-HR_details.xml', '', ''),
-(60, 5, 0, 'Czech', '', 'pkg_cs-CZ', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/cs-CZ_details.xml', '', ''),
-(61, 5, 0, 'Danish', '', 'pkg_da-DK', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/da-DK_details.xml', '', ''),
-(62, 5, 0, 'Dutch', '', 'pkg_nl-NL', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/nl-NL_details.xml', '', ''),
-(63, 5, 0, 'Estonian', '', 'pkg_et-EE', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/et-EE_details.xml', '', ''),
-(64, 5, 0, 'Khmer', '', 'pkg_km-KH', 'package', '', 0, '3.4.5.1', '', 'https://update.joomla.org/language/details3/km-KH_details.xml', '', ''),
-(65, 5, 0, 'Korean', '', 'pkg_ko-KR', 'package', '', 0, '3.6.2.2', '', 'https://update.joomla.org/language/details3/ko-KR_details.xml', '', ''),
-(66, 5, 0, 'Latvian', '', 'pkg_lv-LV', 'package', '', 0, '3.6.2.2', '', 'https://update.joomla.org/language/details3/lv-LV_details.xml', '', ''),
-(67, 5, 0, 'Macedonian', '', 'pkg_mk-MK', 'package', '', 0, '3.6.2.2', '', 'https://update.joomla.org/language/details3/mk-MK_details.xml', '', ''),
-(68, 5, 0, 'Norwegian Bokmal', '', 'pkg_nb-NO', 'package', '', 0, '3.5.1.1', '', 'https://update.joomla.org/language/details3/nb-NO_details.xml', '', ''),
-(69, 5, 0, 'Norwegian Nynorsk', '', 'pkg_nn-NO', 'package', '', 0, '3.4.2.1', '', 'https://update.joomla.org/language/details3/nn-NO_details.xml', '', ''),
-(70, 5, 0, 'Persian', '', 'pkg_fa-IR', 'package', '', 0, '3.6.2.2', '', 'https://update.joomla.org/language/details3/fa-IR_details.xml', '', ''),
+(1, 3, 0, 'Czech', '', 'pkg_cs-CZ', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/cs-CZ_details.xml', '', ''),
+(2, 3, 0, 'Danish', '', 'pkg_da-DK', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/da-DK_details.xml', '', ''),
+(3, 3, 0, 'Dutch', '', 'pkg_nl-NL', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/nl-NL_details.xml', '', ''),
+(4, 3, 0, 'Estonian', '', 'pkg_et-EE', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/et-EE_details.xml', '', ''),
+(5, 3, 0, 'Khmer', '', 'pkg_km-KH', 'package', '', 0, '3.4.5.1', '', 'https://update.joomla.org/language/details3/km-KH_details.xml', '', ''),
+(6, 3, 0, 'Korean', '', 'pkg_ko-KR', 'package', '', 0, '3.6.2.2', '', 'https://update.joomla.org/language/details3/ko-KR_details.xml', '', ''),
+(7, 3, 0, 'Latvian', '', 'pkg_lv-LV', 'package', '', 0, '3.6.2.2', '', 'https://update.joomla.org/language/details3/lv-LV_details.xml', '', ''),
+(8, 3, 0, 'Macedonian', '', 'pkg_mk-MK', 'package', '', 0, '3.6.2.2', '', 'https://update.joomla.org/language/details3/mk-MK_details.xml', '', ''),
+(9, 3, 0, 'Norwegian Bokmal', '', 'pkg_nb-NO', 'package', '', 0, '3.5.1.1', '', 'https://update.joomla.org/language/details3/nb-NO_details.xml', '', ''),
+(10, 3, 0, 'Norwegian Nynorsk', '', 'pkg_nn-NO', 'package', '', 0, '3.4.2.1', '', 'https://update.joomla.org/language/details3/nn-NO_details.xml', '', ''),
+(11, 3, 0, 'Persian', '', 'pkg_fa-IR', 'package', '', 0, '3.6.2.2', '', 'https://update.joomla.org/language/details3/fa-IR_details.xml', '', ''),
+(12, 3, 0, 'Polish', '', 'pkg_pl-PL', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/pl-PL_details.xml', '', ''),
+(13, 3, 0, 'Portuguese', '', 'pkg_pt-PT', 'package', '', 0, '3.5.1.4', '', 'https://update.joomla.org/language/details3/pt-PT_details.xml', '', ''),
+(14, 3, 0, 'Russian', '', 'pkg_ru-RU', 'package', '', 0, '3.6.2.2', '', 'https://update.joomla.org/language/details3/ru-RU_details.xml', '', ''),
+(15, 3, 0, 'English AU', '', 'pkg_en-AU', 'package', '', 0, '3.6.2.2', '', 'https://update.joomla.org/language/details3/en-AU_details.xml', '', ''),
+(16, 3, 0, 'Slovak', '', 'pkg_sk-SK', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/sk-SK_details.xml', '', ''),
+(17, 3, 0, 'Swedish', '', 'pkg_sv-SE', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/sv-SE_details.xml', '', ''),
+(18, 3, 0, 'Syriac', '', 'pkg_sy-IQ', 'package', '', 0, '3.4.5.1', '', 'https://update.joomla.org/language/details3/sy-IQ_details.xml', '', ''),
+(19, 3, 0, 'Tamil', '', 'pkg_ta-IN', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/ta-IN_details.xml', '', ''),
+(20, 3, 0, 'Thai', '', 'pkg_th-TH', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/th-TH_details.xml', '', ''),
+(21, 3, 0, 'Turkish', '', 'pkg_tr-TR', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/tr-TR_details.xml', '', ''),
+(22, 3, 0, 'Ukrainian', '', 'pkg_uk-UA', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/uk-UA_details.xml', '', ''),
+(23, 3, 0, 'Uyghur', '', 'pkg_ug-CN', 'package', '', 0, '3.3.0.1', '', 'https://update.joomla.org/language/details3/ug-CN_details.xml', '', ''),
+(24, 3, 0, 'Albanian', '', 'pkg_sq-AL', 'package', '', 0, '3.1.1.1', '', 'https://update.joomla.org/language/details3/sq-AL_details.xml', '', ''),
+(25, 3, 0, 'Basque', '', 'pkg_eu-ES', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/eu-ES_details.xml', '', ''),
+(26, 3, 0, 'Hindi', '', 'pkg_hi-IN', 'package', '', 0, '3.3.6.1', '', 'https://update.joomla.org/language/details3/hi-IN_details.xml', '', ''),
+(27, 3, 0, 'German DE', '', 'pkg_de-DE', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/de-DE_details.xml', '', ''),
+(28, 3, 0, 'Portuguese Brazil', '', 'pkg_pt-BR', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/pt-BR_details.xml', '', ''),
+(29, 3, 0, 'Serbian Latin', '', 'pkg_sr-YU', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/sr-YU_details.xml', '', ''),
+(30, 3, 0, 'Spanish', '', 'pkg_es-ES', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/es-ES_details.xml', '', ''),
+(31, 3, 0, 'Bosnian', '', 'pkg_bs-BA', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/bs-BA_details.xml', '', ''),
+(32, 3, 0, 'Serbian Cyrillic', '', 'pkg_sr-RS', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/sr-RS_details.xml', '', ''),
+(33, 3, 0, 'Vietnamese', '', 'pkg_vi-VN', 'package', '', 0, '3.2.1.1', '', 'https://update.joomla.org/language/details3/vi-VN_details.xml', '', ''),
+(34, 3, 0, 'Bahasa Indonesia', '', 'pkg_id-ID', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/id-ID_details.xml', '', ''),
+(35, 3, 0, 'Finnish', '', 'pkg_fi-FI', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/fi-FI_details.xml', '', ''),
+(36, 3, 0, 'Swahili', '', 'pkg_sw-KE', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/sw-KE_details.xml', '', ''),
+(37, 3, 0, 'Montenegrin', '', 'pkg_srp-ME', 'package', '', 0, '3.3.1.1', '', 'https://update.joomla.org/language/details3/srp-ME_details.xml', '', ''),
+(38, 3, 0, 'English CA', '', 'pkg_en-CA', 'package', '', 0, '3.6.2.2', '', 'https://update.joomla.org/language/details3/en-CA_details.xml', '', ''),
+(39, 3, 0, 'French CA', '', 'pkg_fr-CA', 'package', '', 0, '3.5.1.2', '', 'https://update.joomla.org/language/details3/fr-CA_details.xml', '', ''),
+(40, 3, 0, 'Welsh', '', 'pkg_cy-GB', 'package', '', 0, '3.3.0.2', '', 'https://update.joomla.org/language/details3/cy-GB_details.xml', '', ''),
+(41, 3, 0, 'Sinhala', '', 'pkg_si-LK', 'package', '', 0, '3.3.1.1', '', 'https://update.joomla.org/language/details3/si-LK_details.xml', '', ''),
+(42, 3, 0, 'Dari Persian', '', 'pkg_prs-AF', 'package', '', 0, '3.4.4.1', '', 'https://update.joomla.org/language/details3/prs-AF_details.xml', '', ''),
+(43, 3, 0, 'Turkmen', '', 'pkg_tk-TM', 'package', '', 0, '3.5.0.2', '', 'https://update.joomla.org/language/details3/tk-TM_details.xml', '', ''),
+(44, 3, 0, 'Irish', '', 'pkg_ga-IE', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/ga-IE_details.xml', '', ''),
+(45, 3, 0, 'Dzongkha', '', 'pkg_dz-BT', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/dz-BT_details.xml', '', ''),
+(46, 3, 0, 'Slovenian', '', 'pkg_sl-SI', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/sl-SI_details.xml', '', ''),
+(47, 3, 0, 'Spanish CO', '', 'pkg_es-CO', 'package', '', 0, '3.6.1.1', '', 'https://update.joomla.org/language/details3/es-CO_details.xml', '', ''),
+(48, 3, 0, 'German CH', '', 'pkg_de-CH', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/de-CH_details.xml', '', ''),
+(49, 3, 0, 'German AT', '', 'pkg_de-AT', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/de-AT_details.xml', '', ''),
+(50, 3, 0, 'German LI', '', 'pkg_de-LI', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/de-LI_details.xml', '', ''),
+(51, 3, 0, 'German LU', '', 'pkg_de-LU', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/de-LU_details.xml', '', ''),
+(52, 5, 0, 'Armenian', '', 'pkg_hy-AM', 'package', '', 0, '3.4.4.1', '', 'https://update.joomla.org/language/details3/hy-AM_details.xml', '', ''),
+(53, 5, 0, 'Malay', '', 'pkg_ms-MY', 'package', '', 0, '3.4.1.2', '', 'https://update.joomla.org/language/details3/ms-MY_details.xml', '', ''),
+(54, 5, 0, 'Romanian', '', 'pkg_ro-RO', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/ro-RO_details.xml', '', ''),
+(55, 5, 0, 'Flemish', '', 'pkg_nl-BE', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/nl-BE_details.xml', '', ''),
+(56, 5, 0, 'Chinese Traditional', '', 'pkg_zh-TW', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/zh-TW_details.xml', '', ''),
+(57, 5, 0, 'French', '', 'pkg_fr-FR', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/fr-FR_details.xml', '', ''),
+(58, 5, 0, 'Galician', '', 'pkg_gl-ES', 'package', '', 0, '3.3.1.2', '', 'https://update.joomla.org/language/details3/gl-ES_details.xml', '', ''),
+(59, 5, 0, 'Georgian', '', 'pkg_ka-GE', 'package', '', 0, '3.6.2.4', '', 'https://update.joomla.org/language/details3/ka-GE_details.xml', '', ''),
+(60, 5, 0, 'Greek', '', 'pkg_el-GR', 'package', '', 0, '3.6.3.2', '', 'https://update.joomla.org/language/details3/el-GR_details.xml', '', ''),
+(61, 5, 0, 'Japanese', '', 'pkg_ja-JP', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/ja-JP_details.xml', '', ''),
+(62, 5, 0, 'Hebrew', '', 'pkg_he-IL', 'package', '', 0, '3.1.1.1', '', 'https://update.joomla.org/language/details3/he-IL_details.xml', '', ''),
+(63, 5, 0, 'Hungarian', '', 'pkg_hu-HU', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/hu-HU_details.xml', '', ''),
+(64, 5, 0, 'Afrikaans', '', 'pkg_af-ZA', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/af-ZA_details.xml', '', ''),
+(65, 5, 0, 'Arabic Unitag', '', 'pkg_ar-AA', 'package', '', 0, '3.6.1.1', '', 'https://update.joomla.org/language/details3/ar-AA_details.xml', '', ''),
+(66, 5, 0, 'Belarusian', '', 'pkg_be-BY', 'package', '', 0, '3.2.1.1', '', 'https://update.joomla.org/language/details3/be-BY_details.xml', '', ''),
+(67, 5, 0, 'Bulgarian', '', 'pkg_bg-BG', 'package', '', 0, '3.4.4.2', '', 'https://update.joomla.org/language/details3/bg-BG_details.xml', '', ''),
+(68, 5, 0, 'Catalan', '', 'pkg_ca-ES', 'package', '', 0, '3.6.1.1', '', 'https://update.joomla.org/language/details3/ca-ES_details.xml', '', ''),
+(69, 5, 0, 'Chinese Simplified', '', 'pkg_zh-CN', 'package', '', 0, '3.4.1.1', '', 'https://update.joomla.org/language/details3/zh-CN_details.xml', '', ''),
+(70, 5, 0, 'Croatian', '', 'pkg_hr-HR', 'package', '', 0, '3.6.2.1', '', 'https://update.joomla.org/language/details3/hr-HR_details.xml', '', ''),
 (71, 7, 0, 'Kunena Latest Module', '', 'mod_kunenalatest', 'module', '', 0, '5.0.1', '', 'https://update.kunena.org/5.0/mod_kunenalatest.xml', '', ''),
 (72, 7, 0, 'Kunena Login Module', '', 'mod_kunenalogin', 'module', '', 0, '5.0.1', '', 'https://update.kunena.org/5.0/mod_kunenalogin.xml', '', ''),
 (73, 7, 0, 'Kunena Search Module', '', 'mod_kunenasearch', 'module', '', 0, '5.0.1', '', 'https://update.kunena.org/5.0/mod_kunenasearch.xml', '', ''),
 (74, 7, 0, 'Kunena Statistics Module', '', 'mod_kunenastats', 'module', '', 0, '5.0.1', '', 'https://update.kunena.org/5.0/mod_kunenastats.xml', '', ''),
 (75, 7, 0, 'Content - Kunena Discuss', '', 'kunenadiscuss', 'plugin', 'content', 0, '5.0.1', '', 'https://update.kunena.org/5.0/plg_content_kunenadiscuss.xml', '', ''),
-(76, 7, 0, 'Search - Kunena', '', 'kunena', 'plugin', 'search', 0, '5.0.1', '', 'https://update.kunena.org/5.0/plg_search_kunena.xml', '', '');
+(76, 7, 0, 'Search - Kunena', '', 'kunena', 'plugin', 'search', 0, '5.0.1', '', 'https://update.kunena.org/5.0/plg_search_kunena.xml', '', ''),
+(77, 8, 0, '', '', '', 'module', '', 0, '', '', 'http://update.joomlart.com/service/tracking/j16/.xml', '', ''),
+(78, 8, 0, 'JA Amazon S3 for joomla 16', '', 'com_com_jaamazons3', 'file', '', 0, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j16/com_com_jaamazons3.xml', '', ''),
+(79, 8, 0, 'JA Extenstion Manager Component j16', '', 'com_com_jaextmanager', 'file', '', 0, '1.0.1', '', 'http://update.joomlart.com/service/tracking/j16/com_com_jaextmanager.xml', '', ''),
+(80, 8, 0, 'JA Amazon S3 for joomla 2.5 & 3.x', '', 'com_jaamazons3', 'component', '', 1, '2.5.7', '', 'http://update.joomlart.com/service/tracking/j16/com_jaamazons3.xml', '', ''),
+(81, 8, 0, 'JA Comment Package for Joomla 2.5 & 3.x', '', 'com_jacomment', 'component', '', 1, '2.5.5', '', 'http://update.joomlart.com/service/tracking/j16/com_jacomment.xml', '', ''),
+(82, 8, 0, 'JA Extenstion Manager Component for J3.x', '', 'com_jaextmanager', 'component', '', 1, '2.6.1', '', 'http://update.joomlart.com/service/tracking/j16/com_jaextmanager.xml', '', ''),
+(83, 8, 0, 'JA Google Storage Package for J2.5 & J3.0', '', 'com_jagooglestorage', 'component', '', 1, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j16/com_jagooglestorage.xml', '', ''),
+(84, 8, 0, 'JA Job Board Package For J25', '', 'com_jajobboard', 'component', '', 1, '1.0.6', '', 'http://update.joomlart.com/service/tracking/j16/com_jajobboard.xml', '', ''),
+(85, 8, 0, 'JA K2 Filter Package for J25 & J3.4', '', 'com_jak2filter', 'component', '', 1, '1.2.4', '', 'http://update.joomlart.com/service/tracking/j16/com_jak2filter.xml', '', ''),
+(86, 8, 0, 'JA K2 Filter Package for J25 & J30', '', 'com_jak2fiter', 'component', '', 1, '1.0.4', '', 'http://update.joomlart.com/service/tracking/j16/com_jak2fiter.xml', '', ''),
+(87, 8, 0, 'JA Showcase component for Joomla 1.7', '', 'com_jashowcase', 'component', '', 1, '1.1.0', '', 'http://update.joomlart.com/service/tracking/j16/com_jashowcase.xml', '', ''),
+(88, 8, 0, 'JA Voice Package for Joomla 2.5 & 3.x', '', 'com_javoice', 'component', '', 1, '1.1.0', '', 'http://update.joomlart.com/service/tracking/j16/com_javoice.xml', '', ''),
+(89, 8, 0, 'JA Appolio Theme for EasyBlog', '', 'easyblog_theme_appolio', 'custom', '', 0, '1.0.2', '', 'http://update.joomlart.com/service/tracking/j16/easyblog_theme_appolio.xml', '', ''),
+(90, 8, 0, 'JA Biz Theme for EasyBlog', '', 'easyblog_theme_biz', 'custom', '', 0, '1.0.3', '', 'http://update.joomlart.com/service/tracking/j16/easyblog_theme_biz.xml', '', ''),
+(91, 8, 0, 'JA Bookshop Theme for EasyBlog', '', 'easyblog_theme_bookshop', 'custom', '', 0, '1.0.4', '', 'http://update.joomlart.com/service/tracking/j16/easyblog_theme_bookshop.xml', '', ''),
+(92, 8, 0, 'Theme Community Plus for Easyblog J25 & J30', '', 'easyblog_theme_community_plus', 'custom', '', 0, '1.0.1', '', 'http://update.joomlart.com/service/tracking/j16/easyblog_theme_community_plus.xml', '', ''),
+(93, 8, 0, 'JA Decor Theme for EasyBlog', '', 'easyblog_theme_decor', 'custom', '', 0, '1.1.1', '', 'http://update.joomlart.com/service/tracking/j16/easyblog_theme_decor.xml', '', ''),
+(94, 8, 0, 'Theme Fixel for Easyblog J25 & J3x', '', 'easyblog_theme_fixel', 'custom', '', 0, '1.0.4', '', 'http://update.joomlart.com/service/tracking/j16/easyblog_theme_fixel.xml', '', ''),
+(95, 8, 0, 'Theme Magz for Easyblog J25 & J34', '', 'easyblog_theme_magz', 'custom', '', 0, '1.0.3', '', 'http://update.joomlart.com/service/tracking/j16/easyblog_theme_magz.xml', '', ''),
+(96, 8, 0, 'JA Muzic Theme for EasyBlog', '', 'easyblog_theme_muzic', 'custom', '', 0, '1.1.1', '', 'http://update.joomlart.com/service/tracking/j16/easyblog_theme_muzic.xml', '', ''),
+(97, 8, 0, 'JA Obelisk Theme for EasyBlog', '', 'easyblog_theme_obelisk', 'custom', '', 0, '1.0.3', '', 'http://update.joomlart.com/service/tracking/j16/easyblog_theme_obelisk.xml', '', ''),
+(98, 8, 0, 'JA Sugite Theme for EasyBlog', '', 'easyblog_theme_sugite', 'custom', '', 0, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j16/easyblog_theme_sugite.xml', '', ''),
+(99, 8, 0, 'JA Anion template for Joomla 3.x', '', 'ja_anion', 'template', '', 0, '2.5.6', '', 'http://update.joomlart.com/service/tracking/j16/ja_anion.xml', '', ''),
+(100, 8, 0, 'JA Appolio Template', '', 'ja_appolio', 'template', '', 0, '1.1.5', '', 'http://update.joomlart.com/service/tracking/j16/ja_appolio.xml', '', ''),
+(101, 8, 0, 'JA Argo Template for J3x', '', 'ja_argo', 'template', '', 0, '1.1.3', '', 'http://update.joomlart.com/service/tracking/j16/ja_argo.xml', '', ''),
+(102, 8, 0, 'JA Beranis Template', '', 'ja_beranis', 'template', '', 0, '1.1.2', '', 'http://update.joomlart.com/service/tracking/j16/ja_beranis.xml', '', ''),
+(103, 8, 0, 'JA Bistro Template for Joomla 3.x', '', 'ja_bistro', 'template', '', 0, '2.5.5', '', 'http://update.joomlart.com/service/tracking/j16/ja_bistro.xml', '', ''),
+(104, 8, 0, 'JA Blazes Template for J25 & J3x', '', 'ja_blazes', 'template', '', 0, '2.5.6', '', 'http://update.joomlart.com/service/tracking/j16/ja_blazes.xml', '', ''),
+(105, 8, 0, 'JA Bookshop Template', '', 'ja_bookshop', 'template', '', 0, '1.1.6', '', 'http://update.joomlart.com/service/tracking/j16/ja_bookshop.xml', '', ''),
+(106, 8, 0, 'JA Brisk Template for J25 & J3x', '', 'ja_brisk', 'template', '', 0, '1.1.3', '', 'http://update.joomlart.com/service/tracking/j16/ja_brisk.xml', '', ''),
+(107, 8, 0, 'JA Business Template for Joomla 3.x', '', 'ja_business', 'template', '', 0, '2.5.6', '', 'http://update.joomlart.com/service/tracking/j16/ja_business.xml', '', ''),
+(108, 8, 0, 'JA Cloris Template for Joomla 3.x', '', 'ja_cloris', 'template', '', 0, '2.5.4', '', 'http://update.joomlart.com/service/tracking/j16/ja_cloris.xml', '', ''),
+(109, 8, 0, 'JA Community PLus Template for Joomla 3.x', '', 'ja_community_plus', 'template', '', 0, '2.5.4', '', 'http://update.joomlart.com/service/tracking/j16/ja_community_plus.xml', '', ''),
+(110, 8, 0, 'JA Decor Template', '', 'ja_decor', 'template', '', 0, '1.1.7', '', 'http://update.joomlart.com/service/tracking/j16/ja_decor.xml', '', ''),
+(111, 8, 0, 'JA Droid Template for Joomla 3.x', '', 'ja_droid', 'template', '', 0, '2.5.5', '', 'http://update.joomlart.com/service/tracking/j16/ja_droid.xml', '', ''),
+(112, 8, 0, 'JA Edenite Template for J25 & J34', '', 'ja_edenite', 'template', '', 0, '2.5.6', '', 'http://update.joomlart.com/service/tracking/j16/ja_edenite.xml', '', ''),
+(113, 8, 0, 'JA Elastica Template for J25 & J3x', '', 'ja_elastica', 'template', '', 0, '2.5.6', '', 'http://update.joomlart.com/service/tracking/j16/ja_elastica.xml', '', ''),
+(114, 8, 0, 'JA Erio Template for Joomla 2.5 & 3.x', '', 'ja_erio', 'template', '', 0, '2.5.5', '', 'http://update.joomlart.com/service/tracking/j16/ja_erio.xml', '', ''),
+(115, 8, 0, 'Ja Events Template for Joomla 2.5', '', 'ja_events', 'template', '', 0, '2.5.6', '', 'http://update.joomlart.com/service/tracking/j16/ja_events.xml', '', ''),
+(116, 8, 0, 'JA Fubix Template for J25 & J3x', '', 'ja_fubix', 'template', '', 0, '1.1.2', '', 'http://update.joomlart.com/service/tracking/j16/ja_fubix.xml', '', ''),
+(117, 8, 0, 'JA Graphite Template for Joomla 3x', '', 'ja_graphite', 'template', '', 0, '2.5.7', '', 'http://update.joomlart.com/service/tracking/j16/ja_graphite.xml', '', ''),
+(118, 8, 0, 'JA Hawkstore Template', '', 'ja_hawkstore', 'template', '', 0, '1.1.1', '', 'http://update.joomlart.com/service/tracking/j16/ja_hawkstore.xml', '', ''),
+(119, 8, 0, 'JA Ironis Template for Joomla 2.5 & 3.x', '', 'ja_ironis', 'template', '', 0, '2.5.6', '', 'http://update.joomlart.com/service/tracking/j16/ja_ironis.xml', '', ''),
+(120, 8, 0, 'JA Jason template', '', 'ja_jason', 'template', '', 0, '1.0.3', '', 'http://update.joomlart.com/service/tracking/j16/ja_jason.xml', '', ''),
+(121, 8, 0, 'JA Kranos Template for J2.5 & J3.x', '', 'ja_kranos', 'template', '', 0, '2.5.7', '', 'http://update.joomlart.com/service/tracking/j16/ja_kranos.xml', '', ''),
+(122, 8, 0, 'JA Lens Template for Joomla 2.5 & 3.x', '', 'ja_lens', 'template', '', 0, '1.0.7', '', 'http://update.joomlart.com/service/tracking/j16/ja_lens.xml', '', ''),
+(123, 8, 0, 'Ja Lime Template for Joomla 3x', '', 'ja_lime', 'template', '', 0, '2.5.5', '', 'http://update.joomlart.com/service/tracking/j16/ja_lime.xml', '', ''),
+(124, 8, 0, 'JA Magz Template for J25 & J34', '', 'ja_magz', 'template', '', 0, '1.1.2', '', 'http://update.joomlart.com/service/tracking/j16/ja_magz.xml', '', ''),
+(125, 8, 0, 'JA Medicare Template', '', 'ja_medicare', 'template', '', 0, '1.1.7', '', 'http://update.joomlart.com/service/tracking/j16/ja_medicare.xml', '', ''),
+(126, 8, 0, 'JA Mendozite Template for J25 & J32', '', 'ja_mendozite', 'template', '', 0, '1.0.8', '', 'http://update.joomlart.com/service/tracking/j16/ja_mendozite.xml', '', ''),
+(127, 8, 0, 'JA Mero Template for J25 & J3x', '', 'ja_mero', 'template', '', 0, '1.1.2', '', 'http://update.joomlart.com/service/tracking/j16/ja_mero.xml', '', ''),
+(128, 8, 0, 'JA Mers Template for J25 & J3x', '', 'ja_mers', 'template', '', 0, '1.0.8', '', 'http://update.joomlart.com/service/tracking/j16/ja_mers.xml', '', ''),
+(129, 8, 0, 'JA Methys Template for Joomla 3x', '', 'ja_methys', 'template', '', 0, '2.5.7', '', 'http://update.joomlart.com/service/tracking/j16/ja_methys.xml', '', ''),
+(130, 8, 0, 'Ja Minisite Template for Joomla 3.4', '', 'ja_minisite', 'template', '', 0, '2.5.5', '', 'http://update.joomlart.com/service/tracking/j16/ja_minisite.xml', '', ''),
+(131, 8, 0, 'JA Mitius Template', '', 'ja_mitius', 'template', '', 0, '1.1.3', '', 'http://update.joomlart.com/service/tracking/j16/ja_mitius.xml', '', ''),
+(132, 8, 0, 'JA Mixmaz Template', '', 'ja_mixmaz', 'template', '', 0, '1.0.4', '', 'http://update.joomlart.com/service/tracking/j16/ja_mixmaz.xml', '', ''),
+(133, 8, 0, 'JA Nex Template for J25 & J30', '', 'ja_nex', 'template', '', 0, '2.5.9', '', 'http://update.joomlart.com/service/tracking/j16/ja_nex.xml', '', ''),
+(134, 8, 0, 'JA Nex T3 Template', '', 'ja_nex_t3', 'template', '', 0, '1.1.3', '', 'http://update.joomlart.com/service/tracking/j16/ja_nex_t3.xml', '', ''),
+(135, 8, 0, 'JA Norite Template for J2.5 & J31', '', 'ja_norite', 'template', '', 0, '2.5.5', '', 'http://update.joomlart.com/service/tracking/j16/ja_norite.xml', '', ''),
+(136, 8, 0, 'JA Nuevo template', '', 'ja_nuevo', 'template', '', 0, '1.0.4', '', 'http://update.joomlart.com/service/tracking/j16/ja_nuevo.xml', '', ''),
+(137, 8, 0, 'JA Obelisk Template', '', 'ja_obelisk', 'template', '', 0, '1.1.2', '', 'http://update.joomlart.com/service/tracking/j16/ja_obelisk.xml', '', ''),
+(138, 8, 0, 'JA Onepage Template', '', 'ja_onepage', 'template', '', 0, '1.1.3', '', 'http://update.joomlart.com/service/tracking/j16/ja_onepage.xml', '', ''),
+(139, 8, 0, 'JA ores template for Joomla 3.x', '', 'ja_ores', 'template', '', 0, '2.5.5', '', 'http://update.joomlart.com/service/tracking/j16/ja_ores.xml', '', ''),
+(140, 8, 0, 'JA Orisite Template  for J25 & J3x', '', 'ja_orisite', 'template', '', 0, '1.1.7', '', 'http://update.joomlart.com/service/tracking/j16/ja_orisite.xml', '', ''),
+(141, 8, 0, 'JA Playmag Template', '', 'ja_playmag', 'template', '', 0, '1.1.5', '', 'http://update.joomlart.com/service/tracking/j16/ja_playmag.xml', '', ''),
+(142, 8, 0, 'JA Portfolio Real Estate template for Joomla 1.6.x', '', 'ja_portfolio', 'file', '', 0, '1.0.0 beta', '', 'http://update.joomlart.com/service/tracking/j16/ja_portfolio.xml', '', ''),
+(143, 8, 0, 'JA Portfolio Template for Joomla 3.x', '', 'ja_portfolio_real_estate', 'template', '', 0, '2.5.6', '', 'http://update.joomlart.com/service/tracking/j16/ja_portfolio_real_estate.xml', '', ''),
+(144, 8, 0, 'JA Puresite Template for J25 & J3x', '', 'ja_puresite', 'template', '', 0, '1.0.8', '', 'http://update.joomlart.com/service/tracking/j16/ja_puresite.xml', '', ''),
+(145, 8, 0, 'JA Purity II template for Joomla 2.5 & 3.2', '', 'ja_purity_ii', 'template', '', 0, '2.5.5', '', 'http://update.joomlart.com/service/tracking/j16/ja_purity_ii.xml', '', ''),
+(146, 8, 0, 'JA Pyro Template for Joomla 3.x', '', 'ja_pyro', 'template', '', 0, '2.5.5', '', 'http://update.joomlart.com/service/tracking/j16/ja_pyro.xml', '', ''),
+(147, 8, 0, 'JA Rasite Template for J34', '', 'ja_rasite', 'template', '', 0, '2.5.5', '', 'http://update.joomlart.com/service/tracking/j16/ja_rasite.xml', '', ''),
+(148, 8, 0, 'JA Rave Template for Joomla 3.x', '', 'ja_rave', 'template', '', 0, '2.5.5', '', 'http://update.joomlart.com/service/tracking/j16/ja_rave.xml', '', ''),
+(149, 8, 0, 'JA Smashboard Template', '', 'ja_smashboard', 'template', '', 0, '1.1.3', '', 'http://update.joomlart.com/service/tracking/j16/ja_smashboard.xml', '', ''),
+(150, 8, 0, 'JA Social Template for Joomla 2.5', '', 'ja_social', 'template', '', 0, '2.5.8', '', 'http://update.joomlart.com/service/tracking/j16/ja_social.xml', '', ''),
+(151, 8, 0, 'JA Social T3 Template for J25 & J3x', '', 'ja_social_t3', 'template', '', 0, '1.1.3', '', 'http://update.joomlart.com/service/tracking/j16/ja_social_t3.xml', '', ''),
+(152, 8, 0, 'JA Sugite Template', '', 'ja_sugite', 'template', '', 0, '1.1.6', '', 'http://update.joomlart.com/service/tracking/j16/ja_sugite.xml', '', ''),
+(153, 8, 0, 'JA System Pager Plugin for J25 & J30', '', 'ja_system_japager', 'plugin', 'ja_system_japager', 0, '1.0.4', '', 'http://update.joomlart.com/service/tracking/j16/ja_system_japager.xml', '', ''),
+(154, 8, 0, 'JA T3V2 Blank Template', '', 'ja_t3_blank', 'template', '', 0, '2.5.8', '', 'http://update.joomlart.com/service/tracking/j16/ja_t3_blank.xml', '', ''),
+(155, 8, 0, 'JA T3 Blank template for joomla 1.6', '', 'ja_t3_blank_j16', 'template', '', 0, '1.0.0 Beta', '', 'http://update.joomlart.com/service/tracking/j16/ja_t3_blank_j16.xml', '', ''),
+(156, 8, 0, 'JA Blank Template for T3v3', '', 'ja_t3v3_blank', 'template', '', 0, '1.0.1', '', 'http://update.joomlart.com/service/tracking/j16/ja_t3v3_blank.xml', '', ''),
+(157, 8, 0, 'JA Teline III  Template for Joomla 1.6', '', 'ja_teline_iii', 'file', '', 0, '1.0.0 Beta', '', 'http://update.joomlart.com/service/tracking/j16/ja_teline_iii.xml', '', ''),
+(158, 8, 0, 'JA Teline IV Template for J2.5 and J3.2', '', 'ja_teline_iv', 'template', '', 0, '2.5.4', '', 'http://update.joomlart.com/service/tracking/j16/ja_teline_iv.xml', '', ''),
+(159, 8, 0, 'JA Teline IV T3 Template', '', 'ja_teline_iv_t3', 'template', '', 0, '1.1.3', '', 'http://update.joomlart.com/service/tracking/j16/ja_teline_iv_t3.xml', '', ''),
+(160, 8, 0, 'JA Tiris Template for J25 & J3x', '', 'ja_tiris', 'template', '', 0, '2.5.9', '', 'http://update.joomlart.com/service/tracking/j16/ja_tiris.xml', '', ''),
+(161, 8, 0, 'JA Travel Template for Joomla 3x', '', 'ja_travel', 'template', '', 0, '2.5.6', '', 'http://update.joomlart.com/service/tracking/j16/ja_travel.xml', '', ''),
+(162, 8, 0, 'JA University Template for J25 & J32', '', 'ja_university', 'template', '', 0, '1.0.6', '', 'http://update.joomlart.com/service/tracking/j16/ja_university.xml', '', ''),
+(163, 8, 0, 'JA University T3 template', '', 'ja_university_t3', 'template', '', 0, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j16/ja_university_t3.xml', '', ''),
+(164, 8, 0, 'JA Vintas Template for J25 & J31', '', 'ja_vintas', 'template', '', 0, '1.0.3', '', 'http://update.joomlart.com/service/tracking/j16/ja_vintas.xml', '', ''),
+(165, 8, 0, 'JA Wall Template for J25 & J34', '', 'ja_wall', 'template', '', 0, '1.2.1', '', 'http://update.joomlart.com/service/tracking/j16/ja_wall.xml', '', ''),
+(166, 8, 0, 'JA ZiteTemplate', '', 'ja_zite', 'template', '', 0, '1.0.6', '', 'http://update.joomlart.com/service/tracking/j16/ja_zite.xml', '', ''),
+(167, 8, 0, 'JA Bookmark plugin for Joomla 1.6.x', '', 'jabookmark', 'file', '', 0, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j16/jabookmark.xml', '', ''),
+(168, 8, 0, 'JA Comment plugin for Joomla 1.6.x', '', 'jacomment', 'file', '', 0, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j16/jacomment.xml', '', ''),
+(169, 8, 0, 'JA Comment Off Plugin for Joomla 1.6', '', 'jacommentoff', 'file', '', 0, '1.0.1', '', 'http://update.joomlart.com/service/tracking/j16/jacommentoff.xml', '', ''),
+(170, 8, 0, 'JA Comment On Plugin for Joomla 1.6', '', 'jacommenton', 'file', '', 0, '1.0.1', '', 'http://update.joomlart.com/service/tracking/j16/jacommenton.xml', '', ''),
+(171, 8, 0, 'JA Content Extra Fields for Joomla 1.6', '', 'jacontentextrafields', 'file', '', 0, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j16/jacontentextrafields.xml', '', ''),
+(172, 8, 0, 'JA Disqus Debate Echo plugin for Joomla 1.6.x', '', 'jadisqus_debate_echo', 'file', '', 0, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j16/jadisqus_debate_echo.xml', '', ''),
+(173, 8, 0, 'JA System Google Map plugin for Joomla 1.6.x', '', 'jagooglemap', 'file', '', 0, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j16/jagooglemap.xml', '', ''),
+(174, 8, 0, 'JA Google Translate plugin for Joomla 1.6.x', '', 'jagoogletranslate', 'plugin', '', 0, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j16/jagoogletranslate.xml', '', ''),
+(175, 8, 0, 'JA Highslide plugin for Joomla 1.6.x', '', 'jahighslide', 'plugin', '', 0, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j16/jahighslide.xml', '', ''),
+(176, 8, 0, 'JA K2 Search Plugin for Joomla 2.5', '', 'jak2_filter', 'plugin', '', 0, '1.0.0 Alpha', '', 'http://update.joomlart.com/service/tracking/j16/jak2_filter.xml', '', ''),
+(177, 8, 0, 'JA K2 Extra Fields Plugin for Joomla 2.5', '', 'jak2_indexing', 'plugin', '', 0, '1.0.0 Alpha', '', 'http://update.joomlart.com/service/tracking/j16/jak2_indexing.xml', '', ''),
+(178, 8, 0, 'JA Load module Plugin for Joomla 2.5', '', 'jaloadmodule', 'plugin', 'jaloadmodule', 0, '2.5.1', '', 'http://update.joomlart.com/service/tracking/j16/jaloadmodule.xml', '', ''),
+(179, 8, 0, 'JA System Nrain plugin for Joomla 1.6.x', '', 'janrain', 'file', '', 0, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j16/janrain.xml', '', ''),
+(180, 8, 0, 'JA Popup plugin for Joomla 1.6', '', 'japopup', 'file', '', 0, '1.0.1', '', 'http://update.joomlart.com/service/tracking/j16/japopup.xml', '', ''),
+(181, 8, 0, 'JA System Social plugin for Joomla 1.7', '', 'jasocial', 'file', '', 0, '1.0.4', '', 'http://update.joomlart.com/service/tracking/j16/jasocial.xml', '', ''),
+(182, 8, 0, 'JA T3 System plugin for Joomla 1.6', '', 'jat3', 'plugin', '', 0, '1.0.0 Beta', '', 'http://update.joomlart.com/service/tracking/j16/jat3.xml', '', ''),
+(183, 8, 0, 'JA Tabs plugin for Joomla 1.6.x', '', 'jatabs', 'plugin', 'jatabs', 0, '2.5.6', '', 'http://update.joomlart.com/service/tracking/j16/jatabs.xml', '', ''),
+(184, 8, 0, 'JA Typo plugin For Joomla 1.6', '', 'jatypo', 'plugin', 'jatypo', 0, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j16/jatypo.xml', '', ''),
+(185, 8, 0, 'Jomsocial Theme 3.x for JA Social', '', 'jomsocial_theme_social', 'custom', '', 0, '4.1.x', '', 'http://update.joomlart.com/service/tracking/j16/jomsocial_theme_social.xml', '', ''),
+(186, 8, 0, 'JA Jomsocial theme for Joomla 2.5', '', 'jomsocial_theme_social_j16', 'file', '', 0, '2.5.1', '', 'http://update.joomlart.com/service/tracking/j16/jomsocial_theme_social_j16.xml', '', ''),
+(187, 8, 0, 'JA Jomsocial theme for Joomla 2.5', '', 'jomsocial_theme_social_j16_26', 'custom', '', 0, '2.5.4', '', 'http://update.joomlart.com/service/tracking/j16/jomsocial_theme_social_j16_26.xml', '', ''),
+(188, 8, 0, 'JShopping Template for Ja Orisite', '', 'jshopping_theme_orisite', 'file', '', 0, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j16/jshopping_theme_orisite.xml', '', ''),
+(189, 8, 0, 'JA Tiris Jshopping theme for J25 & J3x', '', 'jshopping_theme_tiris', 'custom', '', 0, '2.5.5', '', 'http://update.joomlart.com/service/tracking/j16/jshopping_theme_tiris.xml', '', ''),
+(190, 8, 0, 'Theme for Jshopping j17', '', 'jshopping_theme_tiris_j17', 'file', '', 0, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j16/jshopping_theme_tiris_j17.xml', '', ''),
+(191, 8, 0, 'JA Kranos kunena theme for Joomla 3.x', '', 'kunena_theme_kranos_j17', 'custom', '', 0, '1.0.4', '', 'http://update.joomlart.com/service/tracking/j16/kunena_theme_kranos_j17.xml', '', ''),
+(192, 8, 0, 'Kunena Template for JA Mendozite', '', 'kunena_theme_mendozite', 'custom', '', 0, '1.0.6', '', 'http://update.joomlart.com/service/tracking/j16/kunena_theme_mendozite.xml', '', ''),
+(193, 8, 0, 'JA Mitius Kunena Theme for Joomla 25 ', '', 'kunena_theme_mitius', 'custom', '', 0, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j16/kunena_theme_mitius.xml', '', ''),
+(194, 8, 0, 'Kunena theme for JA Nex J2.5', '', 'kunena_theme_nex_j17', 'custom', '', 0, '1.0.1', '', 'http://update.joomlart.com/service/tracking/j16/kunena_theme_nex_j17.xml', '', ''),
+(195, 8, 0, 'Kunena theme for JA Nex T3', '', 'kunena_theme_nex_t3', 'custom', '', 0, '1.0.7', '', 'http://update.joomlart.com/service/tracking/j16/kunena_theme_nex_t3.xml', '', ''),
+(196, 8, 0, 'Kunena Template for Ja Orisite', '', 'kunena_theme_orisite', 'custom', '', 0, '1.0.4', '', 'http://update.joomlart.com/service/tracking/j16/kunena_theme_orisite.xml', '', ''),
+(197, 8, 0, 'Kunena theme for ja PlayMag', '', 'kunena_theme_playmag', 'custom', '', 0, '1.1.6', '', 'http://update.joomlart.com/service/tracking/j16/kunena_theme_playmag.xml', '', ''),
+(198, 8, 0, 'Kunena theme for JA Social T3', '', 'kunena_theme_social', 'custom', '', 0, '1.1.2', '', 'http://update.joomlart.com/service/tracking/j16/kunena_theme_social.xml', '', ''),
+(199, 8, 0, 'Kunena theme for Joomla 2.5', '', 'kunena_theme_social_j16', 'custom', '', 0, '2.5.1', '', 'http://update.joomlart.com/service/tracking/j16/kunena_theme_social_j16.xml', '', ''),
+(200, 8, 0, 'Kunena theme for ja Techzone', '', 'kunena_theme_techzone', 'custom', '', 0, '1.0.2', '', 'http://update.joomlart.com/service/tracking/j16/kunena_theme_techzone.xml', '', ''),
+(201, 8, 0, 'JA Tiris kunena theme for Joomla 2.5', '', 'kunena_theme_tiris_j16', 'custom', '', 0, '2.5.3', '', 'http://update.joomlart.com/service/tracking/j16/kunena_theme_tiris_j16.xml', '', ''),
+(202, 8, 0, 'JA Bookshop Theme for Mijoshop V2', '', 'mijoshop_theme_bookshop', 'custom', '', 0, '1.0.4', '', 'http://update.joomlart.com/service/tracking/j16/mijoshop_theme_bookshop.xml', '', ''),
+(203, 8, 0, 'JA Decor Theme for Mijoshop', '', 'mijoshop_theme_decor', 'custom', '', 0, '1.0.4', '', 'http://update.joomlart.com/service/tracking/j16/mijoshop_theme_decor.xml', '', ''),
+(204, 8, 0, 'JA Decor Theme for Mijoshop V3', '', 'mijoshop_theme_decor_v3', 'custom', '', 0, '1.0.1', '', 'http://update.joomlart.com/service/tracking/j16/mijoshop_theme_decor_v3.xml', '', ''),
+(205, 8, 0, 'JA ACM Module', '', 'mod_ja_acm', 'module', '', 0, '2.1.1', '', 'http://update.joomlart.com/service/tracking/j16/mod_ja_acm.xml', '', ''),
+(206, 8, 0, 'JA Jobs Tags module for Joomla 2.5', '', 'mod_ja_jobs_tags', 'module', '', 0, '1.0.3', '', 'http://update.joomlart.com/service/tracking/j16/mod_ja_jobs_tags.xml', '', ''),
+(207, 8, 0, 'JA Accordion Module for J25 & J34', '', 'mod_jaaccordion', 'module', '', 0, '2.6.0', '', 'http://update.joomlart.com/service/tracking/j16/mod_jaaccordion.xml', '', ''),
+(208, 8, 0, 'JA Animation module for Joomla 2.5 & 3.2', '', 'mod_jaanimation', 'module', '', 0, '2.5.3', '', 'http://update.joomlart.com/service/tracking/j16/mod_jaanimation.xml', '', ''),
+(209, 8, 0, 'JA Bulletin Module for J3.x', '', 'mod_jabulletin', 'module', '', 0, '2.6.0', '', 'http://update.joomlart.com/service/tracking/j16/mod_jabulletin.xml', '', ''),
+(210, 8, 0, 'JA Latest Comment Module for Joomla 2.5 & 3.3', '', 'mod_jaclatest_comments', 'module', '', 0, '2.5.5', '', 'http://update.joomlart.com/service/tracking/j16/mod_jaclatest_comments.xml', '', ''),
+(211, 8, 0, 'JA Content Popup Module for J25 & J34', '', 'mod_jacontentpopup', 'module', '', 0, '1.1.2', '', 'http://update.joomlart.com/service/tracking/j16/mod_jacontentpopup.xml', '', ''),
+(212, 8, 0, 'JA Content Scroll module for Joomla 1.6', '', 'mod_jacontentscroll', 'file', '', 0, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j16/mod_jacontentscroll.xml', '', ''),
+(213, 8, 0, 'JA Contenslider module for Joomla 1.6', '', 'mod_jacontentslide', 'file', '', 0, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j16/mod_jacontentslide.xml', '', ''),
+(214, 8, 0, 'JA Content Slider Module for J25 & J34', '', 'mod_jacontentslider', 'module', '', 0, '2.7.2', '', 'http://update.joomlart.com/service/tracking/j16/mod_jacontentslider.xml', '', ''),
+(215, 8, 0, 'JA CountDown Module for Joomla 2.5 & 3.4', '', 'mod_jacountdown', 'module', '', 0, '1.0.7', '', 'http://update.joomlart.com/service/tracking/j16/mod_jacountdown.xml', '', ''),
+(216, 8, 0, 'JA Facebook Activity Module for J25 & J30', '', 'mod_jafacebookactivity', 'module', '', 0, '2.5.5', '', 'http://update.joomlart.com/service/tracking/j16/mod_jafacebookactivity.xml', '', ''),
+(217, 8, 0, 'JA Facebook Like Box Module for Joonla 25 & 34', '', 'mod_jafacebooklikebox', 'module', '', 0, '2.6.1', '', 'http://update.joomlart.com/service/tracking/j16/mod_jafacebooklikebox.xml', '', ''),
+(218, 8, 0, 'JA Featured Employer module for Joomla 2.5', '', 'mod_jafeatured_employer', 'module', '', 0, '1.0.3', '', 'http://update.joomlart.com/service/tracking/j16/mod_jafeatured_employer.xml', '', ''),
+(219, 8, 0, 'JA Filter Jobs module for Joomla 2.5', '', 'mod_jafilter_jobs', 'module', '', 0, '1.0.4', '', 'http://update.joomlart.com/service/tracking/j16/mod_jafilter_jobs.xml', '', ''),
+(220, 8, 0, 'JA flowlist module for Joomla 2.5 & 3.0', '', 'mod_jaflowlist', 'module', '', 0, '1.0.1', '', 'http://update.joomlart.com/service/tracking/j16/mod_jaflowlist.xml', '', ''),
+(221, 8, 0, 'JA Google chart 2', '', 'mod_jagooglechart_2', 'module', '', 0, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j16/mod_jagooglechart_2.xml', '', ''),
+(222, 8, 0, 'JAEC Halloween Module for Joomla 2.5 & 3', '', 'mod_jahalloween', 'module', '', 0, '1.0.1', '', 'http://update.joomlart.com/service/tracking/j16/mod_jahalloween.xml', '', ''),
+(223, 8, 0, 'JA Image Hotspot Module for Joomla 2.5 & 3.4', '', 'mod_jaimagehotspot', 'module', '', 0, '1.1.0', '', 'http://update.joomlart.com/service/tracking/j16/mod_jaimagehotspot.xml', '', ''),
+(224, 8, 0, 'JA static module for Joomla 2.5', '', 'mod_jajb_statistic', 'module', '', 0, '1.0.1', '', 'http://update.joomlart.com/service/tracking/j16/mod_jajb_statistic.xml', '', ''),
+(225, 8, 0, 'JA Jobboard Menu module for Joomla 2.5', '', 'mod_jajobboard_menu', 'module', '', 0, '1.0.5', '', 'http://update.joomlart.com/service/tracking/j16/mod_jajobboard_menu.xml', '', ''),
+(226, 8, 0, 'JA Jobs Counter module for Joomla 2.5', '', 'mod_jajobs_counter', 'module', '', 0, '1.0.4', '', 'http://update.joomlart.com/service/tracking/j16/mod_jajobs_counter.xml', '', ''),
+(227, 8, 0, 'JA Jobs Map module for Joomla 2.5', '', 'mod_jajobs_map', 'module', '', 0, '1.0.5', '', 'http://update.joomlart.com/service/tracking/j16/mod_jajobs_map.xml', '', ''),
+(228, 8, 0, 'JA K2 Fillter Module for Joomla 2.5', '', 'mod_jak2_filter', 'module', '', 0, '1.0.0 Alpha', '', 'http://update.joomlart.com/service/tracking/j16/mod_jak2_filter.xml', '', ''),
+(229, 8, 0, 'JA K2 Filter Module for J25 & J3.4', '', 'mod_jak2filter', 'module', '', 0, '1.2.4', '', 'http://update.joomlart.com/service/tracking/j16/mod_jak2filter.xml', '', ''),
+(230, 8, 0, 'JA K2 Timeline', '', 'mod_jak2timeline', 'module', '', 0, '1.0.2', '', 'http://update.joomlart.com/service/tracking/j16/mod_jak2timeline.xml', '', ''),
+(231, 8, 0, 'JA Latest Resumes module for Joomla 2.5', '', 'mod_jalatest_resumes', 'module', '', 0, '1.0.3', '', 'http://update.joomlart.com/service/tracking/j16/mod_jalatest_resumes.xml', '', ''),
+(232, 8, 0, 'JA List Employer module for Joomla 2.5', '', 'mod_jalist_employers', 'module', '', 0, '1.0.3', '', 'http://update.joomlart.com/service/tracking/j16/mod_jalist_employers.xml', '', ''),
+(233, 8, 0, 'JA List Jobs module for Joomla 2.5', '', 'mod_jalist_jobs', 'module', '', 0, '1.0.2', '', 'http://update.joomlart.com/service/tracking/j16/mod_jalist_jobs.xml', '', ''),
+(234, 8, 0, 'JA List Resumes module for Joomla 2.5', '', 'mod_jalist_resumes', 'module', '', 0, '1.0.2', '', 'http://update.joomlart.com/service/tracking/j16/mod_jalist_resumes.xml', '', ''),
+(235, 8, 0, 'JA Login module for J25 & J3x', '', 'mod_jalogin', 'module', '', 0, '2.6.6', '', 'http://update.joomlart.com/service/tracking/j16/mod_jalogin.xml', '', ''),
+(236, 8, 0, 'JA Masshead Module for J25 & J34', '', 'mod_jamasshead', 'module', '', 0, '2.6.1', '', 'http://update.joomlart.com/service/tracking/j16/mod_jamasshead.xml', '', ''),
+(237, 8, 0, 'JA News Featured Module for J25 & J34', '', 'mod_janews_featured', 'module', '', 0, '2.6.1', '', 'http://update.joomlart.com/service/tracking/j16/mod_janews_featured.xml', '', ''),
+(238, 8, 0, 'JA Newsflash module for Joomla 1.6.x', '', 'mod_janewsflash', 'module', '', 0, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j16/mod_janewsflash.xml', '', ''),
+(239, 8, 0, 'JA Newsmoo module for Joomla 1.6.x', '', 'mod_janewsmoo', 'module', '', 0, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j16/mod_janewsmoo.xml', '', ''),
+(240, 8, 0, 'JA News Pro Module for J25 & J3x', '', 'mod_janewspro', 'module', '', 0, '2.6.2', '', 'http://update.joomlart.com/service/tracking/j16/mod_janewspro.xml', '', ''),
+(241, 8, 0, 'JA Newsticker Module for J3x', '', 'mod_janewsticker', 'module', '', 0, '2.6.2', '', 'http://update.joomlart.com/service/tracking/j16/mod_janewsticker.xml', '', ''),
+(242, 8, 0, 'JA Quick Contact Module for J3.x', '', 'mod_jaquickcontact', 'module', '', 0, '2.6.1', '', 'http://update.joomlart.com/service/tracking/j16/mod_jaquickcontact.xml', '', ''),
+(243, 8, 0, 'JA Recent Viewed Jobs module for Joomla 2.5', '', 'mod_jarecent_viewed_jobs', 'module', '', 0, '1.0.1', '', 'http://update.joomlart.com/service/tracking/j16/mod_jarecent_viewed_jobs.xml', '', ''),
+(244, 8, 0, 'JA SideNews Module for J25 & J34', '', 'mod_jasidenews', 'module', '', 0, '2.6.7', '', 'http://update.joomlart.com/service/tracking/j16/mod_jasidenews.xml', '', ''),
+(245, 8, 0, 'JA Slideshow Module for Joomla 2.5 & 3.x', '', 'mod_jaslideshow', 'module', '', 0, '2.7.5', '', 'http://update.joomlart.com/service/tracking/j16/mod_jaslideshow.xml', '', ''),
+(246, 8, 0, 'JA Slideshow Lite Module for J25 & J3.4', '', 'mod_jaslideshowlite', 'module', '', 0, '1.2.3', '', 'http://update.joomlart.com/service/tracking/j16/mod_jaslideshowlite.xml', '', ''),
+(247, 8, 0, 'JA Soccerway Module for J25 & J33', '', 'mod_jasoccerway', 'module', '', 0, '1.0.4', '', 'http://update.joomlart.com/service/tracking/j16/mod_jasoccerway.xml', '', ''),
+(248, 8, 0, 'JA Social Locker module', '', 'mod_jasocial_locker', 'module', '', 0, '1.0.2', '', 'http://update.joomlart.com/service/tracking/j16/mod_jasocial_locker.xml', '', ''),
+(249, 8, 0, 'JA Tab module for Joomla 2.5', '', 'mod_jatabs', 'module', '', 0, '1.0.2', '', 'http://update.joomlart.com/service/tracking/j16/mod_jatabs.xml', '', ''),
+(250, 8, 0, 'JA Toppanel Module for Joomla 2.5 & Joomla 3.4', '', 'mod_jatoppanel', 'module', '', 0, '2.5.8', '', 'http://update.joomlart.com/service/tracking/j16/mod_jatoppanel.xml', '', ''),
+(251, 8, 0, 'JA Twitter Module for J25 & J3.4', '', 'mod_jatwitter', 'module', '', 0, '2.6.5', '', 'http://update.joomlart.com/service/tracking/j16/mod_jatwitter.xml', '', ''),
+(252, 8, 0, 'JA List of Voices Module for J2.5 & J3.x', '', 'mod_javlist_voices', 'module', '', 0, '1.1.0', '', 'http://update.joomlart.com/service/tracking/j16/mod_javlist_voices.xml', '', ''),
+(253, 8, 0, 'JA VMProducts Module', '', 'mod_javmproducts', 'module', '', 0, '1.0.5', '', 'http://update.joomlart.com/service/tracking/j16/mod_javmproducts.xml', '', ''),
+(254, 8, 0, 'JA Voice  Work Flow Module for J2.5 & J3.x', '', 'mod_javwork_flow', 'module', '', 0, '1.1.0', '', 'http://update.joomlart.com/service/tracking/j16/mod_javwork_flow.xml', '', ''),
+(255, 8, 0, 'JA Amazon S3 Button Plugin for joomla 2.5 & 3.x', '', 'jaamazons3', 'plugin', 'button', 0, '1.0.1', '', 'http://update.joomlart.com/service/tracking/j16/plg_button_jaamazons3.xml', '', ''),
+(256, 8, 0, 'JA AVTracklist Button plugin for J2.5 & J3.3', '', 'jaavtracklist', 'plugin', 'button', 0, '1.0.1', '', 'http://update.joomlart.com/service/tracking/j16/plg_button_jaavtracklist.xml', '', ''),
+(257, 8, 0, 'JA Comment Off Plugin for Joomla 2.5 & 3.3', '', 'jacommentoff', 'plugin', 'button', 0, '2.5.3', '', 'http://update.joomlart.com/service/tracking/j16/plg_button_jacommentoff.xml', '', ''),
+(258, 8, 0, 'JA Comment On Plugin for Joomla 2.5 & 3.3', '', 'jacommenton', 'plugin', 'button', 0, '2.5.2', '', 'http://update.joomlart.com/service/tracking/j16/plg_button_jacommenton.xml', '', ''),
+(259, 8, 0, 'JA Amazon S3 System plugin for joomla 2.5 & 3.x', '', 'plg_jaamazons3', 'plugin', 'plg_jaamazons3', 0, '2.5.7', '', 'http://update.joomlart.com/service/tracking/j16/plg_jaamazons3.xml', '', ''),
+(260, 8, 0, 'JA AVTracklist plugin for J2.5 & J3.x', '', 'plg_jaavtracklist', 'plugin', 'plg_jaavtracklist', 0, '1.0.4', '', 'http://update.joomlart.com/service/tracking/j16/plg_jaavtracklist.xml', '', ''),
+(261, 8, 0, 'JA Bookmark plugin for J3.x', '', 'plg_jabookmark', 'plugin', 'plg_jabookmark', 0, '2.6.1', '', 'http://update.joomlart.com/service/tracking/j16/plg_jabookmark.xml', '', ''),
+(262, 8, 0, 'JA Comment Plugin for Joomla 2.5 & 3.3', '', 'plg_jacomment', 'plugin', 'plg_jacomment', 0, '2.5.5', '', 'http://update.joomlart.com/service/tracking/j16/plg_jacomment.xml', '', ''),
+(263, 8, 0, 'JA Disqus Debate Echo plugin for J3x', '', 'debate_echo', 'plugin', 'jadisqus', 0, '2.6.3', '', 'http://update.joomlart.com/service/tracking/j16/plg_jadisqus_debate_echo.xml', '', ''),
+(264, 8, 0, 'JA Google Storage Plugin for j25 & j30', '', 'plg_jagooglestorage', 'plugin', 'plg_jagooglestorage', 0, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j16/plg_jagooglestorage.xml', '', ''),
+(265, 8, 0, 'JA Translate plugin for Joomla 1.6.x', '', 'plg_jagoogletranslate', 'file', '', 0, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j16/plg_jagoogletranslate.xml', '', ''),
+(266, 8, 0, 'JA Thumbnail Plugin for J25 & J3', '', 'plg_jathumbnail', 'plugin', 'plg_jathumbnail', 0, '2.5.9', '', 'http://update.joomlart.com/service/tracking/j16/plg_jathumbnail.xml', '', ''),
+(267, 8, 0, 'JA Tooltips plugin for Joomla 1.6.x', '', 'plg_jatooltips', 'plugin', '', 0, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j16/plg_jatooltips.xml', '', ''),
+(268, 8, 0, 'JA Typo Button Plugin for J25 & J3x', '', 'plg_jatypobutton', 'plugin', 'plg_jatypobutton', 0, '2.6.0', '', 'http://update.joomlart.com/service/tracking/j16/plg_jatypobutton.xml', '', ''),
+(269, 8, 0, 'JA K2 Filter Plg for J25 & J3.4', '', 'jak2filter', 'plugin', 'k2', 0, '1.2.0', '', 'http://update.joomlart.com/service/tracking/j16/plg_k2_jak2filter.xml', '', ''),
+(270, 8, 0, 'JA K2 Timeline Plugin', '', 'jak2timeline', 'plugin', 'k2', 0, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j16/plg_k2_jak2timeline.xml', '', ''),
+(271, 8, 0, 'Multi Captcha Engine Plugin for J3.x', '', 'captcha_engine', 'plugin', 'multiple', 0, '2.5.3', '', 'http://update.joomlart.com/service/tracking/j16/plg_multiple_captcha_engine.xml', '', ''),
+(272, 8, 0, 'JA JobBoard Payment Plugin Authorize for Joomla 2.5', '', 'plg_payment_jajb_authorize_25', 'custom', '', 0, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j16/plg_payment_jajb_authorize_25.xml', '', ''),
+(273, 8, 0, 'JA JobBoard Payment Plugin MoneyBooker for Joomla 2.5', '', 'plg_payment_jajb_moneybooker_25', 'custom', '', 0, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j16/plg_payment_jajb_moneybooker_25.xml', '', ''),
+(274, 8, 0, 'JA JobBoard Payment Plugin Paypal for Joomla 2.5', '', 'plg_payment_jajb_paypal_25', 'custom', '', 0, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j16/plg_payment_jajb_paypal_25.xml', '', ''),
+(275, 8, 0, 'JA JobBoard Payment Plugin BankWire for Joomla 2.5', '', 'plg_payment_jajb_wirebank_25', 'custom', '', 0, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j16/plg_payment_jajb_wirebank_25.xml', '', ''),
+(276, 8, 0, 'JA Search Comment Plugin for Joomla J2.5 & 3.x', '', 'jacomment', 'plugin', 'search', 0, '2.5.2', '', 'http://update.joomlart.com/service/tracking/j16/plg_search_jacomment.xml', '', ''),
+(277, 8, 0, 'JA Search Jobs plugin for Joomla 2.5', '', 'jajob', 'plugin', 'search', 0, '1.0.0 stable', '', 'http://update.joomlart.com/service/tracking/j16/plg_search_jajob.xml', '', ''),
+(278, 8, 0, 'JA System Comment Plugin for Joomla 2.5 & 3.3', '', 'jacomment', 'plugin', 'system', 0, '2.5.5', '', 'http://update.joomlart.com/service/tracking/j16/plg_system_jacomment.xml', '', ''),
+(279, 8, 0, 'JA Content Extra Fields for Joomla 2.5', '', 'jacontentextrafields', 'plugin', 'system', 0, '2.5.1', '', 'http://update.joomlart.com/service/tracking/j16/plg_system_jacontentextrafields.xml', '', ''),
+(280, 8, 0, 'JA System Google Map plugin for Joomla 2.5 & J3.4', '', 'jagooglemap', 'plugin', 'system', 0, '2.6.2', '', 'http://update.joomlart.com/service/tracking/j16/plg_system_jagooglemap.xml', '', ''),
+(281, 8, 0, 'JAEC PLG System Jobboad Jomsocial Synchonization', '', 'jajb_jomsocial', 'plugin', 'system', 0, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j16/plg_system_jajb_jomsocial.xml', '', ''),
+(282, 8, 0, 'JA System Lazyload Plugin for J25 & J3x', '', 'jalazyload', 'plugin', 'system', 0, '1.0.6', '', 'http://update.joomlart.com/service/tracking/j16/plg_system_jalazyload.xml', '', ''),
+(283, 8, 0, 'JA System Nrain Plugin for Joomla 2.5 & 3.3', '', 'janrain', 'plugin', 'system', 0, '2.5.4', '', 'http://update.joomlart.com/service/tracking/j16/plg_system_janrain.xml', '', ''),
+(284, 8, 0, 'JA Popup Plugin for Joomla 25 & 34', '', 'japopup', 'plugin', 'system', 0, '2.6.3', '', 'http://update.joomlart.com/service/tracking/j16/plg_system_japopup.xml', '', ''),
+(285, 8, 0, 'JA System Social Plugin for Joomla 3.x', '', 'jasocial', 'plugin', 'system', 0, '2.5.5', '', 'http://update.joomlart.com/service/tracking/j16/plg_system_jasocial.xml', '', ''),
+(286, 8, 0, 'JA System Social Feed Plugin for Joomla 2.5 & 3.4', '', 'jasocial_feed', 'plugin', 'system', 0, '1.2.8', '', 'http://update.joomlart.com/service/tracking/j16/plg_system_jasocial_feed.xml', '', ''),
+(287, 8, 0, 'JA T3v2 System Plugin for J3.x', '', 'jat3', 'plugin', 'system', 0, '2.7.3', '', 'http://update.joomlart.com/service/tracking/j16/plg_system_jat3.xml', '', ''),
+(288, 8, 0, 'JA T3v3 System Plugin', '', 'jat3v3', 'plugin', 'system', 0, '1.0.3', '', 'http://update.joomlart.com/service/tracking/j16/plg_system_jat3v3.xml', '', ''),
+(289, 8, 0, 'JA Tabs Plugin for J3.x', '', 'jatabs', 'plugin', 'system', 0, '2.6.6', '', 'http://update.joomlart.com/service/tracking/j16/plg_system_jatabs.xml', '', '');
+INSERT INTO `jml_updates` (`update_id`, `update_site_id`, `extension_id`, `name`, `description`, `element`, `type`, `folder`, `client_id`, `version`, `data`, `detailsurl`, `infourl`, `extra_query`) VALUES
+(290, 8, 0, 'JA Typo Plugin for Joomla 2.5 & J34', '', 'jatypo', 'plugin', 'system', 0, '2.5.7', '', 'http://update.joomlart.com/service/tracking/j16/plg_system_jatypo.xml', '', ''),
+(291, 8, 0, 'T3 System Plugin', '', 't3', 'plugin', 'system', 0, '2.6.1', '', 'http://update.joomlart.com/service/tracking/j16/plg_system_t3.xml', '', ''),
+(292, 8, 0, 'JA Teline III Template for Joomla 2.5', '', 'teline_iii', 'template', '', 0, '2.5.3', '', 'http://update.joomlart.com/service/tracking/j16/teline_iii.xml', '', ''),
+(293, 8, 0, 'Thirdparty Extensions Compatibility Bundle', '', 'thirdparty_exts_compatibility', 'custom', '', 0, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j16/thirdparty_exts_compatibility.xml', '', ''),
+(294, 8, 0, 'T3 Blank Template', '', 't3_blank', 'template', '', 0, '2.2.1', '', 'http://update.joomlart.com/service/tracking/j16/tpl_t3_blank.xml', '', ''),
+(295, 8, 0, 'Uber Template', '', 'uber', 'template', '', 0, '2.1.4', '', 'http://update.joomlart.com/service/tracking/j16/uber.xml', '', ''),
+(296, 8, 0, 'Backend Template', '', 'backend_template_package', 'template', '', 0, '1.0.4', '', 'http://update.joomlart.com/service/tracking/j30/backend_template_package.xml', '', ''),
+(297, 8, 0, 'Backend Template', '', 'backend_template_pkg', 'template', '', 0, '1.0.4', '', 'http://update.joomlart.com/service/tracking/j30/backend_template_pkg.xml', '', ''),
+(298, 8, 0, 'JA Restaurant Template', '', 'ja_restaurant', 'template', '', 0, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j30/ja_restaurant.xml', '', ''),
+(299, 8, 0, 'T3 BS3 Blank Template', '', 't3_bs3_blank', 'template', '', 0, '2.2.1', '', 'http://update.joomlart.com/service/tracking/j30/tpl_t3_bs3_blank.xml', '', ''),
+(300, 8, 0, 'JA K2 v3 Filter package for J33', '', 'com_jak2v3filter', 'component', '', 1, '3.0.0 preview ', '', 'http://update.joomlart.com/service/tracking/j31/com_jak2v3filter.xml', '', ''),
+(301, 8, 0, 'JA Multilingual Component for Joomla 2.5 & 3.4', '', 'com_jalang', 'component', '', 1, '1.0.9', '', 'http://update.joomlart.com/service/tracking/j31/com_jalang.xml', '', ''),
+(302, 8, 0, 'JA Intranet Theme for EasyBlog', '', 'easyblog_theme_intranet', 'custom', '', 0, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j31/easyblog_theme_intranet.xml', '', ''),
+(303, 8, 0, 'JA Resume Theme for EasyBlog', '', 'easyblog_theme_resume', 'custom', '', 0, '1.0.2', '', 'http://update.joomlart.com/service/tracking/j31/easyblog_theme_resume.xml', '', ''),
+(304, 8, 0, 'JA Sugite Theme for EasyBlog', '', 'easyblog_theme_sugite', 'custom', '', 0, '1.1.1', '', 'http://update.joomlart.com/service/tracking/j31/easyblog_theme_sugite.xml', '', ''),
+(305, 8, 0, 'JA Biz Template', '', 'ja_biz', 'template', '', 0, '1.1.6', '', 'http://update.joomlart.com/service/tracking/j31/ja_biz.xml', '', ''),
+(306, 8, 0, 'JA Cago template', '', 'ja_cago', 'template', '', 0, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j31/ja_cago.xml', '', ''),
+(307, 8, 0, 'JA Cagox template', '', 'ja_cagox', 'template', '', 0, '1.0.5', '', 'http://update.joomlart.com/service/tracking/j31/ja_cagox.xml', '', ''),
+(308, 8, 0, 'JA Charity template', '', 'ja_charity', 'template', '', 0, '1.0.5', '', 'http://update.joomlart.com/service/tracking/j31/ja_charity.xml', '', ''),
+(309, 8, 0, 'JA Directory Template', '', 'ja_directory', 'template', '', 0, '1.0.3', '', 'http://update.joomlart.com/service/tracking/j31/ja_directory.xml', '', ''),
+(310, 8, 0, 'JA Edenite Template for J25 & J34', '', 'ja_edenite', 'template', '', 0, '2.5.5', '', 'http://update.joomlart.com/service/tracking/j31/ja_edenite.xml', '', ''),
+(311, 8, 0, 'JA Elicyon Template', '', 'ja_elicyon', 'template', '', 0, '1.0.2', '', 'http://update.joomlart.com/service/tracking/j31/ja_elicyon.xml', '', ''),
+(312, 8, 0, 'JA Events II template', '', 'ja_events_ii', 'template', '', 0, '1.0.3', '', 'http://update.joomlart.com/service/tracking/j31/ja_events_ii.xml', '', ''),
+(313, 8, 0, 'JA Fixel Template', '', 'ja_fixel', 'template', '', 0, '1.1.5', '', 'http://update.joomlart.com/service/tracking/j31/ja_fixel.xml', '', ''),
+(314, 8, 0, 'JA Healthcare Template', '', 'ja_healthcare', 'template', '', 0, '1.0.2', '', 'http://update.joomlart.com/service/tracking/j31/ja_healthcare.xml', '', ''),
+(315, 8, 0, 'JA Hotel Template', '', 'ja_hotel', 'template', '', 0, '1.0.3', '', 'http://update.joomlart.com/service/tracking/j31/ja_hotel.xml', '', ''),
+(316, 8, 0, 'JA Intranet Template', '', 'ja_intranet', 'template', '', 0, '1.0.1', '', 'http://update.joomlart.com/service/tracking/j31/ja_intranet.xml', '', ''),
+(317, 8, 0, 'JA Magz II Template', '', 'ja_magz_ii', 'template', '', 0, '1.0.2', '', 'http://update.joomlart.com/service/tracking/j31/ja_magz_ii.xml', '', ''),
+(318, 8, 0, 'JA Megastore Template', '', 'ja_megastore', 'template', '', 0, '1.0.1', '', 'http://update.joomlart.com/service/tracking/j31/ja_megastore.xml', '', ''),
+(319, 8, 0, 'JA Mono Template', '', 'ja_mono', 'template', '', 0, '1.0.4', '', 'http://update.joomlart.com/service/tracking/j31/ja_mono.xml', '', ''),
+(320, 8, 0, 'JA Moviemax Template', '', 'ja_moviemax', 'template', '', 0, '1.1.2', '', 'http://update.joomlart.com/service/tracking/j31/ja_moviemax.xml', '', ''),
+(321, 8, 0, 'JA Muzic Template for J25 & J3x', '', 'ja_muzic', 'template', '', 0, '1.1.3', '', 'http://update.joomlart.com/service/tracking/j31/ja_muzic.xml', '', ''),
+(322, 8, 0, 'JA Platon Template', '', 'ja_platon', 'template', '', 0, '1.0.3', '', 'http://update.joomlart.com/service/tracking/j31/ja_platon.xml', '', ''),
+(323, 8, 0, 'JA Playstore Template', '', 'ja_playstore', 'template', '', 0, '1.0.3', '', 'http://update.joomlart.com/service/tracking/j31/ja_playstore.xml', '', ''),
+(324, 8, 0, 'JA Rave Template for Joomla 3.x', '', 'ja_rave', 'template', '', 0, '2.5.5', '', 'http://update.joomlart.com/service/tracking/j31/ja_rave.xml', '', ''),
+(325, 8, 0, 'JA Rent template', '', 'ja_rent', 'template', '', 0, '1.0.2', '', 'http://update.joomlart.com/service/tracking/j31/ja_rent.xml', '', ''),
+(326, 8, 0, 'JA Resume Template', '', 'ja_resume', 'template', '', 0, '1.0.2', '', 'http://update.joomlart.com/service/tracking/j31/ja_resume.xml', '', ''),
+(327, 8, 0, 'JA Simpli Template', '', 'ja_simpli', 'template', '', 0, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j31/ja_simpli.xml', '', ''),
+(328, 8, 0, 'JA Social II template', '', 'ja_social_ii', 'template', '', 0, '1.0.5', '', 'http://update.joomlart.com/service/tracking/j31/ja_social_ii.xml', '', ''),
+(329, 8, 0, 'JA Techzone Template', '', 'ja_techzone', 'template', '', 0, '1.0.2', '', 'http://update.joomlart.com/service/tracking/j31/ja_techzone.xml', '', ''),
+(330, 8, 0, 'JA Teline V Template', '', 'ja_teline_v', 'template', '', 0, '1.1.0', '', 'http://update.joomlart.com/service/tracking/j31/ja_teline_v.xml', '', ''),
+(331, 8, 0, 'JA University Template for J25 & J32', '', 'ja_university', 'template', '', 0, '1.0.7', '', 'http://update.joomlart.com/service/tracking/j31/ja_university.xml', '', ''),
+(332, 8, 0, 'JA University T3 template', '', 'ja_university_t3', 'template', '', 0, '1.1.5', '', 'http://update.joomlart.com/service/tracking/j31/ja_university_t3.xml', '', ''),
+(333, 8, 0, 'JA Vintas Template for J25 & J3x', '', 'ja_vintas', 'template', '', 0, '1.0.5', '', 'http://update.joomlart.com/service/tracking/j31/ja_vintas.xml', '', ''),
+(334, 8, 0, 'JA Wall Template for J25 & J34', '', 'ja_wall', 'template', '', 0, '1.2.1', '', 'http://update.joomlart.com/service/tracking/j31/ja_wall.xml', '', ''),
+(335, 8, 0, 'Jomsocial theme for Platon', '', 'jomsocial_theme_platon', 'custom', '', 0, '1.0.1', '', 'http://update.joomlart.com/service/tracking/j31/jomsocial_theme_platon.xml', '', ''),
+(336, 8, 0, 'Theme Fixel for JShopping J25 & J30', '', 'jshopping_theme_fixel', 'custom', '', 0, '1.0.6', '', 'http://update.joomlart.com/service/tracking/j31/jshopping_theme_fixel.xml', '', ''),
+(337, 8, 0, 'JA Tiris Jshopping theme for J3x', '', 'jshopping_theme_tiris_j3x', 'custom', '', 0, '2.5.6', '', 'http://update.joomlart.com/service/tracking/j31/jshopping_theme_tiris_j3x.xml', '', ''),
+(338, 8, 0, 'JA Mitius Kunena Theme for Joomla 3x', '', 'kunena_theme_mitius', 'custom', '', 0, '1.0.5', '', 'http://update.joomlart.com/service/tracking/j31/kunena_theme_mitius.xml', '', ''),
+(339, 8, 0, 'JA Tiris Kunena Theme for Joomla 3x', '', 'kunena_theme_mitius_j31', 'custom', '', 0, '2.5.4', '', 'http://update.joomlart.com/service/tracking/j31/kunena_theme_mitius_j31.xml', '', ''),
+(340, 8, 0, 'Kunena Theme MovieMax', '', 'kunena_theme_moviemax', 'custom', '', 0, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j31/kunena_theme_moviemax.xml', '', ''),
+(341, 8, 0, 'Kunena Theme Platon', '', 'kunena_theme_platon', 'custom', '', 0, '1.0.1', '', 'http://update.joomlart.com/service/tracking/j31/kunena_theme_platon.xml', '', ''),
+(342, 8, 0, 'Kunena Theme Playstore', '', 'kunena_theme_playstore', 'custom', '', 0, '1.0.1', '', 'http://update.joomlart.com/service/tracking/j31/kunena_theme_playstore.xml', '', ''),
+(343, 8, 0, 'JA Tiris Kunena Theme for Joomla 3x', '', 'kunena_theme_tiris_j3x', 'custom', '', 0, '2.5.5', '', 'http://update.joomlart.com/service/tracking/j31/kunena_theme_tiris_j3x.xml', '', ''),
+(344, 8, 0, 'Mijoshop Modules Accordion', '', 'mijoshop_mod_accordion', 'custom', '', 0, '1.0.2', '', 'http://update.joomlart.com/service/tracking/j31/mijoshop_mod_accordion.xml', '', ''),
+(345, 8, 0, 'Mijoshop V3 Modules Accordion', '', 'mijoshop_mod_accordion_v3', 'custom', '', 0, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j31/mijoshop_mod_accordion_v3.xml', '', ''),
+(346, 8, 0, 'Mijoshop Modules Slider', '', 'mijoshop_mod_slider', 'custom', '', 0, '1.0.2', '', 'http://update.joomlart.com/service/tracking/j31/mijoshop_mod_slider.xml', '', ''),
+(347, 8, 0, 'Mijoshop V3 Modules Slider', '', 'mijoshop_mod_slider_v3', 'custom', '', 0, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j31/mijoshop_mod_slider_v3.xml', '', ''),
+(348, 8, 0, 'JA Bookshop Theme for Mijoshop V3', '', 'mijoshop_theme_bookshop_v3', 'custom', '', 0, '1.0.2', '', 'http://update.joomlart.com/service/tracking/j31/mijoshop_theme_bookshop_v3.xml', '', ''),
+(349, 8, 0, 'JA Google Analytics', '', 'mod_jagoogle_analytics', 'module', '', 0, '1.0.2', '', 'http://update.joomlart.com/service/tracking/j31/mod_jagoogle_analytics.xml', '', ''),
+(350, 8, 0, 'JA Google Chart Module', '', 'mod_jagooglechart', 'module', '', 0, '1.0.2', '', 'http://update.joomlart.com/service/tracking/j31/mod_jagooglechart.xml', '', ''),
+(351, 8, 0, 'JA Halloween Game for Joomla 3.x', '', 'mod_jahalloweengame', 'module', '', 0, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j31/mod_jahalloweengame.xml', '', ''),
+(352, 8, 0, 'JA K2 v3 Filter Module for J33', '', 'mod_jak2v3filter', 'module', '', 0, '3.0.0 preview ', '', 'http://update.joomlart.com/service/tracking/j31/mod_jak2v3filter.xml', '', ''),
+(353, 8, 0, 'JA Masthead Module ', '', 'mod_jamasthead', 'module', '', 0, '1.0.2', '', 'http://update.joomlart.com/service/tracking/j31/mod_jamasthead.xml', '', ''),
+(354, 8, 0, 'JA Promo Bar module', '', 'mod_japromobar', 'module', '', 0, '1.0.4', '', 'http://update.joomlart.com/service/tracking/j31/mod_japromobar.xml', '', ''),
+(355, 8, 0, 'Ja Yahoo Finance', '', 'mod_jayahoo_finance', 'module', '', 0, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j31/mod_jayahoo_finance.xml', '', ''),
+(356, 8, 0, 'Ja Yahoo Weather', '', 'mod_jayahoo_weather', 'module', '', 0, '1.0.1', '', 'http://update.joomlart.com/service/tracking/j31/mod_jayahoo_weather.xml', '', ''),
+(357, 8, 0, 'Plugin Ajax JA Content Type', '', 'jacontenttype', 'plugin', 'ajax', 0, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j31/plg_ajax_jacontenttype.xml', '', ''),
+(358, 8, 0, 'JA K2 Data Migration plugin', '', 'plg_jak2tocomcontentmigration', 'plugin', 'plg_jak2tocomcontent', 0, '1.0.3', '', 'http://update.joomlart.com/service/tracking/j31/plg_jak2tocomcontentmigration.xml', '', ''),
+(359, 8, 0, 'Plgin JA K2 import to Joomla Content', '', 'plg_jak2tocontent', 'plugin', 'plg_jak2tocontent', 0, '1.0.0 beta', '', 'http://update.joomlart.com/service/tracking/j31/plg_jak2tocontent.xml', '', ''),
+(360, 8, 0, 'JA K2 Extrafields', '', 'jak2extrafields', 'plugin', 'k2', 0, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j31/plg_k2_jak2extrafields.xml', '', ''),
+(361, 8, 0, 'JA K2 v3 Filter Plugin for J33', '', 'jak2v3filter', 'plugin', 'k2', 0, '3.0.0 preview ', '', 'http://update.joomlart.com/service/tracking/j31/plg_k2_jak2v3filter.xml', '', ''),
+(362, 8, 0, 'JA System Designit Plugin', '', 'designit', 'plugin', 'system', 0, '1.0.0', '', 'http://update.joomlart.com/service/tracking/j31/plg_system_designit.xml', '', ''),
+(363, 8, 0, 'Plugin JA Content Type', '', 'jacontenttype', 'plugin', 'system', 0, '1.0.4', '', 'http://update.joomlart.com/service/tracking/j31/plg_system_jacontenttype.xml', '', ''),
+(364, 8, 10027, 'Purity III Template', '', 'purity_iii', 'template', '', 0, '1.1.7', '', 'http://update.joomlart.com/service/tracking/j31/purity_iii.xml', '', ''),
+(365, 8, 0, 'Sample package for Uber App', '', 'uber_app', 'sample_package', '', 0, '2.0.2', '', 'http://update.joomlart.com/service/tracking/j31/uber_app.xml', '', ''),
+(366, 8, 0, 'Sample package for Bookstore', '', 'uber_bookstore', 'sample_package', '', 0, '2.1.2', '', 'http://update.joomlart.com/service/tracking/j31/uber_bookstore.xml', '', ''),
+(367, 8, 0, 'Sample package for Uber Business', '', 'uber_business', 'sample_package', '', 0, '2.0.2', '', 'http://update.joomlart.com/service/tracking/j31/uber_business.xml', '', ''),
+(368, 8, 0, 'Sample package for Uber Charity', '', 'uber_charity', 'sample_package', '', 0, '2.0.2', '', 'http://update.joomlart.com/service/tracking/j31/uber_charity.xml', '', ''),
+(369, 8, 0, 'Sample package for Uber Church', '', 'uber_church', 'sample_package', '', 0, '2.0.2', '', 'http://update.joomlart.com/service/tracking/j31/uber_church.xml', '', ''),
+(370, 8, 0, 'Sample package for Uber Construction', '', 'uber_construction', 'sample_package', '', 0, '2.0.2', '', 'http://update.joomlart.com/service/tracking/j31/uber_construction.xml', '', ''),
+(371, 8, 0, 'Sample package for Uber Corporate', '', 'uber_corporate', 'sample_package', '', 0, '2.0.2', '', 'http://update.joomlart.com/service/tracking/j31/uber_corporate.xml', '', ''),
+(372, 8, 0, 'Sample package for Uber Gym', '', 'uber_gym', 'sample_package', '', 0, '2.0.2', '', 'http://update.joomlart.com/service/tracking/j31/uber_gym.xml', '', ''),
+(373, 8, 0, 'Sample package for Uber Home', '', 'uber_home', 'sample_package', '', 0, '2.0.2', '', 'http://update.joomlart.com/service/tracking/j31/uber_home.xml', '', ''),
+(374, 8, 0, 'Sample package for Landing page', '', 'uber_landing', 'sample_package', '', 0, '2.1.0', '', 'http://update.joomlart.com/service/tracking/j31/uber_landing.xml', '', ''),
+(375, 8, 0, 'Sample package for Uber Lawyer', '', 'uber_lawyer', 'sample_package', '', 0, '2.0.2', '', 'http://update.joomlart.com/service/tracking/j31/uber_lawyer.xml', '', ''),
+(376, 8, 0, 'Sample package for Uber Medicare', '', 'uber_medicare', 'sample_package', '', 0, '2.1.0', '', 'http://update.joomlart.com/service/tracking/j31/uber_medicare.xml', '', ''),
+(377, 8, 0, 'Sample package for Uber Music', '', 'uber_music', 'sample_package', '', 0, '2.0.2', '', 'http://update.joomlart.com/service/tracking/j31/uber_music.xml', '', ''),
+(378, 8, 0, 'Sample package for Uber Restaurant', '', 'uber_restaurant', 'sample_package', '', 0, '2.0.3', '', 'http://update.joomlart.com/service/tracking/j31/uber_restaurant.xml', '', ''),
+(379, 8, 0, 'Sample package for Uber Spa', '', 'uber_spa', 'sample_package', '', 0, '2.0.2', '', 'http://update.joomlart.com/service/tracking/j31/uber_spa.xml', '', ''),
+(380, 8, 0, 'Sample package for Uber University', '', 'uber_university', 'sample_package', '', 0, '2.0.2', '', 'http://update.joomlart.com/service/tracking/j31/uber_university.xml', '', ''),
+(381, 8, 0, 'Sample package for Uber Wedding', '', 'uber_wedding', 'sample_package', '', 0, '2.0.2', '', 'http://update.joomlart.com/service/tracking/j31/uber_wedding.xml', '', '');
 
 -- --------------------------------------------------------
 
@@ -2537,13 +3233,14 @@ CREATE TABLE `jml_update_sites` (
 --
 
 INSERT INTO `jml_update_sites` (`update_site_id`, `name`, `type`, `location`, `enabled`, `last_check_timestamp`, `extra_query`) VALUES
-(1, 'Joomla! Core', 'collection', 'https://update.joomla.org/core/list.xml', 1, 1476092664, ''),
-(2, 'Joomla! Extension Directory', 'collection', 'https://update.joomla.org/jed/list.xml', 1, 1476092665, ''),
-(3, 'Accredited Joomla! Translations', 'collection', 'https://update.joomla.org/language/translationlist_3.xml', 1, 1476092665, ''),
-(4, 'Joomla! Update Component Update Site', 'extension', 'https://update.joomla.org/core/extensions/com_joomlaupdate.xml', 1, 1476092666, ''),
-(5, 'Accredited Joomla! Translations', 'collection', 'http://update.joomla.org/language/translationlist_3.xml', 1, 1476092667, ''),
-(6, 'WebInstaller Update Site', 'extension', 'http://appscdn.joomla.org/webapps/jedapps/webinstaller.xml', 1, 1476092667, ''),
-(7, 'Kunena 5.0 Update Site', 'collection', 'https://update.kunena.org/5.0/list.xml', 1, 1476092668, '');
+(1, 'Joomla! Core', 'collection', 'https://update.joomla.org/core/list.xml', 1, 1476441181, ''),
+(2, 'Joomla! Extension Directory', 'collection', 'https://update.joomla.org/jed/list.xml', 1, 1476441182, ''),
+(3, 'Accredited Joomla! Translations', 'collection', 'https://update.joomla.org/language/translationlist_3.xml', 1, 1476441183, ''),
+(4, 'Joomla! Update Component Update Site', 'extension', 'https://update.joomla.org/core/extensions/com_joomlaupdate.xml', 1, 1476441184, ''),
+(5, 'Accredited Joomla! Translations', 'collection', 'http://update.joomla.org/language/translationlist_3.xml', 1, 1476441184, ''),
+(6, 'WebInstaller Update Site', 'extension', 'http://appscdn.joomla.org/webapps/jedapps/webinstaller.xml', 1, 1476441185, ''),
+(7, 'Kunena 5.0 Update Site', 'collection', 'https://update.kunena.org/5.0/list.xml', 1, 1476441185, ''),
+(8, '', 'collection', 'http://update.joomlart.com/service/tracking/list.xml', 1, 1476441197, '');
 
 -- --------------------------------------------------------
 
@@ -2569,7 +3266,8 @@ INSERT INTO `jml_update_sites_extensions` (`update_site_id`, `extension_id`) VAL
 (5, 10002),
 (5, 10005),
 (6, 10006),
-(7, 10012);
+(7, 10012),
+(8, 10027);
 
 -- --------------------------------------------------------
 
@@ -2630,7 +3328,8 @@ CREATE TABLE `jml_users` (
 --
 
 INSERT INTO `jml_users` (`id`, `name`, `username`, `email`, `password`, `block`, `sendEmail`, `registerDate`, `lastvisitDate`, `activation`, `params`, `lastResetTime`, `resetCount`, `otpKey`, `otep`, `requireReset`) VALUES
-(669, 'Super User', 'admin', 'alefalwebmaster@gmail.com', '$2y$10$siM5nj6B9IQr./lMW/CbDunuqSrrSxEIZJKix0dRTHup8SA9ums1q', 0, 1, '2016-10-10 07:51:01', '2016-10-10 09:40:02', '0', '', '0000-00-00 00:00:00', 0, '', '', 0);
+(669, 'Super User', 'admin', 'alefalwebmaster@gmail.com', '$2y$10$siM5nj6B9IQr./lMW/CbDunuqSrrSxEIZJKix0dRTHup8SA9ums1q', 0, 1, '2016-10-10 07:51:01', '2016-10-14 10:30:43', '0', '', '0000-00-00 00:00:00', 0, '', '', 0),
+(670, 'Test', 'test', 'alefalwebmaster@gmail.com', '$2y$10$siM5nj6B9IQr./lMW/CbDunuqSrrSxEIZJKix0dRTHup8SA9ums1q', 0, 1, '2016-10-10 07:51:01', '2016-10-14 10:14:55', '0', '', '0000-00-00 00:00:00', 0, '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -2701,7 +3400,8 @@ CREATE TABLE `jml_user_usergroup_map` (
 --
 
 INSERT INTO `jml_user_usergroup_map` (`user_id`, `group_id`) VALUES
-(669, 8);
+(669, 8),
+(670, 2);
 
 -- --------------------------------------------------------
 
@@ -3347,6 +4047,91 @@ ALTER TABLE `jml_overrider`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `jml_phocagallery`
+--
+ALTER TABLE `jml_phocagallery`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `catid` (`catid`,`published`);
+
+--
+-- Indexes for table `jml_phocagallery_categories`
+--
+ALTER TABLE `jml_phocagallery_categories`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `cat_idx` (`section`,`published`,`access`),
+  ADD KEY `idx_access` (`access`),
+  ADD KEY `idx_checkout` (`checked_out`);
+
+--
+-- Indexes for table `jml_phocagallery_comments`
+--
+ALTER TABLE `jml_phocagallery_comments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `jml_phocagallery_fb_users`
+--
+ALTER TABLE `jml_phocagallery_fb_users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `jml_phocagallery_img_comments`
+--
+ALTER TABLE `jml_phocagallery_img_comments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `jml_phocagallery_img_votes`
+--
+ALTER TABLE `jml_phocagallery_img_votes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `jml_phocagallery_img_votes_statistics`
+--
+ALTER TABLE `jml_phocagallery_img_votes_statistics`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `jml_phocagallery_styles`
+--
+ALTER TABLE `jml_phocagallery_styles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `jml_phocagallery_tags`
+--
+ALTER TABLE `jml_phocagallery_tags`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `jml_phocagallery_tags_ref`
+--
+ALTER TABLE `jml_phocagallery_tags_ref`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`),
+  ADD UNIQUE KEY `i_imgid` (`imgid`,`tagid`);
+
+--
+-- Indexes for table `jml_phocagallery_user`
+--
+ALTER TABLE `jml_phocagallery_user`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `userid` (`userid`);
+
+--
+-- Indexes for table `jml_phocagallery_votes`
+--
+ALTER TABLE `jml_phocagallery_votes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `jml_phocagallery_votes_statistics`
+--
+ALTER TABLE `jml_phocagallery_votes_statistics`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `jml_postinstall_messages`
 --
 ALTER TABLE `jml_postinstall_messages`
@@ -3513,7 +4298,7 @@ ALTER TABLE `jml_viewlevels`
 -- AUTO_INCREMENT for table `jml_assets`
 --
 ALTER TABLE `jml_assets`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Primary Key', AUTO_INCREMENT=82;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Primary Key', AUTO_INCREMENT=83;
 --
 -- AUTO_INCREMENT for table `jml_banners`
 --
@@ -3543,12 +4328,12 @@ ALTER TABLE `jml_content`
 -- AUTO_INCREMENT for table `jml_content_types`
 --
 ALTER TABLE `jml_content_types`
-  MODIFY `type_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10000;
+  MODIFY `type_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `jml_extensions`
 --
 ALTER TABLE `jml_extensions`
-  MODIFY `extension_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10026;
+  MODIFY `extension_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10028;
 --
 -- AUTO_INCREMENT for table `jml_finder_filters`
 --
@@ -3648,7 +4433,7 @@ ALTER TABLE `jml_languages`
 -- AUTO_INCREMENT for table `jml_menu`
 --
 ALTER TABLE `jml_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
 --
 -- AUTO_INCREMENT for table `jml_menu_types`
 --
@@ -3675,6 +4460,71 @@ ALTER TABLE `jml_newsfeeds`
 ALTER TABLE `jml_overrider`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT COMMENT 'Primary Key';
 --
+-- AUTO_INCREMENT for table `jml_phocagallery`
+--
+ALTER TABLE `jml_phocagallery`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+--
+-- AUTO_INCREMENT for table `jml_phocagallery_categories`
+--
+ALTER TABLE `jml_phocagallery_categories`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `jml_phocagallery_comments`
+--
+ALTER TABLE `jml_phocagallery_comments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `jml_phocagallery_fb_users`
+--
+ALTER TABLE `jml_phocagallery_fb_users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `jml_phocagallery_img_comments`
+--
+ALTER TABLE `jml_phocagallery_img_comments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `jml_phocagallery_img_votes`
+--
+ALTER TABLE `jml_phocagallery_img_votes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `jml_phocagallery_img_votes_statistics`
+--
+ALTER TABLE `jml_phocagallery_img_votes_statistics`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `jml_phocagallery_styles`
+--
+ALTER TABLE `jml_phocagallery_styles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `jml_phocagallery_tags`
+--
+ALTER TABLE `jml_phocagallery_tags`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `jml_phocagallery_tags_ref`
+--
+ALTER TABLE `jml_phocagallery_tags_ref`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `jml_phocagallery_user`
+--
+ALTER TABLE `jml_phocagallery_user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `jml_phocagallery_votes`
+--
+ALTER TABLE `jml_phocagallery_votes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `jml_phocagallery_votes_statistics`
+--
+ALTER TABLE `jml_phocagallery_votes_statistics`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `jml_postinstall_messages`
 --
 ALTER TABLE `jml_postinstall_messages`
@@ -3693,7 +4543,7 @@ ALTER TABLE `jml_tags`
 -- AUTO_INCREMENT for table `jml_template_styles`
 --
 ALTER TABLE `jml_template_styles`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `jml_ucm_content`
 --
@@ -3708,12 +4558,12 @@ ALTER TABLE `jml_ucm_history`
 -- AUTO_INCREMENT for table `jml_updates`
 --
 ALTER TABLE `jml_updates`
-  MODIFY `update_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `update_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=382;
 --
 -- AUTO_INCREMENT for table `jml_update_sites`
 --
 ALTER TABLE `jml_update_sites`
-  MODIFY `update_site_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `update_site_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `jml_usergroups`
 --
@@ -3723,7 +4573,7 @@ ALTER TABLE `jml_usergroups`
 -- AUTO_INCREMENT for table `jml_users`
 --
 ALTER TABLE `jml_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=670;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=671;
 --
 -- AUTO_INCREMENT for table `jml_user_keys`
 --
