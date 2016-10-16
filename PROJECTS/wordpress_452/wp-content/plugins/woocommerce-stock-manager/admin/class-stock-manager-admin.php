@@ -216,7 +216,7 @@ class Stock_Manager_Admin {
     
       $array_to_csv = array();
       //First line
-      $array_to_csv[] = array('id','sku','Manage stock','Stock status','Backorders','Stock','Type','Parent ID'); 
+      $array_to_csv[] = array('id','sku','Product name','Manage stock','Stock status','Backorders','Stock','Type','Parent ID'); 
        
       $products = $stock->get_products_for_export(); 
       
@@ -226,13 +226,14 @@ class Stock_Manager_Admin {
         $product_type = $item_product->product_type;
         $id = $item->ID;
         if(!empty($product_meta['_sku'][0])){          $sku = $product_meta['_sku'][0]; }else{ $sku = ''; }
+        $product_name = $item->post_title;
         if(!empty($product_meta['_manage_stock'][0])){ $manage_stock = $product_meta['_manage_stock'][0]; }else{ $manage_stock = ''; }
         if(!empty($product_meta['_stock_status'][0])){ $stock_status = $product_meta['_stock_status'][0]; }else{ $stock_status = ''; }
         if(!empty($product_meta['_backorders'][0])){   $backorders = $product_meta['_backorders'][0]; }else{ $backorders = ''; }
         if(!empty($product_meta['_stock'][0])){        $stock = $product_meta['_stock'][0]; }else{ $stock = '0'; }
         if($product_type == 'variable'){               $product_type = 'variable'; }else{ $product_type = 'simple'; }
         
-        $array_to_csv[] = array($id,$sku,$manage_stock,$stock_status,$backorders,$stock,$product_type,'');
+        $array_to_csv[] = array($id,$sku,$product_name,$manage_stock,$stock_status,$backorders,$stock,$product_type,'');
        
         if($product_type == 'variable'){
                 $args = array(
@@ -245,9 +246,24 @@ class Stock_Manager_Admin {
                 foreach($variations_array as $vars){
              
                     $var_meta = get_post_meta($vars->ID);
+                    $item_product = get_product($vars->ID);
        
                     $id = $vars->ID;
                     if(!empty($var_meta['_sku'][0])){          $sku = $var_meta['_sku'][0]; }else{ $sku = ''; }
+                    $product_name = '';
+                    foreach($item_product->variation_data as $k => $v){ 
+             			$tag = get_term_by('slug', $v, str_replace('attribute_','',$k));
+             			if($tag == false ){
+               				$product_name .= $v.' ';
+             			}else{
+             				if(is_array($tag)){
+              					$product_name .= $tag['name'].' ';
+             				}else{
+              					$product_name .= $tag->name.' ';
+             				}
+             			}
+          			} 
+                    
                     if(!empty($var_meta['_manage_stock'][0])){ $manage_stock = $var_meta['_manage_stock'][0]; }else{ $manage_stock = ''; }
                     if(!empty($var_meta['_stock_status'][0])){ $stock_status = $var_meta['_stock_status'][0]; }else{ $stock_status = ''; }
                     if(!empty($var_meta['_backorders'][0])){   $backorders = $var_meta['_backorders'][0]; }else{ $backorders = ''; }
@@ -255,7 +271,7 @@ class Stock_Manager_Admin {
                     $product_type = 'product-variant';
                     $parent_id = $item->ID; 
                     
-                    $array_to_csv[] = array($id,$sku,$manage_stock,$stock_status,$backorders,$stock,$product_type,$parent_id);                    
+                    $array_to_csv[] = array($id,$sku,$product_name,$manage_stock,$stock_status,$backorders,$stock,$product_type,$parent_id);                    
                     
                 }
          }

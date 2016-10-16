@@ -3,8 +3,14 @@
   "app_id": "",
   "v2": true,
   "typescript": true,
-  "proxies": [{
-    "path": "/torneodeirionistorici/rest",
-    "proxyUrl": "http://torneodeirionistorici.altervista.org"
-  }]
+  "proxies": [
+    {
+      "path": "/torneodeirionistorici/rest",
+      "proxyUrl": "http://torneodeirionistorici.altervista.org"
+    },
+    {
+      "path": "/PROJECTS/wordpress_452",
+      "proxyUrl": "http://localhost/alefal.it/PROJECTS/wordpress_452"
+    }
+  ]
 }

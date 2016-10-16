@@ -3,16 +3,49 @@
 	<div class="posts">
 		<div class="post-card">
 			<div class="card-header">
-				<h1 [innerHTML]="squadraName"></h1>
+				<ion-grid>
+					<ion-row>
+						<ion-col width-75>
+							<h1 [innerHTML]="squadraName"></h1>
+						</ion-col>
+						<ion-col width-25 class="close">
+							<ion-icon name="close" (click)="dismiss()"></ion-icon>
+						</ion-col>
+					</ion-row>
+				</ion-grid>
 			</div>
+
+			<div class="card-content" *ngIf="giocatori == 0">
+				<h3>Nessun giocatore</h3>
+			</div>
+
 			<div class="card-content" *ngFor="let atleta of giocatori">
-				<h3>{{atleta.Atleta}}</h3>
+
+				<ion-grid class="gridHeader">
+					<ion-row>
+						<ion-col width-25>
+							<img class="img-polaroid" *ngIf="atleta.playerPhoto != ''" src="{{atleta.playerPhoto}}" />
+							<img class="img-polaroid" *ngIf="atleta.playerPhoto == ''" src="/assets/img/userPhoto.png" />
+						</ion-col>
+						<ion-col>
+							<h3 [innerHTML]="atleta.playerName"></h3>
+							<h5>Numero <strong>{{atleta.playerNumber}}</strong></h5>
+						</ion-col>
+						<ion-col width-10>
+							<a class="card-button dark" (click)="statistiche(atleta.playerId)">
+								<ion-icon name="football"></ion-icon>
+							</a>
+						</ion-col>
+					</ion-row>
+				</ion-grid>
 			</div>
 
 			<div class="card-footer">
-				<a class="card-button primary" (click)="dismiss()">
-					<ion-icon name="close"></ion-icon> CLOSE
-				</a>
+				<div *ngIf="playerStats">
+					<div *ngFor="let stat of player">
+						{{stat.statistica}}: {{stat.valore}}
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

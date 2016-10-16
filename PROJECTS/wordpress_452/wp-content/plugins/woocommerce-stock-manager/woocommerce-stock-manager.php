@@ -3,7 +3,7 @@
  * Plugin Name:       WooCommerce Stock Manager
  * Plugin URI:        http:/toret.cz
  * Description:       WooCommerce Stock Manager
- * Version:           1.0.6
+ * Version:           1.1.1
  * Author:            Vladislav Musílek
  * Author URI:        http://toret.cz
  * Text Domain:       stock-manager
@@ -49,20 +49,29 @@ if ( is_admin() && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {
    */        
   function stock_manager_save_one_product_stock_data(){
 	
-     $product_id   = sanitize_text_field($_POST['product']);
-	   $manage_stock = sanitize_text_field($_POST['manage_stock']);
-     $stock_status = sanitize_text_field($_POST['stock_status']);
-     $backorders   = sanitize_text_field($_POST['backorders']);
-     $stock        = sanitize_text_field($_POST['stock']);
-     $price        = sanitize_text_field($_POST['regular_price']);
+    if( current_user_can('manage_woocommerce') ){
+
+    $product_id   = sanitize_text_field($_POST['product']);
+
+    check_ajax_referer( 'wsm-ajax-nonce-'.$product_id, 'secure' );
+
+      $manage_stock = sanitize_text_field($_POST['manage_stock']);
+      $stock_status = sanitize_text_field($_POST['stock_status']);
+      $backorders   = sanitize_text_field($_POST['backorders']);
+      $stock        = sanitize_text_field($_POST['stock']);
+      $price        = sanitize_text_field($_POST['regular_price']);
+      $weight       = sanitize_text_field($_POST['weight']);
   
-  
-     update_post_meta($product_id, '_manage_stock', $manage_stock);
-     update_post_meta($product_id, '_stock_status', $stock_status);
-     update_post_meta($product_id, '_backorders', $backorders);
-     update_post_meta($product_id, '_stock', $stock);
-     update_post_meta($product_id, '_regular_price', $price);
-     echo 'test';
+      update_post_meta($product_id, '_manage_stock', $manage_stock);
+      update_post_meta($product_id, '_stock_status', $stock_status);
+      update_post_meta($product_id, '_backorders', $backorders);
+      update_post_meta($product_id, '_stock', $stock);
+
+      wsm_save_price( $product_id, $price );
+      update_post_meta($product_id, '_weight', $weight);
+     
+    }
+
      exit();
   }  
   
@@ -84,3 +93,20 @@ if ( is_admin() && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {
       return $step;
   
   }  
+
+
+  /**
+   *
+   *
+   */
+  function wsm_save_price( $product_id, $regular_price ){
+
+    update_post_meta( $product_id, '_regular_price', $regular_price );
+    
+    $_product = new WC_Product( $product_id );
+
+    if( $_product->is_on_sale() === false ){
+      update_post_meta( $product_id, '_price', $regular_price );
+    }
+
+  }

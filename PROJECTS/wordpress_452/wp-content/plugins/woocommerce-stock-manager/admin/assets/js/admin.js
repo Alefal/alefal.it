@@ -17,6 +17,8 @@
        var backorders    = jQuery('.backorders_' + product).val();
        var stock         = jQuery('.stock_' + product).val();
        var regular_price = jQuery('.regular_price_' + product).val();
+       var weight        = jQuery('.weight_' + product).val();
+       var secure        = jQuery('.wsm-ajax-nonce_' + product).val();
        
        var data = {
             action       : 'save_one_product',
@@ -25,7 +27,9 @@
             stock_status : stock_status,
             backorders   : backorders,
             stock        : stock,
-            regular_price: regular_price
+            regular_price: regular_price,
+            weight       : weight,
+            secure       : secure
        };
         jQuery.post(ajaxurl, data, function(response){
            

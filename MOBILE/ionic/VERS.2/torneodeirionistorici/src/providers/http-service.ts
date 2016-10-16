@@ -10,11 +10,12 @@ export class HttpService {
          this.http = http;
     }
   
-    getCallHttp(call,teamId,tipoStat,matchId) {
-        console.log('getCallHttp: '+call+' | '+teamId+' | '+tipoStat+' | '+matchId);
+    getCallHttp(call,teamId,playerId,matchId) {
+        console.log('getCallHttp: '+call+' | '+teamId+' | '+playerId+' | '+matchId);
         
-        var host = 'http://torneodeirionistorici.altervista.org';
+        //var host = 'http://torneodeirionistorici.altervista.org';
         //var host = '/torneodeirionistorici/rest';
+        var host = '/PROJECTS/wordpress_452';
         var url = '';
         if(call == 'getComunicatiUfficiali') {
             url = '/wp-json/posts?filter[tag]=comunicatiUfficiali';
@@ -24,10 +25,12 @@ export class HttpService {
             url = '/wp-content/plugins/alefal_torneodeirionistorici/tdrs_teams.php';
         } else if(call == 'getGiocatori') {
             url = '/wp-content/plugins/alefal_torneodeirionistorici/tdrs_atleti.php?team_id='+teamId;
+        } else if(call == 'getGiocatoriStatistiche') {
+            url = '/wp-content/plugins/alefal_torneodeirionistorici/tdrs_atleti_statistiche.php?player_id='+playerId;
         } else if(call == 'getClassifica') {
-            url = '/wp-content/plugins/alefal_torneodeirionistorici/ranking.php?league_id=171&season_id=172';   //TODO: inserire gli ID's nel servizio php
+            url = '/wp-content/plugins/alefal_torneodeirionistorici/ranking.php';
         } else if(call == 'getStatistiche') {
-            url = '/wp-content/plugins/alefal_torneodeirionistorici/tdrs_marcatori.php?tipo='+tipoStat;         //TODO: cambiare nome al servizio "tdrs_statistiche.php"
+            url = '/wp-content/plugins/alefal_torneodeirionistorici/tdrs_marcatori.php?tipo='+playerId;         //TODO: cambiare nome al servizio "tdrs_statistiche.php"
         } else if(call == 'getIncontri') {
             url = '/wp-content/plugins/alefal_torneodeirionistorici/tdrs_matchs.php';
         } else if(call == 'getTabellino') {

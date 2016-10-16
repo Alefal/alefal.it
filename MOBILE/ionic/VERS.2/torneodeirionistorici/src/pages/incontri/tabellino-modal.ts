@@ -13,8 +13,7 @@ export class TabellinoModal {
   matchId: number;
   teamHome: string;
   teamAway: string;
-  goalHome: number;
-  goalAway: number;
+  result: string;
 
   tabellinoHome: any;
   tabellinoAway: any;
@@ -32,8 +31,7 @@ export class TabellinoModal {
     this.matchId = params.get('id');
     this.teamHome = params.get('teamHome');
     this.teamAway = params.get('teamAway');
-    this.goalHome = params.get('goalHome');
-    this.goalAway = params.get('goalAway');
+    this.result = params.get('result');
 
     this.loading = this.loadingCtrl.create({
       content: 'Please wait...'

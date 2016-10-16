@@ -49,14 +49,18 @@ if(isset($_POST['save-all'])){
           <th><?php _e('Product type','stock-manager'); ?></th>
           <th><?php _e('Parent ID','stock-manager'); ?></th>
           <th><?php _e('Price','stock-manager'); ?></th>
+          <th><?php _e('Weight','stock-manager'); ?></th>
           <th><?php _e('Manage stock','stock-manager'); ?></th>
           <th><?php _e('Stock status','stock-manager'); ?></th>
           <th><?php _e('Backorders','stock-manager'); ?></th>
           <th style="width:50px;"><?php _e('Stock','stock-manager'); ?></th>
+          <?php do_action( 'stock_manager_table_th' ); ?>
           <th style="width:100px;"><?php _e('Save','stock-manager'); ?></th>
         </tr>
-      <?php $products = $stock->get_products($_GET); ?>
-      <?php foreach( $products as $item ){ 
+      <?php $products = $stock->get_products($_GET); 
+      
+      if( !empty( $products->posts ) ){
+        foreach( $products->posts as $item ){ 
         $product_meta = get_post_meta($item->ID);
         $item_product = get_product($item->ID);
         $product_type = $item_product->product_type;
@@ -75,6 +79,7 @@ if(isset($_POST['save-all'])){
           </td>
           <td></td>
           <?php WCM_Table::price_box($product_meta, $item->ID); ?>
+          <?php WCM_Table::weight_box($product_meta, $item->ID); ?>
           <td>
             <select name="manage_stock[<?php echo $item->ID; ?>]" class="manage_stock_<?php echo $item->ID; ?>">
               <option value="yes" <?php if(!empty($product_meta['_manage_stock'][0]) && $product_meta['_manage_stock'][0] == 'yes'){ echo 'selected="selected"'; } ?>><?php _e('Yes','stock-manager'); ?></option>
@@ -113,6 +118,8 @@ if(isset($_POST['save-all'])){
           <td class="td_center <?php echo $class; ?>" style="width:90px;">
             <input type="number" name="stock[<?php echo $item->ID; ?>]" step="1" value="<?php echo round($stock_number); ?>" class="stock_<?php echo $item->ID; ?>" style="width:90px;" />
           </td>
+          <?php do_action( 'stock_manager_table_simple_td', $item->ID ); ?>
+          <input type="hidden" name="wsm-ajax-nonce-<?php echo $item->ID; ?>" class="wsm-ajax-nonce_<?php echo $item->ID; ?>" value="<?php echo wp_create_nonce( 'wsm-ajax-nonce-'.$item->ID ); ?>" />
           <td class="td_center"><span class="btn btn-primary btn-sm save-product" data-product="<?php echo $item->ID; ?>"><?php _e('Save','stock-manager'); ?></span></td>
         </tr>
         
@@ -153,6 +160,7 @@ if(isset($_POST['save-all'])){
           <td><?php echo $product_type; ?></td>
           <td><?php echo $item->ID; ?></td>
           <?php WCM_Table::price_box($product_meta, $vars->ID); ?>
+          <?php WCM_Table::weight_box($product_meta, $vars->ID); ?>
           <td>
             <select name="manage_stock[<?php echo $vars->ID; ?>]" class="manage_stock_<?php echo $vars->ID; ?>">
               <option value="yes" <?php if(!empty($product_meta['_manage_stock'][0]) && $product_meta['_manage_stock'][0] == 'yes'){ echo 'selected="selected"'; } ?>><?php _e('Yes','stock-manager'); ?></option>
@@ -192,6 +200,8 @@ if(isset($_POST['save-all'])){
             <?php if(empty($product_meta['_stock'][0])){ $stock_number = 0; }else{ $stock_number = $product_meta['_stock'][0]; } ?>
             <input type="number" name="stock[<?php echo $vars->ID; ?>]" step="1" value="<?php echo $stock_number; ?>" class="stock_<?php echo $vars->ID; ?>" style="width:90px;" />
           </td>
+          <?php do_action( 'stock_manager_table_variation_td', $vars->ID ); ?>
+          <input type="hidden" name="wsm-ajax-nonce-<?php echo $vars->ID; ?>" class="wsm-ajax-nonce_<?php echo $vars->ID; ?>" value="<?php echo wp_create_nonce( 'wsm-ajax-nonce-'.$vars->ID ); ?>" />
           <td class="td_center"><span class="btn btn-primary btn-sm save-product" data-product="<?php echo $vars->ID; ?>"><?php _e('Save','stock-manager'); ?></span></td>
         </tr>      
         <?php        
@@ -199,13 +209,16 @@ if(isset($_POST['save-all'])){
             }
         ?>
         
-      <?php } ?>
+      <?php }
+
+        }
+       ?>
       
       </table>
       <input type="submit" name="save-all" class="btn btn-danger" value="<?php _e('Save all','stock-manager') ?>" />
       </form>
       <div class="clear"></div>
-      <?php echo $stock->pagination(); ?>
+      <?php echo $stock->pagination( $products ); ?>
   </div>
 </div>  
   

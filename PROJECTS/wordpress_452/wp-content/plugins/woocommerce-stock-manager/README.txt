@@ -84,6 +84,34 @@ A: Try increase memory limit.
 
 == Changelog ==
 
+= 1.1.1 =
+* Fixed Search by SKU issue
+* Improve filter for multiple values
+* Added Order by filter
+* Added Persian translation
+
+= 1.1.0 =
+* Removed "f" typo on admin page
+* Fixed not saving issue
+* Added product id paramater into hooks
+* Optimized pagination method
+* Fixed on sae price issue
+
+= 1.0.9 =
+* Fixed wrong generate AJAX nonce
+* User manage WooCommerce capability control in stock_manager_save_one_product_stock_data
+
+= 1.0.8 =
+* Fixed security vulnerabily in AJAX call
+
+= 1.0.7 =
+* Fixed price saving
+* New hook stock_manager_table_th in table head before Save text
+* New hook stock_manager_table_simple_td in table line before Save button - simple product
+* New hook stock_manager_table_variation_td in table line before Save button - product variation
+* Edit product weight
+* Added product name into export file
+
 = 1.0.6 =
 * Fixed issue with export class
 
@@ -114,6 +142,14 @@ Startup version
 
 
 == Upgrade Notice ==
+
+= 1.0.7 =
+* Fixed price saving
+* New hook stock_manager_table_th in table head before Save text
+* New hook stock_manager_table_simple_td in table line before Save button - simple product
+* New hook stock_manager_table_variation_td in table line before Save button - product variation
+* Edit product weight
+* Added product name into export file
 
 = 1.0.6 =
 * Fixed issue with export class

@@ -10,8 +10,33 @@
 	<div class="posts" *ngIf="!errorMessageView">
 		<div class="post-card" *ngFor="let team of squadre">
 			<div class="card-header">
-				<h1 [innerHTML]="team.Squadra"></h1>
+				<ion-grid class="gridHeader">
+					<ion-row>
+						<ion-col>
+							<img src="{{team.SquadraLogo}}" />
+						</ion-col>
+						<ion-col>
+							<h1 [innerHTML]="team.Squadra"></h1>
+							<hr />
+							<strong>{{team.Punti}}</strong> punti in stagione
+							<hr />
+							<strong>{{team.Vinte}}</strong> vinte in stagione
+							<hr />
+							<strong>{{team.Goal}}</strong> goal fatti in stagione
+							<hr />
+							<strong>{{team.Diff}}</strong> differenza reti in stagione
+						</ion-col>
+					</ion-row>
+				</ion-grid>
 			</div>
+			<!--
+			<div class="card-content">
+				<h5 class="coloriSociali" style="color: {{team.SquadraColori}}">Colori sociali</h5>
+				<a class="card-button primary" (click)="vediGiocatori(team.SquadraId,team.Squadra)">
+					<ion-icon name="share-alt"></ion-icon> Giocatori
+				</a>
+			</div>
+			-->
 			<div class="card-footer">
 				<a class="card-button primary" (click)="vediGiocatori(team.SquadraId,team.Squadra)">
 					<ion-icon name="share-alt"></ion-icon> Giocatori

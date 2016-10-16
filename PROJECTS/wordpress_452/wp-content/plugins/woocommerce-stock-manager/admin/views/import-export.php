@@ -41,6 +41,7 @@ function stockautoUTF($s){
     <table class="table-bordered">
       <tr>
         <td><?php _e('SKU','stock-manager'); ?></td>
+        <td><?php _e('Product name','stock-manager'); ?></td>
         <td><?php _e('Manage stock','stock-manager'); ?></td>
         <td><?php _e('Stock status','stock-manager'); ?></td>
         <td><?php _e('Backorders','stock-manager'); ?></td>
@@ -50,6 +51,7 @@ function stockautoUTF($s){
       </tr>
       <tr>
         <td><?php _e('111111','stock-manager'); ?></td>
+        <td><?php _e('T-shirt','stock-manager'); ?></td>
         <td><?php _e('yes','stock-manager'); ?></td>
         <td><?php _e('instock','stock-manager'); ?></td>
         <td><?php _e('yes','stock-manager'); ?></td>
@@ -100,10 +102,10 @@ function stockautoUTF($s){
                   
                   $product_id   = stockautoUTF($data[0]);
                   $sku          = stockautoUTF($data[1]);
-                  $manage_stock = stockautoUTF($data[2]);
-                  $stock_status = stockautoUTF($data[3]);
-                  $backorders   = stockautoUTF($data[4]);
-                  $stock        = stockautoUTF($data[5]); 
+                  $manage_stock = stockautoUTF($data[3]);
+                  $stock_status = stockautoUTF($data[4]);
+                  $backorders   = stockautoUTF($data[5]);
+                  $stock        = stockautoUTF($data[6]); 
        
        
     
