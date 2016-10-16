@@ -31,8 +31,8 @@ export class Comunicati {
     this.httpService
       .getCallHttp('getComunicatiUfficiali', '', '','')
       .then(res => {
-        //console.log('SUCCESS: ' + JSON.stringify(res));
-        this.comunicati = res;
+        console.log('SUCCESS: ' + JSON.stringify(res));
+        this.comunicati = res.posts;
         this.loading.dismiss();
       })
       .catch(error => {

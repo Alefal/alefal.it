@@ -11,6 +11,10 @@
     {
       "path": "/PROJECTS/wordpress_452",
       "proxyUrl": "http://localhost/alefal.it/PROJECTS/wordpress_452"
+    },
+    {
+      "path": "/demo/leagueengine",
+      "proxyUrl": "http://www.amalficoastapps.it/demo/leagueengine"
     }
   ]
 }

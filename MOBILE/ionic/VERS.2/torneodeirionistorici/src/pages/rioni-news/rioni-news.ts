@@ -31,8 +31,8 @@ export class RioniNews {
     this.httpService
       .getCallHttp('getRioniNews', '', '','')
       .then(res => {
-        //console.log('SUCCESS: ' + JSON.stringify(res));
-        this.news = res;
+        console.log('SUCCESS: ' + JSON.stringify(res));
+        this.news = res.posts;
         this.loading.dismiss();
       })
       .catch(error => {

@@ -19,16 +19,18 @@
  */
 
 // ** MySQL settings - You can get this info from your web host ** //
+//REMOTE
+/*
+define('DB_NAME', 'Sql879752_2');
+define('DB_USER', 'Sql879752');
+define('DB_PASSWORD', '3r22nw0etv');
+define('DB_HOST', '62.149.150.236');
+
 /** The name of the database for WordPress */
+//LOCALE
 define('DB_NAME', 'wordpress452');
-
-/** MySQL database username */
 define('DB_USER', 'root');
-
-/** MySQL database password */
 define('DB_PASSWORD', '');
-
-/** MySQL hostname */
 define('DB_HOST', 'localhost');
 
 /** Database Charset to use in creating database tables. */

@@ -1,0 +1,2 @@
+Per installare tutti i plugins cordova del file package.json
+$ ionic state restore

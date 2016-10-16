@@ -11,7 +11,11 @@ page-home {
     }
 
     .grid-full ion-col {
-        border: 1px solid white;
+        color: #003d08;
+    }
+
+    .grid-full ion-col ion-icon {
+        color: white;
     }
 
     @media screen and (orientation:portrait) {
@@ -23,7 +27,7 @@ page-home {
         }
         .grid-full ion-col div {
             text-align: center;
-            padding-top: 50%;
+            padding-top: 25%;
         }
         .cell-1 { }
         .cell-2 { }

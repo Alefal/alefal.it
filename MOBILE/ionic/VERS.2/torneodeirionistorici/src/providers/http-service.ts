@@ -15,12 +15,16 @@ export class HttpService {
         
         //var host = 'http://torneodeirionistorici.altervista.org';
         //var host = '/torneodeirionistorici/rest';
-        var host = '/PROJECTS/wordpress_452';
+        //var host = '/PROJECTS/wordpress_452';
+
+        //var host = '/demo/leagueengine';
+        var host = 'http://www.amalficoastapps.it/demo/leagueengine';
+        
         var url = '';
         if(call == 'getComunicatiUfficiali') {
-            url = '/wp-json/posts?filter[tag]=comunicatiUfficiali';
+            url = '?json=get_tag_posts&tag_slug=comunicatiUfficiali';
         } else if(call == 'getRioniNews') {
-             url = '/wp-json/posts?filter[tag]=giornalinoUfficiale';
+             url = '?json=get_tag_posts&tag_slug=giornalinoUfficiale';
         } else if(call == 'getSquadre') {
             url = '/wp-content/plugins/alefal_torneodeirionistorici/tdrs_teams.php';
         } else if(call == 'getGiocatori') {
