@@ -11,7 +11,7 @@
 		<div class="post-card" *ngFor="let post of comunicati">
 			<div class="card-header">
 				<h1 [innerHTML]="post.title"></h1>
-				<h2>Posted <span>{{post.date | date: 'dd/MM/yyyy'}}</span> by <span class="author">{{post.author.name}}</span></h2>
+				<h4>Posted <span>{{post.date | date: 'dd/MM/yyyy'}}</span> by <span class="author">{{post.author.name}}</span></h4>
 			</div>
 			<div class="card-content" [innerHTML]="post.excerpt"></div>
 

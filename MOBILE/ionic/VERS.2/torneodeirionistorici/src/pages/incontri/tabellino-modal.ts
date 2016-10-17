@@ -19,8 +19,15 @@ export class TabellinoModal {
   tabellinoAway: any;
 
   loading: any;
-  errorMessage: String;
+  errorMessage: string;
   errorMessageView: any;
+
+  matchesEvents: any;
+  home_team_id: number;
+  away_team_id: number;
+
+  home_team_logo: string;
+  away_team_logo: string;
 
   constructor(
     params: NavParams,
@@ -32,6 +39,11 @@ export class TabellinoModal {
     this.teamHome = params.get('teamHome');
     this.teamAway = params.get('teamAway');
     this.result = params.get('result');
+    this.home_team_id = params.get('home_team_id');
+    this.away_team_id = params.get('away_team_id');
+
+    this.getLogo('home',this.home_team_id);
+    this.getLogo('away',this.away_team_id);
 
     this.loading = this.loadingCtrl.create({
       content: 'Please wait...'
@@ -39,13 +51,12 @@ export class TabellinoModal {
     this.loading.present();
 
     this.httpService
-      .getCallHttp('getTabellino', '', '',this.matchId)
+      .getCallHttp('getTabellino', '', '', this.matchId)
       .then(res => {
         //console.log('SUCCESS: ' + JSON.stringify(res));
 
-        if(res[0].response[0].result == 'OK') {
-          this.tabellinoHome = res[0].home;
-          this.tabellinoAway = res[0].away;
+        if (res[0].response[0].result == 'OK') {
+          this.matchesEvents = res[0].matchesEvents;
         }
         this.loading.dismiss();
       })
@@ -63,7 +74,24 @@ export class TabellinoModal {
 
   counter(num) {
     console.log(num);
-    
+  }
+
+  getLogo(section,teamId) {
+    this.httpService
+      .getCallHttp('getSquadraLogo', teamId, '', '')
+      .then(res => {
+        console.log('section: ' + section);
+        
+        if(section == 'home') {
+          this.home_team_logo = res[0].teams[0].SquadraLogo;
+        } else if(section == 'away') {
+          this.away_team_logo = res[0].teams[0].SquadraLogo;
+        }
+
+      })
+      .catch(error => {
+        console.log('ERROR: ' + error);
+      });
   }
 
 }

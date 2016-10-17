@@ -1,5 +1,14 @@
 page-home {
 
+    .home-view .post-card {
+        padding: 10px;
+        position: relative;
+        z-index: 2;
+        box-shadow: 0 1px 2px #f2f2f2;
+        background: #FFF;
+        border-radius: 2px;
+    }
+
     .grid-full ion-grid {
         height: 100%;
     }
@@ -15,13 +24,13 @@ page-home {
     }
 
     .grid-full ion-col ion-icon {
-        color: white;
+        color: #003d08;
     }
 
     @media screen and (orientation:portrait) {
         .grid-full ion-col {
             flex: 0 0 50%;
-            max-width: 50%;
+            max-width: 40%;
             text-align: center;
             padding: 10px 5px;
         }
@@ -29,45 +38,26 @@ page-home {
             text-align: center;
             padding-top: 25%;
         }
-        .cell-1 { }
-        .cell-2 { }
-        .cell-3 {
-            flex: 0 0 33% !important;
-            max-width: 33% !important;
+        .home-view .post-card {
+            margin: 5%;
         }
-        .cell-4 {
-            flex: 0 0 32% !important;
-            max-width: 32% !important;
-            margin: 0 auto;
-            margin-right: 0;
-        }
-        .cell-5 { }
-        .cell-6 { }
     }
 
     @media screen and (orientation:landscape) {
         .grid-full ion-col {
             flex: 0 0 33%;
-            max-width: 33%;
-            height: 50%;
+            max-width: 25%;
+            height: 30%;
             text-align: center;
             padding: 10px 5px;
         }
 
         .grid-full ion-col div {
             text-align: center;
-            padding-top: 25%;
         }
-        .cell-1 { }
-        .cell-2 div { 
-            padding-top: 10% !important;
+        .home-view .post-card {
+            margin: 3%;
         }
-        .cell-3 { }
-        .cell-4 { }
-        .cell-5 div { 
-            padding-top: 40% !important;
-        }
-        .cell-6 { }
     }
 
 }

@@ -7,6 +7,7 @@ require_once('functions.php');
 
 
 global $wpdb;
+$table_prefix = 'wp';
 
 $league_id=3;
 $season_id=4;
@@ -17,13 +18,11 @@ $resultArray = array();
 
 $finalArray = array();
 
-
-
 if(tdrs_leagueengine_fetch_seasons($league_id,$season_id)) {
 
-    $teams = $wpdb->get_results("SELECT * FROM wp_leagueengine_season_teams WHERE league_id = $league_id AND season_id = $season_id ORDER BY season_pts + 0 DESC, season_bp + 0 DESC, season_diff + 0 DESC, season_for + 0 DESC, season_wins + 0 DESC, team_name ASC");
+    $teams = $wpdb->get_results("SELECT * FROM ".$table_prefix."_leagueengine_season_teams WHERE league_id = $league_id AND season_id = $season_id ORDER BY season_pts + 0 DESC, season_bp + 0 DESC, season_diff + 0 DESC, season_for + 0 DESC, season_wins + 0 DESC, team_name ASC");
 
-    
+    //print_r($teams);
 
     $resultArray[] = array(
 

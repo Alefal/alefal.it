@@ -7,4 +7,19 @@ page-tabellino-modal {
   ion-col {
     text-align: center;
   }
+  .result {
+    padding-top: 10%;
+  }
+
+  .eventTime {
+    color: red;
+    font-family: "Lato", sans-serif;
+  }
+  .eventTimeline .player {
+    color: red;
+    font-family: "Lato", sans-serif;
+  }
+  .eventTimeline .timeline {
+    font-family: "Lato", sans-serif;
+  }
 }

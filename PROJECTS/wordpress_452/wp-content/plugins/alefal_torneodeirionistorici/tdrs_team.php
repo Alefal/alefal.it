@@ -7,12 +7,14 @@ $table_prefix = 'wp';
 $teamsArray = array();
 $resultArray = array();
 $finalArray = array();
+
+$team_id = $_GET['team_id'];
  
 $teams = $wpdb->get_results("
     SELECT ST.*, DATA.image, DATA.colour
     FROM ".$table_prefix."_leagueengine_season_teams AS ST
     JOIN ".$table_prefix."_leagueengine_data AS DATA ON ST.team_id = DATA.id
-    WHERE league_id = 3 AND season_id = 4 order by team_name"
+    WHERE league_id = 3 AND season_id = 4 AND ST.team_id = $team_id order by team_name" 
 );
 
 $resultArray[] = array(

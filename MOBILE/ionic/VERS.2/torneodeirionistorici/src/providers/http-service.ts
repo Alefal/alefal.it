@@ -15,10 +15,10 @@ export class HttpService {
         
         //var host = 'http://torneodeirionistorici.altervista.org';
         //var host = '/torneodeirionistorici/rest';
-        //var host = '/PROJECTS/wordpress_452';
+        var host = '/PROJECTS/wordpress_452';
 
         //var host = '/demo/leagueengine';
-        var host = 'http://www.amalficoastapps.it/demo/leagueengine';
+        //var host = 'http://www.amalficoastapps.it/demo/leagueengine';
         
         var url = '';
         if(call == 'getComunicatiUfficiali') {
@@ -27,6 +27,8 @@ export class HttpService {
              url = '?json=get_tag_posts&tag_slug=giornalinoUfficiale';
         } else if(call == 'getSquadre') {
             url = '/wp-content/plugins/alefal_torneodeirionistorici/tdrs_teams.php';
+        } else if(call == 'getSquadraLogo') {
+            url = '/wp-content/plugins/alefal_torneodeirionistorici/tdrs_team.php?team_id='+teamId;
         } else if(call == 'getGiocatori') {
             url = '/wp-content/plugins/alefal_torneodeirionistorici/tdrs_atleti.php?team_id='+teamId;
         } else if(call == 'getGiocatoriStatistiche') {

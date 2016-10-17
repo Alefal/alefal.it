@@ -2,6 +2,12 @@
 // http://ionicframework.com/docs/v2/theming/
 @import "ionic.globals";
 
+@import url(http://fonts.googleapis.com/css?family=Oxygen);
+@import url(https://fonts.googleapis.com/css?family=Arima+Madurai|Lato|Pacifico);
+//$font-family-base: "Oxygen", sans-serif !default;
+//$font-family-base: "Lato", sans-serif !default;
+//$font-family-base: "Arima Madurai", cursive !default;
+//$font-family-base: "Pacifico", cursive !default;    
 
 // Shared Variables
 // --------------------------------------------------
@@ -10,9 +16,10 @@
 // To view all the possible Ionic variables, see:
 // http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
 
-$text-color:        #000;
-$background-color:  #fff;
-
+$text-color:          #000;
+$background-color:    #fff;
+$font-family-base:      "Oxygen", sans-serif;
+$font-family-md-base:   "Oxygen", sans-serif;
 
 // Named Color Variables
 // --------------------------------------------------
@@ -42,7 +49,6 @@ $colors: (
 
 @import "ionic.theme.default";
 
-
 // Ionicons
 // --------------------------------------------------
 // The premium icon font for Ionic. For more info, please see:
@@ -52,4 +58,3 @@ $ionicons-font-path: "../assets/fonts";
 @import "ionicons";
 @import "global";
 @import "style";
-@import "wordpress";

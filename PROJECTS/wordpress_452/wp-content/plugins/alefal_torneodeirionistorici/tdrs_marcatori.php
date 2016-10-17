@@ -2,6 +2,7 @@
 require_once('../../../wp-config.php');
 
 global $wpdb;
+$table_prefix = 'wp';
 
 $teamsArray = array();
 $resultArray = array();

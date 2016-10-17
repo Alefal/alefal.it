@@ -27,7 +27,7 @@
 								style="border-radius: 0;" />
 
 						</ion-col>
-						<ion-col width-50>
+						<ion-col width-50 class="result">
 							<h1>{{result}}</h1>
 						</ion-col>
 						<ion-col>
@@ -56,49 +56,32 @@
 				<div class="errorMessage" *ngIf="errorMessageView">{{errorMessage}}</div>
 				
 				<ion-grid class="gridHeader">
-					<ion-row>
-						<ion-col>
-
-							<div *ngFor="let home of tabellinoHome" style="padding:10px">
-								<div align="right">
-									<div>{{home.atletaNome}}</div>
-									<div style="padding:10px">
-										<div *ngIf="home.atletaGoal != 0">
-											{{home.atletaGoal}} <ion-icon name="football"></ion-icon>
-										</div>
-										<div *ngIf="home.atletaAssist != 0"></div>
-										<div *ngIf="home.atletaYellowcards != 0">
-											<ion-icon name="bookmark" style="color:yellow"></ion-icon>
-										</div>
-										<div *ngIf="home.atletaRedcards != 0">
-											<ion-icon name="bookmark" style="color:red"></ion-icon>
-										</div>
-									</div>
-								</div>
+					<ion-row *ngFor="let event of matchesEvents" style="padding:10px">
+						<ion-col style="min-width: 40%; text-align:right">
+							<div *ngIf="teamHome == event.team_name" class="eventTimeline">
+								<span class="timeline">{{event.timeline_text}}</span>
+								<hr />
+								<span class="player">{{event.player_name}}</span>
 							</div>
-
-						</ion-col>
-						<ion-col>
-
-							<div *ngFor="let away of tabellinoAway" style="padding:10px">
-								<div align="left">
-									<div>{{away.atletaNome}}</div>
-									<div style="padding:10px">
-										<div *ngIf="away.atletaGoal != 0">
-											{{away.atletaGoal}} <ion-icon name="football"></ion-icon>
-										</div>
-										<div *ngIf="away.atletaAssist != 0"></div>
-										<div *ngIf="away.atletaYellowcards != 0">
-											<ion-icon name="bookmark" style="color:yellow"></ion-icon>
-										</div>
-										<div *ngIf="away.atletaRedcards != 0">
-											<ion-icon name="bookmark" style="color:red"></ion-icon>
-										</div>
-									</div>
-								</div>
+							<div *ngIf="teamAway == event.team_name" class="eventTime">
+								{{event.event_time}} '
 							</div>
-
+							
 						</ion-col>
+						<ion-col width-10 style="text-align:center">
+							|
+						</ion-col>
+						<ion-col style="min-width: 40%; text-align:left">
+							<div *ngIf="teamHome == event.team_name" class="eventTime">
+								{{event.event_time}} '
+							</div>
+							<div *ngIf="teamAway == event.team_name" class="eventTimeline">
+								<span class="timeline">{{event.timeline_text}}</span>
+								<hr />
+								<span class="player">{{event.player_name}}</span>
+							</div>
+						</ion-col>
+						
 					</ion-row>
 				</ion-grid>
 

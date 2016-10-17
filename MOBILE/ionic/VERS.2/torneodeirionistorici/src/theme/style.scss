@@ -1,143 +1,45 @@
-/* Empty. Add your own CSS if you like */
-hr {
-	border: 1px solid #efefef;
+.home-view ion-content {
+    background: #EAEAEA;
+    vertical-align: middle;
 }
-
-.eventForm .scroll-content { background: #ffffff; }
-
-.eventForm .eventTab .col div.tabtext { background: #fff; padding: 20px 0 20px; min-height: 160px; text-align: center; }
-.eventForm .eventTab .col div.tabtext i { font-size: 60px; color: #013D09; }
-.eventForm .eventTab .col div.tabtext h3 { 
-	margin: 25px 0 0 0; 
-	padding: 0; 
-	font-family: 'Open Sans', sans-serif; 
-	text-transform: uppercase; 
-	color: #013D09; 
-	font-size: 18px; 
-	}
-.eventForm .eventTab .col div.tabtext.activated, .eventForm .eventTab .col div.tabtext.active { 
-	background: #013D09; 
-	-webkit-transition: all .3s ease-in-out; 
-	-moz-transition: all .3s ease-in-out; 
-	-o-transition: all .3s ease-in-out; 
-	transition: all .3s ease-in-out; 
+.home-view .card-header {
+    padding: 15px 15px 0 15px;
 }
-.eventForm .eventTab .col div.tabtext.activated h3, .eventForm .eventTab .col div.tabtext.activated i, .eventForm .eventTab .col div.tabtext.active h3, .eventForm .eventTab .col div.tabtext.active i { 
-	color: #fff; 
-	-webkit-transition: all .3s ease-in-out; 
-	-moz-transition: all .3s ease-in-out; 
-	-o-transition: all .3s ease-in-out; 
-	transition: all .3s ease-in-out; 
+.home-view .card-footer {
+    border-top: 1px solid #ddd;
+    padding: 15px;
+    margin-top: 20px;
 }
-
-.eventForm .eventTab .col a.tabtext { background: #fff; padding: 20px 0 20px; min-height: 160px; text-align: center; }
-.eventForm .eventTab .col a.tabtext i { font-size: 60px; color: #1773ba; }
-.eventForm .eventTab .col a.tabtext h3 { margin: 25px 0 0 0; padding: 0; font-family: 'Open Sans', sans-serif; text-transform: uppercase; color: #515151; font-size: 18px; }
-.eventForm .eventTab .col a.tabtext.activated, .eventForm .eventTab .col a.tabtext.active { 
-	background: #013D09; 
-	-webkit-transition: all .3s ease-in-out; 
-	-moz-transition: all .3s ease-in-out; 
-	-o-transition: all .3s ease-in-out; 
-	transition: all .3s ease-in-out; 
+.home-view .card-content p {
+    padding: 0 15px;
 }
-.eventForm .eventTab .col a.tabtext.activated h3, .eventForm .eventTab .col a.tabtext.activated i, .eventForm .eventTab .col a.tabtext.active h3, .eventForm .eventTab .col a.tabtext.active i { 
-	color: #fff; 
-	-webkit-transition: all .3s ease-in-out; 
-	-moz-transition: all .3s ease-in-out; 
-	-o-transition: all .3s ease-in-out; 
-	transition: all .3s ease-in-out; 
+.home-view .card-content img {
+    height: auto;
+    width: calc(100% + 32px);
+    margin-left: -16px;
 }
-
-.eventForm .btnSubmit { margin: 0 !important; }
-.eventForm { background: #e9e9e9 }
-
-.eventForm .row, 
-.eventForm .col { 
-	padding:0px
+.home-view .card-content ul, .home-view .card-content ol {
+    list-style-type: square;
+    padding: 0 0 0 40px;
+    margin: 14px 0;
 }
-
-.eventForm .bar.bar-footer { background: none; border: none; height: 100px; padding: 5px 10px; }
-
-.bar.bar-positive {
-    border-color: #018813;
-    background-color: #018813;
-    background-image: linear-gradient(0deg, #018813, #018813 50%, transparent 50%);
-    color: #fff;
+.home-view .author {
+    font-weight: 400;
+    color: #4584b0;
 }
-
-.bar.bar-balanced {
-    border-color: #013D09;
-    background-color: #013D09;
-    background-image: linear-gradient(0deg, #013D09, #013D09 50%, transparent 50%);
-    color: #fff;
-}
-.menu .icon,
-.menu a {
-	color:#013D09;
-    font-weight: bold;
-}
-
-.bar-header .icon {
-	color:#fff;
-}
-.icon {
-	color:#013D09;
-}
-.item-divider {
-    padding-top: 8px;
-    padding-bottom: 8px;
-    min-height: 30px;
-    background-color: #018813;
-    color: #fff;
-    font-weight: 500;
-}
-
-.notes .goal, .notes .assist, .notes .yellowcard, .notes .redcard, .notes .sub {
+.home-view .posts {
     display: block;
-    width: 20px;
-    height: 20px;
-    line-height: 20px;
-    float: left;
-    background: url(../img/notes.png) no-repeat;
+    position: relative;
+    border-radius: .25rem;
     overflow: hidden;
-    text-indent: -100px;
+    margin: 0 auto;
 }
-.notes .goal { background-position: -5px -5px; }
-.notes .assist { background-position: -165px -5px; }
-.notes .yellowcard { background-position: -45px -5px; }
-.notes .redcard { background-position: -85px -5px; }
-.notes .sub { background-position: -125px -5px; }
-
-.spacerVertical {
-    height: 7px;
-}
-
-.teamsItem .item {
-    white-space: normal;
-    border: none;
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 30px;
-    padding-top: 30px;
-}
-
-.teamsItem img {
-    margin-top: 15px;
-}
-.teamMatchDetail img {
-    width: 50%;
-}
-.matchResult {
-    padding: 24px;
-    background: #efefef;
-    border: 2px dashed #ccc;
-    font-size: 2em;
-}
-.notesSx .goal, .notesSx .assist, .notesSx .yellowcard, .notesSx .redcard, .notesSx .sub {
-	float: right;
-}
-.notesDx .goal, .notesDx .assist, .notesDx .yellowcard, .notesDx .redcard, .notesDx .sub  {
-	float: left;
-}
-.marcatoreNomeSquadra {
-	font-size: 0.8em;
+.home-view .post-card {
+    margin: 15px;
+    padding: 15px;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 1px 2px #f2f2f2;
+    background: #FFF;
+    border-radius: 3px;
 }

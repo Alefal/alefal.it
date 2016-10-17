@@ -18,12 +18,14 @@
               		<span *ngIf="match.result == '0 - 0'">Da giocare...</span>
               		<span *ngIf="match.GoalHome != '0 - 0'">Risultato: <strong>{{match.result}}</strong></span>
             	</p>
+				<p>Presentazione <strong><span [innerHTML]="match.preview"></span></strong></p>
+				<p><span [innerHTML]="match.report"></span></p>
 			</div>
 			<div class="card-footer">
 				<a class="card-button primary" *ngIf="match.GoalHome == '0' && match.GoalAway == '0'">
 					<ion-icon name="more"></ion-icon> Da giocare
 				</a>
-				<a class="card-button primary" *ngIf="match.GoalHome != '0' || match.GoalAway != '0'" (click)="vediTabellino(match.match_id,match.home_team_id,match.away_team_id,match.result)">
+				<a class="card-button primary" *ngIf="match.GoalHome != '0' || match.GoalAway != '0'" (click)="vediTabellino(match.match_id,match.home_team_id,match.away_team_id,match.result,match.homeId,match.awayId)">
 					<ion-icon name="share-alt"></ion-icon> Tabellino
 				</a>
 			</div>

@@ -12,9 +12,9 @@
 // App Shared Sass variables belong in app.variables.scss.
 
 html {
-    
-    h2 {
-        color: red;
+     
+    h1, h2, h3, h4, h5, h6 {
+        margin: 0;
     }
 
     @media screen and (orientation:portrait) {

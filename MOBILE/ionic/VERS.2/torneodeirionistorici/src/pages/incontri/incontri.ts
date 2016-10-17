@@ -49,8 +49,15 @@ export class Incontri {
       });
   }
 
-  vediTabellino(id,teamHome,teamAway,result) {
-    let modal = this.modalCtrl.create(TabellinoModal, { id:id,teamHome:teamHome,teamAway:teamAway,result:result });
+  vediTabellino(id,teamHome,teamAway,result,home_team_id,away_team_id) {
+    let modal = this.modalCtrl.create(TabellinoModal, { 
+      id:id,
+      teamHome:teamHome,
+      teamAway:teamAway,
+      result:result,
+      home_team_id: home_team_id,
+      away_team_id: away_team_id 
+    });
     modal.present();
   }
 
