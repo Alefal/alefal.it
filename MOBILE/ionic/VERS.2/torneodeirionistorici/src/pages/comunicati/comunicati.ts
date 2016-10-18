@@ -29,7 +29,7 @@ export class Comunicati {
     this.loading.present();
 
     this.httpService
-      .getCallHttp('getComunicatiUfficiali', '', '','')
+      .getCallHttp('getComunicatiUfficiali', '', '','','')
       .then(res => {
         console.log('SUCCESS: ' + JSON.stringify(res));
         this.comunicati = res.posts;

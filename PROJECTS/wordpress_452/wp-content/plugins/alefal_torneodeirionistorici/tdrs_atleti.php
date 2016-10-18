@@ -10,8 +10,7 @@ $finalArray = array();
 
 $team_id = $_GET['team_id'];
 
-
-if(isset($_GET['team_id'])) { //692
+if(isset($team_id)) {
     $teams = $wpdb->get_results("
         SELECT PC.player_id, DATA.data_value, DATA.image, DATA.squad_number
         FROM ".$table_prefix."_leagueengine_player_careers AS PC

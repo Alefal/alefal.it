@@ -19,4 +19,14 @@ page-giocatori-modal {
         text-align: right;
     }
 
+    .card-footer ion-grid {
+        margin: 0 auto;
+    }
+    .card-footer ion-grid ion-row {
+        padding: 5px;
+    }
+    .card-footer ion-grid ion-col h4 {
+        font-size: 1.5rem;
+    }
+
 }

@@ -42,9 +42,19 @@
 
 			<div class="card-footer">
 				<div *ngIf="playerStats">
-					<div *ngFor="let stat of player">
-						{{stat.statistica}}: {{stat.valore}}
-					</div>
+					<ion-grid>
+						<ion-row class="playerHeaderStat">
+							<ion-col><strong>Statistiche Atleta</strong></ion-col>
+						</ion-row>
+						<ion-row *ngFor="let stat of player">
+							<ion-col width-75>
+								<h4 [innerHTML]="stat.statistica"></h4>
+							</ion-col>
+							<ion-col width-25>
+								<h4><strong>{{stat.valore}}</strong></h4>
+							</ion-col>
+						</ion-row>
+					</ion-grid>
 				</div>
 			</div>
 		</div>

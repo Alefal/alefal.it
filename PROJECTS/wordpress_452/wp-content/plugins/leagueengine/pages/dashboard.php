@@ -51,7 +51,7 @@
 			<ul>
 			<li>WordPress v<?php echo get_bloginfo('version'); ?></li>
 			<li>LeagueEngine v<?php echo leagueengine_version(); ?></li>
-			<li>PHP <?php echo PHP_VERSION; ?> / MYSQL <?php echo mysql_get_server_info(); ?></li>
+			<li>PHP <?php echo PHP_VERSION; ?> / MYSQL <?php //echo mysql_get_server_info(); ?></li>
 			</ul>
 			</div>
 			</div>

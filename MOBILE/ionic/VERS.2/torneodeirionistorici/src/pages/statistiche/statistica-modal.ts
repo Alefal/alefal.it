@@ -1,38 +1,44 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController, ModalController } from 'ionic-angular';
+import { NavParams, ViewController, LoadingController } from 'ionic-angular';
 
 import { HttpService } from '../../providers/http-service';
-import { RioniNewsModal } from './rioni-news-modal';
 
 @Component({
-  selector: 'page-rioni-news',
-  templateUrl: 'rioni-news.html'
+  selector: 'page-statistica-modal',
+  templateUrl: 'statistica-modal.html'
 })
-export class RioniNews {
+export class StatisticaModal {
 
-  news: any;
+  stat: string;
+  stats: string;
   loading: any;
   errorMessage: String;
   errorMessageView: any;
 
   constructor(
-    public navCtrl: NavController,
+    params: NavParams,
+    public viewCtrl: ViewController,
     private httpService: HttpService,
     public loadingCtrl: LoadingController,
-    public modalCtrl: ModalController
-  ) { }
+  ) {
+    this.stat = params.get('stat');
 
-  ionViewDidLoad() {
     this.loading = this.loadingCtrl.create({
       content: 'Please wait...'
     });
     this.loading.present();
 
     this.httpService
-      .getCallHttp('getRioniNews', '', '','','')
+      .getCallHttp('getStatistiche', '', '','',this.stat)
       .then(res => {
-        console.log('SUCCESS: ' + JSON.stringify(res));
-        this.news = res.posts;
+        //console.log('SUCCESS: ' + JSON.stringify(res));
+
+        if(res[0].response[0].result == 'OK') {
+          this.stats = res[0].stats;
+        } else {
+          this.stats = 'Nessun dato! Riprovare più tardi.';
+        }
+
         this.loading.dismiss();
       })
       .catch(error => {
@@ -43,9 +49,8 @@ export class RioniNews {
       });
   }
 
-  leggiComunicato(title,content) {
-    let modal = this.modalCtrl.create(RioniNewsModal, { title: title, content: content });
-    modal.present();
+  dismiss() {
+    this.viewCtrl.dismiss();
   }
 
 }

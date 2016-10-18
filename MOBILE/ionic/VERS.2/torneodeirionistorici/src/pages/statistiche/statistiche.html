@@ -7,4 +7,33 @@
 
 <ion-content padding>
 
+	<div class="errorMessage" *ngIf="errorMessageView">{{errorMessage}}</div>
+
+	<ion-list *ngIf="!errorMessageView" style="margin: 20px;" class="listStats">
+		<ion-item class="itemHeader">
+			Clicca per il dettaglio
+		</ion-item>
+
+		<ion-item (click)="leggiStatistica('Goals')">
+			<ion-icon name="football" item-left></ion-icon>
+			Goals
+			<ion-icon name="ios-arrow-forward" item-right></ion-icon>
+		</ion-item>
+		<ion-item (click)="leggiStatistica('Assist')">
+			<ion-icon name="contact" item-left></ion-icon>
+			Assist
+			<ion-icon name="ios-arrow-forward" item-right></ion-icon>
+		</ion-item>
+		<ion-item (click)="leggiStatistica('Gialli')">
+			<ion-icon name="bookmark" item-left style="color:yellow"></ion-icon>
+			Gialli
+			<ion-icon name="ios-arrow-forward" item-right></ion-icon>
+		</ion-item>
+		<ion-item (click)="leggiStatistica('Rossi')">
+			<ion-icon name="bookmark" item-left style="color:red"></ion-icon>
+			Rossi
+			<ion-icon name="ios-arrow-forward" item-right></ion-icon>
+		</ion-item>
+	</ion-list>
+
 </ion-content>

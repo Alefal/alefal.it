@@ -10,15 +10,15 @@ export class HttpService {
          this.http = http;
     }
   
-    getCallHttp(call,teamId,playerId,matchId) {
+    getCallHttp(call,teamId,playerId,matchId,stat) {
         console.log('getCallHttp: '+call+' | '+teamId+' | '+playerId+' | '+matchId);
         
         //var host = 'http://torneodeirionistorici.altervista.org';
         //var host = '/torneodeirionistorici/rest';
-        var host = '/PROJECTS/wordpress_452';
+        //var host = '/PROJECTS/wordpress_452';
 
         //var host = '/demo/leagueengine';
-        //var host = 'http://www.amalficoastapps.it/demo/leagueengine';
+        var host = 'http://www.amalficoastapps.it/demo/leagueengine';
         
         var url = '';
         if(call == 'getComunicatiUfficiali') {
@@ -34,9 +34,9 @@ export class HttpService {
         } else if(call == 'getGiocatoriStatistiche') {
             url = '/wp-content/plugins/alefal_torneodeirionistorici/tdrs_atleti_statistiche.php?player_id='+playerId;
         } else if(call == 'getClassifica') {
-            url = '/wp-content/plugins/alefal_torneodeirionistorici/ranking.php';
+            url = '/wp-content/plugins/alefal_torneodeirionistorici/tdrs_ranking.php';
         } else if(call == 'getStatistiche') {
-            url = '/wp-content/plugins/alefal_torneodeirionistorici/tdrs_marcatori.php?tipo='+playerId;         //TODO: cambiare nome al servizio "tdrs_statistiche.php"
+            url = '/wp-content/plugins/alefal_torneodeirionistorici/tdrs_statistiche.php?stat='+stat;
         } else if(call == 'getIncontri') {
             url = '/wp-content/plugins/alefal_torneodeirionistorici/tdrs_matchs.php';
         } else if(call == 'getTabellino') {

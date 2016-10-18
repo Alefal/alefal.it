@@ -29,6 +29,8 @@ export class TabellinoModal {
   home_team_logo: string;
   away_team_logo: string;
 
+  intervalId: any;
+
   constructor(
     params: NavParams,
     public viewCtrl: ViewController,
@@ -42,16 +44,34 @@ export class TabellinoModal {
     this.home_team_id = params.get('home_team_id');
     this.away_team_id = params.get('away_team_id');
 
-    this.getLogo('home',this.home_team_id);
-    this.getLogo('away',this.away_team_id);
+    //this.getLogo('home',this.home_team_id);
+    //this.getLogo('away',this.away_team_id);
 
+    this.getTabellino(this.matchId);
+
+    this.intervalId = setInterval(() => {
+      this.getTabellinoPolling(this.matchId);
+    }, 10000);
+    
+  }
+
+  dismiss() {
+    clearInterval(this.intervalId);
+    this.viewCtrl.dismiss();
+  }
+
+  counter(num) {
+    console.log(num);
+  }
+
+  getTabellino(matchId) {
     this.loading = this.loadingCtrl.create({
       content: 'Please wait...'
     });
     this.loading.present();
 
     this.httpService
-      .getCallHttp('getTabellino', '', '', this.matchId)
+      .getCallHttp('getTabellino', '', '', matchId,'')
       .then(res => {
         //console.log('SUCCESS: ' + JSON.stringify(res));
 
@@ -67,18 +87,22 @@ export class TabellinoModal {
         this.loading.dismiss();
       });
   }
-
-  dismiss() {
-    this.viewCtrl.dismiss();
-  }
-
-  counter(num) {
-    console.log(num);
+  getTabellinoPolling(matchId) {
+    this.httpService
+      .getCallHttp('getTabellino', '', '', matchId,'')
+      .then(res => {
+        if (res[0].response[0].result == 'OK') {
+          this.matchesEvents = res[0].matchesEvents;
+        }
+      })
+      .catch(error => {
+        console.log('ERROR: ' + error);
+      });
   }
 
   getLogo(section,teamId) {
     this.httpService
-      .getCallHttp('getSquadraLogo', teamId, '', '')
+      .getCallHttp('getSquadraLogo', teamId, '', '', '')
       .then(res => {
         console.log('section: ' + section);
         

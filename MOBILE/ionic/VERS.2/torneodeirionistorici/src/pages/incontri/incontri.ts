@@ -29,7 +29,7 @@ export class Incontri {
     this.loading.present();
 
     this.httpService
-      .getCallHttp('getIncontri', '', '','')
+      .getCallHttp('getIncontri', '', '','','')
       .then(res => {
         //console.log('SUCCESS: ' + JSON.stringify(res));
 

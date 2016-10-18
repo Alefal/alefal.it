@@ -1,0 +1,40 @@
+<ion-content padding class="home-view">
+	<div class="errorMessage" *ngIf="errorMessageView">{{errorMessage}}</div>
+
+	<div class="posts" *ngIf="!errorMessageView">
+		<div class="post-card">
+			<div class="card-header">
+				<ion-grid>
+					<ion-row>
+						<ion-col width-75>
+							<h1>{{stat}}</h1>
+						</ion-col>
+						<ion-col width-25 class="close">
+							<ion-icon name="close" (click)="dismiss()"></ion-icon>
+						</ion-col>
+					</ion-row>
+				</ion-grid>
+			</div>
+			<div class="card-content" *ngFor="let el of stats">
+				<ion-grid>
+					<ion-row>
+						<ion-col width-75>
+							<h4 [innerHTML]="el.player"></h4>
+						</ion-col>
+						<ion-col width-25 class="close">
+							<h4>{{el.stat}}</h4>
+						</ion-col>
+					</ion-row>
+				</ion-grid>
+
+			</div>
+
+			<div class="card-footer">
+				<a class="card-button primary" (click)="dismiss()">
+					<ion-icon name="close"></ion-icon> CLOSE
+				</a>
+			</div>
+		</div>
+	</div>
+
+</ion-content>

@@ -29,7 +29,7 @@ export class Squadre {
     this.loading.present();
 
     this.httpService
-      .getCallHttp('getSquadre', '', '','')
+      .getCallHttp('getSquadre', '', '','','')
       .then(res => {
         //console.log('SUCCESS: ' + JSON.stringify(res));
 

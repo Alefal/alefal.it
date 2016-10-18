@@ -14,6 +14,7 @@ import { TabellinoModal }           from '../pages/incontri/tabellino-modal';
 import { Classifica }               from '../pages/classifica/classifica';
 import { ClassificaDetail }         from '../pages/classifica/classifica-detail';
 import { Statistiche }              from '../pages/statistiche/statistiche';
+import { StatisticaModal }          from '../pages/statistiche/statistica-modal';
 
 import { ConnectivityService }      from '../providers/connectivity-service';
 import { DatabaseService }          from '../providers/database-service';
@@ -36,6 +37,7 @@ import { LoopNumber }               from '../pipes/loopnumber.pipe';
     Classifica,
     ClassificaDetail,
     Statistiche,
+    StatisticaModal,
     LoopNumber //pipe
   ],
   imports: [
@@ -55,7 +57,8 @@ import { LoopNumber }               from '../pipes/loopnumber.pipe';
     TabellinoModal,
     Classifica,
     ClassificaDetail,
-    Statistiche
+    Statistiche,
+    StatisticaModal
   ],
   providers: [
     ConnectivityService,

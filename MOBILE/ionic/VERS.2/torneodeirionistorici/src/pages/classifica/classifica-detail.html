@@ -1,13 +1,46 @@
-<ion-content padding>
-
-	{{rank.name}}<br/>
-	{{rank.pts}}<br/>
-	{{rank.diff}}<br/>
-	{{rank.gioc}}<br/>
-	{{rank.vitt}}<br/>
-	{{rank.par}}<br/>
-	{{rank.scon}}<br/>
-	{{rank.gf}}<br/>
-	{{rank.gs}}<br/>
+<ion-content padding class="classificaDetail">
+	<div class="posts">
+		<div class="post-card">
+			<div class="card-header">
+				<h3>{{rank.name}}</h3>
+			</div>
+			<div class="card-content">
+				<ion-grid>
+					<ion-row>
+						<ion-col width-75><h5>Punti</h5></ion-col>
+						<ion-col width-25><h4>{{rank.pts}}</h4></ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col width-75><h5>Giocate</h5></ion-col>
+						<ion-col width-25><h4>{{rank.gioc}}</h4></ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col width-75><h5>Vittorie</h5></ion-col>
+						<ion-col width-25><h4>{{rank.vitt}}</h4></ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col width-75><h5>Pareggi</h5></ion-col>
+						<ion-col width-25><h4>{{rank.par}}</h4></ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col width-75><h5>Sconfitte</h5></ion-col>
+						<ion-col width-25><h4>{{rank.scon}}</h4></ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col width-75><h5>GF</h5></ion-col>
+						<ion-col width-25><h4>{{rank.gf}}</h4></ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col width-75><h5>GS</h5></ion-col>
+						<ion-col width-25><h4>{{rank.gs}}</h4></ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col width-75><h5>+/-</h5></ion-col>
+						<ion-col width-25><h4>{{rank.diff}}</h4></ion-col>
+					</ion-row>
+				</ion-grid>
+			</div>
+		</div>
+	</div>
 
 </ion-content>
