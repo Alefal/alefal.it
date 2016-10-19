@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavParams, ViewController, LoadingController } from 'ionic-angular';
 
 import { HttpService } from '../../providers/http-service';
-import { LoopNumber } from '../../pipes/loopnumber.pipe.ts'
+//import { LoopNumber } from '../../pipes/loopnumber.pipe.ts'
 
 @Component({
   selector: 'page-tabellino-modal',

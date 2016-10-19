@@ -1,4 +1,4 @@
 <?php 
-wp_redirect( wp_login_url() ); 
-exit; 
+//wp_redirect( wp_login_url() ); 
+//exit; 
 ?>

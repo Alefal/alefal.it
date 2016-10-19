@@ -4,7 +4,17 @@ page-classifica {
         background-color: #003d08;
         color: white;
         margin: 0 auto;
+        padding: 25px;
+    }
+
+    .listStats {
+        color: #003d08;
+        margin: 0 auto;
+        margin: 20px;
         padding: 5px;
         padding-top: 15px;
+    }
+    .listStats ion-item {
+        padding: 15px;
     }
 }

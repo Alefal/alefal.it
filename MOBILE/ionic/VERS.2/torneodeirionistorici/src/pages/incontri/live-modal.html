@@ -1,0 +1,30 @@
+<ion-content padding class="home-view">
+
+	<div class="posts">
+		<div class="post-card">
+			<div class="card-header">
+				<ion-grid class="gridHeader">
+					<ion-row>
+						<ion-col><h5>{{homeName}}</h5></ion-col>
+						<ion-col class="result">
+							<h4>{{result}}</h4>
+						</ion-col>
+						<ion-col><h5>{{awayName}}</h5></ion-col>
+					</ion-row>
+				</ion-grid>
+			</div>
+			<div class="card-content">
+				<div class="video-container">
+					<iframe class="e2e-iframe-trusted-src" width="100%" [src]="videoUrl"></iframe>
+				</div>
+			</div>
+
+			<div class="card-footer">
+				<a class="card-button primary" (click)="dismiss()">
+					<ion-icon name="close"></ion-icon> CLOSE
+				</a>
+			</div>
+		</div>
+	</div>
+
+</ion-content>

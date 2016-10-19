@@ -11,6 +11,7 @@ import { Squadre }                  from '../pages/squadre/squadre';
 import { GiocatoriModal }           from '../pages/squadre/giocatori-modal';
 import { Incontri }                 from '../pages/incontri/incontri';
 import { TabellinoModal }           from '../pages/incontri/tabellino-modal';
+import { LiveModal }                from '../pages/incontri/live-modal';
 import { Classifica }               from '../pages/classifica/classifica';
 import { ClassificaDetail }         from '../pages/classifica/classifica-detail';
 import { Statistiche }              from '../pages/statistiche/statistiche';
@@ -34,6 +35,7 @@ import { LoopNumber }               from '../pipes/loopnumber.pipe';
     GiocatoriModal,
     Incontri,
     TabellinoModal,
+    LiveModal,
     Classifica,
     ClassificaDetail,
     Statistiche,
@@ -55,6 +57,7 @@ import { LoopNumber }               from '../pipes/loopnumber.pipe';
     GiocatoriModal,
     Incontri,
     TabellinoModal,
+    LiveModal,
     Classifica,
     ClassificaDetail,
     Statistiche,

@@ -1,5 +1,36 @@
 page-home {
 
+    .button-block {
+        width: 90%;
+        margin: 0 auto !important;
+        min-height: 75px;
+    }
+
+    button span {
+        margin-left: 10px;
+    }
+
+    .listStats {
+        color: #003d08;
+        margin: 0 auto;
+        margin: 20px;
+        padding: 5px;
+        padding-top: 15px;
+    }
+    .listStats ion-item {
+        padding: 15px;
+    }
+
+    .itemHeader {
+        background-color: #003d08;
+        color: white;
+        border: none !important;
+    }
+
+    .itemHeader .item-inner {
+        border: none !important;
+    }
+
     .home-view .post-card {
         padding: 10px;
         position: relative;

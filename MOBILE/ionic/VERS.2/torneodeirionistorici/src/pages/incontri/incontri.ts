@@ -3,6 +3,7 @@ import { NavController, LoadingController, ModalController } from 'ionic-angular
 
 import { HttpService } from '../../providers/http-service';
 import { TabellinoModal } from './tabellino-modal';
+import { LiveModal } from './live-modal';
 
 @Component({
   selector: 'page-incontri',
@@ -49,7 +50,7 @@ export class Incontri {
       });
   }
 
-  vediTabellino(id,teamHome,teamAway,result,home_team_id,away_team_id) {
+  tabellino(id,teamHome,teamAway,result,home_team_id,away_team_id) {
     let modal = this.modalCtrl.create(TabellinoModal, { 
       id:id,
       teamHome:teamHome,
@@ -57,6 +58,16 @@ export class Incontri {
       result:result,
       home_team_id: home_team_id,
       away_team_id: away_team_id 
+    });
+    modal.present();
+  }
+
+  live(homeName,awayName,result,youtubeCode) {
+    let modal = this.modalCtrl.create(LiveModal, { 
+      homeName:homeName,
+      awayName:awayName,
+      result:result,
+      youtubeCode: youtubeCode 
     });
     modal.present();
   }

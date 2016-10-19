@@ -43,7 +43,8 @@
     "ionic-plugin-keyboard",
     "cordova-sqlite-storage",
     "cordova-plugin-network-information",
-    "phonegap-plugin-push"
+    "phonegap-plugin-push",
+    "com.bunkerpalace.cordova.YoutubeVideoPlayer"
   ],
   "cordovaPlatforms": []
 }
