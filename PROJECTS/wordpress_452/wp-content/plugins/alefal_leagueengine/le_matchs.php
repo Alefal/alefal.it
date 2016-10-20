@@ -9,6 +9,7 @@ $matchsArray = array();
 $resultArray = array();
 $finalArray = array();
 
+/*
 $matchs = $wpdb->get_results("
 	SELECT SM.*, SMA.attribute_value, DATA_V.data_value 
 	FROM ".$table_prefix."leagueengine_season_matches AS SM
@@ -16,6 +17,14 @@ $matchs = $wpdb->get_results("
         INNER JOIN ".$table_prefix."leagueengine_data AS DATA_V ON DATA_V.id = SMA.attribute_id
 	WHERE SM.league_id = '$league_id' AND SM.season_id = '$season_id' AND DATA_V.data_value LIKE '%YouTubeCode%'
 	ORDER BY SM.match_date ASC, SM.match_time ASC"
+);
+*/
+
+$matchs = $wpdb->get_results("
+    SELECT SM.*
+    FROM ".$table_prefix."leagueengine_season_matches AS SM
+    WHERE SM.league_id = $league_id AND SM.season_id = $season_id
+    ORDER BY SM.match_date ASC, SM.match_time ASC"
 );
 
 $resultArray[] = array(
@@ -40,8 +49,7 @@ foreach ($matchs as $match) {
         'awayGoal'			=> $match->away_team_score,
         'result'			=> $match->home_team_score . ' - ' . $match->away_team_score,
         'preview'			=> $match->preview,
-        'report'			=> $match->report,
-        'youtubeCode'		=> $match->attribute_value
+        'report'			=> $match->report
     );
 }
 

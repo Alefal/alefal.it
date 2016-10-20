@@ -3,6 +3,9 @@
 $league_id = 2; 
 $season_id = 32;
 
+//$league_id = 50; 
+//$season_id = 51;
+
 function le_leagueengine_table_gp($league,$season,$team) {
 
 	global $wpdb;

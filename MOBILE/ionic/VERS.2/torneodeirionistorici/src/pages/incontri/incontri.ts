@@ -62,12 +62,12 @@ export class Incontri {
     modal.present();
   }
 
-  live(homeName,awayName,result,youtubeCode) {
+  live(matchId,homeName,awayName,result) {
     let modal = this.modalCtrl.create(LiveModal, { 
+      matchId: matchId ,
       homeName:homeName,
       awayName:awayName,
-      result:result,
-      youtubeCode: youtubeCode 
+      result:result
     });
     modal.present();
   }

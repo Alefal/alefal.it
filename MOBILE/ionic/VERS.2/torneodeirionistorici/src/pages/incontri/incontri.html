@@ -30,7 +30,7 @@
 				<a class="card-button primary" *ngIf="match.homeGoal != '' && match.awayGoal != ''" (click)="tabellino(match.match_id,match.homeName,match.awayName,match.result,match.homeId,match.awayId)">
 					<span><ion-icon name="share-alt"></ion-icon> Tabellino</span>
 				</a>
-				<a class="card-button primary" *ngIf="match.homeGoal != '' && match.awayGoal != ''" (click)="live(match.homeName,match.awayName,match.result,match.youtubeCode)">
+				<a class="card-button primary" *ngIf="match.homeGoal != '' && match.awayGoal != ''" (click)="live(match.match_id,match.homeName,match.awayName,match.result)">
 					<span *ngIf="match.youtubeCode != ''"><ion-icon name="eye"></ion-icon> Live</span>
 				</a>
 				

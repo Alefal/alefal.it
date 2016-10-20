@@ -13,8 +13,8 @@
 					</ion-row>
 				</ion-grid>
 			</div>
-			<div class="card-content">
-				<div class="video-container">
+			<div class="card-content" *ngFor="let attr of attrs">
+				<div class="video-container" *ngIf="attr.attrName == 'YouTubeCode'">
 					<iframe class="e2e-iframe-trusted-src" width="100%" [src]="videoUrl"></iframe>
 				</div>
 			</div>

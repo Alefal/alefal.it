@@ -42,6 +42,8 @@ export class HttpService {
             url = '/wp-content/plugins/alefal_leagueengine/le_matchs.php';
         } else if(call == 'getTabellino') {
             url = '/wp-content/plugins/alefal_leagueengine/le_matchDetails.php?match_id='+matchId;
+        } else if(call == 'getIncontroAttr') {
+            url = '/wp-content/plugins/alefal_leagueengine/le_matchAttr.php?match_id='+matchId;
         }
 
         console.log('URL: '+url);
