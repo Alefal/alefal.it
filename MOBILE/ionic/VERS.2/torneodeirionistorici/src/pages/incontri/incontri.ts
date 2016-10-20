@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController, ModalController } from 'ionic-angular';
+import { NavParams, NavController, LoadingController, ModalController } from 'ionic-angular';
 
 import { HttpService } from '../../providers/http-service';
 import { TabellinoModal } from './tabellino-modal';
@@ -16,12 +16,17 @@ export class Incontri {
   errorMessage: String;
   errorMessageView: any;
 
+  tipologiaTorneo: string;
+
   constructor(
+    public params: NavParams,
     public navCtrl: NavController,
     private httpService: HttpService,
     public loadingCtrl: LoadingController,
     public modalCtrl: ModalController
-  ) { }
+  ) { 
+    this.tipologiaTorneo = params.get('tipologia'); //league | tournament
+  }
 
   ionViewDidLoad() {
     this.loading = this.loadingCtrl.create({
@@ -30,7 +35,7 @@ export class Incontri {
     this.loading.present();
 
     this.httpService
-      .getCallHttp('getIncontri', '', '','','')
+      .getCallHttp('getIncontri','','','','',this.tipologiaTorneo)
       .then(res => {
         //console.log('SUCCESS: ' + JSON.stringify(res));
 

@@ -16,32 +16,28 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, public params: NavParams) { }
 
-  navigate(section,element) {
+  navigate(section,tipologia) {
     console.log('-> '+section);
 
     if(section == 'Comunicati'){
-      this.navCtrl.push(Comunicati, {
-        element: element
-      });
+      this.navCtrl.push(Comunicati);
     } else if(section == 'RioniNews'){
-      this.navCtrl.push(RioniNews, {
-        element: element
-      });
+      this.navCtrl.push(RioniNews);
     } else if(section == 'Squadre'){
       this.navCtrl.push(Squadre, {
-        element: element
+        tipologia: tipologia
       });
     } else if(section == 'Incontri'){
       this.navCtrl.push(Incontri, {
-        element: element
+        tipologia: tipologia
       });
     } else if(section == 'Classifica'){
       this.navCtrl.push(Classifica, {
-        element: element
+        tipologia: tipologia
       });
     } else if(section == 'Statistiche'){
       this.navCtrl.push(Statistiche, {
-        element: element
+        tipologia: tipologia
       });
     }
   }

@@ -41,7 +41,7 @@ export class LiveModal {
     this.loading.present();
 
     this.httpService
-      .getCallHttp('getIncontroAttr', '', '',this.matchId,'')
+      .getCallHttp('getIncontroAttr','','',this.matchId,'','')
       .then(res => {
         //console.log('SUCCESS: ' + JSON.stringify(res));
 

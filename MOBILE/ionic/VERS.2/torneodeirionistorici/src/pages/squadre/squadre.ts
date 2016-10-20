@@ -18,38 +18,23 @@ export class Squadre {
   tipologiaTorneo: string;
 
   constructor(
-    params: NavParams,
+    public params: NavParams,
     public navCtrl: NavController,
     private httpService: HttpService,
     public loadingCtrl: LoadingController,
     public modalCtrl: ModalController
   ) { 
-    this.tipologiaTorneo = params.get('element');
-
-    
+    this.tipologiaTorneo = params.get('tipologia'); //league | tournament
   }
 
   ionViewDidLoad() {
-    console.log(this.tipologiaTorneo);
-
-    let tipologia = '';
-    if(this.tipologiaTorneo == 'league') {
-      tipologia = 'getSquadre';
-    } else if(this.tipologiaTorneo == 'tournament') {
-      tipologia = 'getSquadreTorneo';
-    } else {
-      tipologia = 'getSquadre';
-    }
-
-    console.log(tipologia);
-
     this.loading = this.loadingCtrl.create({
       content: 'Please wait...'
     });
     this.loading.present();
 
     this.httpService
-      .getCallHttp(tipologia, '', '','','')
+      .getCallHttp('getSquadre','','','','',this.tipologiaTorneo)
       .then(res => {
         //console.log('SUCCESS: ' + JSON.stringify(res));
 

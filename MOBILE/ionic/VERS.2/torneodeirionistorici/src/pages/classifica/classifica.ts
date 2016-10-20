@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController, PopoverController } from 'ionic-angular';
-import {HttpService} from '../../providers/http-service';
+import { NavParams, NavController, LoadingController, PopoverController } from 'ionic-angular';
+import { HttpService } from '../../providers/http-service';
 
 import { ClassificaDetail }     from '../classifica/classifica-detail';
 
@@ -15,12 +15,17 @@ export class Classifica {
   errorMessage: String;
   errorMessageView: any;
 
+  tipologiaTorneo: string;
+
   constructor(
+    public params: NavParams,
     public navCtrl: NavController,
     private httpService: HttpService,
     public loadingCtrl: LoadingController,
     public popoverCtrl: PopoverController
-  ) { }
+  ) { 
+    this.tipologiaTorneo = params.get('tipologia'); //league | tournament
+  }
 
   ionViewDidLoad() {
     console.log('Hello Classifica Page');
@@ -30,7 +35,7 @@ export class Classifica {
     this.loading.present();
 
     this.httpService
-      .getCallHttp('getClassifica', '', '','','')
+      .getCallHttp('getClassifica','','','','',this.tipologiaTorneo)
       .then(res => {
         //console.log('SUCCESS: ' + JSON.stringify(res));
 

@@ -41,7 +41,7 @@ export class GiocatoriModal {
     this.loading.present();
 
     this.httpService
-      .getCallHttp('getGiocatori', this.squadraId, '','','')
+      .getCallHttp('getGiocatori',this.squadraId,'','','',this.tipologiaTorneo)
       .then(res => {
         console.log('SUCCESS: ' + JSON.stringify(res));
 
@@ -73,7 +73,7 @@ export class GiocatoriModal {
     this.loading.present();
 
     this.httpService
-      .getCallHttp('getGiocatoriStatistiche', '', playerId,'','')
+      .getCallHttp('getGiocatoriStatistiche','',playerId,'','','')
       .then(res => {
         //console.log('SUCCESS: ' + JSON.stringify(res));
         //console.log('SUCCESS: ' + JSON.stringify(res[0].atleta));

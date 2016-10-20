@@ -10,8 +10,9 @@ $resultArray = array();
 $finalArray = array();
 
 $team_id = $_GET['team_id'];
+$tipologiaTorneo = $_GET['tipologiaTorneo']; //league | tournamen
 
-if(isset($team_id)) {
+if(isset($team_id) && isset($tipologiaTorneo)) {
     /*
     $teams = $wpdb->get_results("
         SELECT PC.player_id, DATA.data_value, DATA.image, DATA.squad_number
@@ -20,12 +21,19 @@ if(isset($team_id)) {
         WHERE team_id = $team_id AND league_id = $league_id AND season_id = $season_id"
     );
     */
-
-    $teams = $wpdb->get_results("
-        SELECT PC.*
-        FROM ".$table_prefix."leagueengine_player_careers AS PC 
-        WHERE team_id = $team_id AND league_id = $league_id AND season_id = $season_id"
-    );
+    if($tipologiaTorneo == 'league') {
+        $teams = $wpdb->get_results("
+            SELECT PC.*
+            FROM ".$table_prefix."leagueengine_player_careers AS PC 
+            WHERE team_id = $team_id AND league_id = $league_id AND season_id = $season_id"
+        );
+    } else if($tipologiaTorneo == 'tournament') {
+        $teams = $wpdb->get_results("
+            SELECT PC.*
+            FROM ".$table_prefix."leagueengine_player_careers AS PC 
+            WHERE team_id = $team_id AND tournament_id = $tournament_id"
+        );
+    }
 
     $resultArray[] = array(
         'result'  => 'OK',

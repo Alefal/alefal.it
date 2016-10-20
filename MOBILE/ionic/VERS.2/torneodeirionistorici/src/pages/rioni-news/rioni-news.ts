@@ -29,7 +29,7 @@ export class RioniNews {
     this.loading.present();
 
     this.httpService
-      .getCallHttp('getRioniNews', '', '','','')
+      .getCallHttp('getRioniNews','','','','','')
       .then(res => {
         console.log('SUCCESS: ' + JSON.stringify(res));
         this.news = res.posts;

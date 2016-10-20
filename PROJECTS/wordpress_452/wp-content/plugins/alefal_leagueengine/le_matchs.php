@@ -20,36 +20,55 @@ $matchs = $wpdb->get_results("
 );
 */
 
-$matchs = $wpdb->get_results("
-    SELECT SM.*
-    FROM ".$table_prefix."leagueengine_season_matches AS SM
-    WHERE SM.league_id = $league_id AND SM.season_id = $season_id
-    ORDER BY SM.match_date ASC, SM.match_time ASC"
-);
+$tipologiaTorneo = $_GET['tipologiaTorneo']; //league | tournament
 
-$resultArray[] = array(
-    'result'  => 'OK',
-    'message' => 'OK'
-);
+if(isset($tipologiaTorneo)) {
+    
+    if($tipologiaTorneo == 'league') {
+        $matchs = $wpdb->get_results("
+            SELECT SM.*
+            FROM ".$table_prefix."leagueengine_season_matches AS SM
+            WHERE SM.league_id = $league_id AND SM.season_id = $season_id
+            ORDER BY SM.match_date ASC, SM.match_time ASC"
+        );
+    } else if($tipologiaTorneo == 'tournament') {
+        $matchs = $wpdb->get_results("
+            SELECT SM.*
+            FROM ".$table_prefix."leagueengine_season_matches AS SM
+            WHERE SM.tournament_id = $tournament_id
+            ORDER BY SM.match_date ASC, SM.match_time ASC"
+        );
+    }
 
-//print_r($matchs);
-foreach ($matchs as $match) {
-	$match_date = date(le_leagueengine_fetch_settings('date_format_php'),strtotime($match->match_date));
-    $match_time = date(le_leagueengine_fetch_settings('time_format_php'),strtotime($match->match_time));
+    $resultArray[] = array(
+        'result'  => 'OK',
+        'message' => 'OK'
+    );
 
-	$matchsArray[] = array(
-        'match_id'			=> $match->id,
-		'match_date'		=> $match_date,
-        'match_time'		=> $match_time,
-        'homeName'			=> le_leagueengine_fetch_data_from_id($match->home_team_id,'data_value'),
-        'awayName'			=> le_leagueengine_fetch_data_from_id($match->away_team_id,'data_value'),
-        'homeId'			=> $match->home_team_id,
-        'awayId'			=> $match->away_team_id,
-        'homeGoal'			=> $match->home_team_score,
-        'awayGoal'			=> $match->away_team_score,
-        'result'			=> $match->home_team_score . ' - ' . $match->away_team_score,
-        'preview'			=> $match->preview,
-        'report'			=> $match->report
+    //print_r($matchs);
+    foreach ($matchs as $match) {
+    	$match_date = date(le_leagueengine_fetch_settings('date_format_php'),strtotime($match->match_date));
+        $match_time = date(le_leagueengine_fetch_settings('time_format_php'),strtotime($match->match_time));
+
+    	$matchsArray[] = array(
+            'match_id'			=> $match->id,
+    		'match_date'		=> $match_date,
+            'match_time'		=> $match_time,
+            'homeName'			=> le_leagueengine_fetch_data_from_id($match->home_team_id,'data_value'),
+            'awayName'			=> le_leagueengine_fetch_data_from_id($match->away_team_id,'data_value'),
+            'homeId'			=> $match->home_team_id,
+            'awayId'			=> $match->away_team_id,
+            'homeGoal'			=> $match->home_team_score,
+            'awayGoal'			=> $match->away_team_score,
+            'result'			=> $match->home_team_score . ' - ' . $match->away_team_score,
+            'preview'			=> $match->preview,
+            'report'			=> $match->report
+        );
+    }
+} else {
+    $resultArray[] = array(
+        'result'  => 'KO',
+        'message' => 'Verificare i parametri'
     );
 }
 

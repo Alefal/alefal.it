@@ -15,21 +15,24 @@ export class StatisticaModal {
   errorMessage: String;
   errorMessageView: any;
 
+  tipologiaTorneo: string;
+
   constructor(
-    params: NavParams,
+    public params: NavParams,
     public viewCtrl: ViewController,
     private httpService: HttpService,
     public loadingCtrl: LoadingController,
   ) {
     this.stat = params.get('stat');
-
+    this.tipologiaTorneo = params.get('tipologia'); //league | tournament
+  
     this.loading = this.loadingCtrl.create({
       content: 'Please wait...'
     });
     this.loading.present();
 
     this.httpService
-      .getCallHttp('getStatistiche', '', '','',this.stat)
+      .getCallHttp('getStatistiche','','','',this.stat,this.tipologiaTorneo)
       .then(res => {
         //console.log('SUCCESS: ' + JSON.stringify(res));
 
