@@ -1,8 +1,9 @@
 <?php
 require_once('../../../wp-config.php');
+require_once('functions.php');
 
 global $wpdb;
-$table_prefix = 'wp';
+$table_prefix = $wpdb->prefix;
 
 $statsArray = array();
 $resultArray = array();
@@ -13,10 +14,11 @@ $stats = $_GET['stat']; //Goals | Assist | Gialli | Rossi
 if(isset($stats)) {
     $players = $wpdb->get_results("
         SELECT PA.player_id, PA.attribute_id, CAST(PA.attribute_value AS INTEGER) AS stat, DATA_A.data_value, DATA_P.data_value
-        FROM ".$table_prefix."_leagueengine_player_attributes AS PA
-            INNER JOIN ".$table_prefix."_leagueengine_data AS DATA_A ON DATA_A.id = PA.attribute_id
-            INNER JOIN ".$table_prefix."_leagueengine_data AS DATA_P ON DATA_P.id = PA.player_id
-        WHERE DATA_A.data_value = '$stats'
+        FROM ".$table_prefix."leagueengine_player_careers AS PC
+            INNER JOIN ".$table_prefix."leagueengine_player_attributes AS PA ON PA.player_id = PC.player_id
+            INNER JOIN ".$table_prefix."leagueengine_data AS DATA_A ON DATA_A.id = PA.attribute_id
+            INNER JOIN ".$table_prefix."leagueengine_data AS DATA_P ON DATA_P.id = PA.player_id
+        WHERE DATA_A.data_value = '$stats' AND PC.league_id = $league_id AND PC.season_id = $season_id
         ORDER BY stat DESC"
     );
 
@@ -25,7 +27,6 @@ if(isset($stats)) {
         'message' => 'OK'
     );
 
-    //print_r($players);
     foreach ($players as $stat) {
         $statsArray[] = array(        
             'playerId'      => $stat->player_id,

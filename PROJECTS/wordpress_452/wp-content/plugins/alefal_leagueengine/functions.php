@@ -1,13 +1,14 @@
 <?php
+//League
+$league_id = 2; 
+$season_id = 32;
 
-//RANKING
-
-function tdrs_leagueengine_table_gp($league,$season,$team) {
+function le_leagueengine_table_gp($league,$season,$team) {
 
 	global $wpdb;
-	$table_prefix = 'wp';
+	$table_prefix = $wpdb->prefix;
 
-	$table = $table_prefix.'_leagueengine_season_matches';	
+	$table = $table_prefix.'leagueengine_season_matches';	
 
 	$home = $wpdb->get_var("SELECT count(*) FROM $table WHERE league_id = '$league' AND season_id = '$season' AND home_team_id = '$team' AND winner <> ''");
 
@@ -21,12 +22,12 @@ function tdrs_leagueengine_table_gp($league,$season,$team) {
 
 
 
-function tdrs_leagueengine_table_gw($league,$season,$team) {
+function le_leagueengine_table_gw($league,$season,$team) {
 
 	global $wpdb;
-	$table_prefix = 'wp';
+	$table_prefix = $wpdb->prefix;
 
-	$table = $table_prefix.'_leagueengine_season_matches';	
+	$table = $table_prefix.'leagueengine_season_matches';	
 
 	$home = $wpdb->get_var("SELECT count(*) FROM $table WHERE league_id = '$league' AND season_id = '$season' AND home_team_id = '$team' AND winner = '$team'");
 
@@ -40,12 +41,12 @@ function tdrs_leagueengine_table_gw($league,$season,$team) {
 
 
 
-function tdrs_leagueengine_table_gd($league,$season,$team) {
+function le_leagueengine_table_gd($league,$season,$team) {
 
 	global $wpdb;
-	$table_prefix = 'wp';
+	$table_prefix = $wpdb->prefix;
 
-	$table = $table_prefix.'_leagueengine_season_matches';	
+	$table = $table_prefix.'leagueengine_season_matches';	
 
 	$home = $wpdb->get_var("SELECT count(*) FROM $table WHERE league_id = '$league' AND season_id = '$season' AND home_team_id = '$team' AND winner = 'draw'");
 
@@ -59,12 +60,12 @@ function tdrs_leagueengine_table_gd($league,$season,$team) {
 
 
 
-function tdrs_leagueengine_table_gl($league,$season,$team) {
+function le_leagueengine_table_gl($league,$season,$team) {
 
 	global $wpdb;
-	$table_prefix = 'wp';
+	$table_prefix = $wpdb->prefix;
 
-	$table = $table_prefix.'_leagueengine_season_matches';	
+	$table = $table_prefix.'leagueengine_season_matches';	
 
 	$home = $wpdb->get_var("SELECT count(*) FROM $table WHERE league_id = '$league' AND season_id = '$season' AND home_team_id = '$team' AND winner <> '' AND winner <> 'draw' AND winner <> '$team'");
 
@@ -78,12 +79,12 @@ function tdrs_leagueengine_table_gl($league,$season,$team) {
 
 
 
-function tdrs_leagueengine_table_gf($league,$season,$team) {
+function le_leagueengine_table_gf($league,$season,$team) {
 
 	global $wpdb;
-	$table_prefix = 'wp';
+	$table_prefix = $wpdb->prefix;
 
-	$table = $table_prefix.'_leagueengine_season_matches';	
+	$table = $table_prefix.'leagueengine_season_matches';	
 
 	$home = $wpdb->get_var("SELECT SUM(home_team_score) FROM $table WHERE league_id = '$league' AND season_id = '$season' AND home_team_id = '$team' AND winner <> ''");
 
@@ -97,12 +98,12 @@ function tdrs_leagueengine_table_gf($league,$season,$team) {
 
 
 
-function tdrs_leagueengine_table_ga($league,$season,$team) {
+function le_leagueengine_table_ga($league,$season,$team) {
 
 	global $wpdb;
-	$table_prefix = 'wp';
+	$table_prefix = $wpdb->prefix;
 
-	$table = $table_prefix.'_leagueengine_season_matches';	
+	$table = $table_prefix.'leagueengine_season_matches';	
 
 	$home = $wpdb->get_var("SELECT SUM(away_team_score) FROM $table WHERE league_id = '$league' AND season_id = '$season' AND home_team_id = '$team' AND winner <> ''");
 
@@ -116,12 +117,12 @@ function tdrs_leagueengine_table_ga($league,$season,$team) {
 
 
 
-function tdrs_leagueengine_table_diff($league,$season,$team) {
+function le_leagueengine_table_diff($league,$season,$team) {
 
 	global $wpdb;
-	$table_prefix = 'wp';
+	$table_prefix = $wpdb->prefix;
 
-	$table = $table_prefix.'_leagueengine_season_matches';	
+	$table = $table_prefix.'leagueengine_season_matches';	
 
 	$home = $wpdb->get_var("SELECT SUM(home_team_score) FROM $table WHERE league_id = '$league' AND season_id = '$season' AND home_team_id = '$team' AND winner <> ''");
 
@@ -129,7 +130,7 @@ function tdrs_leagueengine_table_diff($league,$season,$team) {
 
 	$resulthome = $home + $away;
 
-	$table2 = $table_prefix.'_leagueengine_season_matches';	
+	$table2 = $table_prefix.'leagueengine_season_matches';	
 
 	$home2 = $wpdb->get_var("SELECT SUM(away_team_score) FROM $table2 WHERE league_id = '$league' AND season_id = '$season' AND home_team_id = '$team' AND winner <> ''");
 
@@ -145,12 +146,12 @@ function tdrs_leagueengine_table_diff($league,$season,$team) {
 
 
 
-function tdrs_leagueengine_table_bp($league,$season,$team) {
+function le_leagueengine_table_bp($league,$season,$team) {
 
 	global $wpdb;
-	$table_prefix = 'wp';
+	$table_prefix = $wpdb->prefix;
 
-	$table = $table_prefix.'_leagueengine_season_matches';	
+	$table = $table_prefix.'leagueengine_season_matches';	
 
 	$home = $wpdb->get_var("SELECT SUM(home_team_bonus) FROM $table WHERE league_id = '$league' AND season_id = '$season' AND home_team_id = '$team' AND winner <> ''");
 
@@ -166,14 +167,14 @@ function tdrs_leagueengine_table_bp($league,$season,$team) {
 
 //MATCHS
 
-function tdrs_leagueengine_season_matches_table($league_id,$season_id,$isform = true) {
+function le_leagueengine_season_matches_table($league_id,$season_id,$isform = true) {
 
 	
 
 	global $wpdb;
-	$table_prefix = 'wp';
+	$table_prefix = $wpdb->prefix;
 
-	$table = $table_prefix.'_leagueengine_season_matches';
+	$table = $table_prefix.'leagueengine_season_matches';
 
 	$matches = $wpdb->get_results("SELECT * FROM $table WHERE league_id = '$league_id' AND season_id = '$season_id' ORDER BY match_date ASC, match_time ASC");
 
@@ -199,9 +200,9 @@ function tdrs_leagueengine_season_matches_table($league_id,$season_id,$isform = 
 
 			
 
-			$match_date = date(tdrs_leagueengine_fetch_settings('date_format_php'),strtotime($match->match_date));
+			$match_date = date(le_leagueengine_fetch_settings('date_format_php'),strtotime($match->match_date));
 
-		    $match_time = date(tdrs_leagueengine_fetch_settings('time_format_php'),strtotime($match->match_time));
+		    $match_time = date(le_leagueengine_fetch_settings('time_format_php'),strtotime($match->match_time));
 
 
 
@@ -213,9 +214,9 @@ function tdrs_leagueengine_season_matches_table($league_id,$season_id,$isform = 
 
 		        'match_time'		=> $match_time,
 
-		        'home_team_id'		=> tdrs_leagueengine_fetch_data_from_id($match->home_team_id,'data_value'),
+		        'home_team_id'		=> le_leagueengine_fetch_data_from_id($match->home_team_id,'data_value'),
 
-		        'away_team_id'		=> tdrs_leagueengine_fetch_data_from_id($match->away_team_id,'data_value'),
+		        'away_team_id'		=> le_leagueengine_fetch_data_from_id($match->away_team_id,'data_value'),
 
 		        'homeId'			=> $match->home_team_id,
 
@@ -249,14 +250,14 @@ function tdrs_leagueengine_season_matches_table($league_id,$season_id,$isform = 
 
 //SETTINGS
 
-function tdrs_leagueengine_fetch_settings($setting) {
+function le_leagueengine_fetch_settings($setting) {
 
 
 
 	global $wpdb;
-	$table_prefix = 'wp';
+	$table_prefix = $wpdb->prefix;
 
-	$table = $table_prefix.'_leagueengine_settings';
+	$table = $table_prefix.'leagueengine_settings';
 
 	if($setting) {
 
@@ -274,14 +275,14 @@ function tdrs_leagueengine_fetch_settings($setting) {
 
 
 
-function tdrs_leagueengine_fetch_data_from_id($id = NULL, $col = NULL) {
+function le_leagueengine_fetch_data_from_id($id = NULL, $col = NULL) {
 
 	
 
 	global $wpdb;
-	$table_prefix = 'wp';
+	$table_prefix = $wpdb->prefix;
 
-	$table = $table_prefix.'_leagueengine_data';
+	$table = $table_prefix.'leagueengine_data';
 
 	if($id && $col) {
 
@@ -313,14 +314,14 @@ function tdrs_leagueengine_fetch_data_from_id($id = NULL, $col = NULL) {
 
 
 
-function tdrs_leagueengine_fetch_seasons($league_id,$season_id) {
+function le_leagueengine_fetch_seasons($league_id,$season_id) {
 
 	
 
 	global $wpdb;
-	$table_prefix = 'wp';
+	$table_prefix = $wpdb->prefix;
 
-	$table = $table_prefix.'_leagueengine_league_seasons';
+	$table = $table_prefix.'leagueengine_league_seasons';
 
 	if($league_id && $season_id) {
 

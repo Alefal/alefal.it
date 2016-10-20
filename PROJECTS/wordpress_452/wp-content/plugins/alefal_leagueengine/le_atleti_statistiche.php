@@ -1,8 +1,9 @@
 <?php
 require_once('../../../wp-config.php');
+require_once('functions.php');
 
 global $wpdb;
-$table_prefix = 'wp';
+$table_prefix = $wpdb->prefix;
 
 $playerArray = array();
 $resultArray = array();
@@ -13,8 +14,8 @@ $player_id = $_GET['player_id'];
 if(isset($player_id)) { 
     $player = $wpdb->get_results("
         SELECT PA.player_id, PA.attribute_id, PA.attribute_value, DATA.data_value
-        FROM ".$table_prefix."_leagueengine_player_attributes AS PA
-            INNER JOIN ".$table_prefix."_leagueengine_data AS DATA ON DATA.id = PA.attribute_id             
+        FROM ".$table_prefix."leagueengine_player_attributes AS PA
+            INNER JOIN ".$table_prefix."leagueengine_data AS DATA ON DATA.id = PA.attribute_id             
         WHERE player_id = $player_id"
     );
 

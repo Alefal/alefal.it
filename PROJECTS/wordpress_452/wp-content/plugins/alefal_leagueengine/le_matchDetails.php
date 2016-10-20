@@ -1,8 +1,9 @@
 <?php
 require_once('../../../wp-config.php');
+require_once('functions.php');
 
 global $wpdb;
-$table_prefix = 'wp';
+$table_prefix = $wpdb->prefix;
 
 $matchesEvents = array();
 $resultArray = array();
@@ -13,9 +14,9 @@ $match_id = $_GET['match_id'];
 if(isset($match_id)) { 
     $events = $wpdb->get_results("
         SELECT ST.team_name, DATA_P.data_value, SME.event_time, SME.timeline_text
-        FROM ".$table_prefix."_leagueengine_season_matches_events AS SME
-            INNER JOIN ".$table_prefix."_leagueengine_season_teams AS ST ON ST.team_id = SME.team_id    
-            INNER JOIN ".$table_prefix."_leagueengine_data AS DATA_P ON DATA_P.id = SME.player_id     
+        FROM ".$table_prefix."leagueengine_season_matches_events AS SME
+            INNER JOIN ".$table_prefix."leagueengine_season_teams AS ST ON ST.team_id = SME.team_id    
+            INNER JOIN ".$table_prefix."leagueengine_data AS DATA_P ON DATA_P.id = SME.player_id     
         WHERE SME.match_id = $match_id AND SME.event_id != 'app'"
     );
 

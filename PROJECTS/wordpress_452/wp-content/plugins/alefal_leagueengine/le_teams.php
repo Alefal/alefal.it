@@ -1,8 +1,9 @@
 <?php
 require_once('../../../wp-config.php');
+require_once('functions.php');
 
 global $wpdb;
-$table_prefix = 'wp';
+$table_prefix = $wpdb->prefix;
 
 $teamsArray = array();
 $resultArray = array();
@@ -10,9 +11,9 @@ $finalArray = array();
  
 $teams = $wpdb->get_results("
     SELECT ST.*, DATA.image, DATA.colour
-    FROM ".$table_prefix."_leagueengine_season_teams AS ST
-    JOIN ".$table_prefix."_leagueengine_data AS DATA ON ST.team_id = DATA.id
-    WHERE league_id = 3 AND season_id = 4 order by team_name"
+    FROM ".$table_prefix."leagueengine_season_teams AS ST
+    JOIN ".$table_prefix."leagueengine_data AS DATA ON ST.team_id = DATA.id
+    WHERE league_id = $league_id AND season_id = $season_id order by team_name"
 );
 
 $resultArray[] = array(

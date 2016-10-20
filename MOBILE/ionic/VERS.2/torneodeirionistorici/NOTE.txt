@@ -1,2 +1,16 @@
 Per installare tutti i plugins cordova del file package.json
 $ ionic state restore
+
+=== 2.0.0-rc.1 (2016-10-13) ===
+Aggiornamento package json
+(https://github.com/driftyco/ionic/blob/master/CHANGELOG.md#packagejson-updates)
+
+"ionic-angular": "^2.0.0-rc.1",
+"ionic-native": "^2.2.3",
+"rxjs": "^5.0.0-rc.1",
+
+al posto di 
+
+"ionic-angular": "^2.0.0-rc.0",
+"ionic-native": "^2.0.3",
+"rxjs": "^5.0.0-beta.12",

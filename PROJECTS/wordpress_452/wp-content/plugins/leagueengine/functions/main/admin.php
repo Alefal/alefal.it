@@ -3529,6 +3529,8 @@ function leagueengine_save_player_career($player) {
 
 		$tournament = $_POST['tournament'];
 		$team = $_POST['tournament_team'];
+
+		
 		
 		if($tournament == '' or $team == '' or $player == '') {
 			$msg = '<div class="error">'.__('Error! Please select a league, season and team.','leagueengine').'</div>';
@@ -3537,6 +3539,7 @@ function leagueengine_save_player_career($player) {
 			$tbl2 = $wpdb->prefix . 'leagueengine_tournaments';
 			$start_date = $wpdb->get_var("SELECT start_date FROM $tbl2 WHERE data_id = '$tournament'");
 			$check = $wpdb->get_results("SELECT * FROM $tbl WHERE tournament_id = '$tournament' AND player_id = '$player'");
+
 			if($check) {
 				$msg = '<div class="error">'.__('Error! Player already in the tournament.','leagueengine').'</div>';
 			} else {
@@ -3549,6 +3552,14 @@ function leagueengine_save_player_career($player) {
 				));
 				$msg = '<div class="success">'.__('Success!','leagueengine').'</div>';
 			}
+
+			//ALESSANDRO
+			//print_r($wpdb->show_errors());
+			//print_r($wpdb->last_query);
+			//INSERT INTO `wp_leagueengine_player_careers` (`tournament_id`, `team_id`, `player_id`, `start_date`, `sort_order`) VALUES ('4', '14', '35', '2016-10-20', NULL)
+			//die();
+
+			
 		}		
 		
 	}
