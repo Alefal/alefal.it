@@ -96,9 +96,16 @@ if(isset($tipologiaTorneo)) {
     );
 }
 
-$finalArray[] = array(
-    'response'      => $resultArray,
-    'ranking'       => $groupsArray
-);
+if($tipologiaTorneo == 'league') {
+    $finalArray[] = array(
+        'response'      => $resultArray,
+        'ranking'       => $teamsArray
+    );
+} else if($tipologiaTorneo == 'tournament') {
+    $finalArray[] = array(
+        'response'      => $resultArray,
+        'ranking'       => $groupsArray
+    );
+}
 echo json_encode($finalArray);
 exit();
