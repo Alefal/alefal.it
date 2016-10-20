@@ -19,6 +19,8 @@ export class GiocatoriModal {
   player: any;
   playerStats: boolean;
 
+  tipologiaTorneo: string;
+
   constructor(
     params: NavParams,
     public viewCtrl: ViewController,
@@ -31,6 +33,7 @@ export class GiocatoriModal {
 
     this.squadraId = params.get('squadraId');
     this.squadraName = params.get('squadraName');
+    this.tipologiaTorneo = params.get('tipologiaTorneo');
 
     this.loading = this.loadingCtrl.create({
       content: 'Please wait...'

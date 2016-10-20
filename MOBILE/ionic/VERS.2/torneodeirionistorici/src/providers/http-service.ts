@@ -28,6 +28,8 @@ export class HttpService {
              url = '?json=get_tag_posts&tag_slug=giornalinoUfficiale';
         } else if(call == 'getSquadre') {
             url = '/wp-content/plugins/alefal_leagueengine/le_teams.php';
+        } else if(call == 'getSquadreTorneo') {
+            url = '/wp-content/plugins/alefal_leagueengine/le_tourn_teams.php';
         } else if(call == 'getSquadraLogo') {
             url = '/wp-content/plugins/alefal_leagueengine/le_team.php?team_id='+teamId;
         } else if(call == 'getGiocatori') {

@@ -12,10 +12,18 @@ $finalArray = array();
 $team_id = $_GET['team_id'];
 
 if(isset($team_id)) {
+    /*
     $teams = $wpdb->get_results("
         SELECT ST.*, DATA.image, DATA.colour
         FROM ".$table_prefix."leagueengine_season_teams AS ST
-        JOIN ".$table_prefix."leagueengine_data AS DATA ON ST.team_id = DATA.id
+            JOIN ".$table_prefix."leagueengine_data AS DATA ON ST.team_id = DATA.id
+        WHERE league_id = $league_id AND season_id = $season_id AND ST.team_id = $team_id order by team_name" 
+    );
+    */
+
+     $teams = $wpdb->get_results("
+        SELECT ST.*
+        FROM ".$table_prefix."leagueengine_season_teams AS ST
         WHERE league_id = $league_id AND season_id = $season_id AND ST.team_id = $team_id order by team_name" 
     );
 
@@ -29,8 +37,8 @@ if(isset($team_id)) {
         $teamsArray[] = array(        
             'SquadraId'     => $team->team_id,
             'Squadra'       => $team->team_name,
-            'SquadraLogo'   => $team->image,
-            'SquadraColori' => $team->colour,
+            'SquadraLogo'   => le_leagueengine_fetch_data_from_id($team->team_id,'image'),
+            'SquadraColori' => le_leagueengine_fetch_data_from_id($team->team_id,'colour'),
             'Punti'			=> $team->season_pts,
             'Vinte'			=> $team->season_wins,
             'Goal'			=> $team->season_for,

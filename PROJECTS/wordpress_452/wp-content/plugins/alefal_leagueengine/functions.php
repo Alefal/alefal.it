@@ -3,6 +3,8 @@
 $league_id = 2; 
 $season_id = 32;
 
+$tournament_id = 5;
+
 //$league_id = 50; 
 //$season_id = 51;
 

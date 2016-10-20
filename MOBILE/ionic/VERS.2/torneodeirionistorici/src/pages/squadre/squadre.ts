@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController, ModalController } from 'ionic-angular';
+import { NavParams, NavController, LoadingController, ModalController } from 'ionic-angular';
 
 import { HttpService } from '../../providers/http-service';
 import { GiocatoriModal } from './giocatori-modal';
@@ -15,21 +15,41 @@ export class Squadre {
   errorMessage: String;
   errorMessageView: any;
 
+  tipologiaTorneo: string;
+
   constructor(
+    params: NavParams,
     public navCtrl: NavController,
     private httpService: HttpService,
     public loadingCtrl: LoadingController,
     public modalCtrl: ModalController
-  ) { }
+  ) { 
+    this.tipologiaTorneo = params.get('element');
+
+    
+  }
 
   ionViewDidLoad() {
+    console.log(this.tipologiaTorneo);
+
+    let tipologia = '';
+    if(this.tipologiaTorneo == 'league') {
+      tipologia = 'getSquadre';
+    } else if(this.tipologiaTorneo == 'tournament') {
+      tipologia = 'getSquadreTorneo';
+    } else {
+      tipologia = 'getSquadre';
+    }
+
+    console.log(tipologia);
+
     this.loading = this.loadingCtrl.create({
       content: 'Please wait...'
     });
     this.loading.present();
 
     this.httpService
-      .getCallHttp('getSquadre', '', '','','')
+      .getCallHttp(tipologia, '', '','','')
       .then(res => {
         //console.log('SUCCESS: ' + JSON.stringify(res));
 
@@ -48,8 +68,8 @@ export class Squadre {
       });
   }
 
-  vediGiocatori(squadraId,squadraName) {
-    let modal = this.modalCtrl.create(GiocatoriModal, { squadraId: squadraId, squadraName: squadraName });
+  vediGiocatori(squadraId,squadraName,tipologiaTorneo) {
+    let modal = this.modalCtrl.create(GiocatoriModal, { squadraId: squadraId, squadraName: squadraName, tipologiaTorneo: tipologiaTorneo });
     modal.present();
   }
 }

@@ -19,9 +19,9 @@ $teams = $wpdb->get_results("
 */
 
 $teams = $wpdb->get_results("
-    SELECT ST.*
-    FROM ".$table_prefix."leagueengine_season_teams AS ST
-    WHERE league_id = $league_id AND season_id = $season_id order by team_name"
+    SELECT TT.*
+    FROM ".$table_prefix."leagueengine_tournament_teams AS TT
+    WHERE TT.tournament_id = $tournament_id order by team_name"
 );
 
 $resultArray[] = array(

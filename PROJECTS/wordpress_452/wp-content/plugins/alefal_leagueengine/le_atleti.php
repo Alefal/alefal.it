@@ -12,10 +12,18 @@ $finalArray = array();
 $team_id = $_GET['team_id'];
 
 if(isset($team_id)) {
+    /*
     $teams = $wpdb->get_results("
         SELECT PC.player_id, DATA.data_value, DATA.image, DATA.squad_number
         FROM ".$table_prefix."leagueengine_player_careers AS PC
             INNER JOIN ".$table_prefix."leagueengine_data AS DATA ON DATA.id = PC.player_id 
+        WHERE team_id = $team_id AND league_id = $league_id AND season_id = $season_id"
+    );
+    */
+
+    $teams = $wpdb->get_results("
+        SELECT PC.*
+        FROM ".$table_prefix."leagueengine_player_careers AS PC 
         WHERE team_id = $team_id AND league_id = $league_id AND season_id = $season_id"
     );
 
@@ -29,8 +37,9 @@ if(isset($team_id)) {
         $teamsArray[] = array(        
             'playerId'      => $team->player_id,
             'playerName'    => $team->data_value,
-            'playerPhoto'   => $team->image,
-            'playerNumber'  => $team->squad_number
+            'playerPhoto'   => le_leagueengine_fetch_data_from_id($team->player_id,'image'),
+            'playerNumber'  => le_leagueengine_fetch_data_from_id($team->player_id,'squad_number'),
+            'playerSort'    => le_leagueengine_fetch_data_from_id($team->player_id,'sort_order'),
         );  
     }
 } else {
