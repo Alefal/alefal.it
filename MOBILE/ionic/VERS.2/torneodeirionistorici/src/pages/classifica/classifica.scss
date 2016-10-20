@@ -4,7 +4,17 @@ page-classifica {
         background-color: #003d08;
         color: white;
         margin: 0 auto;
-        padding: 25px;
+        padding: 15px;
+    }
+    .gridHeader hr {
+        border-bottom: 1px solid white;
+    }
+
+    .gridFooter {
+        background-color: #003d08;
+        color: white;
+        margin: 0 auto;
+        padding: 0;
     }
 
     .listStats {
@@ -16,5 +26,13 @@ page-classifica {
     }
     .listStats ion-item {
         padding: 15px;
+    }
+
+    .groupBox {
+        margin-bottom: 50px;
+    }
+    .groupName {
+        color: white;
+        padding: 0 0 10px 0;
     }
 }

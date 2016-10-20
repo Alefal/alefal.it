@@ -11,8 +11,8 @@ export class HttpService {
          this.http = http;
     }
   
-    getCallHttp(call,teamId,playerId,matchId,stat,tipologia) {
-        console.log('getCallHttp: '+call+' | '+teamId+' | '+playerId+' | '+matchId);
+    getCallHttp(call,teamId,playerId,matchIdOrType,statOrGroup,tipologia) {
+        console.log('getCallHttp: '+call+' | '+teamId+' | '+playerId+' | '+matchIdOrType);
         
         //var host = 'http://torneodeirionistorici.altervista.org';
         //var host = '/torneodeirionistorici/rest';
@@ -35,13 +35,13 @@ export class HttpService {
         } else if(call == 'getClassifica') {
             url = '/wp-content/plugins/alefal_leagueengine/le_ranking.php?tipologiaTorneo='+tipologia;
         } else if(call == 'getStatistiche') {
-            url = '/wp-content/plugins/alefal_leagueengine/le_statistiche.php?stat='+stat+'&tipologiaTorneo='+tipologia;
+            url = '/wp-content/plugins/alefal_leagueengine/le_statistiche.php?stat='+statOrGroup+'&tipologiaTorneo='+tipologia;
         } else if(call == 'getIncontri') {
-            url = '/wp-content/plugins/alefal_leagueengine/le_matchs.php?tipologiaTorneo='+tipologia;
+            url = '/wp-content/plugins/alefal_leagueengine/le_matchs.php?tipologiaTorneo='+tipologia+'&group='+statOrGroup+'&type='+matchIdOrType;
         } else if(call == 'getTabellino') {
-            url = '/wp-content/plugins/alefal_leagueengine/le_matchDetails.php?match_id='+matchId;
+            url = '/wp-content/plugins/alefal_leagueengine/le_matchDetails.php?match_id='+matchIdOrType+'&tipologiaTorneo='+tipologia;
         } else if(call == 'getIncontroAttr') {
-            url = '/wp-content/plugins/alefal_leagueengine/le_matchAttr.php?match_id='+matchId;
+            url = '/wp-content/plugins/alefal_leagueengine/le_matchAttr.php?match_id='+matchIdOrType+'&tipologiaTorneo='+tipologia;
         }
 
         console.log('URL: '+url);

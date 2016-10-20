@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavParams, NavController, LoadingController, PopoverController } from 'ionic-angular';
 import { HttpService } from '../../providers/http-service';
 
+import { Incontri }             from '../incontri/incontri';
 import { ClassificaDetail }     from '../classifica/classifica-detail';
 
 @Component({
@@ -62,6 +63,13 @@ export class Classifica {
       {showBackdrop: false, enableBackdropDismiss: true}*/
     );
     popover.present();
+  }
+
+  tournamentMatchs(tipologia,group) {
+    this.navCtrl.push(Incontri, {
+      tipologia: tipologia,
+      group: group
+    });
   }
 
 }

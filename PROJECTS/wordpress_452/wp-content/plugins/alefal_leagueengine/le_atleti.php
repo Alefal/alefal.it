@@ -44,7 +44,7 @@ if(isset($team_id) && isset($tipologiaTorneo)) {
     foreach ($teams as $team) {
         $teamsArray[] = array(        
             'playerId'      => $team->player_id,
-            'playerName'    => $team->data_value,
+            'playerName'    => le_leagueengine_fetch_data_from_id($team->player_id,'data_value'),
             'playerPhoto'   => le_leagueengine_fetch_data_from_id($team->player_id,'image'),
             'playerNumber'  => le_leagueengine_fetch_data_from_id($team->player_id,'squad_number'),
             'playerSort'    => le_leagueengine_fetch_data_from_id($team->player_id,'sort_order'),

@@ -17,6 +17,8 @@ export class Incontri {
   errorMessageView: any;
 
   tipologiaTorneo: string;
+  group: number;
+  type: string;
 
   constructor(
     public params: NavParams,
@@ -26,6 +28,8 @@ export class Incontri {
     public modalCtrl: ModalController
   ) { 
     this.tipologiaTorneo = params.get('tipologia'); //league | tournament
+    this.group = params.get('group');
+    this.type = params.get('type');
   }
 
   ionViewDidLoad() {
@@ -35,7 +39,7 @@ export class Incontri {
     this.loading.present();
 
     this.httpService
-      .getCallHttp('getIncontri','','','','',this.tipologiaTorneo)
+      .getCallHttp('getIncontri','','',this.type,this.group,this.tipologiaTorneo)
       .then(res => {
         //console.log('SUCCESS: ' + JSON.stringify(res));
 
@@ -62,7 +66,8 @@ export class Incontri {
       teamAway:teamAway,
       result:result,
       home_team_id: home_team_id,
-      away_team_id: away_team_id 
+      away_team_id: away_team_id,
+      tipologiaTorneo: this.tipologiaTorneo 
     });
     modal.present();
   }
@@ -72,7 +77,8 @@ export class Incontri {
       matchId: matchId ,
       homeName:homeName,
       awayName:awayName,
-      result:result
+      result:result,
+      tipologiaTorneo: this.tipologiaTorneo
     });
     modal.present();
   }

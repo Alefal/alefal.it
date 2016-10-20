@@ -29,6 +29,8 @@ export class TabellinoModal {
   home_team_logo: string;
   away_team_logo: string;
 
+  tipologiaTorneo: string;
+
   intervalId: any;
 
   constructor(
@@ -43,6 +45,7 @@ export class TabellinoModal {
     this.result = params.get('result');
     this.home_team_id = params.get('home_team_id');
     this.away_team_id = params.get('away_team_id');
+    this.tipologiaTorneo = params.get('tipologiaTorneo');
 
     this.getTabellino(this.matchId);
 
@@ -68,7 +71,7 @@ export class TabellinoModal {
     this.loading.present();
 
     this.httpService
-      .getCallHttp('getTabellino','','',matchId,'','')
+      .getCallHttp('getTabellino','','',matchId,'',this.tipologiaTorneo)
       .then(res => {
         //console.log('SUCCESS: ' + JSON.stringify(res));
 
@@ -86,7 +89,7 @@ export class TabellinoModal {
   }
   getTabellinoPolling(matchId) {
     this.httpService
-      .getCallHttp('getTabellino','','',matchId,'','')
+      .getCallHttp('getTabellino','','',matchId,'',this.tipologiaTorneo)
       .then(res => {
         if (res[0].response[0].result == 'OK') {
           this.matchesEvents = res[0].matchesEvents;

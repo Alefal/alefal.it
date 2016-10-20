@@ -23,9 +23,9 @@
 
 				<ion-grid class="gridHeader">
 					<ion-row>
-						<ion-col width-25>
-							<img class="img-polaroid" *ngIf="atleta.playerPhoto != ''" src="{{atleta.playerPhoto}}" />
-							<img class="img-polaroid" *ngIf="atleta.playerPhoto == '' || atleta.playerPhoto == null" src="assets/img/userPhoto.png" />
+						<ion-col width-25>{{atleta.playerPhoto}}
+							<img class="img-polaroid" *ngIf="atleta.playerPhoto !== null" src="{{atleta.playerPhoto}}" />
+							<img class="img-polaroid" *ngIf="atleta.playerPhoto === null" src="assets/img/userPhoto.png" />
 						</ion-col>
 						<ion-col>
 							<h3 [innerHTML]="atleta.playerName"></h3>

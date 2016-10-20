@@ -58,6 +58,33 @@
 
 	<ion-list class="listStats">
 		<ion-item class="itemHeader">
+			Competition: TOURNAMENT LEAGUE/KNOCKOUT
+		</ion-item>
+
+		<ion-item (click)="navigate('Squadre','tournament')">
+			<ion-icon name="football" item-left></ion-icon>
+			Squadre
+			<ion-icon name="ios-arrow-forward" item-right></ion-icon>
+		</ion-item>
+		<ion-item (click)="navigate('Classifica','tournament')">
+			<ion-icon name="clipboard" item-left></ion-icon>
+			Gruppi
+			<ion-icon name="ios-arrow-forward" item-right></ion-icon>
+		</ion-item>
+		<ion-item (click)="navigate('ScontriDiretti','tournament')">
+			<ion-icon name="calendar" item-left></ion-icon>
+			Scontri diretti (TODO: verificare quando far apparire il bottone; vedi tabella leagueengine_tournament_matches)
+			<ion-icon name="ios-arrow-forward" item-right></ion-icon>
+		</ion-item>
+		<ion-item (click)="navigate('Statistiche','tournament')">
+			<ion-icon name="stats" item-left></ion-icon>
+			Statistiche
+			<ion-icon name="ios-arrow-forward" item-right></ion-icon>
+		</ion-item>
+	</ion-list>
+
+	<ion-list class="listStats">
+		<ion-item class="itemHeader">
 			Competition: TOURNAMENT KNOCKOUT
 		</ion-item>
 
@@ -71,20 +98,6 @@
 		</ion-item>
 	</ion-list>
 
-	<ion-list class="listStats">
-		<ion-item class="itemHeader">
-			Competition: TOURNAMENT LEAGUE/KNOCKOUT
-		</ion-item>
-
-		<ion-item (click)="navigate('Squadre','tournament')">
-			<ion-icon name="football" item-left></ion-icon>
-			Squadre
-			<ion-icon name="ios-arrow-forward" item-right></ion-icon>
-		</ion-item>
-		<ion-item>
-			...
-		</ion-item>
-	</ion-list>
 
 	<!--
 	<p>

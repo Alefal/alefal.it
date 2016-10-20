@@ -20,7 +20,9 @@ $matchs = $wpdb->get_results("
 );
 */
 
-$tipologiaTorneo = $_GET['tipologiaTorneo']; //league | tournament
+$tipologiaTorneo    = $_GET['tipologiaTorneo']; //league | tournament
+$group              = $_GET['group']; 
+$type               = $_GET['type'];
 
 if(isset($tipologiaTorneo)) {
     
@@ -32,12 +34,21 @@ if(isset($tipologiaTorneo)) {
             ORDER BY SM.match_date ASC, SM.match_time ASC"
         );
     } else if($tipologiaTorneo == 'tournament') {
-        $matchs = $wpdb->get_results("
-            SELECT SM.*
-            FROM ".$table_prefix."leagueengine_season_matches AS SM
-            WHERE SM.tournament_id = $tournament_id
-            ORDER BY SM.match_date ASC, SM.match_time ASC"
-        );
+        if($type == 'knockout') {
+            $matchs = $wpdb->get_results("
+                SELECT TM.*
+                FROM ".$table_prefix."leagueengine_tournament_matches AS TM
+                WHERE TM.tournament_id = $tournament_id AND round NOT LIKE '%GROUP%'
+                ORDER BY TM.match_date ASC, TM.match_time ASC"
+            );
+        } else {
+            $matchs = $wpdb->get_results("
+                SELECT TM.*
+                FROM ".$table_prefix."leagueengine_tournament_matches AS TM
+                WHERE TM.tournament_id = $tournament_id AND position_id = $group AND round LIKE '%GROUP%'
+                ORDER BY TM.match_date ASC, TM.match_time ASC"
+            );
+        }
     }
 
     $resultArray[] = array(

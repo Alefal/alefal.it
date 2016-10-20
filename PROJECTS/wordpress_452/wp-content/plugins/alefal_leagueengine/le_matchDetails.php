@@ -9,16 +9,28 @@ $matchesEvents = array();
 $resultArray = array();
 $finalArray = array();
 
-$match_id = $_GET['match_id'];
+$match_id           = $_GET['match_id'];
+$tipologiaTorneo    = $_GET['tipologiaTorneo']; //league | tournament
 
 if(isset($match_id)) { 
-    $events = $wpdb->get_results("
-        SELECT ST.team_name, DATA_P.data_value, SME.event_time, SME.timeline_text
-        FROM ".$table_prefix."leagueengine_season_matches_events AS SME
-            INNER JOIN ".$table_prefix."leagueengine_season_teams AS ST ON ST.team_id = SME.team_id    
-            INNER JOIN ".$table_prefix."leagueengine_data AS DATA_P ON DATA_P.id = SME.player_id     
-        WHERE SME.match_id = $match_id AND SME.event_id != 'app'"
-    );
+
+    if($tipologiaTorneo == 'league') {
+        $events = $wpdb->get_results("
+            SELECT ST.team_name, DATA_P.data_value, SME.event_time, SME.timeline_text
+            FROM ".$table_prefix."leagueengine_season_matches_events AS SME
+                INNER JOIN ".$table_prefix."leagueengine_season_teams AS ST ON ST.team_id = SME.team_id    
+                INNER JOIN ".$table_prefix."leagueengine_data AS DATA_P ON DATA_P.id = SME.player_id     
+            WHERE SME.match_id = $match_id AND SME.event_id != 'app'"
+        );
+    } else if($tipologiaTorneo == 'tournament') {
+        $events = $wpdb->get_results("
+            SELECT TT.team_name, DATA_P.data_value, TME.event_time, TME.timeline_text
+            FROM ".$table_prefix."leagueengine_tournament_matches_events AS TME
+                INNER JOIN ".$table_prefix."leagueengine_tournament_teams AS TT ON TT.team_id = TME.team_id    
+                INNER JOIN ".$table_prefix."leagueengine_data AS DATA_P ON DATA_P.id = TME.player_id     
+            WHERE TME.match_id = $match_id AND TME.event_id != 'app'"
+        );
+    }
 
     $resultArray[] = array(
         'result'  => 'OK',

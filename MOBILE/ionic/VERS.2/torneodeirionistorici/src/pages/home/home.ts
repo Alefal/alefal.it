@@ -31,6 +31,11 @@ export class HomePage {
       this.navCtrl.push(Incontri, {
         tipologia: tipologia
       });
+    } else if(section == 'ScontriDiretti'){
+      this.navCtrl.push(Incontri, {
+        tipologia: tipologia,
+        type: 'knockout'
+      });
     } else if(section == 'Classifica'){
       this.navCtrl.push(Classifica, {
         tipologia: tipologia

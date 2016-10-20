@@ -20,6 +20,8 @@ export class LiveModal {
   awayName:     string;
   result:       string;
 
+  tipologiaTorneo: string;
+
   dangerousVideoUrl:  string;
   videoUrl:           SafeResourceUrl;
 
@@ -34,6 +36,7 @@ export class LiveModal {
     this.awayName     = params.get('awayName');
     this.result       = params.get('result');
     this.matchId      = params.get('matchId');
+    this.tipologiaTorneo = params.get('tipologiaTorneo');
 
     this.loading = this.loadingCtrl.create({
       content: 'Please wait...'
@@ -41,7 +44,7 @@ export class LiveModal {
     this.loading.present();
 
     this.httpService
-      .getCallHttp('getIncontroAttr','','',this.matchId,'','')
+      .getCallHttp('getIncontroAttr','','',this.matchId,'',this.tipologiaTorneo)
       .then(res => {
         //console.log('SUCCESS: ' + JSON.stringify(res));
 
