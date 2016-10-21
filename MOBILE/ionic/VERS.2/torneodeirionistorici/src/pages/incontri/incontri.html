@@ -18,29 +18,23 @@
 					<ion-grid>
 						<ion-row>
 							<ion-col width-33>
-								<img *ngIf="match.home_team_logo !== null" src="{{match.home_team_logo}}" style="border-radius: 0;" />
-								<img *ngIf="match.home_team_logo === null" src="assets/img/loghi/logoVuoto.png" />
+								<img *ngIf="match.home_team_logo !== null" src="{{match.home_team_logo}}" class="logoSquadra" />
+								<img *ngIf="match.home_team_logo === null" src="assets/img/loghi/logoVuoto.png" class="logoSquadra" />
 							</ion-col>
 							<ion-col width-33 class="result">
-								<h1 *ngIf="match.homeGoal == '' && match.awayGoal == ''">Da giocare...</h1>
-								<h1 *ngIf="match.homeGoal != '' && match.awayGoal != ''">{{match.result}}</h1>
+								<h5 *ngIf="match.homeGoal == '' && match.awayGoal == ''">ND</h5>
+								<h5 *ngIf="match.homeGoal != '' && match.awayGoal != ''">{{match.result}}</h5>
 							</ion-col>
 							<ion-col width-33>
-								<img *ngIf="match.away_team_logo !== null" src="{{match.away_team_logo}}" style="border-radius: 0;" />
-								<img *ngIf="match.away_team_logo === null" src="assets/img/loghi/logoVuoto.png" />
+								<img *ngIf="match.away_team_logo !== null" src="{{match.away_team_logo}}" class="logoSquadra" />
+								<img *ngIf="match.away_team_logo === null" src="assets/img/loghi/logoVuoto.png" class="logoSquadra" />
 							</ion-col>
 						</ion-row>
 					</ion-grid>
 				</div>
-				<div class="card-footer">
+				<div class="card-footer" *ngIf="match.homeGoal != '' && match.awayGoal != ''">
 					<ion-grid>
-						<ion-row *ngIf="match.homeGoal == '' && match.awayGoal == ''">
-							<ion-col>
-								<ion-icon name="more"></ion-icon> Da giocare
-							</ion-col>
-						</ion-row>
-
-						<ion-row *ngIf="match.homeGoal != '' && match.awayGoal != ''">
+						<ion-row>
 							<ion-col width-50 align="center">
 								<a class="card-button primary" (click)="tabellino(match.match_id,match.homeName,match.awayName,match.result,match.homeId,match.awayId,match.home_team_logo,match.away_team_logo)">
 									<span><ion-icon name="share-alt"></ion-icon> Tabellino</span>

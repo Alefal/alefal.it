@@ -35,4 +35,12 @@ page-classifica {
         color: white;
         padding: 0 0 10px 0;
     }
+
+    ion-col {
+        text-align: center;
+    }
+    .rankLogoName,
+    .rankLogoName ion-col {
+        padding: 0;
+    }
 }

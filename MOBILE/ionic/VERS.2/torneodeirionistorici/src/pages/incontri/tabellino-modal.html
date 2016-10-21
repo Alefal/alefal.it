@@ -2,24 +2,26 @@
 
 	<div class="posts">
 		<div class="post-card">
-			<div class="card-header gridHeader">
-				<h1>{{teamHome}} - {{teamAway}}</h1>
+			<div class="card-header">
+				<h3>{{teamHome}} - {{teamAway}}</h3>
 
 				<ion-grid>
 					<ion-row>
 						<ion-col>
-							<img *ngIf="home_team_logo !== null" src="{{home_team_logo}}" style="border-radius: 0;" />
-							<img *ngIf="home_team_logo === null" src="assets/img/loghi/logoVuoto.png" />
+							<img *ngIf="home_team_logo !== null" src="{{home_team_logo}}" class="logoSquadra" />
+							<img *ngIf="home_team_logo === null" src="assets/img/loghi/logoVuoto.png" class="logoSquadra" />
 						</ion-col>
 						<ion-col width-50 class="result">
 							<h1>{{result}}</h1>
 						</ion-col>
 						<ion-col>
-							<img *ngIf="away_team_logo !== null" src="{{away_team_logo}}" style="border-radius: 0;" />
-							<img *ngIf="away_team_logo === null" src="assets/img/loghi/logoVuoto.png" />
+							<img *ngIf="away_team_logo !== null" src="{{away_team_logo}}" class="logoSquadra" />
+							<img *ngIf="away_team_logo === null" src="assets/img/loghi/logoVuoto.png" class="logoSquadra" />
 						</ion-col>
 					</ion-row>
 				</ion-grid>
+
+				<hr />
 			</div>
 			<div class="card-content">
 				<div class="errorMessage" *ngIf="errorMessageView">{{errorMessage}}</div>

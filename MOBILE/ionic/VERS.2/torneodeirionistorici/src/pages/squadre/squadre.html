@@ -12,12 +12,12 @@
 			<div class="card-header">
 				<ion-grid class="gridHeader">
 					<ion-row>
-						<ion-col>
-							<img *ngIf="team.SquadraLogo !== null" src="{{team.SquadraLogo}}" />
-							<img *ngIf="team.SquadraLogo === null" src="assets/img/loghi/logoVuoto.png" />
+						<ion-col width-50 class="logoTeam">
+							<img *ngIf="team.SquadraLogo !== null" src="{{team.SquadraLogo}}" class="logoSquadra" />
+							<img *ngIf="team.SquadraLogo === null" src="assets/img/loghi/logoVuoto.png" class="logoSquadra" />
 						</ion-col>
-						<ion-col>
-							<h1 [innerHTML]="team.Squadra"></h1>
+						<ion-col width-50 class="infoTeam">
+							<h3 [innerHTML]="team.Squadra"></h3>
 							<hr />
 							<strong>{{team.Punti}}</strong> punti in stagione
 							<hr />

@@ -6,9 +6,14 @@ page-squadre {
     ion-col h1 {
         padding-top: 15px;
     }
-    img {
-        max-width: 150px !important;
-        width: 150px !important;
+
+    .gridHeader ion-row {
+        text-align: center;
+    }
+
+    .gridHeader .infoTeam,
+    .gridHeader .logoTeam {
+        text-align: left;
     }
 
 }

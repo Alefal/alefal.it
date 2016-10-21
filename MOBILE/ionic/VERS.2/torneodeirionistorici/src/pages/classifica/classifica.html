@@ -34,8 +34,9 @@
 						<h3>{{rank.pts}}</h3>
 					</ion-col>
 					<ion-col width-50>
-
-						<ion-grid>
+						<h3 style="font-weight: bold;">{{rank.name}}</h3>
+						<!--
+						<ion-grid class="rankLogoName">
 							<ion-row>
 								<ion-col width-50>
 									<img *ngIf="rank.logo !== null" src="{{rank.logo}}" style="border-radius: 0;width:32px" />
@@ -46,7 +47,7 @@
 								</ion-col>
 							</ion-row>
 						</ion-grid>
-
+						-->
 					</ion-col>
 					<ion-col>
 						<h3>{{rank.gioc}}</h3>
@@ -95,19 +96,20 @@
 								<h3>{{team.pts}}</h3>
 							</ion-col>
 							<ion-col width-50>
-
-								<ion-grid>
+								<h3 style="font-weight: bold;">{{team.name}}</h3>
+								<!--
+								<ion-grid class="rankLogoName">
 									<ion-row>
-										<ion-col width-50>
-											<img *ngIf="team.logo !== null" src="{{team.logo}}" style="border-radius: 0;width:32px" />
-											<img *ngIf="team.logo === null" src="assets/img/loghi/logoVuoto.png" style="border-radius: 0;width:32px" />
+										<ion-col width-25>
+											<img *ngIf="team.logo !== null" src="{{team.logo}}" class="logoSquadra" />
+											<img *ngIf="team.logo === null" src="assets/img/loghi/logoVuoto.png" class="logoSquadra" />
 										</ion-col>
-										<ion-col width-50>
+										<ion-col width-75>
 											<h3 style="font-weight: bold;">{{team.name}}</h3>
 										</ion-col>
 									</ion-row>
 								</ion-grid>
-
+								-->
 							</ion-col>
 							<ion-col>
 								<h3>{{team.gioc}}</h3>

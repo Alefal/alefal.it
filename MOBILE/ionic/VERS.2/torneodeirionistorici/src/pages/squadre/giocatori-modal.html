@@ -23,15 +23,15 @@
 
 				<ion-grid class="gridHeader">
 					<ion-row>
-						<ion-col width-25>{{atleta.playerPhoto}}
+						<ion-col width-25>
 							<img class="img-polaroid" *ngIf="atleta.playerPhoto !== null" src="{{atleta.playerPhoto}}" />
 							<img class="img-polaroid" *ngIf="atleta.playerPhoto === null" src="assets/img/userPhoto.png" />
 						</ion-col>
-						<ion-col>
+						<ion-col width-50>
 							<h3 [innerHTML]="atleta.playerName"></h3>
 							<h5>Numero <strong>{{atleta.playerNumber}}</strong></h5>
 						</ion-col>
-						<ion-col width-10>
+						<ion-col width-25>
 							<a class="card-button dark" (click)="statistiche(atleta.playerId)">
 								<ion-icon name="football"></ion-icon>
 							</a>

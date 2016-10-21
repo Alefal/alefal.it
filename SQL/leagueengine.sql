@@ -1,3 +1,27 @@
+-- phpMyAdmin SQL Dump
+-- version 4.6.0
+-- http://www.phpmyadmin.net
+--
+-- Host: 127.0.0.1
+-- Generation Time: Oct 21, 2016 at 02:25 PM
+-- Server version: 10.0.17-MariaDB
+-- PHP Version: 5.6.14
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `wordpress452`
+--
+
+-- --------------------------------------------------------
+
 --
 -- Table structure for table `wp_leagueengine_data`
 --
@@ -37,15 +61,15 @@ INSERT INTO `wp_leagueengine_data` (`id`, `data_type`, `data_value`, `data_abbre
 (9, 'attribute', 'Gialli', '', 'player', '', '', 'text', '', '', '', '', '', 'teams', '', '', '', ''),
 (10, 'attribute', 'Goals', '', 'player', '', '', 'text', '', '', '', '', '', 'teams', '', '', '', ''),
 (11, 'event', 'IncontroLive', '', '', 'IncontroLive', '', '', '', '', '', '', '', 'teams', '', '', '', ''),
-(12, 'team', 'Squadra1', '', '', '', '0', '', 'http://localhost/alefal.it/PROJECTS/wordpress_452/wp-content/uploads/2016/05/wcap_newsletter.png', '', '#d1d1d1', '#d1d1d1', '', 'teams', '', '', '', ''),
+(12, 'team', 'Squadra1', '', '', '', '0', '', 'http://localhost/alefal.it/PROJECTS/wordpress_452/wp-content/uploads/2016/10/milan.png', '', '#d1d1d1', '#d1d1d1', '', 'teams', '', '', '', ''),
 (13, 'team', 'Squadra2', '', '', '', '0', '', '', '', '', '', '', 'teams', '', '', '', ''),
 (14, 'team', 'Squadra3', '', '', '', '0', '', '', '', '', '', '', 'teams', '', '', '', ''),
 (15, 'team', 'Squadra4', '', '', '', '0', '', '', '', '', '', '', 'teams', '', '', '', ''),
 (16, 'team', 'Squadra5', '', '', '', '0', '', '', '', '', '', '', 'teams', '', '', '', ''),
 (17, 'team', 'Squadra6', '', '', '', '0', '', '', '', '', '', '', 'teams', '', '', '', ''),
-(18, 'team', 'Squadra7', '', '', '', '0', '', '', '', '', '', '', 'teams', '', '', '', ''),
-(19, 'team', 'Squadra8', '', '', '', '0', '', '', '', '', '', '', 'teams', '', '', '', ''),
-(30, 'team', 'Squadra9', '', '', '', '0', '', '', '', '', '', '', 'teams', '', '', '', ''),
+(18, 'team', 'Squadra7', '', '', '', '0', '', 'http://localhost/alefal.it/PROJECTS/wordpress_452/wp-content/uploads/2016/10/juve.png', '', '', '', '', 'teams', '', '', '', ''),
+(19, 'team', 'Squadra8', '', '', '', '0', '', 'http://localhost/alefal.it/PROJECTS/wordpress_452/wp-content/uploads/2016/10/milan.png', '', '', '', '', 'teams', '', '', '', ''),
+(30, 'team', 'Squadra9', '', '', '', '0', '', 'http://localhost/alefal.it/PROJECTS/wordpress_452/wp-content/uploads/2016/10/juve.png', '', '', '', '', 'teams', '', '', '', ''),
 (31, 'team', 'Squadra10', '', '', '', '0', '', '', '', '', '', '', 'teams', '', '', '', ''),
 (32, 'season', '2016/17', '', '', '', '0', '', '', '', '', '', '', 'teams', '', '', '2', ''),
 (33, 'player', 'Player1', '', '', '', '1', '', 'http://localhost/alefal.it/PROJECTS/wordpress_452/wp-content/uploads/2016/05/wcap_newsletter.png', '', '', '', '', 'teams', '', '', '', '1'),
@@ -500,11 +524,11 @@ INSERT INTO `wp_leagueengine_tournament_matches` (`id`, `tournament_id`, `round`
 (1, '4', '1', '1', '2016-10-20', '15:00:00', '14', '15', '', '', '', '', '', '', '', '', '', ''),
 (2, '4', '2', '2', '2016-10-20', '15:00:00', '', '', '', '', '', '', '', '', '', '', '', ''),
 (3, '4', '1', '3', '2016-10-20', '15:00:00', '16', '17', '', '', '', '', '', '', '', '', '', ''),
-(7, '5', '1', '1', '2016-10-20', '15:00:00', '', '', '', '', '', '', '', '', '', '', '', ''),
-(8, '5', 'GROUP', '1', '2016-10-20', '15:00:00', '18', '19', '', '', '', '', '', '', '', '', '', ''),
-(9, '5', 'GROUP', '1', '2016-10-21', '15:00:00', '19', '18', '', '', '', '', '', '', '', '', '', ''),
-(10, '5', 'GROUP', '2', '2016-10-20', '15:00:00', '30', '31', '', '', '', '', '', '', '', '', '', ''),
-(11, '5', 'GROUP', '2', '2016-10-21', '15:00:00', '31', '30', '', '', '', '', '', '', '', '', '', '');
+(7, '5', '1', '1', '2016-10-20', '15:00:00', '19', '30', '2', '3', '', '', '30', '', '', '', '', ''),
+(8, '5', 'GROUP', '1', '2016-10-20', '15:00:00', '18', '19', '1', '2', '', '', '19', '', '', '', '', ''),
+(9, '5', 'GROUP', '1', '2016-10-21', '15:00:00', '19', '18', '3', '3', '', '', 'draw', '', '', '', '', ''),
+(10, '5', 'GROUP', '2', '2016-10-20', '15:00:00', '30', '31', '2', '2', '', '', 'draw', '', '', '', '', ''),
+(11, '5', 'GROUP', '2', '2016-10-21', '15:00:00', '31', '30', '4', '5', '', '', '30', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -542,6 +566,19 @@ CREATE TABLE `wp_leagueengine_tournament_matches_events` (
   `timeline_text` mediumtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `wp_leagueengine_tournament_matches_events`
+--
+
+INSERT INTO `wp_leagueengine_tournament_matches_events` (`id`, `tournament_id`, `match_id`, `event_id`, `team_id`, `player_id`, `event_time`, `display`, `sort_order`, `timeline_text`) VALUES
+(1, '5', '7', '11', '19', '43', '3', '', '', 'palo'),
+(2, '5', '7', '11', '19', '43', '4', '', '', 'traversa'),
+(3, '5', '7', '11', '30', '44', '10', '', '', 'goalllllllll'),
+(4, '5', '7', '11', '19', '43', '12', '', '', 'Pareggio'),
+(5, '5', '7', '11', '19', '43', '16', '', '', 'Raddoppio'),
+(6, '5', '7', '11', '30', '44', '25', '', '', 'Pareggio'),
+(7, '5', '7', '11', '30', '44', '45', '', '', 'Vantaggio');
+
 -- --------------------------------------------------------
 
 --
@@ -571,12 +608,14 @@ INSERT INTO `wp_leagueengine_tournament_teams` (`id`, `tournament_id`, `team_id`
 (2, '4', '15', 'Squadra4', '', '0', '0', '0', '0', '0', 'team'),
 (3, '4', '16', 'Squadra5', '', '0', '0', '0', '0', '0', 'team'),
 (4, '4', '17', 'Squadra6', '', '0', '0', '0', '0', '0', 'team'),
-(9, '5', '18', 'Squadra7', '1', '0', '0', '0', '0', '0', 'team'),
-(10, '5', '19', 'Squadra8', '1', '0', '0', '0', '0', '0', 'team'),
-(11, '5', '30', 'Squadra9', '2', '0', '0', '0', '0', '0', 'team'),
-(12, '5', '31', 'Squadra10', '2', '0', '0', '0', '0', '0', 'team');
+(9, '5', '18', 'Squadra7', '1', '0', '-1', '0', '0', '1', 'team'),
+(10, '5', '19', 'Squadra8', '1', '1', '1', '0', '0', '4', 'team'),
+(11, '5', '30', 'Squadra9', '2', '1', '1', '0', '0', '4', 'team'),
+(12, '5', '31', 'Squadra10', '2', '0', '-1', '0', '0', '1', 'team');
 
--- --------------------------------------------------------
+--
+-- Indexes for dumped tables
+--
 
 --
 -- Indexes for table `wp_leagueengine_data`
@@ -688,6 +727,10 @@ ALTER TABLE `wp_leagueengine_tournament_teams`
   ADD PRIMARY KEY (`id`);
 
 --
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
 -- AUTO_INCREMENT for table `wp_leagueengine_data`
 --
 ALTER TABLE `wp_leagueengine_data`
@@ -771,9 +814,12 @@ ALTER TABLE `wp_leagueengine_tournament_matches_attributes`
 -- AUTO_INCREMENT for table `wp_leagueengine_tournament_matches_events`
 --
 ALTER TABLE `wp_leagueengine_tournament_matches_events`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `wp_leagueengine_tournament_teams`
 --
 ALTER TABLE `wp_leagueengine_tournament_teams`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
