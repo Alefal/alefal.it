@@ -6,34 +6,64 @@
 
 <ion-content padding>
 
-  <div class="errorMessage" *ngIf="errorMessageView">{{errorMessage}}</div>
-	
-  <ion-list *ngIf="!errorMessageView && tipologiaTorneo == 'league'" class="listStats">
-	  <ion-grid class="gridHeader">
+	<div class="errorMessage" *ngIf="errorMessageView">{{errorMessage}}</div>
+
+	<ion-list *ngIf="!errorMessageView && tipologiaTorneo == 'league'" class="listStats">
+		<ion-grid class="gridHeader">
 			<ion-row>
-				<ion-col><h6>PTI</h6></ion-col>
-				<ion-col width-50><h6>SQUADRA</h6></ion-col>
-				<ion-col><h6>GIOC</h6></ion-col>
-				<ion-col><h6>+/-</h6></ion-col>
+				<ion-col>
+					<h6>PTI</h6>
+				</ion-col>
+				<ion-col width-50>
+					<h6>SQUADRA</h6>
+				</ion-col>
+				<ion-col>
+					<h6>GIOC</h6>
+				</ion-col>
+				<ion-col>
+					<h6>+/-</h6>
+				</ion-col>
 				<ion-col>&nbsp;</ion-col>
 			</ion-row>
 		</ion-grid>
 
-    <ion-item *ngFor="let rank of ranking">
-      <ion-grid>
-        <ion-row>
-          <ion-col><h3>{{rank.pts}}</h3></ion-col>
-          <ion-col width-50><h3 style="font-weight: bold;">{{rank.name}}</h3></ion-col>
-          <ion-col><h3>{{rank.gioc}}</h3></ion-col>
-          <ion-col><h3>{{rank.diff}}</h3></ion-col>
-          <ion-col><ion-icon name="share-alt" (click)="presentPopover(rank)"></ion-icon></ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
+		<ion-item *ngFor="let rank of ranking">
+			<ion-grid>
+				<ion-row>
+					<ion-col>
+						<h3>{{rank.pts}}</h3>
+					</ion-col>
+					<ion-col width-50>
+
+						<ion-grid>
+							<ion-row>
+								<ion-col width-50>
+									<img *ngIf="rank.logo !== null" src="{{rank.logo}}" style="border-radius: 0;width:32px" />
+									<img *ngIf="rank.logo === null" src="assets/img/loghi/logoVuoto.png" style="border-radius: 0;width:32px" />
+								</ion-col>
+								<ion-col width-50>
+									<h3 style="font-weight: bold;">{{rank.name}}</h3>
+								</ion-col>
+							</ion-row>
+						</ion-grid>
+
+					</ion-col>
+					<ion-col>
+						<h3>{{rank.gioc}}</h3>
+					</ion-col>
+					<ion-col>
+						<h3>{{rank.diff}}</h3>
+					</ion-col>
+					<ion-col>
+						<ion-icon name="share-alt" (click)="presentPopover(rank)"></ion-icon>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+		</ion-item>
 	</ion-list>
 
 	<div *ngIf="!errorMessageView && tipologiaTorneo == 'tournament'" class="listStats">
-	  <div *ngFor="let group of ranking" class="groupBox">
+		<div *ngFor="let group of ranking" class="groupBox">
 			<ion-list>
 				<ion-grid class="gridHeader">
 					<ion-row>
@@ -43,33 +73,64 @@
 						</ion-col>
 					</ion-row>
 					<ion-row>
-						<ion-col><h6>PTI</h6></ion-col>
-						<ion-col width-50><h6>SQUADRA</h6></ion-col>
-						<ion-col><h6>GIOC</h6></ion-col>
-						<ion-col><h6>+/-</h6></ion-col>
+						<ion-col>
+							<h6>PTI</h6>
+						</ion-col>
+						<ion-col width-50>
+							<h6>SQUADRA</h6>
+						</ion-col>
+						<ion-col>
+							<h6>GIOC</h6>
+						</ion-col>
+						<ion-col>
+							<h6>+/-</h6>
+						</ion-col>
 						<ion-col>&nbsp;</ion-col>
 					</ion-row>
 				</ion-grid>
 				<ion-item *ngFor="let team of group.teams">
 					<ion-grid>
 						<ion-row>
-							<ion-col><h3>{{team.pts}}</h3></ion-col>
-							<ion-col width-50><h3 style="font-weight: bold;">{{team.name}}</h3></ion-col>
-							<ion-col><h3>{{team.gioc}}</h3></ion-col>
-							<ion-col><h3>{{team.diff}}</h3></ion-col>
-							<ion-col><ion-icon name="share-alt" (click)="presentPopover(team)"></ion-icon></ion-col>
+							<ion-col>
+								<h3>{{team.pts}}</h3>
+							</ion-col>
+							<ion-col width-50>
+
+								<ion-grid>
+									<ion-row>
+										<ion-col width-50>
+											<img *ngIf="team.logo !== null" src="{{team.logo}}" style="border-radius: 0;width:32px" />
+											<img *ngIf="team.logo === null" src="assets/img/loghi/logoVuoto.png" style="border-radius: 0;width:32px" />
+										</ion-col>
+										<ion-col width-50>
+											<h3 style="font-weight: bold;">{{team.name}}</h3>
+										</ion-col>
+									</ion-row>
+								</ion-grid>
+
+							</ion-col>
+							<ion-col>
+								<h3>{{team.gioc}}</h3>
+							</ion-col>
+							<ion-col>
+								<h3>{{team.diff}}</h3>
+							</ion-col>
+							<ion-col>
+								<ion-icon name="share-alt" (click)="presentPopover(team)"></ion-icon>
+							</ion-col>
 						</ion-row>
 					</ion-grid>
 				</ion-item>
 				<ion-grid class="gridFooter">
 					<ion-row>
 						<ion-col align="center">
-							<h3 class="groupName" (click)="tournamentMatchs('tournament',group.group)"><ion-icon name="calendar"></ion-icon> Vedi Incontri</h3>
+							<h3 class="groupName" (click)="tournamentMatchs('tournament',group.group)">
+								<ion-icon name="calendar"></ion-icon> Vedi Incontri</h3>
 						</ion-col>
 					</ion-row>
 				</ion-grid>
 			</ion-list>
-    </div>
+		</div>
 	</div>
 
 </ion-content>

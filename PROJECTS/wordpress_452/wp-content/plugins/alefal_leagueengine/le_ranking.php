@@ -32,6 +32,7 @@ if(isset($tipologiaTorneo)) {
             $teamsArray[] = array(
                 'position'  => $cont,
                 'name'      => $team->team_name,
+                'logo'      => le_leagueengine_fetch_data_from_id($team->team_id,'image'),
                 'pts'       => $team->season_pts,
                 'gioc'      => le_leagueengine_table_gp($league_id,$season_id,$team->team_id),
                 'vitt'      => le_leagueengine_table_gw($league_id,$season_id,$team->team_id),
@@ -67,6 +68,7 @@ if(isset($tipologiaTorneo)) {
                 $groupTeamsArray[] = array(
                     'position'  => $cont,
                     'name'      => $team->team_name,
+                    'logo'      => le_leagueengine_fetch_data_from_id($team->team_id,'image'),
                     'pts'       => $team->tournament_pts,
                     'gioc'      => le_leagueengine_tournament_table_gp($tournament_id,$team->team_id),
                     'vitt'      => le_leagueengine_tournament_table_gw($tournament_id,$team->team_id),

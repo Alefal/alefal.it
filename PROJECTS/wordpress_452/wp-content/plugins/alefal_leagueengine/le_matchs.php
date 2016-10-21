@@ -71,6 +71,8 @@ if(isset($tipologiaTorneo)) {
             'awayId'			=> $match->away_team_id,
             'homeGoal'			=> $match->home_team_score,
             'awayGoal'			=> $match->away_team_score,
+            'home_team_logo'    => le_leagueengine_fetch_data_from_id($match->home_team_id,'image'),
+            'away_team_logo'    => le_leagueengine_fetch_data_from_id($match->away_team_id,'image'),
             'result'			=> $match->home_team_score . ' - ' . $match->away_team_score,
             'preview'			=> $match->preview,
             'report'			=> $match->report

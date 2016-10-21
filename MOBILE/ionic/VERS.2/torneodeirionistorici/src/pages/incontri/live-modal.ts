@@ -22,6 +22,9 @@ export class LiveModal {
 
   tipologiaTorneo: string;
 
+  home_team_logo: string;
+  away_team_logo: string;
+
   dangerousVideoUrl:  string;
   videoUrl:           SafeResourceUrl;
 
@@ -37,6 +40,9 @@ export class LiveModal {
     this.result       = params.get('result');
     this.matchId      = params.get('matchId');
     this.tipologiaTorneo = params.get('tipologiaTorneo');
+    
+    this.home_team_logo   = params.get('home_team_logo');
+    this.away_team_logo   = params.get('away_team_logo');
 
     this.loading = this.loadingCtrl.create({
       content: 'Please wait...'

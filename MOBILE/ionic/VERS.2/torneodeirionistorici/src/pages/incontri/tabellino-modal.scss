@@ -3,12 +3,17 @@ page-tabellino-modal {
   .card-header {
     text-align: center;
   }
-  
+  /*
+  .card-content ion-row {
+      border-bottom: 1px dotted #003d08;
+  }
+  */
   ion-col {
     text-align: center;
   }
   .result {
-    padding-top: 10%;
+     padding-top: 10%;
+     font-weight: bold;
   }
 
   .eventTime {
@@ -21,5 +26,22 @@ page-tabellino-modal {
   }
   .eventTimeline .timeline {
     font-family: "Lato", sans-serif;
+  }
+
+  .gridHeader {
+      background-color: #003d08;
+      color: white;
+      margin: 0 auto;
+      padding: 15px;
+  }
+  .gridHeader hr {
+      border-bottom: 1px solid white;
+  }
+
+  .gridFooter {
+      background-color: #003d08;
+      color: white;
+      margin: 0 auto;
+      padding: 0;
   }
 }

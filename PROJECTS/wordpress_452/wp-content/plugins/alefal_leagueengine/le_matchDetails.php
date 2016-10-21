@@ -5,6 +5,7 @@ require_once('functions.php');
 global $wpdb;
 $table_prefix = $wpdb->prefix;
 
+$matchArray = array();
 $matchesEvents = array();
 $resultArray = array();
 $finalArray = array();
@@ -15,6 +16,12 @@ $tipologiaTorneo    = $_GET['tipologiaTorneo']; //league | tournament
 if(isset($match_id)) { 
 
     if($tipologiaTorneo == 'league') {
+        $match = $wpdb->get_results("
+            SELECT SM.*
+            FROM ".$table_prefix."leagueengine_season_matches AS SM
+            WHERE SM.id = $match_id"
+        );
+
         $events = $wpdb->get_results("
             SELECT ST.team_name, DATA_P.data_value, SME.event_time, SME.timeline_text
             FROM ".$table_prefix."leagueengine_season_matches_events AS SME
@@ -23,6 +30,12 @@ if(isset($match_id)) {
             WHERE SME.match_id = $match_id AND SME.event_id != 'app'"
         );
     } else if($tipologiaTorneo == 'tournament') {
+        $match = $wpdb->get_results("
+            SELECT TM.*
+            FROM ".$table_prefix."leagueengine_tournament_matches AS TM
+            WHERE TM.id = $match_id"
+        );
+
         $events = $wpdb->get_results("
             SELECT TT.team_name, DATA_P.data_value, TME.event_time, TME.timeline_text
             FROM ".$table_prefix."leagueengine_tournament_matches_events AS TME
@@ -37,13 +50,26 @@ if(isset($match_id)) {
         'message' => 'OK'
     );
 
-    //print_r($matchesEvents);
+    //print_r($match);
     foreach ($events as $event) {
         $matchesEvents[] = array(        
             'team_name'      	=> $event->team_name,
             'player_name'    	=> $event->data_value,
             'event_time'      	=> $event->event_time,
             'timeline_text'     => $event->timeline_text,
+        );  
+    }
+    foreach ($match as $item) {
+        $matchArray[] = array(        
+            'id'                => $item->id,
+            'match_date'        => $item->match_date,
+            'match_time'        => $item->match_time,
+            'home_team_id'      => $item->home_team_id,
+            'away_team_id'      => $item->away_team_id,
+            'home_team_score'   => $item->home_team_score,
+            'away_team_score'   => $item->away_team_score,
+            'home_team_logo'    => le_leagueengine_fetch_data_from_id($item->home_team_id,'image'),
+            'away_team_logo'    => le_leagueengine_fetch_data_from_id($item->away_team_id,'image'),
         );  
     }
 } else {
@@ -54,8 +80,9 @@ if(isset($match_id)) {
 }
 
 $finalArray[] = array(
-    'response'   => $resultArray,
-    'matchesEvents'   => $matchesEvents
+    'response'          => $resultArray,
+    'match'             => $matchArray,
+    'matchesEvents'     => $matchesEvents
 );
 echo json_encode($finalArray);
 exit();

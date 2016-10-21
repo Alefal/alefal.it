@@ -22,6 +22,7 @@ export class TabellinoModal {
   errorMessage: string;
   errorMessageView: any;
 
+  match: any;
   matchesEvents: any;
   home_team_id: number;
   away_team_id: number;
@@ -34,17 +35,23 @@ export class TabellinoModal {
   intervalId: any;
 
   constructor(
-    params: NavParams,
+    public params: NavParams,
     public viewCtrl: ViewController,
     private httpService: HttpService,
     public loadingCtrl: LoadingController,
   ) {
-    this.matchId = params.get('id');
-    this.teamHome = params.get('teamHome');
-    this.teamAway = params.get('teamAway');
-    this.result = params.get('result');
-    this.home_team_id = params.get('home_team_id');
-    this.away_team_id = params.get('away_team_id');
+    this.matchId          = params.get('id');
+    this.teamHome         = params.get('teamHome');
+    this.teamAway         = params.get('teamAway');
+    this.result           = params.get('result');
+    this.home_team_id     = params.get('home_team_id');
+    this.away_team_id     = params.get('away_team_id');
+    this.home_team_logo   = params.get('home_team_logo');
+    this.away_team_logo   = params.get('away_team_logo');
+
+    console.log(this.home_team_logo);
+    console.log(this.away_team_logo);
+
     this.tipologiaTorneo = params.get('tipologiaTorneo');
 
     this.getTabellino(this.matchId);
@@ -76,7 +83,8 @@ export class TabellinoModal {
         //console.log('SUCCESS: ' + JSON.stringify(res));
 
         if (res[0].response[0].result == 'OK') {
-          this.matchesEvents = res[0].matchesEvents;
+          //this.match          = res[0].match;
+          this.matchesEvents  = res[0].matchesEvents;
         }
         this.loading.dismiss();
       })
@@ -92,7 +100,12 @@ export class TabellinoModal {
       .getCallHttp('getTabellino','','',matchId,'',this.tipologiaTorneo)
       .then(res => {
         if (res[0].response[0].result == 'OK') {
-          this.matchesEvents = res[0].matchesEvents;
+          //this.match          = res[0].match;
+          this.result           = res[0].match[0].home_team_score +' - '+ res[0].match[0].away_team_score;
+          this.home_team_logo   = res[0].match[0].home_team_logo;
+          this.away_team_logo   = res[0].match[0].away_team_logo;
+
+          this.matchesEvents  = res[0].matchesEvents;
         }
       })
       .catch(error => {

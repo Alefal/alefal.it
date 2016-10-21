@@ -59,7 +59,7 @@ export class Incontri {
       });
   }
 
-  tabellino(id,teamHome,teamAway,result,home_team_id,away_team_id) {
+  tabellino(id,teamHome,teamAway,result,home_team_id,away_team_id,home_team_logo,away_team_logo) {
     let modal = this.modalCtrl.create(TabellinoModal, { 
       id:id,
       teamHome:teamHome,
@@ -67,18 +67,22 @@ export class Incontri {
       result:result,
       home_team_id: home_team_id,
       away_team_id: away_team_id,
-      tipologiaTorneo: this.tipologiaTorneo 
+      tipologiaTorneo: this.tipologiaTorneo,
+      home_team_logo: home_team_logo,
+      away_team_logo: away_team_logo 
     });
     modal.present();
   }
 
-  live(matchId,homeName,awayName,result) {
+  live(matchId,homeName,awayName,result,home_team_logo,away_team_logo) {
     let modal = this.modalCtrl.create(LiveModal, { 
       matchId: matchId ,
       homeName:homeName,
       awayName:awayName,
       result:result,
-      tipologiaTorneo: this.tipologiaTorneo
+      tipologiaTorneo: this.tipologiaTorneo,
+      home_team_logo: home_team_logo,
+      away_team_logo: away_team_logo 
     });
     modal.present();
   }

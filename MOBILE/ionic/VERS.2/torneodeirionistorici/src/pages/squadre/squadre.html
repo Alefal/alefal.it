@@ -13,7 +13,8 @@
 				<ion-grid class="gridHeader">
 					<ion-row>
 						<ion-col>
-							<img src="{{team.SquadraLogo}}" />
+							<img *ngIf="team.SquadraLogo !== null" src="{{team.SquadraLogo}}" />
+							<img *ngIf="team.SquadraLogo === null" src="assets/img/loghi/logoVuoto.png" />
 						</ion-col>
 						<ion-col>
 							<h1 [innerHTML]="team.Squadra"></h1>

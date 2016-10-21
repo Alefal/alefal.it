@@ -2,60 +2,29 @@
 
 	<div class="posts">
 		<div class="post-card">
-			<div class="card-header">
+			<div class="card-header gridHeader">
 				<h1>{{teamHome}} - {{teamAway}}</h1>
-			</div>
-			<div class="card-content">
 
-				<ion-grid class="gridHeader">
+				<ion-grid>
 					<ion-row>
 						<ion-col>
-
-							<img *ngIf="teamHome == 'Lacco'" src="http://torneodeirionistorici.altervista.org/wp-content/uploads/2014/11/lacco1.jpg"
-								style="border-radius: 0;" />
-							<img *ngIf="teamHome == 'Minuta'" src="http://torneodeirionistorici.altervista.org/wp-content/uploads/2014/11/minuta.png"
-								style="border-radius: 0;" />
-							<img *ngIf="teamHome == 'Monte Brusara'" src="http://torneodeirionistorici.altervista.org/wp-content/uploads/2014/11/monte_brusara1.jpg"
-								style="border-radius: 0;" />
-							<img *ngIf="teamHome == 'Sambuco'" src="http://torneodeirionistorici.altervista.org/wp-content/uploads/2014/11/sambuco1.jpg"
-								style="border-radius: 0;" />
-							<img *ngIf="teamHome == 'Santa Caterina'" src="http://torneodeirionistorici.altervista.org/wp-content/uploads/2014/11/santa_caterina1.jpg"
-								style="border-radius: 0;" />
-							<img *ngIf="teamHome == 'San Pietro'" src="http://torneodeirionistorici.altervista.org/wp-content/uploads/2014/11/san_pietro.jpg"
-								style="border-radius: 0;" />
-							<img *ngIf="teamHome == 'San Cosma'" src="http://torneodeirionistorici.altervista.org/wp-content/uploads/2014/11/san_cosma1.jpg"
-								style="border-radius: 0;" />
-
+							<img *ngIf="home_team_logo !== null" src="{{home_team_logo}}" style="border-radius: 0;" />
+							<img *ngIf="home_team_logo === null" src="assets/img/loghi/logoVuoto.png" />
 						</ion-col>
 						<ion-col width-50 class="result">
 							<h1>{{result}}</h1>
 						</ion-col>
 						<ion-col>
-							<img *ngIf="teamAway == 'Lacco'" src="http://torneodeirionistorici.altervista.org/wp-content/uploads/2014/11/lacco1.jpg"
-								style="border-radius: 0;" />
-							<img *ngIf="teamAway == 'Minuta'" src="http://torneodeirionistorici.altervista.org/wp-content/uploads/2014/11/minuta.png"
-								style="border-radius: 0;" />
-							<img *ngIf="teamAway == 'Monte Brusara'" src="http://torneodeirionistorici.altervista.org/wp-content/uploads/2014/11/monte_brusara1.jpg"
-								style="border-radius: 0;" />
-							<img *ngIf="teamAway == 'Sambuco'" src="http://torneodeirionistorici.altervista.org/wp-content/uploads/2014/11/sambuco1.jpg"
-								style="border-radius: 0;" />
-							<img *ngIf="teamAway == 'Santa Caterina'" src="http://torneodeirionistorici.altervista.org/wp-content/uploads/2014/11/santa_caterina1.jpg"
-								style="border-radius: 0;" />
-							<img *ngIf="teamAway == 'San Pietro'" src="http://torneodeirionistorici.altervista.org/wp-content/uploads/2014/11/san_pietro.jpg"
-								style="border-radius: 0;" />
-							<img *ngIf="teamAway == 'San Cosma'" src="http://torneodeirionistorici.altervista.org/wp-content/uploads/2014/11/san_cosma1.jpg"
-								style="border-radius: 0;" />
+							<img *ngIf="away_team_logo !== null" src="{{away_team_logo}}" style="border-radius: 0;" />
+							<img *ngIf="away_team_logo === null" src="assets/img/loghi/logoVuoto.png" />
 						</ion-col>
 					</ion-row>
 				</ion-grid>
-
-				<br />
-				<hr />
-				<br />
-
+			</div>
+			<div class="card-content">
 				<div class="errorMessage" *ngIf="errorMessageView">{{errorMessage}}</div>
 				
-				<ion-grid class="gridHeader">
+				<ion-grid>
 					<ion-row *ngFor="let event of matchesEvents" style="padding:10px">
 						<ion-col style="min-width: 40%; text-align:right">
 							<div *ngIf="teamHome == event.team_name" class="eventTimeline">
