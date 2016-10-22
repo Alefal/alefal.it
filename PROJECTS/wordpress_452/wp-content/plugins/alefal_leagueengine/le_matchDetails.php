@@ -27,7 +27,8 @@ if(isset($match_id)) {
             FROM ".$table_prefix."leagueengine_season_matches_events AS SME
                 INNER JOIN ".$table_prefix."leagueengine_season_teams AS ST ON ST.team_id = SME.team_id    
                 INNER JOIN ".$table_prefix."leagueengine_data AS DATA_P ON DATA_P.id = SME.player_id     
-            WHERE SME.match_id = $match_id AND SME.event_id != 'app'"
+            WHERE SME.match_id = $match_id AND SME.event_id != 'app'
+            ORDER BY SME.id"
         );
     } else if($tipologiaTorneo == 'tournament') {
         $match = $wpdb->get_results("
@@ -41,7 +42,8 @@ if(isset($match_id)) {
             FROM ".$table_prefix."leagueengine_tournament_matches_events AS TME
                 INNER JOIN ".$table_prefix."leagueengine_tournament_teams AS TT ON TT.team_id = TME.team_id    
                 INNER JOIN ".$table_prefix."leagueengine_data AS DATA_P ON DATA_P.id = TME.player_id     
-            WHERE TME.match_id = $match_id AND TME.event_id != 'app'"
+            WHERE TME.match_id = $match_id AND TME.event_id != 'app'
+            ORDER BY TME.id"
         );
     }
 

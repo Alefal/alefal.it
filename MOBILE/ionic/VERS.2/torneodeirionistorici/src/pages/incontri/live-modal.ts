@@ -21,6 +21,7 @@ export class LiveModal {
   result:       string;
 
   tipologiaTorneo: string;
+  intervalId: any;
 
   home_team_logo: string;
   away_team_logo: string;
@@ -77,11 +78,14 @@ export class LiveModal {
         this.loading.dismiss();
       });
 
-    
+      this.intervalId = setInterval(() => {
+        this.getTabellinoPolling(this.matchId);
+      }, 10000);
     
   }
 
   dismiss() {
+    clearInterval(this.intervalId);
     this.viewCtrl.dismiss();
   }
 
@@ -90,4 +94,21 @@ export class LiveModal {
     this.videoUrl =
         this.sanitizer.bypassSecurityTrustResourceUrl(this.dangerousVideoUrl);
   }
+
+  getTabellinoPolling(matchId) {
+    this.httpService
+      .getCallHttp('getTabellino','','',matchId,'',this.tipologiaTorneo)
+      .then(res => {
+        if (res[0].response[0].result == 'OK') {
+          //this.match          = res[0].match;
+          this.result           = res[0].match[0].home_team_score +' - '+ res[0].match[0].away_team_score;
+          this.home_team_logo   = res[0].match[0].home_team_logo;
+          this.away_team_logo   = res[0].match[0].away_team_logo;
+        }
+      })
+      .catch(error => {
+        console.log('ERROR: ' + error);
+      });
+  }
+
 }

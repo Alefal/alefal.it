@@ -18,8 +18,8 @@ export class HttpService {
         //var host = '/torneodeirionistorici/rest';
         //var host = '/PROJECTS/wordpress_452';
 
-        //var host = '/demo/leagueengine';
-        var host = 'http://www.amalficoastapps.it/demo/leagueengine';
+        var host = '/demo/leagueengine';
+        //var host = 'http://www.amalficoastapps.it/demo/leagueengine';
         
         var url = '';
         if(call == 'getComunicatiUfficiali') {
