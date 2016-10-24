@@ -24,7 +24,8 @@ $resultArray[] = array(
 foreach ($tournament as $tour) {
 	$tournamentArray[] = array(
         'tour_id'			=> $tour->id,
-		'tour_type'			=> $tour->tournament_type
+		'tour_type'			=> $tour->tournament_type,
+        'tour_teams'        => $tour->teams
     );
 }
 

@@ -42,7 +42,7 @@ if(isset($match_id)) {
             FROM ".$table_prefix."leagueengine_tournament_matches_events AS TME
                 INNER JOIN ".$table_prefix."leagueengine_tournament_teams AS TT ON TT.team_id = TME.team_id    
                 INNER JOIN ".$table_prefix."leagueengine_data AS DATA_P ON DATA_P.id = TME.player_id     
-            WHERE TME.match_id = $match_id AND TME.event_id != 'app'
+            WHERE TME.match_id = $match_id AND TME.event_id != 'app' AND TT.tournament_id = $tournament_id
             ORDER BY TME.id"
         );
     }

@@ -23,6 +23,7 @@ $matchs = $wpdb->get_results("
 $tipologiaTorneo    = $_GET['tipologiaTorneo']; //league | tournament
 $group              = $_GET['group']; 
 $type               = $_GET['type'];
+$round              = $_GET['round'];
 
 if(isset($tipologiaTorneo)) {
     
@@ -38,7 +39,7 @@ if(isset($tipologiaTorneo)) {
             $matchs = $wpdb->get_results("
                 SELECT TM.*
                 FROM ".$table_prefix."leagueengine_tournament_matches AS TM
-                WHERE TM.tournament_id = $tournament_id AND round NOT LIKE '%GROUP%'
+                WHERE TM.tournament_id = $tournament_id AND round = '$round'
                 ORDER BY TM.match_date ASC, TM.match_time ASC"
             );
         } else {

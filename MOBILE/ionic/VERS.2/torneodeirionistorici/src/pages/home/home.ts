@@ -11,6 +11,8 @@ import { Statistiche }    from '../statistiche/statistiche';
 import { HttpService }          from '../../providers/http-service';
 import { ConnectivityService }  from '../../providers/connectivity-service';
 
+//import { FillPipe }             from '../../pipes/fill-pipe';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -18,6 +20,11 @@ import { ConnectivityService }  from '../../providers/connectivity-service';
 export class HomePage {
 
   tournament: any;
+  tournamentType: string;
+  tournamentTeams: number;
+
+  tournamentRound: number[] = [];
+
   loading: any;
   errorMessage: String;
   errorMessageView: any;
@@ -34,10 +41,15 @@ export class HomePage {
     if(this.connectivityService.connectivityFound) {
       this.getData();
     } else {
-      if(localStorage.getItem('getTipoTorneo') === null) {
+      if(localStorage.getItem('getTorneo') === null) {
         this.connectivityService.showInfoNoData();
       } else {
-        this.tournament = localStorage.getItem('getTipoTorneo');
+        this.tournament = JSON.parse(localStorage.getItem('getTorneo'));
+        this.tournamentType   = this.tournament[0].tour_type;
+        this.tournamentTeams  = this.tournament[0].tour_teams;
+        for(let i = 0; i < Math.log2(this.tournamentTeams); i++) {
+          this.tournamentRound.push(i);
+        }
         this.connectivityService.showInfo();
       }
     }
@@ -49,11 +61,16 @@ export class HomePage {
     this.loading.present();
 
     this.httpService
-      .getCallHttp('getTipoTorneo','','','','','')
+      .getCallHttp('getTorneo','','','','','')
       .then(res => {
         if(res[0].response[0].result == 'OK') {
-          this.tournament = res[0].tournament[0].tour_type;
-          localStorage.setItem('getTipoTorneo',this.tournament);
+          this.tournament = JSON.stringify(res[0].tournament);
+          this.tournamentType   = res[0].tournament[0].tour_type;
+          this.tournamentTeams  = res[0].tournament[0].tour_teams;
+          for(let i = 0; i < Math.log2(this.tournamentTeams); i++) {
+            this.tournamentRound.push(i);
+          }
+          localStorage.setItem('getTorneo',this.tournament);
         } else {
           this.tournament = 'Nessun dato! Riprovare più tardi.';
         }
@@ -67,8 +84,8 @@ export class HomePage {
       });
   }
 
-  navigate(section,tipologia) {
-    console.log('-> '+section);
+  navigate(section,tipologia,round) {
+    console.log('-> '+section+' | '+tipologia+' | '+round);
     console.log('-> '+this.connectivityService.connectivityFound);
 
     if(section == 'Comunicati'){
@@ -86,7 +103,8 @@ export class HomePage {
     } else if(section == 'ScontriDiretti'){
       this.navCtrl.push(Incontri, {
         tipologia: tipologia,
-        type: 'knockout'
+        type: 'knockout',
+        round: parseInt(round)+1
       });
     } else if(section == 'Classifica'){
       this.navCtrl.push(Classifica, {

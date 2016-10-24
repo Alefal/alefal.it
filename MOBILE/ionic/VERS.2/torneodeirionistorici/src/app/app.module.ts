@@ -21,7 +21,7 @@ import { ConnectivityService }      from '../providers/connectivity-service';
 import { DatabaseService }          from '../providers/database-service';
 import { HttpService }              from '../providers/http-service';
 
-import { LoopNumber }               from '../pipes/loopnumber.pipe';
+import { FillPipe }                 from '../pipes/fill.pipe';
 
 @NgModule({
   declarations: [
@@ -40,7 +40,7 @@ import { LoopNumber }               from '../pipes/loopnumber.pipe';
     ClassificaDetail,
     Statistiche,
     StatisticaModal,
-    LoopNumber //pipe
+    FillPipe //pipe
   ],
   imports: [
     IonicModule.forRoot(TorneoRioniStorici)

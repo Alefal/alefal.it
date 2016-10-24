@@ -22,6 +22,7 @@ export class Incontri {
   tipologiaTorneo: string;
   group: number;
   type: string;
+  round: number;
 
   constructor(
     public params: NavParams,
@@ -32,18 +33,21 @@ export class Incontri {
     public connectivityService: ConnectivityService
   ) { 
     this.tipologiaTorneo = params.get('tipologia'); //league | tournament
-    this.group = params.get('group');
-    this.type = params.get('type');
+    this.group  = params.get('group');
+    this.type   = params.get('type');
+    this.round  = params.get('round');
+
+    console.log('this.round: ' + this.round);
   }
 
   ionViewDidLoad() {
     if(this.connectivityService.connectivityFound) {
       this.getData();
     } else {
-      if(localStorage.getItem('getIncontri') === null) {
+      if(localStorage.getItem('getIncontri_'+this.round) === null) {
         this.connectivityService.showInfoNoData();
       } else {
-        this.incontri = JSON.parse(localStorage.getItem('getIncontri'));
+        this.incontri = JSON.parse(localStorage.getItem('getIncontri_'+this.round));
       this.connectivityService.showInfo();
       }
     }
@@ -55,13 +59,13 @@ export class Incontri {
     this.loading.present();
 
     this.httpService
-      .getCallHttp('getIncontri','','',this.type,this.group,this.tipologiaTorneo)
+      .getCallHttp('getIncontri','',this.round,this.type,this.group,this.tipologiaTorneo)
       .then(res => {
         //console.log('SUCCESS: ' + JSON.stringify(res));
 
         if(res[0].response[0].result == 'OK') {
           this.incontri = res[0].matchs;
-          localStorage.setItem('getIncontri',JSON.stringify(this.incontri));
+          localStorage.setItem('getIncontri_'+this.round,JSON.stringify(this.incontri));
         } else {
           this.incontri = 'Nessun dato! Riprovare più tardi.';
         }

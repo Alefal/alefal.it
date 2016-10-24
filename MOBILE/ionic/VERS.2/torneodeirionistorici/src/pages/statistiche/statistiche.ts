@@ -34,12 +34,8 @@ export class Statistiche {
   ionViewDidLoad() {}
 
   leggiStatistica(stat) {
-    if(this.connectivityService.connectivityFound) {
-      let modal = this.modalCtrl.create(StatisticaModal, { stat: stat, tipologia: this.tipologiaTorneo });
-      modal.present();
-    } else {
-      this.connectivityService.showAlert();
-    }
+    let modal = this.modalCtrl.create(StatisticaModal, { stat: stat, tipologia: this.tipologiaTorneo });
+    modal.present();
   }
 
 }
