@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { NavParams, NavController, LoadingController, ModalController } from 'ionic-angular';
 
-import { HttpService } from '../../providers/http-service';
-import { GiocatoriModal } from './giocatori-modal';
+import { HttpService }          from '../../providers/http-service';
+import { ConnectivityService }  from '../../providers/connectivity-service';
+
+import { GiocatoriModal }       from './giocatori-modal';
+
 
 @Component({
   selector: 'page-squadre',
@@ -22,12 +25,25 @@ export class Squadre {
     public navCtrl: NavController,
     private httpService: HttpService,
     public loadingCtrl: LoadingController,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController, 
+    public connectivityService: ConnectivityService
   ) { 
     this.tipologiaTorneo = params.get('tipologia'); //league | tournament
   }
 
   ionViewDidLoad() {
+    if(this.connectivityService.connectivityFound) {
+      this.getData();
+    } else {
+      if(localStorage.getItem('getSquadre') === null) {
+        this.connectivityService.showInfoNoData();
+      } else {
+        this.squadre = JSON.parse(localStorage.getItem('getSquadre'));
+      this.connectivityService.showInfo();
+      }
+    }
+  }
+  getData(){
     this.loading = this.loadingCtrl.create({
       content: 'Please wait...'
     });
@@ -40,6 +56,7 @@ export class Squadre {
 
         if(res[0].response[0].result == 'OK') {
           this.squadre = res[0].teams;
+          localStorage.setItem('getSquadre',JSON.stringify(this.squadre));
         } else {
           this.squadre = 'Nessun dato! Riprovare più tardi.';
         }
@@ -54,7 +71,11 @@ export class Squadre {
   }
 
   vediGiocatori(squadraId,squadraName,tipologiaTorneo) {
-    let modal = this.modalCtrl.create(GiocatoriModal, { squadraId: squadraId, squadraName: squadraName, tipologiaTorneo: tipologiaTorneo });
-    modal.present();
+    if(this.connectivityService.connectivityFound) {
+      let modal = this.modalCtrl.create(GiocatoriModal, { squadraId: squadraId, squadraName: squadraName, tipologiaTorneo: tipologiaTorneo });
+      modal.present();
+    } else {
+      this.connectivityService.showAlert();
+    }
   }
 }

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavParams, NavController, LoadingController, PopoverController } from 'ionic-angular';
-import { HttpService } from '../../providers/http-service';
+
+import { HttpService }          from '../../providers/http-service';
+import { ConnectivityService }  from '../../providers/connectivity-service';
 
 import { Incontri }             from '../incontri/incontri';
 import { ClassificaDetail }     from '../classifica/classifica-detail';
@@ -23,12 +25,25 @@ export class Classifica {
     public navCtrl: NavController,
     private httpService: HttpService,
     public loadingCtrl: LoadingController,
-    public popoverCtrl: PopoverController
+    public popoverCtrl: PopoverController, 
+    public connectivityService: ConnectivityService
   ) { 
     this.tipologiaTorneo = params.get('tipologia'); //league | tournament
   }
 
   ionViewDidLoad() {
+    if(this.connectivityService.connectivityFound) {
+      this.getData();
+    } else {
+      if(localStorage.getItem('getClassifica') === null) {
+        this.connectivityService.showInfoNoData();
+      } else {
+        this.ranking = JSON.parse(localStorage.getItem('getClassifica'));
+        this.connectivityService.showInfo();
+      }
+    }
+  }
+  getData(){
     console.log('Hello Classifica Page');
     this.loading = this.loadingCtrl.create({
       content: 'Please wait...'
@@ -42,6 +57,7 @@ export class Classifica {
 
         if(res[0].response[0].result == 'OK') {
           this.ranking = res[0].ranking;
+          localStorage.setItem('getClassifica',JSON.stringify(this.ranking));
         } else {
           this.ranking = 'Nessun dato! Riprovare più tardi.';
         }

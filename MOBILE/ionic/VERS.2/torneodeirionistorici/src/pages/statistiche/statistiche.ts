@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { NavParams, NavController, LoadingController, ModalController } from 'ionic-angular';
 
-import { HttpService } from '../../providers/http-service';
-import { StatisticaModal } from './statistica-modal';
+import { HttpService }          from '../../providers/http-service';
+import { ConnectivityService }  from '../../providers/connectivity-service';
+
+import { StatisticaModal }      from './statistica-modal';
+
 
 @Component({
   selector: 'page-statistiche',
@@ -22,7 +25,8 @@ export class Statistiche {
     public navCtrl: NavController,
     private httpService: HttpService,
     public loadingCtrl: LoadingController,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController, 
+    public connectivityService: ConnectivityService
   ) {
     this.tipologiaTorneo = params.get('tipologia'); //league | tournament
   }
@@ -30,8 +34,12 @@ export class Statistiche {
   ionViewDidLoad() {}
 
   leggiStatistica(stat) {
-    let modal = this.modalCtrl.create(StatisticaModal, { stat: stat, tipologia: this.tipologiaTorneo });
-    modal.present();
+    if(this.connectivityService.connectivityFound) {
+      let modal = this.modalCtrl.create(StatisticaModal, { stat: stat, tipologia: this.tipologiaTorneo });
+      modal.present();
+    } else {
+      this.connectivityService.showAlert();
+    }
   }
 
 }

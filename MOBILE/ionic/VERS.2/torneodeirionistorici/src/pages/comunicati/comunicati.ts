@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController, LoadingController, ModalController } from 'ionic-angular';
 
-import { HttpService } from '../../providers/http-service';
-import { ComunicatoModal } from './comunicato-modal';
+import { HttpService }          from '../../providers/http-service';
+import { ConnectivityService }  from '../../providers/connectivity-service';
+
+import { ComunicatoModal }      from './comunicato-modal';
 
 @Component({
   selector: 'page-comunicati',
@@ -19,10 +21,23 @@ export class Comunicati {
     public navCtrl: NavController,
     private httpService: HttpService,
     public loadingCtrl: LoadingController,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController, 
+    public connectivityService: ConnectivityService
   ) { }
 
   ionViewDidLoad() {
+    if(this.connectivityService.connectivityFound) {
+      this.getData();
+    } else {
+      if(localStorage.getItem('getComunicatiUfficiali') === null) {
+        this.connectivityService.showInfoNoData();
+      } else {
+        this.comunicati = JSON.parse(localStorage.getItem('getComunicatiUfficiali'));
+      this.connectivityService.showInfo();
+      }
+    }
+  }
+  getData(){
     this.loading = this.loadingCtrl.create({
       content: 'Please wait...'
     });
@@ -33,6 +48,7 @@ export class Comunicati {
       .then(res => {
         console.log('SUCCESS: ' + JSON.stringify(res));
         this.comunicati = res.posts;
+        localStorage.setItem('getComunicatiUfficiali',JSON.stringify(this.comunicati));
         this.loading.dismiss();
       })
       .catch(error => {
@@ -44,8 +60,12 @@ export class Comunicati {
   }
 
   leggiComunicato(title,content) {
-    let modal = this.modalCtrl.create(ComunicatoModal, { title: title, content: content });
-    modal.present();
+    if(this.connectivityService.connectivityFound) {
+      let modal = this.modalCtrl.create(ComunicatoModal, { title: title, content: content });
+      modal.present();
+    } else {
+      this.connectivityService.showAlert();
+    }
+    
   }
-
 }

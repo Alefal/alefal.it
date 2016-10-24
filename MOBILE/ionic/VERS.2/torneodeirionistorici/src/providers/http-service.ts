@@ -18,11 +18,13 @@ export class HttpService {
         //var host = '/torneodeirionistorici/rest';
         //var host = '/PROJECTS/wordpress_452';
 
-        var host = '/demo/leagueengine';
-        //var host = 'http://www.amalficoastapps.it/demo/leagueengine';
+        //var host = '/demo/leagueengine';
+        var host = 'http://www.amalficoastapps.it/demo/leagueengine';
         
         var url = '';
-        if(call == 'getComunicatiUfficiali') {
+        if(call == 'getTipoTorneo') {
+            url = '/wp-content/plugins/alefal_leagueengine/le_typeTournament.php';
+        } else if(call == 'getComunicatiUfficiali') {
             url = '?json=get_tag_posts&tag_slug=comunicatiUfficiali';
         } else if(call == 'getRioniNews') {
              url = '?json=get_tag_posts&tag_slug=giornalinoUfficiale';
