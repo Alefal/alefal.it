@@ -237,4 +237,5 @@ if($leagueengine_auto_style && $leagueengine_auto_style == 1) {
 	add_action('wp_head', 'leagueengine_auto_style');
 }
 
+add_filter('widget_text', 'do_shortcode');
 ?>

@@ -99,9 +99,9 @@
 			Squadre
 			<ion-icon name="ios-arrow-forward" item-right></ion-icon>
 		</ion-item>
-		<ion-item (click)="navigate('ScontriDiretti','tournament',round)" *ngFor="let round of tournamentRound; let i = index">
+		<ion-item (click)="navigate('ScontriDiretti','tournament',i)" *ngFor="let round of tournamentRounds; let i = index">
 			<ion-icon name="calendar" item-left></ion-icon>
-			Round <strong>{{round}}</strong>
+			{{round}}
 			<ion-icon name="ios-arrow-forward" item-right></ion-icon>
 		</ion-item>
 	</ion-list>

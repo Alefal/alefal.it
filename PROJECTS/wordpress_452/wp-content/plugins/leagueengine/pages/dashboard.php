@@ -21,7 +21,9 @@
 		
 			<div class="leagueengine_panel welcome">
 			<h3><?php _e('Welcome to','leagueengine'); ?> LeagueEngine</h3>
+			<!--
 			<p class="sub"><?php _e('Here are some links to help you get started','leagueengine'); ?></p>
+			-->
 			<div class="panel-column">
 			<h4><div class="dashicons dashicons-edit"></div> <?php _e('Create','leagueengine'); ?></h4>
 			<ul>
@@ -38,6 +40,7 @@
 			<li><a href="admin.php?page=leagueengine_import"><?php _e('Import Data','leagueengine'); ?></a></li>
 			</ul>
 			</div>
+			<!-- SUPPORT
 			<div class="panel-column welcome-panel-last">	
 			<h4><div class="dashicons dashicons-sos"></div> <?php _e('Support','leagueengine'); ?></h4>
 			<ul>
@@ -46,6 +49,9 @@
 			<li><a target="_blank" href="http://2dmonkey.com/forum"><?php _e('Support Forum','leagueengine'); ?></a></li>
 			</ul>
 			</div>
+			-->
+
+			<!-- SYSTEM
 			<div class="panel-column welcome-panel-last">	
 			<h4><div class="dashicons dashicons-wordpress-alt"></div> <?php _e('System','leagueengine'); ?></h4>
 			<ul>
@@ -54,6 +60,8 @@
 			<li>PHP <?php echo PHP_VERSION; ?> / MYSQL <?php //echo mysql_get_server_info(); ?></li>
 			</ul>
 			</div>
+			-->
+
 			</div>
 		
 		<?php if(leagueengine_fetch_settings('dashboard_matches') != 'off') {

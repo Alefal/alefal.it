@@ -350,7 +350,7 @@ function leagueengine_show_tournament($atts, $content = null) {
 					$output .= '<td style="text-align:center;vertical-align:middle;">'.leagueengine_link('tournament_match&tid='.$tid.'&mid='.$match->id,date(leagueengine_fetch_settings('date_format_php'),strtotime($match->match_date)).'<br/>'.date(leagueengine_fetch_settings('time_format_php'),strtotime($match->match_time))).'</td>';
 					$output .= '<td style="text-align:center;vertical-align:middle;">'.leagueengine_link('team&tid='.$match->home_team_id,leagueengine_fetch_data_from_id($match->home_team_id,'data_value')).'</td>';
 					
-					$output .= '<td style="text-align:center;vertical-align:middle;">' . leagueengine_link('tournament_match&tid='.$match->away_team_id.'&mid='.$match->id,$match->home_team_score . ' - ' . $match->away_team_score) . '</td>';    
+					$output .= '<td style="text-align:center;vertical-align:middle;">' . leagueengine_link('tournament_match&tid='.$tid.'&mid='.$match->id,$match->home_team_score . ' - ' . $match->away_team_score) . '</td>';    
 					
 					$output .= '<td style="text-align:center;vertical-align:middle;">'.leagueengine_link('team&tid='.$match->away_team_id,leagueengine_fetch_data_from_id($match->away_team_id,'data_value')).'</td>';
 					$output .= '</tr>';

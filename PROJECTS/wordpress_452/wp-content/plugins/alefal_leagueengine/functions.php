@@ -3,7 +3,7 @@
 $league_id = 2; 
 $season_id = 32;
 //Tournament knockout
-//$tournament_id = 54;
+$tournament_id = 54;
 //Tournament leagueknockout
 //$tournament_id = 5;
 

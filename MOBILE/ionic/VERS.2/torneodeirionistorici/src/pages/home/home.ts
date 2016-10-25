@@ -22,8 +22,9 @@ export class HomePage {
   tournament: any;
   tournamentType: string;
   tournamentTeams: number;
+  tournamentRound: number;
 
-  tournamentRound: number[] = [];
+  tournamentRounds: string[] = [];
 
   loading: any;
   errorMessage: String;
@@ -46,9 +47,22 @@ export class HomePage {
       } else {
         this.tournament = JSON.parse(localStorage.getItem('getTorneo'));
         this.tournamentType   = this.tournament[0].tour_type;
-        this.tournamentTeams  = this.tournament[0].tour_teams;
-        for(let i = 0; i < Math.log2(this.tournamentTeams); i++) {
-          this.tournamentRound.push(i);
+        this.tournamentTeams  = this.tournament[0].tour_teams;  //Math.log2(this.tournamentTeams)
+        this.tournamentRound  = this.tournament[0].tour_round;
+        for(let i = 1; i <= this.tournamentRound; i++) {
+          if(i == 5) {
+            this.tournamentRounds.push('Finale');
+          } else if(i == 4) {
+            this.tournamentRounds.push('Semifinale');
+          } else if(i == 3) {
+            this.tournamentRounds.push('Quarti');
+          } else if(i == 2) {
+            this.tournamentRounds.push('Ottavi');
+          } else if(i == 1) {
+            this.tournamentRounds.push('Sedicesimi');
+          } else { 
+            this.tournamentRounds.push('Round '+i);
+          }
         }
         this.connectivityService.showInfo();
       }
@@ -66,9 +80,26 @@ export class HomePage {
         if(res[0].response[0].result == 'OK') {
           this.tournament = JSON.stringify(res[0].tournament);
           this.tournamentType   = res[0].tournament[0].tour_type;
-          this.tournamentTeams  = res[0].tournament[0].tour_teams;
-          for(let i = 0; i < Math.log2(this.tournamentTeams); i++) {
-            this.tournamentRound.push(i);
+          this.tournamentTeams  = res[0].tournament[0].tour_teams;  //Math.log2(this.tournamentTeams)
+          this.tournamentRound  = res[0].tournament[0].tour_round;
+
+          console.log('this.tournamentRound: '+this.tournamentRound);
+          
+          for(let i = 1; i <= this.tournamentRound; i++) {
+            console.log('i: '+i);
+            if(i == 5) {
+							this.tournamentRounds.push('Finale');
+						} else if(i == 4) {
+							this.tournamentRounds.push('Semifinale');
+						} else if(i == 3) {
+							this.tournamentRounds.push('Quarti');
+						} else if(i == 2) {
+							this.tournamentRounds.push('Ottavi');
+						} else if(i == 1) {
+							this.tournamentRounds.push('Sedicesimi');
+						} else { 
+							this.tournamentRounds.push('Round '+i);
+						}
           }
           localStorage.setItem('getTorneo',this.tournament);
         } else {
