@@ -28,9 +28,9 @@ function get_wc_api_client() {
 
     require_once( 'lib/woocommerce-api.php' );
 
-    $store_url = 'http://localhost/alefal.it/PROJECTS/wordpress_452/'; // Add the home URL to the store you want to connect to here
-    $consumer_key = 'ck_5cc0e38263967f383b462afdc0e675d285abe74e';
-    $consumer_secret = 'cs_1dad9ee308f82440c99d58e6d1e10b4a6e5bc0ba';
+    $store_url = 'http://localhost/alefal.it/PROJECTS/ece/'; // Add the home URL to the store you want to connect to here
+    $consumer_key = 'ck_7d075455871be3fe4413dc124a4a1a786d61cc91';
+    $consumer_secret = 'cs_0a4d18ef4ac80101c6b0ac04da343bb4daf1d95c';
     $options = array(
         'ssl_verify'      => false,
     );
@@ -40,8 +40,8 @@ function get_wc_api_client() {
 	    $client = new WC_API_Client( $store_url, $consumer_key, $consumer_secret, $options );
 
 	    print '<pre>';
-		//print_r($client->products->get(null, array('filter[category]' => 'Vino Rosso')));
-		print_r($client->products->get(null, array('filter[tag]' => 'cartadeivini')));
+		print_r($client->products->get(null, array('filter[category]' => 'Vino Rosso')));
+		//print_r($client->products->get(null, array('filter[tag]' => 'cartadeivini')));
 		print '</pre>';
 
 	    // bulk
