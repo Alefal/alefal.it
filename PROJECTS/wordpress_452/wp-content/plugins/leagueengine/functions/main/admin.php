@@ -3277,6 +3277,62 @@ function leagueengine_fetch_table_rows($type='site',$league_id,$season_id,$team_
 	
 }
 
+function leagueengine_fetch_table_widget_headings($type='site') {
+	
+	global $wpdb;
+	$table = $wpdb->prefix . 'leagueengine_table_settings';
+	$results = $wpdb->get_results("SELECT * FROM $table WHERE display = 'on' ORDER BY sort_order + 0 ASC, id + 0 ASC");
+	$output = '';
+	
+	foreach($results as $result) {
+		if($result->col == 'leagueengine_table_pos') {
+			$output .= '<th>'.$result->text.'</th>';
+		}
+		elseif($result->col == 'leagueengine_table_team') {
+			$output .= '<th>'.$result->text.'</th>';					
+		} 
+		elseif($result->col == 'leagueengine_table_diff') {
+			$output .=  '<th style="width:20%">'.$result->text.'</th>';			
+		}
+		elseif($result->col == 'leagueengine_table_pts') {
+			$output .=  '<th style="width:20%">'.$result->text.'</th>';			
+		} 
+	}
+	
+	return $output;
+	
+}
+function leagueengine_fetch_table_widget_rows($type='site',$league_id,$season_id,$team_id,$pos,$pts_win,$pts_lose,$pts_draw) {
+
+	global $wpdb;
+	$table = $wpdb->prefix . 'leagueengine_table_settings';
+	$results = $wpdb->get_results("SELECT * FROM $table WHERE display = 'on' ORDER BY sort_order + 0 ASC, id + 0 ASC");
+	$output = '';
+	
+	foreach($results as $result) {
+
+		if($result->col == 'leagueengine_table_pos') {
+			$output .= '<td align="center">'.$pos.'</td>';
+		}
+		elseif($result->col == 'leagueengine_table_team') {
+			$output .= '<td align="center">'.leagueengine_link('team&lid='.$league_id.'&sid='.$season_id.'&tid='.$team_id,leagueengine_fetch_data_from_id($team_id,'data_value')).'</td>';	
+		}
+		elseif($result->col == 'leagueengine_table_pts') {
+			$wpts = leagueengine_table_gw($league_id,$season_id,$team_id)*$pts_win;
+			$lpts = leagueengine_table_gl($league_id,$season_id,$team_id)*$pts_lose;
+			$dpts = leagueengine_table_gd($league_id,$season_id,$team_id)*$pts_draw;
+			$totalpts = $wpts + $lpts + $dpts + leagueengine_table_bp($league_id,$season_id,$team_id);
+
+			$output .= '<td align="center">'.$totalpts.'</td>';
+		}	
+		elseif($result->col == 'leagueengine_table_diff') {
+			$output .= '<td align="center">'.leagueengine_table_diff($league_id,$season_id,$team_id).'</td>';
+		}
+	}
+	
+	return $output;
+}
+
 function leagueengine_fetch_tournament_table_rows($type='site',$tournament_id,$team_id,$pos,$pts_win,$pts_lose,$pts_draw) {
 	
 	global $wpdb;

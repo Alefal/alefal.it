@@ -61,6 +61,7 @@ if(!$leagueengine_theme) $leagueengine_theme = 'default';
 include('functions/themes/'.$leagueengine_theme.'/show_league.php');
 include('functions/themes/'.$leagueengine_theme.'/show_season.php');
 include('functions/themes/'.$leagueengine_theme.'/show_season_table.php');
+include('functions/themes/'.$leagueengine_theme.'/show_season_table_widget.php');
 include('functions/themes/'.$leagueengine_theme.'/show_season_matches.php');
 include('functions/themes/'.$leagueengine_theme.'/show_season_match.php');
 include('functions/themes/'.$leagueengine_theme.'/show_team.php');
