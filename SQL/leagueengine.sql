@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.0
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 21, 2016 at 02:25 PM
--- Server version: 10.0.17-MariaDB
--- PHP Version: 5.6.14
+-- Creato il: Ott 25, 2016 alle 19:21
+-- Versione del server: 10.1.8-MariaDB
+-- Versione PHP: 5.6.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,16 +17,60 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `wordpress452`
+-- Database: `leagueengine`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wp_leagueengine_data`
+-- Struttura della tabella `le_commentmeta`
 --
 
-CREATE TABLE `wp_leagueengine_data` (
+CREATE TABLE `le_commentmeta` (
+  `meta_id` bigint(20) UNSIGNED NOT NULL,
+  `comment_id` bigint(20) UNSIGNED NOT NULL DEFAULT '0',
+  `meta_key` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `meta_value` longtext COLLATE utf8mb4_unicode_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `le_comments`
+--
+
+CREATE TABLE `le_comments` (
+  `comment_ID` bigint(20) UNSIGNED NOT NULL,
+  `comment_post_ID` bigint(20) UNSIGNED NOT NULL DEFAULT '0',
+  `comment_author` tinytext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `comment_author_email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `comment_author_url` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `comment_author_IP` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `comment_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `comment_date_gmt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `comment_content` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `comment_karma` int(11) NOT NULL DEFAULT '0',
+  `comment_approved` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1',
+  `comment_agent` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `comment_type` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `comment_parent` bigint(20) UNSIGNED NOT NULL DEFAULT '0',
+  `user_id` bigint(20) UNSIGNED NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dump dei dati per la tabella `le_comments`
+--
+
+INSERT INTO `le_comments` (`comment_ID`, `comment_post_ID`, `comment_author`, `comment_author_email`, `comment_author_url`, `comment_author_IP`, `comment_date`, `comment_date_gmt`, `comment_content`, `comment_karma`, `comment_approved`, `comment_agent`, `comment_type`, `comment_parent`, `user_id`) VALUES
+(1, 1, 'Un commentatore di WordPress', 'wapuu@wordpress.example', 'https://wordpress.org/', '', '2016-10-25 19:03:35', '2016-10-25 17:03:35', 'Ciao, questo è un commento.\nPer iniziare a moderare, modificare e cancellare commenti, visita la schermata commenti nella bacheca.\nGli avatar di chi lascia un commento sono forniti da <a href="https://gravatar.com">Gravatar</a>.', 0, '1', '', '', 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `le_leagueengine_data`
+--
+
+CREATE TABLE `le_leagueengine_data` (
   `id` int(11) NOT NULL,
   `data_type` varchar(250) NOT NULL DEFAULT '',
   `data_value` varchar(250) NOT NULL DEFAULT '',
@@ -39,7 +83,7 @@ CREATE TABLE `wp_leagueengine_data` (
   `nickname` varchar(250) NOT NULL DEFAULT '',
   `colour` varchar(250) NOT NULL DEFAULT '',
   `colour_secondary` varchar(250) NOT NULL DEFAULT '',
-  `wp_user` varchar(250) NOT NULL DEFAULT '',
+  `le_user` varchar(250) NOT NULL DEFAULT '',
   `league_type` varchar(250) NOT NULL DEFAULT 'teams',
   `scoring_method` varchar(250) NOT NULL DEFAULT '',
   `scoring_format` varchar(250) NOT NULL DEFAULT '',
@@ -48,10 +92,10 @@ CREATE TABLE `wp_leagueengine_data` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `wp_leagueengine_data`
+-- Dump dei dati per la tabella `le_leagueengine_data`
 --
 
-INSERT INTO `wp_leagueengine_data` (`id`, `data_type`, `data_value`, `data_abbreviation`, `data_assign`, `data_plural`, `sort_order`, `att_type`, `image`, `nickname`, `colour`, `colour_secondary`, `wp_user`, `league_type`, `scoring_method`, `scoring_format`, `parent_league`, `squad_number`) VALUES
+INSERT INTO `le_leagueengine_data` (`id`, `data_type`, `data_value`, `data_abbreviation`, `data_assign`, `data_plural`, `sort_order`, `att_type`, `image`, `nickname`, `colour`, `colour_secondary`, `le_user`, `league_type`, `scoring_method`, `scoring_format`, `parent_league`, `squad_number`) VALUES
 (2, 'league', 'LeagueDemo', '', '', '', '0', '', '', '', '', '', '', 'teams', '', '', '', ''),
 (4, 'tournament', 'T_KnockoutDemo', '', '', '', '0', '', '', '', '', '', '', 'teams', '', '', '', ''),
 (5, 'tournament', 'T_League_KnockoutDemo', '', '', '', '0', '', '', '', '', '', '', 'teams', '', '', '', ''),
@@ -61,18 +105,18 @@ INSERT INTO `wp_leagueengine_data` (`id`, `data_type`, `data_value`, `data_abbre
 (9, 'attribute', 'Gialli', '', 'player', '', '', 'text', '', '', '', '', '', 'teams', '', '', '', ''),
 (10, 'attribute', 'Goals', '', 'player', '', '', 'text', '', '', '', '', '', 'teams', '', '', '', ''),
 (11, 'event', 'IncontroLive', '', '', 'IncontroLive', '', '', '', '', '', '', '', 'teams', '', '', '', ''),
-(12, 'team', 'Squadra1', '', '', '', '0', '', 'http://localhost/alefal.it/PROJECTS/wordpress_452/wp-content/uploads/2016/10/milan.png', '', '#d1d1d1', '#d1d1d1', '', 'teams', '', '', '', ''),
-(13, 'team', 'Squadra2', '', '', '', '0', '', '', '', '', '', '', 'teams', '', '', '', ''),
-(14, 'team', 'Squadra3', '', '', '', '0', '', '', '', '', '', '', 'teams', '', '', '', ''),
-(15, 'team', 'Squadra4', '', '', '', '0', '', '', '', '', '', '', 'teams', '', '', '', ''),
+(12, 'team', 'Squadra1', '', '', '', '0', '', 'http://www.amalficoastapps.it/demo/leagueengine/wp-content/uploads/2016/10/santa_caterina1.jpg', '', '#d1d1d1', '#d1d1d1', '', 'teams', '', '', '', ''),
+(13, 'team', 'Squadra2', '', '', '', '0', '', 'http://www.amalficoastapps.it/demo/leagueengine/wp-content/uploads/2016/10/sambuco1.jpg', '', '', '', '', 'teams', '', '', '', ''),
+(14, 'team', 'Squadra3', '', '', '', '0', '', 'http://www.amalficoastapps.it/demo/leagueengine/wp-content/uploads/2016/10/minuta.png', '', '', '', '', 'teams', '', '', '', ''),
+(15, 'team', 'Squadra4', '', '', '', '0', '', 'http://www.amalficoastapps.it/demo/leagueengine/wp-content/uploads/2016/10/lacco1.jpg', '', '', '', '', 'teams', '', '', '', ''),
 (16, 'team', 'Squadra5', '', '', '', '0', '', '', '', '', '', '', 'teams', '', '', '', ''),
 (17, 'team', 'Squadra6', '', '', '', '0', '', '', '', '', '', '', 'teams', '', '', '', ''),
-(18, 'team', 'Squadra7', '', '', '', '0', '', 'http://localhost/alefal.it/PROJECTS/wordpress_452/wp-content/uploads/2016/10/juve.png', '', '', '', '', 'teams', '', '', '', ''),
-(19, 'team', 'Squadra8', '', '', '', '0', '', 'http://localhost/alefal.it/PROJECTS/wordpress_452/wp-content/uploads/2016/10/milan.png', '', '', '', '', 'teams', '', '', '', ''),
-(30, 'team', 'Squadra9', '', '', '', '0', '', 'http://localhost/alefal.it/PROJECTS/wordpress_452/wp-content/uploads/2016/10/juve.png', '', '', '', '', 'teams', '', '', '', ''),
-(31, 'team', 'Squadra10', '', '', '', '0', '', '', '', '', '', '', 'teams', '', '', '', ''),
+(18, 'team', 'Squadra7', '', '', '', '0', '', 'http://www.amalficoastapps.it/demo/leagueengine/wp-content/uploads/2016/10/juve.png', '', '', '', '', 'teams', '', '', '', ''),
+(19, 'team', 'Squadra8', '', '', '', '0', '', 'http://www.amalficoastapps.it/demo/leagueengine/wp-content/uploads/2016/10/milan.png', '', '', '', '', 'teams', '', '', '', ''),
+(30, 'team', 'Squadra9', '', '', '', '0', '', 'http://www.amalficoastapps.it/demo/leagueengine/wp-content/uploads/2016/10/juve.png', '', '', '', '', 'teams', '', '', '', ''),
+(31, 'team', 'Squadra10', '', '', '', '0', '', 'http://www.amalficoastapps.it/demo/leagueengine/wp-content/uploads/2016/10/san_cosma1.jpg', '', '', '', '', 'teams', '', '', '', ''),
 (32, 'season', '2016/17', '', '', '', '0', '', '', '', '', '', '', 'teams', '', '', '2', ''),
-(33, 'player', 'Player1', '', '', '', '1', '', 'http://localhost/alefal.it/PROJECTS/wordpress_452/wp-content/uploads/2016/05/wcap_newsletter.png', '', '', '', '', 'teams', '', '', '', '1'),
+(33, 'player', 'Player1', '', '', '', '1', '', 'http://www.amalficoastapps.it/demo/leagueengine/wp-content/uploads/2016/10/13708211_10208456925852317_3192572721227543782_o.jpg', '', '', '', '', 'teams', '', '', '', '1'),
 (34, 'player', 'Player2', '', '', '', '2', '', '', '', '', '', '', 'teams', '', '', '', '2'),
 (35, 'player', 'Player3', '', '', '', '3', '', '', '', '', '', '', 'teams', '', '', '', '3'),
 (39, 'player', 'Player4', '', '', '', '4', '', '', '', '', '', '', 'teams', '', '', '', '4'),
@@ -84,38 +128,38 @@ INSERT INTO `wp_leagueengine_data` (`id`, `data_type`, `data_value`, `data_abbre
 (45, 'player', 'Player10', '', '', '', '10', '', '', '', '', '', '', 'teams', '', '', '', '10'),
 (46, 'player', 'Player11', '', '', '', '11', '', '', '', '', '', '', 'teams', '', '', '', '11'),
 (47, 'player', 'Player12', '', '', '', '12', '', '', '', '', '', '', 'teams', '', '', '', '12'),
-(48, 'team', 'Squadra11', '', '', '', '0', '', '', '', '', '', '', 'teams', '', '', '', ''),
-(49, 'team', 'Squadra12', '', '', '', '0', '', '', '', '', '', '', 'teams', '', '', '', ''),
+(48, 'team', 'Squadra11', '', '', '', '0', '', 'http://www.amalficoastapps.it/demo/leagueengine/wp-content/uploads/2016/10/san_pietro.jpg', '', '', '', '', 'teams', '', '', '', ''),
+(49, 'team', 'Squadra12', '', '', '', '0', '', 'http://www.amalficoastapps.it/demo/leagueengine/wp-content/uploads/2016/10/monte_brusara1.jpg', '', '', '', '', 'teams', '', '', '', ''),
 (50, 'league', 'LeagueDemo2', '', '', '', '0', '', '', '', '', '', '', 'teams', '', '', '', ''),
 (51, 'season', '2016/17', '', '', '', '0', '', '', '', '', '', '', 'teams', '', '', '50', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wp_leagueengine_leagues`
+-- Struttura della tabella `le_leagueengine_leagues`
 --
 
-CREATE TABLE `wp_leagueengine_leagues` (
+CREATE TABLE `le_leagueengine_leagues` (
   `id` int(11) NOT NULL,
   `data_id` varchar(250) NOT NULL DEFAULT '',
   `start_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `wp_leagueengine_leagues`
+-- Dump dei dati per la tabella `le_leagueengine_leagues`
 --
 
-INSERT INTO `wp_leagueengine_leagues` (`id`, `data_id`, `start_date`) VALUES
+INSERT INTO `le_leagueengine_leagues` (`id`, `data_id`, `start_date`) VALUES
 (2, '2', '2016-10-20'),
 (4, '50', '2016-10-20');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wp_leagueengine_league_seasons`
+-- Struttura della tabella `le_leagueengine_league_seasons`
 --
 
-CREATE TABLE `wp_leagueengine_league_seasons` (
+CREATE TABLE `le_leagueengine_league_seasons` (
   `id` int(11) NOT NULL,
   `league_id` varchar(250) NOT NULL DEFAULT '',
   `season_id` varchar(250) NOT NULL DEFAULT '',
@@ -129,20 +173,20 @@ CREATE TABLE `wp_leagueengine_league_seasons` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `wp_leagueengine_league_seasons`
+-- Dump dei dati per la tabella `le_leagueengine_league_seasons`
 --
 
-INSERT INTO `wp_leagueengine_league_seasons` (`id`, `league_id`, `season_id`, `start_date`, `pts_win`, `pts_lose`, `pts_draw`, `pts_bonus`, `difference`, `position`) VALUES
+INSERT INTO `le_leagueengine_league_seasons` (`id`, `league_id`, `season_id`, `start_date`, `pts_win`, `pts_lose`, `pts_draw`, `pts_bonus`, `difference`, `position`) VALUES
 (1, '2', '32', '2016-10-20', '3', '0', '1', 'off', 'on', 'on'),
 (2, '50', '51', '2016-10-20', '3', '0', '1', 'off', 'on', 'on');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wp_leagueengine_match_page_settings`
+-- Struttura della tabella `le_leagueengine_match_page_settings`
 --
 
-CREATE TABLE `wp_leagueengine_match_page_settings` (
+CREATE TABLE `le_leagueengine_match_page_settings` (
   `id` int(11) NOT NULL,
   `text` varchar(250) NOT NULL DEFAULT '',
   `col` varchar(250) NOT NULL DEFAULT '',
@@ -151,10 +195,10 @@ CREATE TABLE `wp_leagueengine_match_page_settings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `wp_leagueengine_match_page_settings`
+-- Dump dei dati per la tabella `le_leagueengine_match_page_settings`
 --
 
-INSERT INTO `wp_leagueengine_match_page_settings` (`id`, `text`, `col`, `display`, `sort_order`) VALUES
+INSERT INTO `le_leagueengine_match_page_settings` (`id`, `text`, `col`, `display`, `sort_order`) VALUES
 (1, 'Attribute', 'attributes', 'on', '1'),
 (2, 'Summary', 'summary', 'on', '2'),
 (3, 'Preview', 'preview', 'on', '3'),
@@ -166,10 +210,10 @@ INSERT INTO `wp_leagueengine_match_page_settings` (`id`, `text`, `col`, `display
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wp_leagueengine_player_attributes`
+-- Struttura della tabella `le_leagueengine_player_attributes`
 --
 
-CREATE TABLE `wp_leagueengine_player_attributes` (
+CREATE TABLE `le_leagueengine_player_attributes` (
   `id` int(11) NOT NULL,
   `player_id` varchar(250) NOT NULL DEFAULT '',
   `attribute_id` varchar(250) NOT NULL DEFAULT '',
@@ -181,10 +225,10 @@ CREATE TABLE `wp_leagueengine_player_attributes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `wp_leagueengine_player_attributes`
+-- Dump dei dati per la tabella `le_leagueengine_player_attributes`
 --
 
-INSERT INTO `wp_leagueengine_player_attributes` (`id`, `player_id`, `attribute_id`, `att_type`, `attribute_value`, `att_text`, `display`, `sort_order`) VALUES
+INSERT INTO `le_leagueengine_player_attributes` (`id`, `player_id`, `attribute_id`, `att_type`, `attribute_value`, `att_text`, `display`, `sort_order`) VALUES
 (1, '33', '7', 'text', '1', '', '', ''),
 (2, '33', '9', 'text', '1', '', '', ''),
 (3, '33', '10', 'text', '1', '', '', ''),
@@ -201,10 +245,10 @@ INSERT INTO `wp_leagueengine_player_attributes` (`id`, `player_id`, `attribute_i
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wp_leagueengine_player_careers`
+-- Struttura della tabella `le_leagueengine_player_careers`
 --
 
-CREATE TABLE `wp_leagueengine_player_careers` (
+CREATE TABLE `le_leagueengine_player_careers` (
   `id` int(11) NOT NULL,
   `league_id` varchar(250) NOT NULL DEFAULT '',
   `season_id` varchar(250) NOT NULL DEFAULT '',
@@ -216,10 +260,10 @@ CREATE TABLE `wp_leagueengine_player_careers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `wp_leagueengine_player_careers`
+-- Dump dei dati per la tabella `le_leagueengine_player_careers`
 --
 
-INSERT INTO `wp_leagueengine_player_careers` (`id`, `league_id`, `season_id`, `tournament_id`, `team_id`, `player_id`, `start_date`, `sort_order`) VALUES
+INSERT INTO `le_leagueengine_player_careers` (`id`, `league_id`, `season_id`, `tournament_id`, `team_id`, `player_id`, `start_date`, `sort_order`) VALUES
 (1, '2', '32', '', '12', '33', '2016-10-20', '1'),
 (2, '2', '32', '', '13', '34', '2016-10-20', '2'),
 (5, '', '', '4', '14', '35', '2016-10-20', '3'),
@@ -236,10 +280,10 @@ INSERT INTO `wp_leagueengine_player_careers` (`id`, `league_id`, `season_id`, `t
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wp_leagueengine_season_matches`
+-- Struttura della tabella `le_leagueengine_season_matches`
 --
 
-CREATE TABLE `wp_leagueengine_season_matches` (
+CREATE TABLE `le_leagueengine_season_matches` (
   `id` int(11) NOT NULL,
   `league_id` varchar(250) NOT NULL DEFAULT '',
   `season_id` varchar(250) NOT NULL DEFAULT '',
@@ -261,10 +305,10 @@ CREATE TABLE `wp_leagueengine_season_matches` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `wp_leagueengine_season_matches`
+-- Dump dei dati per la tabella `le_leagueengine_season_matches`
 --
 
-INSERT INTO `wp_leagueengine_season_matches` (`id`, `league_id`, `season_id`, `matchday`, `match_date`, `match_time`, `home_team_id`, `away_team_id`, `home_team_score`, `away_team_score`, `home_team_bonus`, `away_team_bonus`, `winner`, `preview`, `report`, `prediction_home`, `prediction_away`, `prediction_draw`) VALUES
+INSERT INTO `le_leagueengine_season_matches` (`id`, `league_id`, `season_id`, `matchday`, `match_date`, `match_time`, `home_team_id`, `away_team_id`, `home_team_score`, `away_team_score`, `home_team_bonus`, `away_team_bonus`, `winner`, `preview`, `report`, `prediction_home`, `prediction_away`, `prediction_draw`) VALUES
 (1, '2', '32', '1', '2016-10-20', '19:00:00', '12', '13', '0', '0', '', '', 'draw', '', '', '', '', ''),
 (2, '2', '32', '2', '2016-10-21', '19:00:00', '13', '12', '', '', '', '', '', '', '', '', '', ''),
 (5, '50', '51', '3', '2016-10-20', '13:00:00', '48', '49', '0', '0', '', '', 'draw', '', '', '', '', ''),
@@ -273,10 +317,10 @@ INSERT INTO `wp_leagueengine_season_matches` (`id`, `league_id`, `season_id`, `m
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wp_leagueengine_season_matches_attributes`
+-- Struttura della tabella `le_leagueengine_season_matches_attributes`
 --
 
-CREATE TABLE `wp_leagueengine_season_matches_attributes` (
+CREATE TABLE `le_leagueengine_season_matches_attributes` (
   `id` int(11) NOT NULL,
   `league_id` varchar(250) NOT NULL DEFAULT '',
   `season_id` varchar(250) NOT NULL DEFAULT '',
@@ -289,19 +333,19 @@ CREATE TABLE `wp_leagueengine_season_matches_attributes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `wp_leagueengine_season_matches_attributes`
+-- Dump dei dati per la tabella `le_leagueengine_season_matches_attributes`
 --
 
-INSERT INTO `wp_leagueengine_season_matches_attributes` (`id`, `league_id`, `season_id`, `match_id`, `attribute_id`, `att_type`, `attribute_value`, `att_text`, `display`) VALUES
+INSERT INTO `le_leagueengine_season_matches_attributes` (`id`, `league_id`, `season_id`, `match_id`, `attribute_id`, `att_type`, `attribute_value`, `att_text`, `display`) VALUES
 (4, '50', '51', '5', '6', 'text', 'kqPQbVtINTY', '', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wp_leagueengine_season_matches_events`
+-- Struttura della tabella `le_leagueengine_season_matches_events`
 --
 
-CREATE TABLE `wp_leagueengine_season_matches_events` (
+CREATE TABLE `le_leagueengine_season_matches_events` (
   `id` int(11) NOT NULL,
   `league_id` varchar(250) NOT NULL DEFAULT '',
   `season_id` varchar(250) NOT NULL DEFAULT '',
@@ -316,10 +360,10 @@ CREATE TABLE `wp_leagueengine_season_matches_events` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `wp_leagueengine_season_matches_events`
+-- Dump dei dati per la tabella `le_leagueengine_season_matches_events`
 --
 
-INSERT INTO `wp_leagueengine_season_matches_events` (`id`, `league_id`, `season_id`, `match_id`, `event_id`, `team_id`, `player_id`, `event_time`, `display`, `sort_order`, `timeline_text`) VALUES
+INSERT INTO `le_leagueengine_season_matches_events` (`id`, `league_id`, `season_id`, `match_id`, `event_id`, `team_id`, `player_id`, `event_time`, `display`, `sort_order`, `timeline_text`) VALUES
 (1, '2', '32', '1', 'app', '12', '33', '', '', '', ''),
 (2, '2', '32', '1', 'app', '13', '34', '', '', '', ''),
 (3, '2', '32', '1', '11', '12', '33', '3', '', '', 'xxx'),
@@ -332,10 +376,10 @@ INSERT INTO `wp_leagueengine_season_matches_events` (`id`, `league_id`, `season_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wp_leagueengine_season_teams`
+-- Struttura della tabella `le_leagueengine_season_teams`
 --
 
-CREATE TABLE `wp_leagueengine_season_teams` (
+CREATE TABLE `le_leagueengine_season_teams` (
   `id` int(11) NOT NULL,
   `league_id` varchar(250) NOT NULL DEFAULT '',
   `season_id` varchar(250) NOT NULL DEFAULT '',
@@ -350,10 +394,10 @@ CREATE TABLE `wp_leagueengine_season_teams` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `wp_leagueengine_season_teams`
+-- Dump dei dati per la tabella `le_leagueengine_season_teams`
 --
 
-INSERT INTO `wp_leagueengine_season_teams` (`id`, `league_id`, `season_id`, `team_id`, `team_name`, `season_wins`, `season_diff`, `season_for`, `season_bp`, `season_pts`, `team_type`) VALUES
+INSERT INTO `le_leagueengine_season_teams` (`id`, `league_id`, `season_id`, `team_id`, `team_name`, `season_wins`, `season_diff`, `season_for`, `season_bp`, `season_pts`, `team_type`) VALUES
 (1, '2', '32', '12', 'Squadra1', '0', '0', '0', '0', '1', 'team'),
 (2, '2', '32', '13', 'Squadra2', '0', '0', '0', '0', '1', 'team'),
 (3, '50', '51', '48', 'Squadra11', '0', '0', '0', '0', '2', 'team'),
@@ -362,10 +406,10 @@ INSERT INTO `wp_leagueengine_season_teams` (`id`, `league_id`, `season_id`, `tea
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wp_leagueengine_settings`
+-- Struttura della tabella `le_leagueengine_settings`
 --
 
-CREATE TABLE `wp_leagueengine_settings` (
+CREATE TABLE `le_leagueengine_settings` (
   `id` int(11) NOT NULL,
   `pagination` int(250) NOT NULL DEFAULT '10',
   `pagination_matches` int(250) NOT NULL DEFAULT '10',
@@ -401,19 +445,19 @@ CREATE TABLE `wp_leagueengine_settings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `wp_leagueengine_settings`
+-- Dump dei dati per la tabella `le_leagueengine_settings`
 --
 
-INSERT INTO `wp_leagueengine_settings` (`id`, `pagination`, `pagination_matches`, `pagination_search`, `data_table_sort`, `date_format`, `date_format_php`, `time_format`, `time_format_php`, `time_default`, `table_logo`, `automatic_links`, `site_attributes`, `site_match_lineups`, `site_match_events`, `site_match_events_image`, `site_match_events_order`, `site_match_statistics`, `site_match_statistics_bg`, `site_match_statistics_text`, `site_match_reports`, `dashboard_matches`, `dashboard_matches_league`, `dashboard_matches_season`, `form_count`, `redirect`, `redirect_id`, `template`, `theme`, `auto_style`, `match_predictions`, `beta_features`) VALUES
-(1, 10, 10, 10, 'id', 'dd/mm/yy', 'd/m/Y', 'hh:mm tt', 'g:i a', '15:00:00', 'on', 'on', 'off', 'off', 'off', 'on', 'DESC', 'off', '#EEEEEE', '#000000', 'off', 'off', '', '', '5', 'http://localhost/alefal.it/PROJECTS/wordpress_452/pagina-di-esempio/', '2', 'page-templates/child-menu.php', 'myTheme', '1', 'off', 'off');
+INSERT INTO `le_leagueengine_settings` (`id`, `pagination`, `pagination_matches`, `pagination_search`, `data_table_sort`, `date_format`, `date_format_php`, `time_format`, `time_format_php`, `time_default`, `table_logo`, `automatic_links`, `site_attributes`, `site_match_lineups`, `site_match_events`, `site_match_events_image`, `site_match_events_order`, `site_match_statistics`, `site_match_statistics_bg`, `site_match_statistics_text`, `site_match_reports`, `dashboard_matches`, `dashboard_matches_league`, `dashboard_matches_season`, `form_count`, `redirect`, `redirect_id`, `template`, `theme`, `auto_style`, `match_predictions`, `beta_features`) VALUES
+(1, 50, 10, 10, 'id', 'dd/mm/yy', 'd/m/Y', 'hh:mm tt', 'g:i a', '15:00:00', 'on', 'on', 'off', 'off', 'off', 'on', 'DESC', 'off', '#EEEEEE', '#000000', 'off', 'off', '', '', '5', 'http://www.amalficoastapps.it/demo/leagueengine/dettaglio/', '102', 'page-templates/child-menu.php', 'default', '1', 'off', 'off');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wp_leagueengine_table_settings`
+-- Struttura della tabella `le_leagueengine_table_settings`
 --
 
-CREATE TABLE `wp_leagueengine_table_settings` (
+CREATE TABLE `le_leagueengine_table_settings` (
   `id` int(11) NOT NULL,
   `text` varchar(250) NOT NULL DEFAULT '',
   `col` varchar(250) NOT NULL DEFAULT '',
@@ -422,10 +466,10 @@ CREATE TABLE `wp_leagueengine_table_settings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `wp_leagueengine_table_settings`
+-- Dump dei dati per la tabella `le_leagueengine_table_settings`
 --
 
-INSERT INTO `wp_leagueengine_table_settings` (`id`, `text`, `col`, `display`, `sort_order`) VALUES
+INSERT INTO `le_leagueengine_table_settings` (`id`, `text`, `col`, `display`, `sort_order`) VALUES
 (1, '#', 'leagueengine_table_pos', 'on', '1'),
 (2, 'Team', 'leagueengine_table_team', 'on', '2'),
 (3, 'GP', 'leagueengine_table_gp', 'on', '3'),
@@ -441,10 +485,10 @@ INSERT INTO `wp_leagueengine_table_settings` (`id`, `text`, `col`, `display`, `s
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wp_leagueengine_team_attributes`
+-- Struttura della tabella `le_leagueengine_team_attributes`
 --
 
-CREATE TABLE `wp_leagueengine_team_attributes` (
+CREATE TABLE `le_leagueengine_team_attributes` (
   `id` int(11) NOT NULL,
   `team_id` varchar(250) NOT NULL DEFAULT '',
   `attribute_id` varchar(250) NOT NULL DEFAULT '',
@@ -458,10 +502,10 @@ CREATE TABLE `wp_leagueengine_team_attributes` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wp_leagueengine_tournaments`
+-- Struttura della tabella `le_leagueengine_tournaments`
 --
 
-CREATE TABLE `wp_leagueengine_tournaments` (
+CREATE TABLE `le_leagueengine_tournaments` (
   `id` int(11) NOT NULL,
   `data_id` varchar(250) NOT NULL DEFAULT '',
   `start_date` date NOT NULL,
@@ -482,20 +526,20 @@ CREATE TABLE `wp_leagueengine_tournaments` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `wp_leagueengine_tournaments`
+-- Dump dei dati per la tabella `le_leagueengine_tournaments`
 --
 
-INSERT INTO `wp_leagueengine_tournaments` (`id`, `data_id`, `start_date`, `teams`, `tournament_type`, `groups`, `qualifiers`, `koteams`, `pts_win`, `pts_lose`, `pts_draw`, `pts_bonus`, `difference`, `reporting`, `table_position`, `tournament_repeat`, `tournament_shuffle`) VALUES
+INSERT INTO `le_leagueengine_tournaments` (`id`, `data_id`, `start_date`, `teams`, `tournament_type`, `groups`, `qualifiers`, `koteams`, `pts_win`, `pts_lose`, `pts_draw`, `pts_bonus`, `difference`, `reporting`, `table_position`, `tournament_repeat`, `tournament_shuffle`) VALUES
 (2, '4', '2016-10-20', '4', 'knockout', '', '', '', '3', '0', '1', 'off', 'on', 'off', 'on', 'off', 'on'),
 (3, '5', '2016-10-20', '4', 'leagueknockout', '2x2', '1', '2', '3', '0', '1', 'off', 'on', 'off', 'on', 'on', 'on');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wp_leagueengine_tournament_matches`
+-- Struttura della tabella `le_leagueengine_tournament_matches`
 --
 
-CREATE TABLE `wp_leagueengine_tournament_matches` (
+CREATE TABLE `le_leagueengine_tournament_matches` (
   `id` int(11) NOT NULL,
   `tournament_id` varchar(250) NOT NULL DEFAULT '',
   `round` varchar(250) NOT NULL DEFAULT '',
@@ -517,10 +561,10 @@ CREATE TABLE `wp_leagueengine_tournament_matches` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `wp_leagueengine_tournament_matches`
+-- Dump dei dati per la tabella `le_leagueengine_tournament_matches`
 --
 
-INSERT INTO `wp_leagueengine_tournament_matches` (`id`, `tournament_id`, `round`, `position_id`, `match_date`, `match_time`, `home_team_id`, `away_team_id`, `home_team_score`, `away_team_score`, `home_team_bonus`, `away_team_bonus`, `winner`, `preview`, `report`, `prediction_home`, `prediction_away`, `prediction_draw`) VALUES
+INSERT INTO `le_leagueengine_tournament_matches` (`id`, `tournament_id`, `round`, `position_id`, `match_date`, `match_time`, `home_team_id`, `away_team_id`, `home_team_score`, `away_team_score`, `home_team_bonus`, `away_team_bonus`, `winner`, `preview`, `report`, `prediction_home`, `prediction_away`, `prediction_draw`) VALUES
 (1, '4', '1', '1', '2016-10-20', '15:00:00', '14', '15', '', '', '', '', '', '', '', '', '', ''),
 (2, '4', '2', '2', '2016-10-20', '15:00:00', '', '', '', '', '', '', '', '', '', '', '', ''),
 (3, '4', '1', '3', '2016-10-20', '15:00:00', '16', '17', '', '', '', '', '', '', '', '', '', ''),
@@ -533,10 +577,10 @@ INSERT INTO `wp_leagueengine_tournament_matches` (`id`, `tournament_id`, `round`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wp_leagueengine_tournament_matches_attributes`
+-- Struttura della tabella `le_leagueengine_tournament_matches_attributes`
 --
 
-CREATE TABLE `wp_leagueengine_tournament_matches_attributes` (
+CREATE TABLE `le_leagueengine_tournament_matches_attributes` (
   `id` int(11) NOT NULL,
   `tournament_id` varchar(250) NOT NULL DEFAULT '',
   `match_id` varchar(250) NOT NULL DEFAULT '',
@@ -550,10 +594,10 @@ CREATE TABLE `wp_leagueengine_tournament_matches_attributes` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wp_leagueengine_tournament_matches_events`
+-- Struttura della tabella `le_leagueengine_tournament_matches_events`
 --
 
-CREATE TABLE `wp_leagueengine_tournament_matches_events` (
+CREATE TABLE `le_leagueengine_tournament_matches_events` (
   `id` int(11) NOT NULL,
   `tournament_id` varchar(250) NOT NULL DEFAULT '',
   `match_id` varchar(250) NOT NULL DEFAULT '',
@@ -567,10 +611,10 @@ CREATE TABLE `wp_leagueengine_tournament_matches_events` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `wp_leagueengine_tournament_matches_events`
+-- Dump dei dati per la tabella `le_leagueengine_tournament_matches_events`
 --
 
-INSERT INTO `wp_leagueengine_tournament_matches_events` (`id`, `tournament_id`, `match_id`, `event_id`, `team_id`, `player_id`, `event_time`, `display`, `sort_order`, `timeline_text`) VALUES
+INSERT INTO `le_leagueengine_tournament_matches_events` (`id`, `tournament_id`, `match_id`, `event_id`, `team_id`, `player_id`, `event_time`, `display`, `sort_order`, `timeline_text`) VALUES
 (1, '5', '7', '11', '19', '43', '3', '', '', 'palo'),
 (2, '5', '7', '11', '19', '43', '4', '', '', 'traversa'),
 (3, '5', '7', '11', '30', '44', '10', '', '', 'goalllllllll'),
@@ -582,10 +626,10 @@ INSERT INTO `wp_leagueengine_tournament_matches_events` (`id`, `tournament_id`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wp_leagueengine_tournament_teams`
+-- Struttura della tabella `le_leagueengine_tournament_teams`
 --
 
-CREATE TABLE `wp_leagueengine_tournament_teams` (
+CREATE TABLE `le_leagueengine_tournament_teams` (
   `id` int(11) NOT NULL,
   `tournament_id` varchar(250) NOT NULL DEFAULT '',
   `team_id` varchar(250) NOT NULL DEFAULT '',
@@ -600,10 +644,10 @@ CREATE TABLE `wp_leagueengine_tournament_teams` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `wp_leagueengine_tournament_teams`
+-- Dump dei dati per la tabella `le_leagueengine_tournament_teams`
 --
 
-INSERT INTO `wp_leagueengine_tournament_teams` (`id`, `tournament_id`, `team_id`, `team_name`, `group_number`, `tournament_wins`, `tournament_diff`, `tournament_for`, `tournament_bp`, `tournament_pts`, `team_type`) VALUES
+INSERT INTO `le_leagueengine_tournament_teams` (`id`, `tournament_id`, `team_id`, `team_name`, `group_number`, `tournament_wins`, `tournament_diff`, `tournament_for`, `tournament_bp`, `tournament_pts`, `team_type`) VALUES
 (1, '4', '14', 'Squadra3', '', '0', '0', '0', '0', '0', 'team'),
 (2, '4', '15', 'Squadra4', '', '0', '0', '0', '0', '0', 'team'),
 (3, '4', '16', 'Squadra5', '', '0', '0', '0', '0', '0', 'team'),
@@ -613,213 +657,830 @@ INSERT INTO `wp_leagueengine_tournament_teams` (`id`, `tournament_id`, `team_id`
 (11, '5', '30', 'Squadra9', '2', '1', '1', '0', '0', '4', 'team'),
 (12, '5', '31', 'Squadra10', '2', '0', '-1', '0', '0', '1', 'team');
 
+-- --------------------------------------------------------
+
 --
--- Indexes for dumped tables
+-- Struttura della tabella `le_links`
+--
+
+CREATE TABLE `le_links` (
+  `link_id` bigint(20) UNSIGNED NOT NULL,
+  `link_url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `link_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `link_image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `link_target` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `link_description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `link_visible` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Y',
+  `link_owner` bigint(20) UNSIGNED NOT NULL DEFAULT '1',
+  `link_rating` int(11) NOT NULL DEFAULT '0',
+  `link_updated` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `link_rel` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `link_notes` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `link_rss` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `le_options`
+--
+
+CREATE TABLE `le_options` (
+  `option_id` bigint(20) UNSIGNED NOT NULL,
+  `option_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `option_value` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `autoload` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'yes'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dump dei dati per la tabella `le_options`
+--
+
+INSERT INTO `le_options` (`option_id`, `option_name`, `option_value`, `autoload`) VALUES
+(1, 'siteurl', 'http://localhost/alefal.it/PROJECTS/leagueengine', 'yes'),
+(2, 'home', 'http://localhost/alefal.it/PROJECTS/leagueengine', 'yes'),
+(3, 'blogname', 'LeagueEngine', 'yes'),
+(4, 'blogdescription', 'Un nuovo sito targato WordPress', 'yes'),
+(5, 'users_can_register', '0', 'yes'),
+(6, 'admin_email', 'alefalwebmaster@gmail.com', 'yes'),
+(7, 'start_of_week', '1', 'yes'),
+(8, 'use_balanceTags', '0', 'yes'),
+(9, 'use_smilies', '1', 'yes'),
+(10, 'require_name_email', '1', 'yes'),
+(11, 'comments_notify', '1', 'yes'),
+(12, 'posts_per_rss', '10', 'yes'),
+(13, 'rss_use_excerpt', '0', 'yes'),
+(14, 'mailserver_url', 'mail.example.com', 'yes'),
+(15, 'mailserver_login', 'login@example.com', 'yes'),
+(16, 'mailserver_pass', 'password', 'yes'),
+(17, 'mailserver_port', '110', 'yes'),
+(18, 'default_category', '1', 'yes'),
+(19, 'default_comment_status', 'open', 'yes'),
+(20, 'default_ping_status', 'open', 'yes'),
+(21, 'default_pingback_flag', '1', 'yes'),
+(22, 'posts_per_page', '10', 'yes'),
+(23, 'date_format', 'j F Y', 'yes'),
+(24, 'time_format', 'G:i', 'yes'),
+(25, 'links_updated_date_format', 'j F Y G:i', 'yes'),
+(26, 'comment_moderation', '0', 'yes'),
+(27, 'moderation_notify', '1', 'yes'),
+(28, 'permalink_structure', '/%year%/%monthnum%/%day%/%postname%/', 'yes'),
+(29, 'rewrite_rules', 'a:89:{s:4:"api$";s:19:"index.php?json=info";s:9:"api/(.+)$";s:26:"index.php?json=$matches[1]";s:11:"^wp-json/?$";s:22:"index.php?rest_route=/";s:14:"^wp-json/(.*)?";s:33:"index.php?rest_route=/$matches[1]";s:47:"category/(.+?)/feed/(feed|rdf|rss|rss2|atom)/?$";s:52:"index.php?category_name=$matches[1]&feed=$matches[2]";s:42:"category/(.+?)/(feed|rdf|rss|rss2|atom)/?$";s:52:"index.php?category_name=$matches[1]&feed=$matches[2]";s:23:"category/(.+?)/embed/?$";s:46:"index.php?category_name=$matches[1]&embed=true";s:35:"category/(.+?)/page/?([0-9]{1,})/?$";s:53:"index.php?category_name=$matches[1]&paged=$matches[2]";s:17:"category/(.+?)/?$";s:35:"index.php?category_name=$matches[1]";s:44:"tag/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:42:"index.php?tag=$matches[1]&feed=$matches[2]";s:39:"tag/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:42:"index.php?tag=$matches[1]&feed=$matches[2]";s:20:"tag/([^/]+)/embed/?$";s:36:"index.php?tag=$matches[1]&embed=true";s:32:"tag/([^/]+)/page/?([0-9]{1,})/?$";s:43:"index.php?tag=$matches[1]&paged=$matches[2]";s:14:"tag/([^/]+)/?$";s:25:"index.php?tag=$matches[1]";s:45:"type/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:50:"index.php?post_format=$matches[1]&feed=$matches[2]";s:40:"type/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:50:"index.php?post_format=$matches[1]&feed=$matches[2]";s:21:"type/([^/]+)/embed/?$";s:44:"index.php?post_format=$matches[1]&embed=true";s:33:"type/([^/]+)/page/?([0-9]{1,})/?$";s:51:"index.php?post_format=$matches[1]&paged=$matches[2]";s:15:"type/([^/]+)/?$";s:33:"index.php?post_format=$matches[1]";s:48:".*wp-(atom|rdf|rss|rss2|feed|commentsrss2)\\.php$";s:18:"index.php?feed=old";s:20:".*wp-app\\.php(/.*)?$";s:19:"index.php?error=403";s:18:".*wp-register.php$";s:23:"index.php?register=true";s:32:"feed/(feed|rdf|rss|rss2|atom)/?$";s:27:"index.php?&feed=$matches[1]";s:27:"(feed|rdf|rss|rss2|atom)/?$";s:27:"index.php?&feed=$matches[1]";s:8:"embed/?$";s:21:"index.php?&embed=true";s:20:"page/?([0-9]{1,})/?$";s:28:"index.php?&paged=$matches[1]";s:41:"comments/feed/(feed|rdf|rss|rss2|atom)/?$";s:42:"index.php?&feed=$matches[1]&withcomments=1";s:36:"comments/(feed|rdf|rss|rss2|atom)/?$";s:42:"index.php?&feed=$matches[1]&withcomments=1";s:17:"comments/embed/?$";s:21:"index.php?&embed=true";s:44:"search/(.+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:40:"index.php?s=$matches[1]&feed=$matches[2]";s:39:"search/(.+)/(feed|rdf|rss|rss2|atom)/?$";s:40:"index.php?s=$matches[1]&feed=$matches[2]";s:20:"search/(.+)/embed/?$";s:34:"index.php?s=$matches[1]&embed=true";s:32:"search/(.+)/page/?([0-9]{1,})/?$";s:41:"index.php?s=$matches[1]&paged=$matches[2]";s:14:"search/(.+)/?$";s:23:"index.php?s=$matches[1]";s:47:"author/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:50:"index.php?author_name=$matches[1]&feed=$matches[2]";s:42:"author/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:50:"index.php?author_name=$matches[1]&feed=$matches[2]";s:23:"author/([^/]+)/embed/?$";s:44:"index.php?author_name=$matches[1]&embed=true";s:35:"author/([^/]+)/page/?([0-9]{1,})/?$";s:51:"index.php?author_name=$matches[1]&paged=$matches[2]";s:17:"author/([^/]+)/?$";s:33:"index.php?author_name=$matches[1]";s:69:"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/feed/(feed|rdf|rss|rss2|atom)/?$";s:80:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&feed=$matches[4]";s:64:"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/(feed|rdf|rss|rss2|atom)/?$";s:80:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&feed=$matches[4]";s:45:"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/embed/?$";s:74:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&embed=true";s:57:"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/page/?([0-9]{1,})/?$";s:81:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&paged=$matches[4]";s:39:"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/?$";s:63:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]";s:56:"([0-9]{4})/([0-9]{1,2})/feed/(feed|rdf|rss|rss2|atom)/?$";s:64:"index.php?year=$matches[1]&monthnum=$matches[2]&feed=$matches[3]";s:51:"([0-9]{4})/([0-9]{1,2})/(feed|rdf|rss|rss2|atom)/?$";s:64:"index.php?year=$matches[1]&monthnum=$matches[2]&feed=$matches[3]";s:32:"([0-9]{4})/([0-9]{1,2})/embed/?$";s:58:"index.php?year=$matches[1]&monthnum=$matches[2]&embed=true";s:44:"([0-9]{4})/([0-9]{1,2})/page/?([0-9]{1,})/?$";s:65:"index.php?year=$matches[1]&monthnum=$matches[2]&paged=$matches[3]";s:26:"([0-9]{4})/([0-9]{1,2})/?$";s:47:"index.php?year=$matches[1]&monthnum=$matches[2]";s:43:"([0-9]{4})/feed/(feed|rdf|rss|rss2|atom)/?$";s:43:"index.php?year=$matches[1]&feed=$matches[2]";s:38:"([0-9]{4})/(feed|rdf|rss|rss2|atom)/?$";s:43:"index.php?year=$matches[1]&feed=$matches[2]";s:19:"([0-9]{4})/embed/?$";s:37:"index.php?year=$matches[1]&embed=true";s:31:"([0-9]{4})/page/?([0-9]{1,})/?$";s:44:"index.php?year=$matches[1]&paged=$matches[2]";s:13:"([0-9]{4})/?$";s:26:"index.php?year=$matches[1]";s:58:"[0-9]{4}/[0-9]{1,2}/[0-9]{1,2}/[^/]+/attachment/([^/]+)/?$";s:32:"index.php?attachment=$matches[1]";s:68:"[0-9]{4}/[0-9]{1,2}/[0-9]{1,2}/[^/]+/attachment/([^/]+)/trackback/?$";s:37:"index.php?attachment=$matches[1]&tb=1";s:88:"[0-9]{4}/[0-9]{1,2}/[0-9]{1,2}/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:83:"[0-9]{4}/[0-9]{1,2}/[0-9]{1,2}/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:83:"[0-9]{4}/[0-9]{1,2}/[0-9]{1,2}/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$";s:50:"index.php?attachment=$matches[1]&cpage=$matches[2]";s:64:"[0-9]{4}/[0-9]{1,2}/[0-9]{1,2}/[^/]+/attachment/([^/]+)/embed/?$";s:43:"index.php?attachment=$matches[1]&embed=true";s:53:"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/([^/]+)/embed/?$";s:91:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&name=$matches[4]&embed=true";s:57:"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/([^/]+)/trackback/?$";s:85:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&name=$matches[4]&tb=1";s:77:"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:97:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&name=$matches[4]&feed=$matches[5]";s:72:"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:97:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&name=$matches[4]&feed=$matches[5]";s:65:"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/([^/]+)/page/?([0-9]{1,})/?$";s:98:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&name=$matches[4]&paged=$matches[5]";s:72:"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/([^/]+)/comment-page-([0-9]{1,})/?$";s:98:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&name=$matches[4]&cpage=$matches[5]";s:61:"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/([^/]+)(?:/([0-9]+))?/?$";s:97:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&name=$matches[4]&page=$matches[5]";s:47:"[0-9]{4}/[0-9]{1,2}/[0-9]{1,2}/[^/]+/([^/]+)/?$";s:32:"index.php?attachment=$matches[1]";s:57:"[0-9]{4}/[0-9]{1,2}/[0-9]{1,2}/[^/]+/([^/]+)/trackback/?$";s:37:"index.php?attachment=$matches[1]&tb=1";s:77:"[0-9]{4}/[0-9]{1,2}/[0-9]{1,2}/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:72:"[0-9]{4}/[0-9]{1,2}/[0-9]{1,2}/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:72:"[0-9]{4}/[0-9]{1,2}/[0-9]{1,2}/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$";s:50:"index.php?attachment=$matches[1]&cpage=$matches[2]";s:53:"[0-9]{4}/[0-9]{1,2}/[0-9]{1,2}/[^/]+/([^/]+)/embed/?$";s:43:"index.php?attachment=$matches[1]&embed=true";s:64:"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/comment-page-([0-9]{1,})/?$";s:81:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&cpage=$matches[4]";s:51:"([0-9]{4})/([0-9]{1,2})/comment-page-([0-9]{1,})/?$";s:65:"index.php?year=$matches[1]&monthnum=$matches[2]&cpage=$matches[3]";s:38:"([0-9]{4})/comment-page-([0-9]{1,})/?$";s:44:"index.php?year=$matches[1]&cpage=$matches[2]";s:27:".?.+?/attachment/([^/]+)/?$";s:32:"index.php?attachment=$matches[1]";s:37:".?.+?/attachment/([^/]+)/trackback/?$";s:37:"index.php?attachment=$matches[1]&tb=1";s:57:".?.+?/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:52:".?.+?/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:52:".?.+?/attachment/([^/]+)/comment-page-([0-9]{1,})/?$";s:50:"index.php?attachment=$matches[1]&cpage=$matches[2]";s:33:".?.+?/attachment/([^/]+)/embed/?$";s:43:"index.php?attachment=$matches[1]&embed=true";s:16:"(.?.+?)/embed/?$";s:41:"index.php?pagename=$matches[1]&embed=true";s:20:"(.?.+?)/trackback/?$";s:35:"index.php?pagename=$matches[1]&tb=1";s:40:"(.?.+?)/feed/(feed|rdf|rss|rss2|atom)/?$";s:47:"index.php?pagename=$matches[1]&feed=$matches[2]";s:35:"(.?.+?)/(feed|rdf|rss|rss2|atom)/?$";s:47:"index.php?pagename=$matches[1]&feed=$matches[2]";s:28:"(.?.+?)/page/?([0-9]{1,})/?$";s:48:"index.php?pagename=$matches[1]&paged=$matches[2]";s:35:"(.?.+?)/comment-page-([0-9]{1,})/?$";s:48:"index.php?pagename=$matches[1]&cpage=$matches[2]";s:24:"(.?.+?)(?:/([0-9]+))?/?$";s:47:"index.php?pagename=$matches[1]&page=$matches[2]";}', 'yes'),
+(30, 'hack_file', '0', 'yes'),
+(31, 'blog_charset', 'UTF-8', 'yes'),
+(32, 'moderation_keys', '', 'no'),
+(33, 'active_plugins', 'a:5:{i:0;s:43:"alefal_leagueengine/alefal_leagueengine.php";i:2;s:31:"hueman-addons/hueman-addons.php";i:3;s:21:"json-api/json-api.php";i:4;s:29:"leagueengine/leagueengine.php";i:5;s:43:"list-category-posts/list-category-posts.php";}', 'yes'),
+(34, 'category_base', '', 'yes'),
+(35, 'ping_sites', 'http://rpc.pingomatic.com/', 'yes'),
+(36, 'comment_max_links', '2', 'yes'),
+(37, 'gmt_offset', '0', 'yes'),
+(38, 'default_email_category', '1', 'yes'),
+(39, 'recently_edited', '', 'no'),
+(40, 'template', 'hueman', 'yes'),
+(41, 'stylesheet', 'hueman', 'yes'),
+(42, 'comment_whitelist', '1', 'yes'),
+(43, 'blacklist_keys', '', 'no'),
+(44, 'comment_registration', '0', 'yes'),
+(45, 'html_type', 'text/html', 'yes'),
+(46, 'use_trackback', '0', 'yes'),
+(47, 'default_role', 'subscriber', 'yes'),
+(48, 'db_version', '37965', 'yes'),
+(49, 'uploads_use_yearmonth_folders', '1', 'yes'),
+(50, 'upload_path', '', 'yes'),
+(51, 'blog_public', '1', 'yes'),
+(52, 'default_link_category', '2', 'yes'),
+(53, 'show_on_front', 'posts', 'yes'),
+(54, 'tag_base', '', 'yes'),
+(55, 'show_avatars', '1', 'yes'),
+(56, 'avatar_rating', 'G', 'yes'),
+(57, 'upload_url_path', '', 'yes'),
+(58, 'thumbnail_size_w', '150', 'yes'),
+(59, 'thumbnail_size_h', '150', 'yes'),
+(60, 'thumbnail_crop', '1', 'yes'),
+(61, 'medium_size_w', '300', 'yes'),
+(62, 'medium_size_h', '300', 'yes'),
+(63, 'avatar_default', 'mystery', 'yes'),
+(64, 'large_size_w', '1024', 'yes'),
+(65, 'large_size_h', '1024', 'yes'),
+(66, 'image_default_link_type', 'none', 'yes'),
+(67, 'image_default_size', '', 'yes'),
+(68, 'image_default_align', '', 'yes'),
+(69, 'close_comments_for_old_posts', '0', 'yes'),
+(70, 'close_comments_days_old', '14', 'yes'),
+(71, 'thread_comments', '1', 'yes'),
+(72, 'thread_comments_depth', '5', 'yes'),
+(73, 'page_comments', '0', 'yes'),
+(74, 'comments_per_page', '50', 'yes'),
+(75, 'default_comments_page', 'newest', 'yes'),
+(76, 'comment_order', 'asc', 'yes'),
+(77, 'sticky_posts', 'a:0:{}', 'yes'),
+(78, 'widget_categories', 'a:1:{s:12:"_multiwidget";i:1;}', 'yes'),
+(79, 'widget_text', 'a:3:{i:1;a:0:{}i:2;a:3:{s:5:"title";s:10:"Classifica";s:4:"text";s:56:"[leagueengine_show_season_table_widget lid="2" sid="32"]";s:6:"filter";b:0;}s:12:"_multiwidget";i:1;}', 'yes'),
+(80, 'widget_rss', 'a:2:{i:1;a:0:{}s:12:"_multiwidget";i:1;}', 'yes'),
+(81, 'uninstall_plugins', 'a:0:{}', 'no'),
+(82, 'timezone_string', 'Europe/Rome', 'yes'),
+(83, 'page_for_posts', '0', 'yes'),
+(84, 'page_on_front', '0', 'yes'),
+(85, 'default_post_format', '0', 'yes'),
+(86, 'link_manager_enabled', '0', 'yes'),
+(87, 'finished_splitting_shared_terms', '1', 'yes'),
+(88, 'site_icon', '0', 'yes'),
+(89, 'medium_large_size_w', '768', 'yes'),
+(90, 'medium_large_size_h', '0', 'yes'),
+(91, 'initial_db_version', '37965', 'yes'),
+(92, 'le_user_roles', 'a:5:{s:13:"administrator";a:2:{s:4:"name";s:13:"Administrator";s:12:"capabilities";a:61:{s:13:"switch_themes";b:1;s:11:"edit_themes";b:1;s:16:"activate_plugins";b:1;s:12:"edit_plugins";b:1;s:10:"edit_users";b:1;s:10:"edit_files";b:1;s:14:"manage_options";b:1;s:17:"moderate_comments";b:1;s:17:"manage_categories";b:1;s:12:"manage_links";b:1;s:12:"upload_files";b:1;s:6:"import";b:1;s:15:"unfiltered_html";b:1;s:10:"edit_posts";b:1;s:17:"edit_others_posts";b:1;s:20:"edit_published_posts";b:1;s:13:"publish_posts";b:1;s:10:"edit_pages";b:1;s:4:"read";b:1;s:8:"level_10";b:1;s:7:"level_9";b:1;s:7:"level_8";b:1;s:7:"level_7";b:1;s:7:"level_6";b:1;s:7:"level_5";b:1;s:7:"level_4";b:1;s:7:"level_3";b:1;s:7:"level_2";b:1;s:7:"level_1";b:1;s:7:"level_0";b:1;s:17:"edit_others_pages";b:1;s:20:"edit_published_pages";b:1;s:13:"publish_pages";b:1;s:12:"delete_pages";b:1;s:19:"delete_others_pages";b:1;s:22:"delete_published_pages";b:1;s:12:"delete_posts";b:1;s:19:"delete_others_posts";b:1;s:22:"delete_published_posts";b:1;s:20:"delete_private_posts";b:1;s:18:"edit_private_posts";b:1;s:18:"read_private_posts";b:1;s:20:"delete_private_pages";b:1;s:18:"edit_private_pages";b:1;s:18:"read_private_pages";b:1;s:12:"delete_users";b:1;s:12:"create_users";b:1;s:17:"unfiltered_upload";b:1;s:14:"edit_dashboard";b:1;s:14:"update_plugins";b:1;s:14:"delete_plugins";b:1;s:15:"install_plugins";b:1;s:13:"update_themes";b:1;s:14:"install_themes";b:1;s:11:"update_core";b:1;s:10:"list_users";b:1;s:12:"remove_users";b:1;s:13:"promote_users";b:1;s:18:"edit_theme_options";b:1;s:13:"delete_themes";b:1;s:6:"export";b:1;}}s:6:"editor";a:2:{s:4:"name";s:6:"Editor";s:12:"capabilities";a:34:{s:17:"moderate_comments";b:1;s:17:"manage_categories";b:1;s:12:"manage_links";b:1;s:12:"upload_files";b:1;s:15:"unfiltered_html";b:1;s:10:"edit_posts";b:1;s:17:"edit_others_posts";b:1;s:20:"edit_published_posts";b:1;s:13:"publish_posts";b:1;s:10:"edit_pages";b:1;s:4:"read";b:1;s:7:"level_7";b:1;s:7:"level_6";b:1;s:7:"level_5";b:1;s:7:"level_4";b:1;s:7:"level_3";b:1;s:7:"level_2";b:1;s:7:"level_1";b:1;s:7:"level_0";b:1;s:17:"edit_others_pages";b:1;s:20:"edit_published_pages";b:1;s:13:"publish_pages";b:1;s:12:"delete_pages";b:1;s:19:"delete_others_pages";b:1;s:22:"delete_published_pages";b:1;s:12:"delete_posts";b:1;s:19:"delete_others_posts";b:1;s:22:"delete_published_posts";b:1;s:20:"delete_private_posts";b:1;s:18:"edit_private_posts";b:1;s:18:"read_private_posts";b:1;s:20:"delete_private_pages";b:1;s:18:"edit_private_pages";b:1;s:18:"read_private_pages";b:1;}}s:6:"author";a:2:{s:4:"name";s:6:"Author";s:12:"capabilities";a:10:{s:12:"upload_files";b:1;s:10:"edit_posts";b:1;s:20:"edit_published_posts";b:1;s:13:"publish_posts";b:1;s:4:"read";b:1;s:7:"level_2";b:1;s:7:"level_1";b:1;s:7:"level_0";b:1;s:12:"delete_posts";b:1;s:22:"delete_published_posts";b:1;}}s:11:"contributor";a:2:{s:4:"name";s:11:"Contributor";s:12:"capabilities";a:5:{s:10:"edit_posts";b:1;s:4:"read";b:1;s:7:"level_1";b:1;s:7:"level_0";b:1;s:12:"delete_posts";b:1;}}s:10:"subscriber";a:2:{s:4:"name";s:10:"Subscriber";s:12:"capabilities";a:2:{s:4:"read";b:1;s:7:"level_0";b:1;}}}', 'yes'),
+(93, 'WPLANG', 'it_IT', 'yes'),
+(94, 'widget_search', 'a:2:{i:3;a:1:{s:5:"title";s:0:"";}s:12:"_multiwidget";i:1;}', 'yes'),
+(95, 'widget_recent-posts', 'a:1:{s:12:"_multiwidget";i:1;}', 'yes'),
+(96, 'widget_recent-comments', 'a:1:{s:12:"_multiwidget";i:1;}', 'yes'),
+(97, 'widget_archives', 'a:1:{s:12:"_multiwidget";i:1;}', 'yes'),
+(98, 'widget_meta', 'a:1:{s:12:"_multiwidget";i:1;}', 'yes'),
+(99, 'sidebars_widgets', 'a:7:{s:19:"wp_inactive_widgets";a:0:{}s:7:"primary";a:1:{i:0;s:9:"alxtabs-2";}s:9:"secondary";a:4:{i:0;s:8:"search-3";i:1;s:6:"text-2";i:2;s:9:"alxtabs-3";i:3;s:7:"pages-2";}s:8:"footer-1";a:0:{}s:8:"footer-2";a:0:{}s:8:"footer-3";a:0:{}s:13:"array_version";i:3;}', 'yes'),
+(100, 'widget_pages', 'a:2:{i:2;a:3:{s:5:"title";s:6:"League";s:6:"sortby";s:10:"post_title";s:7:"exclude";s:3:"2,9";}s:12:"_multiwidget";i:1;}', 'yes'),
+(101, 'widget_calendar', 'a:1:{s:12:"_multiwidget";i:1;}', 'yes'),
+(102, 'widget_tag_cloud', 'a:1:{s:12:"_multiwidget";i:1;}', 'yes'),
+(103, 'widget_nav_menu', 'a:1:{s:12:"_multiwidget";i:1;}', 'yes'),
+(104, 'cron', 'a:4:{i:1477458216;a:3:{s:16:"wp_version_check";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}s:17:"wp_update_plugins";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}s:16:"wp_update_themes";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}}i:1477501446;a:1:{s:19:"wp_scheduled_delete";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}}i:1477501935;a:1:{s:30:"wp_scheduled_auto_draft_delete";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}}s:7:"version";i:2;}', 'yes'),
+(106, '_transient_twentysixteen_categories', '1', 'yes'),
+(111, '_site_transient_timeout_theme_roots', '1477416917', 'no'),
+(112, '_site_transient_theme_roots', 'a:1:{s:6:"hueman";s:7:"/themes";}', 'no'),
+(114, '_site_transient_update_core', 'O:8:"stdClass":4:{s:7:"updates";a:1:{i:0;O:8:"stdClass":10:{s:8:"response";s:6:"latest";s:8:"download";s:65:"https://downloads.wordpress.org/release/it_IT/wordpress-4.6.1.zip";s:6:"locale";s:5:"it_IT";s:8:"packages";O:8:"stdClass":5:{s:4:"full";s:65:"https://downloads.wordpress.org/release/it_IT/wordpress-4.6.1.zip";s:10:"no_content";b:0;s:11:"new_bundled";b:0;s:7:"partial";b:0;s:8:"rollback";b:0;}s:7:"current";s:5:"4.6.1";s:7:"version";s:5:"4.6.1";s:11:"php_version";s:5:"5.2.4";s:13:"mysql_version";s:3:"5.0";s:11:"new_bundled";s:3:"4.4";s:15:"partial_version";s:0:"";}}s:12:"last_checked";i:1477415027;s:15:"version_checked";s:5:"4.6.1";s:12:"translations";a:0:{}}', 'no'),
+(115, '_site_transient_update_themes', 'O:8:"stdClass":4:{s:12:"last_checked";i:1477415119;s:7:"checked";a:1:{s:6:"hueman";s:5:"3.2.9";}s:8:"response";a:0:{}s:12:"translations";a:1:{i:0;a:7:{s:4:"type";s:5:"theme";s:4:"slug";s:6:"hueman";s:8:"language";s:5:"it_IT";s:7:"version";s:5:"3.2.9";s:7:"updated";s:19:"2016-10-11 14:58:43";s:7:"package";s:72:"https://downloads.wordpress.org/translation/theme/hueman/3.2.9/it_IT.zip";s:10:"autoupdate";b:1;}}}', 'no'),
+(116, '_site_transient_update_plugins', 'O:8:"stdClass":5:{s:12:"last_checked";i:1477415068;s:7:"checked";a:6:{s:43:"alefal_leagueengine/alefal_leagueengine.php";s:3:"2.0";s:9:"hello.php";s:3:"1.6";s:31:"hueman-addons/hueman-addons.php";s:5:"1.0.8";s:21:"json-api/json-api.php";s:5:"1.1.1";s:29:"leagueengine/leagueengine.php";s:5:"2.3.4";s:43:"list-category-posts/list-category-posts.php";s:4:"0.70";}s:8:"response";a:0:{}s:12:"translations";a:1:{i:0;a:7:{s:4:"type";s:6:"plugin";s:4:"slug";s:13:"hueman-addons";s:8:"language";s:5:"it_IT";s:7:"version";s:5:"1.0.8";s:7:"updated";s:19:"2016-09-15 17:30:04";s:7:"package";s:80:"https://downloads.wordpress.org/translation/plugin/hueman-addons/1.0.8/it_IT.zip";s:10:"autoupdate";b:1;}}s:9:"no_update";a:4:{s:9:"hello.php";O:8:"stdClass":6:{s:2:"id";s:4:"3564";s:4:"slug";s:11:"hello-dolly";s:6:"plugin";s:9:"hello.php";s:11:"new_version";s:3:"1.6";s:3:"url";s:42:"https://wordpress.org/plugins/hello-dolly/";s:7:"package";s:58:"https://downloads.wordpress.org/plugin/hello-dolly.1.6.zip";}s:31:"hueman-addons/hueman-addons.php";O:8:"stdClass":6:{s:2:"id";s:5:"71808";s:4:"slug";s:13:"hueman-addons";s:6:"plugin";s:31:"hueman-addons/hueman-addons.php";s:11:"new_version";s:5:"1.0.8";s:3:"url";s:44:"https://wordpress.org/plugins/hueman-addons/";s:7:"package";s:62:"https://downloads.wordpress.org/plugin/hueman-addons.1.0.8.zip";}s:21:"json-api/json-api.php";O:8:"stdClass":7:{s:2:"id";s:5:"11250";s:4:"slug";s:8:"json-api";s:6:"plugin";s:21:"json-api/json-api.php";s:11:"new_version";s:5:"1.1.1";s:3:"url";s:39:"https://wordpress.org/plugins/json-api/";s:7:"package";s:57:"https://downloads.wordpress.org/plugin/json-api.1.1.3.zip";s:14:"upgrade_notice";s:35:"Added support for custom taxonomies";}s:43:"list-category-posts/list-category-posts.php";O:8:"stdClass":6:{s:2:"id";s:4:"4362";s:4:"slug";s:19:"list-category-posts";s:6:"plugin";s:43:"list-category-posts/list-category-posts.php";s:11:"new_version";s:4:"0.70";s:3:"url";s:50:"https://wordpress.org/plugins/list-category-posts/";s:7:"package";s:67:"https://downloads.wordpress.org/plugin/list-category-posts.0.70.zip";}}}', 'no'),
+(117, '_site_transient_timeout_browser_5e06a2d838c1690d9a4db2dbdca80389', '1478019847', 'no'),
+(118, '_site_transient_browser_5e06a2d838c1690d9a4db2dbdca80389', 'a:9:{s:8:"platform";s:7:"Windows";s:4:"name";s:6:"Chrome";s:7:"version";s:13:"53.0.2785.143";s:10:"update_url";s:28:"http://www.google.com/chrome";s:7:"img_src";s:49:"http://s.wordpress.org/images/browsers/chrome.png";s:11:"img_src_ssl";s:48:"https://wordpress.org/images/browsers/chrome.png";s:15:"current_version";s:2:"18";s:7:"upgrade";b:0;s:8:"insecure";b:0;}', 'no'),
+(120, 'can_compress_scripts', '1', 'no'),
+(121, '_transient_timeout_feed_dbc574053cccd058bc63a08b9c8e458e', '1477458249', 'no');
+INSERT INTO `le_options` (`option_id`, `option_name`, `option_value`, `autoload`) VALUES
+(122, '_transient_feed_dbc574053cccd058bc63a08b9c8e458e', 'a:4:{s:5:"child";a:1:{s:0:"";a:1:{s:3:"rss";a:1:{i:0;a:6:{s:4:"data";s:3:"\n\n\n";s:7:"attribs";a:1:{s:0:"";a:1:{s:7:"version";s:3:"2.0";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:1:{s:0:"";a:1:{s:7:"channel";a:1:{i:0;a:6:{s:4:"data";s:49:"\n	\n	\n	\n	\n	\n	\n	\n	\n	\n	\n		\n		\n		\n		\n		\n		\n		\n		\n		\n	";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:3:{s:0:"";a:7:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:15:"Blog – Italia";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:24:"https://it.wordpress.org";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:0:"";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:13:"lastBuildDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Tue, 25 Oct 2016 07:33:31 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"language";a:1:{i:0;a:5:{s:4:"data";s:5:"it-IT";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:9:"generator";a:1:{i:0;a:5:{s:4:"data";s:40:"https://wordpress.org/?v=4.7-alpha-38884";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"item";a:10:{i:0;a:6:{s:4:"data";s:45:"\n		\n		\n		\n		\n		\n				\n		\n\n		\n		\n				\n			\n		\n		";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:5:{s:0:"";a:7:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:38:"Primo Meetup a Ragusa: 4 Novembre 2016";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:76:"https://it.wordpress.org/news/2016/10/primo-meetup-a-ragusa-4-novembre-2016/";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"comments";a:1:{i:0;a:5:{s:4:"data";s:84:"https://it.wordpress.org/news/2016/10/primo-meetup-a-ragusa-4-novembre-2016/#respond";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Tue, 25 Oct 2016 07:33:31 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"category";a:2:{i:0;a:5:{s:4:"data";s:6:"Meetup";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}i:1;a:5:{s:4:"data";s:6:"ragusa";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:32:"https://it.wordpress.org/?p=1322";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:396:"C&#8217;è un nuovo WordPress Meetup, a Ragusa! Il primo incontro della nuova community è venerdì 4 novembre 2016, ci troviamo alle 18.30 presso 2.0 Due punto Zero &#8211; Via G. Tomasi 80, Ragusa.  Il programma dell&#8217;incontro è semplice: incontriamoci, conosciamoci, programmiamo i prossimi incontri! La partecipazione è libera e gratuita: iscriviti all&#8217;evento su Meetup.com";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:13:"Giulia Tosato";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:40:"http://purl.org/rss/1.0/modules/content/";a:1:{s:7:"encoded";a:1:{i:0;a:5:{s:4:"data";s:580:"<h1>C&#8217;è un nuovo WordPress Meetup, a Ragusa!</h1>\n<p>Il primo incontro della nuova community è <strong>venerdì 4 novembre 2016, ci troviamo alle 18.30 presso </strong><strong>2.0 Due punto Zero &#8211; Via G. Tomasi 80, Ragusa. </strong></p>\n<p>Il <strong>programma</strong> dell&#8217;incontro è semplice: incontriamoci, conosciamoci, programmiamo i prossimi incontri!</p>\n<p>La <strong>partecipazione</strong> è libera e gratuita: <a href="https://www.meetup.com/it-IT/wordpress-meetup-ragusa/events/234963169/">iscriviti all&#8217;evento su Meetup.com</a></p>\n";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:36:"http://wellformedweb.org/CommentAPI/";a:1:{s:10:"commentRss";a:1:{i:0;a:5:{s:4:"data";s:81:"https://it.wordpress.org/news/2016/10/primo-meetup-a-ragusa-4-novembre-2016/feed/";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:38:"http://purl.org/rss/1.0/modules/slash/";a:1:{s:8:"comments";a:1:{i:0;a:5:{s:4:"data";s:1:"0";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:1;a:6:{s:4:"data";s:45:"\n		\n		\n		\n		\n		\n				\n		\n\n		\n		\n				\n			\n		\n		";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:5:{s:0:"";a:7:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:30:"Meetup Verona: 31 Ottobre 2016";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:68:"https://it.wordpress.org/news/2016/10/meetup-verona-31-ottobre-2016/";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"comments";a:1:{i:0;a:5:{s:4:"data";s:76:"https://it.wordpress.org/news/2016/10/meetup-verona-31-ottobre-2016/#respond";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Mon, 24 Oct 2016 07:05:12 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"category";a:2:{i:0;a:5:{s:4:"data";s:6:"Meetup";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}i:1;a:5:{s:4:"data";s:6:"verona";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:32:"https://it.wordpress.org/?p=1309";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:423:"Il prossimo WordPress Meetup di Verona è lunedì 31 Ottobre alle 19, al Co-working 311 Verona – Lungadige Galtarossa 21.  Programma dell’incontro WordPress Horror Story &#8211; visto che è Halloween, ci raccontiamo le storie dell&#8217;orrore che ci sono capitate! WordCamp Milano: com&#8217;è stato  Iscrizione La partecipazione è libera e gratuita, basta iscriversi all’evento su Meetup. Ti aspettiamo!";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:13:"Giulia Tosato";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:40:"http://purl.org/rss/1.0/modules/content/";a:1:{s:7:"encoded";a:1:{i:0;a:5:{s:4:"data";s:700:"<p>Il prossimo WordPress Meetup di Verona è <strong>lunedì 31 Ottobre alle 19,</strong> <strong>al Co-working 311 Verona – Lungadige Galtarossa 21. </strong></p>\n<h2>Programma dell’incontro</h2>\n<ul>\n<li><b>WordPress Horror Story</b> &#8211; visto che è Halloween, ci raccontiamo le storie dell&#8217;orrore che ci sono capitate!</li>\n<li><strong>WordCamp Milano: com&#8217;è stato </strong></li>\n</ul>\n<h2>Iscrizione</h2>\n<p>La partecipazione è libera e gratuita, basta <a href="http://www.meetup.com/it-IT/Verona-WordPress-Meetup/events/234797638/" target="_blank">iscriversi all’evento su Meetup.</a></p>\n<p>Ti aspettiamo!</p>\n<div class="sharedaddy sd-sharing-enabled"></div>\n";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:36:"http://wellformedweb.org/CommentAPI/";a:1:{s:10:"commentRss";a:1:{i:0;a:5:{s:4:"data";s:73:"https://it.wordpress.org/news/2016/10/meetup-verona-31-ottobre-2016/feed/";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:38:"http://purl.org/rss/1.0/modules/slash/";a:1:{s:8:"comments";a:1:{i:0;a:5:{s:4:"data";s:1:"0";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:2;a:6:{s:4:"data";s:45:"\n		\n		\n		\n		\n		\n				\n		\n\n		\n		\n				\n			\n		\n		";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:5:{s:0:"";a:7:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:30:"Meetup Ancona: 27 Ottobre 2016";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:68:"https://it.wordpress.org/news/2016/10/meetup-ancona-27-ottobre-2016/";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"comments";a:1:{i:0;a:5:{s:4:"data";s:76:"https://it.wordpress.org/news/2016/10/meetup-ancona-27-ottobre-2016/#respond";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Wed, 19 Oct 2016 07:00:15 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"category";a:2:{i:0;a:5:{s:4:"data";s:6:"Meetup";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}i:1;a:5:{s:4:"data";s:6:"ancona";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:32:"https://it.wordpress.org/?p=1307";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:437:"Secondo appuntamento ad Ancona! La nuova community marchigiana si incontra giovedì 27 Ottobre 2016, alle 18.30 presso Informagiovani Ancona, Piazza Roma Underground.  Programma della serata recap per nuovi membri: chi siamo, cosa facciamo, quando ci incontriamo, i nostri luoghi social l&#8217;esperienza del WordCamp di Milano del 21 e 22 ottobre la scelta del nome dominio: criteri di scelta, strumenti per verificare [&#8230;]";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:13:"Giulia Tosato";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:40:"http://purl.org/rss/1.0/modules/content/";a:1:{s:7:"encoded";a:1:{i:0;a:5:{s:4:"data";s:1057:"<h1>Secondo appuntamento ad Ancona!</h1>\n<p>La nuova community marchigiana si incontra <strong>giovedì 27 Ottobre 2016</strong>, alle <strong>18.30</strong> presso <strong>Informagiovani Ancona, Piazza Roma Underground. </strong></p>\n<h2>Programma della serata</h2>\n<ul>\n<li><strong>recap</strong> per nuovi membri: chi siamo, cosa facciamo, quando ci incontriamo, i nostri luoghi social</li>\n<li>l&#8217;esperienza del <strong>WordCamp di Milano</strong> del 21 e 22 ottobre</li>\n<li>la <strong>scelta del nome dominio</strong>: criteri di scelta, strumenti per verificare la disponibilità, ecc &#8230;</li>\n<li>la <strong>scelta della piattaforma di hosting</strong>: criteri, offerte e requisiti, valutazioni, impostazioni</li>\n<li>tempo restante: <strong>discussione libera / conclusioni / networking </strong></li>\n</ul>\n<h2>Per partecipare</h2>\n<p>Tutti sono i benvenuti! È gratuito, devi solo <a href="http://www.meetup.com/it-IT/Meetup-WordPress-Ancona/events/234748917/" target="_blank">iscriverti all&#8217;evento su Meetup! </a></p>\n";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:36:"http://wellformedweb.org/CommentAPI/";a:1:{s:10:"commentRss";a:1:{i:0;a:5:{s:4:"data";s:73:"https://it.wordpress.org/news/2016/10/meetup-ancona-27-ottobre-2016/feed/";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:38:"http://purl.org/rss/1.0/modules/slash/";a:1:{s:8:"comments";a:1:{i:0;a:5:{s:4:"data";s:1:"0";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:3;a:6:{s:4:"data";s:45:"\n		\n		\n		\n		\n		\n				\n		\n\n		\n		\n				\n			\n		\n		";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:5:{s:0:"";a:7:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:31:"Meetup Bologna: 27 Ottobre 2016";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:69:"https://it.wordpress.org/news/2016/10/meetup-bologna-27-ottobre-2016/";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"comments";a:1:{i:0;a:5:{s:4:"data";s:77:"https://it.wordpress.org/news/2016/10/meetup-bologna-27-ottobre-2016/#respond";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Tue, 18 Oct 2016 07:00:36 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"category";a:2:{i:0;a:5:{s:4:"data";s:6:"Meetup";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}i:1;a:5:{s:4:"data";s:7:"bologna";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:32:"https://it.wordpress.org/?p=1305";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:402:"Attenzione: nuova sede! Nuovo appuntamento del WordPress Meetup a Bologna, giovedì 27 Ottobre a partire dalle ore 18.15 fino alle 20.30, il luogo dell&#8217;incontro è il Working Capital #WCAP in Via Guglielmo Oberdan 22 Programma Le soluzioni per la progettazione di wireframe e prototipi interattivi Dal prototipo concettuale ai prototipi ad alta fedeltà. Ecco i migliori programmi di [&#8230;]";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:13:"Giulia Tosato";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:40:"http://purl.org/rss/1.0/modules/content/";a:1:{s:7:"encoded";a:1:{i:0;a:5:{s:4:"data";s:870:"<h1>Attenzione: nuova sede!</h1>\n<p>Nuovo appuntamento del WordPress Meetup a <strong>Bologna</strong>, <strong>giovedì 27 Ottobre</strong> a partire <strong>dalle ore 18.15</strong> fino alle 20.30, <strong>il luogo dell&#8217;incontro è il Working Capital #WCAP in Via Guglielmo Oberdan 22</strong></p>\n<h2>Programma</h2>\n<ul>\n<li><strong>Le soluzioni per la progettazione di wireframe e prototipi interattivi</strong><br />\nDal prototipo concettuale ai prototipi ad alta fedeltà. Ecco i migliori programmi di progettazione grafica e tools per creare un wireframe.</li>\n<li>Parleremo del <strong>WordCamp</strong> appena svoltosi a Milano</li>\n</ul>\n<h2>Iscrizione</h2>\n<p>Per partecipare è sufficiente <a href="http://www.meetup.com/it-IT/WordPress-Meetup-Bologna/events/234554773/" target="_blank">iscriversi all’evento su meetup.com</a>, non mancare!</p>\n";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:36:"http://wellformedweb.org/CommentAPI/";a:1:{s:10:"commentRss";a:1:{i:0;a:5:{s:4:"data";s:74:"https://it.wordpress.org/news/2016/10/meetup-bologna-27-ottobre-2016/feed/";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:38:"http://purl.org/rss/1.0/modules/slash/";a:1:{s:8:"comments";a:1:{i:0;a:5:{s:4:"data";s:1:"0";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:4;a:6:{s:4:"data";s:45:"\n		\n		\n		\n		\n		\n				\n		\n\n		\n		\n				\n			\n		\n		";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:5:{s:0:"";a:7:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:30:"Meetup Padova: 24 Ottobre 2016";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:68:"https://it.wordpress.org/news/2016/10/meetup-padova-24-ottobre-2016/";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"comments";a:1:{i:0;a:5:{s:4:"data";s:76:"https://it.wordpress.org/news/2016/10/meetup-padova-24-ottobre-2016/#respond";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Mon, 17 Oct 2016 07:00:45 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"category";a:2:{i:0;a:5:{s:4:"data";s:6:"Meetup";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}i:1;a:5:{s:4:"data";s:6:"padova";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:32:"https://it.wordpress.org/?p=1303";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:436:"La community di Padova si incontra Lunedì 24 Ottobre, alle 19, presso TalentLab (via Monselice 15/a, Padova)  Programma dell&#8217;incontro WordCamp Milano: proveremo a riportare in una rapida carrellata le novità e le sensazioni di WordCamp e Contributor Day. Velocità: come ridurre il tempo di caricamento della pagina? Come aumentare la velocità del nostro sito, fornendo soluzioni molto concrete ai problemi che [&#8230;]";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:13:"Giulia Tosato";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:40:"http://purl.org/rss/1.0/modules/content/";a:1:{s:7:"encoded";a:1:{i:0;a:5:{s:4:"data";s:961:"<p>La community di Padova si incontra <strong>Lunedì 24 Ottobre, alle 19, presso TalentLab</strong> <strong>(via Monselice 15/a, Padova) </strong></p>\n<h2>Programma dell&#8217;incontro</h2>\n<ul>\n<li><strong>WordCamp Milano:</strong> proveremo a riportare in una rapida carrellata le novità e le sensazioni di WordCamp e Contributor Day.</li>\n<li><strong>Velocità:</strong> come ridurre il tempo di caricamento della pagina? Come aumentare la velocità del nostro sito, fornendo soluzioni molto concrete ai problemi che ne causano il rallentamento.</li>\n<li><strong>Guida ai CSS:</strong> guida ai fogli di stile, che partirà dalle nozioni di base fino a toccare temi come le animazioni e i preprocessori.</li>\n</ul>\n<h2>Come partecipare</h2>\n<p><a href="http://www.meetup.com/it-IT/Padova-WordPress-Meetup/events/234775075/" target="_blank">Iscriviti all&#8217;evento su Meetup!</a> La partecipazione è libera e aperta a tutti. Ti aspettiamo!</p>\n";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:36:"http://wellformedweb.org/CommentAPI/";a:1:{s:10:"commentRss";a:1:{i:0;a:5:{s:4:"data";s:73:"https://it.wordpress.org/news/2016/10/meetup-padova-24-ottobre-2016/feed/";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:38:"http://purl.org/rss/1.0/modules/slash/";a:1:{s:8:"comments";a:1:{i:0;a:5:{s:4:"data";s:1:"0";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:5;a:6:{s:4:"data";s:45:"\n		\n		\n		\n		\n		\n				\n		\n\n		\n		\n				\n			\n		\n		";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:5:{s:0:"";a:7:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:39:"Il primo Meetup Biella: 27 Ottobre 2016";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:77:"https://it.wordpress.org/news/2016/10/il-primo-meetup-biella-27-ottobre-2016/";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"comments";a:1:{i:0;a:5:{s:4:"data";s:85:"https://it.wordpress.org/news/2016/10/il-primo-meetup-biella-27-ottobre-2016/#respond";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Thu, 13 Oct 2016 14:31:14 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"category";a:2:{i:0;a:5:{s:4:"data";s:6:"Meetup";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}i:1;a:5:{s:4:"data";s:6:"biella";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:32:"https://it.wordpress.org/?p=1300";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:419:"Benvenuto ad un nuovo WordPress Meetup! Il primo incontro della Community a Biella sarà giovedì 27 ottobre, alle 18.30, presso Sellalab &#8211; Via Corradino Sella, 10 , Biella.  Programma della serata 18:30-19:30 Chi, Come, Quando e Perché Scopriremo chi siamo e decideremo come vogliamo far crescere la community biellese di WordPress. Insieme capiremo di cosa abbiamo bisogno e come organizzare i [&#8230;]";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:13:"Giulia Tosato";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:40:"http://purl.org/rss/1.0/modules/content/";a:1:{s:7:"encoded";a:1:{i:0;a:5:{s:4:"data";s:959:"<h1>Benvenuto ad un nuovo WordPress Meetup!</h1>\n<p>Il primo incontro della Community a Biella sarà <strong>giovedì 27 ottobre, alle 18.30, presso Sellalab &#8211; Via Corradino Sella, 10 , Biella. </strong></p>\n<h2>Programma della serata</h2>\n<ul>\n<li><strong>18:30-19:30 Chi, Come, Quando e Perché<br />\n</strong>Scopriremo chi siamo e decideremo come vogliamo far crescere la community biellese di WordPress.<br />\nInsieme capiremo di cosa abbiamo bisogno e come organizzare i prossimi incontri, ascoltando interessi e desideri di tutti.</li>\n<li><strong>19:30-20:30 Networking condito  </strong><br />\nPizza&amp;birra per tutti, perchè si sa che ci si confronta meglio con la pancia piena</li>\n</ul>\n<h2>Come partecipare</h2>\n<p>Basta <a href="https://www.meetup.com/it-IT/WordPress-Meetup-Biella/events/234795949/" target="_blank">iscriversi all&#8217;evento su Meetup.</a> Tutti possono partecipare, è libero e gratuito. Ti aspettiamo!</p>\n";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:36:"http://wellformedweb.org/CommentAPI/";a:1:{s:10:"commentRss";a:1:{i:0;a:5:{s:4:"data";s:82:"https://it.wordpress.org/news/2016/10/il-primo-meetup-biella-27-ottobre-2016/feed/";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:38:"http://purl.org/rss/1.0/modules/slash/";a:1:{s:8:"comments";a:1:{i:0;a:5:{s:4:"data";s:1:"0";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:6;a:6:{s:4:"data";s:45:"\n		\n		\n		\n		\n		\n				\n		\n\n		\n		\n				\n			\n		\n		";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:5:{s:0:"";a:7:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:29:"Meetup Parma: 15 Ottobre 2016";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:67:"https://it.wordpress.org/news/2016/10/meetup-parma-15-ottobre-2016/";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"comments";a:1:{i:0;a:5:{s:4:"data";s:75:"https://it.wordpress.org/news/2016/10/meetup-parma-15-ottobre-2016/#respond";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Wed, 12 Oct 2016 09:11:29 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"category";a:2:{i:0;a:5:{s:4:"data";s:6:"Meetup";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}i:1;a:5:{s:4:"data";s:5:"parma";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:32:"https://it.wordpress.org/?p=1297";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:450:"Questo mese la community WordPress di Parma si dà appuntamento di Sabato mattina! Il 15 Ottobre, alle 10.30,  come sempre presso Officine On/Off (Coworking Space &#38; FabLab Parma) Strada Naviglio Alto 4/1, Parma Programma dell’incontro Introduzione Io Parlo Parmigiano: il dietro le quinte della strategia web  Discussione libera / Conclusioni Iscrizione La partecipazione è libera e gratuita, basta iscriversi all’evento su [&#8230;]";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:13:"Giulia Tosato";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:40:"http://purl.org/rss/1.0/modules/content/";a:1:{s:7:"encoded";a:1:{i:0;a:5:{s:4:"data";s:762:"<p>Questo mese la community WordPress di Parma si dà appuntamento di <strong>Sabato</strong> mattina! Il <strong>15 Ottobre, alle 10.30,</strong> <strong> </strong>come sempre<strong> </strong>presso <strong>Officine On/Off (Coworking Space &amp; FabLab Parma)</strong> <strong>Strada Naviglio Alto 4/1, Parma</strong></p>\n<h2>Programma dell’incontro</h2>\n<ul>\n<li>Introduzione</li>\n<li><strong>Io Parlo Parmigiano: il dietro le quinte della strategia web </strong></li>\n<li>Discussione libera / Conclusioni</li>\n</ul>\n<h2>Iscrizione</h2>\n<p>La partecipazione è libera e gratuita, basta <a href="http://www.meetup.com/it-IT/WordPress-Meetup-Parma/events/234783871/" target="_blank">iscriversi all’evento su Meetup.com</a></p>\n<p>Ti aspettiamo!</p>\n";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:36:"http://wellformedweb.org/CommentAPI/";a:1:{s:10:"commentRss";a:1:{i:0;a:5:{s:4:"data";s:72:"https://it.wordpress.org/news/2016/10/meetup-parma-15-ottobre-2016/feed/";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:38:"http://purl.org/rss/1.0/modules/slash/";a:1:{s:8:"comments";a:1:{i:0;a:5:{s:4:"data";s:1:"0";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:7;a:6:{s:4:"data";s:45:"\n		\n		\n		\n		\n		\n				\n		\n\n		\n		\n				\n			\n		\n		";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:5:{s:0:"";a:7:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:32:"Meetup Piacenza: 10 Ottobre 2016";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:70:"https://it.wordpress.org/news/2016/10/meetup-piacenza-10-ottobre-2016/";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"comments";a:1:{i:0;a:5:{s:4:"data";s:78:"https://it.wordpress.org/news/2016/10/meetup-piacenza-10-ottobre-2016/#respond";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Thu, 06 Oct 2016 12:33:28 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"category";a:2:{i:0;a:5:{s:4:"data";s:6:"Meetup";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}i:1;a:5:{s:4:"data";s:8:"Piacenza";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:32:"https://it.wordpress.org/?p=1293";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:433:"Primo &#8220;vero&#8221; meetup a Piacenza! Dopo l&#8217;incontro di Agosto, servito a conoscerci di persona, ecco il primo appuntamento con il Meetup WordPress di Piacenza. Sarà Lunedì 10 Ottobre alle 18.30 presso Spazio2 &#8211; Via XXIV Maggio 51/53, Piacenza.  Programma 18:30-19:00 Benvenuto + Networking 19:00-19:30 Perchè usiamo WordPress? Presentazione di WordPress, dei suoi pregi, di cosa ci si può fare. [&#8230;]";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:13:"Giulia Tosato";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:40:"http://purl.org/rss/1.0/modules/content/";a:1:{s:7:"encoded";a:1:{i:0;a:5:{s:4:"data";s:1355:"<h1>Primo &#8220;vero&#8221; meetup a Piacenza!</h1>\n<p>Dopo l&#8217;incontro di Agosto, servito a conoscerci di persona, ecco il primo appuntamento con il Meetup WordPress di Piacenza. Sarà <strong>Lunedì 10 Ottobre alle 18.30 presso Spazio2 &#8211; Via XXIV Maggio 51/53, Piacenza. </strong></p>\n<h2>Programma</h2>\n<ul>\n<li><strong>18:30-19:00 Benvenuto + Networking </strong></li>\n<li><strong>19:00-19:30 Perchè usiamo WordPress?</strong><br />\nPresentazione di WordPress, dei suoi pregi, di cosa ci si può fare. Sarà rivolto a chi si sta avvicinando solo ora al CMS ma anche a chi già lo usa professionalmente e vuole capire come proporlo ai propri clienti.</li>\n<li><strong>19:30-20:00 Divagazioni sui temi di WordPress</strong><br />\nLa struttura, la scelta e la personalizzazione dei temi sono alcuni tra gli aspetti fondamentali nella realizzazione di un progetto web basato su WordPress. Ecco come affrontarli.</li>\n<li><strong>20:00-20:30 Networking</strong><br />\nSpazio libero per discussioni, domande e risposte sui temi trattati e su altri proposti dai partecipanti.</li>\n</ul>\n<h2>Come partecipare</h2>\n<p>L&#8217;incontro è gratuito, aperto a tutti: basta <a href="http://www.meetup.com/it-IT/Piacenza-WordPress-Meetup/events/234596039/" target="_blank">iscriversi all&#8217;evento su Meetup. </a></p>\n<p>Ti aspettiamo!</p>\n";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:36:"http://wellformedweb.org/CommentAPI/";a:1:{s:10:"commentRss";a:1:{i:0;a:5:{s:4:"data";s:75:"https://it.wordpress.org/news/2016/10/meetup-piacenza-10-ottobre-2016/feed/";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:38:"http://purl.org/rss/1.0/modules/slash/";a:1:{s:8:"comments";a:1:{i:0;a:5:{s:4:"data";s:1:"0";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:8;a:6:{s:4:"data";s:45:"\n		\n		\n		\n		\n		\n				\n		\n\n		\n		\n				\n			\n		\n		";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:5:{s:0:"";a:7:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:31:"Meetup Brescia: 13 Ottobre 2016";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:69:"https://it.wordpress.org/news/2016/10/meetup-brescia-13-ottobre-2016/";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"comments";a:1:{i:0;a:5:{s:4:"data";s:77:"https://it.wordpress.org/news/2016/10/meetup-brescia-13-ottobre-2016/#respond";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Wed, 05 Oct 2016 07:13:11 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"category";a:2:{i:0;a:5:{s:4:"data";s:6:"Meetup";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}i:1;a:5:{s:4:"data";s:7:"brescia";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:32:"https://it.wordpress.org/?p=1264";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:433:"Tornano i meetup a Brescia! La community si incontra Giovedì 13 Ottobre alle 19, al Parco Dell’Acqua in Largo Torrelunga, 7, Brescia.  Programma dell’incontro 19:00 &#8211; 19:30 Benvenuto &#8211; Per dare modo a tutti i partecipanti di raggiungere il posto, la prima mezz&#8217;ora sarà riservata a fare due chiacchiere per conoscersi meglio. 19:30 &#8211; 20:45 I temi principali di questo incontro saranno: [&#8230;]";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:13:"Giulia Tosato";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:40:"http://purl.org/rss/1.0/modules/content/";a:1:{s:7:"encoded";a:1:{i:0;a:5:{s:4:"data";s:1540:"<h1>Tornano i meetup a Brescia!</h1>\n<p>La community si incontra <strong>Giovedì 13 Ottobre alle 19,</strong> al <strong>Parco Dell’Acqua in Largo Torrelunga, 7, Brescia. </strong></p>\n<h2>Programma dell’incontro</h2>\n<p><strong>19:00 &#8211; 19:30</strong> <strong>Benvenuto &#8211;</strong> Per dare modo a tutti i partecipanti di raggiungere il posto, la prima mezz&#8217;ora sarà riservata a fare due chiacchiere per conoscersi meglio.</p>\n<p><strong>19:30 &#8211; 20:45</strong> I <strong>temi principali</strong> di questo incontro saranno:</p>\n<ul>\n<li>WordPress e content marketing: plugin utili per sfruttare al meglio il tuo sito WordPress per te o la tua azienda</li>\n<li>Consigli per migliorare la sicurezza del tuo sito WordPress</li>\n<li>Plugin poco conosciuti che possono tornare utili</li>\n<li>Altro da definire</li>\n</ul>\n<p><strong>20:45 &#8211; 21:00</strong> <strong>Conclusioni e Networking </strong></p>\n<h2>Iscrizione</h2>\n<p>Per partecipare, <a href="http://www.meetup.com/it-IT/WordPress-Meetup-Brescia/events/234119430/" target="_blank">iscriviti all’evento su Meetup.com</a> &#8211; per favore, se ti sei iscritto ma non puoi più partecipare, dai disdetta: cosi sappiamo quanti siamo.<br />\nIl <strong>costo della sala è di € 50 e sarà suddiviso tra i partecipanti</strong> del meetup.<br />\nErgo, più siamo meno paghiamo <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f609.png" alt="😉" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>\n<p>Ti aspettiamo!</p>\n";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:36:"http://wellformedweb.org/CommentAPI/";a:1:{s:10:"commentRss";a:1:{i:0;a:5:{s:4:"data";s:74:"https://it.wordpress.org/news/2016/10/meetup-brescia-13-ottobre-2016/feed/";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:38:"http://purl.org/rss/1.0/modules/slash/";a:1:{s:8:"comments";a:1:{i:0;a:5:{s:4:"data";s:1:"0";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:9;a:6:{s:4:"data";s:45:"\n		\n		\n		\n		\n		\n				\n		\n\n		\n		\n				\n			\n		\n		";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:5:{s:0:"";a:7:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:30:"Meetup Torino: 12 Ottobre 2016";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:68:"https://it.wordpress.org/news/2016/10/meetup-torino-12-ottobre-2016/";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"comments";a:1:{i:0;a:5:{s:4:"data";s:76:"https://it.wordpress.org/news/2016/10/meetup-torino-12-ottobre-2016/#respond";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Tue, 04 Oct 2016 07:08:57 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"category";a:2:{i:0;a:5:{s:4:"data";s:6:"Meetup";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}i:1;a:5:{s:4:"data";s:6:"torino";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:32:"https://it.wordpress.org/?p=1262";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:396:"Episodio 15: Hold your head up Il prossimo Meetup torinese è Mercoledì 12 Ottobre 18, presso Toolbox Coworking, Via Agostino da Montefeltro 2, Torino. Agenda della serata 18:00/18:30 – Accoglienza e networking 18:30-19:00 – Cosa sono le Web Performance e perché devi preoccupartene 19:00/19:30 &#8211; da definire 19:30-20:30 – Networking con birre, bibite analcoliche e pizza [&#8230;]";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:13:"Giulia Tosato";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:40:"http://purl.org/rss/1.0/modules/content/";a:1:{s:7:"encoded";a:1:{i:0;a:5:{s:4:"data";s:796:"<h1 class="text--display3">Episodio 15: Hold your head up</h1>\n<p>Il prossimo Meetup torinese è <strong>Mercoledì 12 Ottobre 18, presso Toolbox Coworking</strong>, <strong>Via Agostino da Montefeltro 2, Torino.</strong></p>\n<h2>Agenda della serata</h2>\n<ul>\n<li>18:00/18:30 – Accoglienza e networking</li>\n<li>18:30-19:00 – Cosa sono le <strong>Web Performance</strong> e perché devi preoccupartene</li>\n<li>19:00/19:30 &#8211; da definire</li>\n<li>19:30-20:30 – Networking con birre, bibite analcoliche e pizza gratis per tutti</li>\n</ul>\n<h2>Iscrizione</h2>\n<p>L’ingresso è libero e gratuito e per partecipare è sufficiente <a href="http://www.meetup.com/it-IT/WordPress-Meetup-Torino/events/234142424/" target="_blank">registrarsi all’evento su Meetup</a>. Ti aspettiamo!</p>\n";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:36:"http://wellformedweb.org/CommentAPI/";a:1:{s:10:"commentRss";a:1:{i:0;a:5:{s:4:"data";s:73:"https://it.wordpress.org/news/2016/10/meetup-torino-12-ottobre-2016/feed/";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:38:"http://purl.org/rss/1.0/modules/slash/";a:1:{s:8:"comments";a:1:{i:0;a:5:{s:4:"data";s:1:"0";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}}}s:27:"http://www.w3.org/2005/Atom";a:1:{s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:0:"";s:7:"attribs";a:1:{s:0:"";a:3:{s:4:"href";s:35:"https://it.wordpress.org/news/feed/";s:3:"rel";s:4:"self";s:4:"type";s:19:"application/rss+xml";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:44:"http://purl.org/rss/1.0/modules/syndication/";a:2:{s:12:"updatePeriod";a:1:{i:0;a:5:{s:4:"data";s:6:"hourly";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:15:"updateFrequency";a:1:{i:0;a:5:{s:4:"data";s:1:"1";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}}}}}}}}s:4:"type";i:128;s:7:"headers";O:42:"Requests_Utility_CaseInsensitiveDictionary":1:{s:7:"\0*\0data";a:8:{s:6:"server";s:5:"nginx";s:4:"date";s:29:"Tue, 25 Oct 2016 17:04:08 GMT";s:12:"content-type";s:34:"application/rss+xml; charset=UTF-8";s:6:"x-olaf";s:3:"⛄";s:13:"last-modified";s:29:"Wed, 06 Jul 2016 07:06:00 GMT";s:4:"link";s:61:"<https://it.wordpress.org/wp-json/>; rel="https://api.w.org/"";s:15:"x-frame-options";s:10:"SAMEORIGIN";s:4:"x-nc";s:15:"EXPIRED lax 249";}}s:5:"build";s:14:"20161025170147";}', 'no'),
+(123, '_transient_timeout_feed_mod_dbc574053cccd058bc63a08b9c8e458e', '1477458250', 'no'),
+(124, '_transient_feed_mod_dbc574053cccd058bc63a08b9c8e458e', '1477415050', 'no'),
+(125, '_transient_timeout_feed_13e268f84d68a386face41f0af9b3e48', '1477458252', 'no');
+INSERT INTO `le_options` (`option_id`, `option_name`, `option_value`, `autoload`) VALUES
+(126, '_transient_feed_13e268f84d68a386face41f0af9b3e48', 'a:4:{s:5:"child";a:1:{s:0:"";a:1:{s:3:"rss";a:1:{i:0;a:6:{s:4:"data";s:3:"\n\n\n";s:7:"attribs";a:1:{s:0:"";a:1:{s:7:"version";s:3:"2.0";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:1:{s:0:"";a:1:{s:7:"channel";a:1:{i:0;a:6:{s:4:"data";s:49:"\n	\n	\n	\n	\n	\n	\n	\n	\n	\n	\n		\n		\n		\n		\n		\n		\n		\n		\n		\n	";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:3:{s:0:"";a:7:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:6:"Italia";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:24:"https://it.wordpress.org";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:0:"";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:13:"lastBuildDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Tue, 25 Oct 2016 07:33:31 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"language";a:1:{i:0;a:5:{s:4:"data";s:5:"it-IT";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:9:"generator";a:1:{i:0;a:5:{s:4:"data";s:40:"https://wordpress.org/?v=4.7-alpha-38884";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"item";a:10:{i:0;a:6:{s:4:"data";s:45:"\n		\n		\n		\n		\n		\n				\n		\n\n		\n		\n				\n			\n		\n		";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:5:{s:0:"";a:7:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:38:"Primo Meetup a Ragusa: 4 Novembre 2016";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:76:"https://it.wordpress.org/news/2016/10/primo-meetup-a-ragusa-4-novembre-2016/";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"comments";a:1:{i:0;a:5:{s:4:"data";s:84:"https://it.wordpress.org/news/2016/10/primo-meetup-a-ragusa-4-novembre-2016/#respond";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Tue, 25 Oct 2016 07:33:31 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"category";a:2:{i:0;a:5:{s:4:"data";s:6:"Meetup";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}i:1;a:5:{s:4:"data";s:6:"ragusa";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:32:"https://it.wordpress.org/?p=1322";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:396:"C&#8217;è un nuovo WordPress Meetup, a Ragusa! Il primo incontro della nuova community è venerdì 4 novembre 2016, ci troviamo alle 18.30 presso 2.0 Due punto Zero &#8211; Via G. Tomasi 80, Ragusa.  Il programma dell&#8217;incontro è semplice: incontriamoci, conosciamoci, programmiamo i prossimi incontri! La partecipazione è libera e gratuita: iscriviti all&#8217;evento su Meetup.com";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:13:"Giulia Tosato";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:40:"http://purl.org/rss/1.0/modules/content/";a:1:{s:7:"encoded";a:1:{i:0;a:5:{s:4:"data";s:580:"<h1>C&#8217;è un nuovo WordPress Meetup, a Ragusa!</h1>\n<p>Il primo incontro della nuova community è <strong>venerdì 4 novembre 2016, ci troviamo alle 18.30 presso </strong><strong>2.0 Due punto Zero &#8211; Via G. Tomasi 80, Ragusa. </strong></p>\n<p>Il <strong>programma</strong> dell&#8217;incontro è semplice: incontriamoci, conosciamoci, programmiamo i prossimi incontri!</p>\n<p>La <strong>partecipazione</strong> è libera e gratuita: <a href="https://www.meetup.com/it-IT/wordpress-meetup-ragusa/events/234963169/">iscriviti all&#8217;evento su Meetup.com</a></p>\n";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:36:"http://wellformedweb.org/CommentAPI/";a:1:{s:10:"commentRss";a:1:{i:0;a:5:{s:4:"data";s:81:"https://it.wordpress.org/news/2016/10/primo-meetup-a-ragusa-4-novembre-2016/feed/";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:38:"http://purl.org/rss/1.0/modules/slash/";a:1:{s:8:"comments";a:1:{i:0;a:5:{s:4:"data";s:1:"0";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:1;a:6:{s:4:"data";s:45:"\n		\n		\n		\n		\n		\n				\n		\n\n		\n		\n				\n			\n		\n		";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:5:{s:0:"";a:7:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:30:"Meetup Verona: 31 Ottobre 2016";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:68:"https://it.wordpress.org/news/2016/10/meetup-verona-31-ottobre-2016/";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"comments";a:1:{i:0;a:5:{s:4:"data";s:76:"https://it.wordpress.org/news/2016/10/meetup-verona-31-ottobre-2016/#respond";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Mon, 24 Oct 2016 07:05:12 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"category";a:2:{i:0;a:5:{s:4:"data";s:6:"Meetup";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}i:1;a:5:{s:4:"data";s:6:"verona";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:32:"https://it.wordpress.org/?p=1309";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:423:"Il prossimo WordPress Meetup di Verona è lunedì 31 Ottobre alle 19, al Co-working 311 Verona – Lungadige Galtarossa 21.  Programma dell’incontro WordPress Horror Story &#8211; visto che è Halloween, ci raccontiamo le storie dell&#8217;orrore che ci sono capitate! WordCamp Milano: com&#8217;è stato  Iscrizione La partecipazione è libera e gratuita, basta iscriversi all’evento su Meetup. Ti aspettiamo!";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:13:"Giulia Tosato";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:40:"http://purl.org/rss/1.0/modules/content/";a:1:{s:7:"encoded";a:1:{i:0;a:5:{s:4:"data";s:700:"<p>Il prossimo WordPress Meetup di Verona è <strong>lunedì 31 Ottobre alle 19,</strong> <strong>al Co-working 311 Verona – Lungadige Galtarossa 21. </strong></p>\n<h2>Programma dell’incontro</h2>\n<ul>\n<li><b>WordPress Horror Story</b> &#8211; visto che è Halloween, ci raccontiamo le storie dell&#8217;orrore che ci sono capitate!</li>\n<li><strong>WordCamp Milano: com&#8217;è stato </strong></li>\n</ul>\n<h2>Iscrizione</h2>\n<p>La partecipazione è libera e gratuita, basta <a href="http://www.meetup.com/it-IT/Verona-WordPress-Meetup/events/234797638/" target="_blank">iscriversi all’evento su Meetup.</a></p>\n<p>Ti aspettiamo!</p>\n<div class="sharedaddy sd-sharing-enabled"></div>\n";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:36:"http://wellformedweb.org/CommentAPI/";a:1:{s:10:"commentRss";a:1:{i:0;a:5:{s:4:"data";s:73:"https://it.wordpress.org/news/2016/10/meetup-verona-31-ottobre-2016/feed/";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:38:"http://purl.org/rss/1.0/modules/slash/";a:1:{s:8:"comments";a:1:{i:0;a:5:{s:4:"data";s:1:"0";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:2;a:6:{s:4:"data";s:45:"\n		\n		\n		\n		\n		\n				\n		\n\n		\n		\n				\n			\n		\n		";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:5:{s:0:"";a:7:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:30:"Meetup Ancona: 27 Ottobre 2016";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:68:"https://it.wordpress.org/news/2016/10/meetup-ancona-27-ottobre-2016/";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"comments";a:1:{i:0;a:5:{s:4:"data";s:76:"https://it.wordpress.org/news/2016/10/meetup-ancona-27-ottobre-2016/#respond";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Wed, 19 Oct 2016 07:00:15 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"category";a:2:{i:0;a:5:{s:4:"data";s:6:"Meetup";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}i:1;a:5:{s:4:"data";s:6:"ancona";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:32:"https://it.wordpress.org/?p=1307";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:437:"Secondo appuntamento ad Ancona! La nuova community marchigiana si incontra giovedì 27 Ottobre 2016, alle 18.30 presso Informagiovani Ancona, Piazza Roma Underground.  Programma della serata recap per nuovi membri: chi siamo, cosa facciamo, quando ci incontriamo, i nostri luoghi social l&#8217;esperienza del WordCamp di Milano del 21 e 22 ottobre la scelta del nome dominio: criteri di scelta, strumenti per verificare [&#8230;]";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:13:"Giulia Tosato";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:40:"http://purl.org/rss/1.0/modules/content/";a:1:{s:7:"encoded";a:1:{i:0;a:5:{s:4:"data";s:1057:"<h1>Secondo appuntamento ad Ancona!</h1>\n<p>La nuova community marchigiana si incontra <strong>giovedì 27 Ottobre 2016</strong>, alle <strong>18.30</strong> presso <strong>Informagiovani Ancona, Piazza Roma Underground. </strong></p>\n<h2>Programma della serata</h2>\n<ul>\n<li><strong>recap</strong> per nuovi membri: chi siamo, cosa facciamo, quando ci incontriamo, i nostri luoghi social</li>\n<li>l&#8217;esperienza del <strong>WordCamp di Milano</strong> del 21 e 22 ottobre</li>\n<li>la <strong>scelta del nome dominio</strong>: criteri di scelta, strumenti per verificare la disponibilità, ecc &#8230;</li>\n<li>la <strong>scelta della piattaforma di hosting</strong>: criteri, offerte e requisiti, valutazioni, impostazioni</li>\n<li>tempo restante: <strong>discussione libera / conclusioni / networking </strong></li>\n</ul>\n<h2>Per partecipare</h2>\n<p>Tutti sono i benvenuti! È gratuito, devi solo <a href="http://www.meetup.com/it-IT/Meetup-WordPress-Ancona/events/234748917/" target="_blank">iscriverti all&#8217;evento su Meetup! </a></p>\n";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:36:"http://wellformedweb.org/CommentAPI/";a:1:{s:10:"commentRss";a:1:{i:0;a:5:{s:4:"data";s:73:"https://it.wordpress.org/news/2016/10/meetup-ancona-27-ottobre-2016/feed/";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:38:"http://purl.org/rss/1.0/modules/slash/";a:1:{s:8:"comments";a:1:{i:0;a:5:{s:4:"data";s:1:"0";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:3;a:6:{s:4:"data";s:45:"\n		\n		\n		\n		\n		\n				\n		\n\n		\n		\n				\n			\n		\n		";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:5:{s:0:"";a:7:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:31:"Meetup Bologna: 27 Ottobre 2016";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:69:"https://it.wordpress.org/news/2016/10/meetup-bologna-27-ottobre-2016/";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"comments";a:1:{i:0;a:5:{s:4:"data";s:77:"https://it.wordpress.org/news/2016/10/meetup-bologna-27-ottobre-2016/#respond";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Tue, 18 Oct 2016 07:00:36 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"category";a:2:{i:0;a:5:{s:4:"data";s:6:"Meetup";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}i:1;a:5:{s:4:"data";s:7:"bologna";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:32:"https://it.wordpress.org/?p=1305";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:402:"Attenzione: nuova sede! Nuovo appuntamento del WordPress Meetup a Bologna, giovedì 27 Ottobre a partire dalle ore 18.15 fino alle 20.30, il luogo dell&#8217;incontro è il Working Capital #WCAP in Via Guglielmo Oberdan 22 Programma Le soluzioni per la progettazione di wireframe e prototipi interattivi Dal prototipo concettuale ai prototipi ad alta fedeltà. Ecco i migliori programmi di [&#8230;]";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:13:"Giulia Tosato";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:40:"http://purl.org/rss/1.0/modules/content/";a:1:{s:7:"encoded";a:1:{i:0;a:5:{s:4:"data";s:870:"<h1>Attenzione: nuova sede!</h1>\n<p>Nuovo appuntamento del WordPress Meetup a <strong>Bologna</strong>, <strong>giovedì 27 Ottobre</strong> a partire <strong>dalle ore 18.15</strong> fino alle 20.30, <strong>il luogo dell&#8217;incontro è il Working Capital #WCAP in Via Guglielmo Oberdan 22</strong></p>\n<h2>Programma</h2>\n<ul>\n<li><strong>Le soluzioni per la progettazione di wireframe e prototipi interattivi</strong><br />\nDal prototipo concettuale ai prototipi ad alta fedeltà. Ecco i migliori programmi di progettazione grafica e tools per creare un wireframe.</li>\n<li>Parleremo del <strong>WordCamp</strong> appena svoltosi a Milano</li>\n</ul>\n<h2>Iscrizione</h2>\n<p>Per partecipare è sufficiente <a href="http://www.meetup.com/it-IT/WordPress-Meetup-Bologna/events/234554773/" target="_blank">iscriversi all’evento su meetup.com</a>, non mancare!</p>\n";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:36:"http://wellformedweb.org/CommentAPI/";a:1:{s:10:"commentRss";a:1:{i:0;a:5:{s:4:"data";s:74:"https://it.wordpress.org/news/2016/10/meetup-bologna-27-ottobre-2016/feed/";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:38:"http://purl.org/rss/1.0/modules/slash/";a:1:{s:8:"comments";a:1:{i:0;a:5:{s:4:"data";s:1:"0";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:4;a:6:{s:4:"data";s:45:"\n		\n		\n		\n		\n		\n				\n		\n\n		\n		\n				\n			\n		\n		";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:5:{s:0:"";a:7:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:30:"Meetup Padova: 24 Ottobre 2016";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:68:"https://it.wordpress.org/news/2016/10/meetup-padova-24-ottobre-2016/";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"comments";a:1:{i:0;a:5:{s:4:"data";s:76:"https://it.wordpress.org/news/2016/10/meetup-padova-24-ottobre-2016/#respond";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Mon, 17 Oct 2016 07:00:45 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"category";a:2:{i:0;a:5:{s:4:"data";s:6:"Meetup";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}i:1;a:5:{s:4:"data";s:6:"padova";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:32:"https://it.wordpress.org/?p=1303";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:436:"La community di Padova si incontra Lunedì 24 Ottobre, alle 19, presso TalentLab (via Monselice 15/a, Padova)  Programma dell&#8217;incontro WordCamp Milano: proveremo a riportare in una rapida carrellata le novità e le sensazioni di WordCamp e Contributor Day. Velocità: come ridurre il tempo di caricamento della pagina? Come aumentare la velocità del nostro sito, fornendo soluzioni molto concrete ai problemi che [&#8230;]";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:13:"Giulia Tosato";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:40:"http://purl.org/rss/1.0/modules/content/";a:1:{s:7:"encoded";a:1:{i:0;a:5:{s:4:"data";s:961:"<p>La community di Padova si incontra <strong>Lunedì 24 Ottobre, alle 19, presso TalentLab</strong> <strong>(via Monselice 15/a, Padova) </strong></p>\n<h2>Programma dell&#8217;incontro</h2>\n<ul>\n<li><strong>WordCamp Milano:</strong> proveremo a riportare in una rapida carrellata le novità e le sensazioni di WordCamp e Contributor Day.</li>\n<li><strong>Velocità:</strong> come ridurre il tempo di caricamento della pagina? Come aumentare la velocità del nostro sito, fornendo soluzioni molto concrete ai problemi che ne causano il rallentamento.</li>\n<li><strong>Guida ai CSS:</strong> guida ai fogli di stile, che partirà dalle nozioni di base fino a toccare temi come le animazioni e i preprocessori.</li>\n</ul>\n<h2>Come partecipare</h2>\n<p><a href="http://www.meetup.com/it-IT/Padova-WordPress-Meetup/events/234775075/" target="_blank">Iscriviti all&#8217;evento su Meetup!</a> La partecipazione è libera e aperta a tutti. Ti aspettiamo!</p>\n";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:36:"http://wellformedweb.org/CommentAPI/";a:1:{s:10:"commentRss";a:1:{i:0;a:5:{s:4:"data";s:73:"https://it.wordpress.org/news/2016/10/meetup-padova-24-ottobre-2016/feed/";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:38:"http://purl.org/rss/1.0/modules/slash/";a:1:{s:8:"comments";a:1:{i:0;a:5:{s:4:"data";s:1:"0";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:5;a:6:{s:4:"data";s:45:"\n		\n		\n		\n		\n		\n				\n		\n\n		\n		\n				\n			\n		\n		";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:5:{s:0:"";a:7:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:39:"Il primo Meetup Biella: 27 Ottobre 2016";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:77:"https://it.wordpress.org/news/2016/10/il-primo-meetup-biella-27-ottobre-2016/";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"comments";a:1:{i:0;a:5:{s:4:"data";s:85:"https://it.wordpress.org/news/2016/10/il-primo-meetup-biella-27-ottobre-2016/#respond";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Thu, 13 Oct 2016 14:31:14 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"category";a:2:{i:0;a:5:{s:4:"data";s:6:"Meetup";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}i:1;a:5:{s:4:"data";s:6:"biella";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:32:"https://it.wordpress.org/?p=1300";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:419:"Benvenuto ad un nuovo WordPress Meetup! Il primo incontro della Community a Biella sarà giovedì 27 ottobre, alle 18.30, presso Sellalab &#8211; Via Corradino Sella, 10 , Biella.  Programma della serata 18:30-19:30 Chi, Come, Quando e Perché Scopriremo chi siamo e decideremo come vogliamo far crescere la community biellese di WordPress. Insieme capiremo di cosa abbiamo bisogno e come organizzare i [&#8230;]";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:13:"Giulia Tosato";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:40:"http://purl.org/rss/1.0/modules/content/";a:1:{s:7:"encoded";a:1:{i:0;a:5:{s:4:"data";s:959:"<h1>Benvenuto ad un nuovo WordPress Meetup!</h1>\n<p>Il primo incontro della Community a Biella sarà <strong>giovedì 27 ottobre, alle 18.30, presso Sellalab &#8211; Via Corradino Sella, 10 , Biella. </strong></p>\n<h2>Programma della serata</h2>\n<ul>\n<li><strong>18:30-19:30 Chi, Come, Quando e Perché<br />\n</strong>Scopriremo chi siamo e decideremo come vogliamo far crescere la community biellese di WordPress.<br />\nInsieme capiremo di cosa abbiamo bisogno e come organizzare i prossimi incontri, ascoltando interessi e desideri di tutti.</li>\n<li><strong>19:30-20:30 Networking condito  </strong><br />\nPizza&amp;birra per tutti, perchè si sa che ci si confronta meglio con la pancia piena</li>\n</ul>\n<h2>Come partecipare</h2>\n<p>Basta <a href="https://www.meetup.com/it-IT/WordPress-Meetup-Biella/events/234795949/" target="_blank">iscriversi all&#8217;evento su Meetup.</a> Tutti possono partecipare, è libero e gratuito. Ti aspettiamo!</p>\n";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:36:"http://wellformedweb.org/CommentAPI/";a:1:{s:10:"commentRss";a:1:{i:0;a:5:{s:4:"data";s:82:"https://it.wordpress.org/news/2016/10/il-primo-meetup-biella-27-ottobre-2016/feed/";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:38:"http://purl.org/rss/1.0/modules/slash/";a:1:{s:8:"comments";a:1:{i:0;a:5:{s:4:"data";s:1:"0";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:6;a:6:{s:4:"data";s:45:"\n		\n		\n		\n		\n		\n				\n		\n\n		\n		\n				\n			\n		\n		";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:5:{s:0:"";a:7:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:29:"Meetup Parma: 15 Ottobre 2016";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:67:"https://it.wordpress.org/news/2016/10/meetup-parma-15-ottobre-2016/";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"comments";a:1:{i:0;a:5:{s:4:"data";s:75:"https://it.wordpress.org/news/2016/10/meetup-parma-15-ottobre-2016/#respond";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Wed, 12 Oct 2016 09:11:29 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"category";a:2:{i:0;a:5:{s:4:"data";s:6:"Meetup";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}i:1;a:5:{s:4:"data";s:5:"parma";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:32:"https://it.wordpress.org/?p=1297";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:450:"Questo mese la community WordPress di Parma si dà appuntamento di Sabato mattina! Il 15 Ottobre, alle 10.30,  come sempre presso Officine On/Off (Coworking Space &#38; FabLab Parma) Strada Naviglio Alto 4/1, Parma Programma dell’incontro Introduzione Io Parlo Parmigiano: il dietro le quinte della strategia web  Discussione libera / Conclusioni Iscrizione La partecipazione è libera e gratuita, basta iscriversi all’evento su [&#8230;]";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:13:"Giulia Tosato";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:40:"http://purl.org/rss/1.0/modules/content/";a:1:{s:7:"encoded";a:1:{i:0;a:5:{s:4:"data";s:762:"<p>Questo mese la community WordPress di Parma si dà appuntamento di <strong>Sabato</strong> mattina! Il <strong>15 Ottobre, alle 10.30,</strong> <strong> </strong>come sempre<strong> </strong>presso <strong>Officine On/Off (Coworking Space &amp; FabLab Parma)</strong> <strong>Strada Naviglio Alto 4/1, Parma</strong></p>\n<h2>Programma dell’incontro</h2>\n<ul>\n<li>Introduzione</li>\n<li><strong>Io Parlo Parmigiano: il dietro le quinte della strategia web </strong></li>\n<li>Discussione libera / Conclusioni</li>\n</ul>\n<h2>Iscrizione</h2>\n<p>La partecipazione è libera e gratuita, basta <a href="http://www.meetup.com/it-IT/WordPress-Meetup-Parma/events/234783871/" target="_blank">iscriversi all’evento su Meetup.com</a></p>\n<p>Ti aspettiamo!</p>\n";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:36:"http://wellformedweb.org/CommentAPI/";a:1:{s:10:"commentRss";a:1:{i:0;a:5:{s:4:"data";s:72:"https://it.wordpress.org/news/2016/10/meetup-parma-15-ottobre-2016/feed/";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:38:"http://purl.org/rss/1.0/modules/slash/";a:1:{s:8:"comments";a:1:{i:0;a:5:{s:4:"data";s:1:"0";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:7;a:6:{s:4:"data";s:45:"\n		\n		\n		\n		\n		\n				\n		\n\n		\n		\n				\n			\n		\n		";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:5:{s:0:"";a:7:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:32:"Meetup Piacenza: 10 Ottobre 2016";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:70:"https://it.wordpress.org/news/2016/10/meetup-piacenza-10-ottobre-2016/";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"comments";a:1:{i:0;a:5:{s:4:"data";s:78:"https://it.wordpress.org/news/2016/10/meetup-piacenza-10-ottobre-2016/#respond";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Thu, 06 Oct 2016 12:33:28 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"category";a:2:{i:0;a:5:{s:4:"data";s:6:"Meetup";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}i:1;a:5:{s:4:"data";s:8:"Piacenza";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:32:"https://it.wordpress.org/?p=1293";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:433:"Primo &#8220;vero&#8221; meetup a Piacenza! Dopo l&#8217;incontro di Agosto, servito a conoscerci di persona, ecco il primo appuntamento con il Meetup WordPress di Piacenza. Sarà Lunedì 10 Ottobre alle 18.30 presso Spazio2 &#8211; Via XXIV Maggio 51/53, Piacenza.  Programma 18:30-19:00 Benvenuto + Networking 19:00-19:30 Perchè usiamo WordPress? Presentazione di WordPress, dei suoi pregi, di cosa ci si può fare. [&#8230;]";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:13:"Giulia Tosato";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:40:"http://purl.org/rss/1.0/modules/content/";a:1:{s:7:"encoded";a:1:{i:0;a:5:{s:4:"data";s:1355:"<h1>Primo &#8220;vero&#8221; meetup a Piacenza!</h1>\n<p>Dopo l&#8217;incontro di Agosto, servito a conoscerci di persona, ecco il primo appuntamento con il Meetup WordPress di Piacenza. Sarà <strong>Lunedì 10 Ottobre alle 18.30 presso Spazio2 &#8211; Via XXIV Maggio 51/53, Piacenza. </strong></p>\n<h2>Programma</h2>\n<ul>\n<li><strong>18:30-19:00 Benvenuto + Networking </strong></li>\n<li><strong>19:00-19:30 Perchè usiamo WordPress?</strong><br />\nPresentazione di WordPress, dei suoi pregi, di cosa ci si può fare. Sarà rivolto a chi si sta avvicinando solo ora al CMS ma anche a chi già lo usa professionalmente e vuole capire come proporlo ai propri clienti.</li>\n<li><strong>19:30-20:00 Divagazioni sui temi di WordPress</strong><br />\nLa struttura, la scelta e la personalizzazione dei temi sono alcuni tra gli aspetti fondamentali nella realizzazione di un progetto web basato su WordPress. Ecco come affrontarli.</li>\n<li><strong>20:00-20:30 Networking</strong><br />\nSpazio libero per discussioni, domande e risposte sui temi trattati e su altri proposti dai partecipanti.</li>\n</ul>\n<h2>Come partecipare</h2>\n<p>L&#8217;incontro è gratuito, aperto a tutti: basta <a href="http://www.meetup.com/it-IT/Piacenza-WordPress-Meetup/events/234596039/" target="_blank">iscriversi all&#8217;evento su Meetup. </a></p>\n<p>Ti aspettiamo!</p>\n";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:36:"http://wellformedweb.org/CommentAPI/";a:1:{s:10:"commentRss";a:1:{i:0;a:5:{s:4:"data";s:75:"https://it.wordpress.org/news/2016/10/meetup-piacenza-10-ottobre-2016/feed/";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:38:"http://purl.org/rss/1.0/modules/slash/";a:1:{s:8:"comments";a:1:{i:0;a:5:{s:4:"data";s:1:"0";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:8;a:6:{s:4:"data";s:45:"\n		\n		\n		\n		\n		\n				\n		\n\n		\n		\n				\n			\n		\n		";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:5:{s:0:"";a:7:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:31:"Meetup Brescia: 13 Ottobre 2016";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:69:"https://it.wordpress.org/news/2016/10/meetup-brescia-13-ottobre-2016/";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"comments";a:1:{i:0;a:5:{s:4:"data";s:77:"https://it.wordpress.org/news/2016/10/meetup-brescia-13-ottobre-2016/#respond";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Wed, 05 Oct 2016 07:13:11 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"category";a:2:{i:0;a:5:{s:4:"data";s:6:"Meetup";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}i:1;a:5:{s:4:"data";s:7:"brescia";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:32:"https://it.wordpress.org/?p=1264";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:433:"Tornano i meetup a Brescia! La community si incontra Giovedì 13 Ottobre alle 19, al Parco Dell’Acqua in Largo Torrelunga, 7, Brescia.  Programma dell’incontro 19:00 &#8211; 19:30 Benvenuto &#8211; Per dare modo a tutti i partecipanti di raggiungere il posto, la prima mezz&#8217;ora sarà riservata a fare due chiacchiere per conoscersi meglio. 19:30 &#8211; 20:45 I temi principali di questo incontro saranno: [&#8230;]";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:13:"Giulia Tosato";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:40:"http://purl.org/rss/1.0/modules/content/";a:1:{s:7:"encoded";a:1:{i:0;a:5:{s:4:"data";s:1540:"<h1>Tornano i meetup a Brescia!</h1>\n<p>La community si incontra <strong>Giovedì 13 Ottobre alle 19,</strong> al <strong>Parco Dell’Acqua in Largo Torrelunga, 7, Brescia. </strong></p>\n<h2>Programma dell’incontro</h2>\n<p><strong>19:00 &#8211; 19:30</strong> <strong>Benvenuto &#8211;</strong> Per dare modo a tutti i partecipanti di raggiungere il posto, la prima mezz&#8217;ora sarà riservata a fare due chiacchiere per conoscersi meglio.</p>\n<p><strong>19:30 &#8211; 20:45</strong> I <strong>temi principali</strong> di questo incontro saranno:</p>\n<ul>\n<li>WordPress e content marketing: plugin utili per sfruttare al meglio il tuo sito WordPress per te o la tua azienda</li>\n<li>Consigli per migliorare la sicurezza del tuo sito WordPress</li>\n<li>Plugin poco conosciuti che possono tornare utili</li>\n<li>Altro da definire</li>\n</ul>\n<p><strong>20:45 &#8211; 21:00</strong> <strong>Conclusioni e Networking </strong></p>\n<h2>Iscrizione</h2>\n<p>Per partecipare, <a href="http://www.meetup.com/it-IT/WordPress-Meetup-Brescia/events/234119430/" target="_blank">iscriviti all’evento su Meetup.com</a> &#8211; per favore, se ti sei iscritto ma non puoi più partecipare, dai disdetta: cosi sappiamo quanti siamo.<br />\nIl <strong>costo della sala è di € 50 e sarà suddiviso tra i partecipanti</strong> del meetup.<br />\nErgo, più siamo meno paghiamo <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f609.png" alt="😉" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>\n<p>Ti aspettiamo!</p>\n";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:36:"http://wellformedweb.org/CommentAPI/";a:1:{s:10:"commentRss";a:1:{i:0;a:5:{s:4:"data";s:74:"https://it.wordpress.org/news/2016/10/meetup-brescia-13-ottobre-2016/feed/";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:38:"http://purl.org/rss/1.0/modules/slash/";a:1:{s:8:"comments";a:1:{i:0;a:5:{s:4:"data";s:1:"0";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:9;a:6:{s:4:"data";s:45:"\n		\n		\n		\n		\n		\n				\n		\n\n		\n		\n				\n			\n		\n		";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:5:{s:0:"";a:7:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:30:"Meetup Torino: 12 Ottobre 2016";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:68:"https://it.wordpress.org/news/2016/10/meetup-torino-12-ottobre-2016/";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"comments";a:1:{i:0;a:5:{s:4:"data";s:76:"https://it.wordpress.org/news/2016/10/meetup-torino-12-ottobre-2016/#respond";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Tue, 04 Oct 2016 07:08:57 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"category";a:2:{i:0;a:5:{s:4:"data";s:6:"Meetup";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}i:1;a:5:{s:4:"data";s:6:"torino";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:32:"https://it.wordpress.org/?p=1262";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:396:"Episodio 15: Hold your head up Il prossimo Meetup torinese è Mercoledì 12 Ottobre 18, presso Toolbox Coworking, Via Agostino da Montefeltro 2, Torino. Agenda della serata 18:00/18:30 – Accoglienza e networking 18:30-19:00 – Cosa sono le Web Performance e perché devi preoccupartene 19:00/19:30 &#8211; da definire 19:30-20:30 – Networking con birre, bibite analcoliche e pizza [&#8230;]";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:13:"Giulia Tosato";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:40:"http://purl.org/rss/1.0/modules/content/";a:1:{s:7:"encoded";a:1:{i:0;a:5:{s:4:"data";s:796:"<h1 class="text--display3">Episodio 15: Hold your head up</h1>\n<p>Il prossimo Meetup torinese è <strong>Mercoledì 12 Ottobre 18, presso Toolbox Coworking</strong>, <strong>Via Agostino da Montefeltro 2, Torino.</strong></p>\n<h2>Agenda della serata</h2>\n<ul>\n<li>18:00/18:30 – Accoglienza e networking</li>\n<li>18:30-19:00 – Cosa sono le <strong>Web Performance</strong> e perché devi preoccupartene</li>\n<li>19:00/19:30 &#8211; da definire</li>\n<li>19:30-20:30 – Networking con birre, bibite analcoliche e pizza gratis per tutti</li>\n</ul>\n<h2>Iscrizione</h2>\n<p>L’ingresso è libero e gratuito e per partecipare è sufficiente <a href="http://www.meetup.com/it-IT/WordPress-Meetup-Torino/events/234142424/" target="_blank">registrarsi all’evento su Meetup</a>. Ti aspettiamo!</p>\n";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:36:"http://wellformedweb.org/CommentAPI/";a:1:{s:10:"commentRss";a:1:{i:0;a:5:{s:4:"data";s:73:"https://it.wordpress.org/news/2016/10/meetup-torino-12-ottobre-2016/feed/";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:38:"http://purl.org/rss/1.0/modules/slash/";a:1:{s:8:"comments";a:1:{i:0;a:5:{s:4:"data";s:1:"0";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}}}s:27:"http://www.w3.org/2005/Atom";a:1:{s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:0:"";s:7:"attribs";a:1:{s:0:"";a:3:{s:4:"href";s:30:"https://it.wordpress.org/feed/";s:3:"rel";s:4:"self";s:4:"type";s:19:"application/rss+xml";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:44:"http://purl.org/rss/1.0/modules/syndication/";a:2:{s:12:"updatePeriod";a:1:{i:0;a:5:{s:4:"data";s:6:"hourly";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:15:"updateFrequency";a:1:{i:0;a:5:{s:4:"data";s:1:"1";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}}}}}}}}s:4:"type";i:128;s:7:"headers";O:42:"Requests_Utility_CaseInsensitiveDictionary":1:{s:7:"\0*\0data";a:8:{s:6:"server";s:5:"nginx";s:4:"date";s:29:"Tue, 25 Oct 2016 17:04:11 GMT";s:12:"content-type";s:34:"application/rss+xml; charset=UTF-8";s:6:"x-olaf";s:3:"⛄";s:13:"last-modified";s:29:"Tue, 25 Oct 2016 07:33:31 GMT";s:4:"link";s:61:"<https://it.wordpress.org/wp-json/>; rel="https://api.w.org/"";s:15:"x-frame-options";s:10:"SAMEORIGIN";s:4:"x-nc";s:11:"HIT lax 249";}}s:5:"build";s:14:"20161025170147";}', 'no'),
+(127, '_transient_timeout_feed_mod_13e268f84d68a386face41f0af9b3e48', '1477458252', 'no'),
+(128, '_transient_feed_mod_13e268f84d68a386face41f0af9b3e48', '1477415052', 'no'),
+(129, '_transient_timeout_feed_b9388c83948825c1edaef0d856b7b109', '1477458254', 'no');
+INSERT INTO `le_options` (`option_id`, `option_name`, `option_value`, `autoload`) VALUES
+(130, '_transient_feed_b9388c83948825c1edaef0d856b7b109', 'a:4:{s:5:"child";a:1:{s:0:"";a:1:{s:3:"rss";a:1:{i:0;a:6:{s:4:"data";s:3:"\n	\n";s:7:"attribs";a:1:{s:0:"";a:1:{s:7:"version";s:3:"2.0";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:1:{s:0:"";a:1:{s:7:"channel";a:1:{i:0;a:6:{s:4:"data";s:117:"\n		\n		\n		\n		\n		\n		\n				\n\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n\n	";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:7:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:34:"WordPress Plugins » View: Popular";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:45:"https://wordpress.org/plugins/browse/popular/";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:34:"WordPress Plugins » View: Popular";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"language";a:1:{i:0;a:5:{s:4:"data";s:5:"en-US";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Tue, 25 Oct 2016 16:35:35 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:9:"generator";a:1:{i:0;a:5:{s:4:"data";s:25:"http://bbpress.org/?v=1.1";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"item";a:30:{i:0;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:14:"Contact Form 7";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:55:"https://wordpress.org/plugins/contact-form-7/#post-2141";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Thu, 02 Aug 2007 12:45:03 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:35:"2141@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:54:"Just another contact form plugin. Simple but flexible.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:16:"Takayuki Miyoshi";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:1;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:14:"WP Super Cache";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:55:"https://wordpress.org/plugins/wp-super-cache/#post-2572";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Mon, 05 Nov 2007 11:40:04 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:35:"2572@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:73:"A very fast caching engine for WordPress that produces static html files.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:16:"Donncha O Caoimh";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:2;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:26:"Page Builder by SiteOrigin";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:59:"https://wordpress.org/plugins/siteorigin-panels/#post-51888";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Thu, 11 Apr 2013 10:36:42 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:36:"51888@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:111:"Build responsive page layouts using the widgets you know and love using this simple drag and drop page builder.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:11:"Greg Priday";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:3;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:21:"Regenerate Thumbnails";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:62:"https://wordpress.org/plugins/regenerate-thumbnails/#post-6743";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Sat, 23 Aug 2008 14:38:58 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:35:"6743@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:76:"Allows you to regenerate your thumbnails after changing the thumbnail sizes.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:25:"Alex Mills (Viper007Bond)";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:4;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:22:"Advanced Custom Fields";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:64:"https://wordpress.org/plugins/advanced-custom-fields/#post-25254";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Thu, 17 Mar 2011 04:07:30 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:36:"25254@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:68:"Customise WordPress with powerful, professional and intuitive fields";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:12:"elliotcondon";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:5;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:7:"Akismet";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:46:"https://wordpress.org/plugins/akismet/#post-15";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Fri, 09 Mar 2007 22:11:30 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:33:"15@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:98:"Akismet checks your comments against the Akismet Web service to see if they look like spam or not.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:14:"Matt Mullenweg";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:6;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:21:"Really Simple CAPTCHA";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:62:"https://wordpress.org/plugins/really-simple-captcha/#post-9542";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Mon, 09 Mar 2009 02:17:35 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:35:"9542@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:138:"Really Simple CAPTCHA is a CAPTCHA module intended to be called from other plugins. It is originally created for my Contact Form 7 plugin.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:16:"Takayuki Miyoshi";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:7;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:24:"Jetpack by WordPress.com";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:49:"https://wordpress.org/plugins/jetpack/#post-23862";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Thu, 20 Jan 2011 02:21:38 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:36:"23862@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:107:"Increase your traffic, view your stats, speed up your site, and protect yourself from hackers with Jetpack.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:10:"Automattic";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:8;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:14:"W3 Total Cache";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:56:"https://wordpress.org/plugins/w3-total-cache/#post-12073";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Wed, 29 Jul 2009 18:46:31 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:36:"12073@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:144:"Search Engine (SEO) &#38; Performance Optimization (WPO) via caching. Integrated caching: CDN, Minify, Page, Object, Fragment, Database support.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:16:"Frederick Townes";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:9;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:9:"Yoast SEO";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:54:"https://wordpress.org/plugins/wordpress-seo/#post-8321";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Thu, 01 Jan 2009 20:34:44 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:35:"8321@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:114:"Improve your WordPress SEO: Write better content and have a fully optimized WordPress site using Yoast SEO plugin.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:13:"Joost de Valk";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:10;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:11:"WooCommerce";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:53:"https://wordpress.org/plugins/woocommerce/#post-29860";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Mon, 05 Sep 2011 08:13:36 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:36:"29860@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:97:"WooCommerce is a powerful, extendable eCommerce plugin that helps you sell anything. Beautifully.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:9:"WooThemes";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:11;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:11:"Hello Dolly";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:52:"https://wordpress.org/plugins/hello-dolly/#post-5790";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Thu, 29 May 2008 22:11:34 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:35:"5790@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:150:"This is not just a plugin, it symbolizes the hope and enthusiasm of an entire generation summed up in two words sung most famously by Louis Armstrong.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:14:"Matt Mullenweg";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:12;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:11:"WP-PageNavi";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:51:"https://wordpress.org/plugins/wp-pagenavi/#post-363";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Fri, 09 Mar 2007 23:17:57 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:34:"363@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:49:"Adds a more advanced paging navigation interface.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:11:"Lester Chan";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:13;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:19:"Google XML Sitemaps";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:64:"https://wordpress.org/plugins/google-sitemap-generator/#post-132";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Fri, 09 Mar 2007 22:31:32 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:34:"132@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:105:"This plugin will generate a special XML sitemap which will help search engines to better index your blog.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:14:"Arne Brachhold";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:14;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:19:"All in One SEO Pack";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:59:"https://wordpress.org/plugins/all-in-one-seo-pack/#post-753";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Fri, 30 Mar 2007 20:08:18 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:34:"753@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:150:"One of the most downloaded plugins for WordPress (over 30 million downloads since 2007). Use All in One SEO Pack to automatically optimize your site f";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:8:"uberdose";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:15;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:18:"Wordfence Security";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:51:"https://wordpress.org/plugins/wordfence/#post-29832";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Sun, 04 Sep 2011 03:13:51 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:36:"29832@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:149:"Secure your website with the most comprehensive WordPress security plugin. Firewall, malware scan, blocking, live traffic, login security &#38; more.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:9:"Wordfence";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:16;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:15:"NextGEN Gallery";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:56:"https://wordpress.org/plugins/nextgen-gallery/#post-1169";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Mon, 23 Apr 2007 20:08:06 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:35:"1169@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:121:"The most popular WordPress gallery plugin and one of the most popular plugins of all time with over 15 million downloads.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:9:"Alex Rabe";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:17;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:18:"WordPress Importer";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:60:"https://wordpress.org/plugins/wordpress-importer/#post-18101";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Thu, 20 May 2010 17:42:45 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:36:"18101@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:101:"Import posts, pages, comments, custom fields, categories, tags and more from a WordPress export file.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:14:"Brian Colinger";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:18;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:35:"Google Analytics by MonsterInsights";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:71:"https://wordpress.org/plugins/google-analytics-for-wordpress/#post-2316";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Fri, 14 Sep 2007 12:15:27 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:35:"2316@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:113:"Connect Google Analytics with WordPress by adding your Google Analytics tracking code. Get the stats that matter.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:11:"Syed Balkhi";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:19;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:14:"Duplicate Post";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:55:"https://wordpress.org/plugins/duplicate-post/#post-2646";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Wed, 05 Dec 2007 17:40:03 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:35:"2646@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:22:"Clone posts and pages.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:4:"Lopo";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:20;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:16:"TinyMCE Advanced";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:57:"https://wordpress.org/plugins/tinymce-advanced/#post-2082";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Wed, 27 Jun 2007 15:00:26 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:35:"2082@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:58:"Extends and enhances TinyMCE, the WordPress Visual Editor.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:10:"Andrew Ozz";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:21;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:30:"Clef Two-Factor Authentication";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:48:"https://wordpress.org/plugins/wpclef/#post-47509";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Thu, 27 Dec 2012 01:25:57 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:36:"47509@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:139:"Modern two-factor that people love to use: strong authentication without passwords or tokens; single sign on/off; magical login experience.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:9:"Dave Ross";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:22;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:35:"UpdraftPlus WordPress Backup Plugin";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:53:"https://wordpress.org/plugins/updraftplus/#post-38058";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Mon, 21 May 2012 15:14:11 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:36:"38058@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:148:"Backup and restoration made easy. Complete backups; manual or scheduled (backup to S3, Dropbox, Google Drive, Rackspace, FTP, SFTP, email + others).";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:14:"David Anderson";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:23;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:16:"Disable Comments";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:58:"https://wordpress.org/plugins/disable-comments/#post-26907";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Fri, 27 May 2011 04:42:58 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:36:"26907@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:134:"Allows administrators to globally disable comments on their site. Comments can be disabled according to post type. Multisite friendly.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:10:"Samir Shah";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:24;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:33:"Google Analytics Dashboard for WP";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:75:"https://wordpress.org/plugins/google-analytics-dashboard-for-wp/#post-50539";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Sun, 10 Mar 2013 17:07:11 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:36:"50539@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:127:"Displays Google Analytics reports in your WordPress Dashboard. Inserts the latest Google Analytics tracking code in your pages.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:10:"Alin Marcu";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:25;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:18:"WP Multibyte Patch";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:60:"https://wordpress.org/plugins/wp-multibyte-patch/#post-28395";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Thu, 14 Jul 2011 12:22:53 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:36:"28395@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:71:"Multibyte functionality enhancement for the WordPress Japanese package.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:13:"plugin-master";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:26;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:27:"Black Studio TinyMCE Widget";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:69:"https://wordpress.org/plugins/black-studio-tinymce-widget/#post-31973";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Thu, 10 Nov 2011 15:06:14 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:36:"31973@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:39:"The visual editor widget for Wordpress.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:12:"Marco Chiesi";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:27;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:10:"Duplicator";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:52:"https://wordpress.org/plugins/duplicator/#post-26607";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Mon, 16 May 2011 12:15:41 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:36:"26607@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:88:"Duplicate, clone, backup, move and transfer an entire site from one location to another.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:10:"Cory Lamle";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:28;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:46:"iThemes Security (formerly Better WP Security)";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:60:"https://wordpress.org/plugins/better-wp-security/#post-21738";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Fri, 22 Oct 2010 22:06:05 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:36:"21738@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:146:"Take the guesswork out of WordPress security. iThemes Security offers 30+ ways to lock down WordPress in an easy-to-use WordPress security plugin.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:7:"iThemes";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:29;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:11:"Meta Slider";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:51:"https://wordpress.org/plugins/ml-slider/#post-49521";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Thu, 14 Feb 2013 16:56:31 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:36:"49521@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:131:"Easy to use WordPress Slider plugin. Create responsive slideshows with Nivo Slider, Flex Slider, Coin Slider and Responsive Slides.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:11:"Matcha Labs";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}}}s:27:"http://www.w3.org/2005/Atom";a:1:{s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:0:"";s:7:"attribs";a:1:{s:0:"";a:3:{s:4:"href";s:46:"https://wordpress.org/plugins/rss/view/popular";s:3:"rel";s:4:"self";s:4:"type";s:19:"application/rss+xml";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}}}}}}}}s:4:"type";i:128;s:7:"headers";O:42:"Requests_Utility_CaseInsensitiveDictionary":1:{s:7:"\0*\0data";a:12:{s:6:"server";s:5:"nginx";s:4:"date";s:29:"Tue, 25 Oct 2016 17:04:13 GMT";s:12:"content-type";s:23:"text/xml; charset=UTF-8";s:4:"vary";s:15:"Accept-Encoding";s:25:"strict-transport-security";s:11:"max-age=360";s:7:"expires";s:29:"Tue, 25 Oct 2016 17:10:35 GMT";s:13:"cache-control";s:0:"";s:6:"pragma";s:0:"";s:13:"last-modified";s:31:"Tue, 25 Oct 2016 16:35:35 +0000";s:15:"x-frame-options";s:10:"SAMEORIGIN";s:4:"x-nc";s:11:"HIT lax 249";s:16:"content-encoding";s:4:"gzip";}}s:5:"build";s:14:"20161025170147";}', 'no'),
+(131, '_transient_timeout_feed_mod_b9388c83948825c1edaef0d856b7b109', '1477458254', 'no'),
+(132, '_transient_feed_mod_b9388c83948825c1edaef0d856b7b109', '1477415054', 'no'),
+(133, '_transient_timeout_plugin_slugs', '1477501782', 'no'),
+(134, '_transient_plugin_slugs', 'a:5:{i:0;s:43:"alefal_leagueengine/alefal_leagueengine.php";i:1;s:31:"hueman-addons/hueman-addons.php";i:2;s:21:"json-api/json-api.php";i:3;s:29:"leagueengine/leagueengine.php";i:4;s:43:"list-category-posts/list-category-posts.php";}', 'no'),
+(135, '_transient_timeout_dash_29eefda0bdc5977617f778df7e755d87', '1477458254', 'no'),
+(136, '_transient_dash_29eefda0bdc5977617f778df7e755d87', '<div class="rss-widget"><ul><li><a class=''rsswidget'' href=''https://it.wordpress.org/news/2016/10/primo-meetup-a-ragusa-4-novembre-2016/''>Primo Meetup a Ragusa: 4 Novembre 2016</a> <span class="rss-date">25 ottobre 2016</span><div class="rssSummary">C’è un nuovo WordPress Meetup, a Ragusa! Il primo incontro della nuova community è venerdì 4 novembre 2016, ci troviamo alle 18.30 presso 2.0 Due punto Zero – Via G. Tomasi 80, Ragusa.  Il programma dell’incontro è semplice: incontriamoci, conosciamoci, programmiamo i prossimi incontri! La partecipazione è libera e gratuita: iscriviti all’evento su Meetup.com</div></li></ul></div><div class="rss-widget"><ul><li><a class=''rsswidget'' href=''https://it.wordpress.org/news/2016/10/primo-meetup-a-ragusa-4-novembre-2016/''>Primo Meetup a Ragusa: 4 Novembre 2016</a></li><li><a class=''rsswidget'' href=''https://it.wordpress.org/news/2016/10/meetup-verona-31-ottobre-2016/''>Meetup Verona: 31 Ottobre 2016</a></li><li><a class=''rsswidget'' href=''https://it.wordpress.org/news/2016/10/meetup-ancona-27-ottobre-2016/''>Meetup Ancona: 27 Ottobre 2016</a></li></ul></div><div class="rss-widget"><ul><li class="dashboard-news-plugin"><span>Plugin popolare:</span> Clef Two-Factor Authentication&nbsp;<a href="plugin-install.php?tab=plugin-information&amp;plugin=wpclef&amp;_wpnonce=f275f6bc4c&amp;TB_iframe=true&amp;width=600&amp;height=800" class="thickbox open-plugin-details-modal" aria-label="Installa Clef Two-Factor Authentication">(Installa)</a></li></ul></div>', 'no'),
+(137, 'recently_activated', 'a:1:{s:9:"hello.php";i:1477415105;}', 'yes'),
+(138, 'numberposts', '10', 'yes'),
+(139, 'widget_listcategorypostswidget', 'a:1:{s:12:"_multiwidget";i:1;}', 'yes'),
+(140, 'widget_leagueengine_box', 'a:1:{s:12:"_multiwidget";i:1;}', 'yes'),
+(141, 'theme_mods_twentysixteen', 'a:1:{s:16:"sidebars_widgets";a:2:{s:4:"time";i:1477415123;s:4:"data";a:2:{s:19:"wp_inactive_widgets";a:0:{}s:9:"sidebar-1";a:6:{i:0;s:8:"search-2";i:1;s:14:"recent-posts-2";i:2;s:17:"recent-comments-2";i:3;s:10:"archives-2";i:4;s:12:"categories-2";i:5;s:6:"meta-2";}}}}', 'yes'),
+(142, 'current_theme', 'Hueman', 'yes'),
+(143, 'theme_mods_hueman', 'a:2:{i:0;b:0;s:18:"nav_menu_locations";a:1:{s:6:"header";i:5;}}', 'yes'),
+(144, 'theme_switched', '', 'yes');
+INSERT INTO `le_options` (`option_id`, `option_name`, `option_value`, `autoload`) VALUES
+(145, 'hu_theme_options', 'a:78:{s:7:"favicon";N;s:19:"display-header-logo";b:0;s:15:"logo-max-height";i:60;s:14:"dynamic-styles";b:1;s:5:"boxed";b:0;s:4:"font";s:15:"source-sans-pro";s:15:"container-width";i:1380;s:15:"sidebar-padding";s:2:"30";s:7:"color-1";s:7:"#3b8dbd";s:7:"color-2";s:7:"#82b965";s:15:"body-background";a:1:{s:16:"background-color";s:7:"#eaeaea";}s:12:"color-topbar";s:7:"#26272b";s:12:"color-header";s:7:"#33363b";s:17:"color-header-menu";s:7:"#33363b";s:12:"color-footer";s:7:"#33363b";s:19:"image-border-radius";i:0;s:14:"ext_link_style";b:0;s:15:"ext_link_target";b:0;s:13:"post-comments";b:1;s:13:"page-comments";b:0;s:12:"smoothscroll";b:1;s:10:"responsive";b:1;s:7:"sharrre";b:1;s:18:"sharrre-scrollable";b:1;s:18:"sharrre-twitter-on";b:1;s:16:"twitter-username";s:0:"";s:19:"sharrre-facebook-on";b:1;s:17:"sharrre-google-on";b:1;s:20:"sharrre-pinterest-on";b:0;s:19:"sharrre-linkedin-on";b:0;s:12:"social-links";a:0:{}s:12:"minified-css";b:1;s:15:"structured-data";b:1;s:14:"smart_load_img";b:0;s:10:"about-page";b:1;s:11:"help-button";b:1;s:16:"site-description";b:1;s:16:"use-header-image";b:0;s:10:"header-ads";b:0;s:19:"default-menu-header";b:1;s:20:"blog-heading-enabled";b:1;s:12:"blog-heading";s:12:"LeagueEngine";s:15:"blog-subheading";s:4:"Blog";s:13:"blog-standard";b:0;s:14:"excerpt-length";i:34;s:22:"featured-posts-enabled";b:1;s:17:"featured-category";s:1:"0";s:20:"featured-posts-count";i:1;s:27:"featured-posts-full-content";b:0;s:18:"featured-slideshow";b:0;s:24:"featured-slideshow-speed";i:5000;s:22:"featured-posts-include";b:0;s:10:"author-bio";b:1;s:13:"related-posts";s:10:"categories";s:8:"post-nav";s:2:"s1";s:11:"placeholder";b:1;s:13:"comment-count";b:1;s:13:"layout-global";s:7:"col-3cm";s:11:"layout-home";s:7:"inherit";s:13:"layout-single";s:7:"inherit";s:14:"layout-archive";s:7:"inherit";s:23:"layout-archive-category";s:7:"inherit";s:13:"layout-search";s:7:"inherit";s:10:"layout-404";s:7:"inherit";s:11:"layout-page";s:7:"inherit";s:11:"sidebar-top";b:1;s:19:"mobile-sidebar-hide";s:1:"1";s:10:"footer-ads";b:0;s:14:"footer-widgets";s:1:"3";s:11:"footer-logo";N;s:9:"copyright";s:0:"";s:6:"credit";b:1;s:19:"default-menu-footer";b:0;s:3:"ver";s:5:"3.2.9";s:13:"sidebar-areas";a:8:{i:0;a:6:{s:2:"id";s:7:"primary";s:5:"title";s:7:"Primary";s:8:"contexts";a:8:{i:0;s:4:"home";i:1;s:9:"blog-page";i:2;s:4:"page";i:3;s:6:"single";i:4;s:7:"archive";i:5;s:16:"archive-category";i:6;s:6:"search";i:7;i:404;}s:9:"locations";a:1:{i:0;s:2:"s1";}s:10:"is_builtin";b:1;s:11:"description";s:146:"Full width widget zone. Located in the left sidebar in a 3 columns layout. Can be on the right of a 2 columns sidebar when content is on the left.";}i:1;a:6:{s:2:"id";s:9:"secondary";s:5:"title";s:9:"Secondary";s:8:"contexts";a:8:{i:0;s:4:"home";i:1;s:9:"blog-page";i:2;s:4:"page";i:3;s:6:"single";i:4;s:7:"archive";i:5;s:16:"archive-category";i:6;s:6:"search";i:7;i:404;}s:9:"locations";a:1:{i:0;s:2:"s2";}s:10:"is_builtin";b:1;s:11:"description";s:75:"Full width widget zone. Located in the right sidebar in a 3 columns layout.";}i:2;a:6:{s:2:"id";s:8:"footer-1";s:5:"title";s:8:"Footer 1";s:8:"contexts";a:8:{i:0;s:4:"home";i:1;s:9:"blog-page";i:2;s:4:"page";i:3;s:6:"single";i:4;s:7:"archive";i:5;s:16:"archive-category";i:6;s:6:"search";i:7;i:404;}s:9:"locations";a:1:{i:0;s:8:"footer-1";}s:10:"is_builtin";b:1;s:11:"description";s:19:"Widgetized footer 1";}i:3;a:6:{s:2:"id";s:8:"footer-2";s:5:"title";s:8:"Footer 2";s:8:"contexts";a:8:{i:0;s:4:"home";i:1;s:9:"blog-page";i:2;s:4:"page";i:3;s:6:"single";i:4;s:7:"archive";i:5;s:16:"archive-category";i:6;s:6:"search";i:7;i:404;}s:9:"locations";a:1:{i:0;s:8:"footer-2";}s:10:"is_builtin";b:1;s:11:"description";s:19:"Widgetized footer 2";}i:4;a:6:{s:2:"id";s:8:"footer-3";s:5:"title";s:8:"Footer 3";s:8:"contexts";a:8:{i:0;s:4:"home";i:1;s:9:"blog-page";i:2;s:4:"page";i:3;s:6:"single";i:4;s:7:"archive";i:5;s:16:"archive-category";i:6;s:6:"search";i:7;i:404;}s:9:"locations";a:1:{i:0;s:8:"footer-3";}s:10:"is_builtin";b:1;s:11:"description";s:19:"Widgetized footer 3";}i:5;a:6:{s:2:"id";s:8:"footer-4";s:5:"title";s:8:"Footer 4";s:8:"contexts";a:8:{i:0;s:4:"home";i:1;s:9:"blog-page";i:2;s:4:"page";i:3;s:6:"single";i:4;s:7:"archive";i:5;s:16:"archive-category";i:6;s:6:"search";i:7;i:404;}s:9:"locations";a:1:{i:0;s:8:"footer-4";}s:10:"is_builtin";b:1;s:11:"description";s:19:"Widgetized footer 4";}i:6;a:6:{s:2:"id";s:10:"header-ads";s:5:"title";s:29:"Header (next to logo / title)";s:8:"contexts";a:8:{i:0;s:4:"home";i:1;s:9:"blog-page";i:2;s:4:"page";i:3;s:6:"single";i:4;s:7:"archive";i:5;s:16:"archive-category";i:6;s:6:"search";i:7;i:404;}s:9:"locations";a:1:{i:0;s:10:"header-ads";}s:10:"is_builtin";b:1;s:11:"description";s:66:"The Header Widget Zone is located next to your logo or site title.";}i:7;a:6:{s:2:"id";s:10:"footer-ads";s:5:"title";s:17:"Footer Full Width";s:8:"contexts";a:8:{i:0;s:4:"home";i:1;s:9:"blog-page";i:2;s:4:"page";i:3;s:6:"single";i:4;s:7:"archive";i:5;s:16:"archive-category";i:6;s:6:"search";i:7;i:404;}s:9:"locations";a:1:{i:0;s:10:"footer-ads";}s:10:"is_builtin";b:1;s:11:"description";s:163:"The Footer Widget Zone is located before the other footer widgets and takes 100% of the width. Very appropriate to display a Google Map or an advertisement banner.";}}s:15:"has_been_copied";b:1;s:8:"defaults";a:74:{s:7:"favicon";N;s:19:"display-header-logo";b:0;s:15:"logo-max-height";i:60;s:14:"dynamic-styles";b:1;s:5:"boxed";b:0;s:4:"font";s:15:"source-sans-pro";s:15:"container-width";i:1380;s:15:"sidebar-padding";s:2:"30";s:7:"color-1";s:7:"#3b8dbd";s:7:"color-2";s:7:"#82b965";s:15:"body-background";a:1:{s:16:"background-color";s:7:"#eaeaea";}s:12:"color-topbar";s:7:"#26272b";s:12:"color-header";s:7:"#33363b";s:17:"color-header-menu";s:7:"#33363b";s:12:"color-footer";s:7:"#33363b";s:19:"image-border-radius";i:0;s:14:"ext_link_style";b:0;s:15:"ext_link_target";b:0;s:13:"post-comments";b:1;s:13:"page-comments";b:0;s:12:"smoothscroll";b:1;s:10:"responsive";b:1;s:7:"sharrre";b:1;s:18:"sharrre-scrollable";b:1;s:18:"sharrre-twitter-on";b:1;s:16:"twitter-username";s:0:"";s:19:"sharrre-facebook-on";b:1;s:17:"sharrre-google-on";b:1;s:20:"sharrre-pinterest-on";b:0;s:19:"sharrre-linkedin-on";b:0;s:12:"social-links";a:0:{}s:12:"minified-css";b:1;s:15:"structured-data";b:1;s:14:"smart_load_img";b:0;s:10:"about-page";b:1;s:11:"help-button";b:1;s:16:"site-description";b:1;s:16:"use-header-image";b:0;s:10:"header-ads";b:0;s:19:"default-menu-header";b:1;s:20:"blog-heading-enabled";b:1;s:12:"blog-heading";s:12:"LeagueEngine";s:15:"blog-subheading";s:4:"Blog";s:13:"blog-standard";b:0;s:14:"excerpt-length";i:34;s:22:"featured-posts-enabled";b:1;s:17:"featured-category";s:1:"0";s:20:"featured-posts-count";i:1;s:27:"featured-posts-full-content";b:0;s:18:"featured-slideshow";b:0;s:24:"featured-slideshow-speed";i:5000;s:22:"featured-posts-include";b:0;s:10:"author-bio";b:1;s:13:"related-posts";s:10:"categories";s:8:"post-nav";s:2:"s1";s:11:"placeholder";b:1;s:13:"comment-count";b:1;s:13:"layout-global";s:7:"col-3cm";s:11:"layout-home";s:7:"inherit";s:13:"layout-single";s:7:"inherit";s:14:"layout-archive";s:7:"inherit";s:23:"layout-archive-category";s:7:"inherit";s:13:"layout-search";s:7:"inherit";s:10:"layout-404";s:7:"inherit";s:11:"layout-page";s:7:"inherit";s:11:"sidebar-top";b:1;s:19:"mobile-sidebar-hide";s:1:"1";s:10:"footer-ads";b:0;s:14:"footer-widgets";s:1:"3";s:11:"footer-logo";N;s:9:"copyright";s:0:"";s:6:"credit";b:1;s:19:"default-menu-footer";b:0;s:3:"ver";s:5:"3.2.9";}s:18:"last_update_notice";a:2:{s:7:"version";s:5:"3.2.9";s:13:"display_count";i:0;}}', 'yes'),
+(146, '_transient_timeout_started_using_hueman', '1792775124', 'no'),
+(147, '_transient_started_using_hueman', 'with|3.2.9', 'no'),
+(148, 'widget_alxtabs', 'a:3:{i:2;a:20:{s:5:"title";s:10:"Comunicati";s:13:"tabs_category";i:0;s:9:"tabs_date";i:1;s:13:"recent_enable";i:1;s:13:"recent_thumbs";i:1;s:13:"recent_cat_id";s:1:"1";s:10:"recent_num";s:1:"5";s:14:"popular_enable";i:1;s:14:"popular_thumbs";i:1;s:14:"popular_cat_id";s:1:"1";s:12:"popular_time";s:1:"0";s:11:"popular_num";s:1:"5";s:15:"comments_enable";i:1;s:16:"comments_avatars";i:1;s:12:"comments_num";s:1:"5";s:11:"tags_enable";i:0;s:12:"order_recent";s:1:"1";s:13:"order_popular";s:1:"2";s:14:"order_comments";s:1:"3";s:10:"order_tags";s:1:"4";}i:3;a:20:{s:5:"title";s:4:"News";s:13:"tabs_category";i:0;s:9:"tabs_date";i:1;s:13:"recent_enable";i:1;s:13:"recent_thumbs";i:1;s:13:"recent_cat_id";s:1:"2";s:10:"recent_num";s:1:"5";s:14:"popular_enable";i:1;s:14:"popular_thumbs";i:1;s:14:"popular_cat_id";s:1:"2";s:12:"popular_time";s:1:"0";s:11:"popular_num";s:1:"5";s:15:"comments_enable";i:1;s:16:"comments_avatars";i:1;s:12:"comments_num";s:1:"5";s:11:"tags_enable";i:0;s:12:"order_recent";s:1:"1";s:13:"order_popular";s:1:"2";s:14:"order_comments";s:1:"3";s:10:"order_tags";s:1:"4";}s:12:"_multiwidget";i:1;}', 'yes'),
+(149, 'widget_alxvideo', 'a:1:{s:12:"_multiwidget";i:1;}', 'yes'),
+(150, 'widget_alxposts', 'a:1:{s:12:"_multiwidget";i:1;}', 'yes'),
+(151, '_transient_timeout__hu_sidebar_backup', '2108135124', 'no'),
+(152, '_transient__hu_sidebar_backup', 'a:0:{}', 'no'),
+(153, 'ot_media_post_ID', '4', 'yes'),
+(158, 'category_children', 'a:0:{}', 'yes'),
+(162, 'nav_menu_options', 'a:2:{i:0;b:0;s:8:"auto_add";a:0:{}}', 'yes');
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `le_postmeta`
+--
+
+CREATE TABLE `le_postmeta` (
+  `meta_id` bigint(20) UNSIGNED NOT NULL,
+  `post_id` bigint(20) UNSIGNED NOT NULL DEFAULT '0',
+  `meta_key` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `meta_value` longtext COLLATE utf8mb4_unicode_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dump dei dati per la tabella `le_postmeta`
+--
+
+INSERT INTO `le_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUES
+(1, 2, '_wp_page_template', 'default'),
+(2, 1, '_edit_lock', '1477415387:1'),
+(3, 1, '_edit_last', '1'),
+(6, 1, '_layout', 'inherit'),
+(7, 6, '_edit_last', '1'),
+(8, 6, '_edit_lock', '1477415409:1'),
+(11, 6, '_layout', 'inherit'),
+(12, 2, '_edit_lock', '1477415468:1'),
+(13, 2, '_edit_last', '1'),
+(14, 2, '_layout', 'inherit'),
+(15, 9, '_edit_last', '1'),
+(16, 9, '_wp_page_template', 'default'),
+(17, 9, '_layout', 'inherit'),
+(18, 9, '_edit_lock', '1477415480:1'),
+(19, 11, '_edit_last', '1'),
+(20, 11, '_edit_lock', '1477415497:1'),
+(21, 11, '_wp_page_template', 'default'),
+(22, 11, '_layout', 'inherit'),
+(23, 13, '_edit_last', '1'),
+(24, 13, '_wp_page_template', 'default'),
+(25, 13, '_layout', 'inherit'),
+(26, 13, '_edit_lock', '1477415517:1'),
+(27, 15, '_menu_item_type', 'post_type'),
+(28, 15, '_menu_item_menu_item_parent', '0'),
+(29, 15, '_menu_item_object_id', '13'),
+(30, 15, '_menu_item_object', 'page'),
+(31, 15, '_menu_item_target', ''),
+(32, 15, '_menu_item_classes', 'a:1:{i:0;s:0:"";}'),
+(33, 15, '_menu_item_xfn', ''),
+(34, 15, '_menu_item_url', ''),
+(36, 16, '_menu_item_type', 'post_type'),
+(37, 16, '_menu_item_menu_item_parent', '0'),
+(38, 16, '_menu_item_object_id', '11'),
+(39, 16, '_menu_item_object', 'page'),
+(40, 16, '_menu_item_target', ''),
+(41, 16, '_menu_item_classes', 'a:1:{i:0;s:0:"";}'),
+(42, 16, '_menu_item_xfn', ''),
+(43, 16, '_menu_item_url', ''),
+(45, 17, '_menu_item_type', 'post_type'),
+(46, 17, '_menu_item_menu_item_parent', '0'),
+(47, 17, '_menu_item_object_id', '2'),
+(48, 17, '_menu_item_object', 'page'),
+(49, 17, '_menu_item_target', ''),
+(50, 17, '_menu_item_classes', 'a:1:{i:0;s:0:"";}'),
+(51, 17, '_menu_item_xfn', ''),
+(52, 17, '_menu_item_url', '');
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `le_posts`
+--
+
+CREATE TABLE `le_posts` (
+  `ID` bigint(20) UNSIGNED NOT NULL,
+  `post_author` bigint(20) UNSIGNED NOT NULL DEFAULT '0',
+  `post_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `post_date_gmt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `post_content` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `post_title` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `post_excerpt` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `post_status` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'publish',
+  `comment_status` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'open',
+  `ping_status` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'open',
+  `post_password` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `post_name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `to_ping` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pinged` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `post_modified` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `post_modified_gmt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `post_content_filtered` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `post_parent` bigint(20) UNSIGNED NOT NULL DEFAULT '0',
+  `guid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `menu_order` int(11) NOT NULL DEFAULT '0',
+  `post_type` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'post',
+  `post_mime_type` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `comment_count` bigint(20) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dump dei dati per la tabella `le_posts`
+--
+
+INSERT INTO `le_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `post_content`, `post_title`, `post_excerpt`, `post_status`, `comment_status`, `ping_status`, `post_password`, `post_name`, `to_ping`, `pinged`, `post_modified`, `post_modified_gmt`, `post_content_filtered`, `post_parent`, `guid`, `menu_order`, `post_type`, `post_mime_type`, `comment_count`) VALUES
+(1, 1, '2016-10-25 19:03:35', '2016-10-25 17:03:35', 'Prima news del giornalino', 'News', '', 'publish', 'open', 'open', '', 'ciao-mondo', '', '', '2016-10-25 19:11:44', '2016-10-25 17:11:44', '', 0, 'http://localhost/alefal.it/PROJECTS/leagueengine/?p=1', 0, 'post', '', 1),
+(2, 1, '2016-10-25 19:03:35', '2016-10-25 17:03:35', '[catlist name="comunicatiUfficiali"]', 'Comunicati', '', 'publish', 'closed', 'open', '', 'pagina-di-esempio', '', '', '2016-10-25 19:13:29', '2016-10-25 17:13:29', '', 0, 'http://localhost/alefal.it/PROJECTS/leagueengine/?page_id=2', 0, 'page', '', 0),
+(3, 1, '2016-10-25 19:04:07', '0000-00-00 00:00:00', '', 'Bozza automatica', '', 'auto-draft', 'open', 'open', '', '', '', '', '2016-10-25 19:04:07', '0000-00-00 00:00:00', '', 0, 'http://localhost/alefal.it/PROJECTS/leagueengine/?p=3', 0, 'post', '', 0),
+(4, 1, '2016-10-25 19:05:25', '2016-10-25 17:05:25', '', 'Media', '', 'private', 'closed', 'closed', '', 'media', '', '', '2016-10-25 19:05:25', '2016-10-25 17:05:25', '', 0, 'http://localhost/alefal.it/PROJECTS/leagueengine/?option-tree=media', 0, 'option-tree', '', 0),
+(5, 1, '2016-10-25 19:11:44', '2016-10-25 17:11:44', 'Prima news del giornalino', 'News', '', 'inherit', 'closed', 'closed', '', '1-revision-v1', '', '', '2016-10-25 19:11:44', '2016-10-25 17:11:44', '', 1, 'http://localhost/alefal.it/PROJECTS/leagueengine/2016/10/25/1-revision-v1/', 0, 'revision', '', 0),
+(6, 1, '2016-10-25 19:12:31', '2016-10-25 17:12:31', 'Il primo comunicato ufficiale', 'Comunicato', '', 'publish', 'open', 'open', '', 'comunicato', '', '', '2016-10-25 19:12:31', '2016-10-25 17:12:31', '', 0, 'http://localhost/alefal.it/PROJECTS/leagueengine/?p=6', 0, 'post', '', 0),
+(7, 1, '2016-10-25 19:12:31', '2016-10-25 17:12:31', 'Il primo comunicato ufficiale', 'Comunicato', '', 'inherit', 'closed', 'closed', '', '6-revision-v1', '', '', '2016-10-25 19:12:31', '2016-10-25 17:12:31', '', 6, 'http://localhost/alefal.it/PROJECTS/leagueengine/2016/10/25/6-revision-v1/', 0, 'revision', '', 0),
+(8, 1, '2016-10-25 19:13:29', '2016-10-25 17:13:29', '[catlist name="comunicatiUfficiali"]', 'Comunicati', '', 'inherit', 'closed', 'closed', '', '2-revision-v1', '', '', '2016-10-25 19:13:29', '2016-10-25 17:13:29', '', 2, 'http://localhost/alefal.it/PROJECTS/leagueengine/2016/10/25/2-revision-v1/', 0, 'revision', '', 0),
+(9, 1, '2016-10-25 19:13:41', '2016-10-25 17:13:41', '', 'Dettaglio', '', 'publish', 'closed', 'closed', '', 'dettaglio', '', '', '2016-10-25 19:13:41', '2016-10-25 17:13:41', '', 0, 'http://localhost/alefal.it/PROJECTS/leagueengine/?page_id=9', 0, 'page', '', 0),
+(10, 1, '2016-10-25 19:13:41', '2016-10-25 17:13:41', '', 'Dettaglio', '', 'inherit', 'closed', 'closed', '', '9-revision-v1', '', '', '2016-10-25 19:13:41', '2016-10-25 17:13:41', '', 9, 'http://localhost/alefal.it/PROJECTS/leagueengine/2016/10/25/9-revision-v1/', 0, 'revision', '', 0),
+(11, 1, '2016-10-25 19:13:59', '2016-10-25 17:13:59', '[leagueengine_show_season_table lid="2" sid="32"]', 'Classifica', '', 'publish', 'closed', 'closed', '', 'classifica', '', '', '2016-10-25 19:13:59', '2016-10-25 17:13:59', '', 0, 'http://localhost/alefal.it/PROJECTS/leagueengine/?page_id=11', 1, 'page', '', 0),
+(12, 1, '2016-10-25 19:13:59', '2016-10-25 17:13:59', '[leagueengine_show_season_table lid="2" sid="32"]', 'Classifica', '', 'inherit', 'closed', 'closed', '', '11-revision-v1', '', '', '2016-10-25 19:13:59', '2016-10-25 17:13:59', '', 11, 'http://localhost/alefal.it/PROJECTS/leagueengine/2016/10/25/11-revision-v1/', 0, 'revision', '', 0),
+(13, 1, '2016-10-25 19:14:16', '2016-10-25 17:14:16', '[leagueengine_show_season_matches lid="2" sid="32"]', 'Incontri', '', 'publish', 'closed', 'closed', '', 'incontri', '', '', '2016-10-25 19:14:16', '2016-10-25 17:14:16', '', 0, 'http://localhost/alefal.it/PROJECTS/leagueengine/?page_id=13', 2, 'page', '', 0),
+(14, 1, '2016-10-25 19:14:16', '2016-10-25 17:14:16', '[leagueengine_show_season_matches lid="2" sid="32"]', 'Incontri', '', 'inherit', 'closed', 'closed', '', '13-revision-v1', '', '', '2016-10-25 19:14:16', '2016-10-25 17:14:16', '', 13, 'http://localhost/alefal.it/PROJECTS/leagueengine/2016/10/25/13-revision-v1/', 0, 'revision', '', 0),
+(15, 1, '2016-10-25 19:14:45', '2016-10-25 17:14:45', ' ', '', '', 'publish', 'closed', 'closed', '', '15', '', '', '2016-10-25 19:15:19', '2016-10-25 17:15:19', '', 0, 'http://localhost/alefal.it/PROJECTS/leagueengine/?p=15', 3, 'nav_menu_item', '', 0),
+(16, 1, '2016-10-25 19:14:45', '2016-10-25 17:14:45', ' ', '', '', 'publish', 'closed', 'closed', '', '16', '', '', '2016-10-25 19:15:19', '2016-10-25 17:15:19', '', 0, 'http://localhost/alefal.it/PROJECTS/leagueengine/?p=16', 2, 'nav_menu_item', '', 0),
+(17, 1, '2016-10-25 19:14:44', '2016-10-25 17:14:44', ' ', '', '', 'publish', 'closed', 'closed', '', '17', '', '', '2016-10-25 19:15:19', '2016-10-25 17:15:19', '', 0, 'http://localhost/alefal.it/PROJECTS/leagueengine/?p=17', 1, 'nav_menu_item', '', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `le_termmeta`
+--
+
+CREATE TABLE `le_termmeta` (
+  `meta_id` bigint(20) UNSIGNED NOT NULL,
+  `term_id` bigint(20) UNSIGNED NOT NULL DEFAULT '0',
+  `meta_key` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `meta_value` longtext COLLATE utf8mb4_unicode_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `le_terms`
+--
+
+CREATE TABLE `le_terms` (
+  `term_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `slug` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `term_group` bigint(10) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dump dei dati per la tabella `le_terms`
+--
+
+INSERT INTO `le_terms` (`term_id`, `name`, `slug`, `term_group`) VALUES
+(1, 'comunicatiUfficiali', 'comunicati-ufficiali', 0),
+(2, 'giornalinoUfficiale', 'giornalino-ufficiale', 0),
+(3, 'giornalinoUfficiale', 'giornalinoufficiale', 0),
+(4, 'comunicatiUfficiali', 'comunicatiufficiali', 0),
+(5, 'Main Menu', 'main-menu', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `le_term_relationships`
+--
+
+CREATE TABLE `le_term_relationships` (
+  `object_id` bigint(20) UNSIGNED NOT NULL DEFAULT '0',
+  `term_taxonomy_id` bigint(20) UNSIGNED NOT NULL DEFAULT '0',
+  `term_order` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dump dei dati per la tabella `le_term_relationships`
+--
+
+INSERT INTO `le_term_relationships` (`object_id`, `term_taxonomy_id`, `term_order`) VALUES
+(1, 2, 0),
+(1, 3, 0),
+(6, 1, 0),
+(6, 4, 0),
+(15, 5, 0),
+(16, 5, 0),
+(17, 5, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `le_term_taxonomy`
+--
+
+CREATE TABLE `le_term_taxonomy` (
+  `term_taxonomy_id` bigint(20) UNSIGNED NOT NULL,
+  `term_id` bigint(20) UNSIGNED NOT NULL DEFAULT '0',
+  `taxonomy` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `description` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `parent` bigint(20) UNSIGNED NOT NULL DEFAULT '0',
+  `count` bigint(20) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dump dei dati per la tabella `le_term_taxonomy`
+--
+
+INSERT INTO `le_term_taxonomy` (`term_taxonomy_id`, `term_id`, `taxonomy`, `description`, `parent`, `count`) VALUES
+(1, 1, 'category', '', 0, 1),
+(2, 2, 'category', '', 0, 1),
+(3, 3, 'post_tag', '', 0, 1),
+(4, 4, 'post_tag', '', 0, 1),
+(5, 5, 'nav_menu', '', 0, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `le_usermeta`
+--
+
+CREATE TABLE `le_usermeta` (
+  `umeta_id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL DEFAULT '0',
+  `meta_key` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `meta_value` longtext COLLATE utf8mb4_unicode_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dump dei dati per la tabella `le_usermeta`
+--
+
+INSERT INTO `le_usermeta` (`umeta_id`, `user_id`, `meta_key`, `meta_value`) VALUES
+(1, 1, 'nickname', 'admin'),
+(2, 1, 'first_name', ''),
+(3, 1, 'last_name', ''),
+(4, 1, 'description', ''),
+(5, 1, 'rich_editing', 'true'),
+(6, 1, 'comment_shortcuts', 'false'),
+(7, 1, 'admin_color', 'fresh'),
+(8, 1, 'use_ssl', '0'),
+(9, 1, 'show_admin_bar_front', 'true'),
+(10, 1, 'le_capabilities', 'a:1:{s:13:"administrator";b:1;}'),
+(11, 1, 'le_user_level', '10'),
+(12, 1, 'dismissed_wp_pointers', ''),
+(13, 1, 'show_welcome_panel', '1'),
+(14, 1, 'session_tokens', 'a:1:{s:64:"bcf3ee0b6123b0bb1d2508e63764585401ff72c9842578c5c380236c5a892f36";a:4:{s:10:"expiration";i:1477587846;s:2:"ip";s:3:"::1";s:2:"ua";s:110:"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36";s:5:"login";i:1477415046;}}'),
+(15, 1, 'le_dashboard_quick_press_last_post_id', '3'),
+(16, 1, 'managenav-menuscolumnshidden', 'a:5:{i:0;s:11:"link-target";i:1;s:11:"css-classes";i:2;s:3:"xfn";i:3;s:11:"description";i:4;s:15:"title-attribute";}'),
+(17, 1, 'metaboxhidden_nav-menus', 'a:2:{i:0;s:12:"add-post_tag";i:1;s:15:"add-post_format";}');
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `le_users`
+--
+
+CREATE TABLE `le_users` (
+  `ID` bigint(20) UNSIGNED NOT NULL,
+  `user_login` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `user_pass` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `user_nicename` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `user_email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `user_url` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `user_registered` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `user_activation_key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `user_status` int(11) NOT NULL DEFAULT '0',
+  `display_name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dump dei dati per la tabella `le_users`
+--
+
+INSERT INTO `le_users` (`ID`, `user_login`, `user_pass`, `user_nicename`, `user_email`, `user_url`, `user_registered`, `user_activation_key`, `user_status`, `display_name`) VALUES
+(1, 'admin', '$P$BexPuSSGze0Stne5JUO1HaZYZXmDRm0', 'admin', 'alefalwebmaster@gmail.com', '', '2016-10-25 17:03:34', '', 0, 'admin');
+
+--
+-- Indici per le tabelle scaricate
 --
 
 --
--- Indexes for table `wp_leagueengine_data`
+-- Indici per le tabelle `le_commentmeta`
 --
-ALTER TABLE `wp_leagueengine_data`
+ALTER TABLE `le_commentmeta`
+  ADD PRIMARY KEY (`meta_id`),
+  ADD KEY `comment_id` (`comment_id`),
+  ADD KEY `meta_key` (`meta_key`(191));
+
+--
+-- Indici per le tabelle `le_comments`
+--
+ALTER TABLE `le_comments`
+  ADD PRIMARY KEY (`comment_ID`),
+  ADD KEY `comment_post_ID` (`comment_post_ID`),
+  ADD KEY `comment_approved_date_gmt` (`comment_approved`,`comment_date_gmt`),
+  ADD KEY `comment_date_gmt` (`comment_date_gmt`),
+  ADD KEY `comment_parent` (`comment_parent`),
+  ADD KEY `comment_author_email` (`comment_author_email`(10));
+
+--
+-- Indici per le tabelle `le_leagueengine_data`
+--
+ALTER TABLE `le_leagueengine_data`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id` (`id`);
 
 --
--- Indexes for table `wp_leagueengine_leagues`
+-- Indici per le tabelle `le_leagueengine_leagues`
 --
-ALTER TABLE `wp_leagueengine_leagues`
+ALTER TABLE `le_leagueengine_leagues`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `wp_leagueengine_league_seasons`
+-- Indici per le tabelle `le_leagueengine_league_seasons`
 --
-ALTER TABLE `wp_leagueengine_league_seasons`
+ALTER TABLE `le_leagueengine_league_seasons`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `wp_leagueengine_match_page_settings`
+-- Indici per le tabelle `le_leagueengine_match_page_settings`
 --
-ALTER TABLE `wp_leagueengine_match_page_settings`
+ALTER TABLE `le_leagueengine_match_page_settings`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `wp_leagueengine_player_attributes`
+-- Indici per le tabelle `le_leagueengine_player_attributes`
 --
-ALTER TABLE `wp_leagueengine_player_attributes`
+ALTER TABLE `le_leagueengine_player_attributes`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `wp_leagueengine_player_careers`
+-- Indici per le tabelle `le_leagueengine_player_careers`
 --
-ALTER TABLE `wp_leagueengine_player_careers`
+ALTER TABLE `le_leagueengine_player_careers`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `wp_leagueengine_season_matches`
+-- Indici per le tabelle `le_leagueengine_season_matches`
 --
-ALTER TABLE `wp_leagueengine_season_matches`
+ALTER TABLE `le_leagueengine_season_matches`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `wp_leagueengine_season_matches_attributes`
+-- Indici per le tabelle `le_leagueengine_season_matches_attributes`
 --
-ALTER TABLE `wp_leagueengine_season_matches_attributes`
+ALTER TABLE `le_leagueengine_season_matches_attributes`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `wp_leagueengine_season_matches_events`
+-- Indici per le tabelle `le_leagueengine_season_matches_events`
 --
-ALTER TABLE `wp_leagueengine_season_matches_events`
+ALTER TABLE `le_leagueengine_season_matches_events`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `wp_leagueengine_season_teams`
+-- Indici per le tabelle `le_leagueengine_season_teams`
 --
-ALTER TABLE `wp_leagueengine_season_teams`
+ALTER TABLE `le_leagueengine_season_teams`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `wp_leagueengine_settings`
+-- Indici per le tabelle `le_leagueengine_settings`
 --
-ALTER TABLE `wp_leagueengine_settings`
+ALTER TABLE `le_leagueengine_settings`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `wp_leagueengine_table_settings`
+-- Indici per le tabelle `le_leagueengine_table_settings`
 --
-ALTER TABLE `wp_leagueengine_table_settings`
+ALTER TABLE `le_leagueengine_table_settings`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `wp_leagueengine_team_attributes`
+-- Indici per le tabelle `le_leagueengine_team_attributes`
 --
-ALTER TABLE `wp_leagueengine_team_attributes`
+ALTER TABLE `le_leagueengine_team_attributes`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `wp_leagueengine_tournaments`
+-- Indici per le tabelle `le_leagueengine_tournaments`
 --
-ALTER TABLE `wp_leagueengine_tournaments`
+ALTER TABLE `le_leagueengine_tournaments`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `wp_leagueengine_tournament_matches`
+-- Indici per le tabelle `le_leagueengine_tournament_matches`
 --
-ALTER TABLE `wp_leagueengine_tournament_matches`
+ALTER TABLE `le_leagueengine_tournament_matches`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `wp_leagueengine_tournament_matches_attributes`
+-- Indici per le tabelle `le_leagueengine_tournament_matches_attributes`
 --
-ALTER TABLE `wp_leagueengine_tournament_matches_attributes`
+ALTER TABLE `le_leagueengine_tournament_matches_attributes`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `wp_leagueengine_tournament_matches_events`
+-- Indici per le tabelle `le_leagueengine_tournament_matches_events`
 --
-ALTER TABLE `wp_leagueengine_tournament_matches_events`
+ALTER TABLE `le_leagueengine_tournament_matches_events`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `wp_leagueengine_tournament_teams`
+-- Indici per le tabelle `le_leagueengine_tournament_teams`
 --
-ALTER TABLE `wp_leagueengine_tournament_teams`
+ALTER TABLE `le_leagueengine_tournament_teams`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- Indici per le tabelle `le_links`
+--
+ALTER TABLE `le_links`
+  ADD PRIMARY KEY (`link_id`),
+  ADD KEY `link_visible` (`link_visible`);
+
+--
+-- Indici per le tabelle `le_options`
+--
+ALTER TABLE `le_options`
+  ADD PRIMARY KEY (`option_id`),
+  ADD UNIQUE KEY `option_name` (`option_name`);
+
+--
+-- Indici per le tabelle `le_postmeta`
+--
+ALTER TABLE `le_postmeta`
+  ADD PRIMARY KEY (`meta_id`),
+  ADD KEY `post_id` (`post_id`),
+  ADD KEY `meta_key` (`meta_key`(191));
+
+--
+-- Indici per le tabelle `le_posts`
+--
+ALTER TABLE `le_posts`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `post_name` (`post_name`(191)),
+  ADD KEY `type_status_date` (`post_type`,`post_status`,`post_date`,`ID`),
+  ADD KEY `post_parent` (`post_parent`),
+  ADD KEY `post_author` (`post_author`);
+
+--
+-- Indici per le tabelle `le_termmeta`
+--
+ALTER TABLE `le_termmeta`
+  ADD PRIMARY KEY (`meta_id`),
+  ADD KEY `term_id` (`term_id`),
+  ADD KEY `meta_key` (`meta_key`(191));
+
+--
+-- Indici per le tabelle `le_terms`
+--
+ALTER TABLE `le_terms`
+  ADD PRIMARY KEY (`term_id`),
+  ADD KEY `slug` (`slug`(191)),
+  ADD KEY `name` (`name`(191));
+
+--
+-- Indici per le tabelle `le_term_relationships`
+--
+ALTER TABLE `le_term_relationships`
+  ADD PRIMARY KEY (`object_id`,`term_taxonomy_id`),
+  ADD KEY `term_taxonomy_id` (`term_taxonomy_id`);
+
+--
+-- Indici per le tabelle `le_term_taxonomy`
+--
+ALTER TABLE `le_term_taxonomy`
+  ADD PRIMARY KEY (`term_taxonomy_id`),
+  ADD UNIQUE KEY `term_id_taxonomy` (`term_id`,`taxonomy`),
+  ADD KEY `taxonomy` (`taxonomy`);
+
+--
+-- Indici per le tabelle `le_usermeta`
+--
+ALTER TABLE `le_usermeta`
+  ADD PRIMARY KEY (`umeta_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `meta_key` (`meta_key`(191));
+
+--
+-- Indici per le tabelle `le_users`
+--
+ALTER TABLE `le_users`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `user_login_key` (`user_login`),
+  ADD KEY `user_nicename` (`user_nicename`),
+  ADD KEY `user_email` (`user_email`);
+
+--
+-- AUTO_INCREMENT per le tabelle scaricate
 --
 
 --
--- AUTO_INCREMENT for table `wp_leagueengine_data`
+-- AUTO_INCREMENT per la tabella `le_commentmeta`
 --
-ALTER TABLE `wp_leagueengine_data`
+ALTER TABLE `le_commentmeta`
+  MODIFY `meta_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT per la tabella `le_comments`
+--
+ALTER TABLE `le_comments`
+  MODIFY `comment_ID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT per la tabella `le_leagueengine_data`
+--
+ALTER TABLE `le_leagueengine_data`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 --
--- AUTO_INCREMENT for table `wp_leagueengine_leagues`
+-- AUTO_INCREMENT per la tabella `le_leagueengine_leagues`
 --
-ALTER TABLE `wp_leagueengine_leagues`
+ALTER TABLE `le_leagueengine_leagues`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT for table `wp_leagueengine_league_seasons`
+-- AUTO_INCREMENT per la tabella `le_leagueengine_league_seasons`
 --
-ALTER TABLE `wp_leagueengine_league_seasons`
+ALTER TABLE `le_leagueengine_league_seasons`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `wp_leagueengine_match_page_settings`
+-- AUTO_INCREMENT per la tabella `le_leagueengine_match_page_settings`
 --
-ALTER TABLE `wp_leagueengine_match_page_settings`
+ALTER TABLE `le_leagueengine_match_page_settings`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
--- AUTO_INCREMENT for table `wp_leagueengine_player_attributes`
+-- AUTO_INCREMENT per la tabella `le_leagueengine_player_attributes`
 --
-ALTER TABLE `wp_leagueengine_player_attributes`
+ALTER TABLE `le_leagueengine_player_attributes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
--- AUTO_INCREMENT for table `wp_leagueengine_player_careers`
+-- AUTO_INCREMENT per la tabella `le_leagueengine_player_careers`
 --
-ALTER TABLE `wp_leagueengine_player_careers`
+ALTER TABLE `le_leagueengine_player_careers`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
--- AUTO_INCREMENT for table `wp_leagueengine_season_matches`
+-- AUTO_INCREMENT per la tabella `le_leagueengine_season_matches`
 --
-ALTER TABLE `wp_leagueengine_season_matches`
+ALTER TABLE `le_leagueengine_season_matches`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
--- AUTO_INCREMENT for table `wp_leagueengine_season_matches_attributes`
+-- AUTO_INCREMENT per la tabella `le_leagueengine_season_matches_attributes`
 --
-ALTER TABLE `wp_leagueengine_season_matches_attributes`
+ALTER TABLE `le_leagueengine_season_matches_attributes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT for table `wp_leagueengine_season_matches_events`
+-- AUTO_INCREMENT per la tabella `le_leagueengine_season_matches_events`
 --
-ALTER TABLE `wp_leagueengine_season_matches_events`
+ALTER TABLE `le_leagueengine_season_matches_events`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
--- AUTO_INCREMENT for table `wp_leagueengine_season_teams`
+-- AUTO_INCREMENT per la tabella `le_leagueengine_season_teams`
 --
-ALTER TABLE `wp_leagueengine_season_teams`
+ALTER TABLE `le_leagueengine_season_teams`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT for table `wp_leagueengine_settings`
+-- AUTO_INCREMENT per la tabella `le_leagueengine_settings`
 --
-ALTER TABLE `wp_leagueengine_settings`
+ALTER TABLE `le_leagueengine_settings`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `wp_leagueengine_table_settings`
+-- AUTO_INCREMENT per la tabella `le_leagueengine_table_settings`
 --
-ALTER TABLE `wp_leagueengine_table_settings`
+ALTER TABLE `le_leagueengine_table_settings`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
--- AUTO_INCREMENT for table `wp_leagueengine_team_attributes`
+-- AUTO_INCREMENT per la tabella `le_leagueengine_team_attributes`
 --
-ALTER TABLE `wp_leagueengine_team_attributes`
+ALTER TABLE `le_leagueengine_team_attributes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `wp_leagueengine_tournaments`
+-- AUTO_INCREMENT per la tabella `le_leagueengine_tournaments`
 --
-ALTER TABLE `wp_leagueengine_tournaments`
+ALTER TABLE `le_leagueengine_tournaments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table `wp_leagueengine_tournament_matches`
+-- AUTO_INCREMENT per la tabella `le_leagueengine_tournament_matches`
 --
-ALTER TABLE `wp_leagueengine_tournament_matches`
+ALTER TABLE `le_leagueengine_tournament_matches`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
--- AUTO_INCREMENT for table `wp_leagueengine_tournament_matches_attributes`
+-- AUTO_INCREMENT per la tabella `le_leagueengine_tournament_matches_attributes`
 --
-ALTER TABLE `wp_leagueengine_tournament_matches_attributes`
+ALTER TABLE `le_leagueengine_tournament_matches_attributes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `wp_leagueengine_tournament_matches_events`
+-- AUTO_INCREMENT per la tabella `le_leagueengine_tournament_matches_events`
 --
-ALTER TABLE `wp_leagueengine_tournament_matches_events`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+ALTER TABLE `le_leagueengine_tournament_matches_events`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
--- AUTO_INCREMENT for table `wp_leagueengine_tournament_teams`
+-- AUTO_INCREMENT per la tabella `le_leagueengine_tournament_teams`
 --
-ALTER TABLE `wp_leagueengine_tournament_teams`
+ALTER TABLE `le_leagueengine_tournament_teams`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT per la tabella `le_links`
+--
+ALTER TABLE `le_links`
+  MODIFY `link_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT per la tabella `le_options`
+--
+ALTER TABLE `le_options`
+  MODIFY `option_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=163;
+--
+-- AUTO_INCREMENT per la tabella `le_postmeta`
+--
+ALTER TABLE `le_postmeta`
+  MODIFY `meta_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+--
+-- AUTO_INCREMENT per la tabella `le_posts`
+--
+ALTER TABLE `le_posts`
+  MODIFY `ID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+--
+-- AUTO_INCREMENT per la tabella `le_termmeta`
+--
+ALTER TABLE `le_termmeta`
+  MODIFY `meta_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT per la tabella `le_terms`
+--
+ALTER TABLE `le_terms`
+  MODIFY `term_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT per la tabella `le_term_taxonomy`
+--
+ALTER TABLE `le_term_taxonomy`
+  MODIFY `term_taxonomy_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT per la tabella `le_usermeta`
+--
+ALTER TABLE `le_usermeta`
+  MODIFY `umeta_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+--
+-- AUTO_INCREMENT per la tabella `le_users`
+--
+ALTER TABLE `le_users`
+  MODIFY `ID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

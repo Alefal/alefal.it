@@ -49,21 +49,8 @@ export class HomePage {
         this.tournamentType   = this.tournament[0].tour_type;
         this.tournamentTeams  = this.tournament[0].tour_teams;  //Math.log2(this.tournamentTeams)
         this.tournamentRound  = this.tournament[0].tour_round;
-        for(let i = 1; i <= this.tournamentRound; i++) {
-          if(i == 5) {
-            this.tournamentRounds.push('Finale');
-          } else if(i == 4) {
-            this.tournamentRounds.push('Semifinale');
-          } else if(i == 3) {
-            this.tournamentRounds.push('Quarti');
-          } else if(i == 2) {
-            this.tournamentRounds.push('Ottavi');
-          } else if(i == 1) {
-            this.tournamentRounds.push('Sedicesimi');
-          } else { 
-            this.tournamentRounds.push('Round '+i);
-          }
-        }
+        this.getRounds(this.tournamentRound);
+
         this.connectivityService.showInfo();
       }
     }
@@ -84,23 +71,7 @@ export class HomePage {
           this.tournamentRound  = res[0].tournament[0].tour_round;
 
           console.log('this.tournamentRound: '+this.tournamentRound);
-          
-          for(let i = 1; i <= this.tournamentRound; i++) {
-            console.log('i: '+i);
-            if(i == 5) {
-							this.tournamentRounds.push('Finale');
-						} else if(i == 4) {
-							this.tournamentRounds.push('Semifinale');
-						} else if(i == 3) {
-							this.tournamentRounds.push('Quarti');
-						} else if(i == 2) {
-							this.tournamentRounds.push('Ottavi');
-						} else if(i == 1) {
-							this.tournamentRounds.push('Sedicesimi');
-						} else { 
-							this.tournamentRounds.push('Round '+i);
-						}
-          }
+          this.getRounds(this.tournamentRound);
           localStorage.setItem('getTorneo',this.tournament);
         } else {
           this.tournament = 'Nessun dato! Riprovare più tardi.';
@@ -145,6 +116,72 @@ export class HomePage {
       this.navCtrl.push(Statistiche, {
         tipologia: tipologia
       });
+    }
+  }
+
+  getRounds(rounds) {
+    if(rounds == 5) {
+      for(let i = 1; i <= rounds; i++) {
+        if(i == 5) {
+          this.tournamentRounds.push('Finale');
+        } else if(i == 4) {
+          this.tournamentRounds.push('Semifinale');
+        } else if(i == 3) {
+          this.tournamentRounds.push('Quarti');
+        } else if(i == 2) {
+          this.tournamentRounds.push('Ottavi');
+        } else if(i == 1) {
+          this.tournamentRounds.push('Sedicesimi');
+        } else { 
+          this.tournamentRounds.push('Round '+i);
+        }
+      }
+    } else if(rounds == 4) {
+       for(let i = 1; i <= rounds; i++) {
+        if(i == 4) {
+          this.tournamentRounds.push('Finale');
+        } else if(i == 3) {
+          this.tournamentRounds.push('Semifinale');
+        } else if(i == 2) {
+          this.tournamentRounds.push('Quarti');
+        } else if(i == 1) {
+          this.tournamentRounds.push('Ottavi');
+        } else { 
+          this.tournamentRounds.push('Round '+i);
+        }
+      }
+    } else if(rounds == 3) {
+      for(let i = 1; i <= rounds; i++) {
+        if(i == 3) {
+          this.tournamentRounds.push('Finale');
+        } else if(i == 2) {
+          this.tournamentRounds.push('Semifinale');
+        } else if(i == 1) {
+          this.tournamentRounds.push('Quarti');
+        } else { 
+          this.tournamentRounds.push('Round '+i);
+        }
+      }
+    } else if(rounds == 2) {
+      for(let i = 1; i <= rounds; i++) {
+        if(i == 2) {
+          this.tournamentRounds.push('Finale');
+        } else if(i == 1) {
+          this.tournamentRounds.push('Semifinale');
+        } else { 
+          this.tournamentRounds.push('Round '+i);
+        }
+      }
+    } else if(rounds == 1) {
+      for(let i = 1; i <= rounds; i++) {
+        if(i == 1) {
+          this.tournamentRounds.push('Finale');
+        } else { 
+          this.tournamentRounds.push('Round '+i);
+        }
+      }
+    } else {
+      console.log('ND');
     }
   }
   
