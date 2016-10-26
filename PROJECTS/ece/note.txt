@@ -1,2 +1,71 @@
-manager
-DZOf#sZ6Ra9XRKYlpB*s3TkK
+=== Descrizione ===
+Stock Magazine con Ionic App
+
+=== Prerequisiti ===
+json-api
+json-api-user 				-> https://it.wordpress.org/plugins/json-api-user/other_notes/
+woocommerce 				-> http://woocommerce.github.io/woocommerce-rest-api-docs/v3.html
+woocommerce-exporter
+woocommerce-stock-manager
+alefal_woocommerce
+
+=== Note ===
+Per JSON API USER:
+- Se la connessione non è HTTPS aggiungere il parametro "insecure=cool"
+- Per la registrazione utenti, abilitare "Impostazioni > Generali > Iscrizione > Chiunque può iscriversi"
+
+=== Funzionalità app ===
+1) 	Login 					-> Json Api User 	-> api/user/generate_auth_cookie/?username=admin&password=admin&insecure=cool
+3) 	User Account 			-> Json Api User 	-> api/user/get_userinfo/?user_id=1&insecure=cool
+2) 	Registrazione 			-> Json Api User 	-> api/get_nonce/?controller=user&method=register *****
+												-> api/user/register/?username=test&email=test@domain.com&nonce=*****&display_name=Test&user_pass=test&notify=no&insecure=cool
+
+4) 	Categorie Prodotti		-> WooCommerce Ext 	-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_products_cat.php
+5) 	Lista Prodotti 			-> WooCommerce Ext 	-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_products.php
+6) 	Ricerca Prodotti 		-> WooCommerce Ext 	-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_products_cat_filter.php?filterName=category&filterValue=CAT_NAME
+7) 	Dettaglio Prodotto
+8) 	Carrello
+9) 	Ordine
+10) Pagamento
+11) Cronologia Ordini
+12) Stato Ordini
+
+=== JSON API USER ===
+AUTHENTICATION:
+http://localhost/alefal.it/PROJECTS/wordpress/api/user/generate_auth_cookie/?username=admin&password=admin&insecure=cool
+insecure=cool se non esiste una connessione HTTPS
+
+FB CONNECT:
+/api/user/fb_connect/?access_token=CAACEdEose0cBADLKmcHWOZCnW4RGU8emG
+
+REGISTER:
+- Recuperare ONCE:
+	http://localhost/alefal.it/PROJECTS/wordpress/api/get_nonce/?controller=user&method=register
+	{"status":"ok","controller":"user","method":"register","nonce":"3818ac2f0d"}
+- Registrate:
+	http://localhost/alefal.it/PROJECTS/wordpress/api/user/register/?username=test&email=test@domain.com&nonce=3818ac2f0d&display_name=Test&user_pass=test&notify=no
+
+USER:
+- INFO:
+	http://localhost/alefal.it/PROJECTS/wordpress/api/user/get_userinfo/?user_id=1
+- RETRIEVE:
+	http://localhost/alefal.it/PROJECTS/wordpress/api/user/retrieve_password/?user_login=test
+	{"status":"ok","msg":"Link for password reset has been emailed to you. Please check your email."}
+
+=== JSON API ===
+POSTS:
+- Recent posts:
+	http://localhost/alefal.it/PROJECTS/wordpress/?json=get_recent_posts
+	http://localhost/alefal.it/PROJECTS/wordpress/api/get_recent_posts/		(With user-friendly permalinks configured)
+- Post:
+	http://localhost/alefal.it/PROJECTS/wordpress/?json=get_post&post_id=1
+
+CATEGORIES (solo quelli associati ad un post):
+http://localhost/alefal.it/PROJECTS/wordpress/?json=get_category_index
+
+TAGS (solo quelli associati ad un post):
+http://localhost/alefal.it/PROJECTS/wordpress/?json=get_tag_index
+
+=== User ===
+admin / admin
+manager / DZOf#sZ6Ra9XRKYlpB*s3TkK

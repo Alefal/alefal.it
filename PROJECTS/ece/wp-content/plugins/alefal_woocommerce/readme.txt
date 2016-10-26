@@ -1,4 +1,4 @@
-=== alefal_stockmagazine ===
+=== alefal_woocommerce ===
 Contributors: 
 Stable tag: 1.0.0
 License: GPLv3
