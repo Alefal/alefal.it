@@ -14,7 +14,21 @@ Per JSON API USER:
 - Se la connessione non è HTTPS aggiungere il parametro "insecure=cool"
 - Per la registrazione utenti, abilitare "Impostazioni > Generali > Iscrizione > Chiunque può iscriversi"
 
-=== Funzionalità app ===
+=== Funzionalità app MAGAZINE ===
+1) 	Login 					-> Json Api User 	-> api/user/generate_auth_cookie/?username=admin&password=admin&insecure=cool
+3) 	User Account 			-> Json Api User 	-> api/user/get_userinfo/?user_id=1&insecure=cool
+3) 	Categorie 				-> WooCommerce Ext 	-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_products_cat.php
+4) 	Prodotti: Lista			-> WooCommerce Ext 	-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_products.php
+5) 	Prodotti: Ricerca 		-> WooCommerce Ext 	-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_products_cat_filter.php?filterName=category&filterValue=CAT_NAME
+6) 	Prodotti: Dettaglio
+7)  Prodotti: Crea
+8)  Prodotti: Update
+9)  Prodotti: Delete
+10) Fornitori 				-> Custom 			-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_users.php?role=magazine_fornitore
+11) Clienti					-> Custom 			-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_users.php?role=magazine_cliente
+11) Ordini					-> WooCommerce Ext  -> HOST/wp-content/plugins/alefal_woocommerce/services/ece_orders.php
+
+=== Funzionalità app ECOMMERCE ===
 1) 	Login 					-> Json Api User 	-> api/user/generate_auth_cookie/?username=admin&password=admin&insecure=cool
 3) 	User Account 			-> Json Api User 	-> api/user/get_userinfo/?user_id=1&insecure=cool
 2) 	Registrazione 			-> Json Api User 	-> api/get_nonce/?controller=user&method=register *****

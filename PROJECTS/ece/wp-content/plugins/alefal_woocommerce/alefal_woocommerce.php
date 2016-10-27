@@ -21,7 +21,7 @@ function register_alefal_woocommerce_submenu_page() {
 }
 
 function alefal_woocommerce_submenu_page_callback() {
-	//get_wc_api_client();
+	get_wc_api_client();
 
 	print '
 		<h3>WooCommerce Ext Rest Call</h3>
@@ -51,6 +51,12 @@ function alefal_woocommerce_submenu_page_callback() {
 	    	</tfoot>
 
 		    <tbody>
+		        <tr>
+		            <td><strong>Utenti</strong></td>
+		            <td>Lista degli utenti del sito in base al ruolo/td>
+		            <td><code>HOST/wp-content/plugins/alefal_woocommerce/services/ece_users.php?role=ROLE</code></td>
+		            <td><a href="'.get_site_url().'/wp-content/plugins/alefal_woocommerce/services/ece_users.php?role=magazine_cliente" target="_blank">GO</a></td>
+		        </tr>
 		        <tr>
 		            <td><strong>Prodotti</strong></td>
 		            <td>Lista dei prodotti del magazzino</td>
@@ -114,9 +120,7 @@ function get_wc_api_client() {
 	    $client = new WC_API_Client( $store_url, $consumer_key, $consumer_secret, $options );
 
 	    print '<pre>';
-		//print_r($client->products->get(null, array('filter[category]' => 'Vino Rosso')));
-		print_r($client->products->get(null, array('filter[tag]' => 'cartadeivini')));
-	    //print_r( $client->products->get_categories( 6 ) );
+		print_r($client->orders->get());
 		print '</pre>';
 
 	    // bulk
@@ -181,7 +185,7 @@ function get_wc_api_client() {
 		//print_r( $client->products->get_count( array( 'type' => 'simple' ) ) );
 		//print_r( $client->products->get_categories() );
 		//print_r( $client->products->get_categories( $category_id ) );
-		//print_r( $client->products->create_categroy( array( 'product_category' => array( 'name' => 'Test Category' ) ) ) );
+		//print_r( $client->products->create_category( array( 'product_category' => array( 'name' => 'Test Category' ) ) ) );
 
 		// reports
 		//print_r( $client->reports->get() );
