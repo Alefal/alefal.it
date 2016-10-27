@@ -27,10 +27,8 @@ try {
             'status'		=> $item->status,
             'total'		    => $item->total,
             'quantity'      => $item->total_line_items_quantity,
-            'clientName'    => $item->billing_address->first_name .' '.$item->billing_address->last_name,
-            'clientEmail'   => $item->billing_address->email,
-            'clientPhone'   => $item->billing_address->phone,
-            //'products'      => $item->line_items
+            'customer'      => $item->customer,
+            'products'      => $item->line_items
 
         );  
     }

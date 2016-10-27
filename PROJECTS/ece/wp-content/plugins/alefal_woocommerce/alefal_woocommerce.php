@@ -21,7 +21,7 @@ function register_alefal_woocommerce_submenu_page() {
 }
 
 function alefal_woocommerce_submenu_page_callback() {
-	get_wc_api_client();
+	//get_wc_api_client();
 
 	print '
 		<h3>WooCommerce Ext Rest Call</h3>
@@ -53,9 +53,15 @@ function alefal_woocommerce_submenu_page_callback() {
 		    <tbody>
 		        <tr>
 		            <td><strong>Utenti</strong></td>
-		            <td>Lista degli utenti del sito in base al ruolo/td>
+		            <td>Lista degli utenti del sito in base al ruolo</td>
 		            <td><code>HOST/wp-content/plugins/alefal_woocommerce/services/ece_users.php?role=ROLE</code></td>
 		            <td><a href="'.get_site_url().'/wp-content/plugins/alefal_woocommerce/services/ece_users.php?role=magazine_cliente" target="_blank">GO</a></td>
+		        </tr>
+		        <tr>
+		            <td><strong>Ordini</strong></td>
+		            <td>Lista degli ordini</td>
+		            <td><code>HOST/wp-content/plugins/alefal_woocommerce/services/ece_orders.php</code></td>
+		            <td><a href="'.get_site_url().'/wp-content/plugins/alefal_woocommerce/services/ece_orders.php" target="_blank">GO</a></td>
 		        </tr>
 		        <tr>
 		            <td><strong>Prodotti</strong></td>
