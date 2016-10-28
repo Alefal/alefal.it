@@ -20,9 +20,9 @@ Per abilitare READ/ WRITE su WooCommerce (save, update, delete):
 - Click on Keys/Apps and then click on the existing API Key
 - Set the permissions to "Read/Write" and save changes. 
 
-=== Funzionalità app WAREHOUSE ===
+=== Funzionalità app Gestione Warehouse (WHE) ===
 1) 	Login 					-> Json Api User 	-> api/user/generate_auth_cookie/?username=admin&password=admin&insecure=cool
-3) 	User Account 			-> Json Api User 	-> api/user/get_userinfo/?user_id=1&insecure=cool
+2) 	User Account 			-> Json Api User 	-> api/user/get_userinfo/?user_id=1&insecure=cool
 3) 	Categorie 				-> WooCommerce Ext 	-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_products_cat.php
 4) 	Prodotti: Lista			-> WooCommerce Ext 	-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_products.php
 5) 	Prodotti: Ricerca 		-> WooCommerce Ext 	-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_products_cat_filter.php?filterName=category&filterValue=CAT_NAME
@@ -33,6 +33,37 @@ Per abilitare READ/ WRITE su WooCommerce (save, update, delete):
 10) Ordini					-> WooCommerce Ext  -> HOST/wp-content/plugins/alefal_woocommerce/services/ece_orders.php
 11) Fornitori 				-> Custom 			-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_users.php?role=stock_fornitore
 12) Clienti					-> Custom 			-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_users.php?role=stock_cliente
+
+=== BACKOFFICE WHE (WhareHouseEngine) ===
+Sistema basato su Wordpress con i seguenti plugin:
+- JSON API
+	chiamate JSON per recuperare i posts inseriti
+- JSON API User
+	chiamate JSON per accesso al sistema
+- User Role Editor
+	gestione ruoli aggiuntivi (fornitori | clienti)
+- WooCommerce
+	ecommerce con PRODOTTI, ORDINI, ecc.
+- WooCommerce - Store Exporter Deluxe
+	ext di woocommerce per l'export in CSV, XML, XLS, XLSX
+- WooCommerce Print Invoice & Delivery Note
+	ext di woocommerce per la stampa della fattura
+- WooCommerce Stock Manager
+	ext di woocommerce per la gestione veloce del magazzio
+- alefal_woocommerce
+	ext di woocommerce per chiamatea JSON al commerce
+
+=== App WHE (WhareHouseEngine) ===
+1)  Login per la gestione del magazzino
+2) 	Categorie del magazzino
+3) 	Prodotti: Lista e Lista per Categoria
+4) 	Prodotti: Dettaglio
+5)  Prodotti: Crea
+6)  Prodotti: Update
+7)  Prodotti: Delete
+8)  Ordini: Lista
+9)  Fornitori: Lista
+10) Clienti: Lista
 
 === Funzionalità app ECOMMERCE ===
 1) 	Login 					-> Json Api User 	-> api/user/generate_auth_cookie/?username=admin&password=admin&insecure=cool
