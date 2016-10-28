@@ -2,31 +2,22 @@
 require_once('../../../../wp-config.php');
 require_once( 'ece_settings.php' );
 
-$usersArray = array();
-$resultArray[] = array(
-    'result'  => 'OK',
-    'message' => 'OK'
-);
-$finalArray = array();
+try {
 
-$user_query = new WP_User_Query( array( 'role' => 'magazine_cliente' ) );
-print '<pre>';
-print_r($user_query->results);
-print '</pre>';
+	$woocommerce = new WC_API_Client( $store_url, $consumer_key, $consumer_secret, $options );
+    
+    print '<pre>';
+	$eceGetCallArray = $woocommerce->orders->get();
+	print_r($eceGetCallArray->orders);
+	print '</pre>';
 
-foreach ($user_query->results as $user) {
-	$usersArray[] = array(        
-        'display_name'      => $user->display_name,
-        'user_nicename' 	=> $user->user_nicename,
-        'user_email'      	=> $user->user_email,
-    );  
+} catch ( WC_API_Client_Exception $e ) {
+    echo $e->getMessage() . PHP_EOL;
+    echo $e->getCode() . PHP_EOL;
+
+    if ( $e instanceof WC_API_Client_HTTP_Exception ) {
+
+        print_r( $e->get_request() );
+        print_r( $e->get_response() );
+    }
 }
-
-print_r($usersArray);
-
-$finalArray[] = array(
-    'response'  => $resultArray,
-    'users'   	=> $usersArray
-);
-echo json_encode($finalArray);
-exit();

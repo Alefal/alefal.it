@@ -49,13 +49,12 @@ function alefal_woocommerce_submenu_page_callback() {
 	            	<th scope="col" width="5%">Test</th>
 	    		</tr>
 	    	</tfoot>
-
 		    <tbody>
 		        <tr>
 		            <td><strong>Utenti</strong></td>
 		            <td>Lista degli utenti del sito in base al ruolo</td>
 		            <td><code>HOST/wp-content/plugins/alefal_woocommerce/services/ece_users.php?role=ROLE</code></td>
-		            <td><a href="'.get_site_url().'/wp-content/plugins/alefal_woocommerce/services/ece_users.php?role=magazine_cliente" target="_blank">GO</a></td>
+		            <td><a href="'.get_site_url().'/wp-content/plugins/alefal_woocommerce/services/ece_users.php?role=stock_cliente" target="_blank">GO</a></td>
 		        </tr>
 		        <tr>
 		            <td><strong>Ordini</strong></td>
@@ -68,6 +67,30 @@ function alefal_woocommerce_submenu_page_callback() {
 		            <td>Lista dei prodotti del magazzino</td>
 		            <td><code>HOST/wp-content/plugins/alefal_woocommerce/services/ece_products.php</code></td>
 		            <td><a href="'.get_site_url().'/wp-content/plugins/alefal_woocommerce/services/ece_products.php" target="_blank">GO</a></td>
+		        </tr>
+		        <tr>
+		            <td><strong>Prodotto: Dettaglio</strong></td>
+		            <td>Dettaglio di un prodotto del magazzino</td>
+		            <td><code>HOST/wp-content/plugins/alefal_woocommerce/services/ece_product_detail.php?id=ID</code></td>
+		            <td><a href="'.get_site_url().'/wp-content/plugins/alefal_woocommerce/services/ece_product_detail.php?id=101" target="_blank">GO</a></td>
+		        </tr>
+		        <tr>
+		            <td><strong>Prodotto: Crea</strong></td>
+		            <td>Crea un prodotto in magazzino</td>
+		            <td><code>HOST/wp-content/plugins/alefal_woocommerce/services/ece_product_create.php?ARRAY</code></td>
+		            <td><a href="'.get_site_url().'/wp-content/plugins/alefal_woocommerce/services/ece_product_create.php" target="_blank">GO</a></td>
+		        </tr>
+		        <tr>
+		            <td><strong>Prodotto: Aggiorna</strong></td>
+		            <td>Aggiorna un prodotto in magazzino</td>
+		            <td><code>HOST/wp-content/plugins/alefal_woocommerce/services/ece_product_update.php?id=ID&ARRAY</code></td>
+		            <td><a href="'.get_site_url().'/wp-content/plugins/alefal_woocommerce/services/ece_product_update.php?id=101" target="_blank">GO</a></td>
+		        </tr>
+		        <tr>
+		            <td><strong>Prodotto: Cancella</strong></td>
+		            <td>Cancella un prodotto dal magazzino</td>
+		            <td><code>HOST/wp-content/plugins/alefal_woocommerce/services/ece_product_delete.php?id=ID</code></td>
+		            <td><a href="'.get_site_url().'/wp-content/plugins/alefal_woocommerce/services/ece_product_delete.php?id=101" target="_blank">GO</a></td>
 		        </tr>
 		        <tr>
 		            <td><strong>Prodotti: Categorie</strong></td>
@@ -98,7 +121,6 @@ function alefal_woocommerce_submenu_page_callback() {
 		    </tbody>
 		</table>
 	';
-
 }
 
 if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {

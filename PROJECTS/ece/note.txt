@@ -14,19 +14,25 @@ Per JSON API USER:
 - Se la connessione non è HTTPS aggiungere il parametro "insecure=cool"
 - Per la registrazione utenti, abilitare "Impostazioni > Generali > Iscrizione > Chiunque può iscriversi"
 
-=== Funzionalità app MAGAZINE ===
+Per abilitare READ/ WRITE su WooCommerce (save, update, delete):
+- In the left pane of the WooCommerce Dashboard hover over "WooCommerce" and click on settings
+- Click on the API tab
+- Click on Keys/Apps and then click on the existing API Key
+- Set the permissions to "Read/Write" and save changes. 
+
+=== Funzionalità app WAREHOUSE ===
 1) 	Login 					-> Json Api User 	-> api/user/generate_auth_cookie/?username=admin&password=admin&insecure=cool
 3) 	User Account 			-> Json Api User 	-> api/user/get_userinfo/?user_id=1&insecure=cool
 3) 	Categorie 				-> WooCommerce Ext 	-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_products_cat.php
 4) 	Prodotti: Lista			-> WooCommerce Ext 	-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_products.php
 5) 	Prodotti: Ricerca 		-> WooCommerce Ext 	-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_products_cat_filter.php?filterName=category&filterValue=CAT_NAME
-6) 	Prodotti: Dettaglio
-7)  Prodotti: Crea
-8)  Prodotti: Update
-9)  Prodotti: Delete
-10) Fornitori 				-> Custom 			-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_users.php?role=magazine_fornitore
-11) Clienti					-> Custom 			-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_users.php?role=magazine_cliente
-11) Ordini					-> WooCommerce Ext  -> HOST/wp-content/plugins/alefal_woocommerce/services/ece_orders.php
+6) 	Prodotti: Dettaglio 	-> WooCommerce Ext 	-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_product_detail.php?id=ID
+7)  Prodotti: Crea			-> WooCommerce Ext 	-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_product_create.php			//TODO: tutti i parametri in GET o POST
+8)  Prodotti: Update		-> WooCommerce Ext 	-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_product_update.php?id=ID 	//TODO: tutti i parametri in GET o POST
+9)  Prodotti: Delete 		-> WooCommerce Ext 	-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_product_delete.php?id=ID
+10) Ordini					-> WooCommerce Ext  -> HOST/wp-content/plugins/alefal_woocommerce/services/ece_orders.php
+11) Fornitori 				-> Custom 			-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_users.php?role=stock_fornitore
+12) Clienti					-> Custom 			-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_users.php?role=stock_cliente
 
 === Funzionalità app ECOMMERCE ===
 1) 	Login 					-> Json Api User 	-> api/user/generate_auth_cookie/?username=admin&password=admin&insecure=cool

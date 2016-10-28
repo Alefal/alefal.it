@@ -1,7 +1,6 @@
 <?php
 require_once( 'ece_settings.php' );
 
-
 $eceGetCallArray 	= array();
 $eceResultArray		= array();
 $eceOutputArray 	= array();
@@ -34,16 +33,6 @@ try {
 	//print '</pre>';
 
 } catch ( WC_API_Client_Exception $e ) {
-
-    echo $e->getMessage() . PHP_EOL;
-    echo $e->getCode() . PHP_EOL;
-
-    if ( $e instanceof WC_API_Client_HTTP_Exception ) {
-
-        print_r( $e->get_request() );
-        print_r( $e->get_response() );
-    }
-
     $eceResultArray[] = array(
         'result'  => 'KO',
         'message' => $e->getMessage().' - '.$e->getCode()
