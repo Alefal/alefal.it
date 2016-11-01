@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>homepage</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  
+  <ion-grid>
+    <ion-row>
+      <ion-col width-50 (click)="navigate('Prodotti')">
+        <ion-icon name="list"></ion-icon>
+        <h1>Prodotti</h1>
+      </ion-col>
+      <ion-col width-50 (click)="navigate('Ordini')">
+        <ion-icon name="list-box"></ion-icon>
+        <h1>Ordini</h1>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col width-50 (click)="navigate('Categorie')">
+        <ion-icon name="contact"></ion-icon>
+        <h1>Categorie</h1>
+      </ion-col>
+      <ion-col width-50 (click)="navigate('Magazzino')">
+        <ion-icon name="contacts"></ion-icon>
+        <h1>Magazzino</h1>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col width-50 (click)="navigate('Clienti')">
+        <ion-icon name="contact"></ion-icon>
+        <h1>Clienti</h1>
+      </ion-col>
+      <ion-col width-50 (click)="navigate('Fornitori')">
+        <ion-icon name="contacts"></ion-icon>
+        <h1>Fornitori</h1>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

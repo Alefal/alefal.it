@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
 
+import { Homepage }             from '../homepage/homepage';
+
 import { HttpService }          from '../../providers/http-service';
 
 @Component({
@@ -9,11 +11,12 @@ import { HttpService }          from '../../providers/http-service';
 })
 export class Login {
 
-  username:string;
-  password:string;
+  username:   string = 'admin';
+  password:   string = 'admin';
+  userLogged: string;
 
   loading: any;
-  errorMessage: String;
+  errorMessage: string;
   errorMessageView: any;
 
   constructor(
@@ -42,6 +45,21 @@ export class Login {
       .getCallHttp('authentication',this.username,this.password)
       .then(res => {
         console.log('res: '+JSON.stringify(res));
+
+        if(res.status == 'error') {
+          this.errorMessage = res.error;
+          this.errorMessageView = true;
+        } else if(res.status == 'ok') {
+          this.userLogged = res.user.nickname;
+          //TODO: parametri nel localStorage
+          this.navCtrl.push(Homepage, {
+            userLogged: this.userLogged
+          });
+          this.navCtrl.setRoot(Homepage);
+        } else {
+          this.errorMessage = 'Error!';
+          this.errorMessageView = true;
+        }
         /*
         -> ERROR
         {"status":"error","error":"Invalid username/email and/or password."}

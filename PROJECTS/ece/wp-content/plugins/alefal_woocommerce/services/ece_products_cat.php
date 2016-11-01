@@ -30,7 +30,7 @@ try {
         );  
     }
     //print_r($eceOutputArray);
-	print '</pre>';
+	//print '</pre>';
 
 } catch ( WC_API_Client_Exception $e ) {
     $eceResultArray[] = array(

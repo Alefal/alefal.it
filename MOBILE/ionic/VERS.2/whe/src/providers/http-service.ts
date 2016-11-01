@@ -19,6 +19,16 @@ export class HttpService {
         var url = '';
         if(call == 'authentication') {
             url = '/api/user/generate_auth_cookie/?username='+username+'&password='+password+'&insecure=cool';
+        } else if(call == 'getProductsCategory') {
+            url = '/wp-content/plugins/alefal_woocommerce/services/ece_products_cat.php';
+        } else if(call == 'getProducts') {
+            url = '/wp-content/plugins/alefal_woocommerce/services/ece_products.php';
+        } else if(call == 'getOrders') {
+            url = '/wp-content/plugins/alefal_woocommerce/services/ece_orders.php';
+        } else if(call == 'getCustomer') {
+            url = '/wp-content/plugins/alefal_woocommerce/services/ece_users.php?role=stock_cliente';
+        } else if(call == 'getSupplier') {
+            url = '/wp-content/plugins/alefal_woocommerce/services/ece_users.php?role=stock_fornitore';
         }
 
         console.log('URL: '+url);
