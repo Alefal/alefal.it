@@ -1,0 +1,9 @@
+SUBLIME TEXT:
+npm install -g less
+PACKAGE CONTROL - INSTALL - LESS
+PACKAGE CONTROL - INSTALL - LESSC
+PACKAGE CONTROL - INSTALL - TypeScript
+PACKAGE CONTROL - INSTALL - SideBareEnhancements
+Color Highlighter
+CSS Extended Completions
+FileDiffs
