@@ -7,8 +7,10 @@ try {
 	$woocommerce = new WC_API_Client( $store_url, $consumer_key, $consumer_secret, $options );
     
     print '<pre>';
-	$eceGetCallArray = $woocommerce->orders->get();
-	print_r($eceGetCallArray->orders);
+	//$eceGetCallArray = $woocommerce->products->get(null, array('filter[limit]' => 50 , 'fields' => 'id,status' ));
+    //$eceGetCallArray = $woocommerce->products->get(null, array('filter[name]' => 'Test Product'));
+    $eceGetCallArray = $woocommerce->products->get(null, array( 'search' => 'Test Product'));
+    print_r($eceGetCallArray);
 	print '</pre>';
 
 } catch ( WC_API_Client_Exception $e ) {

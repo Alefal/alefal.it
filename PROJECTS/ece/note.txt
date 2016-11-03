@@ -35,6 +35,9 @@ Per abilitare READ/ WRITE su WooCommerce (save, update, delete):
 11) Fornitori 				OK -> Custom 			-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_users.php?role=stock_fornitore
 12) Clienti					OK -> Custom 			-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_users.php?role=stock_cliente
 
+$woocommerce->products->get(null, array('filter[limit]' => -1)) 							//ALL PRODUCTS
+$woocommerce->products->get(null, array('filter[limit]' => 5 , 'fields' => 'id,status' ));
+
 === BACKOFFICE WHE (WhareHouseEngine) ===
 Sistema basato su Wordpress con i seguenti plugin:
 - JSON API

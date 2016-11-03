@@ -1,0 +1,21 @@
+-> Login: form authentication
+
+-> Homepage con link alle sezioni:
+-> MAGAZZINO 
+gestione veloce delle quantità dei prodotti con update multiplo (carica / scarico)
+
+-> ORDINI
+visualizzazione degli ordini dei clienti e relativa gestione degli stati 
+(TODO: servizio $client->orders->update_status( $order_id, 'pending' ))
+
+-> CATEGORIE
+visualizzazione e gestione delle categorie (NOTA: solo creazione) e visualizzazione prodotti associati a quella categoria (COUNT)
+
+-> PRODOTTI
+visualizzazione e gestione dei prodotti (CRUD e RICERCA con ANGULAR)
+
+-> CLIENTI
+visualizzazione dei clienti
+
+-> FORNITORI
+visualizzazione dei fornitori
