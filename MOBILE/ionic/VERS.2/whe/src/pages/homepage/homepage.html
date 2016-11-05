@@ -1,6 +1,13 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>homepage</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>WHE</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="logout()">
+        <ion-icon ios="ios-exit" md="md-exit"></ion-icon>
+      </button>
+    </ion-buttons>
+
   </ion-navbar>
 </ion-header>
 
@@ -10,7 +17,7 @@
     <ion-row>
       <ion-col width-50 (click)="navigate('Magazzino')">
         <div class="homeLink">
-          <ion-icon name="contacts"></ion-icon>
+          <ion-icon name="barcode"></ion-icon>
           <h1>Magazzino</h1>
         </div>
       </ion-col>
@@ -25,7 +32,7 @@
     <ion-row>
       <ion-col width-50 (click)="navigate('Categorie')">
         <div class="homeLink">
-          <ion-icon name="contact"></ion-icon>
+          <ion-icon name="albums"></ion-icon>
           <h1>Categorie</h1>
         </div>
       </ion-col>

@@ -9,6 +9,8 @@ import { HttpService }          from '../../providers/http-service';
 })
 export class Ordini {
 
+  orders: any;
+  nothing: string;
   loading: any;
   errorMessage: string;
   errorMessageView: any;
@@ -23,7 +25,8 @@ export class Ordini {
   ionViewDidLoad() {
     console.log('Hello Categorie Page');
     this.loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+      spinner: 'crescent',
+      //content: 'Please wait...'
     });
     this.loading.present();
 
@@ -32,7 +35,11 @@ export class Ordini {
       .then(res => {
         console.log('res: '+JSON.stringify(res));
 
-        
+        if(res[0].response[0].result == 'OK') {
+          this.orders = res[0].output;
+        } else {
+          this.nothing = 'Nessun dato! Riprovare più tardi.';
+        }
         this.loading.dismiss();
       })
       .catch(error => {

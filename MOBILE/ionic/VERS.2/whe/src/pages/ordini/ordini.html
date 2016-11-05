@@ -6,13 +6,23 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>ordini</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Ordini</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+
+  <ion-list>
+    <ion-item *ngFor="let order of orders">
+      <ion-icon name="ios-list-box-outline" item-left class="iconsList" color="primary"></ion-icon>
+      <h2>Ordine numero <strong>{{order.id}}</strong></h2>
+      <h3>Totale <strong>{{order.total}} &euro;</strong></h3>
+      <p>Eseguito da <strong>{{order.customer.billing_address.first_name}} {{order.customer.billing_address.last_name}}</strong></p>
+      <ion-icon name="eye" item-right color="primary"></ion-icon>
+    </ion-item>
+  </ion-list>
 
 </ion-content>

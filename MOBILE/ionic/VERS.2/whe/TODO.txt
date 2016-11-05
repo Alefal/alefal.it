@@ -39,7 +39,8 @@ visualizzazione degli ordini dei clienti e relativa gestione degli stati
                "avatar_url":"http:\/\/1.gravatar.com\/avatar\/?s=96",
                "billing_address":{  
                   "first_name":"Alessandro",
-                  "last_name":"Falcone",
+                  "
+                  ":"Falcone",
                   "company":"casa",
                   "address_1":"Via Seggio",
                   "address_2":"5",

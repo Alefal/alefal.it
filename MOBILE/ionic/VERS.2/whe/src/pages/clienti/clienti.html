@@ -6,13 +6,24 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>clienti</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Clienti</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+
+  <ion-list>
+    <ion-item *ngFor="let user of users">
+      <ion-avatar item-left>
+        <ion-icon name="contact" item-left class="iconsList" color="primary"></ion-icon>
+      </ion-avatar>
+      <h2>{{user.display_name}}</h2>
+      <p>{{user.user_email}}</p>
+      <ion-icon name="mail" item-right color="primary"></ion-icon>
+    </ion-item>
+  </ion-list>
 
 </ion-content>

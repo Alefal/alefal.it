@@ -9,6 +9,8 @@ import { HttpService }          from '../../providers/http-service';
 })
 export class Prodotti {
 
+  products: any;
+  nothing: string;
   loading: any;
   errorMessage: string;
   errorMessageView: any;
@@ -22,7 +24,8 @@ export class Prodotti {
 
   ionViewDidLoad() {
     this.loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+      spinner: 'crescent',
+      //content: 'Please wait...'
     });
     this.loading.present();
 
@@ -31,7 +34,11 @@ export class Prodotti {
       .then(res => {
         console.log('res: '+JSON.stringify(res));
 
-        
+        if(res[0].response[0].result == 'OK') {
+          this.products = res[0].output;
+        } else {
+          this.nothing = 'Nessun dato! Riprovare più tardi.';
+        }
         this.loading.dismiss();
       })
       .catch(error => {

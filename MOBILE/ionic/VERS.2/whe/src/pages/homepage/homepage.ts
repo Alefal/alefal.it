@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
+import { Login }      from '../login/login';
+
 import { Prodotti }   from '../prodotti/prodotti';
 import { Ordini }     from '../ordini/ordini';
 import { Categorie }  from '../categorie/categorie';
@@ -46,6 +48,12 @@ export class Homepage {
     else if(page == 'Fornitori'){
       this.navCtrl.push(Fornitori);
     }
+  }
+
+  logout() {
+    console.log('logout');
+    
+    this.navCtrl.setRoot(Login);
   }
 
 }

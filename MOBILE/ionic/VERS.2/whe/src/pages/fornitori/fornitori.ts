@@ -9,6 +9,8 @@ import { HttpService }          from '../../providers/http-service';
 })
 export class Fornitori {
 
+  users: any;
+  nothing: string;
   loading: any;
   errorMessage: string;
   errorMessageView: any;
@@ -23,7 +25,8 @@ export class Fornitori {
   ionViewDidLoad() {
     console.log('Hello Categorie Page');
     this.loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+      spinner: 'crescent',
+      //content: 'Please wait...'
     });
     this.loading.present();
 
@@ -32,6 +35,11 @@ export class Fornitori {
       .then(res => {
         console.log('res: '+JSON.stringify(res));
 
+        if(res[0].response[0].result == 'OK') {
+          this.users = res[0].users;
+        } else {
+          this.nothing = 'Nessun dato! Riprovare più tardi.';
+        }
         
         this.loading.dismiss();
       })

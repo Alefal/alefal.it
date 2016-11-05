@@ -37,7 +37,8 @@ export class Login {
     console.log('username: '+this.username+' | password: '+this.password);
 
     this.loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+      spinner: 'crescent',
+      //content: 'Please wait...'
     });
     this.loading.present();
 
@@ -52,9 +53,9 @@ export class Login {
         } else if(res.status == 'ok') {
           this.userLogged = res.user.nickname;
           //TODO: parametri nel localStorage
-          this.navCtrl.push(Homepage, {
-            userLogged: this.userLogged
-          });
+          //this.navCtrl.push(Homepage, {
+           // userLogged: this.userLogged
+          //});
           this.navCtrl.setRoot(Homepage);
         } else {
           this.errorMessage = 'Error!';
