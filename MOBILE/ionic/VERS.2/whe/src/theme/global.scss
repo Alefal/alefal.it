@@ -17,12 +17,13 @@ html {
         .scroll-content {
             margin: 0;
             padding: 0;
+            color: white;
 
-            //background: url('../assets/img/bg.png') no-repeat center center fixed; 
-            background-color: #f5f5f5;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            background-size: cover;
+            background: #042862; /* For browsers that do not support gradients */
+            background: -webkit-linear-gradient(left top, #042862, #0a86c1); /* For Safari 5.1 to 6.0 */
+            background: -o-linear-gradient(bottom right, #042862, #0a86c1); /* For Opera 11.1 to 12.0 */
+            background: -moz-linear-gradient(bottom right, #042862, #0a86c1); /* For Firefox 3.6 to 15 */
+            background: linear-gradient(to bottom right, #042862, #0a86c1); /* Standard syntax */
         }
     }
 
@@ -30,12 +31,13 @@ html {
         .scroll-content {
             margin: 0;
             padding: 0;
+            color: white;
 
-            //background: url('../assets/img/tdrs_landscape.png') no-repeat center center fixed; 
-            background-color: #f5f5f5;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            background-size: cover;
+            background: #042862; /* For browsers that do not support gradients */
+            background: -webkit-linear-gradient(left top, #042862, #0a86c1); /* For Safari 5.1 to 6.0 */
+            background: -o-linear-gradient(bottom right, #042862, #0a86c1); /* For Opera 11.1 to 12.0 */
+            background: -moz-linear-gradient(bottom right, #042862, #0a86c1); /* For Firefox 3.6 to 15 */
+            background: linear-gradient(to bottom right, #042862, #0a86c1); /* Standard syntax */
         }
     }
 
