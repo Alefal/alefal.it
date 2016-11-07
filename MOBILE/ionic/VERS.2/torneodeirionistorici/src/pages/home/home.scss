@@ -1,5 +1,9 @@
 page-home {
 
+    .list-md .item-block .item-inner {
+        border: none !important;
+    }
+
     .button-block {
         width: 90%;
         margin: 0 auto !important;
@@ -19,6 +23,9 @@ page-home {
     }
     .listStats ion-item {
         padding: 15px;
+
+        margin-bottom: 15px;
+        border-radius: 20px;
     }
 
     .itemHeader {

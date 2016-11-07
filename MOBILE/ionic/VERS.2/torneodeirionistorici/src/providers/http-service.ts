@@ -18,8 +18,8 @@ export class HttpService {
         //var host = '/torneodeirionistorici/rest';
         //var host = '/PROJECTS/leagueengine';
 
-        //var host = '/demo/leagueengine';
-        var host = 'http://www.amalficoastapps.it/demo/leagueengine';
+        var host = '/demo/leagueengine';
+        //var host = 'http://www.amalficoastapps.it/demo/leagueengine';
         
         var url = '';
         if(call == 'getTorneo') {
@@ -27,7 +27,7 @@ export class HttpService {
         } else if(call == 'getComunicatiUfficiali') {
             url = '?json=get_tag_posts&tag_slug=comunicatiUfficiali';
         } else if(call == 'getRioniNews') {
-             url = '?json=get_tag_posts&tag_slug=giornalinoUfficiale';
+             url = '?json=get_tag_posts&tag_slug=fotoVideo';
         } else if(call == 'getSquadre') {
             url = '/wp-content/plugins/alefal_leagueengine/le_teams.php?tipologiaTorneo='+tipologia;
         } else if(call == 'getGiocatori') {
