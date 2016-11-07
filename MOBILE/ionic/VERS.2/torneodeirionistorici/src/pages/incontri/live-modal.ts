@@ -46,7 +46,8 @@ export class LiveModal {
     this.away_team_logo   = params.get('away_team_logo');
 
     this.loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+      spinner: 'crescent',
+      //content: 'Please wait...'
     });
     this.loading.present();
 

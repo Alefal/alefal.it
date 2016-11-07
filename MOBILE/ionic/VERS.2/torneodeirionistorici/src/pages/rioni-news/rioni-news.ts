@@ -40,7 +40,8 @@ export class RioniNews {
   }
   getData(){
     this.loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+      spinner: 'crescent',
+      //content: 'Please wait...'
     });
     this.loading.present();
 

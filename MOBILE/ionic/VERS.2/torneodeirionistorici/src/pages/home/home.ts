@@ -20,6 +20,7 @@ import { ConnectivityService }  from '../../providers/connectivity-service';
 export class HomePage {
 
   tournament: any;
+  tournamentName: string;
   tournamentType: string;
   tournamentTeams: number;
   tournamentRound: number;
@@ -46,7 +47,8 @@ export class HomePage {
         this.connectivityService.showInfoNoData();
       } else {
         this.tournament = JSON.parse(localStorage.getItem('getTorneo'));
-        this.tournamentType   = this.tournament[0].tour_type;
+        this.tournamentName   = this.tournament[0].tour_name;
+        this.tournamentType   = this.tournament[0].tour_type;        
         this.tournamentTeams  = this.tournament[0].tour_teams;  //Math.log2(this.tournamentTeams)
         this.tournamentRound  = this.tournament[0].tour_round;
         this.getRounds(this.tournamentRound);
@@ -57,7 +59,8 @@ export class HomePage {
   }
   getData(){
     this.loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+      spinner: 'crescent',
+      //content: 'Please wait...'
     });
     this.loading.present();
 
@@ -66,6 +69,7 @@ export class HomePage {
       .then(res => {
         if(res[0].response[0].result == 'OK') {
           this.tournament = JSON.stringify(res[0].tournament);
+          this.tournamentName   = res[0].tournament[0].tour_name;
           this.tournamentType   = res[0].tournament[0].tour_type;
           this.tournamentTeams  = res[0].tournament[0].tour_teams;  //Math.log2(this.tournamentTeams)
           this.tournamentRound  = res[0].tournament[0].tour_round;

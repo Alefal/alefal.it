@@ -42,7 +42,8 @@ export class StatisticaModal {
 
   getData(){
     this.loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+      spinner: 'crescent',
+      //content: 'Please wait...'
     });
     this.loading.present();
 

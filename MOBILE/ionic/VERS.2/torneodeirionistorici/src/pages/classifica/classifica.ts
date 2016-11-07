@@ -46,7 +46,8 @@ export class Classifica {
   getData(){
     console.log('Hello Classifica Page');
     this.loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+      spinner: 'crescent',
+      //content: 'Please wait...'
     });
     this.loading.present();
 

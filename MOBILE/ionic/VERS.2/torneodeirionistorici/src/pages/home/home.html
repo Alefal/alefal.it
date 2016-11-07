@@ -1,6 +1,6 @@
 <ion-header>
 	<ion-navbar color="greenDark">
-		<ion-title>Home</ion-title>
+		<ion-title>{{tournamentName}}</ion-title>
 	</ion-navbar>
 </ion-header>
 <!--
@@ -9,9 +9,11 @@
 <ion-content padding>
   
 	<ion-list class="listStats" *ngIf="tournamentType != 'leagueknockout' && tournamentType != 'knockout'">
+		<!--
 		<ion-item class="itemHeader">
 			LEAGUE
 		</ion-item>
+		-->
 		<ion-item (click)="navigate('Comunicati','','')">
 			<ion-icon name="bookmarks" item-left></ion-icon>
 			Comunicati
@@ -45,16 +47,18 @@
 	</ion-list>
 
 	<ion-list class="listStats" *ngIf="tournamentType == 'leagueknockout'">
+		<!--
 		<ion-item class="itemHeader">
 			LEAGUE/KNOCKOUT
 		</ion-item>
+		-->
 		<ion-item (click)="navigate('Comunicati','','')">
 			<ion-icon name="bookmarks" item-left></ion-icon>
 			Comunicati
 			<ion-icon name="ios-arrow-forward" item-right></ion-icon>
 		</ion-item>
 		<ion-item (click)="navigate('RioniNews','','')">
-			<ion-icon name="chatbubbles" item-left></ion-icon>
+			<ion-icon name="images" item-left></ion-icon>
 			Foto e Video
 			<ion-icon name="ios-arrow-forward" item-right></ion-icon>
 		</ion-item>
@@ -88,9 +92,11 @@
 	</ion-list>
 
 	<ion-list class="listStats" *ngIf="tournamentType == 'knockout'">
+		<!--
 		<ion-item class="itemHeader">
 			KNOCKOUT
 		</ion-item>
+		-->
 		<ion-item (click)="navigate('Comunicati','','')">
 			<ion-icon name="bookmarks" item-left></ion-icon>
 			Comunicati

@@ -36,7 +36,8 @@ export class GiocatoriModal {
     this.tipologiaTorneo = params.get('tipologiaTorneo');
 
     this.loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+      spinner: 'crescent',
+      //content: 'Please wait...'
     });
     this.loading.present();
 
@@ -68,7 +69,8 @@ export class GiocatoriModal {
     this.player = new Array();
 
     this.loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+      spinner: 'crescent',
+      //content: 'Please wait...'
     });
     this.loading.present();
 
