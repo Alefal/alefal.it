@@ -2,6 +2,8 @@
 //League
 $league_id = 2; 
 $season_id = 32;
+//Tournament test 2x3
+$tournament_id = 59;
 //Tournament knockout
 //$tournament_id = 4;
 //Tournament leagueknockout

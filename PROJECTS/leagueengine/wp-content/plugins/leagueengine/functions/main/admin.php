@@ -351,7 +351,12 @@ function leagueengine_create() {
 					'sort_order' => stripslashes_deep($_POST['player_sort_order']),
 					'squad_number' => stripslashes_deep($_POST['player_squad_number']),
 				));
-
+				/*** ALESSANDRO: check query
+				print_r($wpdb->show_errors());
+				print_r($wpdb->last_query);
+				print_r($wpdb->last_error);
+				die();
+				***/
 				$msg = '<div class="success">'.__('Success!','leagueengine').'</div>';
 				
 				if($_POST['add_player_to_team'] == '1') {
@@ -375,6 +380,29 @@ function leagueengine_create() {
 								'start_date' => $start_date,
 								'sort_order' => stripslashes_deep($_POST['player_sort_order']),
 							));
+						}
+					} else if($_POST['tournament'] && $_POST['tournament_team']) {
+
+						$tournament = $_POST['tournament'];
+						$team = $_POST['tournament_team'];
+						$player = $wpdb->insert_id;
+						$tbl = $wpdb->prefix . 'leagueengine_player_careers';
+						$tbl2 = $wpdb->prefix . 'leagueengine_tournaments';
+						$start_date = $wpdb->get_var("SELECT start_date FROM $tbl2 WHERE data_id = '$tournament'");
+						$check = $wpdb->get_results("SELECT * FROM $tbl WHERE tournament_id = '$tournament' AND player_id = '$player'");
+						
+						if($check) {
+							$msg = '<div class="error">'.__('Error! Player already in the tournament.','leagueengine').'</div>';
+						} else {
+							$wpdb->insert($tbl, array(
+								'tournament_id' => $tournament,
+								'team_id' => $team,
+								'player_id' => $player,
+								'start_date' => $start_date,
+								'sort_order' => leagueengine_fetch_data_from_id($player, 'sort_order')
+							));
+							
+							$msg = '<div class="success">'.__('Success!','leagueengine').'</div>';
 						}
 					}
 				}

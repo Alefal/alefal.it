@@ -29,3 +29,8 @@ IncontroLive	Event
 2) Creare SQUADRE
 3) Associare le SQUADRE alla COMPETIZIONE
 4) Creare i PLAYER e associarli alla SQUADRA
+
+
+IMPORTANTE
+- nella tabella 'leagueengine_data' il campo degli utenti si deve chiamare 'wp_user'
+- nell'inserimento di un player, il campo 'sort_order' è obbligatorio

@@ -1,5 +1,5 @@
 <tr class="create_player" style="display:none;">
-	<td><?php _e('Player Name','leagueengine'); ?></td>
+	<td><?php _e('Player Name','leagueengine'); ?> *</td>
 	<td><input type="text" name="player_name"></td>
 </tr>
 
@@ -17,7 +17,7 @@
 </tr>
 
 <tr class="create_player" style="display:none;">
-	<td><?php _e('Sort Order','leagueengine'); ?></td>
+	<td><?php _e('Sort Order','leagueengine'); ?> *</td>
 	<td><input type="text" name="player_sort_order"></td>
 </tr>
 
@@ -61,5 +61,26 @@
 	<td><?php _e('Team','leagueengine'); ?></td>
 	<td>
 		<select name="new_player_team" class="pick-team select2"></select>
+	</td>
+</tr>
+
+<tr class="add_player_to_team" style="display:none;">
+	<td><?php _e('Tournament','leagueengine'); ?></td>
+	<td>
+		<select name="tournament" class="pick-tournament select2">
+			<?php
+				$tournaments = leagueengine_data_exists('tournament');
+				echo '<option value=""></option>';
+				foreach($tournaments as $tournament) {
+					echo '<option value="'.$tournament->id.'">'.leagueengine_fetch_data_from_id($tournament->id,'data_value').'</option>';
+				} ?>
+		</select>	
+	</td>
+</tr>
+
+<tr class="add_player_to_team" style="display:none;">
+	<td><?php _e('Team','leagueengine'); ?></td>
+	<td>
+		<select name="tournament_team" class="pick-tournament-team select2"></select>
 	</td>
 </tr>

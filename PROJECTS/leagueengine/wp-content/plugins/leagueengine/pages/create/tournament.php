@@ -36,6 +36,7 @@
 	<td>
 		<select name="tournament_teams" class="select2-nosearch">
 			<option value="4">4</option>
+			<option value="6">NEW: 6</option>
 			<option value="8">8</option>
 			<option value="16">16</option>
 			<option value="32">32</option>
@@ -48,6 +49,7 @@
 	<td>
 		<select name="tournament_groups" class="select2-nosearch">
 			<option value="2x2">2 <?php _e('Groups','leagueengine'); ?> <?php _e('x','leagueengine'); ?> 2 <?php _e('Teams','leagueengine'); ?></option>
+			<option value="2x3">NEW: 2 <?php _e('Groups','leagueengine'); ?> <?php _e('x','leagueengine'); ?> 3 <?php _e('Teams','leagueengine'); ?></option>
 			<option value="2x4">2 <?php _e('Groups','leagueengine'); ?> <?php _e('x','leagueengine'); ?> 4 <?php _e('Teams','leagueengine'); ?></option>
 			<option value="4x2">4 <?php _e('Groups','leagueengine'); ?> <?php _e('x','leagueengine'); ?> 2 <?php _e('Teams','leagueengine'); ?></option>
 			<option value="2x8">2 <?php _e('Groups','leagueengine'); ?> <?php _e('x','leagueengine'); ?> 8 <?php _e('Teams','leagueengine'); ?></option>
