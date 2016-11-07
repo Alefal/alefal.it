@@ -70,6 +70,8 @@
 					<ion-row>
 						<ion-col align="center">
 							<h1 class="groupName">GRUPPO {{group.group}}</h1>
+							<h5 class="groupMatchs" (click)="tournamentMatchs('tournament',group.group)">
+								<ion-icon name="md-calendar"></ion-icon> Vedi Incontri</h5>
 							<hr />
 						</ion-col>
 					</ion-row>
@@ -123,6 +125,7 @@
 						</ion-row>
 					</ion-grid>
 				</ion-item>
+				<!--
 				<ion-grid class="gridFooter">
 					<ion-row>
 						<ion-col align="center">
@@ -131,6 +134,7 @@
 						</ion-col>
 					</ion-row>
 				</ion-grid>
+				-->
 			</ion-list>
 		</div>
 	</div>
