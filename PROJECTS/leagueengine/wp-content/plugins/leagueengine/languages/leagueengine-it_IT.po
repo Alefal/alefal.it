@@ -1,0 +1,1918 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: LeagueEngine 2.3.2\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Language-Team: 2DMonkey <hello@2dmonkey.com>\n"
+"MIME-Version: 1.0\n"
+"X-Generator: Poedit 1.8.11\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Last-Translator: \n"
+"Language: it_IT\n"
+
+#. Text in echo
+#: leagueengine/functions/classes/widget.php:19
+msgid "Title"
+msgstr "Titolo"
+
+#. Text in function
+#: leagueengine/functions/settings/update.php:1
+msgid ""
+"An Unexpected HTTP Error occurred during the API request.</p> <p><a href=\"?"
+"\" onclick=\"document.location.reload(); return false;\">Try again</a>"
+msgstr "Eccezione HTTP"
+
+#. Text in function
+#: leagueengine/functions/settings/update.php:1
+msgid "An unknown error occurred"
+msgstr "Errore sconosciuto"
+
+#. Text in function
+#: leagueengine/pages/settings/export.php:717
+#: leagueengine/pages/settings/import.php:714
+msgid " Rows Imported"
+msgstr "Righe Importate"
+
+#. Text in echo
+#: leagueengine/pages/settings/export.php:166
+#: leagueengine/pages/settings/import.php:163
+msgid "-- Select --"
+msgstr "-- Seleziona --"
+
+#. Text in echo
+#: leagueengine/pages/settings/settings.php:47
+msgid "10"
+msgstr "10"
+
+#. Text in echo
+#: leagueengine/pages/settings/settings.php:48
+msgid "20"
+msgstr "20"
+
+#. Text in echo
+#: leagueengine/pages/settings/settings.php:46
+msgid "5"
+msgstr "5"
+
+#. Text in echo
+#: leagueengine/pages/settings/settings.php:49
+msgid "50"
+msgstr "50"
+
+#. Text in echo
+#: leagueengine/pages/create/event.php:7
+#: leagueengine/functions/tinymce/popup.php:776
+#: leagueengine/pages/data/event.php:37
+msgid "Abbreviation"
+msgstr "Abbreviazione"
+
+#. Text in echo
+#: leagueengine/pages/settings/system.php:92
+msgid "Active Plugins"
+msgstr "Attiva Plugin"
+
+#. Text in echo
+#: leagueengine/pages/settings/system.php:78
+msgid "Active Theme"
+msgstr "Attiva Tema"
+
+#. Text in function
+#: leagueengine/functions/main/admin.php:1
+msgid "Add Event"
+msgstr "Aggiungi Evento"
+
+#. Text in function
+#: leagueengine/pages/season/season_table.php:135
+#: leagueengine/pages/season/season_table.php:137
+msgid "Add Player To Season"
+msgstr "Aggiungi Giocatore alla Stagione"
+
+#. Text in function
+#: leagueengine/pages/tournament/tournament_teams.php:53
+#: leagueengine/pages/tournament/tournament_teams.php:142
+msgid "Add Player To Tournament"
+msgstr "Aggiungi Giocatore al Torneo"
+
+#. Text in function
+#: leagueengine/pages/season/season_table.php:135
+#: leagueengine/pages/season/season_table.php:139
+msgid "Add Team To Season"
+msgstr "Aggiungi Squadra alla Stagione"
+
+#. Text in function
+#: leagueengine/pages/tournament/tournament_teams.php:53
+#: leagueengine/pages/tournament/tournament_teams.php:144
+msgid "Add Team To Tournament"
+msgstr "Aggiungi Squadra al Torneo"
+
+#. Text in function
+#: leagueengine/pages/player/player_career.php:29
+msgid "Add new"
+msgstr "Aggiungi nuovo"
+
+#. Text in echo
+#: leagueengine/pages/create/player.php:30
+msgid "Add player to existing team"
+msgstr "Aggiungi giocatore ad una squadra esistente"
+
+#. Text in echo
+#: leagueengine/pages/create/team.php:30
+msgid "Add team to existing competition"
+msgstr "Aggiungi squadra ad una competizione esistente"
+
+#. Text in echo
+#: leagueengine/pages/settings/settings.php:21
+msgid "Admin Rows Per Page"
+msgstr "Righe per pagina"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:646
+msgid "All Matches"
+msgstr "Tutti gli Incontri"
+
+#. Text in function
+#: leagueengine/functions/themes/default/show_team.php:1
+msgid "App"
+msgstr "App"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:760
+#: leagueengine/functions/tinymce/popup.php:986
+#: leagueengine/functions/themes/default/show_leaderboard.php:1
+#: leagueengine/functions/themes/default/show_team.php:1
+#: leagueengine/functions/themes/default/show_player.php:1
+msgid "Appearances"
+msgstr "Presenze"
+
+#. Text in echo
+#: leagueengine/pages/settings/settings_display.php:107
+msgid "Ascending"
+msgstr "Ascendente"
+
+#. Text in echo
+#: leagueengine/pages/create/create.php:38
+#: leagueengine/functions/main/admin.php:1
+msgid "Attribute"
+msgstr "Attributo"
+
+#. Text in echo
+#: leagueengine/pages/data/attribute.php:32
+#: leagueengine/pages/create/attribute.php:2
+msgid "Attribute Name"
+msgstr "Nome Attributo"
+
+#. Text in function
+#: leagueengine/pages/data/data.php:24
+#: leagueengine/functions/tinymce/popup.php:677
+#: leagueengine/functions/settings/menu.php:1
+#: leagueengine/pages/tournament/tournament_match.php:95
+#: leagueengine/pages/data/attribute.php:23
+#: leagueengine/pages/season/season_match.php:96
+#: leagueengine/functions/main/admin.php:1
+msgid "Attributes"
+msgstr "Attributi"
+
+#. Text in echo
+#: leagueengine/pages/settings/settings_display.php:86
+msgid "Automatic Linking"
+msgstr "Collegamento Automatico"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:721
+#: leagueengine/functions/tinymce/popup.php:561
+#: leagueengine/functions/tinymce/popup.php:722
+#: leagueengine/pages/tournament/tournament_match.php:119
+#: leagueengine/pages/dashboard.php:59
+#: leagueengine/pages/season/season_match.php:120
+#: leagueengine/pages/season/season_new_match.php:73
+#: leagueengine/pages/tournament/tournament_knockout.php:97
+#: leagueengine/functions/themes/default/show_team.php:1
+#: leagueengine/functions/themes/default/show_season_matches.php:1
+msgid "Away"
+msgstr "Fuori Casa"
+
+#. Text in function
+#: leagueengine/functions/themes/default/show_tournament.php:1
+#: leagueengine/functions/main/admin.php:1
+msgid "Away Team"
+msgstr "Squadra Fuori Casa"
+
+#. Text in function
+#: leagueengine/pages/tournament/tournament_knockout.php:156
+msgid "Before you can view the tournament bracket you need"
+msgstr "Prima di poter visualizzare sono necessari i gruppi del torneo"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:653
+msgid "Between"
+msgstr "Fra"
+
+#. Text in echo
+#: leagueengine/pages/tournament/tournament.php:86
+#: leagueengine/pages/tournament/tournament_match.php:151
+#: leagueengine/pages/season/season_match.php:149
+#: leagueengine/pages/season/season.php:71
+msgid "Bonus Points"
+msgstr "Punti Bonus"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:536
+msgid "Bracket"
+msgstr "Gruppo"
+
+#. Text in echo
+#: leagueengine/pages/create/team.php:25 leagueengine/pages/create/event.php:20
+#: leagueengine/pages/data/team.php:50 leagueengine/pages/player/player.php:43
+#: leagueengine/pages/create/player.php:10 leagueengine/pages/data/event.php:50
+msgid "Browse"
+msgstr "Seleziona"
+
+#. Text in echo
+#: leagueengine/pages/settings/export.php:77
+#: leagueengine/pages/settings/import.php:74
+msgid "CSV Column"
+msgstr "Colonna CSV"
+
+#. Text in echo
+#: leagueengine/pages/settings/import.php:758
+msgid "CSV File"
+msgstr "File CSV"
+
+#. Text in function
+#: leagueengine/leagueengine.php:1
+msgid "Cannot load this file directly"
+msgstr "Non può caricare direttamente questo file"
+
+#. Text in echo
+#: leagueengine/pages/player/player_career.php:23
+#: leagueengine/functions/settings/menu.php:1
+msgid "Career"
+msgstr "Carriera"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:893
+msgid "Choose League"
+msgstr "Scegli Lingua"
+
+#. Text in echo
+#: leagueengine/pages/settings/settings_display.php:42
+msgid "Choose Page"
+msgstr "Scegli Pagina"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:905
+msgid "Choose Season"
+msgstr "Scegli Stagione"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:910
+msgid "Choose Tournament"
+msgstr "Scegli Torneo"
+
+#. Text in echo
+#: leagueengine/pages/settings/settings_display.php:62
+msgid "Choose page"
+msgstr "Scegli pagina"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:401
+msgid "Class"
+msgstr "Classe"
+
+#. Text in echo
+#: leagueengine/pages/data/attribute.php:56
+#: leagueengine/pages/create/attribute.php:26
+msgid "Colour"
+msgstr "Colore"
+
+#. Text in echo
+#: leagueengine/pages/create/create.php:35
+#: leagueengine/functions/tinymce/popup.php:885
+#: leagueengine/pages/dashboard.php:59 leagueengine/functions/main/admin.php:1
+msgid "Competition"
+msgstr "Competizione"
+
+#. Text in echo
+#: leagueengine/pages/create/team.php:40
+#: leagueengine/pages/player/player_career.php:63
+#: leagueengine/pages/create/create.php:46
+msgid "Competition Type"
+msgstr "Tipo Competizione"
+
+#. Text in echo
+#: leagueengine/pages/tournament/tournament_teams.php:41
+#: leagueengine/pages/tournament/tournament.php:26
+#: leagueengine/pages/data/data.php:24 leagueengine/pages/data/league.php:26
+#: leagueengine/pages/season/season_table.php:28
+#: leagueengine/functions/tinymce/popup.php:379
+#: leagueengine/functions/settings/menu.php:1
+#: leagueengine/pages/tournament/tournament_match.php:52
+#: leagueengine/pages/season/season_match.php:56
+#: leagueengine/pages/season/season_new_match.php:21
+#: leagueengine/pages/tournament/tournament_knockout.php:30
+#: leagueengine/pages/season/season_matches.php:24
+#: leagueengine/pages/season/season.php:25
+#: leagueengine/functions/main/admin.php:1
+msgid "Competitions"
+msgstr "Competizioni"
+
+#. Text in echo
+#: leagueengine/pages/create/create.php:24
+#: leagueengine/pages/create/create.php:68 leagueengine/pages/dashboard.php:26
+#: leagueengine/pages/season/season_new_match.php:82
+#: leagueengine/functions/main/admin.php:1
+msgid "Create"
+msgstr "Crea"
+
+#. Text in echo
+#: leagueengine/pages/dashboard.php:36 leagueengine/functions/main/admin.php:1
+msgid "Dashboard"
+msgstr "Cruscotto"
+
+#. Text in echo
+#: leagueengine/pages/settings/settings.php:42
+msgid "Dashboard Upcoming Matches"
+msgstr "Cruscotto Prossimi Incontri"
+
+#. Text in echo
+#: leagueengine/pages/settings/export.php:76
+#: leagueengine/pages/settings/import.php:73
+msgid "Database Column"
+msgstr "Colonna Database"
+
+#. Text in echo
+#: leagueengine/pages/settings/export.php:761
+#: leagueengine/pages/settings/import.php:766
+msgid "Database Table"
+msgstr "Tabella Database"
+
+#. Text in echo
+#: leagueengine/pages/settings/system.php:15
+#: leagueengine/pages/settings/permissions.php:14
+#: leagueengine/pages/dashboard.php:12
+msgid "Database tables do not exist. Please re-install the plugin."
+msgstr "La tabella del database non esiste. Re-installa il pligin."
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:706
+#: leagueengine/functions/tinymce/popup.php:707
+#: leagueengine/pages/data/attribute.php:54
+#: leagueengine/pages/season/season_match.php:116
+#: leagueengine/pages/season/season_new_match.php:51
+#: leagueengine/pages/create/attribute.php:24
+#: leagueengine/functions/main/admin.php:1
+#: leagueengine/functions/themes/default/show_season_matches.php:1
+#: leagueengine/pages/settings/settings.php:36
+msgid "Date"
+msgstr "Data"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:960
+msgid "Date Ascending"
+msgstr "Data Crescente"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:961
+msgid "Date Descending"
+msgstr "Data Decrescente"
+
+#. Text in echo
+#: leagueengine/pages/settings/settings_datetime.php:19
+msgid "Date Format"
+msgstr "Formato Data"
+
+#. Text in echo
+#: leagueengine/pages/settings/settings_datetime.php:27
+msgid "Date Picker Format"
+msgstr "Formato DataPicker"
+
+#. Text in function
+#: leagueengine/functions/themes/default/show_tournament.php:1
+#: leagueengine/functions/tinymce/popup.php:550
+#: leagueengine/functions/tinymce/popup.php:551
+#: leagueengine/functions/settings/menu.php:1
+#: leagueengine/pages/tournament/tournament_match.php:116
+#: leagueengine/pages/dashboard.php:37 leagueengine/pages/dashboard.php:59
+msgid "Date/Time"
+msgstr "Data/Ora"
+
+#. Text in echo
+#: leagueengine/pages/season/season_new_match.php:102
+msgid "Days"
+msgstr "Giorni"
+
+#. Text in echo
+#: leagueengine/pages/settings/settings_datetime.php:35
+msgid "Default Match Time"
+msgstr "Orario Incontro Predefinito"
+
+#. Text in echo
+#: leagueengine/pages/settings/settings.php:33
+msgid "Default Sort Order"
+msgstr "Ordinamento Predefinito"
+
+#. Text in function
+#: leagueengine/functions/main/admin.php:1
+msgid "Delete"
+msgstr "Cancella"
+
+#. Text in function
+#: leagueengine/functions/main/admin.php:1
+msgid "Delete All Matches"
+msgstr "Cancella tutti gli Incontri"
+
+#. Text in echo
+#: leagueengine/pages/season/season_match.php:159
+msgid "Delete Match"
+msgstr "Cancella Incontro"
+
+#. Text in function
+#: leagueengine/functions/main/admin.php:1
+msgid "Deleted!"
+msgstr "Cancellato!"
+
+#. Text in echo
+#: leagueengine/pages/settings/import.php:781
+msgid "Delimiter"
+msgstr "Delimitatore"
+
+#. Text in echo
+#: leagueengine/pages/settings/settings_display.php:108
+msgid "Descending"
+msgstr "Discendente"
+
+#. Text in function
+#: leagueengine/functions/main/admin.php:1
+msgid "Description"
+msgstr "Descrizione"
+
+#. Text in function
+#: leagueengine/functions/settings/menu.php:1
+msgid "Details"
+msgstr "Dettagli"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:950
+#: leagueengine/functions/settings/menu.php:1
+msgid "Display"
+msgstr "Visualizza"
+
+#. Text in echo
+#: leagueengine/pages/dashboard.php:45
+msgid "Documentation"
+msgstr "Documentazione"
+
+#. Text in echo
+#: leagueengine/pages/tournament/tournament.php:81
+#: leagueengine/pages/season/season.php:57
+msgid "Draw Points"
+msgstr "Punti Pareggio"
+
+#. Text in function
+#: leagueengine/functions/main/admin.php:1
+msgid "Drawn"
+msgstr "Pareggio..."
+
+#. Text in function
+#: leagueengine/functions/themes/default/show_team.php:1
+msgid "Drew"
+msgstr "Pareggio..."
+
+#. Text in function
+#: leagueengine/functions/themes/default/show_tournament_match.php:1
+#: leagueengine/functions/themes/default/show_season_match.php:1
+msgid "Edit Match"
+msgstr "Modifica Incontro"
+
+#. Text in function
+#: leagueengine/functions/main/admin.php:1
+msgid "Error! Player already in the season."
+msgstr "Errore! Giocatore già nella stagione."
+
+#. Text in function
+#: leagueengine/functions/main/admin.php:1
+msgid "Error! Player already in the tournament."
+msgstr "Errore! Giocatore già nel torneo."
+
+#. Text in function
+#: leagueengine/functions/main/admin.php:1
+msgid "Error! Please choose an event."
+msgstr "Errore! Scegliere un evento."
+
+#. Text in function
+#: leagueengine/functions/main/admin.php:1
+msgid "Error! Please enter a date and time."
+msgstr "Errore! Si prega di inserire la data e l'ora."
+
+#. Text in function
+#: leagueengine/functions/main/admin.php:1
+msgid "Error! Please enter a start date."
+msgstr "Errore! Si prega di inserire una data di inizio."
+
+#. Text in function
+#: leagueengine/functions/main/admin.php:1
+msgid "Error! Please enter a value."
+msgstr "Errore! Per favore inserisci un valore."
+
+#. Text in function
+#: leagueengine/functions/main/admin.php:1
+msgid "Error! Please select a league, season and team."
+msgstr ""
+"Errore! Si prega di selezionare un campionato, la stagione e la squadra."
+
+#. Text in function
+#: leagueengine/functions/main/admin.php:1
+msgid "Error! Team already added."
+msgstr "Errore! Squadra già aggiunta."
+
+#. Text in function
+#: leagueengine/functions/main/admin.php:1
+msgid "Error! Teams cannot be the same."
+msgstr "Errore! Le squadre non possono essere uguali."
+
+#. Text in function
+#: leagueengine/functions/main/admin.php:1
+msgid "Error! Too many teams."
+msgstr "Errore! Troppe squadre."
+
+#. Text in function
+#: leagueengine/functions/main/admin.php:1
+msgid "Error. Please enter a value."
+msgstr "Errore. Per favore inserisci un valore."
+
+#. Text in echo
+#: leagueengine/pages/settings/export.php:203
+#: leagueengine/pages/settings/import.php:200
+msgid "Error. The file could not be uploaded."
+msgstr "Errore. Il file non può essere caricato."
+
+#. Text in function
+#: leagueengine/functions/main/admin.php:1
+msgid "Error. Too many teams in group."
+msgstr "Errore. Troppi squadre in gruppo."
+
+#. Text in echo
+#: leagueengine/pages/create/create.php:40
+#: leagueengine/functions/tinymce/popup.php:922
+#: leagueengine/functions/main/admin.php:1
+msgid "Event"
+msgstr "Evento"
+
+#. Text in echo
+#: leagueengine/pages/create/event.php:2
+msgid "Event Name"
+msgstr "Nome Evento"
+
+#. Text in function
+#: leagueengine/pages/data/data.php:24
+#: leagueengine/functions/settings/menu.php:1
+#: leagueengine/pages/tournament/tournament_match.php:104
+#: leagueengine/pages/season/season_match.php:105
+#: leagueengine/pages/data/event.php:23 leagueengine/functions/main/admin.php:1
+msgid "Events"
+msgstr "Eventi"
+
+#. Text in echo
+#: leagueengine/pages/settings/export.php:16
+#: leagueengine/pages/settings/export.php:784
+#: leagueengine/functions/settings/menu.php:1
+msgid "Export"
+msgstr "Esporta"
+
+#. Text in function
+#: leagueengine/functions/classes/data_table_attributes.php:1
+msgid "F"
+msgstr "F"
+
+#. Text in function
+#: leagueengine/functions/themes/default/show_tournament.php:1
+#: leagueengine/functions/tinymce/popup.php:585
+#: leagueengine/functions/tinymce/popup.php:586
+#: leagueengine/pages/tournament/tournament_knockout.php:97
+msgid "Final"
+msgstr "Finale"
+
+#. Text in echo
+#: leagueengine/pages/create/league.php:25
+msgid "First Season Name"
+msgstr "Nome Prima Stagione"
+
+#. Text in echo
+#: leagueengine/pages/create/league.php:30
+msgid "First Season Start Date"
+msgstr "Data di Inizio Prima Stagione"
+
+#. Text in echo
+#: leagueengine/pages/season/season_new_match.php:36
+msgid "Fixture List"
+msgstr "Calendario Incontri"
+
+#. Text in echo
+#: leagueengine/pages/settings/settings_display.php:126
+msgid "Form Matches"
+msgstr "Form Incontri"
+
+#. Text in echo
+#: leagueengine/pages/data/attribute.php:49
+#: leagueengine/pages/create/attribute.php:19
+msgid "Format"
+msgstr "Formato"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:648
+msgid "Future Matches"
+msgstr "Prossimi Incontri"
+
+#. Text in echo
+#: leagueengine/pages/season/season_new_match.php:96
+msgid "Gap Between Matches"
+msgstr "Gap Tra Partite"
+
+#. Text in function
+#: leagueengine/functions/settings/menu.php:1
+msgid "General"
+msgstr "Generale"
+
+#. Text in echo
+#: leagueengine/pages/season/season_new_match.php:127
+msgid "Generate"
+msgstr "Creare"
+
+#. Text in echo
+#: leagueengine/pages/dashboard.php:44
+msgid "Getting Started"
+msgstr "Iniziare"
+
+#. Text in function
+#: leagueengine/pages/tournament/tournament_match.php:86
+#: leagueengine/pages/season/season_match.php:87
+#: leagueengine/functions/main/admin.php:1
+msgid "Go To Match"
+msgstr "Vai alla Partita"
+
+#. Text in function
+#: leagueengine/functions/themes/default/show_tournament.php:44
+#: leagueengine/pages/tournament/tournament_teams.php:130
+#: leagueengine/functions/main/admin.php:1
+msgid "Group"
+msgstr "Gruppo"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:934
+msgid "Group By"
+msgstr "Raggruppa per"
+
+#. Text in echo
+#: leagueengine/pages/tournament/tournament_teams.php:43
+#: leagueengine/functions/settings/menu.php:1
+#: leagueengine/pages/tournament/tournament_match.php:55
+#: leagueengine/pages/create/tournament.php:47
+#: leagueengine/pages/create/tournament.php:50
+#: leagueengine/pages/create/tournament.php:51
+#: leagueengine/pages/create/tournament.php:52
+#: leagueengine/pages/create/tournament.php:53
+#: leagueengine/pages/create/tournament.php:54
+#: leagueengine/pages/create/tournament.php:55
+#: leagueengine/pages/create/tournament.php:56
+#: leagueengine/pages/create/tournament.php:57
+msgid "Groups"
+msgstr "Gruppi"
+
+#. Text in echo
+#: leagueengine/pages/dashboard.php:24
+msgid "Here are some links to help you get started"
+msgstr "Ecco alcuni link per aiutarti a iniziare"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:945
+#: leagueengine/pages/settings/settings_display.php:117
+msgid "Hide"
+msgstr "Nascondi"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:612
+msgid "Highlight Specific Team"
+msgstr "Highlight Squadra Specifica"
+
+#. Text in function
+#: leagueengine/pages/tournament/tournament_match.php:106
+#: leagueengine/pages/season/season_match.php:107
+msgid "History"
+msgstr "Storia"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:716
+#: leagueengine/functions/tinymce/popup.php:556
+#: leagueengine/functions/tinymce/popup.php:717
+#: leagueengine/pages/tournament/tournament_match.php:117
+#: leagueengine/pages/dashboard.php:59
+#: leagueengine/pages/season/season_match.php:118
+#: leagueengine/pages/season/season_new_match.php:65
+#: leagueengine/pages/tournament/tournament_knockout.php:97
+#: leagueengine/functions/themes/default/show_team.php:1
+#: leagueengine/functions/themes/default/show_season_matches.php:1
+msgid "Home"
+msgstr "Casa"
+
+#. Text in echo
+#: leagueengine/pages/tournament/tournament.php:55
+msgid "Home And Away"
+msgstr "Casa e Fuori Casa"
+
+#. Text in function
+#: leagueengine/functions/themes/default/show_tournament.php:1
+#: leagueengine/functions/main/admin.php:1
+msgid "Home Team"
+msgstr "Squadra in Casa"
+
+#. Text in echo
+#: leagueengine/pages/settings/system.php:38
+msgid "Home URL"
+msgstr "URL Squadra"
+
+#. Text in echo
+#: leagueengine/pages/season/season_new_match.php:108
+msgid "Home and Away Matches"
+msgstr "Incontri Casa e Fuori Casa"
+
+#. Text in echo
+#: leagueengine/pages/data/attribute.php:53
+#: leagueengine/pages/create/attribute.php:23
+msgid "Hyperlink"
+msgstr "Collegamento"
+
+#. Text in echo
+#: leagueengine/pages/settings/export.php:56
+#: leagueengine/pages/settings/import.php:53
+msgid "Ignore First Row"
+msgstr "Ignora prima riga"
+
+#. Text in echo
+#: leagueengine/pages/create/event.php:17
+#: leagueengine/functions/tinymce/popup.php:775
+#: leagueengine/pages/data/event.php:47
+msgid "Image"
+msgstr "Immagine"
+
+#. Text in echo
+#: leagueengine/pages/settings/import.php:12
+#: leagueengine/functions/settings/menu.php:1
+msgid "Import"
+msgstr "Importa"
+
+#. Text in echo
+#: leagueengine/pages/dashboard.php:38
+msgid "Import Data"
+msgstr "Importa Dati"
+
+#. Text in function
+#: leagueengine/functions/main/admin.php:1
+msgid "Import From Last Match"
+msgstr "Importa dall'ultimo Incontro"
+
+#. Text in function
+#: leagueengine/functions/settings/menu.php:1
+#: leagueengine/pages/tournament/tournament_match.php:57
+#: leagueengine/pages/tournament/tournament_knockout.php:32
+#: leagueengine/pages/tournament/tournament_knockout.php:156
+#: leagueengine/pages/create/tournament.php:28
+msgid "Knockout"
+msgstr "Scontri Diretti"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:533
+msgid "Knockout Display"
+msgstr "Visualizza Scontri Diretti"
+
+#. Text in function
+#: leagueengine/functions/main/admin.php:1
+msgid "Label"
+msgstr "Etichetta"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:971
+msgid "Labels"
+msgstr "Etichette"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:395
+msgid "Leaderboard"
+msgstr "Classifica"
+
+#. Text in echo
+#: leagueengine/pages/create/team.php:43 leagueengine/pages/create/team.php:50
+#: leagueengine/pages/player/player_career.php:66
+#: leagueengine/pages/player/player_career.php:73
+#: leagueengine/pages/create/create.php:49
+#: leagueengine/pages/create/player.php:40
+#: leagueengine/functions/tinymce/popup.php:380
+#: leagueengine/functions/tinymce/popup.php:887
+#: leagueengine/pages/create/season.php:2
+msgid "League"
+msgstr "Campionato"
+
+#. Text in function
+#: leagueengine/functions/classes/data_table_statistics.php:1
+#: leagueengine/functions/classes/data_table_attributes.php:1
+#: leagueengine/functions/tinymce/popup.php:386
+#: leagueengine/pages/data/attribute.php:40
+#: leagueengine/pages/create/attribute.php:46
+#: leagueengine/pages/data/statistic.php:40
+msgid "League Matches"
+msgstr "Incontro Campionato"
+
+#. Text in echo
+#: leagueengine/pages/create/league.php:12
+#: leagueengine/pages/data/league.php:36
+msgid "League Name"
+msgstr "Nome Campionato"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:385
+msgid "League Table"
+msgstr "Tabella Campionato"
+
+#. Text in function
+#: leagueengine/functions/settings/menu.php:1
+msgid "League Tables"
+msgstr "Tabelle Campionato"
+
+#. Text in echo
+#: leagueengine/pages/create/league.php:2
+msgid "League Type"
+msgstr "Tipo Campionato"
+
+#. Text in echo
+#: leagueengine/pages/create/tournament.php:29
+msgid "League/Knockout"
+msgstr "Campionato/Scontri Diretti"
+
+#. Text in echo
+#: leagueengine/pages/settings/system.php:14
+#: leagueengine/pages/settings/permissions.php:13
+#: leagueengine/functions/tinymce/popup.php:5
+#: leagueengine/pages/dashboard.php:11
+msgid "LeagueEngine"
+msgstr "LeagueEngine"
+
+#. Text in echo
+#: leagueengine/pages/settings/settings_display.php:38
+msgid "LeagueEngine Page"
+msgstr "Pagina LeagueEngine"
+
+#. Text in echo
+#: leagueengine/pages/settings/settings_display.php:19
+msgid "LeagueEngine Theme"
+msgstr "Tema LeagueEngine"
+
+#. Text in echo
+#: leagueengine/pages/settings/system.php:50
+msgid "LeagueEngine Version"
+msgstr "Versione LeagueEngine"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:384
+msgid "Leagues"
+msgstr "Campionati"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:966
+msgid "Limit"
+msgstr "Limite"
+
+#. Text in function
+#: leagueengine/functions/themes/default/show_tournament_match.php:1
+#: leagueengine/functions/settings/menu.php:1
+#: leagueengine/pages/tournament/tournament_match.php:102
+#: leagueengine/pages/season/season_match.php:103
+msgid "Lineups"
+msgstr "Formazioni"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:953
+msgid "List"
+msgstr "Lista"
+
+#. Text in echo
+#: leagueengine/pages/settings/settings_display.php:77
+msgid "Load Default LeagueEngine CSS"
+msgstr "Carica CSS predefinito"
+
+#. Text in echo
+#: leagueengine/pages/create/team.php:22 leagueengine/pages/data/team.php:47
+msgid "Logo"
+msgstr "Logo"
+
+#. Text in echo
+#: leagueengine/pages/tournament/tournament.php:77
+#: leagueengine/pages/season/season.php:53
+msgid "Lose Points"
+msgstr "Punti Sconfitta"
+
+#. Text in function
+#: leagueengine/functions/themes/default/show_team.php:1
+msgid "Lost"
+msgstr "Perso"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:875
+#: leagueengine/pages/tournament/tournament_match.php:59
+#: leagueengine/pages/season/season_match.php:60
+msgid "Match"
+msgstr "Incontro"
+
+#. Text in echo
+#: leagueengine/pages/tournament/tournament_match.php:173
+#: leagueengine/pages/season/season_match.php:173
+msgid "Match Countdown: "
+msgstr "Conto alla Rovescia Incontro"
+
+#. Text in echo
+#: leagueengine/pages/settings/settings_display.php:113
+msgid "Match Events Images"
+msgstr "Immagini Eventi Incontro"
+
+#. Text in echo
+#: leagueengine/pages/settings/settings_display.php:104
+msgid "Match Events Order"
+msgstr "Ordine Eventi Incontro"
+
+#. Text in function
+#: leagueengine/functions/settings/menu.php:1
+msgid "Match Page"
+msgstr "Pagina Incontro"
+
+#. Text in echo
+#: leagueengine/pages/tournament/tournament_match.php:171
+#: leagueengine/pages/season/season_match.php:171
+msgid "Match Preview"
+msgstr "Anteprima Incontro"
+
+#. Text in echo
+#: leagueengine/pages/tournament/tournament_match.php:223
+msgid "Match Report"
+msgstr "Resoconto Incontro"
+
+#. Text in echo
+#: leagueengine/pages/settings/settings_display.php:122
+msgid "Match Statistics Colour"
+msgstr "Incontro Statistiche Colore"
+
+#. Text in echo
+#: leagueengine/pages/season/season_match.php:223
+msgid "Match report"
+msgstr "Resoconto incontro"
+
+#. Text in function
+#: leagueengine/pages/settings/search.php:33
+#: leagueengine/functions/tinymce/popup.php:463
+#: leagueengine/functions/settings/menu.php:1
+#: leagueengine/pages/season/season_match.php:59
+#: leagueengine/pages/season/season_matches.php:27
+msgid "Matches"
+msgstr "Incontri"
+
+#. Text in echo
+#: leagueengine/pages/settings/settings.php:25
+msgid "Matches Per Page"
+msgstr "Incontri per pagina"
+
+#. Text in echo
+#: leagueengine/pages/season/season_new_match.php:103
+msgid "Months"
+msgstr "Mesi"
+
+#. Text in echo
+#: leagueengine/pages/settings/system.php:30
+msgid "Multi Site"
+msgstr "Siti Multipli"
+
+#. Text in echo
+#: leagueengine/pages/settings/system.php:46
+msgid "MySQL Version"
+msgstr "Versione MySQL"
+
+#. Text in function
+#: leagueengine/functions/classes/data_table_statistics.php:1
+#: leagueengine/functions/classes/data_table_attributes.php:1
+#: leagueengine/pages/tournament/tournament.php:40
+#: leagueengine/pages/data/event.php:32 leagueengine/pages/season/season.php:38
+#: leagueengine/pages/settings/settings.php:37
+msgid "Name"
+msgstr "Nome"
+
+#. Text in function
+#: leagueengine/pages/data/data.php:24
+msgid "New"
+msgstr "Nuovo"
+
+#. Text in echo
+#: leagueengine/pages/dashboard.php:28
+msgid "New Competition"
+msgstr "Nuovo Campionato"
+
+#. Text in function
+#: leagueengine/functions/settings/menu.php:1
+#: leagueengine/pages/season/season_new_match.php:24
+msgid "New Match"
+msgstr "Nuovo Incontro"
+
+#. Text in echo
+#: leagueengine/pages/dashboard.php:30
+msgid "New Player"
+msgstr "Nuovo Giocatore"
+
+#. Text in function
+#: leagueengine/pages/data/league.php:52
+msgid "New Season"
+msgstr "Nuova Stagione"
+
+#. Text in echo
+#: leagueengine/pages/dashboard.php:29
+msgid "New Team"
+msgstr "Nuova Squadra"
+
+#. Text in function
+#: leagueengine/functions/themes/default/show_season.php:1
+#: leagueengine/functions/tinymce/popup.php:496
+msgid "News"
+msgstr "Notizie"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:471
+msgid "News Category"
+msgstr "Categoria Notizie"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:486
+msgid "News Count"
+msgstr "Conteggio Notizie"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:495
+msgid "News Title"
+msgstr "Titolo Notizia"
+
+#. Text in echo
+#: leagueengine/pages/settings/import.php:792
+msgid "Next"
+msgstr "Prossimo"
+
+#. Text in echo
+#: leagueengine/pages/create/team.php:17 leagueengine/pages/data/team.php:43
+msgid "Nickname"
+msgstr "Nickname"
+
+#. Text in echo
+#: leagueengine/pages/create/team.php:33
+#: leagueengine/pages/create/player.php:33
+msgid "No"
+msgstr "No"
+
+#. Text in echo
+#: leagueengine/pages/tournament/tournament.php:90
+#: leagueengine/pages/season/season_new_match.php:121
+#: leagueengine/pages/settings/settings_display.php:81
+#: leagueengine/pages/settings/settings_display.php:90
+#: leagueengine/pages/settings/settings_display.php:99
+#: leagueengine/pages/season/season.php:65
+#: leagueengine/pages/season/season.php:75
+#: leagueengine/functions/main/admin.php:1
+#: leagueengine/pages/settings/settings.php:45
+msgid "Off"
+msgstr "Off"
+
+#. Text in echo
+#: leagueengine/pages/tournament/tournament.php:89
+#: leagueengine/pages/season/season_new_match.php:120
+#: leagueengine/pages/settings/settings_display.php:80
+#: leagueengine/pages/settings/settings_display.php:89
+#: leagueengine/pages/settings/settings_display.php:98
+#: leagueengine/pages/season/season.php:64
+#: leagueengine/pages/season/season.php:74
+#: leagueengine/functions/main/admin.php:1
+msgid "On"
+msgstr "On"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:405
+msgid "Options"
+msgstr "Opzioni"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:958
+#: leagueengine/functions/main/admin.php:1
+msgid "Order"
+msgstr "Ordine"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:392
+msgid "Other"
+msgstr "Altro"
+
+#. Text in echo
+#: leagueengine/pages/settings/export.php:776
+msgid "Output Filename"
+msgstr "Nome file di uscita"
+
+#. Text in echo
+#: leagueengine/pages/settings/system.php:62
+msgid "PHP Memory Limit"
+msgstr "PHP Memory Limit"
+
+#. Text in echo
+#: leagueengine/pages/settings/system.php:66
+msgid "PHP Post Max Size"
+msgstr "PHP Post Max Size"
+
+#. Text in echo
+#: leagueengine/pages/settings/system.php:42
+msgid "PHP Version"
+msgstr "Versione PHP"
+
+#. Text in function
+#: leagueengine/functions/classes/data_table_seasons.php:1
+#: leagueengine/functions/main/admin.php:1
+msgid "Page"
+msgstr "Pagina"
+
+#. Text in echo
+#: leagueengine/pages/settings/permissions.php:24
+#: leagueengine/functions/settings/menu.php:1
+msgid "Permissions"
+msgstr "Permessi"
+
+#. Text in echo
+#: leagueengine/pages/player/player.php:40
+#: leagueengine/pages/create/player.php:7
+msgid "Photo"
+msgstr "Foto"
+
+#. Text in function
+#: leagueengine/functions/main/admin.php:1
+msgid "Played"
+msgstr "Giocato"
+
+#. Text in echo
+#: leagueengine/pages/tournament/tournament_teams.php:68
+#: leagueengine/functions/classes/data_table_rankings.php:1
+#: leagueengine/pages/create/create.php:37
+#: leagueengine/pages/season/season_table.php:84
+#: leagueengine/functions/tinymce/popup.php:980
+#: leagueengine/functions/tinymce/popup.php:937
+#: leagueengine/functions/tinymce/popup.php:981
+#: leagueengine/functions/themes/default/show_leaderboard.php:1
+#: leagueengine/functions/main/admin.php:1
+msgid "Player"
+msgstr "Giocatore"
+
+#. Text in echo
+#: leagueengine/pages/player/player.php:35
+#: leagueengine/pages/create/player.php:2
+msgid "Player Name"
+msgstr "Nome Giocatore"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:394
+msgid "Player Profile"
+msgstr "Profilo Giocatore"
+
+#. Text in echo
+#: leagueengine/pages/create/league.php:6
+#: leagueengine/pages/create/tournament.php:6
+msgid "Player vs Player"
+msgstr "Giocatore vs Giocatore"
+
+#. Text in function
+#: leagueengine/functions/classes/data_table_statistics.php:1
+#: leagueengine/pages/player/player_career.php:21
+#: leagueengine/pages/data/data.php:24 leagueengine/pages/player/player.php:23
+#: leagueengine/functions/settings/menu.php:1
+#: leagueengine/pages/data/attribute.php:43
+#: leagueengine/pages/create/attribute.php:13
+#: leagueengine/functions/main/admin.php:1
+msgid "Players"
+msgstr "Giocatori"
+
+#. Text in echo
+#: leagueengine/pages/create/event.php:12 leagueengine/pages/data/event.php:42
+msgid "Plural"
+msgstr "Plurale"
+
+#. Text in echo
+#: leagueengine/pages/tournament/tournament_match.php:94
+#: leagueengine/pages/season/season_match.php:95
+msgid "Preview"
+msgstr "Anteprima"
+
+#. Text in echo
+#: leagueengine/pages/data/team.php:35
+msgid "Primary Colour"
+msgstr "Colore Prima Maglia"
+
+#. Text in echo
+#: leagueengine/pages/create/tournament.php:63
+msgid "Qualifiers Per Group"
+msgstr "Qualificazioni per Gruppo"
+
+#. Text in function
+#: leagueengine/functions/themes/default/show_tournament.php:1
+#: leagueengine/functions/tinymce/popup.php:575
+#: leagueengine/functions/tinymce/popup.php:576
+msgid "Quarter Final"
+msgstr "Quarto di Finale"
+
+#. Text in function
+#: leagueengine/pages/tournament/tournament_knockout.php:97
+msgid "Quarter Finals"
+msgstr "Quarti di Finale"
+
+#. Text in echo
+#: leagueengine/pages/settings/system.php:110
+#: leagueengine/pages/settings/system.php:111
+msgid "Re-Synchronise Tables"
+msgstr "Ri-sincronizza Tabelle"
+
+#. Text in function
+#: leagueengine/functions/main/admin.php:1
+msgid "Remove From Tournament"
+msgstr "Rimuovi da torneo"
+
+#. Text in function
+#: leagueengine/functions/main/admin.php:1
+msgid "Repeat"
+msgstr "Ripeti"
+
+#. Text in function
+#: leagueengine/functions/settings/menu.php:1
+#: leagueengine/pages/tournament/tournament_match.php:107
+#: leagueengine/pages/season/season_match.php:108
+msgid "Report"
+msgstr "Resoconto"
+
+#. Text in function
+#: leagueengine/functions/main/admin.php:1
+msgid "Reset"
+msgstr "Azzera"
+
+#. Text in echo
+#: leagueengine/pages/settings/import.php:203
+msgid "Restart"
+msgstr "Riavvia"
+
+#. Text in function
+#: leagueengine/pages/settings/search.php:33
+msgid "Result"
+msgstr "Risultato"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:647
+msgid "Results Only"
+msgstr "Solo Risultati"
+
+#. Text in function
+#: leagueengine/pages/settings/permissions.php:27
+msgid "Role"
+msgstr "Ruolo"
+
+#. Text in function
+#: leagueengine/functions/themes/default/show_tournament.php:1
+#: leagueengine/functions/tinymce/popup.php:570
+#: leagueengine/functions/tinymce/popup.php:571
+#: leagueengine/pages/season/season_new_match.php:45
+#: leagueengine/pages/tournament/tournament_knockout.php:97
+msgid "Round"
+msgstr "Turno"
+
+#. Text in echo
+#: leagueengine/pages/player/player_career.php:122
+#: leagueengine/pages/tournament/tournament.php:99
+#: leagueengine/pages/data/league.php:48
+#: leagueengine/pages/settings/styling.php:29
+#: leagueengine/pages/settings/settings_datetime.php:43
+#: leagueengine/pages/data/team.php:58 leagueengine/pages/player/player.php:69
+#: leagueengine/pages/tournament/tournament_match.php:157
+#: leagueengine/pages/tournament/tournament_match.php:180
+#: leagueengine/pages/tournament/tournament_match.php:227
+#: leagueengine/pages/data/attribute.php:68
+#: leagueengine/pages/season/season_match.php:155
+#: leagueengine/pages/season/season_match.php:180
+#: leagueengine/pages/season/season_match.php:227
+#: leagueengine/pages/tournament/tournament_knockout.php:92
+#: leagueengine/pages/data/statistic.php:53
+#: leagueengine/pages/data/event.php:61
+#: leagueengine/pages/settings/settings_display.php:131
+#: leagueengine/pages/season/season.php:81
+#: leagueengine/functions/main/admin.php:1
+#: leagueengine/pages/settings/settings.php:55
+msgid "Save"
+msgstr "Salva"
+
+#. Text in function
+#: leagueengine/functions/themes/default/show_tournament.php:1
+#: leagueengine/functions/tinymce/popup.php:726
+#: leagueengine/functions/tinymce/popup.php:566
+#: leagueengine/functions/tinymce/popup.php:727
+#: leagueengine/functions/settings/menu.php:1
+#: leagueengine/pages/tournament/tournament_match.php:93
+#: leagueengine/pages/tournament/tournament_match.php:118
+#: leagueengine/pages/dashboard.php:59
+#: leagueengine/pages/season/season_match.php:94
+#: leagueengine/pages/season/season_match.php:119
+#: leagueengine/pages/tournament/tournament_knockout.php:97
+#: leagueengine/functions/main/admin.php:1
+#: leagueengine/functions/themes/default/show_season_matches.php:1
+msgid "Score"
+msgstr "Punteggio"
+
+#. Text in echo
+#: leagueengine/pages/season/season.php:61
+msgid "Score Difference"
+msgstr "Differenza Punteggio"
+
+#. Text in echo
+#: leagueengine/pages/settings/search.php:23
+msgid "Search"
+msgstr "Ricerca"
+
+#. Text in echo
+#: leagueengine/pages/settings/settings.php:29
+msgid "Search Results Per Page"
+msgstr "Risultati Ricerca per Pagina"
+
+#. Text in echo
+#: leagueengine/pages/create/team.php:64
+#: leagueengine/pages/player/player_career.php:87
+#: leagueengine/pages/create/create.php:50
+#: leagueengine/pages/create/player.php:54
+#: leagueengine/functions/tinymce/popup.php:381
+msgid "Season"
+msgstr "Stagione"
+
+#. Text in echo
+#: leagueengine/pages/create/season.php:16
+#: leagueengine/functions/classes/data_table_seasons.php:1
+msgid "Season Name"
+msgstr "Nome Stagione"
+
+#. Text in function
+#: leagueengine/pages/data/league.php:52
+msgid "Seasons"
+msgstr "Stagioni"
+
+#. Text in echo
+#: leagueengine/pages/data/team.php:39
+msgid "Secondary Colour"
+msgstr "Colore Seconda Maglia"
+
+#. Text in function
+#: leagueengine/functions/themes/default/show_tournament.php:1
+#: leagueengine/functions/tinymce/popup.php:580
+#: leagueengine/functions/tinymce/popup.php:581
+msgid "Semi Final"
+msgstr "Semifinale"
+
+#. Text in function
+#: leagueengine/pages/tournament/tournament_knockout.php:97
+msgid "Semi Finals"
+msgstr "Semifinali"
+
+#. Text in echo
+#: leagueengine/pages/tournament/tournament.php:37
+#: leagueengine/pages/settings/settings_datetime.php:13
+#: leagueengine/pages/settings/settings_table.php:14
+#: leagueengine/pages/settings/settings_match_page.php:14
+#: leagueengine/functions/settings/menu.php:1
+#: leagueengine/pages/dashboard.php:34
+#: leagueengine/pages/settings/settings_display.php:13
+#: leagueengine/functions/main/admin.php:1
+#: leagueengine/pages/settings/settings.php:15
+msgid "Settings"
+msgstr "Impostazioni"
+
+#. Text in function
+#: leagueengine/functions/classes/data_table_seasons.php:1
+msgid "Shortcode"
+msgstr "Shortcode"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:944
+#: leagueengine/pages/settings/settings_display.php:116
+#: leagueengine/functions/main/admin.php:1
+msgid "Show"
+msgstr "Mostra"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:823
+msgid "Show Competition Switcher"
+msgstr "Mostra Competizione Swither"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:517
+msgid "Show Groups"
+msgstr "Mostra Gruppi"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:525
+msgid "Show Knockout"
+msgstr "Mostra Scontri Diretti"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:942
+msgid "Show Player Team"
+msgstr "Mostra Squadra Giocatore"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:781
+msgid "Show Season Switcher"
+msgstr "Mostra Stagione Switcher"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:541
+msgid "Show Specific Group"
+msgstr "Mostra Gruppo Specifico"
+
+#. Text in echo
+#: leagueengine/pages/tournament/tournament.php:64
+#: leagueengine/pages/season/season_new_match.php:117
+msgid "Shuffle"
+msgstr "Rimescolare"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:387
+msgid "Single League Match"
+msgstr "Singolo Incontro Campionato "
+
+#. Text in echo
+#: leagueengine/pages/season/season_new_match.php:35
+msgid "Single Match"
+msgstr "Singolo Incontro"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:390
+msgid "Single Tournament Match"
+msgstr "Singolo Incontro Torneo"
+
+#. Text in echo
+#: leagueengine/pages/settings/system.php:34
+msgid "Site URL"
+msgstr "URL Sito"
+
+#. Text in echo
+#: leagueengine/pages/create/event.php:25
+#: leagueengine/pages/player/player.php:53
+#: leagueengine/pages/create/player.php:20
+#: leagueengine/pages/data/attribute.php:62
+#: leagueengine/pages/create/attribute.php:53
+#: leagueengine/pages/data/statistic.php:47
+#: leagueengine/pages/data/event.php:55
+msgid "Sort Order"
+msgstr "Ordinamento"
+
+#. Text in function
+#: leagueengine/functions/themes/default/show_team.php:1
+msgid "Squad"
+msgstr "Squadra"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:758
+msgid "Squad Events"
+msgstr "Eventi Squadra"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:772
+msgid "Squad Events Display"
+msgstr "Visualizza Eventi Squadra"
+
+#. Text in echo
+#: leagueengine/pages/player/player.php:48
+#: leagueengine/pages/create/player.php:15
+msgid "Squad Number"
+msgstr "Numero Squadra"
+
+#. Text in echo
+#: leagueengine/pages/tournament/tournament.php:44
+#: leagueengine/pages/create/league.php:17
+#: leagueengine/pages/data/league.php:40
+#: leagueengine/pages/create/season.php:21
+#: leagueengine/pages/season/season_new_match.php:88
+#: leagueengine/functions/classes/data_table_seasons.php:1
+#: leagueengine/pages/season/season.php:42
+#: leagueengine/pages/create/tournament.php:17
+msgid "Start Date"
+msgstr "Data Inizio"
+
+#. Text in echo
+#: leagueengine/pages/create/create.php:39
+msgid "Statistic"
+msgstr "Statistica"
+
+#. Text in echo
+#: leagueengine/pages/create/attribute.php:38
+#: leagueengine/pages/data/statistic.php:32
+msgid "Statistic Name"
+msgstr "Nome Statistica"
+
+#. Text in function
+#: leagueengine/functions/themes/default/show_tournament_match.php:1
+#: leagueengine/pages/data/data.php:24
+#: leagueengine/functions/settings/menu.php:1
+#: leagueengine/pages/tournament/tournament_match.php:105
+#: leagueengine/pages/season/season_match.php:106
+#: leagueengine/pages/data/statistic.php:23
+#: leagueengine/functions/main/admin.php:1
+msgid "Statistics"
+msgstr "Statistiche"
+
+#. Text in echo
+#: leagueengine/pages/settings/styling.php:20
+#: leagueengine/functions/settings/menu.php:1
+msgid "Styling"
+msgstr "Stile"
+
+#. Text in function
+#: leagueengine/functions/themes/default/show_team.php:1
+msgid "Sub"
+msgstr "Sostituzione"
+
+#. Text in function
+#: leagueengine/functions/main/admin.php:1
+msgid "Submit"
+msgstr "Invia"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:985
+msgid "Substitute"
+msgstr "Sostituto"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:761
+#: leagueengine/functions/tinymce/popup.php:990
+#: leagueengine/functions/tinymce/popup.php:991
+#: leagueengine/functions/themes/default/show_leaderboard.php:1
+#: leagueengine/functions/themes/default/show_player.php:1
+msgid "Substitute Appearances"
+msgstr "Presenza Sostituto"
+
+#. Text in function
+#: leagueengine/functions/themes/default/show_tournament_match.php:1
+#: leagueengine/functions/themes/default/show_season_match.php:1
+#: leagueengine/functions/themes/default/show_team.php:1
+msgid "Substitutes"
+msgstr "Sostituti"
+
+#. Text in function
+#: leagueengine/pages/tournament/tournament.php:1
+#: leagueengine/pages/settings/export.php:19
+#: leagueengine/pages/settings/styling.php:1
+#: leagueengine/pages/season/season_matches.php:1
+#: leagueengine/functions/main/admin.php:1
+msgid "Success!"
+msgstr "Successo!"
+
+#. Text in function
+#: leagueengine/functions/main/admin.php:1
+msgid "Success! All matches deleted."
+msgstr "Successo! Tutte le partite cancellate."
+
+#. Text in echo
+#: leagueengine/pages/dashboard.php:42
+msgid "Support"
+msgstr "Supporto"
+
+#. Text in echo
+#: leagueengine/pages/dashboard.php:46
+msgid "Support Forum"
+msgstr "Forum Supporto"
+
+#. Text in echo
+#: leagueengine/pages/settings/system.php:25
+#: leagueengine/functions/settings/menu.php:1
+#: leagueengine/pages/dashboard.php:50
+msgid "System"
+msgstr "Sistema"
+
+#. Text in function
+#: leagueengine/pages/settings/search.php:33
+#: leagueengine/pages/season/season_table.php:31
+#: leagueengine/functions/tinymce/popup.php:952
+#: leagueengine/functions/tinymce/popup.php:455
+#: leagueengine/functions/settings/menu.php:1
+msgid "Table"
+msgstr "Tabella"
+
+#. Text in function
+#: leagueengine/functions/classes/data_table_statistics.php:1
+#: leagueengine/functions/classes/data_table_attributes.php:1
+#: leagueengine/pages/data/attribute.php:37
+#: leagueengine/pages/create/attribute.php:43
+#: leagueengine/pages/data/statistic.php:37
+msgid "Target"
+msgstr "Obiettivo"
+
+#. Text in echo
+#: leagueengine/pages/tournament/tournament_teams.php:93
+#: leagueengine/pages/player/player_career.php:115
+#: leagueengine/pages/create/create.php:36
+#: leagueengine/pages/create/player.php:61
+#: leagueengine/pages/season/season_table.php:109
+#: leagueengine/functions/tinymce/popup.php:975
+#: leagueengine/functions/tinymce/popup.php:936
+#: leagueengine/functions/tinymce/popup.php:976
+#: leagueengine/functions/themes/default/show_leaderboard.php:1
+#: leagueengine/functions/themes/default/show_player.php:1
+#: leagueengine/functions/main/admin.php:1
+msgid "Team"
+msgstr "Squadra"
+
+#. Text in echo
+#: leagueengine/pages/settings/settings_display.php:95
+msgid "Team Logos In Tables"
+msgstr "Logo Squadra"
+
+#. Text in echo
+#: leagueengine/pages/create/team.php:2 leagueengine/pages/data/team.php:31
+msgid "Team Name"
+msgstr "Nome Squadra"
+
+#. Text in echo
+#: leagueengine/pages/create/team.php:7
+msgid "Team Primary Colour"
+msgstr "Colore Principale Squadra"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:393
+msgid "Team Profile"
+msgstr "Profilo Squadra"
+
+#. Text in echo
+#: leagueengine/pages/create/team.php:12
+msgid "Team Secondary Colour"
+msgstr "Colore Secondario Squadra"
+
+#. Text in echo
+#: leagueengine/pages/create/league.php:5
+#: leagueengine/pages/create/tournament.php:5
+msgid "Team vs Team"
+msgstr "Squadra vs Squadra"
+
+#. Text in function
+#: leagueengine/functions/classes/data_table_statistics.php:1
+#: leagueengine/pages/data/data.php:24 leagueengine/pages/data/team.php:23
+#: leagueengine/functions/settings/menu.php:1
+#: leagueengine/pages/data/attribute.php:42
+#: leagueengine/pages/create/attribute.php:12
+#: leagueengine/pages/create/tournament.php:35
+#: leagueengine/pages/create/tournament.php:50
+#: leagueengine/pages/create/tournament.php:51
+#: leagueengine/pages/create/tournament.php:52
+#: leagueengine/pages/create/tournament.php:53
+#: leagueengine/pages/create/tournament.php:54
+#: leagueengine/pages/create/tournament.php:55
+#: leagueengine/pages/create/tournament.php:56
+#: leagueengine/pages/create/tournament.php:57
+#: leagueengine/functions/main/admin.php:1
+msgid "Teams"
+msgstr "Squadre"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:774
+#: leagueengine/pages/data/attribute.php:52
+#: leagueengine/pages/create/attribute.php:22
+msgid "Text"
+msgstr "Testo"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:711
+#: leagueengine/functions/tinymce/popup.php:712
+#: leagueengine/pages/data/attribute.php:55
+#: leagueengine/pages/season/season_match.php:117
+#: leagueengine/pages/season/season_new_match.php:58
+#: leagueengine/pages/create/attribute.php:25
+#: leagueengine/functions/main/admin.php:1
+#: leagueengine/functions/themes/default/show_season_matches.php:1
+msgid "Time"
+msgstr "Orario"
+
+#. Text in echo
+#: leagueengine/pages/settings/settings_datetime.php:23
+msgid "Time Format"
+msgstr "Formato Orario"
+
+#. Text in echo
+#: leagueengine/pages/settings/settings_datetime.php:31
+msgid "Time Picker Format"
+msgstr "Formato Orario Picker"
+
+#. Text in echo
+#: leagueengine/pages/create/team.php:44 leagueengine/pages/create/team.php:71
+#: leagueengine/pages/player/player_career.php:67
+#: leagueengine/pages/player/player_career.php:101
+#: leagueengine/pages/create/create.php:51
+#: leagueengine/functions/tinymce/popup.php:382
+#: leagueengine/functions/tinymce/popup.php:888
+msgid "Tournament"
+msgstr "Torneo"
+
+#. Text in function
+#: leagueengine/functions/classes/data_table_statistics.php:1
+#: leagueengine/functions/classes/data_table_attributes.php:1
+#: leagueengine/pages/data/attribute.php:41
+#: leagueengine/pages/create/attribute.php:47
+#: leagueengine/pages/data/statistic.php:41
+msgid "Tournament Matches"
+msgstr "Incontri Torneo"
+
+#. Text in echo
+#: leagueengine/pages/create/tournament.php:12
+msgid "Tournament Name"
+msgstr "Nome Torneo"
+
+#. Text in echo
+#: leagueengine/pages/create/tournament.php:2
+msgid "Tournament type"
+msgstr "Tipo Torneo"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:389
+msgid "Tournaments"
+msgstr "Tornei"
+
+#. Text in echo
+#: leagueengine/pages/settings/export.php:206
+msgid "Try Again"
+msgstr "Riprova"
+
+#. Text in function
+#: leagueengine/pages/settings/search.php:33
+#: leagueengine/functions/tinymce/popup.php:644
+#: leagueengine/pages/create/tournament.php:25
+msgid "Type"
+msgstr "Tipo"
+
+#. Text in function
+#: leagueengine/pages/dashboard.php:59
+msgid "Upcoming League Matches"
+msgstr "Prossimi Incontri Campionato"
+
+#. Text in function
+#: leagueengine/pages/dashboard.php:59
+msgid "Upcoming Tournament Matches"
+msgstr "Prossimi Incontri Torneo"
+
+#. Text in echo
+#: leagueengine/pages/tournament/tournament_knockout.php:153
+#: leagueengine/functions/main/admin.php:1
+msgid "Update"
+msgstr "Aggiorna"
+
+#. Text in function
+#: leagueengine/functions/main/admin.php:1
+msgid "Update Matches"
+msgstr "Aggiorna Incontri"
+
+#. Text in echo
+#: leagueengine/pages/player/player_career.php:57
+msgid "Update career"
+msgstr "Aggiorna Carriera"
+
+#. Text in function
+#: leagueengine/pages/settings/permissions.php:27
+msgid "User"
+msgstr "Utente"
+
+#. Text in function
+#: leagueengine/pages/settings/permissions.php:27
+msgid "Users with access to LeagueEngine:"
+msgstr "Utenti con accesso a LeagueEngine:"
+
+#. Text in function
+#: leagueengine/functions/main/admin.php:1
+msgid "Value"
+msgstr "Valore"
+
+#. Text in function
+#: leagueengine/functions/classes/data_table_teams.php:1
+#: leagueengine/functions/classes/data_table_players.php:1
+#: leagueengine/functions/classes/data_table_seasons.php:1
+#: leagueengine/functions/main/admin.php:1
+msgid "View"
+msgstr "Vedi"
+
+#. Text in echo
+#: leagueengine/pages/settings/system.php:58
+msgid "Web Server Information"
+msgstr "Web Server Information"
+
+#. Text in echo
+#: leagueengine/pages/dashboard.php:23
+msgid "Welcome to"
+msgstr "Benvenuto"
+
+#. Text in echo
+#: leagueengine/pages/create/create.php:32
+#: leagueengine/pages/season/season_new_match.php:32
+msgid "What do you want to create?"
+msgstr "Cosa vuoi creare?"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:377
+msgid "What do you want to insert?"
+msgstr "Che cosa si desidera inserire?"
+
+#. Text in echo
+#: leagueengine/pages/tournament/tournament.php:73
+#: leagueengine/pages/season/season.php:49
+msgid "Win Points"
+msgstr "Punti Vittoria"
+
+#. Text in echo
+#: leagueengine/pages/settings/export.php:61
+#: leagueengine/pages/settings/import.php:58
+msgid "Wipe Data Before Import"
+msgstr "Cancellare i dati prima dell'importazione"
+
+#. Text in echo
+#: leagueengine/pages/settings/system.php:114
+#: leagueengine/pages/settings/system.php:115
+msgid "Wipe Database Tables"
+msgstr "Pulire tabelle di database"
+
+#. Text in echo
+#: leagueengine/pages/settings/system.php:118
+#: leagueengine/pages/settings/system.php:119
+msgid "Wipe Tables And Data"
+msgstr "Pulire Tabelle e dati"
+
+#. Text in function
+#: leagueengine/functions/themes/default/show_team.php:1
+msgid "Won"
+msgstr "Vinto"
+
+#. Text in echo
+#: leagueengine/pages/settings/system.php:70
+msgid "WordPress Debug"
+msgstr "WordPress Debug"
+
+#. Text in echo
+#: leagueengine/pages/settings/system.php:74
+msgid "WordPress Table Prefix"
+msgstr "WordPress Table Prefix"
+
+#. Text in echo
+#: leagueengine/pages/settings/settings_display.php:59
+msgid "WordPress Theme Page Template"
+msgstr "WordPress Theme Page Template"
+
+#. Text in echo
+#: leagueengine/pages/player/player.php:58
+#: leagueengine/pages/create/player.php:25
+msgid "WordPress User"
+msgstr "WordPress User"
+
+#. Text in echo
+#: leagueengine/pages/settings/system.php:54
+msgid "WordPress Version"
+msgstr "WordPress Version"
+
+#. Text in echo
+#: leagueengine/pages/create/team.php:34
+#: leagueengine/pages/create/player.php:34
+msgid "Yes"
+msgstr "Si"
+
+#. Text in function
+#: leagueengine/pages/tournament/tournament_knockout.php:156
+msgid ""
+"more team in the tournament, and for all matches to have been completed."
+msgstr "più squadra nel torneo, e per tutte le partite sono state completate."
+
+#. Text in function
+#: leagueengine/pages/tournament/tournament_knockout.php:156
+msgid ""
+"more teams in the tournament, and for all matches to have been completed."
+msgstr "più squadre nel torneo, e per tutte le partite sono state completate."
+
+#. Text in function
+#: leagueengine/functions/themes/default/show_team.php:1
+msgid "vs"
+msgstr "vs"
+
+#. Text in echo
+#: leagueengine/pages/create/tournament.php:50
+#: leagueengine/pages/create/tournament.php:51
+#: leagueengine/pages/create/tournament.php:52
+#: leagueengine/pages/create/tournament.php:53
+#: leagueengine/pages/create/tournament.php:54
+#: leagueengine/pages/create/tournament.php:55
+#: leagueengine/pages/create/tournament.php:56
+#: leagueengine/pages/create/tournament.php:57
+msgid "x"
+msgstr "x"
+
+#. Text in echo
+#: leagueengine/functions/tinymce/popup.php:995
+msgid "Insert"
+msgstr "Inserisci"
