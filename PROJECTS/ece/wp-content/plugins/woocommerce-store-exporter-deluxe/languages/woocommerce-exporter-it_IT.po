@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce - Store Exporter Deluxe\n"
 "POT-Creation-Date: 2016-11-10 12:14+0100\n"
-"PO-Revision-Date: 2016-11-10 13:08+0100\n"
+"PO-Revision-Date: 2016-11-10 17:10+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: it_IT\n"
@@ -5987,7 +5987,7 @@ msgstr "Vai a schermata Esporta in futuro"
 
 #: templates/admin/tabs-settings.php:18
 msgid "Manage export options across Store Exporter Deluxe from this screen. Options are broken into sections for different export formats and methods. Click Save Changes to apply changes."
-msgstr "Gestire le opzioni di esportazione di Store Exporter Deluxe da questa schermata. Le opzioni sono suddivise in sezioni per i diversi formati e metodi di esportazione. Fare clic su Salva modifiche per applicare le modifiche."
+msgstr "Gestione opzioni di esportazione. Le opzioni sono suddivise in sezioni per i diversi formati e metodi di esportazione. Fare clic su Salva modifiche per applicare le modifiche."
 
 #: templates/admin/tabs-settings.php:23
 msgid "Export filename"
