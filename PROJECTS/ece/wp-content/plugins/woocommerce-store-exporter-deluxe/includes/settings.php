@@ -4,10 +4,12 @@ function woo_ce_export_settings_quicklinks() {
 	ob_start(); ?>
 <li>| <a href="#xml-settings"><?php _e( 'XML Settings', 'woocommerce-exporter' ); ?></a> |</li>
 <li><a href="#rss-settings"><?php _e( 'RSS Settings', 'woocommerce-exporter' ); ?></a> |</li>
+<!-- ALESSANDRO: hide
 <li><a href="#scheduled-exports"><?php _e( 'Scheduled Exports', 'woocommerce-exporter' ); ?></a> |</li>
 <li><a href="#cron-exports"><?php _e( 'CRON Exports', 'woocommerce-exporter' ); ?></a> |</li>
-<li><a href="#orders-screen"><?php _e( 'Orders Screen', 'woocommerce-exporter' ); ?></a> |</li>
 <li><a href="#export-triggers"><?php _e( 'Export Triggers', 'woocommerce-exporter' ); ?></a></li>
+-->
+<li><a href="#orders-screen"><?php _e( 'Orders Screen', 'woocommerce-exporter' ); ?></a> |</li>
 <?php
 	ob_end_flush();
 
@@ -152,6 +154,7 @@ function woo_ce_export_settings_extend() {
 </tr>
 <!-- #rss-settings -->
 
+<!-- ALESSANDRO: hide
 <tr id="scheduled-exports">
 	<td colspan="2" style="padding:0;">
 		<hr />
@@ -226,11 +229,9 @@ function woo_ce_export_settings_extend() {
 
 			</tbody>
 		</table>
-		<!-- .scheduled-exports -->
 
 	</td>
 </tr>
-<!-- #scheduled-exports -->
 
 <tr id="cron-exports">
 	<td colspan="2" style="padding:0;">
@@ -275,7 +276,7 @@ function woo_ce_export_settings_extend() {
 		<p class="description"><?php _e( 'Control whether all known export fields are included or only checked fields from the Export Fields section on the Export screen for each Export Type. Default is to include all export fields.', 'woocommerce-exporter' ); ?></p>
 	</td>
 </tr>
-<!-- #cron-exports -->
+-->
 
 <tr id="orders-screen">
 	<td colspan="2" style="padding:0;">
@@ -312,6 +313,7 @@ function woo_ce_export_settings_extend() {
 </tr>
 <!-- #orders-screen -->
 
+<!-- ALESSANDRO: hide
 <tr id="export-triggers">
 	<td colspan="2" style="padding:0;">
 		<hr />
@@ -319,7 +321,6 @@ function woo_ce_export_settings_extend() {
 		<p class="description"><?php _e( 'Configure Store Exporter Deluxe to run exports on specific triggers within your WooCommerce store.', 'woocommerce-exporter' ); ?></p>
 	</td>
 </tr>
-<!-- #export-triggers -->
 
 <tr id="new-orders">
 	<th>
@@ -360,10 +361,10 @@ function woo_ce_export_settings_extend() {
 				<select id="trigger_new_order_method" name="trigger_new_order_method">
 					<option value="archive"<?php selected( $trigger_new_order_method, 'archive' ); ?>><?php echo woo_ce_format_export_method( 'archive' ); ?></option>
 					<option value="email"<?php selected( $trigger_new_order_method, 'email' ); ?>><?php echo woo_ce_format_export_method( 'email' ); ?></option>
-<!--
+
 					<option value="post"<?php selected( $trigger_new_order_method, 'post' ); ?>><?php echo woo_ce_format_export_method( 'post' ); ?></option>
 					<option value="ftp"<?php selected( $trigger_new_order_method, 'ftp' ); ?>><?php echo woo_ce_format_export_method( 'ftp' ); ?></option>
--->
+
 				</select>
 				<hr />
 			</li>
@@ -376,13 +377,13 @@ function woo_ce_export_settings_extend() {
 						<li><label><?php _e( 'E-mail subject', 'woocommerce-exporter' ); ?> <input type="text" id="trigger_new_method_email_subject" name="trigger_new_method_email_subject" value="<?php echo $trigger_new_order_method_email_subject; ?>" class="large-text" placeholder="<?php _e( 'Order export', 'woocommerce-exporter' ); ?>"></label></li>
 					</ul>
 				</div>
-				<!-- .email-options -->
+				
 				<div class="export-options save-options">
 					<ul style="margin-top:0.2em;">
 						<li><label><?php _e( 'Filepath', 'woocommerce-exporter' ); ?> <input type="text" id="" name="" value="<?php echo 111; ?>" class="large-text" placeholder=""></label></li>
 					</ul>
 				</div>
-				<!-- .save-options -->
+				
 				<div class="export-options archive-options">
 					<p><?php _e( 'No export method options are available for this export method.', 'woocommerce-exporter' ); ?></p>
 				</div>
@@ -401,7 +402,7 @@ function woo_ce_export_settings_extend() {
 		</ul>
 	</td>
 </tr>
-<!-- #new-orders -->
+-->
 
 <?php
 	ob_end_flush();

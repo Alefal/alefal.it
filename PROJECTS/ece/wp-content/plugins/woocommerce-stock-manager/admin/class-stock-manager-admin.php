@@ -216,7 +216,7 @@ class Stock_Manager_Admin {
     
       $array_to_csv = array();
       //First line
-      $array_to_csv[] = array('id','sku','Product name','Manage stock','Stock status','Backorders','Stock','Type','Parent ID'); 
+      $array_to_csv[] = array('id','SKU','Nome prodotto','Magazzino','Stato','Ordini arretrati','Quantita','Tipo','ID Padre'); 
        
       $products = $stock->get_products_for_export(); 
       

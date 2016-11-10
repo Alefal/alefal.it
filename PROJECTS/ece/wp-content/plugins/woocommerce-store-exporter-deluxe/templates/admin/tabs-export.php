@@ -6,7 +6,7 @@
 <!-- .subsubsub -->
 <br class="clear" />
 
-<p><?php _e( 'Select an export type from the list below to export entries. Once you have selected an export type you may select the fields you would like to export and optional filters available for each export type. When you click the Export button below, Store Exporter Deluxe will create an export file for you to save to your computer.', 'woocommerce-exporter' ); ?></p>
+<p><?php _e( 'Select an export type from the list below to export entries. Once you have selected an export type you may select the fields you would like to export and optional filters available for each export type. When you click the export button below, Store Exporter will create an export file for you to save to your computer.', 'woocommerce-exporter' ); ?></p>
 <div id="poststuff">
 	<form method="post" action="<?php echo esc_url( add_query_arg( array( 'failed' => null, 'empty' => null, 'message' => null ) ) ); ?>" id="postform">
 
@@ -49,6 +49,7 @@
 						</td>
 					</tr>
 
+					<!-- ALESSANDRO: hide
 					<tr>
 						<th>
 							<input type="radio" id="brand" name="dataset" value="brand"<?php disabled( $brand, 0 ); ?><?php checked( ( empty( $brand ) ? '' : $export_type ), 'brand' ); ?> />
@@ -58,6 +59,7 @@
 							<span class="description">(<?php echo $brand; ?>)</span>
 						</td>
 					</tr>
+					-->
 
 					<tr>
 						<th>
@@ -69,6 +71,7 @@
 						</td>
 					</tr>
 
+					<!-- ALESSANDRO: hide
 					<tr>
 						<th>
 							<input type="radio" id="customer" name="dataset" value="customer"<?php disabled( $customer, 0 ); ?><?php checked( ( empty( $customer ) ? '' : $export_type ), 'customer' ); ?>/>
@@ -78,7 +81,8 @@
 							<span class="description">(<?php echo $customer; ?>)</span>
 						</td>
 					</tr>
-
+					-->
+	
 					<tr>
 						<th>
 							<input type="radio" id="user" name="dataset" value="user"<?php disabled( $user, 0 ); ?><?php checked( ( empty( $user ) ? '' : $export_type ), 'user' ); ?>/>
@@ -89,6 +93,7 @@
 						</td>
 					</tr>
 
+					<!-- ALESSANDRO: hide
 					<tr>
 						<th>
 							<input type="radio" id="review" name="dataset" value="review"<?php disabled( $review, 0 ); ?><?php checked( ( empty( $review ) ? '' : $export_type ), 'review' ); ?>/>
@@ -149,7 +154,6 @@
 						</td>
 					</tr>
 
-<!--
 					<tr>
 						<th>
 							<input type="radio" id="attribute" name="dataset" value="attribute"<?php disabled( $attribute, 0 ); ?><?php checked( ( empty( $attribute ) ? '' : $export_type ), 'attribute' ); ?> />
@@ -159,7 +163,7 @@
 							<span class="description">(<?php echo $attribute; ?>)</span>
 						</td>
 					</tr>
--->
+					-->
 
 				</table>
 				<!-- .form-table -->

@@ -92,7 +92,8 @@ function stockautoUTF($s){
 
       if (move_uploaded_file($_FILES["uploadFile"]["tmp_name"], $target_dir)) {
   
-          echo __('The file '. basename( $_FILES['uploadFile']['name']). ' has been uploaded.','csv-category');
+          echo '<br /><hr />';
+          echo __('File '. basename( $_FILES['uploadFile']['name']). ' caricato.','csv-category');
     
           $row = 1;
           if (($handle = fopen($target_dir, "r")) !== FALSE) {
@@ -119,7 +120,7 @@ function stockautoUTF($s){
                           update_post_meta($product_id, '_backorders', $backorders);
                           update_post_meta($product_id, '_stock', $stock);
     
-                          echo '<p>'.__('Product with ID: '.$product_id.' was updated.','stock-manager').'</p>';
+                          echo '<p>'.__('Prodotto con ID <em>'.$product_id.'</em> aggiornato.','stock-manager').'</p>';
     
                         }
                       }

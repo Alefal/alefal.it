@@ -81,6 +81,8 @@ $table_prefix  = 'wp_';
  */
 define('WP_DEBUG', false);
 
+define('WPLANG', 'it_IT');
+
 /* That's all, stop editing! Happy blogging. */
 
 /** Absolute path to the WordPress directory. */

@@ -12,7 +12,7 @@
  * License URI: http://www.gnu.org/licenses/gpl-3.0
 */
 
-add_action( 'admin_menu', 'remove_menus', 99, 0 );
+//add_action( 'admin_menu', 'remove_menus', 99, 0 );
 function remove_menus(){  
 
 	//remove_menu_page( 'index.php' );             			//Dashboard
@@ -155,6 +155,20 @@ function custom_admin_area() {
 				padding: 15px;
 			}
   		</style>';
+}
+
+//add_action('admin_head', 'custom_script_for_woocommerce');
+function custom_script_for_woocommerce() {
+?>
+
+	<script>
+	jQuery(function() {
+		//Hide: WooCommerce -> Esporta -> Strumenti
+		jQuery('#woo-ce a[data-tab-id=\"tools\"]').hide();
+	});
+	</script>
+
+<?php
 }
 
 // Register style sheet.
