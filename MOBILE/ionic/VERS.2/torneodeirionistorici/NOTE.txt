@@ -1,16 +1,12 @@
 Per installare tutti i plugins cordova del file package.json
 $ ionic state restore
 
+=== IONIC UPDATE ===
+https://github.com/driftyco/ionic/blob/master/CHANGELOG.md#packagejson-updates
 === 2.0.0-rc.1 (2016-10-13) ===
 Aggiornamento package json
-(https://github.com/driftyco/ionic/blob/master/CHANGELOG.md#packagejson-updates)
+=== 2.0.0-rc.2 (2016-11-03) ===
+Aggiornamento ionic RC2
 
-"ionic-angular": "^2.0.0-rc.1",
-"ionic-native": "^2.2.3",
-"rxjs": "^5.0.0-rc.1",
-
-al posto di 
-
-"ionic-angular": "^2.0.0-rc.0",
-"ionic-native": "^2.0.3",
-"rxjs": "^5.0.0-beta.12",
+=== CORS problem: con la RC2 non mi funziona più il parametro "proxies" in ionic.config.json ===
+https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en

@@ -25,7 +25,7 @@ define('DB_NAME', 'Sql879752_3');
 define('DB_USER', 'Sql879752');
 define('DB_PASSWORD', '3r22nw0etv');
 define('DB_HOST', '62.149.150.236');
-
+*/
 /** The name of the database for WordPress */
 //LOCALE
 define('DB_NAME', 'ece');

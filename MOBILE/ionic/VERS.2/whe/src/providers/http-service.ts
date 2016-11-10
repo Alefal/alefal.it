@@ -11,10 +11,15 @@ export class HttpService {
          this.http = http;
     }
   
+    /**
+    Installare chrome addons:
+    https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en
+    */
     getCallHttp(call,username,password) {
         console.log('getCallHttp: '+call+' | '+username+' | '+password);
         
-       var host = '/PROJECTS/ece';
+        //var host = 'http://localhost/alefal.it/PROJECTS/ece';
+        var host = 'http://www.amalficoastapps.it/demo/ece';
         
         var url = '';
         if(call == 'authentication') {

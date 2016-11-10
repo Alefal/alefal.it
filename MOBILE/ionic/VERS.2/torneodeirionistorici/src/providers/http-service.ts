@@ -11,15 +11,16 @@ export class HttpService {
          this.http = http;
     }
   
+    /**
+    Installare chrome addons:
+    https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en
+    */
     getCallHttp(call,teamId,playerIdOrRound,matchIdOrType,statOrGroup,tipologia) {
         console.log('getCallHttp: '+call+' | '+teamId+' | '+playerIdOrRound+' | '+matchIdOrType);
         
-        //var host = 'http://torneodeirionistorici.altervista.org';
-        //var host = '/torneodeirionistorici/rest';
-        var host = '/PROJECTS/leagueengine';
-
+        //var host = 'http://localhost/alefal.it/PROJECTS/leagueengine';
         //var host = '/demo/leagueengine';
-        //var host = 'http://www.amalficoastapps.it/demo/leagueengine';
+        var host = 'http://www.amalficoastapps.it/demo/leagueengine';
         
         var url = '';
         if(call == 'getTorneo') {
