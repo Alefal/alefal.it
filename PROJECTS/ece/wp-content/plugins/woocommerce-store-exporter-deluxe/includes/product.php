@@ -438,7 +438,6 @@ if( is_admin() ) {
 		$upsell_formatting = woo_ce_get_option( 'upsell_formatting', 1 );
 
 		ob_start(); ?>
-<!-- ALESSANDRO: hide
 <tr class="export-options product-options">
 	<th><label for=""><?php _e( 'Up-sells formatting', 'woocommerce-exporter' ); ?></label></th>
 	<td>
@@ -447,7 +446,7 @@ if( is_admin() ) {
 		<p class="description"><?php _e( 'Choose the up-sell formatting that is accepted by your WooCommerce import Plugin (e.g. Product Importer Deluxe, Product Import Suite, etc.).', 'woocommerce-exporter' ); ?></p>
 	</td>
 </tr>
--->
+
 <?php
 		ob_end_flush();
 
@@ -459,7 +458,6 @@ if( is_admin() ) {
 		$crosssell_formatting = woo_ce_get_option( 'crosssell_formatting', 1 );
 
 		ob_start(); ?>
-<!-- ALESSANDRO: hide
 <tr class="export-options product-options">
 	<th><label for=""><?php _e( 'Cross-sells formatting', 'woocommerce-exporter' ); ?></label></th>
 	<td>
@@ -468,7 +466,7 @@ if( is_admin() ) {
 		<p class="description"><?php _e( 'Choose the cross-sell formatting that is accepted by your WooCommerce import Plugin (e.g. Product Importer Deluxe, Product Import Suite, etc.).', 'woocommerce-exporter' ); ?></p>
 	</td>
 </tr>
--->
+
 <?php
 		ob_end_flush();
 
@@ -480,7 +478,6 @@ if( is_admin() ) {
 		$variation_formatting = woo_ce_get_option( 'variation_formatting', 0 );
 
 		ob_start(); ?>
-					<!-- ALESSANDRO: hide
 					<tr class="export-options product-options">
 						<th><label for=""><?php _e( 'Variation formatting', 'woocommerce-exporter' ); ?></label></th>
 						<td>
@@ -489,7 +486,6 @@ if( is_admin() ) {
 							<p class="description"><?php _e( 'Choose the default formatting rule that is applied to Product Variations.', 'woocommerce-exporter' ); ?></p>
 						</td>
 					</tr>
-					-->
 
 <?php
 		ob_end_flush();
@@ -525,7 +521,6 @@ if( is_admin() ) {
 		$troubleshooting_url = 'http://www.visser.com.au/documentation/store-exporter-deluxe/usage/';
 
 		ob_start(); ?>
-<!-- ALESSANDRO: hide
 <form method="post" id="export-products-custom-fields" class="export-options product-options">
 	<div id="poststuff">
 
@@ -563,12 +558,15 @@ if( is_admin() ) {
 				</p>
 				<p class="description"><?php printf( __( 'For more information on exporting custom Product meta and Attributes consult our <a href="%s" target="_blank">online documentation</a>.', 'woocommerce-exporter' ), $troubleshooting_url ); ?></p>
 			</div>
+			<!-- .inside -->
 		</div>
+		<!-- .postbox -->
 
 	</div>
+	<!-- #poststuff -->
 	<input type="hidden" name="action" value="update" />
 </form>
--->
+<!-- #export-products-custom-fields -->
 <?php
 		ob_end_flush();
 

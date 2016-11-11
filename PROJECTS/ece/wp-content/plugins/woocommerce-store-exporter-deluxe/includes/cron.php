@@ -503,7 +503,7 @@ function woo_ce_cron_export( $gui = '', $type = '', $is_scheduled = false ) {
 						$order_filter_shipping = get_post_meta( $scheduled_export, '_filter_order_shipping', true );
 						$export->args['order_shipping'] = ( !empty( $order_filter_shipping ) ? array_map( 'sanitize_text_field', $order_filter_shipping ) : false );
 					} else {
-
+					
 						// CRON export engine
 
 						// Order Status
@@ -625,8 +625,10 @@ function woo_ce_cron_export( $gui = '', $type = '', $is_scheduled = false ) {
 			// Let's spin up PHPExcel for supported Export Types and Export Formats
 			if( in_array( $export->export_format, array( 'csv', 'tsv', 'xls', 'xlsx' ) ) ) {
 
+
 				// Check if we are using PHPExcel or not for supported Export Types
 				$dataset = woo_ce_export_dataset( $export->type );
+
 				if( !empty( $dataset ) ) {
 					// Check that PHPExcel is where we think it is
 					if( file_exists( WOO_CD_PATH . 'classes/PHPExcel.php' ) ) {
@@ -656,6 +658,7 @@ function woo_ce_cron_export( $gui = '', $type = '', $is_scheduled = false ) {
 							foreach( array_keys( $export->fields ) as $field ) {
 								$excel->getActiveSheet()->getCellByColumnAndRow( $col, $row )->getStyle()->getFont()->setBold( false );
 								if( $export->encoding == 'UTF-8' ) {
+
 									if( woo_ce_detect_value_string( ( isset( $data->$field ) ? $data->$field : null ) ) ) {
 										// Treat this cell as a string
 										$excel->getActiveSheet()->getCellByColumnAndRow( $col, $row )->setValueExplicit( ( isset( $data->$field ) ? wp_specialchars_decode( $data->$field, 'ENT_QUOTES' ) : '' ), PHPExcel_Cell_DataType::TYPE_STRING );
@@ -681,6 +684,7 @@ function woo_ce_cron_export( $gui = '', $type = '', $is_scheduled = false ) {
 							woo_cd_load_phpexcel_sed_csv_writer();
 						}
 						$objWriter = PHPExcel_IOFactory::createWriter( $excel, $php_excel_format );
+
 						switch( $export->export_format ) {
 
 							case 'csv':
@@ -709,9 +713,11 @@ function woo_ce_cron_export( $gui = '', $type = '', $is_scheduled = false ) {
 							if( $temp_filename == false ) {
 								$export->error = sprintf( __( 'We could not create a temporary export file in %s, ensure that WordPress can read and write files here and try again.', 'woocommerce-exporter' ), apply_filters( 'woo_ce_sys_get_temp_dir', sys_get_temp_dir() ) );
 								woo_ce_error_log( sprintf( '%s: Error: %s', $export->filename, $export->error ) );
-							} else {
+							} else {					
+
 								$objWriter->save( $temp_filename );
 								$bits = file_get_contents( $temp_filename );
+				
 							}
 						}
 

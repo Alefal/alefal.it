@@ -27,7 +27,6 @@
 				</td>
 			</tr>
 
-			<!-- ALESSANDRO: hide
 			<tr>
 				<th>
 					<label for="delete_file"><?php _e( 'Enable archives', 'woocommerce-exporter' ); ?></label>
@@ -46,7 +45,6 @@
 					<p class="description"><?php _e( 'Save copies of exports to the WordPress Media for later downloading. By default this option is turned off.', 'woocommerce-exporter' ); ?></p>
 				</td>
 			</tr>
-			-->
 			<tr>
 				<th>
 					<label for="encoding"><?php _e( 'Character encoding', 'woocommerce-exporter' ); ?></label>
@@ -83,7 +81,6 @@
 				</td>
 			</tr>
 <?php if( !ini_get( 'safe_mode' ) ) { ?>
-			<!-- ALESSANDRO: hide
 			<tr>
 				<th>
 					<label for="timeout"><?php _e( 'Script timeout', 'woocommerce-exporter' ); ?></label>
@@ -98,9 +95,7 @@
 					<p class="description"><?php _e( 'Script timeout defines how long Store Exporter is \'allowed\' to process your export file, once the time limit is reached the export process halts.', 'woocommerce-exporter' ); ?></p>
 				</td>
 			</tr>
-			-->
 
-			<!-- ALESSANDRO: hide
 			<tr>
 				<th>&nbsp;</th>
 				<td style="vertical-align:top;">
@@ -112,9 +107,9 @@
 							<li><a href="<?php echo esc_url( add_query_arg( array( 'action' => 'nuke_archives', '_wpnonce' => wp_create_nonce( 'woo_ce_nuke_archives' ) ) ) ); ?>" class="delete" data-confirm="<?php _e( 'This will permanently delete all Scheduled Exports associated with Store Exporter Deluxe. Are you sure you want to proceed?', 'woocommerce-exporter' ); ?>"><?php _e( 'Delete Scheduled Exports', 'woocommerce-exporter' ); ?></a></li>
 						</ul>
 					</div>
+					<!-- .advanced-settings -->
 				</td>
 			</tr>
-			-->
 
 <?php } ?>
 

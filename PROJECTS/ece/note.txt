@@ -10,6 +10,10 @@ woocommerce-exporter
 woocommerce-stock-manager
 alefal_woocommerce
 
+=== Problemi ===
+woocommerce-store-exporter-deluxe 2.0.8:
+non funziona il tasto di "Scarica in XLS" in corrispondenza di un ordine; scarica il file ma contiene solo l'intestazione
+
 === Note ===
 Per JSON API USER:
 - Se la connessione non è HTTPS aggiungere il parametro "insecure=cool"

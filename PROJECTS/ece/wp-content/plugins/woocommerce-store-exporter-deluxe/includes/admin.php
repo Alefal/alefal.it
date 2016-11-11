@@ -348,6 +348,7 @@ function woo_ce_admin_order_actions( $actions = array(), $order = false ) {
 // Generate exports for Download as... button clicks
 function woo_ce_ajax_export_order() {
 
+
 	if( check_admin_referer( 'woo_ce_export_order' ) ) {
 		$gui = 'download';
 		$export_type = 'order';
