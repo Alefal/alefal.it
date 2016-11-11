@@ -1,29 +1,29 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { NavParams, ViewController, LoadingController } from 'ionic-angular';
 
-import { HttpService }          from '../../providers/http-service';
+import { HttpService } from '../../providers/http-service';
 
 @Component({
-  selector: 'page-clienti',
-  templateUrl: 'clienti.html'
+  selector: 'prodotto-modal',
+  templateUrl: 'prodotto-modal.html'
 })
-export class Clienti {
+export class ProdottoModal {
 
-  users: any;
+  id: number;
+  product: any;
   nothing: string;
   loading: any;
   errorMessage: string;
   errorMessageView: any;
 
   constructor(
-    public navCtrl: NavController,
-    public params: NavParams, 
+    params: NavParams,
     private httpService: HttpService,
-    public loadingCtrl: LoadingController
-  ) {}
+    public loadingCtrl: LoadingController,
+    public viewCtrl: ViewController
+    ) {
+    this.id = params.get('id');
 
-  ionViewDidLoad() {
-    console.log('Hello Categorie Page');
     this.loading = this.loadingCtrl.create({
       spinner: 'crescent',
       //content: 'Please wait...'
@@ -31,16 +31,15 @@ export class Clienti {
     this.loading.present();
 
     this.httpService
-      .getCallHttp('getCustomer','','','')
+      .getCallHttp('getProductDetail','','',this.id)
       .then(res => {
         console.log('res: '+JSON.stringify(res));
 
         if(res[0].response[0].result == 'OK') {
-          this.users = res[0].users;
+          this.product = res[0].output;
         } else {
           this.nothing = 'Nessun dato! Riprovare più tardi.';
         }
-        
         this.loading.dismiss();
       })
       .catch(error => {
@@ -49,6 +48,10 @@ export class Clienti {
         this.errorMessageView = true;
         this.loading.dismiss();
       });
+  }
+
+  dismiss() {
+    this.viewCtrl.dismiss();
   }
 
 }

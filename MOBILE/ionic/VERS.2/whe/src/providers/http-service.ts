@@ -15,11 +15,11 @@ export class HttpService {
     Installare chrome addons:
     https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en
     */
-    getCallHttp(call,username,password) {
+    getCallHttp(call,username,password,id) {
         console.log('getCallHttp: '+call+' | '+username+' | '+password);
         
-        //var host = 'http://localhost/alefal.it/PROJECTS/ece';
-        var host = 'http://www.amalficoastapps.it/demo/ece';
+        var host = 'http://localhost/alefal.it/PROJECTS/ece';
+        //var host = 'http://www.amalficoastapps.it/demo/ece';
         
         var url = '';
         if(call == 'authentication') {
@@ -28,6 +28,8 @@ export class HttpService {
             url = '/wp-content/plugins/alefal_woocommerce/services/ece_products_cat.php';
         } else if(call == 'getProducts') {
             url = '/wp-content/plugins/alefal_woocommerce/services/ece_products.php';
+        } else if(call == 'getProductDetail') {
+            url = '/wp-content/plugins/alefal_woocommerce/services/ece_product_detail.php?id='+id;
         } else if(call == 'getOrders') {
             url = '/wp-content/plugins/alefal_woocommerce/services/ece_orders.php';
         } else if(call == 'getCustomer') {

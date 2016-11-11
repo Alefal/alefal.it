@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, ModalController } from 'ionic-angular';
 
-import { HttpService }          from '../../providers/http-service';
+import { ProdottoModal } from './prodotto-modal';
+
+import { HttpService } from '../../providers/http-service';
 
 @Component({
   selector: 'page-prodotti',
@@ -15,14 +17,20 @@ export class Prodotti {
   errorMessage: string;
   errorMessageView: any;
 
+  public tap: number = 0;
+  showButtonAfterTap = false;
+
   constructor(
     public navCtrl: NavController,
     public params: NavParams, 
     private httpService: HttpService,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    public modalCtrl: ModalController
   ) {}
 
   ionViewDidLoad() {
+    this.showButtonAfterTap = true;
+    
     this.loading = this.loadingCtrl.create({
       spinner: 'crescent',
       //content: 'Please wait...'
@@ -30,7 +38,7 @@ export class Prodotti {
     this.loading.present();
 
     this.httpService
-      .getCallHttp('getProducts','','')
+      .getCallHttp('getProducts','','','')
       .then(res => {
         console.log('res: '+JSON.stringify(res));
 
@@ -47,6 +55,26 @@ export class Prodotti {
         this.errorMessageView = true;
         this.loading.dismiss();
       });
+  }
+
+  tapEvent(e) {
+    /*this.tap++;
+    if(this.tap == 10) {
+      this.showButtonAfterTap = true;
+    }*/
+  }
+
+  modalDetail(id) {
+    console.log(id);
+    
+    //this.showButtonAfterTap = false;
+    //this.tap = 0;
+    let modal = this.modalCtrl.create(ProdottoModal, { id: id });
+    modal.present();
+  }
+
+  modalCreate() {
+    console.log('modalCreate');
   }
 
 }

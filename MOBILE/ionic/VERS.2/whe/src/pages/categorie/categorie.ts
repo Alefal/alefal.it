@@ -31,7 +31,7 @@ export class Categorie {
     this.loading.present();
 
     this.httpService
-      .getCallHttp('getProductsCategory','','')
+      .getCallHttp('getProductsCategory','','','')
       .then(res => {
         console.log('res: '+JSON.stringify(res));
 

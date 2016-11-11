@@ -369,10 +369,11 @@ function get_wc_api_client() {
 		// index
 		//print_r( $client->index->get() );
 
-		// orders
+		// orders: CREATE | UPDATE | DELETE
 		//print_r( $client->orders->get() );
 		//print_r( $client->orders->get( $order_id ) );
 		//print_r( $client->orders->update_status( $order_id, 'pending' ) );
+		//print_r( $client->orders->create(array('name' => 'TESTTTTT')));
 
 		// order notes
 		//print_r( $client->order_notes->get( $order_id ) );

@@ -5,6 +5,7 @@ import { WheApp }                   from './app.component';
 import { Login }                    from '../pages/login/login';
 import { Homepage }                 from '../pages/homepage/homepage';
 import { Prodotti }                 from '../pages/prodotti/prodotti';
+import { ProdottoModal }            from '../pages/prodotti/prodotto-modal';
 import { Ordini }                   from '../pages/ordini/ordini';
 import { Clienti }                  from '../pages/clienti/clienti';
 import { Fornitori }                from '../pages/fornitori/fornitori';
@@ -19,6 +20,7 @@ import { HttpService }              from '../providers/http-service';
     Login,
     Homepage,
     Prodotti,
+    ProdottoModal,
     Ordini,
     Clienti,
     Fornitori,
@@ -34,6 +36,7 @@ import { HttpService }              from '../providers/http-service';
     Login,
     Homepage,
     Prodotti,
+    ProdottoModal,
     Ordini,
     Clienti,
     Fornitori,
