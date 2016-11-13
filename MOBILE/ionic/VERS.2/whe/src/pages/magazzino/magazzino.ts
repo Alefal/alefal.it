@@ -69,4 +69,11 @@ export class Magazzino {
     this.products = this.productAll;
   }
 
+  updateProduct(id,stock) {
+    console.log(id+' | '+stock);
+
+    console.log(document.getElementById('newStockValue').val());
+    
+  }
+
 }

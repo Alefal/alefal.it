@@ -4,10 +4,14 @@ Stock Magazine con Ionic App
 
 === Prerequisiti ===
 json-api
-json-api-user 				-> https://it.wordpress.org/plugins/json-api-user/other_notes/
-woocommerce 				-> http://woocommerce.github.io/woocommerce-rest-api-docs/v3.html
-woocommerce-exporter
+json-api-user 									-> https://it.wordpress.org/plugins/json-api-user/other_notes/
+woocommerce 									-> http://woocommerce.github.io/woocommerce-rest-api-docs/v3.html
+woocommerce-delivery-notes
 woocommerce-stock-manager
+NO -> woocommerce-exporter
+SI -> woocommerce-store-exporter-deluxe
+reduce-stock-of-manual-orders-for-woocommerce 	-> riduce la quantità per ordine manuali nel BO
+user-role-editor
 alefal_woocommerce
 
 === Problemi ===
