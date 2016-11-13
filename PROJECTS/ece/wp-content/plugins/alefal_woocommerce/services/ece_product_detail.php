@@ -24,11 +24,12 @@ if(isset($productId)) {
 
         $item = $eceGetCallArray->product;
         $eceOutputArray[] = array(        
-            'id'        => $item->id,
-            'title'     => $item->title,
-            'price'     => $item->price,
-            'stock'     => $item->stock_quantity,
-            'images'    => $item->images
+            'id'            => $item->id,
+            'title'         => $item->title,
+            'price'         => $item->price,
+            'description'   => $item->description,
+            'stock'         => $item->stock_quantity,
+            'images'        => $item->images
 
         ); 
         //print_r($eceOutputArray);

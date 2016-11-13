@@ -6,13 +6,28 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>magazzino</ion-title>
+ <ion-navbar color="primary">
+    <ion-title>Magazzino</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+
+  <ion-searchbar (ionInput)="getItems($event)" (ionClear)="onCancel($event)"></ion-searchbar>
+  <ion-list>
+    <ion-item *ngFor="let prod of products">
+      <ion-thumbnail item-left>
+        <img src="{{prod.images[0].src}}" />
+      </ion-thumbnail>
+      <h2>{{prod.title}}</h2>
+      <h3>
+        Quantità:
+      </h3>
+      <p><ion-input type="number" name="prodQuantity" ng-value="prod.stock_quantity" required></ion-input></p>
+      <ion-icon name="checkmark-circle" item-right color="secondary"></ion-icon>
+    </ion-item>
+  </ion-list>
 
 </ion-content>

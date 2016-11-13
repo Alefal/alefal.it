@@ -22,7 +22,9 @@
       </ion-avatar>
       <h2>{{user.display_name}}</h2>
       <p>{{user.user_email}}</p>
-      <ion-icon name="mail" item-right color="primary"></ion-icon>
+      <a item-right href="mailto:{{user.user_email}}">
+        <ion-icon name="mail" color="primary"></ion-icon>
+      </a>
     </ion-item>
   </ion-list>
 

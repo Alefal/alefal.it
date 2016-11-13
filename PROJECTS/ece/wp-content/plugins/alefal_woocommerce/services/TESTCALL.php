@@ -7,16 +7,18 @@ try {
 	$woocommerce = new WC_API_Client( $store_url, $consumer_key, $consumer_secret, $options );
     
     print '<pre>';
+    $eceGetCallArray = $woocommerce->products->get();
 	//$eceGetCallArray = $woocommerce->products->get(null, array('filter[limit]' => 50 , 'fields' => 'id,status' ));
     //$eceGetCallArray = $woocommerce->products->get(null, array('filter[name]' => 'Test Product'));
     //$eceGetCallArray = $woocommerce->products->get(null, array( 'search' => 'Test Product'));
     //$eceGetCallArray = $woocommerce->order_notes->get( 126 );
-
+    /*
     $eceGetCallArray = $woocommerce->orders->create( 
         array( 
             'name' => 'TESTTTTT'
         )
     );
+    */
     print_r($eceGetCallArray);
 	print '</pre>';
 

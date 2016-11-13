@@ -11,8 +11,49 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
 	
-	CREATE
+    <form (ngSubmit)="saveProduct(id)">
+      <ion-list>
+
+        <ion-item>
+          <ion-label floating>Nome *</ion-label>
+          <ion-input type="text" name="prodTitle" [(ngModel)]="prodTitle" autofocus required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Prezzo *</ion-label>
+          <ion-input type="number" name="prodPrice" [(ngModel)]="prodPrice" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Descrizione *</ion-label>
+          <ion-textarea name="prodDescription" [(ngModel)]="prodDescription" required></ion-textarea>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>In magazzino *</ion-label>
+          <ion-toggle name="prodManageStock" [(ngModel)]="prodManageStock" required></ion-toggle>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Quantità *</ion-label>
+          <ion-input type="number" name="prodQuantity" [(ngModel)]="prodQuantity" required></ion-input>
+        </ion-item>
+
+      </ion-list>
+
+      <button ion-button full color="dark" type="submit">salva Prodotto</button>
+    </form>
+
+    <div *ngIf="showButtonEditDelete">
+      <ion-fab right bottom>
+        <button ion-fab color="dark"><ion-icon name="ios-arrow-back"></ion-icon></button>
+        <ion-fab-list side="left">
+          <button ion-fab color="dark" (click)="deleteProduct(id)"><ion-icon name="trash"></ion-icon></button>
+        </ion-fab-list>
+      </ion-fab>
+  </div>
+
 
 </ion-content>

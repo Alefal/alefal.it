@@ -15,26 +15,42 @@ export class HttpService {
     Installare chrome addons:
     https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en
     */
-    getCallHttp(call,username,password,id) {
+    getCallHttp(call,username,password,id,object) {
         console.log('getCallHttp: '+call+' | '+username+' | '+password);
         
         var host = 'http://localhost/alefal.it/PROJECTS/ece';
         //var host = 'http://www.amalficoastapps.it/demo/ece';
         
         var url = '';
+        //LOGIN
         if(call == 'authentication') {
             url = '/api/user/generate_auth_cookie/?username='+username+'&password='+password+'&insecure=cool';
-        } else if(call == 'getProductsCategory') {
+        } 
+        //PRODUCTS
+        else if(call == 'getProductsCategory') {
             url = '/wp-content/plugins/alefal_woocommerce/services/ece_products_cat.php';
-        } else if(call == 'getProducts') {
+        } 
+        else if(call == 'getProducts') {
             url = '/wp-content/plugins/alefal_woocommerce/services/ece_products.php';
-        } else if(call == 'getProductDetail') {
+        } 
+        else if(call == 'getProductDetail') {
             url = '/wp-content/plugins/alefal_woocommerce/services/ece_product_detail.php?id='+id;
-        } else if(call == 'getOrders') {
+        } 
+        else if(call == 'getProductSave') {
+            url = '/wp-content/plugins/alefal_woocommerce/services/ece_product_save.php?product='+JSON.stringify(object);
+        } 
+        else if(call == 'getProductDelete') {
+            url = '/wp-content/plugins/alefal_woocommerce/services/ece_product_delete.php?id='+id;
+        } 
+        //ORDERS
+        else if(call == 'getOrders') {
             url = '/wp-content/plugins/alefal_woocommerce/services/ece_orders.php';
-        } else if(call == 'getCustomer') {
+        } 
+        //USERS
+        else if(call == 'getCustomer') {
             url = '/wp-content/plugins/alefal_woocommerce/services/ece_users.php?role=stock_cliente';
-        } else if(call == 'getSupplier') {
+        } 
+        else if(call == 'getSupplier') {
             url = '/wp-content/plugins/alefal_woocommerce/services/ece_users.php?role=stock_fornitore';
         }
 

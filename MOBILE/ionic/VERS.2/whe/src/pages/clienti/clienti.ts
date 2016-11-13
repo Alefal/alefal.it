@@ -31,7 +31,7 @@ export class Clienti {
     this.loading.present();
 
     this.httpService
-      .getCallHttp('getCustomer','','','')
+      .getCallHttp('getCustomer','','','','')
       .then(res => {
         console.log('res: '+JSON.stringify(res));
 

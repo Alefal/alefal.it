@@ -12,6 +12,7 @@ import { HttpService } from '../../providers/http-service';
 export class Prodotti {
 
   products: any;
+  productAll: any;
   nothing: string;
   loading: any;
   errorMessage: string;
@@ -22,15 +23,18 @@ export class Prodotti {
 
   constructor(
     public navCtrl: NavController,
-    public params: NavParams, 
+    public params: NavParams,
     private httpService: HttpService,
     public loadingCtrl: LoadingController,
     public modalCtrl: ModalController
-  ) {}
+  ) { }
 
   ionViewDidLoad() {
     this.showButtonAfterTap = true;
-    
+    this.loadData();
+  }
+
+  loadData() {
     this.loading = this.loadingCtrl.create({
       spinner: 'crescent',
       //content: 'Please wait...'
@@ -38,12 +42,13 @@ export class Prodotti {
     this.loading.present();
 
     this.httpService
-      .getCallHttp('getProducts','','','')
+      .getCallHttp('getProducts', '', '', '', '')
       .then(res => {
-        console.log('res: '+JSON.stringify(res));
+        //console.log('res: '+JSON.stringify(res));
 
-        if(res[0].response[0].result == 'OK') {
+        if (res[0].response[0].result == 'OK') {
           this.products = res[0].output;
+          this.productAll = res[0].output;
         } else {
           this.nothing = 'Nessun dato! Riprovare più tardi.';
         }
@@ -57,6 +62,21 @@ export class Prodotti {
       });
   }
 
+  getItems(ev) {
+    var val = ev.target.value;
+    //this.productFilter = this.products;
+
+    // if the value is an empty string don't filter the items
+    if (val && val.trim() != '') {
+      this.products = this.products.filter((item) => {
+        return (item.title.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      })
+    }
+  }
+  onCancel(ev) {
+    this.products = this.productAll;
+  }
+
   tapEvent(e) {
     /*this.tap++;
     if(this.tap == 10) {
@@ -64,17 +84,19 @@ export class Prodotti {
     }*/
   }
 
-  modalDetail(id) {
+  modalProduct(id) {
     console.log(id);
-    
-    //this.showButtonAfterTap = false;
-    //this.tap = 0;
     let modal = this.modalCtrl.create(ProdottoModal, { id: id });
     modal.present();
-  }
-
-  modalCreate() {
-    console.log('modalCreate');
+    modal.onDidDismiss(data => {
+      console.log('-> '+data.action);
+      if(data.action == 'refresh') {
+        console.log('Ricarico la lista dei prodotti');
+        this.loadData();
+      } else {
+        console.log('Chiudi finestra prodotto');
+      }
+    });
   }
 
 }

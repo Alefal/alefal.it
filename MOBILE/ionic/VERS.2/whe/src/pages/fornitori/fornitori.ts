@@ -31,7 +31,7 @@ export class Fornitori {
     this.loading.present();
 
     this.httpService
-      .getCallHttp('getSupplier','','','')
+      .getCallHttp('getSupplier','','','','')
       .then(res => {
         console.log('res: '+JSON.stringify(res));
 
