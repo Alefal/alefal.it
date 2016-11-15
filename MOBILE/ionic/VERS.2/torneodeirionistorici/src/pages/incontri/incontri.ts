@@ -48,7 +48,7 @@ export class Incontri {
         this.connectivityService.showInfoNoData();
       } else {
         this.incontri = JSON.parse(localStorage.getItem('getIncontri_'+this.round));
-      this.connectivityService.showInfo();
+        this.connectivityService.showInfo();
       }
     }
   }
@@ -66,6 +66,19 @@ export class Incontri {
 
         if(res[0].response[0].result == 'OK') {
           this.incontri = res[0].matchs;
+
+          for (let mtc of this.incontri) {
+            //console.log(mtc['match_date'] + ' | ' +mtc['match_time']);
+            //console.log(this.convertToDate(mtc['match_date']));
+            //console.log(this.convertTime12to24(mtc['match_time']));  
+
+            //Date incontri in MILLISECONDI: confrontare con la data odiera per inviare LocalNotification
+            let dateString = this.convertToDate(mtc['match_date'])+' '+this.convertTime12to24(mtc['match_time']);
+            let date = new Date(dateString);
+            console.log(date.getTime());  
+            
+          }
+
           localStorage.setItem('getIncontri_'+this.round,JSON.stringify(this.incontri));
         } else {
           this.incontri = 'Nessun dato! Riprovare più tardi.';
@@ -115,6 +128,29 @@ export class Incontri {
     } else {
       this.connectivityService.showAlert();
     }
+  }
+
+  convertToDate(dateStr) {
+    var parts = dateStr.split('/');
+    var year  = parts[2];
+    var mount = parts[1]; 
+    var day   = parts[0]; 
+     
+    return year+'-'+mount+'-'+day;
+    //return new Date(parts[2], parts[1] - 1, parts[0]);
+  }
+  convertTime12to24(time12h) {
+    const [time, modifier] = time12h.split(' ');
+    let [hours, minutes] = time.split(':');
+    console.log(hours+' | '+minutes+' | '+modifier);
+    
+    if (hours === '12') {
+      hours = '00';
+    }
+    if (modifier === 'pm') {
+      hours = parseInt(hours, 10) + 13;
+    }
+    return hours + ':' + minutes;
   }
 
 }

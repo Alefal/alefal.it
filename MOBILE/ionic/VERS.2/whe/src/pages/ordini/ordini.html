@@ -15,6 +15,7 @@
 
 <ion-content>
 
+  <ion-searchbar (ionInput)="getItems($event)" (ionClear)="onCancel($event)" placeholder="Ricerca numero ordine"></ion-searchbar>
   <ion-list>
     <ion-item *ngFor="let order of orders">
       <ion-icon name="ios-list-box-outline" item-left class="iconsList" color="primary"></ion-icon>

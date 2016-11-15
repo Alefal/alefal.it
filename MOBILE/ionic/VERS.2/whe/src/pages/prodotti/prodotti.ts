@@ -21,45 +21,70 @@ export class Prodotti {
   public tap: number = 0;
   showButtonAfterTap = false;
 
+  categoriaNome: string = '';
+
   constructor(
     public navCtrl: NavController,
     public params: NavParams,
     private httpService: HttpService,
     public loadingCtrl: LoadingController,
     public modalCtrl: ModalController
-  ) { }
-
-  ionViewDidLoad() {
+  ) { 
     this.showButtonAfterTap = true;
-    this.loadData();
+    this.categoriaNome = params.get('categoriaNome');
+    this.loadData(this.categoriaNome);
   }
 
-  loadData() {
+  ionViewDidLoad() {}
+
+  loadData(categoriaNome) {
     this.loading = this.loadingCtrl.create({
       spinner: 'crescent',
       //content: 'Please wait...'
     });
     this.loading.present();
 
-    this.httpService
-      .getCallHttp('getProducts', '', '', '', '')
-      .then(res => {
-        //console.log('res: '+JSON.stringify(res));
+    if(categoriaNome && categoriaNome != ''){
+      this.httpService
+        .getCallHttp('getProductsByCategory', '', '', '', categoriaNome)
+        .then(res => {
+          //console.log('res: '+JSON.stringify(res));
 
-        if (res[0].response[0].result == 'OK') {
-          this.products = res[0].output;
-          this.productAll = res[0].output;
-        } else {
-          this.nothing = 'Nessun dato! Riprovare più tardi.';
-        }
-        this.loading.dismiss();
-      })
-      .catch(error => {
-        console.log('ERROR: ' + error);
-        this.errorMessage = 'Error!';
-        this.errorMessageView = true;
-        this.loading.dismiss();
-      });
+          if (res[0].response[0].result == 'OK') {
+            this.products = res[0].output;
+            this.productAll = res[0].output;
+          } else {
+            this.nothing = 'Nessun dato! Riprovare più tardi.';
+          }
+          this.loading.dismiss();
+        })
+        .catch(error => {
+          console.log('ERROR: ' + error);
+          this.errorMessage = 'Error!';
+          this.errorMessageView = true;
+          this.loading.dismiss();
+        });
+    } else {
+      this.httpService
+        .getCallHttp('getProducts', '', '', '', '')
+        .then(res => {
+          //console.log('res: '+JSON.stringify(res));
+
+          if (res[0].response[0].result == 'OK') {
+            this.products = res[0].output;
+            this.productAll = res[0].output;
+          } else {
+            this.nothing = 'Nessun dato! Riprovare più tardi.';
+          }
+          this.loading.dismiss();
+        })
+        .catch(error => {
+          console.log('ERROR: ' + error);
+          this.errorMessage = 'Error!';
+          this.errorMessageView = true;
+          this.loading.dismiss();
+        });
+    }
   }
 
   getItems(ev) {
@@ -92,7 +117,7 @@ export class Prodotti {
       console.log('-> '+data.action);
       if(data.action == 'refresh') {
         console.log('Ricarico la lista dei prodotti');
-        this.loadData();
+        this.loadData(this.categoriaNome);
       } else {
         console.log('Chiudi finestra prodotto');
       }

@@ -1,9 +1,11 @@
 === MAGAZZINO ===
 Lista di tutti i PRODOTTI in ordine ASC; per ogni PRODOTTO, visualizzare la giacenza rimanente che può essere modificata
+TODO salvataggio!
 
 === ORDINI ===
+OK -> Lista
 - Crea
-- Cerca
+OK -> Cerca (problema con digitazione: prende un carattere alla volta; vedi documentazione!)
 - Dettaglio
 -- Modifica
 -- Cancella
@@ -14,20 +16,20 @@ Lista di tutti i PRODOTTI in ordine ASC; per ogni PRODOTTO, visualizzare la giac
 --- Cancella
 
 === CATEGORIE ===
-Al click, mostrare tutti i PRODOTTI di quella CATEGORIA
+OK -> Al click, mostrare tutti i PRODOTTI di quella CATEGORIA
 CRUD ???
 
 === PRODOTTI ===
-OK - Crea
-OK -> Cerca
-OK - Dettaglio
-OK -- Modifica
-OK -- Cancella
+OK -> Crea
+OK -> Cerca (problema con digitazione: prende un carattere alla volta; vedi documentazione!)
+OK -> Dettaglio
+OK --> Modifica
+OK --> Cancella
 
 === CLIENTI ===
-OK - Solo visualizzazione con invio EMAIL
+OK -> Solo visualizzazione con invio EMAIL
 CRUD ???
 
 === FORNITORI ===
-OK - Solo visualizzazione con invio EMAIL
+OK -> Solo visualizzazione con invio EMAIL
 CRUD ???

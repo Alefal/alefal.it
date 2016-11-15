@@ -8,6 +8,11 @@
 
  <ion-navbar color="primary">
     <ion-title>Magazzino</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="getChecked()">
+        <ion-icon name="done-all"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -16,20 +21,19 @@
 <ion-content>
 
   <ion-searchbar (ionInput)="getItems($event)" (ionClear)="onCancel($event)"></ion-searchbar>
-  <ion-list>
-    <ion-item *ngFor="let prod of products">
-      
-      <ion-thumbnail item-left>
-        <img src="{{prod.images[0].src}}" />
-      </ion-thumbnail>
-      <ion-label floating>{{prod.title}}</ion-label>
-      <!--
-      <ion-input type="number" [value]="prod.stock" (input)="updateProduct(prod.id,$event.target.value)"></ion-input>
-      -->
-      <ion-input type="number" [value]="prod.stock"></ion-input>
-      <ion-icon name="checkmark" item-right color="secondary" (click)="updateProduct(prod.id, 0)"></ion-icon>
     
-    </ion-item>
-  </ion-list>
+    <ion-list>
+      <ion-item *ngFor="let prod of products">
+
+        <ion-checkbox color="dark" checked="false"></ion-checkbox>
+        <ion-label>
+          {{prod.title}}
+        </ion-label>
+        <ion-note item-right>
+          <em>{{prod.stock}}</em>
+        </ion-note>
+
+      </ion-item>
+    </ion-list>
 
 </ion-content>

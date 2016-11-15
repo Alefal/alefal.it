@@ -8,12 +8,13 @@ function sendNotificationGCM($regId,$regModel,$notifTitle,$notifMessage,$notifSe
 	(
 		'message' 		=> $notifMessage,
 		'title'			=> $notifTitle,
-		'count'		 	=> '4',
-		'sound'			=> '',
-		'image'		 	=> 'https://s3.amazonaws.com/ionic-forum-static/forum-logo.png',
-		'subtitle' 		=> 'This is a subtitle.',
 		'section'		=> $notifSection,
-		'ALTRO'			=> 'Ancora altro...'
+		'subtitle'		=> 'This is a subtitle. subtitle',
+		'tickerText'	=> 'Ticker text here...Ticker text here...Ticker text here',
+		'vibrate'		=> 1,
+		'sound'			=> 1,
+		'largeIcon'		=> 'large_icon',
+		'smallIcon'		=> 'small_icon'
 	);
 
 	

@@ -18,8 +18,8 @@ export class HttpService {
     getCallHttp(call,username,password,id,object) {
         console.log('getCallHttp: '+call+' | '+username+' | '+password);
         
-        var host = 'http://localhost/alefal.it/PROJECTS/ece';
-        //var host = 'http://www.amalficoastapps.it/demo/ece';
+        //var host = 'http://localhost/alefal.it/PROJECTS/ece';
+        var host = 'http://www.amalficoastapps.it/demo/ece';
         
         var url = '';
         //LOGIN
@@ -29,6 +29,9 @@ export class HttpService {
         //PRODUCTS
         else if(call == 'getProductsCategory') {
             url = '/wp-content/plugins/alefal_woocommerce/services/ece_products_cat.php';
+        } 
+        else if(call == 'getProductsByCategory') {
+            url = '/wp-content/plugins/alefal_woocommerce/services/ece_products_cat_filter.php?filterName=category&filterValue='+object;
         } 
         else if(call == 'getProducts') {
             url = '/wp-content/plugins/alefal_woocommerce/services/ece_products.php';

@@ -10,6 +10,8 @@ import { HttpService }          from '../../providers/http-service';
 export class Ordini {
 
   orders: any;
+  ordersAll: any;
+  
   nothing: string;
   loading: any;
   errorMessage: string;
@@ -23,6 +25,10 @@ export class Ordini {
   ) {}
 
   ionViewDidLoad() {
+    this.loadData();
+  }
+
+  loadData() {
     console.log('Hello Categorie Page');
     this.loading = this.loadingCtrl.create({
       spinner: 'crescent',
@@ -33,10 +39,11 @@ export class Ordini {
     this.httpService
       .getCallHttp('getOrders','','','','')
       .then(res => {
-        console.log('res: '+JSON.stringify(res));
+        //console.log('res: '+JSON.stringify(res));
 
         if(res[0].response[0].result == 'OK') {
           this.orders = res[0].output;
+          this.ordersAll = res[0].output;
         } else {
           this.nothing = 'Nessun dato! Riprovare più tardi.';
         }
@@ -48,6 +55,23 @@ export class Ordini {
         this.errorMessageView = true;
         this.loading.dismiss();
       });
+  }
+
+  getItems(ev) {
+    var val = ev.target.value;
+    //this.productFilter = this.products;
+
+    // if the value is an empty string don't filter the items
+    if (val && val.trim() != '') {
+      this.orders = this.orders.filter((item) => {
+        console.log(JSON.stringify(item.order_number)+' | '+val);
+        
+        return (item.order_number == val);
+      })
+    }
+  }
+  onCancel(ev) {
+    this.orders = this.ordersAll;
   }
 
 }

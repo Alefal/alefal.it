@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 
+import { Device } from 'ionic-native';
+
 //import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
 import 'rxjs/add/operator/toPromise';
@@ -45,6 +47,8 @@ export class HttpService {
             url = '/wp-content/plugins/alefal_leagueengine/le_matchDetails.php?match_id='+matchIdOrType+'&tipologiaTorneo='+tipologia;
         } else if(call == 'getIncontroAttr') {
             url = '/wp-content/plugins/alefal_leagueengine/le_matchAttr.php?match_id='+matchIdOrType+'&tipologiaTorneo='+tipologia;
+        } else if(call == 'registrationDevice') {
+            url = '/wp-content/plugins/alefal_notificationGCM/registerGCM.php?register_id='+teamId+'&register_model='+Device.device.model;
         }
 
         console.log('URL: '+url);

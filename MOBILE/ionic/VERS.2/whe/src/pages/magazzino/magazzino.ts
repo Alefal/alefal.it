@@ -19,8 +19,8 @@ export class Magazzino {
   constructor(
     public navCtrl: NavController,
     private httpService: HttpService,
-    public loadingCtrl: LoadingController,
-  ) {}
+    public loadingCtrl: LoadingController
+  ) { }
 
   ionViewDidLoad() {
     this.loadData();
@@ -45,6 +45,7 @@ export class Magazzino {
           this.nothing = 'Nessun dato! Riprovare più tardi.';
         }
         this.loading.dismiss();
+        
       })
       .catch(error => {
         console.log('ERROR: ' + error);
@@ -69,11 +70,16 @@ export class Magazzino {
     this.products = this.productAll;
   }
 
-  updateProduct(id,stock) {
-    console.log(id+' | '+stock);
+  updateProduct(id, stock) {
+    console.log(id + ' | ' + stock);
 
-    console.log(document.getElementById('newStockValue').val());
-    
+    //console.log(document.getElementById('newStockValue').val());
+
+  }
+
+
+  getChecked() {
+    console.log('TODO: getChecked');
   }
 
 }

@@ -3,8 +3,8 @@
 $league_id = 2; 
 $season_id = 32;
 //Remote
-$league_id = 67; 
-$season_id = 68;
+//$league_id = 67; 
+//$season_id = 68;
 
 //Locale: Tournament knockout
 //$tournament_id = 4;

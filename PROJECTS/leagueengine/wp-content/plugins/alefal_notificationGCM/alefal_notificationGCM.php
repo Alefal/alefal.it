@@ -99,16 +99,18 @@ function alefal_notificationGCM_install() {
 	$charset_collate = $wpdb->get_charset_collate();
 
 	$sql = "CREATE TABLE alfl_register_device (
-	  id mediumint(9) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	  id mediumint(9) NOT NULL AUTO_INCREMENT,
 	  registerId varchar(255) DEFAULT '' NOT NULL,
 	  registerModel varchar(255) DEFAULT '' NOT NULL
-	)";
+	  UNIQUE KEY id (id)
+	) $charset_collate;";
 
 	$sql .= "CREATE TABLE alfl_versions_app (
-	  id mediumint(9) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	  id mediumint(9) NOT NULL AUTO_INCREMENT,
 	  nameApp varchar(255) DEFAULT '' NOT NULL,
 	  versionApp varchar(255) DEFAULT '' NOT NULL,
-	)";
+	  UNIQUE KEY id (id)
+	) $charset_collate;";
 
 	require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 	dbDelta( $sql );

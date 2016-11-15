@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
 
-import { HttpService }          from '../../providers/http-service';
+import { Prodotti }     from '../prodotti/prodotti';
+import { HttpService }  from '../../providers/http-service';
 
 @Component({
   selector: 'page-categorie',
@@ -49,6 +50,15 @@ export class Categorie {
         this.errorMessageView = true;
         this.loading.dismiss();
       });
+  }
+
+  getProductsByCat(name,count) {
+    console.log(name+' | '+count);
+    if(count > 0) {
+      this.navCtrl.push(Prodotti, {
+        categoriaNome: name
+      });
+    }
   }
 
 }
