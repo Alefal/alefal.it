@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Carica Magazzino</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="dismiss()">
+        <ion-icon ios="ios-close" md="md-close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <ion-item *ngFor="let prod of productSelected">
+
+      <ion-input type="number" name="prodAddQuantity" [(ngModel)]="prod.prodAddQuantity"></ion-input>
+      <ion-label>
+        {{prod.prodTitle}}
+      </ion-label>
+      <ion-note item-right>
+        <em>{{prod.prodQuantity}}</em>
+      </ion-note>
+
+    </ion-item>
+  </ion-list>
+
+  <button ion-button large full color="dark" (click)="saveAll()">Aggiorna tutto</button>
+
+</ion-content>

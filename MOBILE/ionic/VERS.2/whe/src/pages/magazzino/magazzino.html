@@ -1,15 +1,9 @@
-<!--
-  Generated template for the Magazzino page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
  <ion-navbar color="primary">
     <ion-title>Magazzino</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="getChecked()">
+      <button ion-button icon-only (click)="getAllChecked()">
         <ion-icon name="done-all"></ion-icon>
       </button>
     </ion-buttons>
@@ -25,7 +19,12 @@
     <ion-list>
       <ion-item *ngFor="let prod of products">
 
-        <ion-checkbox color="dark" checked="false"></ion-checkbox>
+        <ion-checkbox 
+          color="dark" 
+          [checked]="exists(prod.id)"
+          (click)="setChecked(prod.id,prod.title,prod.stock)"
+          id={{prod.id}}></ion-checkbox>
+
         <ion-label>
           {{prod.title}}
         </ion-label>

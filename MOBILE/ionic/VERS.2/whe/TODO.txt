@@ -1,3 +1,6 @@
+=== Links ===
+https://www.tutorialspoint.com/typescript/index.htm
+
 === MAGAZZINO ===
 Lista di tutti i PRODOTTI in ordine ASC; per ogni PRODOTTO, visualizzare la giacenza rimanente che può essere modificata
 TODO salvataggio!

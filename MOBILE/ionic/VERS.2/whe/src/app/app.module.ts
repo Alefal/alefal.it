@@ -11,6 +11,7 @@ import { Clienti }                  from '../pages/clienti/clienti';
 import { Fornitori }                from '../pages/fornitori/fornitori';
 import { Categorie }                from '../pages/categorie/categorie';
 import { Magazzino }                from '../pages/magazzino/magazzino';
+import { MagazzinoModal }           from '../pages/magazzino/magazzino-modal';
 
 import { HttpService }              from '../providers/http-service';
 
@@ -25,7 +26,8 @@ import { HttpService }              from '../providers/http-service';
     Clienti,
     Fornitori,
     Categorie,
-    Magazzino
+    Magazzino,
+    MagazzinoModal
   ],
   imports: [
     IonicModule.forRoot(WheApp)
@@ -41,7 +43,8 @@ import { HttpService }              from '../providers/http-service';
     Clienti,
     Fornitori,
     Categorie,
-    Magazzino
+    Magazzino,
+    MagazzinoModal
   ],
   providers: [
     HttpService

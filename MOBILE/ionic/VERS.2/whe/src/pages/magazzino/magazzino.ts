@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController } from 'ionic-angular';
+import { NavController, LoadingController, ModalController } from 'ionic-angular';
+
+import { MagazzinoModal } from './magazzino-modal';
 
 import { HttpService } from '../../providers/http-service';
 
@@ -9,6 +11,8 @@ import { HttpService } from '../../providers/http-service';
 })
 export class Magazzino {
 
+  prodotto: Prodotto;
+
   products: any;
   productAll: any;
   nothing: string;
@@ -16,10 +20,13 @@ export class Magazzino {
   errorMessage: string;
   errorMessageView: any;
 
+  productSelected: Array<Prodotto> = [];
+
   constructor(
     public navCtrl: NavController,
     private httpService: HttpService,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    public modalCtrl: ModalController
   ) { }
 
   ionViewDidLoad() {
@@ -70,16 +77,62 @@ export class Magazzino {
     this.products = this.productAll;
   }
 
-  updateProduct(id, stock) {
-    console.log(id + ' | ' + stock);
+  setChecked(id,title,stock) {
 
-    //console.log(document.getElementById('newStockValue').val());
+    this.prodotto = new Prodotto(id,title,stock);
+    let prodId = this.prodotto.getProdId();
+    let addProduct: boolean = true;
 
+    let index = 0;
+    for (let prod of this.productSelected) {
+      //console.log('-> '+JSON.stringify(prod)+' | '+prodId);
+
+      if(prod.getProdId() == prodId) {
+        console.log('Prodotto da eliminare: '+prodId);
+        this.productSelected.splice(index, 1);
+        addProduct = false;
+        break;
+      }
+      index++;
+    }
+
+    if(addProduct) {
+      console.log('Aggiungo Prodotto: '+prodId);      
+      this.productSelected.push(this.prodotto);
+    } 
+    /** debug
+    for (let prod of this.productSelected) {
+      console.log(prod);  
+    }
+    **/
+  }
+  getAllChecked() {
+    /** debug
+    for (let prod of this.productSelected) {
+      console.log(prod);  
+    }
+    **/
+    let modal = this.modalCtrl.create(MagazzinoModal, { productSelected: this.productSelected });
+    modal.present();
   }
 
-
-  getChecked() {
-    console.log('TODO: getChecked');
+  exists(id) {
+    //return this.productSelected.indexOf(id) > -1;
   }
 
+}
+export class Prodotto {
+  protected prodId: number;
+  protected prodTitle: string;
+  protected prodQuantity: number;
+
+  constructor(prodId: number, prodTitle: string, prodQuantity: number) {
+    this.prodId = prodId;
+    this.prodTitle = prodTitle;
+    this.prodQuantity = prodQuantity;
+  }
+
+  getProdId(): string {
+    return this.prodId+'';
+  }
 }
