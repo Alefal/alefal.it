@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavParams, ViewController, LoadingController, AlertController } from 'ionic-angular';
 
-//import { Prodotto } from './prodotto';
+import { Prodotto } from './prodotto';
 
 import { HttpService } from '../../providers/http-service';
 
@@ -98,7 +98,7 @@ export class ProdottoModal {
     console.log(this.prodManageStock);
     console.log(this.prodQuantity);
 
-    this.prodotto = new Prodotto(id, this.prodTitle, this.prodPrice, this.prodDescription, this.prodManageStock, this.prodQuantity);
+    this.prodotto = new Prodotto(id, this.prodTitle, this.prodPrice, this.prodDescription, this.prodManageStock, this.prodQuantity, 0);
 
     this.loading = this.loadingCtrl.create({
       spinner: 'crescent',
@@ -178,23 +178,5 @@ export class ProdottoModal {
     });
     confirm.present();
 
-  }
-}
-
-export class Prodotto {
-  protected prodId: number;
-  protected prodTitle: string;
-  protected prodPrice: number;
-  protected prodDescription: string;
-  protected prodManageStock: boolean;
-  protected prodQuantity: number;
-
-  constructor(prodId: number, prodTitle: string, prodPrice: number, prodDescription: string, prodManageStock: boolean, prodQuantity: number) {
-    this.prodId = prodId;
-    this.prodTitle = prodTitle;
-    this.prodPrice = prodPrice;
-    this.prodDescription = prodDescription;
-    this.prodManageStock = prodManageStock;
-    this.prodQuantity = prodQuantity;
   }
 }

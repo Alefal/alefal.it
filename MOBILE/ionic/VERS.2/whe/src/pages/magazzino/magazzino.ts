@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, LoadingController, ModalController } from 'ionic-angular';
 
 import { MagazzinoModal } from './magazzino-modal';
+import { Prodotto }       from '../prodotti/prodotto';
 
 import { HttpService } from '../../providers/http-service';
 
@@ -43,7 +44,7 @@ export class Magazzino {
     this.httpService
       .getCallHttp('getProducts', '', '', '', '')
       .then(res => {
-        //console.log('res: '+JSON.stringify(res));
+        console.log('res: '+JSON.stringify(res));
 
         if (res[0].response[0].result == 'OK') {
           this.products = res[0].output;
@@ -77,9 +78,11 @@ export class Magazzino {
     this.products = this.productAll;
   }
 
-  setChecked(id,title,stock) {
+  setChecked(id,title,price,description,qnt) {
+    let instock: boolean = true;
+    let addQnt: number = 0;
 
-    this.prodotto = new Prodotto(id,title,stock);
+    this.prodotto = new Prodotto(id,title,price,description,instock,qnt,addQnt);
     let prodId = this.prodotto.getProdId();
     let addProduct: boolean = true;
 
@@ -120,19 +123,4 @@ export class Magazzino {
     //return this.productSelected.indexOf(id) > -1;
   }
 
-}
-export class Prodotto {
-  protected prodId: number;
-  protected prodTitle: string;
-  protected prodQuantity: number;
-
-  constructor(prodId: number, prodTitle: string, prodQuantity: number) {
-    this.prodId = prodId;
-    this.prodTitle = prodTitle;
-    this.prodQuantity = prodQuantity;
-  }
-
-  getProdId(): string {
-    return this.prodId+'';
-  }
 }

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { NavParams, ViewController, LoadingController, AlertController } from 'ionic-angular';
+import { NavParams, ViewController, LoadingController, AlertController, ToastController } from 'ionic-angular';
+
+import { Prodotto }    from '../prodotti/prodotto';
 
 import { HttpService } from '../../providers/http-service';
 
@@ -8,8 +10,6 @@ import { HttpService } from '../../providers/http-service';
   templateUrl: 'magazzino-modal.html'
 })
 export class MagazzinoModal {
-
-  prodotto: Prodotto;
 
   productSelected: Array<Prodotto> = [];
 
@@ -30,7 +30,8 @@ export class MagazzinoModal {
     private httpService: HttpService,
     public loadingCtrl: LoadingController,
     public viewCtrl: ViewController,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    public toastCtrl: ToastController
   ) {
 
     this.productSelected = params.get('productSelected');
@@ -41,63 +42,43 @@ export class MagazzinoModal {
     this.viewCtrl.dismiss();
   }
 
-  saveProduct(id) {
-    console.log(id);
-    console.log(this.prodQuantity);
-
-    this.prodotto = new Prodotto(id, this.prodTitle, this.prodQuantity, this.prodAddQuantity);
-
-    this.loading = this.loadingCtrl.create({
-      spinner: 'crescent',
-      //content: 'Please wait...'
-    });
-    this.loading.present();
-
-    this.httpService
-      .getCallHttp('getProductSave', '', '', '', this.prodotto)
-      .then(res => {
-        console.log('res: ' + JSON.stringify(res));
-
-        if (res[0].response[0].result == 'OK') {
-          this.viewCtrl.dismiss({
-            action: 'refresh'
-          });
-        } else {
-          this.nothing = 'Nessun dato! Riprovare più tardi.';
-        }
-        this.loading.dismiss();
-      })
-      .catch(error => {
-        console.log('ERROR: ' + error);
-        this.errorMessage = 'Error!';
-        this.errorMessageView = true;
-        this.loading.dismiss();
-      });
-  }
-
   saveAll() {
     for (let prod of this.productSelected) {
-      let pId: number     = prod['prodId'];
-      let PTitle: string  = prod['prodTitle'];
-      let pQnt            = prod['prodQuantity'] + prod['prodAddQuantity'];
+      let pId: number       = prod['prodId'];
+      let PTitle: string    = prod['prodTitle'];
+      let PPrice: number    = prod['prodPrice'];
+      let PDescr: string    = prod['prodDescription'];
+      let PInStock: boolean = true;
+      let pQnt              = (Number(prod['prodQuantity']) + Number(prod['prodAddQuantity']));
       
-      let prodotto = new Prodotto(pId, PTitle, pQnt, 0);
+      let prodotto = new Prodotto(pId,PTitle,PPrice,PDescr,PInStock,pQnt,0);
       console.log(prodotto);  
+
+      this.httpService
+        .getCallHttp('getProductSave', '', '', '', prodotto)
+        .then(res => {
+          console.log('res: ' + JSON.stringify(res));
+
+          if (res[0].response[0].result == 'OK') {
+            console.log('Prodotto '+pId+' salvato!');      
+            this.showToastWithCloseButton(pId,PTitle,'salvato!')      
+          } else {
+            console.log('Prodotto '+pId+' NON salvato!');      
+            this.showToastWithCloseButton(pId,PTitle,'NON salvato!')
+          }
+        })
+        .catch(error => {
+          console.log('ERROR: ' + error);
+        });
     }
   }
-}
 
-class Prodotto {
-  protected prodId: number;
-  protected prodTitle: string;
-  protected prodQuantity: number;
-  protected prodAddQuantity: number;
-  
-
-  constructor(prodId: number, prodTitle: string, prodQuantity: number, prodAddQuantity: number) {
-    this.prodId = prodId;
-    this.prodTitle = prodTitle;
-    this.prodQuantity = prodQuantity;
-    this.prodAddQuantity = prodAddQuantity;    
+  showToastWithCloseButton(id,title,message) {
+    const toast = this.toastCtrl.create({
+      message: 'Prodotto '+title+' (id: '+id+') '+message,
+      showCloseButton: true,
+      closeButtonText: 'Ok'
+    });
+    toast.present();
   }
 }
