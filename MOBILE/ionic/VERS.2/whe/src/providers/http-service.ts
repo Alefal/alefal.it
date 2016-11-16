@@ -58,11 +58,25 @@ export class HttpService {
         }
 
         console.log('URL: '+url);
-
         var response = this.http.get(host+''+url)
-               .toPromise()
-               .then(response => response.json())
-               .catch(this.handleError);
+            .toPromise()
+            .then(response => response.json())
+            .catch(this.handleError);
+        /*
+        var response;
+        if(call == 'getProductSave') {
+            //Observable
+            response = this.http.get(host+''+url)
+                .map(response => response.json())
+                .catch(this.handleError);
+        } else {
+            //PROMISE
+            response = this.http.get(host+''+url)
+                .toPromise()
+                .then(response => response.json())
+                .catch(this.handleError);
+        }
+        */
         return response;
     }
 

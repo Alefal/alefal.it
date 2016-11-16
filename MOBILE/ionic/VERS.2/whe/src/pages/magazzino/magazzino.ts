@@ -35,6 +35,8 @@ export class Magazzino {
   }
 
   loadData() {
+    this.productSelected = [];
+    
     this.loading = this.loadingCtrl.create({
       spinner: 'crescent',
       //content: 'Please wait...'
@@ -117,6 +119,15 @@ export class Magazzino {
     **/
     let modal = this.modalCtrl.create(MagazzinoModal, { productSelected: this.productSelected });
     modal.present();
+    modal.onDidDismiss(data => {
+      console.log('-> '+data.action);
+      if(data.action == 'refresh') {
+        console.log('Ricarico la lista dei prodotti');
+        this.loadData();
+      } else {
+        console.log('Chiudi finestra prodotto');
+      }
+    });
   }
 
   exists(id) {
