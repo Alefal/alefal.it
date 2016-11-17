@@ -1,9 +1,9 @@
 export class Ordine {
-  protected orderId: number;
-  protected orderNumber: number;
-  protected orderTotal: number;
-  protected orderCustomer: string;  
-  protected orderStatus: string;    
+  public orderId: number;
+  public orderNumber: number;
+  public orderTotal: number;
+  public orderCustomer: string;  
+  public orderStatus: string;    
   
   constructor(
       orderId: number, 
