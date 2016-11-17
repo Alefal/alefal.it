@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, ModalController } from 'ionic-angular';
+
+import { Ordine } from './ordine';
+import { OrdineModal } from './ordine-modal';
 
 import { HttpService }          from '../../providers/http-service';
 
@@ -11,7 +14,9 @@ export class Ordini {
 
   orders: any;
   ordersAll: any;
-  
+
+  ordine: Ordine;
+
   nothing: string;
   loading: any;
   errorMessage: string;
@@ -21,7 +26,8 @@ export class Ordini {
     public navCtrl: NavController,
     public params: NavParams, 
     private httpService: HttpService,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    public modalCtrl: ModalController
   ) {}
 
   ionViewDidLoad() {
@@ -29,7 +35,6 @@ export class Ordini {
   }
 
   loadData() {
-    console.log('Hello Categorie Page');
     this.loading = this.loadingCtrl.create({
       spinner: 'crescent',
       //content: 'Please wait...'
@@ -72,6 +77,21 @@ export class Ordini {
   }
   onCancel(ev) {
     this.orders = this.ordersAll;
+  }
+
+  modalOrder(ordine) {
+    console.log(ordine);
+    let modal = this.modalCtrl.create(OrdineModal, { ordine: ordine });
+    modal.present();
+    modal.onDidDismiss(data => {
+      console.log('-> '+data.action);
+      if(data.action == 'refresh') {
+        console.log('Ricarico la lista dei prodotti');
+        this.loadData();
+      } else {
+        console.log('Chiudi finestra prodotto');
+      }
+    });
   }
 
 }

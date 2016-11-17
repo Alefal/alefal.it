@@ -49,6 +49,9 @@ export class HttpService {
         else if(call == 'getOrders') {
             url = '/wp-content/plugins/alefal_woocommerce/services/ece_orders.php';
         } 
+        else if(call == 'getOrdersChangeStatus') {
+            url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_change_status.php?orderId='+id+'&orderStatus='+object;
+        }
         //USERS
         else if(call == 'getCustomer') {
             url = '/wp-content/plugins/alefal_woocommerce/services/ece_users.php?role=stock_cliente';

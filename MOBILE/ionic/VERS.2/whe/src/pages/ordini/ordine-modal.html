@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Ordine</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="dismiss()">
+        <ion-icon ios="ios-close" md="md-close"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+	
+    <form (ngSubmit)="saveOrder(ordine.orderId)">
+      <ion-list>
+
+        <ion-item>
+          <ion-label floating>Cliente *</ion-label>
+          <ion-input name="orderCustomer" [(ngModel)]="ordine.orderCustomer" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Totale *</ion-label>
+          <ion-input type="number" name="orderTotal" [(ngModel)]="ordine.orderTotal" required step="any"></ion-input>
+        </ion-item>
+
+      </ion-list>
+
+      <button ion-button large full color="dark" type="submit">Salva Ordine</button>
+    </form>
+
+    <div *ngIf="showButtonEditDelete">
+      <ion-fab right bottom>
+        <button ion-fab color="dark"><ion-icon name="ios-arrow-back"></ion-icon></button>
+        <ion-fab-list side="left">
+          <button ion-fab color="dark" (click)="changeStatus(ordine.orderId,ordine.orderStatus)"><ion-icon name="swap"></ion-icon></button>
+          <button ion-fab color="dark" (click)="deleteOrder(ordine.orderId)"><ion-icon name="trash"></ion-icon></button>
+        </ion-fab-list>
+      </ion-fab>
+  </div>
+
+
+</ion-content>

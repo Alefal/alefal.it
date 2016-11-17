@@ -374,6 +374,8 @@ function get_wc_api_client() {
 		//print_r( $client->orders->get( $order_id ) );
 		//print_r( $client->orders->update_status( $order_id, 'pending' ) );
 		//print_r( $client->orders->create(array('name' => 'TESTTTTT')));
+		//print_r( $client->orders->update($order_id, array('name' => 'TESTTTTT')));
+		//print_r( $client->orders->delete($order_id));
 
 		// order notes
 		//print_r( $client->order_notes->get( $order_id ) );

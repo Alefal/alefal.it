@@ -17,6 +17,7 @@ alefal_woocommerce
 === Problemi ===
 woocommerce-store-exporter-deluxe 2.0.8:
 non funziona il tasto di "Scarica in XLS" in corrispondenza di un ordine; scarica il file ma contiene solo l'intestazione
+RISOLTO: utilizzare estensione XLSX
 
 === Note ===
 Per JSON API USER:
@@ -29,17 +30,31 @@ Per abilitare READ/ WRITE su WooCommerce (save, update, delete):
 - Click on Keys/Apps and then click on the existing API Key
 - Set the permissions to "Read/Write" and save changes. 
 
+=== Ordini stati ===
+pending
+processing
+on-hold
+completed
+cancelled
+refunded
+failed
+
 === Funzionalità app Gestione Warehouse (WHE) ===
 1) 	Login 					OK -> Json Api User 	-> api/user/generate_auth_cookie/?username=admin&password=admin&insecure=cool
 2) 	User Account 			OK -> Json Api User 	-> api/user/get_userinfo/?user_id=1&insecure=cool
 3) 	Categorie 				OK -> WooCommerce Ext 	-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_products_cat.php
 4) 	Prodotti: Lista			OK -> WooCommerce Ext 	-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_products.php
-5) 	Prodotti: Ricerca 		-> WooCommerce Ext 	-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_products_cat_filter.php?filterName=category&filterValue=CAT_NAME
-6) 	Prodotti: Dettaglio 	-> WooCommerce Ext 	-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_product_detail.php?id=ID
-7)  Prodotti: Crea			-> WooCommerce Ext 	-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_product_create.php			//TODO: tutti i parametri in GET o POST
-8)  Prodotti: Update		-> WooCommerce Ext 	-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_product_update.php?id=ID 	//TODO: tutti i parametri in GET o POST
-9)  Prodotti: Delete 		-> WooCommerce Ext 	-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_product_delete.php?id=ID
-10) Ordini					OK -> WooCommerce Ext  -> HOST/wp-content/plugins/alefal_woocommerce/services/ece_orders.php
+5) 	Prodotti: Ricerca 		OK -> WooCommerce Ext 	-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_products_cat_filter.php?filterName=category&filterValue=CAT_NAME
+6) 	Prodotti: Dettaglio 	OK -> WooCommerce Ext 	-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_product_detail.php?id=ID
+7)  Prodotti: Crea			OK -> WooCommerce Ext 	-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_product_save.php?product=PRODUCT			
+8)  Prodotti: Update		OK -> WooCommerce Ext 	-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_product_save.php?product=PRODUCT
+9)  Prodotti: Delete 		OK -> WooCommerce Ext 	-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_product_delete.php?id=ID
+10) Ordini: Lista			OK -> WooCommerce Ext  	-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_orders.php
+10) Ordini: Dettaglio		OK -> Visualizzo ordine selezionato
+10) Ordini: Cambia stato	OK -> WooCommerce Ext  	-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_order_change_status.php?id=ID&status=STATUS
+10) Ordini: Crea			WooCommerce Ext  		-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_order_save.php?order=ORDER
+10) Ordini: Update			WooCommerce Ext  		-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_order_save.php?order=ORDER
+10) Ordini: Delete			WooCommerce Ext  		-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_order_delete.php?id=ID
 11) Fornitori 				OK -> Custom 			-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_users.php?role=stock_fornitore
 12) Clienti					OK -> Custom 			-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_users.php?role=stock_cliente
 

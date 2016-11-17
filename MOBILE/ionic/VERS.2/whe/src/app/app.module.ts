@@ -7,6 +7,7 @@ import { Homepage }                 from '../pages/homepage/homepage';
 import { Prodotti }                 from '../pages/prodotti/prodotti';
 import { ProdottoModal }            from '../pages/prodotti/prodotto-modal';
 import { Ordini }                   from '../pages/ordini/ordini';
+import { OrdineModal }              from '../pages/ordini/ordine-modal';
 import { Clienti }                  from '../pages/clienti/clienti';
 import { Fornitori }                from '../pages/fornitori/fornitori';
 import { Categorie }                from '../pages/categorie/categorie';
@@ -23,6 +24,7 @@ import { HttpService }              from '../providers/http-service';
     Prodotti,
     ProdottoModal,
     Ordini,
+    OrdineModal,
     Clienti,
     Fornitori,
     Categorie,
@@ -40,6 +42,7 @@ import { HttpService }              from '../providers/http-service';
     Prodotti,
     ProdottoModal,
     Ordini,
+    OrdineModal,
     Clienti,
     Fornitori,
     Categorie,

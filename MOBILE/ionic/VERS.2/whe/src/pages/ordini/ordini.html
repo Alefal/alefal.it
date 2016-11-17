@@ -8,6 +8,11 @@
 
   <ion-navbar color="primary">
     <ion-title>Ordini</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="modalOrder('')">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -17,8 +22,16 @@
 
   <ion-searchbar (ionInput)="getItems($event)" (ionClear)="onCancel($event)" placeholder="Ricerca numero ordine"></ion-searchbar>
   <ion-list>
-    <ion-item *ngFor="let order of orders">
-      <ion-icon name="ios-list-box-outline" item-left class="iconsList" color="primary"></ion-icon>
+    <ion-item *ngFor="let order of orders" (click)="modalOrder(order)">
+      <ion-icon name="time"             item-left class="iconsList" color="pending"     *ngIf="order.status == 'pending'"></ion-icon>
+      <ion-icon name="ios-more"         item-left class="iconsList" color="primary"     *ngIf="order.status == 'processing' || order.status == 'on-hold'"></ion-icon>
+      
+      <ion-icon name="checkmark-circle" item-left class="iconsList" color="secondary"   *ngIf="order.status == 'completed'"></ion-icon>
+      <ion-icon name="remove-circle"    item-left class="iconsList" color="danger"      *ngIf="order.status == 'cancelled'"></ion-icon>
+
+      <ion-icon name="swap"             item-left class="iconsList" color="dark"        *ngIf="order.status == 'refunded'"></ion-icon>
+      <ion-icon name="warning"          item-left class="iconsList" color="failed"      *ngIf="order.status == 'failed'"></ion-icon>
+      
       <h2>Ordine numero <strong>{{order.id}}</strong></h2>
       <h3>Totale <strong>{{order.total}} &euro;</strong></h3>
       <p>Eseguito da <strong>{{order.customer.billing_address.first_name}} {{order.customer.billing_address.last_name}}</strong></p>
