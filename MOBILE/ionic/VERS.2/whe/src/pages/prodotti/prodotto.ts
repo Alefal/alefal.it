@@ -1,11 +1,11 @@
 export class Prodotto {
-  protected prodId: number;
-  protected prodTitle: string;
-  protected prodPrice: number;
-  protected prodDescription: string;
-  protected prodManageStock: boolean;
-  protected prodQuantity: number;
-  protected prodAddQuantity: number;
+  public prodId: number;
+  public prodTitle: string;
+  public prodPrice: number;
+  public prodDescription: string;
+  public prodManageStock: boolean;
+  public prodQuantity: number;
+  public prodAddQuantity: number;
 
   constructor(
       prodId: number, 
@@ -26,7 +26,7 @@ export class Prodotto {
 
   }
 
-  getProdId(): string {
+  public getProdId(): string {
     return this.prodId+'';
   }
 }

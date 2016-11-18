@@ -13,6 +13,7 @@
 
 <ion-content>
 	
+    <!-- CREATE: Client and Products -->
     <ion-list *ngIf="sectionCreate">
       <ion-item>
         <ion-label>Cliente *</ion-label>
@@ -24,12 +25,43 @@
       <ion-item>
         <ion-label>Prodotti *</ion-label>
         <ion-select [(ngModel)]="selectedProducts" multiple="true" cancelText="Chiudi" okText="Scegli prodotti"required>
-          <ion-option *ngFor="let prod of line_items" [value]="prod.id" (click)="setChecked(prod.id,prod.title,prod.price,prod.description,prod.stock)">{{prod.title}}</ion-option>
+          <ion-option *ngFor="let prod of line_items" [value]="prod">{{prod.title}}</ion-option>
         </ion-select>
       </ion-item>
     </ion-list>
-    <button *ngIf="sectionCreate" ion-button large full color="dark" (click)="orderStep2()">Avanti</button>
+    <button *ngIf="sectionCreate" ion-button large full color="dark" (click)="orderStepAddQuantity()">Avanti</button>
 
+    <!-- CREATE: Products Quantity -->
+    <ion-list *ngIf="sectionSelectQuantity">
+      <ion-item *ngFor="let prod of selectedProductsQnt">
+        <ion-label>
+          {{prod.prodTitle}}
+        </ion-label>
+        <ion-input type="number" name="prodAddQuantity" [(ngModel)]="prod.prodAddQuantity"></ion-input>
+        <ion-note item-right>
+          <em>{{prod.prodQuantity}}</em>
+        </ion-note>
+      </ion-item>
+    </ion-list>
+    <button *ngIf="sectionSelectQuantity" ion-button large full color="dark" (click)="orderStepSummary()">Riepilogo</button>
+
+    <!-- CREATE: Summary -->
+    <ion-list *ngIf="sectionSummary">
+      <ion-item>
+        <p>Cliente</p>
+        <h2>{{selectedUser}}</h2>
+      </ion-item>
+
+      <ion-item *ngFor="let prod of selectedProductsQnt">
+        <h2>{{prod.prodAddQuantity}} x {{prod.prodTitle}}</h2>
+        <ion-note item-right>
+          <em>&euro; {{prod.prodAddQuantity * prod.prodPrice}}</em>
+        </ion-note>
+      </ion-item>
+    </ion-list>
+    <button *ngIf="sectionSummary" ion-button large full color="dark" (click)="orderComplete()">Completa</button>
+
+    <!-- DETAIL: ... -->
     <form (ngSubmit)="saveOrder(ordine)" *ngIf="sectionDetail">
       <ion-list>
         <ion-item>

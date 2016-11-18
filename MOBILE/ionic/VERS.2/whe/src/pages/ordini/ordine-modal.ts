@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavParams, ViewController, LoadingController, AlertController } from 'ionic-angular';
+import { NavParams, ViewController, LoadingController, AlertController, ModalController } from 'ionic-angular';
 
 import { Ordine }       from './ordine';
 import { Prodotto }     from '../prodotti/prodotto';
@@ -24,24 +24,28 @@ export class OrdineModal {
   //Save
   selectedUser: any;
   selectedProducts: Array<Prodotto> = [];
+  selectedProductsQnt: Array<Prodotto> = [];
   prodotto: Prodotto;
 
   //Order
-  id: number = 0;
+  id: number;
   order_number: number;
   created_at: string;
   updated_at: string;
   completed_at: string;
   status: string;
-  total: number;
-  total_tax: number;
-  total_line_items_quantity: number;
+  total: number = 0;
+  total_tax: number = 0;
+  total_line_items_quantity: number = 0;
   line_items: any;
   customer: any;
   note: any;  
 
   sectionCreate: boolean = false;
   sectionDetail: boolean = false;
+  sectionSelectQuantity: boolean = false;
+  sectionSummary: boolean = false;
+  
   showButtonEditDelete = false;
 
   constructor(
@@ -49,7 +53,8 @@ export class OrdineModal {
     private httpService: HttpService,
     private loadingCtrl: LoadingController,
     private viewCtrl: ViewController,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    public modalCtrl: ModalController
   ) {
 
     this.ordineEdit = params.get('ordine');
@@ -135,42 +140,94 @@ export class OrdineModal {
     });
   }
 
-  setChecked(id,title,price,description,qnt) {
-    console.log('setChecked');  
-    let instock: boolean = true;
-    let addQnt: number = 0;
-
-    this.prodotto = new Prodotto(id,title,price,description,instock,qnt,addQnt);
-    let prodId = this.prodotto.getProdId();
-    let addProduct: boolean = true;
-
-    let index = 0;
-    for (let prod of this.selectedProducts) {
-      console.log('-> '+JSON.stringify(prod)+' | '+prodId);
-
-      if(prod.getProdId() == prodId) {
-        console.log('Prodotto da eliminare: '+prodId);
-        this.selectedProducts.splice(index, 1);
-        addProduct = false;
-        break;
-      }
-      index++;
-    }
-
-    if(addProduct) {
-      console.log('Aggiungo Prodotto: '+prodId);      
-      this.selectedProducts.push(this.prodotto);
-    } 
-    /** debug*/
-    for (let prod of this.selectedProducts) {
-      console.log(prod);  
-    }
-    /**/
-  }
-
-  orderStep2() {
+  orderStepAddQuantity() {
     console.log(this.selectedUser);
     console.log(this.selectedProducts);
+
+    this.sectionCreate = false;
+    this.sectionSelectQuantity = true;
+
+    for (let prod of this.selectedProducts) {
+      let pId: number       = prod['id'];
+      let PTitle: string    = prod['title'];
+      let PPrice: number    = prod['price'];
+      let PDescr: string    = prod['description'];
+      let PInStock: boolean = true;
+      let pQnt              = prod['stock'];
+      
+      let prodotto = new Prodotto(pId,PTitle,PPrice,PDescr,PInStock,pQnt,0);
+      //console.log(prodotto);  
+
+      this.selectedProductsQnt.push(prodotto);
+    }
+    console.log(this.selectedProductsQnt);  
+    
+  }
+  orderStepSummary() {
+    console.log(this.selectedProductsQnt); 
+    this.sectionSelectQuantity = false;
+    this.sectionSummary = true;
+
+    let totalProd: number = 0;
+    let total: number = 0;
+    let quantity: number = 0;
+    for (let prod of this.selectedProductsQnt) {
+      debugger;
+      quantity = Number(quantity) + Number(prod.prodAddQuantity);
+      totalProd = Number(totalProd) + ((Number(prod.prodAddQuantity) * Number(prod.prodPrice)));
+      total = Number(total) + Number(totalProd);
+    }
+
+    this.id = 0;
+    this.status = 'pending';
+    this.total_line_items_quantity = quantity;
+    this.total = total;
+    this.note = 'Ordine salvato';
+  }
+  orderComplete() {
+    this.ordine = new Ordine(
+      this.id,
+      this.order_number,
+      this.created_at,
+      this.updated_at,
+      this.completed_at,
+      this.status,
+      this.total,
+      this.total_tax,
+      this.total_line_items_quantity,
+      this.line_items,
+      this.customer,
+      this.note
+    );
+
+    console.log('ORDINE: '+JSON.stringify(this.ordine));
+
+    this.loading = this.loadingCtrl.create({
+      spinner: 'crescent',
+    });
+    this.loading.present();
+
+    this.httpService
+      .getCallHttp('getOrderSave', '', '', '', this.ordine)
+      .then(res => {
+        console.log('res: ' + JSON.stringify(res));
+
+        if (res[0].response[0].result == 'OK') {
+          this.viewCtrl.dismiss({
+            action: 'refresh'
+          });
+        } else {
+          this.nothing = 'Nessun dato! Riprovare più tardi.';
+        }
+        this.loading.dismiss();
+      })
+      .catch(error => {
+        console.log('ERROR: ' + error);
+        this.errorMessage = 'Error!';
+        this.errorMessageView = true;
+        this.loading.dismiss();
+      });
+    
   }
 
   saveOrder(ordine) {
@@ -178,19 +235,19 @@ export class OrdineModal {
     console.log(ordine.id);
     
     this.ordine = new Ordine(
-        ordine.id,
-        this.order_number,
-        this.created_at,
-        this.updated_at,
-        this.completed_at,
-        this.status,
-        this.total,
-        this.total_tax,
-        this.total_line_items_quantity,
-        this.line_items,
-        this.customer,
-        this.note
-      );
+      ordine.id,
+      this.order_number,
+      this.created_at,
+      this.updated_at,
+      this.completed_at,
+      this.status,
+      this.total,
+      this.total_tax,
+      this.total_line_items_quantity,
+      this.line_items,
+      this.customer,
+      this.note
+    );
 
     this.loading = this.loadingCtrl.create({
       spinner: 'crescent',
