@@ -21,13 +21,18 @@ try {
 	foreach ($eceGetCallArray->orders as $item) {
 		//print_r($item);
         $eceOutputArray[] = array(        
-            'id'      	    => $item->id,
-            'order_number'  => $item->order_number,
-            'status'		=> $item->status,
-            'total'		    => $item->total,
-            'quantity'      => $item->total_line_items_quantity,
-            'customer'      => $item->customer,
-            'products'      => $item->line_items
+            'id'      	                => $item->id,
+            'order_number'              => $item->order_number,
+            'created_at'                => $item->created_at,
+            'updated_at'                => $item->updated_at,
+            'completed_at'              => $item->completed_at,
+            'status'		            => $item->status,
+            'total'		                => $item->total,
+            'total_tax'                 => $item->total_tax,
+            'total_line_items_quantity' => $item->total_line_items_quantity,
+            'line_items'                => $item->line_items,
+            'customer'                  => $item->customer,
+            'note'                      => $item->note
 
         );  
     }

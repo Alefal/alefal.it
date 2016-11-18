@@ -17,7 +17,7 @@ alefal_woocommerce
 === Problemi ===
 woocommerce-store-exporter-deluxe 2.0.8:
 non funziona il tasto di "Scarica in XLS" in corrispondenza di un ordine; scarica il file ma contiene solo l'intestazione
-RISOLTO: utilizzare estensione XLSX
+OK -> RISOLTO: utilizzare estensione XLSX
 
 === Note ===
 Per JSON API USER:
@@ -30,7 +30,7 @@ Per abilitare READ/ WRITE su WooCommerce (save, update, delete):
 - Click on Keys/Apps and then click on the existing API Key
 - Set the permissions to "Read/Write" and save changes. 
 
-=== Ordini stati ===
+=== WooCommerce: Ordini stati ===
 pending
 processing
 on-hold
@@ -54,7 +54,7 @@ failed
 10) Ordini: Cambia stato	OK -> WooCommerce Ext  	-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_order_change_status.php?id=ID&status=STATUS
 10) Ordini: Crea			WooCommerce Ext  		-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_order_save.php?order=ORDER
 10) Ordini: Update			WooCommerce Ext  		-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_order_save.php?order=ORDER
-10) Ordini: Delete			WooCommerce Ext  		-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_order_delete.php?id=ID
+10) Ordini: Delete			OK -> WooCommerce Ext  	-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_order_delete.php?id=ID
 11) Fornitori 				OK -> Custom 			-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_users.php?role=stock_fornitore
 12) Clienti					OK -> Custom 			-> HOST/wp-content/plugins/alefal_woocommerce/services/ece_users.php?role=stock_cliente
 

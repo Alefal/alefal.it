@@ -6,20 +6,13 @@ $eceResultArray     = array();
 $eceOutputArray     = array();
 $eceFinalArray      = array();
 
-$product = json_decode($_GET['product'],true);
-//print_r($product);
+$order = json_decode($_GET['order'],true);
+$id = $order['id'];
+//print_r($order);
 //die();
 
-$productId = $product['prodId'];
-$productArray = array(
-    'title'             => $product['prodTitle'], 
-    'type'              => 'simple', 
-    'price'             => $product['prodPrice'], 
-    'regular_price'     => $product['prodPrice'], 
-    'description'       => $product['prodDescription'],
-    'managing_stock'    => $product['prodManageStock'],
-    'in_stock'          => $product['prodManageStock'],
-    'stock_quantity'    => $product['prodQuantity']
+$orderArray = array(
+    'status'    => 'pending'
 );
 
 try {
@@ -31,20 +24,18 @@ try {
 
     $woocommerce = new WC_API_Client( $store_url, $consumer_key, $consumer_secret, $options );
     //print '<pre>';
-    if($productId == 0) {
-        $woocommerce->products->create($productArray);
+    if($id == 0) {
+        $woocommerce->orders->create($orderArray);
         $eceOutputArray[] = array(        
             'id'        => 'NEW',
-            'message'   => 'Prodotto salvato correttamente'
-
+            'message'   => 'Ordine salvato correttamente'
         ); 
     } else {
-        $woocommerce->products->update($productId,$productArray);
+        $woocommerce->orders->update($id,$orderArray);
         $eceOutputArray[] = array(        
-            'id'        => $productId,
-            'message'   => 'Prodotto salvato correttamente'
-
-        );
+            'id'        => $id,
+            'message'   => 'Ordine salvato correttamente'
+        ); 
     }
     //print_r($eceGetCallArray->product);
 

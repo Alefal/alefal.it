@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { NavParams, ViewController, LoadingController, AlertController } from 'ionic-angular';
 
-import { Ordine } from './ordine';
+import { Ordine }       from './ordine';
+import { Prodotto }     from '../prodotti/prodotto';
 
-import { HttpService } from '../../providers/http-service';
+import { HttpService }  from '../../providers/http-service';
 
 @Component({
   selector: 'ordine-modal',
@@ -14,23 +15,33 @@ export class OrdineModal {
   ordineEdit: any;
   ordine: Ordine;
 
-  id: number;
   product: any;
   nothing: string;
   loading: any;
   errorMessage: string;
   errorMessageView: any;
 
-  sectionCreate: boolean = false;
-  sectionDetail: boolean = false;
+  //Save
+  selectedUser: any;
+  selectedProducts: Array<Prodotto> = [];
+  prodotto: Prodotto;
 
   //Order
-  orderId: number;
-  orderNumber: number;
-  orderTotal: number;
-  orderCustomer: string;
-  orderStatus: string;  
+  id: number = 0;
+  order_number: number;
+  created_at: string;
+  updated_at: string;
+  completed_at: string;
+  status: string;
+  total: number;
+  total_tax: number;
+  total_line_items_quantity: number;
+  line_items: any;
+  customer: any;
+  note: any;  
 
+  sectionCreate: boolean = false;
+  sectionDetail: boolean = false;
   showButtonEditDelete = false;
 
   constructor(
@@ -42,27 +53,78 @@ export class OrdineModal {
   ) {
 
     this.ordineEdit = params.get('ordine');
-    console.log('Modale: '+this.ordineEdit);
+    //console.log('Modale: '+this.ordineEdit);
 
     //CREATE
     if (this.ordineEdit == '') {
+      this.sectionCreate = true;
       this.showButtonEditDelete = false;
-      console.log('IF!');
-      this.ordine = new Ordine(this.orderId,this.orderNumber,this.orderTotal,this.orderCustomer,this.orderStatus);
+
+      //CLIENTI
+      this.httpService
+        .getCallHttp('getCustomer','','','','')
+        .then(res => {
+          //console.log('res: '+JSON.stringify(res));
+          if(res[0].response[0].result == 'OK') {
+            this.customer = res[0].users;
+          } else {
+            this.nothing = 'Nessun dato! Riprovare più tardi.';
+          }
+        })
+        .catch(error => {
+          console.log('ERROR: ' + error);
+        });
+
+      //PRODOTTI
+      this.httpService
+        .getCallHttp('getProducts', '', '', '', '')
+        .then(res => {
+          console.log('res: '+JSON.stringify(res));
+
+          if (res[0].response[0].result == 'OK') {
+            this.line_items = res[0].output;
+          } else {
+            this.nothing = 'Nessun dato! Riprovare più tardi.';
+          }
+        })
+        .catch(error => {
+          console.log('ERROR: ' + error);
+        });
     }
     //DETAIL
     else {
-      console.log('ELSE!');
+      //console.log('ELSE!');
       
+      this.sectionDetail = true;
       this.showButtonEditDelete = true;
+
+      this.id                         = this.ordineEdit.id;
+      this.order_number               = this.ordineEdit.order_number;
+      this.created_at                 = this.ordineEdit.created_at;
+      this.updated_at                 = this.ordineEdit.updated_at;
+      this.completed_at               = this.ordineEdit.completed_at;
+      this.status                     = this.ordineEdit.status;
+      this.total                      = this.ordineEdit.total;
+      this.total_tax                  = this.ordineEdit.total_tax;
+      this.total_line_items_quantity  = this.ordineEdit.total_line_items_quantity;
+      this.line_items                 = this.ordineEdit.line_items;
+      this.customer                   = this.ordineEdit.customer;
+      this.note                       = this.ordineEdit.note;
       
-      this.orderId = this.ordineEdit.id;
-      this.orderNumber = this.ordineEdit.id;
-      this.orderTotal = this.ordineEdit.total;
-      this.orderCustomer = this.ordineEdit.customer.billing_address.first_name +' '+ this.ordineEdit.customer.billing_address.last_name;
-      this.orderStatus = this.ordineEdit.status;
-      
-      this.ordine = new Ordine(this.orderId,this.orderNumber,this.orderTotal,this.orderCustomer,this.orderStatus);
+      this.ordine = new Ordine(
+        this.id,
+        this.order_number,
+        this.created_at,
+        this.updated_at,
+        this.completed_at,
+        this.status,
+        this.total,
+        this.total_tax,
+        this.total_line_items_quantity,
+        this.line_items,
+        this.customer,
+        this.note
+      );
       console.log(this.ordine);
     }
   }
@@ -73,8 +135,88 @@ export class OrdineModal {
     });
   }
 
-  saveOrder(id) {
+  setChecked(id,title,price,description,qnt) {
+    console.log('setChecked');  
+    let instock: boolean = true;
+    let addQnt: number = 0;
+
+    this.prodotto = new Prodotto(id,title,price,description,instock,qnt,addQnt);
+    let prodId = this.prodotto.getProdId();
+    let addProduct: boolean = true;
+
+    let index = 0;
+    for (let prod of this.selectedProducts) {
+      console.log('-> '+JSON.stringify(prod)+' | '+prodId);
+
+      if(prod.getProdId() == prodId) {
+        console.log('Prodotto da eliminare: '+prodId);
+        this.selectedProducts.splice(index, 1);
+        addProduct = false;
+        break;
+      }
+      index++;
+    }
+
+    if(addProduct) {
+      console.log('Aggiungo Prodotto: '+prodId);      
+      this.selectedProducts.push(this.prodotto);
+    } 
+    /** debug*/
+    for (let prod of this.selectedProducts) {
+      console.log(prod);  
+    }
+    /**/
+  }
+
+  orderStep2() {
+    console.log(this.selectedUser);
+    console.log(this.selectedProducts);
+  }
+
+  saveOrder(ordine) {
     console.log('Devono essere decrementati i prodotti in magazzino');
+    console.log(ordine.id);
+    
+    this.ordine = new Ordine(
+        ordine.id,
+        this.order_number,
+        this.created_at,
+        this.updated_at,
+        this.completed_at,
+        this.status,
+        this.total,
+        this.total_tax,
+        this.total_line_items_quantity,
+        this.line_items,
+        this.customer,
+        this.note
+      );
+
+    this.loading = this.loadingCtrl.create({
+      spinner: 'crescent',
+    });
+    this.loading.present();
+
+    this.httpService
+      .getCallHttp('getOrderSave', '', '', '', this.ordine)
+      .then(res => {
+        console.log('res: ' + JSON.stringify(res));
+
+        if (res[0].response[0].result == 'OK') {
+          this.viewCtrl.dismiss({
+            action: 'refresh'
+          });
+        } else {
+          this.nothing = 'Nessun dato! Riprovare più tardi.';
+        }
+        this.loading.dismiss();
+      })
+      .catch(error => {
+        console.log('ERROR: ' + error);
+        this.errorMessage = 'Error!';
+        this.errorMessageView = true;
+        this.loading.dismiss();
+      });
   }
 
   deleteOrder(id) {
@@ -94,7 +236,32 @@ export class OrdineModal {
           text: 'Cancella',
           handler: () => {
             console.log('Conferma: devono essere incrementati i prodotti in magazzino');
+            this.loading = this.loadingCtrl.create({
+              spinner: 'crescent',
+              //content: 'Please wait...'
+            });
+            this.loading.present();
 
+            this.httpService
+              .getCallHttp('getOrderDelete', '', '', id, '')
+              .then(res => {
+                console.log('res: ' + JSON.stringify(res));
+
+                if (res[0].response[0].result == 'OK') {
+                  this.viewCtrl.dismiss({
+                    action: 'refresh'
+                  });
+                } else {
+                  this.nothing = 'Nessun dato! Riprovare più tardi.';
+                }
+                this.loading.dismiss();
+              })
+              .catch(error => {
+                console.log('ERROR: ' + error);
+                this.errorMessage = 'Error!';
+                this.errorMessageView = true;
+                this.loading.dismiss();
+              });
             
           }
         }
@@ -189,7 +356,7 @@ export class OrdineModal {
         this.loading.present();
 
         this.httpService
-          .getCallHttp('getOrdersChangeStatus','','',id,data)
+          .getCallHttp('getOrderChangeStatus','','',id,data)
           .then(res => {
             console.log('res: '+JSON.stringify(res));
 
@@ -211,5 +378,9 @@ export class OrdineModal {
       }
     });
     alert.present();
+  }
+
+  sendMail(email) {
+    location.href = 'mailto:'+email;
   }
 }
