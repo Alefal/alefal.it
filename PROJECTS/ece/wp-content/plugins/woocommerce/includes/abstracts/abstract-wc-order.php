@@ -2352,6 +2352,7 @@ abstract class WC_Abstract_Order {
 	 * @return bool Successful change or not
 	 */
 	public function update_status( $new_status, $note = '', $manual = false ) {
+
 		if ( ! $this->id ) {
 			return false;
 		}

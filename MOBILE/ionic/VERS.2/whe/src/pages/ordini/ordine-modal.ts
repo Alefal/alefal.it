@@ -141,7 +141,8 @@ export class OrdineModal {
   }
 
   orderStepAddQuantity() {
-    console.log(this.selectedUser);
+    this.customer   = this.selectedUser;
+    console.log(this.customer);
     console.log(this.selectedProducts);
 
     this.sectionCreate = false;
@@ -164,25 +165,29 @@ export class OrdineModal {
     
   }
   orderStepSummary() {
+    console.log(this.selectedProducts);     
     console.log(this.selectedProductsQnt); 
     this.sectionSelectQuantity = false;
     this.sectionSummary = true;
 
+    this.line_items = this.selectedProductsQnt;
+
+    /*** Vengono calcolati direttamente al momento del salvataggio
     let totalProd: number = 0;
     let total: number = 0;
     let quantity: number = 0;
     for (let prod of this.selectedProductsQnt) {
-      debugger;
       quantity = Number(quantity) + Number(prod.prodAddQuantity);
       totalProd = Number(totalProd) + ((Number(prod.prodAddQuantity) * Number(prod.prodPrice)));
       total = Number(total) + Number(totalProd);
     }
+    ***/
 
     this.id = 0;
-    this.status = 'pending';
-    this.total_line_items_quantity = quantity;
-    this.total = total;
-    this.note = 'Ordine salvato';
+    this.status = 'completed';
+    //this.total_line_items_quantity = quantity;
+    //this.total = total;
+    this.note = 'Ordine completato e salvato';
   }
   orderComplete() {
     this.ordine = new Ordine(
@@ -328,8 +333,8 @@ export class OrdineModal {
 
   }
 
-  changeStatus(id,status) {
-    console.log(id+' -> '+status);
+  changeStatus(ordine,status) {
+    console.log(ordine+' -> '+status);
     let checkedPending: boolean = false;
     let checkedProcessing: boolean = false;
     let checkedOnHold: boolean = false;
@@ -338,6 +343,7 @@ export class OrdineModal {
     let checkedRefunded: boolean = false;
     let checkedFailed: boolean = false;
 
+    /* Vengono gestiti solo i casi CANCELLED e FAILED
     if(status == 'pending') {
       checkedPending = true;
     } else if(status == 'processing') {
@@ -353,10 +359,39 @@ export class OrdineModal {
     } else if(status == 'failed') {
       checkedFailed = true;
     }
+    */
+
+    if(status == 'completed') {
+      checkedCompleted = true;
+    } else if(status == 'cancelled') {
+      checkedCancelled = true;
+    } else if(status == 'failed') {
+      checkedFailed = true;
+    }
     
     let alert = this.alertCtrl.create();
     alert.setTitle('Cambia stato');
 
+    alert.addInput({
+      type: 'radio',
+      label: 'Completato',
+      value: 'completed',
+      checked: checkedCompleted
+    });
+    alert.addInput({
+      type: 'radio',
+      label: 'Cancellato',
+      value: 'cancelled',
+      checked: checkedCancelled
+    });
+    alert.addInput({
+      type: 'radio',
+      label: 'Fallito',
+      value: 'failed',
+      checked: checkedFailed
+    });
+
+    /*
     alert.addInput({
       type: 'radio',
       label: 'In attesa di pagamento',
@@ -399,6 +434,7 @@ export class OrdineModal {
       value: 'failed',
       checked: checkedFailed
     });
+    */
 
     alert.addButton('Annulla');
     alert.addButton({
@@ -413,7 +449,7 @@ export class OrdineModal {
         this.loading.present();
 
         this.httpService
-          .getCallHttp('getOrderChangeStatus','','',id,data)
+          .getCallHttp('getOrderChangeStatus','','',ordine,data)
           .then(res => {
             console.log('res: '+JSON.stringify(res));
 

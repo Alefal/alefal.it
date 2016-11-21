@@ -6,8 +6,11 @@ $eceResultArray		= array();
 $eceOutputArray 	= array();
 $eceFinalArray 		= array();
 
-$orderId        = $_GET['orderId'];
+$order          = json_decode($_GET['order'],true);
 $orderStatus    = $_GET['orderStatus'];
+
+//print_r($order);
+//die();
 
 try {
 
@@ -18,11 +21,22 @@ try {
 
     $woocommerce = new WC_API_Client( $store_url, $consumer_key, $consumer_secret, $options );
     //print '<pre>';
-	$woocommerce->orders->update_status( $orderId, $orderStatus );
+	$woocommerce->orders->update_status( $order['id'], $orderStatus );
 	//print_r($eceGetCallArray->orders);
 
+    foreach ($order['line_items'] as $item) {
+        $product        = $woocommerce->products->get($item['product_id']);
+        $product_qnt    = $product->product->stock_quantity;
+
+        if($orderStatus == 'completed') {
+            $woocommerce->products->update_stock($item['product_id'],($product_qnt - $item['quantity']));
+        } else {
+            $woocommerce->products->update_stock($item['product_id'],($product_qnt + $item['quantity']));
+        }
+    }
+
 	$eceOutputArray[] = array(        
-        'id'        => $orderId,
+        'id'        => $order['id'],
         'message'   => 'Stato ordine modificato correttamente'
 
     ); 

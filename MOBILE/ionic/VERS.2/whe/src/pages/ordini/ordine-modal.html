@@ -18,7 +18,7 @@
       <ion-item>
         <ion-label>Cliente *</ion-label>
         <ion-select [(ngModel)]="selectedUser" cancelText="Chiudi" okText="Scegli cliente" required>
-          <ion-option *ngFor="let cust of customer" [value]="cust.user_email">{{cust.display_name}}</ion-option>
+          <ion-option *ngFor="let cust of customer" [value]="cust">{{cust.display_name}}</ion-option>
         </ion-select>
       </ion-item>
 
@@ -49,7 +49,7 @@
     <ion-list *ngIf="sectionSummary">
       <ion-item>
         <p>Cliente</p>
-        <h2>{{selectedUser}}</h2>
+        <h2>{{selectedUser.display_name}}</h2>
       </ion-item>
 
       <ion-item *ngFor="let prod of selectedProductsQnt">
@@ -83,7 +83,7 @@
         <button ion-fab color="dark"><ion-icon name="ios-arrow-back"></ion-icon></button>
         <ion-fab-list side="left">
           <button ion-fab color="dark" (click)="sendMail(ordine.customer.email)"><ion-icon name="mail"></ion-icon></button>
-          <button ion-fab color="dark" (click)="changeStatus(ordine.id,ordine.status)"><ion-icon name="swap"></ion-icon></button>
+          <button ion-fab color="dark" (click)="changeStatus(ordine,ordine.status)"><ion-icon name="swap"></ion-icon></button>
           <button ion-fab color="dark" (click)="deleteOrder(ordine.id)"><ion-icon name="trash"></ion-icon></button>
         </ion-fab-list>
       </ion-fab>

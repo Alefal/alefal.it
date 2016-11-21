@@ -50,7 +50,8 @@ export class HttpService {
             url = '/wp-content/plugins/alefal_woocommerce/services/ece_orders.php';
         } 
         else if(call == 'getOrderChangeStatus') {
-            url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_change_status.php?orderId='+id+'&orderStatus='+object;
+            //l'ID è l'ordine completo
+            url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_change_status.php?order='+JSON.stringify(id)+'&orderStatus='+object;
         }  
         else if(call == 'getOrderSave') {
             url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_save.php?order='+JSON.stringify(object);
