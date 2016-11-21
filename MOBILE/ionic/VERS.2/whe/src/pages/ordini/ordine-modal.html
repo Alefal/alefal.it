@@ -62,21 +62,50 @@
     <button *ngIf="sectionSummary" ion-button large full color="dark" (click)="orderComplete()">Completa</button>
 
     <!-- DETAIL: ... -->
-    <form (ngSubmit)="saveOrder(ordine)" *ngIf="sectionDetail">
-      <ion-list>
-        <ion-item>
-          <p>Cliente</p>
-          <h2>{{ordine.customer.first_name}}</h2>
-        </ion-item>
+    <ion-list *ngIf="sectionDetail">
 
-        <ion-item>
-          <p>Totale</p>
-          <h2>{{ordine.total}}</h2>
-        </ion-item>
-      </ion-list>
-      <button ion-button large full color="dark" type="submit">Salva Ordine</button>
-    </form>
+      <ion-item>
+        <h3>Ordine num. <strong>{{ordine.order_number}}</strong> in stato <strong>{{ordine.status}}</strong></h3> 
+      </ion-item>
 
+      <ion-item>
+        <p>Cliente</p>
+        <h2>{{ordine.customer.first_name}} {{ordine.customer.last_name}}</h2>
+      </ion-item>
+
+      <ion-item>
+        <p>Eseguito il</p>
+        <h2>{{ordine.created_at | date: 'dd/MM/yyyy HH:mm'}}</h2>
+      </ion-item>
+
+      <ion-item>
+        <p>Totale</p>
+        <h2>{{ordine.total}}</h2>
+      </ion-item>
+
+      <ion-item>
+        <p>Tasse</p>
+        <h2>{{ordine.total_tax}}</h2>
+      </ion-item>
+
+      <ion-item>
+        <p>Prodotti</p>
+        <h3><strong>{{ordine.total_line_items_quantity}}</strong> prodotto/i acquistato/i</h3>
+      </ion-item>
+
+      <ion-item *ngFor="let prod of line_items">
+        <h2>{{prod.quantity}} x {{prod.name}}</h2>
+        <ion-note item-right>
+          <em>&euro; {{prod.quantity * prod.price}}</em>
+        </ion-note>
+      </ion-item>
+
+      <ion-item>
+        <p>Note</p>
+        <h2><strong>{{ordine.note}}</strong></h2>
+      </ion-item>
+
+    </ion-list>
 
     <div *ngIf="showButtonEditDelete">
       <ion-fab right bottom>
@@ -85,6 +114,7 @@
           <button ion-fab color="dark" (click)="sendMail(ordine.customer.email)"><ion-icon name="mail"></ion-icon></button>
           <button ion-fab color="dark" (click)="changeStatus(ordine,ordine.status)"><ion-icon name="swap"></ion-icon></button>
           <button ion-fab color="dark" (click)="deleteOrder(ordine.id)"><ion-icon name="trash"></ion-icon></button>
+          <button ion-fab color="dark" (click)="showNote(ordine.id)"><ion-icon name="paper"></ion-icon></button>
         </ion-fab-list>
       </ion-fab>
   </div>

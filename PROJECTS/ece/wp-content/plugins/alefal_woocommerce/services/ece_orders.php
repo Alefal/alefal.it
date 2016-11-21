@@ -15,7 +15,7 @@ try {
 
     $woocommerce = new WC_API_Client( $store_url, $consumer_key, $consumer_secret, $options );
     //print '<pre>';
-	$eceGetCallArray = $woocommerce->orders->get();
+	$eceGetCallArray = $woocommerce->orders->get(null, array('filter[order]' => 'desc' ));
 	//print_r($eceGetCallArray->orders);
 
 	foreach ($eceGetCallArray->orders as $item) {

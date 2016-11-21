@@ -235,39 +235,37 @@ export class OrdineModal {
     
   }
 
-  saveOrder(ordine) {
-    console.log('Devono essere decrementati i prodotti in magazzino');
-    console.log(ordine.id);
-    
-    this.ordine = new Ordine(
-      ordine.id,
-      this.order_number,
-      this.created_at,
-      this.updated_at,
-      this.completed_at,
-      this.status,
-      this.total,
-      this.total_tax,
-      this.total_line_items_quantity,
-      this.line_items,
-      this.customer,
-      this.note
-    );
-
+  showNote(id) {
+    console.log(id);
     this.loading = this.loadingCtrl.create({
-      spinner: 'crescent',
+      spinner: 'crescent'
     });
     this.loading.present();
 
     this.httpService
-      .getCallHttp('getOrderSave', '', '', '', this.ordine)
+      .getCallHttp('getOrderNote', '', '', id, '')
       .then(res => {
         console.log('res: ' + JSON.stringify(res));
 
         if (res[0].response[0].result == 'OK') {
-          this.viewCtrl.dismiss({
-            action: 'refresh'
-          });
+
+          let noteComplete: string = '';
+          for (let prod of res[0].output) {
+
+            var d = new Date(prod['created_at']);
+            var datestring = d.getDate()  + "/" + (d.getMonth()+1) + "/" + d.getFullYear() + " ore " + d.getHours() + ":" + d.getMinutes();
+
+            let nData: string       = datestring;
+            let nMessage: string    = prod['note'];
+
+            noteComplete += nData+'<br />'+nMessage+'<br /><hr /><br />';
+            
+          }
+          let alert = this.alertCtrl.create();
+          alert.setTitle('Note');
+          alert.setMessage(noteComplete);
+          alert.addButton('Chiudi');
+          alert.present();
         } else {
           this.nothing = 'Nessun dato! Riprovare più tardi.';
         }
@@ -335,12 +333,14 @@ export class OrdineModal {
 
   changeStatus(ordine,status) {
     console.log(ordine+' -> '+status);
+    /*
     let checkedPending: boolean = false;
     let checkedProcessing: boolean = false;
     let checkedOnHold: boolean = false;
+    let checkedRefunded: boolean = false;
+    */
     let checkedCompleted: boolean = false;
     let checkedCancelled: boolean = false;
-    let checkedRefunded: boolean = false;
     let checkedFailed: boolean = false;
 
     /* Vengono gestiti solo i casi CANCELLED e FAILED

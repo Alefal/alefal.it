@@ -6,6 +6,8 @@ $eceResultArray		= array();
 $eceOutputArray 	= array();
 $eceFinalArray 		= array();
 
+$orderId = $_GET['id'];
+
 try {
 
 	$eceResultArray[] = array(
@@ -15,20 +17,16 @@ try {
 
     $woocommerce = new WC_API_Client( $store_url, $consumer_key, $consumer_secret, $options );
     //print '<pre>';
-	$eceGetCallArray = $woocommerce->products->get(null, array('filter[order]' => 'asc' ));
-	//print_r($eceGetCallArray->products);
+	$eceGetCallArray = $woocommerce->order_notes->get($orderId);
+	//print_r($eceGetCallArray);
 
-	foreach ($eceGetCallArray->products as $item) {
-		//print_r($item);
-        $eceOutputArray[] = array(        
+	foreach ($eceGetCallArray->order_notes as $item) {
+		$eceOutputArray[] = array(        
             'id'      	    => $item->id,
-            'title'         => $item->title,
-            'price'		    => $item->price,
-            'description'   => $item->description,
-            'stock'		    => $item->stock_quantity,
-            'images'        => $item->images
+            'created_at'    => $item->created_at,
+            'note'		    => $item->note
 
-        );  
+        );   
     }
     //print_r($eceOutputArray);
 	//print '</pre>';

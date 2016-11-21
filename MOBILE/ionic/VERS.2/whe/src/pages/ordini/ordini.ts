@@ -69,7 +69,7 @@ export class Ordini {
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
       this.orders = this.orders.filter((item) => {
-        console.log(JSON.stringify(item.order_number)+' | '+val);
+        //console.log(JSON.stringify(item.order_number)+' | '+val);
         
         return (item.order_number == val);
       })
