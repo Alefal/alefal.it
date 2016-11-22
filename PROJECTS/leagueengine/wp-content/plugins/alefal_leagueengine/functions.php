@@ -1,7 +1,7 @@
 <?php
 //Locale
-$league_id = 2; 
-$season_id = 32;
+$league_id = 95; 
+$season_id = 96;
 //Remote
 //$league_id = 67; 
 //$season_id = 68;
@@ -11,7 +11,7 @@ $season_id = 32;
 //Locale: Tournament leagueknockout
 //$tournament_id = 5;
 //Remote: Tournament test 2x3
-$tournament_id = 59;
+//$tournament_id = 59;
 
 function le_leagueengine_table_gp($league,$season,$team) {
 	global $wpdb;

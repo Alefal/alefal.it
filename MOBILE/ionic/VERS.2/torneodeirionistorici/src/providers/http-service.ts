@@ -20,9 +20,9 @@ export class HttpService {
     getCallHttp(call,teamId,playerIdOrRound,matchIdOrType,statOrGroup,tipologia) {
         console.log('getCallHttp: '+call+' | '+teamId+' | '+playerIdOrRound+' | '+matchIdOrType);
         
-        //var host = 'http://localhost/alefal.it/PROJECTS/leagueengine';
+        var host = 'http://localhost/alefal.it/PROJECTS/leagueengine';
         //var host = '/demo/leagueengine';
-        var host = 'http://www.amalficoastapps.it/demo/leagueengine';
+        //var host = 'http://www.amalficoastapps.it/demo/leagueengine';
         
         var url = '';
         if(call == 'getTorneo') {
