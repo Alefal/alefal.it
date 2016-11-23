@@ -4,14 +4,14 @@ import { NavController, LoadingController, ModalController } from 'ionic-angular
 import { HttpService }          from '../../providers/http-service';
 import { ConnectivityService }  from '../../providers/connectivity-service';
 
-import { RioniNewsModal }       from './rioni-news-modal';
+import { FotoVideoModal }       from './foto-video-modal';
 
 
 @Component({
-  selector: 'page-rioni-news',
-  templateUrl: 'rioni-news.html'
+  selector: 'page-foto-video',
+  templateUrl: 'foto-video.html'
 })
-export class RioniNews {
+export class FotoVideo {
 
   news: any;
   loading: any;
@@ -30,10 +30,10 @@ export class RioniNews {
     if(this.connectivityService.connectivityFound) {
       this.getData();
     } else {
-      if(localStorage.getItem('getRioniNews') === null) {
+      if(localStorage.getItem('getFotoVideo') === null) {
         this.connectivityService.showInfoNoData();
       } else {
-        this.news = JSON.parse(localStorage.getItem('getRioniNews'));
+        this.news = JSON.parse(localStorage.getItem('getFotoVideo'));
       this.connectivityService.showInfo();
       }
     }
@@ -46,11 +46,11 @@ export class RioniNews {
     this.loading.present();
 
     this.httpService
-      .getCallHttp('getRioniNews','','','','','')
+      .getCallHttp('getFotoVideo','','','','','')
       .then(res => {
         console.log('SUCCESS: ' + JSON.stringify(res));
         this.news = res.posts;
-        localStorage.setItem('getRioniNews',JSON.stringify(this.news));
+        localStorage.setItem('getFotoVideo',JSON.stringify(this.news));
         this.loading.dismiss();
       })
       .catch(error => {
@@ -63,7 +63,7 @@ export class RioniNews {
 
   leggiComunicato(title,content) {
     if(this.connectivityService.connectivityFound) {
-      let modal = this.modalCtrl.create(RioniNewsModal, { title: title, content: content });
+      let modal = this.modalCtrl.create(FotoVideoModal, { title: title, content: content });
       modal.present();
     } else {
       this.connectivityService.showAlert();

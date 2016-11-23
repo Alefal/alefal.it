@@ -5,8 +5,8 @@ import { TorneoRioniStorici }                         from './app.component';
 import { HomePage }                 from '../pages/home/home';
 import { Comunicati }               from '../pages/comunicati/comunicati';
 import { ComunicatoModal }          from '../pages/comunicati/comunicato-modal';
-import { RioniNews }                from '../pages/rioni-news/rioni-news';
-import { RioniNewsModal }           from '../pages/rioni-news/rioni-news-modal';
+import { FotoVideo }                from '../pages/foto-video/foto-video';
+import { FotoVideoModal }           from '../pages/foto-video/foto-video-modal';
 import { Squadre }                  from '../pages/squadre/squadre';
 import { GiocatoriModal }           from '../pages/squadre/giocatori-modal';
 import { Incontri }                 from '../pages/incontri/incontri';
@@ -29,8 +29,8 @@ import { FillPipe }                 from '../pipes/fill.pipe';
     HomePage,
     Comunicati,
     ComunicatoModal,
-    RioniNews,
-    RioniNewsModal,
+    FotoVideo,
+    FotoVideoModal,
     Squadre,
     GiocatoriModal,
     Incontri,
@@ -51,8 +51,8 @@ import { FillPipe }                 from '../pipes/fill.pipe';
     HomePage,
     Comunicati,
     ComunicatoModal,
-    RioniNews,
-    RioniNewsModal,
+    FotoVideo,
+    FotoVideoModal,
     Squadre,
     GiocatoriModal,
     Incontri,

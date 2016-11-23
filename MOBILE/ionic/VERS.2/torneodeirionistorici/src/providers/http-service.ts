@@ -29,7 +29,7 @@ export class HttpService {
             url = '/wp-content/plugins/alefal_leagueengine/le_typeTournament.php';
         } else if(call == 'getComunicatiUfficiali') {
             url = '?json=get_tag_posts&tag_slug=comunicatiUfficiali';
-        } else if(call == 'getRioniNews') {
+        } else if(call == 'getFotoVideo') {
              url = '?json=get_tag_posts&tag_slug=fotoVideo';
         } else if(call == 'getSquadre') {
             url = '/wp-content/plugins/alefal_leagueengine/le_teams.php?tipologiaTorneo='+tipologia;

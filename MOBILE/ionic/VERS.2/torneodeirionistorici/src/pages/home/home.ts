@@ -2,7 +2,7 @@ import { Component }      from '@angular/core';
 import { NavController, NavParams, LoadingController }  from 'ionic-angular';
 
 import { Comunicati }     from '../comunicati/comunicati';
-import { RioniNews }      from '../rioni-news/rioni-news';
+import { FotoVideo }      from '../foto-video/foto-video';
 import { Squadre }        from '../squadre/squadre';
 import { Incontri }       from '../incontri/incontri';
 import { Classifica }     from '../classifica/classifica';
@@ -96,8 +96,8 @@ export class HomePage {
 
     if(section == 'Comunicati'){
       this.navCtrl.push(Comunicati);
-    } else if(section == 'RioniNews'){
-      this.navCtrl.push(RioniNews);
+    } else if(section == 'FotoVideo'){
+      this.navCtrl.push(FotoVideo);
     } else if(section == 'Squadre'){
       this.navCtrl.push(Squadre, {
         tipologia: tipologia

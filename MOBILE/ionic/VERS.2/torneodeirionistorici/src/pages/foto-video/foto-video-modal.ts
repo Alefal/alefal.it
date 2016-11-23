@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { NavParams, ViewController } from 'ionic-angular';
 
 @Component({
-  selector: 'page-rioni-news-modal',
-  templateUrl: 'rioni-news-modal.html'
+  selector: 'page-foto-video-modal',
+  templateUrl: 'foto-video-modal.html'
 })
-export class RioniNewsModal {
+export class FotoVideoModal {
 
   title: string;
   content: string;
