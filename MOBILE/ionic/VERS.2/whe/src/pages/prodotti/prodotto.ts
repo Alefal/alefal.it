@@ -6,6 +6,8 @@ export class Prodotto {
   public prodManageStock: boolean;
   public prodQuantity: number;
   public prodAddQuantity: number;
+  public prodCatId: number;
+  public prodCatName: string;  
 
   constructor(
       prodId: number, 
@@ -14,7 +16,9 @@ export class Prodotto {
       prodDescription: string, 
       prodManageStock: boolean, 
       prodQuantity: number,
-      prodAddQuantity: number) {
+      prodAddQuantity: number,
+      prodCatId: number,
+      prodCatName: string) {
 
     this.prodId = prodId;
     this.prodTitle = prodTitle;
@@ -22,8 +26,9 @@ export class Prodotto {
     this.prodDescription = prodDescription;
     this.prodManageStock = prodManageStock;
     this.prodQuantity = prodQuantity;
-    this.prodAddQuantity = prodAddQuantity;  
-
+    this.prodAddQuantity = prodAddQuantity;
+    this.prodCatId = prodCatId;  
+    this.prodCatName = prodCatName;  
   }
 
   public getProdId(): string {

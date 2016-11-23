@@ -22,8 +22,16 @@
         </ion-item>
 
         <ion-item>
+          <ion-label floating>Categoria * </ion-label>
+          <ion-select [(ngModel)]="selectCatId" [ngModelOptions]="{standalone: true}" cancelText="Chiudi" okText="Scegli categoria"required>
+            <ion-option *ngFor="let cat of line_items" [value]="cat.id">{{cat.name}}</ion-option>
+          </ion-select>
+          <ion-badge item-right color="secondary">{{prodCatName}}</ion-badge>
+        </ion-item>
+
+        <ion-item>
           <ion-label floating>Prezzo *</ion-label>
-          <ion-input type="number" name="prodPrice" [(ngModel)]="prodPrice" required></ion-input>
+          <ion-input type="number" name="prodPrice" [(ngModel)]="prodPrice" required step="any"></ion-input>
         </ion-item>
 
         <ion-item>

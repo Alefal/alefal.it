@@ -29,7 +29,8 @@ if(isset($productId)) {
             'price'         => $item->price,
             'description'   => $item->description,
             'stock'         => $item->stock_quantity,
-            'images'        => $item->images
+            'images'        => $item->images,
+            'category'      => $item->categories[0]
 
         ); 
         //print_r($eceOutputArray);

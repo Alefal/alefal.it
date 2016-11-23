@@ -83,8 +83,10 @@ export class Magazzino {
   setChecked(id,title,price,description,qnt) {
     let instock: boolean = true;
     let addQnt: number = 0;
+    let catId: number    = 0;
+    let catName: string  = '';
 
-    this.prodotto = new Prodotto(id,title,price,description,instock,qnt,addQnt);
+    this.prodotto = new Prodotto(id,title,price,description,instock,qnt,addQnt,catId,catName);
     let prodId = this.prodotto.getProdId();
     let addProduct: boolean = true;
 

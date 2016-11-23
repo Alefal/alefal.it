@@ -19,7 +19,8 @@ $productArray = array(
     'description'       => $product['prodDescription'],
     'managing_stock'    => $product['prodManageStock'],
     'in_stock'          => $product['prodManageStock'],
-    'stock_quantity'    => $product['prodQuantity']
+    'stock_quantity'    => $product['prodQuantity'],
+    'categories'        => array( $product['prodCatId'] )
 );
 
 try {

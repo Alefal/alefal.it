@@ -150,13 +150,15 @@ export class OrdineModal {
 
     for (let prod of this.selectedProducts) {
       let pId: number       = prod['id'];
-      let PTitle: string    = prod['title'];
-      let PPrice: number    = prod['price'];
-      let PDescr: string    = prod['description'];
-      let PInStock: boolean = true;
+      let pTitle: string    = prod['title'];
+      let pPrice: number    = prod['price'];
+      let pDescr: string    = prod['description'];
+      let pInStock: boolean = true;
       let pQnt              = prod['stock'];
+      let pCatId: number    = 0;
+      let pCatName: string  = '';
       
-      let prodotto = new Prodotto(pId,PTitle,PPrice,PDescr,PInStock,pQnt,0);
+      let prodotto = new Prodotto(pId,pTitle,pPrice,pDescr,pInStock,pQnt,0,pCatId,pCatName);
       //console.log(prodotto);  
 
       this.selectedProductsQnt.push(prodotto);

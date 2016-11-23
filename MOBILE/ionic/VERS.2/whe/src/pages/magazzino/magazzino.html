@@ -26,8 +26,9 @@
           id={{prod.id}}></ion-checkbox>
 
         <ion-label>
-          {{prod.title}}
+          {{prod.title}} <p><ion-badge color="secondary">{{prod.category}}</ion-badge></p>
         </ion-label>
+        
         <ion-note item-right>
           <em>{{prod.stock}}</em>
         </ion-note>

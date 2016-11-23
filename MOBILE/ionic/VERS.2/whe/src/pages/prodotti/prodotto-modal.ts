@@ -31,6 +31,11 @@ export class ProdottoModal {
   prodDescription: string;
   prodManageStock: boolean = true;
   prodQuantity: number;
+  prodCatId: number;
+  prodCatName: string
+
+  line_items: any;
+  selectCatId: number;
 
   constructor(
     params: NavParams,
@@ -42,6 +47,22 @@ export class ProdottoModal {
     this.id = params.get('id');
     console.log(this.id);
 
+    //CATEGORIE
+    this.httpService
+      .getCallHttp('getProductsCategory', '', '', '', '')
+      .then(res => {
+        console.log('res: '+JSON.stringify(res));
+
+        if (res[0].response[0].result == 'OK') {
+          this.line_items = res[0].output;
+        } else {
+          this.nothing = 'Nessun dato! Riprovare più tardi.';
+        }
+      })
+      .catch(error => {
+        console.log('ERROR: ' + error);
+      });
+
     //CREATE
     if (this.id == 0) {
       //
@@ -52,7 +73,6 @@ export class ProdottoModal {
 
       this.loading = this.loadingCtrl.create({
         spinner: 'crescent',
-        //content: 'Please wait...'
       });
       this.loading.present();
 
@@ -69,6 +89,9 @@ export class ProdottoModal {
             this.prodDescription = this.product.description;
             this.prodManageStock = true;
             this.prodQuantity = this.product.stock;
+            this.prodCatName = this.product.category;
+
+            this.selectCatId = this.product.category;
 
           } else {
             this.nothing = 'Nessun dato! Riprovare più tardi.';
@@ -97,8 +120,13 @@ export class ProdottoModal {
     console.log(this.prodDescription);
     console.log(this.prodManageStock);
     console.log(this.prodQuantity);
+    console.log(this.prodCatId);
+    console.log(this.prodCatName);
 
-    this.prodotto = new Prodotto(id, this.prodTitle, this.prodPrice, this.prodDescription, this.prodManageStock, this.prodQuantity, 0);
+    this.prodCatId = this.selectCatId;
+    console.log(this.prodCatId);   
+
+    this.prodotto = new Prodotto(id, this.prodTitle, this.prodPrice, this.prodDescription, this.prodManageStock, this.prodQuantity, 0, this.prodCatId, this.prodCatName);
 
     this.loading = this.loadingCtrl.create({
       spinner: 'crescent',
