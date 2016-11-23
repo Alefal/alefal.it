@@ -7,6 +7,31 @@ https://github.com/driftyco/ionic/blob/master/CHANGELOG.md#packagejson-updates
 Aggiornamento package json
 === 2.0.0-rc.2 (2016-11-03) ===
 Aggiornamento ionic RC2
+=== 2.0.0-rc.3 (2016-11-17) ===
+Aggiornamento ionic RC3
+
+$ npm install -g ionic
+$ ionic -v
+# should return at least 2.1.12
+
+In ogni PROJECT 2:
+$ npm install ionic-angular@latest --save
+# get RC3 of ionic-angular
+$ npm install @ionic/app-scripts@latest --save-dev
+# get the latest app-scripts package
+
+src/app/app.module.ts
+
+import { NgModule, ErrorHandler } from '@angular/core';
+import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+
+@NgModule({
+
+  // Here we tell the Angular ErrorHandling class
+  // that it should be using the IonicErrorHandler class for any errors
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+})
+
 
 === CORS problem: con la RC2 non mi funziona più il parametro "proxies" in ionic.config.json ===
 https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en

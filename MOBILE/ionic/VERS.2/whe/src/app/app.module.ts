@@ -1,7 +1,7 @@
-import { NgModule }                 from '@angular/core';
-import { IonicApp, IonicModule }    from 'ionic-angular';
+import { NgModule, ErrorHandler }                     from '@angular/core';
+import { IonicApp, IonicModule, IonicErrorHandler }   from 'ionic-angular';
+import { WheApp }                                     from './app.component';
 
-import { WheApp }                   from './app.component';
 import { Login }                    from '../pages/login/login';
 import { Homepage }                 from '../pages/homepage/homepage';
 import { Prodotti }                 from '../pages/prodotti/prodotti';
@@ -50,6 +50,10 @@ import { HttpService }              from '../providers/http-service';
     MagazzinoModal
   ],
   providers: [
+    {
+      provide: ErrorHandler, 
+      useClass: IonicErrorHandler
+    },
     HttpService
   ]
 })

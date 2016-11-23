@@ -1,6 +1,6 @@
-import { NgModule }                 from '@angular/core';
-import { IonicApp, IonicModule }    from 'ionic-angular';
-import { TorneoRioniStorici }       from './app.component';
+import { NgModule, ErrorHandler }                     from '@angular/core';
+import { IonicApp, IonicModule, IonicErrorHandler }   from 'ionic-angular';
+import { TorneoRioniStorici }                         from './app.component';
 
 import { HomePage }                 from '../pages/home/home';
 import { Comunicati }               from '../pages/comunicati/comunicati';
@@ -64,6 +64,10 @@ import { FillPipe }                 from '../pipes/fill.pipe';
     StatisticaModal
   ],
   providers: [
+    {
+      provide: ErrorHandler, 
+      useClass: IonicErrorHandler
+    },
     ConnectivityService,
     DatabaseService,
     HttpService

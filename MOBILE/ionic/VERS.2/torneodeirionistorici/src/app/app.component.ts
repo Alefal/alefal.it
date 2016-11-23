@@ -64,6 +64,7 @@ export class TorneoRioniStorici {
 
       //this.pushNotifications();
 
+/***
       var push = Push.init({
         android: {
           vibrate: true,
@@ -102,6 +103,7 @@ export class TorneoRioniStorici {
       push.on('error', (e) => {
         console.log(e.message);
       });
+***/
     });
   }
 }
