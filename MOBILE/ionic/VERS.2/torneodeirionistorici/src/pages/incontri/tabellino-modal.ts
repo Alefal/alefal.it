@@ -27,12 +27,26 @@ export class TabellinoModal {
   home_team_id: number;
   away_team_id: number;
 
+  home_team_score: number = 0;
+  away_team_score: number = 0;
+
   home_team_logo: string;
   away_team_logo: string;
 
   tipologiaTorneo: string;
 
   intervalId: any;
+
+  //LIVE INSERT
+  public tap: number = 0;
+  showButtonAfterTap = false;
+
+  liveEventId: number = 0;
+  liveSquadraId: string = '';
+  liveMinuto: string = '';
+  liveEvento: string = '';
+  liveGiocatori: any;
+  liveSelectedGiocatore: any;
 
   constructor(
     public params: NavParams,
@@ -85,7 +99,13 @@ export class TabellinoModal {
 
         if (res[0].response[0].result == 'OK') {
           //this.match          = res[0].match;
-          this.matchesEvents  = res[0].matchesEvents;
+          this.home_team_score  = res[0].match[0].home_team_score;
+          this.away_team_score  = res[0].match[0].away_team_score;
+          this.matchesEvents    = res[0].matchesEvents;
+          this.liveEventId      = res[0].matchesEvents[0].event_id;
+          
+          console.log('home_team_score: ' + this.home_team_score);
+          console.log('away_team_score: ' + this.away_team_score);
         }
         this.loading.dismiss();
       })
@@ -114,4 +134,64 @@ export class TabellinoModal {
       });
   }
 
+  tapEvent(e) {
+    this.tap++;
+    if(this.tap == 10) {
+      this.showButtonAfterTap = true;
+    }
+  }
+  tapAnnulla() {
+    this.tap = 0;
+    this.showButtonAfterTap = false;
+  }
+
+  liveGetGiocatori() {
+    console.log('-> '+this.liveSquadraId);
+    this.liveSelectedGiocatore = '';
+    this.httpService
+      .getCallHttp('getGiocatori',this.liveSquadraId,'','','',this.tipologiaTorneo)
+      .then(res => {
+        console.log('SUCCESS: ' + JSON.stringify(res));
+
+        if(res[0].response[0].result == 'OK') {
+          this.liveGiocatori = res[0].atleti;
+        } else {
+          this.liveGiocatori = 'Nessun dato! Riprovare più tardi.';
+        }
+      })
+      .catch(error => {
+        console.log('ERROR: ' + error);
+      });
+    
+  }
+  liveSalva() {
+    console.log('-> '+this.matchId+' | '+this.liveEventId+' | '+this.liveSquadraId+' | '+this.liveMinuto+' | '+this.liveEvento);
+    if(this.liveSelectedGiocatore) {
+      console.log('-> '+this.liveSelectedGiocatore.playerId); 
+      
+      let event = '{"match_id":"'+this.matchId+'","event_id":"'+this.liveEventId+'","team_id":"'+this.liveSquadraId+'","player_id":"'+this.liveSelectedGiocatore.playerId+'","event_time":"'+this.liveMinuto+'","timeline_text":"'+this.liveEvento+'","tipologiaTorneo":"'+this.tipologiaTorneo+'","home_team_score":"'+this.home_team_score+'","away_team_score":"'+this.away_team_score+'"}';
+
+      this.loading = this.loadingCtrl.create({
+        spinner: 'crescent'
+      });
+      this.loading.present();
+
+      this.httpService
+        .getCallHttp('getIncontroEventi','','','','',event)
+        .then(res => {
+          console.log('SUCCESS: ' + JSON.stringify(res));
+
+          if(res[0].response[0].result == 'OK') {
+            console.log('OK');
+          } else {
+            console.log('KO');
+          }
+          this.loading.dismiss();
+        })
+        .catch(error => {
+          console.log('ERROR: ' + error);
+          this.loading.dismiss();
+        });
+    }
+  }
 }

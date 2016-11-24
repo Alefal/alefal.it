@@ -1,9 +1,152 @@
-<ion-content padding class="home-view">
+<ion-menu [content]="tabContent" class="menuLaterale">
+	<ion-header>
+		<ion-toolbar>
+			<ion-title>Live Incontro</ion-title>
+		</ion-toolbar>
+	</ion-header>
+	<ion-content>
+		<h5 padding>Tabellino</h5>
+		<ion-list>
+			<ion-item>
+				<ion-label>Squadra</ion-label>
+				<ion-select [(ngModel)]="liveSquadraId" (ionChange)="liveGetGiocatori()">
+					<ion-option [value]="home_team_id">{{teamHome}}</ion-option>
+					<ion-option [value]="away_team_id">{{teamAway}}</ion-option>
+				</ion-select>
+			</ion-item>
+			<ion-item>
+				<ion-label>Giocatori</ion-label>
+				<ion-select [(ngModel)]="liveSelectedGiocatore">
+					<ion-option *ngFor="let giocatore of liveGiocatori"[value]="giocatore" >{{giocatore.playerName}}</ion-option>
+				</ion-select>
+			</ion-item>
+			<ion-item>
+				<ion-label>Minuto</ion-label>
+				<!-- NON FUNZIONA: non aggiorna ngModel
+				<ion-datetime displayFormat="mm" [(ngModel)]="liveMinuto"></ion-datetime>
+				-->
+				<ion-select [(ngModel)]="liveMinuto">
+					<ion-option [value]="1">1</ion-option>
+					<ion-option [value]="2">2</ion-option>
+					<ion-option [value]="3">3</ion-option>
+					<ion-option [value]="4">4</ion-option>
+					<ion-option [value]="5">5</ion-option>
+					<ion-option [value]="6">6</ion-option>
+					<ion-option [value]="7">7</ion-option>
+					<ion-option [value]="8">8</ion-option>
+					<ion-option [value]="9">9</ion-option>
+
+					<ion-option [value]="10">10</ion-option>
+					<ion-option [value]="11">11</ion-option>
+					<ion-option [value]="12">12</ion-option>
+					<ion-option [value]="13">13</ion-option>
+					<ion-option [value]="14">14</ion-option>
+					<ion-option [value]="15">15</ion-option>
+					<ion-option [value]="16">16</ion-option>
+					<ion-option [value]="17">17</ion-option>
+					<ion-option [value]="18">18</ion-option>
+					<ion-option [value]="19">19</ion-option>
+
+					<ion-option [value]="20">20</ion-option>
+					<ion-option [value]="21">21</ion-option>
+					<ion-option [value]="22">22</ion-option>
+					<ion-option [value]="23">23</ion-option>
+					<ion-option [value]="24">24</ion-option>
+					<ion-option [value]="25">25</ion-option>
+					<ion-option [value]="26">26</ion-option>
+					<ion-option [value]="22">27</ion-option>
+					<ion-option [value]="28">28</ion-option>
+					<ion-option [value]="29">29</ion-option>
+
+					<ion-option [value]="30">30</ion-option>
+					<ion-option [value]="31">31</ion-option>
+					<ion-option [value]="32">32</ion-option>
+					<ion-option [value]="33">33</ion-option>
+					<ion-option [value]="34">34</ion-option>
+					<ion-option [value]="35">35</ion-option>
+					<ion-option [value]="36">36</ion-option>
+					<ion-option [value]="37">37</ion-option>
+					<ion-option [value]="38">38</ion-option>
+					<ion-option [value]="39">39</ion-option>
+
+					<ion-option [value]="40">40</ion-option>
+					<ion-option [value]="41">41</ion-option>
+					<ion-option [value]="42">42</ion-option>
+					<ion-option [value]="43">43</ion-option>
+					<ion-option [value]="44">44</ion-option>
+					<ion-option [value]="45">45</ion-option>
+					<ion-option [value]="46">46</ion-option>
+					<ion-option [value]="47">47</ion-option>
+					<ion-option [value]="48">48</ion-option>
+					<ion-option [value]="49">49</ion-option>
+
+					<ion-option [value]="50">50</ion-option>
+					<ion-option [value]="51">51</ion-option>
+					<ion-option [value]="52">52</ion-option>
+					<ion-option [value]="53">53</ion-option>
+					<ion-option [value]="54">54</ion-option>
+					<ion-option [value]="55">55</ion-option>
+					<ion-option [value]="56">56</ion-option>
+					<ion-option [value]="57">57</ion-option>
+					<ion-option [value]="58">58</ion-option>
+					<ion-option [value]="59">59</ion-option>
+					
+				</ion-select>
+			</ion-item>
+			<ion-item>
+				<ion-label>Evento</ion-label>
+				<ion-textarea [(ngModel)]="liveEvento"></ion-textarea>
+			</ion-item>
+		</ion-list>
+
+		<hr />
+		
+		<h5 padding>Risultato</h5>
+		<ion-list>
+			<ion-item>
+				<ion-label>{{teamHome}}</ion-label>
+				<ion-input name="home_team_score" [(ngModel)]="home_team_score"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label>{{teamAway}}</ion-label>
+				<ion-input name="away_team_score" [(ngModel)]="away_team_score"></ion-input>
+			</ion-item>
+		</ion-list>
+		
+		<button ion-button large full icon-left color="dark" (click)="liveSalva()">
+			<ion-icon name="checkmark-circle"></ion-icon>
+			Salva
+		</button>
+
+		<button ion-button large full icon-left color="greenDark" menuClose>
+			<ion-icon name="close-circle"></ion-icon>
+			Chiudi
+		</button>
+		<button ion-button large full icon-left color="danger" menuClose (click)="tapAnnulla()">
+			<ion-icon name="exit"></ion-icon>
+			Esci
+		</button>
+	</ion-content>
+</ion-menu>
+
+<ion-header *ngIf="showButtonAfterTap">
+
+	<ion-navbar color="greenDark">
+		<ion-buttons>
+			<button ion-button icon-only menuToggle>
+        		<ion-icon name="menu"></ion-icon>
+      		</button>
+		</ion-buttons>
+	</ion-navbar>
+
+</ion-header>
+
+<ion-content padding class="home-view" #tabContent>
 
 	<div class="posts">
 		<div class="post-card">
 			<div class="card-header">
-				<h3>{{teamHome}} - {{teamAway}}</h3>
+				<h3 (tap)="tapEvent($event)">{{teamHome}} - {{teamAway}}</h3>
 
 				<ion-grid>
 					<ion-row>
@@ -25,7 +168,7 @@
 			</div>
 			<div class="card-content">
 				<div class="errorMessage" *ngIf="errorMessageView">{{errorMessage}}</div>
-				
+
 				<ion-grid>
 					<ion-row *ngFor="let event of matchesEvents" style="padding:10px">
 						<ion-col style="min-width: 40%; text-align:right">
@@ -37,7 +180,7 @@
 							<div *ngIf="teamAway == event.team_name" class="eventTime">
 								{{event.event_time}} '
 							</div>
-							
+
 						</ion-col>
 						<ion-col width-10 style="text-align:center">
 							|
@@ -52,7 +195,7 @@
 								<span class="player">{{event.player_name}}</span>
 							</div>
 						</ion-col>
-						
+
 					</ion-row>
 				</ion-grid>
 

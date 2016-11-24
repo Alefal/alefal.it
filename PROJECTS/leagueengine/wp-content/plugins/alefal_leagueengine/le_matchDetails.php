@@ -23,7 +23,7 @@ if(isset($match_id)) {
         );
 
         $events = $wpdb->get_results("
-            SELECT ST.team_name, DATA_P.data_value, SME.event_time, SME.timeline_text
+            SELECT ST.team_name, DATA_P.data_value, SME.event_id, SME.event_time, SME.timeline_text
             FROM ".$table_prefix."leagueengine_season_matches_events AS SME
                 INNER JOIN ".$table_prefix."leagueengine_season_teams AS ST ON ST.team_id = SME.team_id    
                 INNER JOIN ".$table_prefix."leagueengine_data AS DATA_P ON DATA_P.id = SME.player_id     
@@ -38,7 +38,7 @@ if(isset($match_id)) {
         );
 
         $events = $wpdb->get_results("
-            SELECT TT.team_name, DATA_P.data_value, TME.event_time, TME.timeline_text
+            SELECT TT.team_name, DATA_P.data_value, TME.event_id, TME.event_time, TME.timeline_text
             FROM ".$table_prefix."leagueengine_tournament_matches_events AS TME
                 INNER JOIN ".$table_prefix."leagueengine_tournament_teams AS TT ON TT.team_id = TME.team_id    
                 INNER JOIN ".$table_prefix."leagueengine_data AS DATA_P ON DATA_P.id = TME.player_id     
@@ -47,6 +47,8 @@ if(isset($match_id)) {
         );
     }
 
+    //print_r($events);
+    //die();
     $resultArray[] = array(
         'result'  => 'OK',
         'message' => 'OK'
@@ -55,6 +57,7 @@ if(isset($match_id)) {
     //print_r($match);
     foreach ($events as $event) {
         $matchesEvents[] = array(        
+            'event_id'          => $event->event_id,
             'team_name'      	=> $event->team_name,
             'player_name'    	=> $event->data_value,
             'event_time'      	=> $event->event_time,

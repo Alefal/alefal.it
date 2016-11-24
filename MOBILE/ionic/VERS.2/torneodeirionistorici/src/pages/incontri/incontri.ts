@@ -75,7 +75,7 @@ export class Incontri {
             //Date incontri in MILLISECONDI: confrontare con la data odiera per inviare LocalNotification
             let dateString = this.convertToDate(mtc['match_date'])+' '+this.convertTime12to24(mtc['match_time']);
             let date = new Date(dateString);
-            console.log(date.getTime());  
+            //console.log(date.getTime());  
             
           }
 

@@ -19,8 +19,9 @@ try {
 	$woocommerce = new WC_API_Client( $store_url, $consumer_key, $consumer_secret, $options );
     
     print '<pre>';
+    $eceGetCallArray = $woocommerce->products->create_category( array( 'product_category' => array( 'name' => 'Test Category' ) ) ) 
     //$eceGetCallArray = $woocommerce->products->get();
-    $eceGetCallArray = $woocommerce->products->get_categories();
+    //$eceGetCallArray = $woocommerce->products->get_categories();
     //$eceGetCallArray = $woocommerce->products->create($productArray);
 	//$eceGetCallArray = $woocommerce->products->get(null, array('filter[limit]' => 50 , 'fields' => 'id,status' ));
     //$eceGetCallArray = $woocommerce->products->get(null, array('filter[name]' => 'Test Product'));

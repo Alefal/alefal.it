@@ -108,7 +108,7 @@
     </ion-list>
 
     <div *ngIf="showButtonEditDelete">
-      <ion-fab right bottom>
+      <ion-fab right bottom fab-fixed>
         <button ion-fab color="dark"><ion-icon name="ios-arrow-back"></ion-icon></button>
         <ion-fab-list side="left">
           <button ion-fab color="dark" (click)="sendMail(ordine.customer.email)"><ion-icon name="mail"></ion-icon></button>
