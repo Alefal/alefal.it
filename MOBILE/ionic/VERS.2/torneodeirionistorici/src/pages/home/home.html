@@ -1,6 +1,9 @@
-<ion-header>
+<ion-header *ngIf="tournamentName && tournamentType != null">
 	<ion-navbar color="greenDark">
 		<ion-title>{{tournamentName}}</ion-title>
+		<!--
+		<ion-title *ngIf="!tournamentName && tournamentType == null">LeagueEngine</ion-title>
+		-->
 	</ion-navbar>
 </ion-header>
 <!--
@@ -8,7 +11,67 @@
 -->
 <ion-content padding>
   
-	<ion-list class="listStats" *ngIf="tournamentType != 'leagueknockout' && tournamentType != 'knockout'">
+	<ion-slides pager *ngIf="!tournamentName && tournamentType == null" class="home-view">
+
+		<ion-slide class="slide01">
+			<!--
+			<div class="posts">
+				<div class="post-card">
+					<div class="card-header">
+						<h3>LeagueEngine</h3>
+					</div>
+					<div class="card-content">
+						Con LeagueEngine puoi organizzare il tuo torneo. Puoi organizzare le seguenti tipologie di tornei:
+						<ul>
+							<li>Gironi all'italiana</li>
+							<li>Scontri diretti</li>
+							<li>Gironi e scontri diretti</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			-->
+		</ion-slide>
+
+		<ion-slide class="slide02">
+			<!--
+			<div class="posts">
+				<div class="post-card">
+					<div class="card-header">
+						<h3>LeagueEngine</h3>
+					</div>
+					<div class="card-content">
+						Puoi visualizzare:
+						<ul>
+							<li>Le Squadre</li>
+							<li>I giocatori</li>
+							<li>Gli incontri col tabellino del match</li>
+							<li>Le statistiche di ogni giocatore</li>							
+						</ul>
+					</div>
+				</div>
+			</div>
+			-->
+		</ion-slide>
+
+		<ion-slide class="slide03">
+			<!--
+			<div class="posts">
+				<div class="post-card">
+					<div class="card-header">
+						<h3>LeagueEngine</h3>
+					</div>
+					<div class="card-content">
+						Richiedi la tua app personalizzata!
+					</div>
+				</div>
+			</div>
+			-->
+		</ion-slide>
+
+	</ion-slides>
+
+	<ion-list class="listStats" *ngIf="tournamentName && tournamentType != null && tournamentType != 'leagueknockout' && tournamentType != 'knockout'">
 		<!--
 		<ion-item class="itemHeader">
 			LEAGUE

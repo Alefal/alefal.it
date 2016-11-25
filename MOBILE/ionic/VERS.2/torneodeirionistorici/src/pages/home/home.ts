@@ -74,7 +74,9 @@ export class HomePage {
           this.tournamentTeams  = res[0].tournament[0].tour_teams;  //Math.log2(this.tournamentTeams)
           this.tournamentRound  = res[0].tournament[0].tour_round;
 
-          console.log('this.tournamentRound: '+this.tournamentRound);
+          console.log('this.tournamentName: '+this.tournamentName);
+          console.log('this.tournamentType: '+this.tournamentType);
+          
           this.getRounds(this.tournamentRound);
           localStorage.setItem('getTorneo',this.tournament);
         } else {

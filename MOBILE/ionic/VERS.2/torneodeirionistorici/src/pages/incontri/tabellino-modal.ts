@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavParams, ViewController, LoadingController } from 'ionic-angular';
+import { NavParams, ViewController, LoadingController, AlertController } from 'ionic-angular';
 
 import { HttpService } from '../../providers/http-service';
 //import { LoopNumber } from '../../pipes/loopnumber.pipe.ts'
@@ -53,6 +53,7 @@ export class TabellinoModal {
     public viewCtrl: ViewController,
     private httpService: HttpService,
     public loadingCtrl: LoadingController,
+    public alertCtrl: AlertController
   ) {
     this.matchId          = params.get('id');
     this.teamHome         = params.get('teamHome');
@@ -137,7 +138,7 @@ export class TabellinoModal {
   tapEvent(e) {
     this.tap++;
     if(this.tap == 10) {
-      this.showButtonAfterTap = true;
+      this.authorization();
     }
   }
   tapAnnulla() {
@@ -193,5 +194,51 @@ export class TabellinoModal {
           this.loading.dismiss();
         });
     }
+  }
+
+  authorization() {
+    let prompt = this.alertCtrl.create({
+      title: 'Codice di autorizzazione',
+      message: 'Inserisci il codice di autorizzazione per accedere alla sezione di amministrazione',
+      enableBackdropDismiss: false,
+      inputs: [
+        {
+          name: 'code',
+          placeholder: 'Codice autorizzazione'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+            this.tap = 0;
+          }
+        },
+        {
+          text: 'Save',
+          handler: data => {
+            console.log('Saved clicked: '+data.code);
+            this.tap = 0;
+            if(data.code == '01230') {
+              this.showButtonAfterTap = true;
+            } else {
+              this.showAlert();
+            }
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
+
+  showAlert() {
+    this.tap = 0;
+    let alert = this.alertCtrl.create({
+      title: 'Attenzione!',
+      subTitle: 'Codice di autorizzazione NON VALIDO!',
+      buttons: ['OK']
+    });
+    alert.present();
   }
 }

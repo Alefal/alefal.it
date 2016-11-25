@@ -101,4 +101,32 @@ page-home {
         }
     }
 
+    .slide01 {
+        margin: 0;
+        padding: 0;
+
+        background: url('../assets/img/slide_01.png') no-repeat center center; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+    }
+    .slide02 {
+        margin: 0;
+        padding: 0;
+
+        background: url('../assets/img/slide_02.png') no-repeat center center; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+    }
+    .slide03 {
+        margin: 0;
+        padding: 0;
+
+        background: url('../assets/img/slide_03.png') no-repeat center center; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+    }
+
 }
