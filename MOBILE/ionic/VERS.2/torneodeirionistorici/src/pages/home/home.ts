@@ -31,6 +31,8 @@ export class HomePage {
   errorMessage: String;
   errorMessageView: any;
 
+  showPage: boolean = false;
+
   constructor(
     public navCtrl: NavController, 
     private httpService: HttpService,
@@ -46,6 +48,7 @@ export class HomePage {
       if(localStorage.getItem('getTorneo') === null) {
         this.connectivityService.showInfoNoData();
       } else {
+        this.showPage = true;
         this.tournament = JSON.parse(localStorage.getItem('getTorneo'));
         this.tournamentName   = this.tournament[0].tour_name;
         this.tournamentType   = this.tournament[0].tour_type;        
@@ -82,10 +85,12 @@ export class HomePage {
         } else {
           this.tournament = 'Nessun dato! Riprovare più tardi.';
         }
+        this.showPage = true;
         this.loading.dismiss();
       })
       .catch(error => {
         console.log('ERROR: ' + error);
+        this.showPage = true;
         this.errorMessage = 'Error!';
         this.errorMessageView = true;
         this.loading.dismiss();
