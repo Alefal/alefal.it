@@ -8,9 +8,71 @@
 <ion-content padding *ngIf="showPage">
   
 	<ion-slides pager *ngIf="!tournamentName && tournamentType == null" class="home-view">
-		<ion-slide class="slide01"></ion-slide>
-		<ion-slide class="slide02"></ion-slide>
-		<ion-slide class="slide03"></ion-slide>
+		<ion-slide>
+			<ion-grid>
+				<ion-row>
+					<ion-col width-33>
+						<img src="assets/img/loghi/TDT/salernitana.png" />
+					</ion-col>
+					<ion-col width-33>
+						<img src="assets/img/loghi/TDT/sassuolo.png" />
+					</ion-col>
+					<ion-col width-33>
+						<img src="assets/img/loghi/TDT/napoli.png" />
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+			<div class="titleBg">
+				<h3>Torneo dei Tifosi 2016</h3>
+				<h6>dal 19 Dicembre al 30 Dicembre</h6>	
+				<img src="assets/img/slideleft.png" />			
+			</div>
+			<ion-grid>
+				<ion-row>
+					<ion-col width-33>
+						<img src="assets/img/loghi/TDT/inter.png" />
+					</ion-col>
+					<ion-col width-33>
+						<img src="assets/img/loghi/TDT/juventus.png" />
+					</ion-col>
+					<ion-col width-33>
+						<img src="assets/img/loghi/TDT/milan.png" />
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+		</ion-slide>
+		<ion-slide>
+			<div class="titleBg">
+				<h3>Torneo dei Tifosi 2016</h3>
+				<h6>dal 19 Dicembre al 30 Dicembre</h6>
+				<hr />
+				<p>
+					Torneo a Gironi
+					<br />
+					Semifinale Andata e Ritorno
+					<br />
+					Finale in Partita Unica
+				</p>
+			</div>
+			<div class="titleBg">
+				<h5 style=""><ion-icon name="md-list"></ion-icon> Regolamento</h5>
+				<ul>
+					<li>max 2 tesserati FIGC per squadra</li>
+					<li>obbligo di un over 50 in campo</li>
+					<li>il calendario ufficiale uscirà il 15 dicembre</li>
+					<li>la divisa verrà fornita dall'organizzazione</li>
+				</ul>
+				<hr />
+				<h5><ion-icon name="ribbon"></ion-icon> Premi</h5>
+				<ul>
+					<li>miglior portiere</li>
+					<li>miglior giovane</li>
+					<li>miglior over 50</li>
+					<li>capocannoniere</li>
+					<li>miglior giocatore</li>				
+				</ul>
+			</div>
+		</ion-slide>
 	</ion-slides>
 
 	<ion-list class="listStats" *ngIf="tournamentName && tournamentType != null && tournamentType != 'leagueknockout' && tournamentType != 'knockout'">
@@ -62,7 +124,7 @@
 			Comunicati
 			<ion-icon name="ios-arrow-forward" item-right></ion-icon>
 		</ion-item>
-		<ion-item (click)="navigate('RioniNews','','')">
+		<ion-item (click)="navigate('FotoVideo','','')">
 			<ion-icon name="images" item-left></ion-icon>
 			Foto e Video
 			<ion-icon name="ios-arrow-forward" item-right></ion-icon>
@@ -107,7 +169,7 @@
 			Comunicati
 			<ion-icon name="ios-arrow-forward" item-right></ion-icon>
 		</ion-item>
-		<ion-item (click)="navigate('RioniNews','','')">
+		<ion-item (click)="navigate('FotoVideo','','')">
 			<ion-icon name="images" item-left></ion-icon>
 			Foto e Video
 			<ion-icon name="ios-arrow-forward" item-right></ion-icon>

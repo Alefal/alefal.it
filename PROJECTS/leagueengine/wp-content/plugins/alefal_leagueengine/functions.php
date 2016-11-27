@@ -11,7 +11,7 @@ $season_id = 96;
 //Locale: Tournament leagueknockout
 //$tournament_id = 5;
 //Remote: Tournament test 2x3
-$tournament_id = 76;
+//$tournament_id = 59;
 
 function le_leagueengine_table_gp($league,$season,$team) {
 	global $wpdb;

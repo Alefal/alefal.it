@@ -1,0 +1,5 @@
+$ ionic build android --release
+
+$ ionic resources 
+$ ionic resources --icon
+$ ionic resources --splash
