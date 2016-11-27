@@ -993,7 +993,7 @@ function leagueengine_scheduler($teams,$shuffle='on',$reverse='off'){
         } 
         $i++; 
         } 
-    } 
+    }
     return $schedule; 
 }
 
@@ -2212,6 +2212,8 @@ function leagueengine_save_tournament($tournament_id) {
 	if(leagueengine_tournament_info($tournament_id,'tournament_type') == 'leagueknockout') {		
 		$wpdb->update( $table2, array(
 			'tournament_repeat' => $_POST['tournament_repeat'],
+			'semifinal_repeat' => $_POST['semifinal_repeat'],
+			'final_repeat' => $_POST['final_repeat'],
 			'tournament_shuffle' => $_POST['tournament_shuffle'],
 			'pts_win' => $_POST['tournament_pts_win'],
 			'pts_lose' => $_POST['tournament_pts_lose'],
@@ -2333,7 +2335,7 @@ function leagueengine_add_team_to_tournament($tournament_id,$team_id,$max_teams,
 	if ($count_teams == $max_teams) {
 		leagueengine_generate_tournament($tournament_id);
 		if($tournament_settings->tournament_type == 'leagueknockout') {
-			leagueengine_generate_tournament_matches($tournament_id,$tournament_settings->start_date,$tournament_settings->tournament_repeat,$tournament_settings->tournament_shuffle);
+			leagueengine_generate_tournament_matches($tournament_id,$tournament_settings->start_date,$tournament_settings->tournament_repeat,$tournament_settings->semifinal_repeat,$tournament_settings->final_repeat,$tournament_settings->tournament_shuffle);
 		}
 	}
 	
@@ -2748,6 +2750,7 @@ function leagueengine_generate_tournament($tournament_id) {
 			$num_teams = $tournament_settings->koteams;
 			$total_rounds = floor(log($num_teams, 2)) + 1;
 			$max_rows = $num_teams;
+
 			$team_array = array();
 			$unpaired_array = array();
 			$score_array = array();
@@ -2762,7 +2765,7 @@ function leagueengine_generate_tournament($tournament_id) {
 				$matchnumber = $row-1;
 				for ($round = 1; $round <= $total_rounds; $round++) {
 			        $score_size = pow(2, $round)-1;
-			        if (is_player($round, $row, $team_array[$round])) {
+					if (is_player($round, $row, $team_array[$round])) {
 			            $unpaired_array[$round] = !$unpaired_array[$round];
 			
 						$wpdb->insert($tbl2, array(
@@ -2781,14 +2784,65 @@ function leagueengine_generate_tournament($tournament_id) {
 			                    $score_array[$round] = !$score_array[$round];
 			                }
 			            }
+			            //Inserisce round = 1: SEMIFINALI 
+			            if($tournament_settings->semifinal_repeat == 'on' && $round != 2 && $round != 3) {
+			            	$wpdb->insert($tbl2, array(
+								'tournament_id' => $tournament_id,
+								'round' => $round,
+								'position_id' => $matchnumber,
+								'match_date' => date("Y-m-d"),
+								'match_time' => leagueengine_fetch_settings('time_default')
+							));
+			            }
+			            //Inserisce round = 2: FINALI 
+			            if($tournament_settings->semifinal_repeat == 'on' && $round == 2 && $matchnumber == 0 && $matchnumber == 1) {
+			            	$wpdb->insert($tbl2, array(
+								'tournament_id' => $tournament_id,
+								'round' => $round,
+								'position_id' => $matchnumber,
+								'match_date' => date("Y-m-d"),
+								'match_time' => leagueengine_fetch_settings('time_default')
+							));
+			            } 
 			        }
 				}
 			}
-		}
 
+			//ALESSANDRO: semifinale andata e ritorno
+			/***
+			if($tournament_settings->semifinal_repeat == 'on') {
+				for ($row = 1; $row <= $max_rows; $row++) {
+					$matchnumber = $row-1;
+					for ($round = 1; $round <= $total_rounds; $round++) {
+				        $score_size = pow(2, $round)-1;
+						if (is_player($round, $row, $team_array[$round])) {
+				            $unpaired_array[$round] = !$unpaired_array[$round];
+				
+							$wpdb->insert($tbl2, array(
+								'tournament_id' => $tournament_id,
+								'round' => $round,
+								'position_id' => $matchnumber,
+								'match_date' => date("Y-m-d"),
+								'match_time' => leagueengine_fetch_settings('time_default')
+							));
+				
+				            $team_array[$round]++;
+				            $score_array[$round] = false;
+				        } else {
+				            if ($unpaired_array[$round] && $round != $total_rounds) {
+				                if (!$score_array[$round]) {
+				                    $score_array[$round] = !$score_array[$round];
+				                }
+				            }
+				        }
+					}
+				}
+			}
+			***/
+		}
 }
 
-function leagueengine_generate_tournament_matches($tournament,$start,$repeat,$shuffle) {
+function leagueengine_generate_tournament_matches($tournament,$start,$repeat,$repeatSemi,$repeatFinal,$shuffle) {
 	global $wpdb;
 	global $msg;
 	global $msgtype;

@@ -383,6 +383,8 @@ function leagueengine_install() {
 	          reporting VARCHAR(250) NOT NULL DEFAULT 'off',
 	          table_position VARCHAR(250) NOT NULL DEFAULT 'on',
 	          tournament_repeat VARCHAR(250) NOT NULL DEFAULT 'off',
+	          semifinal_repeat VARCHAR(250) NOT NULL DEFAULT 'off',
+	          final_repeat VARCHAR(250) NOT NULL DEFAULT 'off',
 	          tournament_shuffle VARCHAR(250) NOT NULL DEFAULT 'on',
 	          UNIQUE KEY id (id)
 	          );";

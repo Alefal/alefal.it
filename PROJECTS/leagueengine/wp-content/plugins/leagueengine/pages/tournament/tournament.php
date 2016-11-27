@@ -60,6 +60,26 @@
 						</select>						
 					</td>
 				</tr>
+				<!-- Start: ALESSANDRO -->
+				<tr>
+					<td><?php _e('Home And Away Semifinal','leagueengine');?></td>
+					<td>
+						<select class="select2-nosearch" name="semifinal_repeat">
+							<option value="on"<?php if($tournament->semifinal_repeat == 'on') { echo ' selected="selected"'; } ?>>On</option>
+							<option value="off"<?php if($tournament->semifinal_repeat == 'off') { echo ' selected="selected"'; } ?>>Off</option>
+						</select>						
+					</td>
+				</tr>
+				<tr>
+					<td><?php _e('Home And Away Final','leagueengine');?></td>
+					<td>
+						<select class="select2-nosearch" name="final_repeat">
+							<option value="on"<?php if($tournament->final_repeat == 'on') { echo ' selected="selected"'; } ?>>On</option>
+							<option value="off"<?php if($tournament->final_repeat == 'off') { echo ' selected="selected"'; } ?>>Off</option>
+						</select>						
+					</td>
+				</tr>
+				<!-- End: ALESSANDRO -->
 				<tr>
 					<td><?php _e('Shuffle','leagueengine');?></td>
 					<td>

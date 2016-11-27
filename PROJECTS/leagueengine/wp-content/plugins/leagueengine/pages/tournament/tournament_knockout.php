@@ -93,91 +93,91 @@
 			</form>
 		<?php } elseif($tournament->tournament_type == 'leagueknockout') { ?>
 			<?php if(leagueengine_tournament_leagueknockout_count_teams($tournament_id) == $tournament->teams && leagueengine_tournament_group_matches_awaiting_results($tournament_id) == 0 ) { ?>
+
 			<form action="" method="post">
-				<?php if(leagueengine_tournament_matches_exist($tournament_id)) {
-				$matches = leagueengine_tournament_matches_exist($tournament_id);
-				echo '<table class="form">';
-				echo '<thead><tr>';
+				<?php 
+				if(leagueengine_tournament_matches_exist($tournament_id)) {
+					$matches = leagueengine_tournament_matches_exist($tournament_id);
+					echo '<table class="form">';
+					echo '<thead><tr>';
 
-				echo '<th style="width:20%;">'.__('Round','leagueengine').'</th>';
-				echo '<th style="width:30%;text-align:center;">'.__('Home','leagueengine').'</th>';
-				echo '<th style="width:20%;text-align:center;">'.__('Score','leagueengine').'</th>';
-				echo '<th style="width:30%;text-align:center;">'.__('Away','leagueengine').'</th>';
+					echo '<th style="width:20%;">'.__('Round','leagueengine').'</th>';
+					echo '<th style="width:30%;text-align:center;">'.__('Home','leagueengine').'</th>';
+					echo '<th style="width:20%;text-align:center;">'.__('Score','leagueengine').'</th>';
+					echo '<th style="width:30%;text-align:center;">'.__('Away','leagueengine').'</th>';
 
-				echo '</thead></tr>';
-				echo '<tbody>';
-				
-				$num_teams = $tournament->koteams;
-				
-				if(tournament_max_rounds($tournament_id) == 5) {
-					$final_round = '5';
-					$playoff_round = '4';
-					$sf_round = '3';
-					$qf_round = '2';				
-					$l16_round = '1';				
-				} else {
-					$final_round = floor(log($num_teams, 2));
-					$sf_round = $final_round - 1;
-					$qf_round = $final_round - 2;
-				}
-				
-				$theround = NULL;			
-				foreach($matches as $match) {		
+					echo '</thead></tr>';
+					echo '<tbody>';
 					
-					$match_round = $match->round;
-					$match_date = date(leagueengine_fetch_settings('date_format_php'),strtotime($match->match_date));
-					$match_time = date(leagueengine_fetch_settings('time_format_php'),strtotime($match->match_time));
-		    
+					$num_teams = $tournament->koteams;
+					
 					if(tournament_max_rounds($tournament_id) == 5) {
-						if($match->round == $final_round) {
-							$match_round = __('Final','leagueengine');
-						} elseif($match->round == $playoff_round) {
-							$match_round = __('Third Place Play-Off','leagueengine');
-						} elseif($match->round == $sf_round) {
-							$match_round = __('Semi Finals','leagueengine');
-						} elseif($match->round == $qf_round) {
-							$match_round = __('Quarter Finals','leagueengine');
-						} elseif($match->round == $l16_round) {
-							$match_round = __('Last 16','leagueengine');
-						} else { 
-							$match_round = __('Round','leagueengine') . ' ' . $match->round;
-						}					
+						$final_round = '5';
+						$playoff_round = '4';
+						$sf_round = '3';
+						$qf_round = '2';				
+						$l16_round = '1';				
 					} else {
-						if($match->round == $final_round) {
-							$match_round = __('Final','leagueengine');
-						} elseif($match->round == $sf_round) {
-							$match_round = __('Semi Finals','leagueengine');
-						} elseif($match->round == $qf_round) {
-							$match_round = __('Quarter Finals','leagueengine');
-						} else { 
-							$match_round = __('Round','leagueengine') . ' ' . $match->round;
-						}
+						$final_round = floor(log($num_teams, 2));
+						$sf_round = $final_round - 1;
+						$qf_round = $final_round - 2;
 					}
-		    
-		    if (is_null($theround) || $theround !== $match_round) {
-		    
+					
+					$theround = NULL;		
 
-		    
-		        echo '<tr class="date"><td colspan="4">' . $match_round . '</td></tr>';
-		    }
-					
-					echo '<tr>';
-					echo '<td><a href="admin.php?page=leagueengine_tournament_match&tid='.$tournament_id.'&mid='.$match->id.'">'.$match_date.' '.$match_time.'</a><input type="hidden" name="match_id[]" value="'.$match->id.'"></td>';
-					echo '<td style="text-align:center;"><select class="select2-nosearch" style="width:228px;margin:0;" name="home_team[]">'.leagueengine_tournament_leagueknockout_teams_select($tournament_id,$match->round,$match->home_team_id).'</select></td>';
-					
-			    	echo '<td style="text-align:center;">';
-			    	echo '<input style="width:48%;text-align:center;" type="text" name="home_score[]" value="'.$match->home_team_score.'">'; 
-			    	echo '<input style="width:48%;text-align:center;" type="text" name="away_score[]" value="'.$match->away_team_score.'">'; 
-			    	echo '</td>';
-					
-					echo '<td style="text-align:center;"><select class="select2-nosearch" style="width:228px;margin:0;" name="away_team[]">'.leagueengine_tournament_leagueknockout_teams_select($tournament_id,$match->round,$match->away_team_id).'</select></td>';
-					echo '</tr>';
-					$theround = $match_round;
-				}
-				echo '</tbody>';
-				echo '</table>';
+					foreach($matches as $match) {		
+						
+						$match_round = $match->round;
+						$match_date = date(leagueengine_fetch_settings('date_format_php'),strtotime($match->match_date));
+						$match_time = date(leagueengine_fetch_settings('time_format_php'),strtotime($match->match_time));
+			    
+						if(tournament_max_rounds($tournament_id) == 5) {
+							if($match->round == $final_round) {
+								$match_round = __('Final','leagueengine');
+							} elseif($match->round == $playoff_round) {
+								$match_round = __('Third Place Play-Off','leagueengine');
+							} elseif($match->round == $sf_round) {
+								$match_round = __('Semi Finals','leagueengine');
+							} elseif($match->round == $qf_round) {
+								$match_round = __('Quarter Finals','leagueengine');
+							} elseif($match->round == $l16_round) {
+								$match_round = __('Last 16','leagueengine');
+							} else { 
+								$match_round = __('Round','leagueengine') . ' ' . $match->round;
+							}					
+						} else {
+							if($match->round == $final_round) {
+								$match_round = __('Final','leagueengine');
+							} elseif($match->round == $sf_round) {
+								$match_round = __('Semi Finals','leagueengine');
+							} elseif($match->round == $qf_round) {
+								$match_round = __('Quarter Finals','leagueengine');
+							} else { 
+								$match_round = __('Round','leagueengine') . ' ' . $match->round;
+							}
+						}
+			    
+			    		if (is_null($theround) || $theround !== $match_round) {
+			    			echo '<tr class="date"><td colspan="4">' . $match_round . '</td></tr>';
+			    		}
+						
+						echo '<tr>';
+						echo '<td><a href="admin.php?page=leagueengine_tournament_match&tid='.$tournament_id.'&mid='.$match->id.'">'.$match_date.' '.$match_time.'</a><input type="hidden" name="match_id[]" value="'.$match->id.'"></td>';
+						echo '<td style="text-align:center;"><select class="select2-nosearch" style="width:228px;margin:0;" name="home_team[]">'.leagueengine_tournament_leagueknockout_teams_select($tournament_id,$match->round,$match->home_team_id).'</select></td>';
+						
+				    	echo '<td style="text-align:center;">';
+				    	echo '<input style="width:48%;text-align:center;" type="text" name="home_score[]" value="'.$match->home_team_score.'">'; 
+				    	echo '<input style="width:48%;text-align:center;" type="text" name="away_score[]" value="'.$match->away_team_score.'">'; 
+				    	echo '</td>';
+						
+						echo '<td style="text-align:center;"><select class="select2-nosearch" style="width:228px;margin:0;" name="away_team[]">'.leagueengine_tournament_leagueknockout_teams_select($tournament_id,$match->round,$match->away_team_id).'</select></td>';
+						echo '</tr>';
+						$theround = $match_round;
+					}
+					echo '</tbody>';
+					echo '</table>';
 				} ?>
-			<input style="margin-top:20px;" name="save_tournament_matches" type="submit" class="button-primary" value="<?php _e('Update','leagueengine');?>">
+				<input style="margin-top:20px;" name="save_tournament_matches" type="submit" class="button-primary" value="<?php _e('Update','leagueengine');?>">
 			</form>
 					
 			<?php } else {

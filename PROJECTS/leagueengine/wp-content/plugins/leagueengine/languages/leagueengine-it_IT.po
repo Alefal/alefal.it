@@ -721,6 +721,16 @@ msgstr "Casa"
 msgid "Home And Away"
 msgstr "Casa e Fuori Casa"
 
+#. Text in echo
+#: leagueengine/pages/tournament/tournament.php:5
+msgid "Home And Away Semifinal"
+msgstr "Semifinali Casa e Fuori Casa"
+
+#. Text in echo
+#: leagueengine/pages/tournament/tournament.php:5
+msgid "Home And Away Final"
+msgstr "Finale Casa e Fuori Casa"
+
 #. Text in function
 #: leagueengine/functions/themes/default/show_tournament.php:1
 #: leagueengine/functions/main/admin.php:1

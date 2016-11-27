@@ -14,7 +14,10 @@ $resultArray[] = array(
     'message' => 'OK'
 );
 
-//tournament
+//echo $tournament_id;
+//die();
+
+//Tournament
 if($tournament_id != '') {
     $tournament = $wpdb->get_results("
         SELECT T.data_id, T.tournament_type, T.teams, MAX(TM.round) AS round 
