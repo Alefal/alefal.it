@@ -13,10 +13,6 @@ page-home {
         text-align: left;
         font-size: 1.4rem;
     }
-    .swiper-slide {
-        overflow-y: scroll;
-        display: block;
-    }
     .list-md .item-block .item-inner {
         border: none !important;
     }
@@ -115,6 +111,10 @@ page-home {
         }
         .home-view .post-card {
             margin: 3%;
+        }
+        .swiper-slide {
+            overflow-y: scroll;
+            display: block;
         }
     }
 

@@ -1,7 +1,7 @@
 {
-  "name": "ionic-hello-world",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "name": "league-engine",
+  "author": "Alefal",
+  "homepage": "http://www.alefal.it/",
   "private": true,
   "scripts": {
     "ionic:build": "ionic-app-scripts build",
@@ -28,7 +28,7 @@
     "@ionic/app-scripts": "0.0.46",
     "typescript": "2.0.6"
   },
-  "description": "torneodeirionistorici: An Ionic project",
+  "description": "LeagueEngine: Gestione torneo amatoriale",
   "cordovaPlugins": [
     "cordova-plugin-device",
     "cordova-plugin-console",
