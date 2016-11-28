@@ -10,7 +10,7 @@ Aggiornamento ionic RC2
 === 2.0.0-rc.3 (2016-11-17) ===
 Aggiornamento ionic RC3
 
-$ npm install -g ionic
+$ sudo npm install -g ionic
 $ ionic -v
 # should return at least 2.1.12
 

@@ -41,3 +41,11 @@ $ adb devices (lista dei devices collegati)
 
 $ adb kill-server
 $ adb start-server
+
+=== iOS ===
+$ sudo npm install --global --unsafe-perm ios-deploy
+$ sudo ionic platform add ios
+$ sudo ionic build ios
+$ sudo ionic emulate ios
+
+Se non funziona per problemi con i plugins, rimuovere i plugin e reinstallarli.
