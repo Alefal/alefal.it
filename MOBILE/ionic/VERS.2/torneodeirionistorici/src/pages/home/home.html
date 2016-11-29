@@ -1,13 +1,13 @@
-<!--
-<ion-header *ngIf="tournamentName && tournamentType != null">
+<ion-header>
 	<ion-navbar color="greenDark">
-		<ion-title>{{tournamentName}}</ion-title>
+		<ion-title *ngIf="tournamentName && tournamentType != null">{{tournamentName}}</ion-title>
+		<ion-title *ngIf="!tournamentName && tournamentType == null">Torneo dei Tifosi 2016</ion-title>
 	</ion-navbar>
 </ion-header>
--->
+
 <ion-content padding *ngIf="showPage">
   
-	<ion-slides pager *ngIf="!tournamentName && tournamentType == null" class="home-view">
+	<ion-slides pager *ngIf="!tournamentName && tournamentType == null" class="home-view" showWhen="portrait">
 		<ion-slide>
 			<ion-grid>
 				<ion-row>
@@ -71,8 +71,164 @@
 					<li>capocannoniere</li>
 					<li>miglior giocatore</li>				
 				</ul>
+				<img src="assets/img/slideleft.png" />
 			</div>
 		</ion-slide>
+		<ion-slide>
+			<div class="titleBg">
+				<h3>Torneo dei Tifosi 2016</h3>
+				<h6>dal 19 Dicembre al 30 Dicembre</h6>
+				<hr />
+				<p>
+					Torneo a Gironi
+					<br />
+					Semifinale Andata e Ritorno
+					<br />
+					Finale in Partita Unica
+				</p>
+			</div>
+			<div class="titleBg">
+				<h5><ion-icon name="phone-portrait"></ion-icon> App</h5>
+				<hr />
+				<p style="text-align:left">Con l'app ufficiale del torneo puoi visualizzare:</p>
+				<ul>
+					<li>i comunicati ufficiali</li>
+					<li>le foto e video</li>
+					<li>le squadre</li>
+					<li>gli atleti</li>					
+					<li>il calendario</li>
+					<li>le classifiche</li>
+					<li>i risultati</li>
+					<li>il tabellino di ogni incontro</li>
+					<li>le statistiche di ogni atleta</li>				
+				</ul>
+				<hr />
+				<div style="text-align:center">
+					<button ion-button icon-left large (click)="share();">
+						<ion-icon name="md-share"></ion-icon>
+						Condividi
+					</button>
+				</div>
+			</div>
+		</ion-slide>
+	</ion-slides>
+
+	<ion-slides pager *ngIf="!tournamentName && tournamentType == null" class="home-view" showWhen="landscape">
+		<ion-slide>
+			<ion-grid>
+				<ion-row>
+					<ion-col>
+						<img src="assets/img/loghi/TDT/salernitana.png" />
+					</ion-col>
+					<ion-col>
+						<img src="assets/img/loghi/TDT/sassuolo.png" />
+					</ion-col>
+					<ion-col>
+						<img src="assets/img/loghi/TDT/napoli.png" />
+					</ion-col>
+					<ion-col>
+						<img src="assets/img/loghi/TDT/inter.png" />
+					</ion-col>
+					<ion-col>
+						<img src="assets/img/loghi/TDT/juventus.png" />
+					</ion-col>
+					<ion-col>
+						<img src="assets/img/loghi/TDT/milan.png" />
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+
+			<ion-grid>
+				<ion-row class="titleBg">
+					<ion-col width-10>&nbsp;</ion-col>
+					<ion-col>
+						<h3>Torneo dei Tifosi 2016</h3>
+						<h6>dal 19 Dicembre al 30 Dicembre</h6>
+					</ion-col>
+					<ion-col width-10>
+						<img src="assets/img/slideleft.png" />			
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+		</ion-slide>
+
+		<ion-slide>
+			<div class="titleBg">
+				<h3>Torneo dei Tifosi 2016</h3>
+				<h6>dal 19 Dicembre al 30 Dicembre</h6>
+				<hr />
+				<p>
+					Torneo a Gironi, Semifinale Andata e Ritorno, Finale in Partita Unica
+				</p>
+				<hr />
+				
+				<ion-grid>
+					<ion-row>
+						<ion-col width-50>
+							<h5><ion-icon name="md-list"></ion-icon> Regolamento</h5>
+							<ul>
+								<li>max 2 tesserati FIGC per squadra</li>
+								<li>obbligo di un over 50 in campo</li>
+								<li>il calendario ufficiale uscirà il 15 dicembre</li>
+								<li>la divisa verrà fornita dall'organizzazione</li>
+							</ul>
+						</ion-col>
+						<ion-col width-50>
+							<h5><ion-icon name="ribbon"></ion-icon> Premi</h5>
+							<ul>
+								<li>miglior portiere</li>
+								<li>miglior giovane</li>
+								<li>miglior over 50</li>
+								<li>capocannoniere</li>
+								<li>miglior giocatore</li>				
+							</ul>
+						</ion-col>
+					</ion-row>
+				</ion-grid>
+			</div>
+
+		</ion-slide>
+
+		<ion-slide>
+			<div class="titleBg">
+				<h3>Torneo dei Tifosi 2016</h3>
+				<h6>dal 19 Dicembre al 30 Dicembre</h6>
+				<hr />
+				<p>
+					Torneo a Gironi, Semifinale Andata e Ritorno, Finale in Partita Unica
+				</p>
+				<hr />
+
+				<ion-grid>
+					<ion-row>
+						<ion-col width-66>
+							<h5><ion-icon name="phone-portrait"></ion-icon> App</h5>
+							<p style="padding-left: 0">Con l'app ufficiale del torneo puoi visualizzare:</p>
+							<ul>
+								<li>i comunicati ufficiali</li>
+								<li>le foto e video</li>
+								<li>le squadre</li>
+								<li>gli atleti</li>					
+								<li>il calendario</li>
+								<li>le classifiche</li>
+								<li>i risultati</li>
+								<li>il tabellino di ogni incontro</li>
+								<li>le statistiche di ogni atleta</li>				
+							</ul>
+						</ion-col>
+						<ion-col width-33>
+							<div style="margin-top:100%;">
+								<button ion-button icon-left large (click)="share();">
+									<ion-icon name="md-share"></ion-icon>
+									Condividi
+								</button>
+							</div>
+						</ion-col>
+					</ion-row>
+				</ion-grid>
+			</div>
+		</ion-slide>
+
 	</ion-slides>
 
 	<ion-list class="listStats" *ngIf="tournamentName && tournamentType != null && tournamentType != 'leagueknockout' && tournamentType != 'knockout'">

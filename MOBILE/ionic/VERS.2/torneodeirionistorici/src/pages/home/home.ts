@@ -1,4 +1,5 @@
 import { Component }      from '@angular/core';
+import { SocialSharing }  from 'ionic-native';
 import { NavController, NavParams, LoadingController }  from 'ionic-angular';
 
 import { Comunicati }     from '../comunicati/comunicati';
@@ -196,4 +197,11 @@ export class HomePage {
     }
   }
   
+  share() {
+    SocialSharing.share('Scarica l\'app ufficiale del Torneo dei Tifosi 2016', 'Torneo dei Tifosi 2016', '', 'http://www.alefal.it/leagueengine/').then(() => {
+      console.log('success');
+    }).catch((e) => {
+      console.error('error: '+e);
+    });
+  }
 }

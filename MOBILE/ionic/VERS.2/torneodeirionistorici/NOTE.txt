@@ -35,3 +35,6 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 
 === CORS problem: con la RC2 non mi funziona più il parametro "proxies" in ionic.config.json ===
 https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en
+
+=== TODO ===
+ionic plugin add cordova-plugin-x-socialsharing

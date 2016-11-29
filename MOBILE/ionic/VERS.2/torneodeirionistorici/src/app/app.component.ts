@@ -39,32 +39,34 @@ export class TorneoRioniStorici {
         windows: {}
       });
 
-      console.log('push: '+push);
+      if(push.on) {
+        console.log('push: '+push);
 
-      push.on('registration', (data) => {
-        console.log(data.registrationId);
-        alert(data.registrationId.toString());
-        
-        //Error in Success callbackId: PushNotification272037515 : TypeError: Cannot read property 'getCallHttp' of undefined
-        this.httpService
-          .getCallHttp('registrationDevice',data.registrationId,'','','','')
-          .then(res => {
-            if(res[0].response[0].result == 'OK') {
-              console.log('data: '+data);
-            }
-          })
-          .catch(error => {
-            console.log('ERROR: ' + error);
-          });
-        
-      });
-      push.on('notification', (data) => {
-        console.log(data);
-        alert("Hi, Am a push notification");
-      });
-      push.on('error', (e) => {
-        console.log(e.message);
-      });
+        push.on('registration', (data) => {
+          console.log(data.registrationId);
+          alert(data.registrationId.toString());
+          
+          //Error in Success callbackId: PushNotification272037515 : TypeError: Cannot read property 'getCallHttp' of undefined
+          this.httpService
+            .getCallHttp('registrationDevice',data.registrationId,'','','','')
+            .then(res => {
+              if(res[0].response[0].result == 'OK') {
+                console.log('data: '+data);
+              }
+            })
+            .catch(error => {
+              console.log('ERROR: ' + error);
+            });
+          
+        });
+        push.on('notification', (data) => {
+          console.log(data);
+          alert("Hi, Am a push notification");
+        });
+        push.on('error', (e) => {
+          console.log(e.message);
+        });
+      }
     });
   }
 
