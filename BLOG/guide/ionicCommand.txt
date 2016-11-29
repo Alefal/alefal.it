@@ -12,7 +12,7 @@ $ ionic g provider SERVICENAME
 $ ionic serve --lab (layout per iOS, Android e Windows Phone)
 $ ionic run android
 
-$ ionic platform add/remove ios/android
+$ ionic platform add/update/remove ios/android
 $ ionic platform ls
 
 $ ionic plugin add/remove PLUGINNAME

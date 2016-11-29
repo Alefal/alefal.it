@@ -39,7 +39,8 @@
     "cordova-sqlite-storage",
     "cordova-plugin-network-information",
     "phonegap-plugin-push",
-    "com.bunkerpalace.cordova.YoutubeVideoPlayer"
+    "com.bunkerpalace.cordova.YoutubeVideoPlayer",
+    "cordova-plugin-x-socialsharing"
   ],
   "cordovaPlatforms": []
 }

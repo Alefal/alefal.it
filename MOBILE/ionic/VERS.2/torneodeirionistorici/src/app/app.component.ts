@@ -44,7 +44,7 @@ export class TorneoRioniStorici {
 
         push.on('registration', (data) => {
           console.log(data.registrationId);
-          alert(data.registrationId.toString());
+          //alert(data.registrationId.toString());
           
           //Error in Success callbackId: PushNotification272037515 : TypeError: Cannot read property 'getCallHttp' of undefined
           this.httpService
