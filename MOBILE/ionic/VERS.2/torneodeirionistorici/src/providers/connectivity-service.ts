@@ -19,7 +19,7 @@ export class ConnectivityService {
     private app:App
   ){
 
-    this.connectivityFound = true;
+    this.connectivityFound = true; //TODO: cambiare a TRUE
     console.log('ConnectivityService: '+this.connectivityFound);
 
     this.nav = app.getActiveNav();
