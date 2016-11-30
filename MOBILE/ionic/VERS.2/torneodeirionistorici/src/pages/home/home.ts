@@ -198,7 +198,7 @@ export class HomePage {
   }
   
   share() {
-    SocialSharing.share('Scarica l\'app ufficiale del Torneo dei Tifosi 2016', 'Torneo dei Tifosi 2016', '', 'http://www.alefal.it/leagueengine/').then(() => {
+    SocialSharing.share('Scarica l\'app ufficiale del Torneo dei Tifosi 2016 al link:', 'Torneo dei Tifosi 2016', '', 'https://play.google.com/store/apps/details?id=com.ionicframework.alefal.torneodeitifosi&hl=it').then(() => {
       console.log('success');
     }).catch((e) => {
       console.error('error: '+e);

@@ -1,0 +1,21 @@
+Torneo dei Tifosi 2016
+
+=== Vers. 1.0.0 ===
+- comunicati ufficiali
+- foto e video
+- squadre
+- atleti
+- calendario / gruppi
+- classifiche
+- risultati
+- tabellino di ogni incontro
+- statistiche di ogni atleta
+
+=== Vers. 1.0.1 === 
+- App iniziale con slides informative in attesa dell'inizio del torneo
+
+=== Vers. 1.0.2 === 
+- Cambio dei loghi a causa delle restrizione di Google Play: i loghi delle squadre di calcio violano il copyright
+
+=== Vers. 1.0.3 === 
+- Fix per logo app

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.ionicframework.alefal.torneodeitifosi" version="1.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.ionicframework.alefal.torneodeitifosi" version="1.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Torneo dei Tifosi 2016</name>
   <description>Torneo dei Tifosi 2016. Dal 19 al 30 dicembre.</description>
   <author email="alefalwebmaster@gmail.com" href="http://www.alefal.it/">Alefal.it</author>
