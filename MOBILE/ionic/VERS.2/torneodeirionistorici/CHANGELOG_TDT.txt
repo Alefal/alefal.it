@@ -1,5 +1,16 @@
 Torneo dei Tifosi 2016
 
+=== Plugins ===
+"cordova-plugin-device",
+"cordova-plugin-console",
+"cordova-plugin-whitelist",
+"cordova-plugin-splashscreen",
+"cordova-plugin-statusbar",
+"ionic-plugin-keyboard",
+"cordova-plugin-network-information",
+"phonegap-plugin-push",
+"cordova-plugin-x-socialsharing"
+
 === Vers. 1.0.0 ===
 - comunicati ufficiali
 - foto e video
@@ -19,3 +30,8 @@ Torneo dei Tifosi 2016
 
 === Vers. 1.0.3 === 
 - Fix per logo app
+
+=== TODO: Vers 1.0.4 ===
+- Plugin Network
+  $ ionic plugin add cordova-plugin-network-information
+- Lista giocatori per OFFLINE (nuovo REST Service: le_atleti_all.php)

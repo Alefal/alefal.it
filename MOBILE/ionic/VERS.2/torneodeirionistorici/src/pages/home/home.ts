@@ -43,6 +43,8 @@ export class HomePage {
   ) { }
 
   ionViewDidLoad() {
+    console.log('home_1: '+this.connectivityService.connectivityFound);
+    
     if(this.connectivityService.connectivityFound) {
       this.getData();
     } else {
@@ -62,25 +64,32 @@ export class HomePage {
     }
   }
   getData(){
+    console.log('home_2: getData');
+
     this.loading = this.loadingCtrl.create({
       spinner: 'crescent',
       //content: 'Please wait...'
     });
     this.loading.present();
 
+    //getTorneo
     this.httpService
       .getCallHttp('getTorneo','','','','','')
       .then(res => {
         if(res[0].response[0].result == 'OK') {
           this.tournament = JSON.stringify(res[0].tournament);
-          this.tournamentName   = res[0].tournament[0].tour_name;
-          this.tournamentType   = res[0].tournament[0].tour_type;
-          this.tournamentTeams  = res[0].tournament[0].tour_teams;  //Math.log2(this.tournamentTeams)
-          this.tournamentRound  = res[0].tournament[0].tour_round;
-
-          console.log('this.tournamentName: '+this.tournamentName);
-          console.log('this.tournamentType: '+this.tournamentType);
+          console.log('-> '+this.tournament.length);
           
+          if(this.tournament.length > 2) {
+            this.tournamentName   = res[0].tournament[0].tour_name;
+            this.tournamentType   = res[0].tournament[0].tour_type;
+            this.tournamentTeams  = res[0].tournament[0].tour_teams;  //Math.log2(this.tournamentTeams)
+            this.tournamentRound  = res[0].tournament[0].tour_round;
+
+            this.getGiocatori(this.tournamentType);
+          } else {
+            console.log('home_3: nessun dato');
+          }
           this.getRounds(this.tournamentRound);
           localStorage.setItem('getTorneo',this.tournament);
         } else {
@@ -96,6 +105,8 @@ export class HomePage {
         this.errorMessageView = true;
         this.loading.dismiss();
       });
+
+    
   }
 
   navigate(section,tipologia,round) {
@@ -197,6 +208,24 @@ export class HomePage {
     }
   }
   
+  getGiocatori(tipologiaTorneo) {
+    //getGiocatori
+    this.httpService
+      .getCallHttp('getGiocatoriAll','','','','',tipologiaTorneo)
+      .then(res => {
+        console.log('SUCCESS: ' + JSON.stringify(res));
+
+        if(res[0].response[0].result == 'OK') {
+          localStorage.setItem('getGiocatori',JSON.stringify(res[0].atleti));
+        } else {
+          localStorage.setItem('getGiocatori','ND');
+        }
+      })
+      .catch(error => {
+        console.log('ERROR: ' + error);
+      });
+  }
+
   share() {
     SocialSharing.share('Scarica l\'app ufficiale del Torneo dei Tifosi 2016 al link:', 'Torneo dei Tifosi 2016', '', 'https://play.google.com/store/apps/details?id=com.ionicframework.alefal.torneodeitifosi&hl=it').then(() => {
       console.log('success');

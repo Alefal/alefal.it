@@ -95,7 +95,7 @@ export class Incontri {
   }
 
   tabellino(id,teamHome,teamAway,result,home_team_id,away_team_id,home_team_logo,away_team_logo) {
-    if(this.connectivityService.connectivityFound) {
+    //if(this.connectivityService.connectivityFound) {
       let modal = this.modalCtrl.create(TabellinoModal, { 
         id:id,
         teamHome:teamHome,
@@ -108,9 +108,9 @@ export class Incontri {
         away_team_logo: away_team_logo 
       });
       modal.present();
-    } else {
-      this.connectivityService.showAlert();
-    }
+    //} else {
+      //this.connectivityService.showAlert();
+    //}
   }
 
   live(matchId,homeName,awayName,result,home_team_logo,away_team_logo) {

@@ -8,20 +8,20 @@
 		<h5 padding>Tabellino</h5>
 		<ion-list>
 			<ion-item>
-				<ion-label>Squadra</ion-label>
+				<ion-label>Squadra *</ion-label>
 				<ion-select [(ngModel)]="liveSquadraId" (ionChange)="liveGetGiocatori()">
 					<ion-option [value]="home_team_id">{{teamHome}}</ion-option>
 					<ion-option [value]="away_team_id">{{teamAway}}</ion-option>
 				</ion-select>
 			</ion-item>
 			<ion-item>
-				<ion-label>Giocatori</ion-label>
+				<ion-label>Giocatore *</ion-label>
 				<ion-select [(ngModel)]="liveSelectedGiocatore">
-					<ion-option *ngFor="let giocatore of liveGiocatori"[value]="giocatore" >{{giocatore.playerName}}</ion-option>
+					<ion-option *ngFor="let giocatore of liveGiocatori" [value]="giocatore" >{{giocatore.playerName}}</ion-option>
 				</ion-select>
 			</ion-item>
 			<ion-item>
-				<ion-label>Minuto</ion-label>
+				<ion-label>Minuto *</ion-label>
 				<!-- NON FUNZIONA: non aggiorna ngModel
 				<ion-datetime displayFormat="mm" [(ngModel)]="liveMinuto"></ion-datetime>
 				-->
@@ -94,7 +94,7 @@
 				</ion-select>
 			</ion-item>
 			<ion-item>
-				<ion-label>Evento</ion-label>
+				<ion-label>Evento *</ion-label>
 				<ion-textarea [(ngModel)]="liveEvento"></ion-textarea>
 			</ion-item>
 		</ion-list>

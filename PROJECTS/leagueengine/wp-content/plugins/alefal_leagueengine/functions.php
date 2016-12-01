@@ -1,7 +1,7 @@
 <?php
 //Locale
-$league_id = 95; 
-$season_id = 96;
+//$league_id = 95; 
+//$season_id = 96;
 //Remote
 //$league_id = 67; 
 //$season_id = 68;
@@ -9,7 +9,7 @@ $season_id = 96;
 //Locale: Tournament knockout
 //$tournament_id = 4;
 //Locale: Tournament leagueknockout
-//$tournament_id = 5;
+$tournament_id = 111;
 //Remote: Tournament test 2x3
 //$tournament_id = 59;
 

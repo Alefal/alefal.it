@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavParams, ViewController, LoadingController, AlertController } from 'ionic-angular';
 
 import { HttpService } from '../../providers/http-service';
+import { ConnectivityService }  from '../../providers/connectivity-service';
+
 //import { LoopNumber } from '../../pipes/loopnumber.pipe.ts'
 
 @Component({
@@ -47,13 +49,16 @@ export class TabellinoModal {
   liveEvento: string = '';
   liveGiocatori: any;
   liveSelectedGiocatore: any;
+  liveEventsArray: Array<string> = [];
+  livePlayersTeamHomeArray: Array<string>;
 
   constructor(
     public params: NavParams,
     public viewCtrl: ViewController,
     private httpService: HttpService,
     public loadingCtrl: LoadingController,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    public connectivityService: ConnectivityService
   ) {
     this.matchId          = params.get('id');
     this.teamHome         = params.get('teamHome');
@@ -72,7 +77,9 @@ export class TabellinoModal {
     this.getTabellino(this.matchId);
 
     this.intervalId = setInterval(() => {
-      this.getTabellinoPolling(this.matchId);
+      if(this.connectivityService.connectivityFound) {
+        this.getTabellinoPolling(this.matchId);
+      }
     }, 10000);
     
   }
@@ -112,7 +119,7 @@ export class TabellinoModal {
       })
       .catch(error => {
         console.log('ERROR: ' + error);
-        this.errorMessage = 'Error!';
+        this.errorMessage = 'Tabellino disponibile solo online! Controlla la tua connessione di rete.';
         this.errorMessageView = true;
         this.loading.dismiss();
       });
@@ -148,51 +155,82 @@ export class TabellinoModal {
 
   liveGetGiocatori() {
     console.log('-> '+this.liveSquadraId);
-    this.liveSelectedGiocatore = '';
-    this.httpService
-      .getCallHttp('getGiocatori',this.liveSquadraId,'','','',this.tipologiaTorneo)
-      .then(res => {
-        console.log('SUCCESS: ' + JSON.stringify(res));
 
-        if(res[0].response[0].result == 'OK') {
-          this.liveGiocatori = res[0].atleti;
-        } else {
-          this.liveGiocatori = 'Nessun dato! Riprovare più tardi.';
-        }
-      })
-      .catch(error => {
-        console.log('ERROR: ' + error);
-      });
-    
-  }
-  liveSalva() {
-    console.log('-> '+this.matchId+' | '+this.liveEventId+' | '+this.liveSquadraId+' | '+this.liveMinuto+' | '+this.liveEvento);
-    if(this.liveSelectedGiocatore) {
-      console.log('-> '+this.liveSelectedGiocatore.playerId); 
-      
-      let event = '{"match_id":"'+this.matchId+'","event_id":"'+this.liveEventId+'","team_id":"'+this.liveSquadraId+'","player_id":"'+this.liveSelectedGiocatore.playerId+'","event_time":"'+this.liveMinuto+'","timeline_text":"'+this.liveEvento+'","tipologiaTorneo":"'+this.tipologiaTorneo+'","home_team_score":"'+this.home_team_score+'","away_team_score":"'+this.away_team_score+'"}';
-
-      this.loading = this.loadingCtrl.create({
-        spinner: 'crescent'
-      });
-      this.loading.present();
-
+    if(this.connectivityService.connectivityFound) {
+      this.liveSelectedGiocatore = '';
       this.httpService
-        .getCallHttp('getIncontroEventi','','','','',event)
+        .getCallHttp('getGiocatori',this.liveSquadraId,'','','',this.tipologiaTorneo)
         .then(res => {
           console.log('SUCCESS: ' + JSON.stringify(res));
 
           if(res[0].response[0].result == 'OK') {
-            console.log('OK');
+            this.liveGiocatori = res[0].atleti;
           } else {
-            console.log('KO');
+            this.liveGiocatori = 'Nessun dato! Riprovare più tardi.';
           }
-          this.loading.dismiss();
         })
         .catch(error => {
           console.log('ERROR: ' + error);
-          this.loading.dismiss();
         });
+    } else {
+      this.livePlayersTeamHomeArray = [];
+
+      let players = JSON.parse(localStorage.getItem('getGiocatori'));
+      console.log(players);
+      for (let player of players) {
+        console.log(player.teamId);
+        if(player.teamId == this.liveSquadraId) {
+          this.livePlayersTeamHomeArray.push(player);
+        }
+      }
+      this.liveGiocatori = this.livePlayersTeamHomeArray;
+      console.log('this.liveGiocatori: '+this.liveGiocatori);
+    }
+    
+  }
+  liveSalva() {
+    console.log('-> '+this.matchId+' | '+this.liveEventId+' | '+this.liveSquadraId+' | '+this.liveMinuto+' | '+this.liveEvento);
+    if(this.liveSelectedGiocatore && this.matchId != 0 && this.liveSquadraId != '' && this.liveMinuto != '' && this.liveEvento != '') {
+      console.log('-> '+this.liveSelectedGiocatore.playerId); 
+      
+      let event = '{"match_id":"'+this.matchId+'","event_id":"'+this.liveEventId+'","team_id":"'+this.liveSquadraId+'","player_id":"'+this.liveSelectedGiocatore.playerId+'","event_time":"'+this.liveMinuto+'","timeline_text":"'+this.liveEvento+'","tipologiaTorneo":"'+this.tipologiaTorneo+'","home_team_score":"'+this.home_team_score+'","away_team_score":"'+this.away_team_score+'"}';
+
+      if(this.connectivityService.connectivityFound) {
+        this.loading = this.loadingCtrl.create({
+          spinner: 'crescent'
+        });
+        this.loading.present();
+        
+        this.httpService
+          .getCallHttp('getIncontroEventi','','','','',event)
+          .then(res => {
+            console.log('SUCCESS: ' + JSON.stringify(res));
+
+            if(res[0].response[0].result == 'OK') {
+              console.log('OK');
+            } else {
+              console.log('KO');
+            }
+            this.loading.dismiss();
+          })
+          .catch(error => {
+            console.log('ERROR: ' + error);
+            this.loading.dismiss();
+          });
+      } else {
+        //Salvare nel localStorage: mi serve la lista di giocatori di ogni squadra!!!
+        this.liveEventsArray.push(event);
+        localStorage.setItem('liveEventsArray',JSON.stringify(this.liveEventsArray));
+      }
+
+      //Reset per evitare inserimenti multipli dello stesso evento
+      this.liveSelectedGiocatore = '';
+      this.liveSquadraId = '';
+      this.liveMinuto = '';
+      this.liveEvento = '';
+
+    } else {
+      this.showMessage('Inserisci tutti i campi!');
     }
   }
 
@@ -237,6 +275,15 @@ export class TabellinoModal {
     let alert = this.alertCtrl.create({
       title: 'Attenzione!',
       subTitle: 'Codice di autorizzazione NON VALIDO!',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+  showMessage(message) {
+    this.tap = 0;
+    let alert = this.alertCtrl.create({
+      title: 'Attenzione!',
+      subTitle: message,
       buttons: ['OK']
     });
     alert.present();

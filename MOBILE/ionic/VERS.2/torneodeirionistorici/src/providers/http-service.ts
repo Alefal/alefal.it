@@ -20,9 +20,9 @@ export class HttpService {
     getCallHttp(call,teamId,playerIdOrRound,matchIdOrType,statOrGroup,tipologiaOrObject) {
         console.log('getCallHttp: '+call+' | '+teamId+' | '+playerIdOrRound+' | '+matchIdOrType);
         
-        //var host = 'http://localhost/alefal.it/PROJECTS/leagueengine';
+        var host = 'http://localhost/alefal.it/PROJECTS/leagueengine';
         //var host = '/demo/leagueengine';
-        var host = 'http://www.amalficoastapps.it/demo/leagueengine';
+        //var host = 'http://www.amalficoastapps.it/demo/leagueengine';
         
         var url = '';
         if(call == 'getTorneo') {
@@ -39,6 +39,9 @@ export class HttpService {
         } 
         else if(call == 'getGiocatori') {
             url = '/wp-content/plugins/alefal_leagueengine/le_atleti.php?team_id='+teamId+'&tipologiaTorneo='+tipologiaOrObject;
+        } 
+        else if(call == 'getGiocatoriAll') {
+            url = '/wp-content/plugins/alefal_leagueengine/le_atleti_all.php?tipologiaTorneo='+tipologiaOrObject;
         } 
         else if(call == 'getGiocatoriStatistiche') {
             url = '/wp-content/plugins/alefal_leagueengine/le_atleti_statistiche.php?player_id='+playerIdOrRound;
