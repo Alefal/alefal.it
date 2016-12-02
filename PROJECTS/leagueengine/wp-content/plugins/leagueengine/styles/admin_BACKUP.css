@@ -1,0 +1,676 @@
+@media screen and (max-width: 782px)
+#wpcontent {
+	padding: 0 !important;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	font-size: 13px;
+	line-height: normal;
+	float: left;
+	width: 100%;
+	margin: 0 0 20px 0;
+	font-weight: normal;
+}
+
+#leagueengine_admin input {
+	font-size: 13px !important;
+}
+
+#leagueengine_admin a {
+	text-decoration: none;
+}
+
+#leagueengine_admin {
+	float:left;
+	width:960px;
+	background:#f9f9f9;
+	font-size: 13px;
+	line-height: 20px;
+	margin-top: 20px;
+	border: 1px solid #e5e5e5;
+}
+
+#leagueengine_admin_header {
+	float:left;
+	width:920px;
+	padding: 20px 20px;
+	border: none;
+	background: #424242;
+	text-shadow: none;
+}
+
+#leagueengine_admin_header p {
+	float: left;
+	font-size: 23px;
+	font-weight: 300;
+	color: #e4e4e4;
+	margin: 0 0 0;
+}
+
+#leagueengine_admin_header .dashicons-admin-generic {
+	float: right;
+	font-size: 20px;
+	font-weight: 300;
+	color:#e4e4e4;
+	padding-top: 5px;
+}
+
+#leagueengine_admin_search {
+	float:right;
+	width:175px;
+}
+
+#leagueengine_admin_search input {
+	float: right;
+	background: #333;
+	border: none;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+	-moz-border-radius: 0;
+	border: none;
+	padding: 8px 10px;
+	color: #e4e4e4;
+	margin: 0;
+	width: 100%;
+	box-shadow: none;
+}
+
+#leagueengine_admin_search input:hover,
+#leagueengine_admin_search input:focus {
+	background: #252525;
+	color: #e4e4e4;
+}
+
+#leagueengine_admin .leagueengine_nav {
+	float: left;
+	width:960px;
+	background: #272727;
+}
+
+#leagueengine_admin .leagueengine_nav ul {
+	float: left;
+	margin: 0;
+	padding: 0;
+	width:100%;
+}
+
+#leagueengine_admin .leagueengine_nav ul li {
+	float: left;
+	display: inline;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+#leagueengine_admin .leagueengine_nav ul li .dashicons {
+	width:25px;
+	height:25px;
+	font-size: 25px;
+}
+
+#leagueengine_admin .leagueengine_nav ul li.settings,
+#leagueengine_admin .leagueengine_nav ul li.settings a {
+	float: right;
+}
+
+#leagueengine_admin .leagueengine_nav ul li a {
+	float: left;
+	margin: 0;
+	padding: 10px 20px;
+	color:#e4e4e4;
+}
+
+#leagueengine_admin .leagueengine_nav ul li a:hover {
+	background: #1e1e1e;
+	color: #e4e4e4;
+}
+
+#leagueengine_admin_menu {
+	float:left;
+	width:880px;
+	padding: 20px;
+	border: 1px solid #e5e5e5;
+	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.04);
+	box-shadow: 0 1px 1px rgba(0,0,0,.04);
+	background: #f5f5f5;
+	color: #555;
+	margin: 0 0 20px;
+}
+
+#leagueengine_admin_menu ul {
+	float: left;
+	margin: 0;
+	width:100%;
+}
+
+#leagueengine_admin_menu li {
+	float:left;
+	display: inline;
+	list-style:none;
+	margin: 0 10px 0 0;
+	padding: 0;
+}
+
+#leagueengine_admin_menu li:hover {
+	background: #eee;
+}
+
+#leagueengine_admin_menu li a {
+	float:left;
+	text-decoration: none;
+	width:auto;
+	padding: 8px 10px;
+}
+
+#leagueengine_admin li.active a,
+#leagueengine_admin.leagueengine_dashboard li.dashboard a,
+#leagueengine_admin.create li.create a,
+#leagueengine_admin.competitions li.competitions a,
+#leagueengine_admin.teams li.teams a,
+#leagueengine_admin.players li.players a,
+#leagueengine_admin.attributes li.attributes a,
+#leagueengine_admin.events li.events a,
+#leagueengine_admin.settings li.settings a
+{
+	background: #1e1e1e;
+	color: #e4e4e4;	
+}
+
+#leagueengine_admin li.sub_active a,
+#leagueengine_admin.leagueengine_settings li.leagueengine_settings a,
+#leagueengine_admin.leagueengine_settings_dashboard li.leagueengine_settings_dashboard a,
+#leagueengine_admin.leagueengine_settings_table li.leagueengine_settings_table a,
+#leagueengine_admin.leagueengine_settings_match_page li.leagueengine_settings_match_page a,
+#leagueengine_admin.leagueengine_settings_display li.leagueengine_settings_display a,
+#leagueengine_admin.leagueengine_settings_datetime li.leagueengine_settings_datetime a,
+#leagueengine_admin.leagueengine_import li.leagueengine_import a,
+#leagueengine_admin.leagueengine_export li.leagueengine_export a,
+#leagueengine_admin.leagueengine_permissions li.leagueengine_permissions a,
+#leagueengine_admin.leagueengine_styling li.leagueengine_styling a,
+#leagueengine_admin.leagueengine_system li.leagueengine_system a
+{
+	background: rgba(0,0,0,0.1);
+	color: #333;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	-khtml-border-radius: 3px;
+}
+
+#leagueengine_admin_content {
+	float:left;
+	width:920px;
+	padding: 20px;
+}
+
+#leagueengine_admin table {
+	float:left;
+	width:100%;
+}
+
+#leagueengine_admin table.form tr:first-child td {
+	border-top: 1px solid #eee;
+}
+
+#leagueengine_admin table.form td {
+	padding: 10px 10px;
+	border-bottom: 1px solid #eee;
+}
+
+#leagueengine_admin_pagination {
+	float: left;
+	width:100%;
+	background: #404040;
+	padding: 8px 10px;
+}
+
+#leagueengine_admin_pagination a {
+	float: left;
+	text-align: center;
+	width:20px;
+	margin-right: 10px;
+	color:#e4e4e4;
+}
+
+#leagueengine_admin_pagination a.active {
+	color:#fff;
+}
+
+#leagueengine_admin table tr td {
+	vertical-align: middle;
+}
+
+#leagueengine_admin table td input[type="text"] {
+	float:left;
+	width:100%;
+	padding: 5px;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+	-moz-border-radius: 0;
+}
+
+#leagueengine_admin input.button {
+	font-size: 13px;
+}
+
+#leagueengine_admin form {
+	float: left;
+	width: 100%;
+}
+
+#leagueengine_admin table tr.date td {
+	background: #eee;
+}
+
+#leagueengine_admin #tabs.ui-tabs {
+	float: left !important;
+	clear: both;
+}
+
+#leagueengine_admin #tabs.ui-tabs .ui-tabs-nav {
+	margin: 0;
+	padding: 0;
+}
+
+#leagueengine_admin #tabs.ui-tabs.ui-widget-content {
+	border: none;
+	background: none;
+	color: #555;
+}
+
+#leagueengine_admin #tabs.ui-tabs .ui-tabs-panel {
+	padding: 0;
+}
+
+#leagueengine_admin #tabs.ui-tabs .ui-widget-header {
+	border: none;
+	background: none;
+	color: #555;
+	font-weight: 300;
+	margin-bottom: 20px;
+}
+
+#leagueengine_admin #tabs.ui-tabs .ui-tabs-nav li {
+	border:1px solid #ddd;
+	border-bottom-width: 1px;
+}
+
+#leagueengine_admin #tabs.ui-tabs .ui-widget-content a {
+	color: #21759b;
+}
+
+#leagueengine_admin #tabs.ui-tabs .ui-widget-content a:hover {
+	text-decoration: underline;
+}
+
+#leagueengine_admin .error,
+#leagueengine_admin .info,
+#leagueengine_admin .success {
+	font-size: 20px;
+	line-height: normal;
+	float: left;
+	width: 880px;
+	background: #c0392b;
+	margin: 0 0 20px 0;
+	padding:20px;
+	color: #fff;
+	font-weight: normal;
+	border: none;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+	-moz-border-radius: 0;
+
+	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.04);
+	box-shadow: 0 1px 1px rgba(0,0,0,.04);
+	
+}
+
+#leagueengine_admin .info {
+	background: #2980b9;
+}
+
+#leagueengine_admin .success {
+	background: #27ae60;
+}
+
+#leagueengine_admin #tabs.ui-tabs .ui-widget-content .select2 a {
+	color: #444;
+}
+
+#leagueengine_admin #tabs.ui-tabs .ui-widget-content .select2 a:hover {
+	text-decoration: none;
+}
+
+#toplevel_page_leagueengine_dashboard {
+	
+}
+
+#leagueengine_admin .tablenav.top {
+	display:none;
+}
+
+#leagueengine_admin .tablenav.bottom .actions {
+	padding-top:5px;
+}
+
+.form_title {
+	clear: both;
+	font-size: 20px;
+	float: left;
+	width: 880px;
+	line-height: normal;
+	padding: 20px;
+	background: #f5f5f5;
+	color: #555;
+	border: 1px solid #e5e5e5;
+	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.04);
+	box-shadow: 0 1px 1px rgba(0,0,0,.04);
+}
+
+#leagueengine_admin .search-box {
+	width:240px;
+	padding: 0;
+	margin: 0 0 5px 0;
+	background: #fff;
+	border: 1px solid #e5e5e5;
+	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.04);
+	box-shadow: 0 1px 1px rgba(0,0,0,.04);
+	
+}
+
+#leagueengine_admin .search-box input[name="s"] {
+	background: #fff;
+	padding:6px 10px;
+	margin: 0;
+	border: none;
+	height: auto;
+	width: 240px;
+	box-shadow: none;
+	color: #2c3e50;
+}
+
+#leagueengine_admin .search-box input[name="s"]:hover,
+#leagueengine_admin .search-box input[name="s"]:focus {
+	background: #fff;
+}
+
+#leagueengine_admin .search-box #search-submit {
+	display: none;
+}
+
+#leagueengine_admin .leagueengine_panel {
+	float: left;
+	width: 880px;
+	background: #fff;
+	padding: 20px;
+	border: 1px solid #e5e5e5;
+	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.04);
+	box-shadow: 0 1px 1px rgba(0,0,0,.04);
+}
+
+#leagueengine_admin .leagueengine_panel .sub {
+	color: #777;
+	font-size: 16px;
+	margin: 10px 0;
+	text-align: center;
+}
+
+#leagueengine_admin .leagueengine_panel h3 {
+	margin: 10px 0;
+	font-size: 21px;
+	font-weight: 400;
+	line-height: 1.2;
+	text-align: center;
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 20px;
+}
+
+#leagueengine_admin .leagueengine_panel h4 {
+	margin: 1.33em 0 0;
+	font-size: 16px;
+	text-align: center;
+}
+
+#leagueengine_admin .leagueengine_panel.welcome .panel-column {
+	/*width: 25%;*/
+	width: 50%;
+	min-width: 200px;
+	float: left;
+	text-align: center;
+}
+
+#leagueengine_admin .leagueengine_panel.welcome h4 {
+	margin-bottom: 20px;
+}
+
+#leagueengine_admin .leagueengine_panel.welcome a.button {
+	color: #fff;
+}
+
+#leagueengine_admin table.form {
+	table-layout: fixed;
+	border-collapse: collapse;
+}
+
+.fixed th.column-id,
+.fixed td.column-id
+{
+	width: 6% !important;
+}
+
+.fixed th.column-page,
+.fixed td.column-page
+{
+	width: 10% !important;
+}
+
+.fixed th.column-start_date,
+.fixed td.column-start_date
+{
+	width: 15% !important;
+}
+
+.fixed th.column-leagueengine_table_pos,
+.fixed td.column-leagueengine_table_pos,
+.fixed th.column-leagueengine_table_gp,
+.fixed td.column-leagueengine_table_gp,
+.fixed th.column-leagueengine_table_gw,
+.fixed td.column-leagueengine_table_gw,
+.fixed th.column-leagueengine_table_gl,
+.fixed td.column-leagueengine_table_gl,
+.fixed th.column-leagueengine_table_gd,
+.fixed td.column-leagueengine_table_gd,
+.fixed th.column-leagueengine_table_gf,
+.fixed td.column-leagueengine_table_gf,
+.fixed th.column-leagueengine_table_ga,
+.fixed td.column-leagueengine_table_ga,
+.fixed th.column-leagueengine_table_diff,
+.fixed td.column-leagueengine_table_diff,
+.fixed th.column-leagueengine_table_bp,
+.fixed td.column-leagueengine_table_bp,
+.fixed th.column-leagueengine_table_pts,
+.fixed td.column-leagueengine_table_pts
+{
+	width: 7% !important;
+}
+
+#leagueengine_admin table.form th {
+	text-align: left;
+	background: #404040;
+	color: #e4e4e4;
+	padding: 8px 10px;
+	font-weight: normal;
+}
+
+#leagueengine_admin a.add_new {
+	background: #e0e0e0;
+}
+
+#leagueengine_admin a.add_new {
+	padding: 10px;
+	position: relative;
+	text-decoration: none;
+	border: 0;
+	border-radius: 2px;
+	text-shadow: none;
+	font-weight: 600;
+	font-size: 14px;
+}
+
+#leagueengine_admin .match_masthead {
+	float: left;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+#leagueengine_admin .match_masthead table {
+	border: 1px solid #e5e5e5;
+	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.04);
+	box-shadow: 0 1px 1px rgba(0,0,0,.04);
+	background: #fff;
+	border-collapse: collapse;
+}
+
+#leagueengine_admin .match_masthead table td.home_team,
+#leagueengine_admin .match_masthead table td.away_team,
+#leagueengine_admin .match_masthead table td.score {
+	padding:15px;
+	font-size: 23px;
+}
+
+#leagueengine_admin .match_masthead table td.competition {
+	padding:0 0 15px 0;
+}
+
+#leagueengine_admin #leagueengine_tabs {
+	float: left;
+	width: 100%;
+	clear: both;
+}
+
+#leagueengine_admin #leagueengine_tabs.ui-widget.ui-widget-content {
+	border: none;
+	padding: 0;
+	background: none;
+}
+
+#leagueengine_admin #leagueengine_tabs.ui-widget.ui-widget-content .ui-tabs-panel {
+	padding: 0;
+}
+
+#leagueengine_admin #leagueengine_tabs.ui-tabs .ui-tabs-nav {
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+#leagueengine_admin #leagueengine_tabs.ui-tabs .ui-widget-header {
+	padding: 0 10px;
+	background-image: none;
+	margin-bottom: 20px;
+	border:none;
+	background: none;
+	border-bottom: 1px solid #ddd;
+	height: 34px;
+}
+
+#leagueengine_admin #leagueengine_tabs.ui-tabs.ui-tabs .ui-tabs-nav li a {
+	padding:8px 10px;
+	outline: 0;
+}
+
+#leagueengine_admin #leagueengine_tabs.ui-tabs .ui-tabs-nav li {
+	margin-bottom: 0;
+	padding-bottom: 0;
+    float: none !important;
+    display: inline-block;
+}
+
+#leagueengine_admin .ui-widget,
+#leagueengine_admin .ui-widget input,
+#leagueengine_admin .ui-widget textarea,
+#leagueengine_admin .ui-widget select {
+	font-family: inherit !important;
+	font-size: inherit !important;
+}
+
+.emblem {
+	vertical-align:middle;
+	float: left;
+    width: 16px;
+    height: 16px;
+	-webkit-border-radius: 50%; 
+	-moz-border-radius: 50%;  
+	border-radius: 50%;
+    position: relative;
+    margin-right: 5px;
+    border: 1px solid #999;
+    line-height: normal;
+}
+
+.emblem:after {
+    content: '';
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+  
+}
+
+img.player-emblem {
+	vertical-align:top;
+    border-radius: 50%;
+    position: relative;
+    border: 1px solid #999;
+}
+
+table.headtohead {
+	border-collapse: collapse;
+}
+
+table.headtohead tr.words td {
+	text-align: center;
+	background: #404040;
+	color: #e4e4e4;
+	padding: 10px 10px;
+}
+
+table.headtohead tr.boxes td {
+	text-align: center;
+	padding:50px;
+	font-size: 40px;
+	font-weight: normal;
+	background: #ddd;
+}
+
+#leagueengine_admin .button-primary .dashicons,
+#leagueengine_admin .button-secondary .dashicons {
+	padding-top: 4px;
+	margin-left: -4px;
+}
+
+#leagueengine_admin .button-primary .dashicons {
+	color: #fff;
+}
+
+#leagueengine_admin #wp-match_preview-wrap,
+#leagueengine_admin #wp-match_report-wrap {
+	float: left;
+	width: 100%;
+	margin-top: 20px;
+} 
+
+#leagueengine_admin .breadcrumbs {
+  margin: 0 0 10px;
+}
+#leagueengine_admin  .breadcrumbs li {
+  display: inline-block;
+  margin: 0;
+}
+#leagueengine_admin  .breadcrumbs .divider {
+  padding: 0 5px;
+  color: #999999;
+}

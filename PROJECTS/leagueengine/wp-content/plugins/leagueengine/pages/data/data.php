@@ -46,7 +46,7 @@
 				elseif($data == 'event') { echo '<h2 class="form_title">'.__('Events','leagueengine').'</h2>'; }				
 			
 				if($data == 'competitions') { $data = 'competition'; }
-				echo '<a class="button-primary" href="admin.php?page=leagueengine_create&default='. $data .'" >'. __('New','leagueengine') . ' ' . ucfirst($data) . '</a>';
+				echo '<a class="button-primary addCompetition" href="admin.php?page=leagueengine_create&default='. $data .'" >'. __('New','leagueengine') . ' ' . ucfirst($data) . '</a>';
 							
 				// CHECK FOR SEARCH
 				if(isset($_GET['s'])) { echo $leagueengine_data_table->prepare_items($_GET['s']); } 

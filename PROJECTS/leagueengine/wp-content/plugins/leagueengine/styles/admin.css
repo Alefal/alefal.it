@@ -1,7 +1,12 @@
+/*** START: Alessandro - NEW ***/
+.addCompetition {
+	margin: 10px !important;
+}
+/*** END: Alessandro - NEW ***/
+
 h1,h2,h3,h4,h5,h6 {
 	font-size: 13px;
 	line-height: normal;
-	float: left;
 	width: 100%;
 	margin: 0 0 20px 0;
 	font-weight: normal;
@@ -16,8 +21,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 #leagueengine_admin {
-	float:left;
-	width:960px;
+	width:98%;
 	background:#f9f9f9;
 	font-size: 13px;
 	line-height: 20px;
@@ -26,8 +30,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 #leagueengine_admin_header {
-	float:left;
-	width:920px;
+	width: auto;
 	padding: 20px 20px;
 	border: none;
 	background: #424242;
@@ -35,7 +38,6 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 #leagueengine_admin_header p {
-	float: left;
 	font-size: 23px;
 	font-weight: 300;
 	color: #e4e4e4;
@@ -43,7 +45,6 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 #leagueengine_admin_header .dashicons-admin-generic {
-	float: right;
 	font-size: 20px;
 	font-weight: 300;
 	color:#e4e4e4;
@@ -51,12 +52,11 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 #leagueengine_admin_search {
-	float:right;
-	width:175px;
+	width: 80%;
+    padding-top: 10px;
 }
 
 #leagueengine_admin_search input {
-	float: right;
 	background: #333;
 	border: none;
 	-webkit-border-radius: 0;
@@ -77,24 +77,22 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 #leagueengine_admin .leagueengine_nav {
-	float: left;
-	width:960px;
+	width:100%;
 	background: #272727;
 }
 
 #leagueengine_admin .leagueengine_nav ul {
-	float: left;
 	margin: 0;
 	padding: 0;
 	width:100%;
 }
 
 #leagueengine_admin .leagueengine_nav ul li {
-	float: left;
-	display: inline;
+	display: block;
 	margin: 0;
 	padding: 0;
 	text-align: center;
+	border-bottom: 2px solid;
 }
 
 #leagueengine_admin .leagueengine_nav ul li .dashicons {
@@ -105,24 +103,23 @@ h1,h2,h3,h4,h5,h6 {
 
 #leagueengine_admin .leagueengine_nav ul li.settings,
 #leagueengine_admin .leagueengine_nav ul li.settings a {
-	float: right;
 }
 
 #leagueengine_admin .leagueengine_nav ul li a {
-	float: left;
 	margin: 0;
-	padding: 10px 20px;
+	/*padding: 10px 20px;*/
 	color:#e4e4e4;
+	display: block;
 }
 
 #leagueengine_admin .leagueengine_nav ul li a:hover {
 	background: #1e1e1e;
 	color: #e4e4e4;
+	display: block;
 }
 
 #leagueengine_admin_menu {
-	float:left;
-	width:880px;
+	width:100%;
 	padding: 20px;
 	border: 1px solid #e5e5e5;
 	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.04);
@@ -133,28 +130,24 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 #leagueengine_admin_menu ul {
-	float: left;
 	margin: 0;
 	width:100%;
 }
 
 #leagueengine_admin_menu li {
-	float:left;
-	display: inline;
+	display: inline-flex;
 	list-style:none;
 	margin: 0 10px 0 0;
 	padding: 0;
 }
 
-#leagueengine_admin_menu li:hover {
-	background: #eee;
-}
-
 #leagueengine_admin_menu li a {
-	float:left;
 	text-decoration: none;
 	width:auto;
 	padding: 8px 10px;
+	background: #444;
+    margin: 10px;
+    color: white;
 }
 
 #leagueengine_admin li.active a,
@@ -193,13 +186,11 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 #leagueengine_admin_content {
-	float:left;
-	width:920px;
-	padding: 20px;
+	width:100%;
+	/*padding: 20px;*/
 }
 
 #leagueengine_admin table {
-	float:left;
 	width:100%;
 }
 
@@ -213,14 +204,12 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 #leagueengine_admin_pagination {
-	float: left;
 	width:100%;
 	background: #404040;
 	padding: 8px 10px;
 }
 
 #leagueengine_admin_pagination a {
-	float: left;
 	text-align: center;
 	width:20px;
 	margin-right: 10px;
@@ -236,8 +225,8 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 #leagueengine_admin table td input[type="text"] {
-	float:left;
 	width:100%;
+	max-width:100%;
 	padding: 5px;
 	-webkit-border-radius: 0;
 	border-radius: 0;
@@ -249,7 +238,6 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 #leagueengine_admin form {
-	float: left;
 	width: 100%;
 }
 
@@ -258,7 +246,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 #leagueengine_admin #tabs.ui-tabs {
-	float: left !important;
+	/*float: left !important;*/
 	clear: both;
 }
 
@@ -303,8 +291,7 @@ h1,h2,h3,h4,h5,h6 {
 #leagueengine_admin .success {
 	font-size: 20px;
 	line-height: normal;
-	float: left;
-	width: 880px;
+	width: 100%;
 	background: #c0392b;
 	margin: 0 0 20px 0;
 	padding:20px;
@@ -351,9 +338,8 @@ h1,h2,h3,h4,h5,h6 {
 .form_title {
 	clear: both;
 	font-size: 20px;
-	float: left;
-	width: 880px;
-	line-height: normal;
+	width: auto;
+	line-height: normal;	
 	padding: 20px;
 	background: #f5f5f5;
 	color: #555;
@@ -363,7 +349,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 #leagueengine_admin .search-box {
-	width:240px;
+	width:100%;
 	padding: 0;
 	margin: 0 0 5px 0;
 	background: #fff;
@@ -379,7 +365,7 @@ h1,h2,h3,h4,h5,h6 {
 	margin: 0;
 	border: none;
 	height: auto;
-	width: 240px;
+	width: 100%;
 	box-shadow: none;
 	color: #2c3e50;
 }
@@ -394,10 +380,9 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 #leagueengine_admin .leagueengine_panel {
-	float: left;
-	width: 880px;
+	width: 100%;
 	background: #fff;
-	padding: 20px;
+	/*padding: 20px;*/
 	border: 1px solid #e5e5e5;
 	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.04);
 	box-shadow: 0 1px 1px rgba(0,0,0,.04);
@@ -427,10 +412,6 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 #leagueengine_admin .leagueengine_panel.welcome .panel-column {
-	/*width: 25%;*/
-	width: 50%;
-	min-width: 200px;
-	float: left;
 	text-align: center;
 }
 
@@ -441,7 +422,7 @@ h1,h2,h3,h4,h5,h6 {
 #leagueengine_admin .leagueengine_panel.welcome a.button {
 	color: #fff;
 }
-
+/*
 #leagueengine_admin table.form {
 	table-layout: fixed;
 	border-collapse: collapse;
@@ -452,7 +433,7 @@ h1,h2,h3,h4,h5,h6 {
 {
 	width: 6% !important;
 }
-
+*/
 .fixed th.column-page,
 .fixed td.column-page
 {
@@ -513,7 +494,6 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 #leagueengine_admin .match_masthead {
-	float: left;
 	width: 100%;
 	margin-bottom: 20px;
 }
@@ -538,7 +518,6 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 #leagueengine_admin #leagueengine_tabs {
-	float: left;
 	width: 100%;
 	clear: both;
 }
@@ -577,7 +556,7 @@ h1,h2,h3,h4,h5,h6 {
 #leagueengine_admin #leagueengine_tabs.ui-tabs .ui-tabs-nav li {
 	margin-bottom: 0;
 	padding-bottom: 0;
-    float: none !important;
+    /*float: none !important;*/
     display: inline-block;
 }
 
@@ -591,8 +570,7 @@ h1,h2,h3,h4,h5,h6 {
 
 .emblem {
 	vertical-align:middle;
-	float: left;
-    width: 16px;
+	width: 16px;
     height: 16px;
 	-webkit-border-radius: 50%; 
 	-moz-border-radius: 50%;  
@@ -653,7 +631,6 @@ table.headtohead tr.boxes td {
 
 #leagueengine_admin #wp-match_preview-wrap,
 #leagueengine_admin #wp-match_report-wrap {
-	float: left;
 	width: 100%;
 	margin-top: 20px;
 } 

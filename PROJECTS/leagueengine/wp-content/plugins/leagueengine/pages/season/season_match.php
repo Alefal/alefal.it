@@ -155,11 +155,11 @@
 			    
 			</table>
 			<input style="margin-top:20px;" type="submit" name="save_season_match" class="button-primary" value="<?php _e('Save','leagueengine');?>" />
-			<input style="margin:20px 0 0 10px;" type="submit" name="season_match_swap" class="button" value="<?php _e('Swap Teams','leagueengine');?>" style="float:right;margin-right:10px;" />
+			<input style="margin:20px 0 0 10px;" type="submit" name="season_match_swap" class="button" value="<?php _e('Swap Teams','leagueengine');?>" />
 		</form>	
 			<form action="admin.php?page=leagueengine_season_matches&lid=<?php echo $league_id; ?>&sid=<?php echo $season_id; ?>" method="POST">
 			<input type="hidden" name="match_id" value="<?php echo $match_id; ?>" />
-			<input type="submit" name="delete_season_match" class="button" value="<?php _e('Delete Match','leagueengine');?>" style="float:right;" />
+			<input type="submit" name="delete_season_match" class="button" value="<?php _e('Delete Match','leagueengine');?>" />
 			</form>
 		</div>
 		

@@ -78,7 +78,7 @@
 					
 			$output = '';
 			
-			$output .= '<div style="float:left;clear:both;margin-top:20px;"></div>';
+			$output .= '<div></div>';
 			
 			if($matches) {
 				

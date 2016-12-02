@@ -43,7 +43,26 @@ class leagueengine_data_table_teams extends WP_List_Table {
             $item['id']
         );
     }
+
+    function get_columns(){
+        $columns = array(
+            'cb' => '<input type="checkbox" />',
+            'data_value' => __('Name','leagueengine'),
+            'page' => 'Page',
+            'shortcode' => 'Shortcode'
+        );
+        return $columns;
+    }
     
+    function get_sortable_columns() {
+        $sortable_columns = array(
+            'id' => array('id',false),
+            'data_value' => array('data_value',false),
+        );
+        return $sortable_columns;
+    }
+    
+    /*
     function get_columns(){
     	if(leagueengine_fetch_settings('redirect')) {
 			$columns = array(
@@ -71,7 +90,7 @@ class leagueengine_data_table_teams extends WP_List_Table {
         );
         return $sortable_columns;
     }
-    
+    */
     function get_bulk_actions() {
         $actions = array(
             'delete' => 'Delete'

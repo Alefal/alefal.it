@@ -65,7 +65,7 @@
 
 			</table>
 			
-			<input type="submit" name="leagueengine_create" class="button-primary" value="<?php _e('Create','leagueengine'); ?>">
+			<input type="submit" name="leagueengine_create" class="button-primary addCompetition" value="<?php _e('Create','leagueengine'); ?>">
 			
 		</form>
 				

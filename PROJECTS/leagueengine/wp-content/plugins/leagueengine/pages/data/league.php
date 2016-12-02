@@ -61,7 +61,7 @@
 				
 				echo '<h2 class="form_title">'.__('Seasons','leagueengine').'</h2>';				
 			
-				echo '<a class="button-primary" href="admin.php?page=leagueengine_create&default=competition&new_season=true&lid='.$league_id.'">'. __('New Season','leagueengine') .'</a>';
+				echo '<a class="button-primary addCompetition" href="admin.php?page=leagueengine_create&default=competition&new_season=true&lid='.$league_id.'">'. __('New Season','leagueengine') .'</a>';
 							
 				// CHECK FOR SEARCH
 				if(isset($_GET['s'])) { echo $leagueengine_data_table->prepare_items($league_id,$_GET['s']); } 
@@ -75,7 +75,7 @@
 				echo '</form>';
 					
 			} else {
-				echo '<a style="float:left;clear:both;margin:0;" class="button-primary" href="admin.php?page=leagueengine_create&default=competition&new_season=true&lid='.$league_id.'">'. __('New Season','leagueengine') .'</a></h2>';	
+				echo '<a class="button-primary addCompetition" href="admin.php?page=leagueengine_create&default=competition&new_season=true&lid='.$league_id.'">'. __('New Season','leagueengine') .'</a></h2>';	
 			}
 		?>
 

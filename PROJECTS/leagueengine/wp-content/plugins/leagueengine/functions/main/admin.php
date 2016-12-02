@@ -77,7 +77,7 @@ function leagueengine_admin_header() {
 		$output .= '<li class="events"><a href="admin.php?page=leagueengine_data&data=events"><div class="dashicons dashicons-id-alt"></div><br/>'.__('Events','leagueengine').'</a></li>';
 	}
 
-	$output .= '<li class="settings" style="float:right;"><a href="admin.php?page=leagueengine_settings"><div class="dashicons dashicons-admin-tools"></div><br/>'.__('Settings','leagueengine').'</a></li>';
+	$output .= '<li class="settings"><a href="admin.php?page=leagueengine_settings"><div class="dashicons dashicons-admin-tools"></div><br/>'.__('Settings','leagueengine').'</a></li>';
 	
 	$output .= '</ul>';
 	
@@ -1074,7 +1074,7 @@ function leagueengine_season_matches_table($league_id,$season_id,$pagenumber,$pa
 				
 		if($isform == true) {
 			$output .= '<input style="margin-top:20px;" type="submit" name="save_season_matches" class="button-primary" value="'.__('Update Matches','leagueengine').'" />';
-			$output .= '<input style="margin-top:20px;float:right;" id="delete" type="submit" name="delete_all_matches" class="button" value="'.__('Delete All Matches','leagueengine').'" />';
+			$output .= '<input style="margin-top:20px;" id="delete" type="submit" name="delete_all_matches" class="button" value="'.__('Delete All Matches','leagueengine').'" />';
 			$output .= '</form>';
 		}
 		
@@ -2435,7 +2435,7 @@ function leagueengine_tournament_teams($tournament_id) {
 				if($tournament_settings->teams == leagueengine_tournament_leagueknockout_count_teams($tournament_id)) {
 					$output .= '<input type="submit" name="save_tournament_matches" class="button-primary" value="'.__('Update','leagueengine').'">';				
 				}
-				$output .= '<input style="float:right;margin:20px 0 0;" type="submit" name="delete" class="button" value="'.__('Remove From Tournament','leagueengine').'">';
+				$output .= '<input style="margin:20px 0 0;" type="submit" name="delete" class="button" value="'.__('Remove From Tournament','leagueengine').'">';
 			}
 			
 			$output .= '</form>';

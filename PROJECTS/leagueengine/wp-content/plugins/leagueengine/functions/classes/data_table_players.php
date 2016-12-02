@@ -40,6 +40,7 @@ class leagueengine_data_table_players extends WP_List_Table {
         );
     }
     
+    /*
     function get_columns(){
     	if(leagueengine_fetch_settings('redirect')) {
 			$columns = array(
@@ -57,6 +58,17 @@ class leagueengine_data_table_players extends WP_List_Table {
 				'shortcode' => 'Shortcode'
 	        );
         }
+        return $columns;
+    }
+    */
+
+    function get_columns(){
+        $columns = array(
+            'cb' => '<input type="checkbox" />',
+            'data_value' => __('Name','leagueengine'),
+            'page' => 'Page',
+            'shortcode' => 'Shortcode'
+        );
         return $columns;
     }
     

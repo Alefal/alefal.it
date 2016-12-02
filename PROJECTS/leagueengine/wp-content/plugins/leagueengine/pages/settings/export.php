@@ -278,7 +278,7 @@ $defaults_podmy['customxxx'.$valueu] = $valueu  ; }
  ?>
  
 
- <div style="float:left;min-width:45%">
+ <div>
         <p></p>
 		<form class="add:the-list: validate" method="post" onsubmit="return import_mysql();">
       

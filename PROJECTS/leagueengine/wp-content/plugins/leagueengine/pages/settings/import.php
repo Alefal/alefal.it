@@ -197,7 +197,7 @@
 		else { ?>
 
 
-		<p style="float:left;clear:both;"><?php _e('Error. The file could not be uploaded.','leagueengine');?></p>
+		<p><?php _e('Error. The file could not be uploaded.','leagueengine');?></p>
 
 		<form class="add:the-list: validate" method="post" action="">
 			<input style="margin-top:20px;" type="submit" class="button" name="Import Again" value="<?php _e('Restart','leagueengine');?>"/>
@@ -275,7 +275,7 @@ $defaults_podmy['customxxx'.$valueu] = $valueu  ; }
  ?>
  
 
- <div style="float:left;min-width:45%">
+ <div>
         <p></p>
 		<form class="add:the-list: validate" method="post" onsubmit="return import_mysql();">
       

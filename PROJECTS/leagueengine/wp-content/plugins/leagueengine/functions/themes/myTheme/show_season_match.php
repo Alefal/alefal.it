@@ -108,7 +108,7 @@ function leagueengine_show_season_match($atts, $content = null) {
 
 				if($events) {
 				
-				$output .= '<table class="season_match_summary" style="float:left;width:50%;">';
+				$output .= '<table class="season_match_summary">';
 
 				foreach($events as $event) {
 					$event_id = $event->event_id;
@@ -131,7 +131,7 @@ function leagueengine_show_season_match($atts, $content = null) {
 				
 				$events = $wpdb->get_results("SELECT * FROM $table WHERE league_id = '$lid' AND season_id = '$sid' AND match_id = '$mid' AND event_id <> 'app' AND event_id <> 'sub' GROUP BY event_id ORDER by sort_order ASC");
 
-				$output .= '<table class="season_match_summary" style="float:left;width:50%;">';
+				$output .= '<table class="season_match_summary">';
 
 				foreach($events as $event) {
 					$event_id = $event->event_id;
@@ -244,18 +244,18 @@ function leagueengine_show_season_match($atts, $content = null) {
 			$events = $wpdb->get_results("SELECT * FROM $table WHERE league_id = '$lid' AND season_id = '$sid' AND match_id = '$mid' AND event_id <> 'app' AND event_id <> 'sub' ORDER BY event_time + 0 $order");
 				if($events) {
 					if($events_title) { $output .= '<h3 class="events">'.$events_title.'</h3>'; }
-					$output .= '<div class="season_match_events" style="float:left;width:100%;">';
+					$output .= '<div class="season_match_events">';
 					
 					foreach($events as $event) {
 						
-						$output .= '<div class="row" style="float:left;width:100%;">';
+						$output .= '<div class="row">';
 
-							$output .= '<div style="width:10%;float:left;text-align:center;">';
+							$output .= '<div style="width:10%;text-align:center;">';
 								$output .= '<p>'.$event->event_time.'\'</p>';
 								$output .= '<p><img width="16" height="16" src="'.leagueengine_fetch_data_from_id($event->event_id,'image').'" /></p>';
 							$output .= '</div>';	
 							
-							$output .= '<div style="float:left;width:90%;text-align:left;" class="leagueengine_timeline_event">';
+							$output .= '<div style="width:90%;text-align:left;" class="leagueengine_timeline_event">';
 							
 							if($event->player_id) {
 								$output .= '<p class="event"><span class="event_name">'.leagueengine_fetch_data_from_id($event->event_id,'data_value').'</span> &mdash; <span class="event_player">'.leagueengine_link('player&pid='.$event->player_id.'&lid='.$lid.'&sid='.$sid,leagueengine_fetch_data_from_id($event->player_id,'data_value')).'</span></p>';
@@ -307,11 +307,11 @@ function leagueengine_show_season_match($atts, $content = null) {
 								$total_stat = $home_stat + $away_stat;
 								$home_stat_ptage = ($home_stat/$total_stat)*100;
 								$away_stat_ptage = ($away_stat/$total_stat)*100; 
-									$output .= '<td style="vertical-align:middle;width:30%;text-align:right;"><span class="bar" align="right" style="float:right;background:'.$bar_bg_colour.';color:'.$bar_bg_colour.';width:'.$home_stat_ptage.'%;">'.$home_stat.'</span></td>';    
+									$output .= '<td style="vertical-align:middle;width:30%;text-align:right;"><span class="bar" align="right" style="background:'.$bar_bg_colour.';color:'.$bar_bg_colour.';width:'.$home_stat_ptage.'%;">'.$home_stat.'</span></td>';    
 									$output .= '<td style="vertical-align:middle;width:10%;text-align:right;">'.$homestat.'</td>';
 									$output .= '<td style="vertical-align:middle;width:20%;text-align:center;">'.leagueengine_fetch_data_from_id($statistic->id,'data_value').'</td>';    
 									$output .= '<td style="vertical-align:middle;width:10%;text-align:left;">'.$awaystat.'</td>';
-									$output .= '<td style="vertical-align:middle;width:30%;text-align:left;"><span class="bar" align="right" style="float:left;background:'.$bar_bg_colour.';color:'.$bar_bg_colour.';width:'.$away_stat_ptage.'%;">'.$away_stat.'</span></td>';    
+									$output .= '<td style="vertical-align:middle;width:30%;text-align:left;"><span class="bar" align="right" style="background:'.$bar_bg_colour.';color:'.$bar_bg_colour.';width:'.$away_stat_ptage.'%;">'.$away_stat.'</span></td>';    
 								} else {
 									$output .= '<td colspan="2" style="width:33%;text-align:right;">'.$homestat.'</td>';
 									$output .= '<td style="width:20%;text-align:center;">'.leagueengine_fetch_data_from_id($statistic->id,'data_value').'</td>';    

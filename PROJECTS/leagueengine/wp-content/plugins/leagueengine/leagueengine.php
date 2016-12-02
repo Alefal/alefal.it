@@ -1,11 +1,11 @@
 <?php
 /*
-	Plugin Name:	LeagueEngine - kingtheme.net
-	Plugin URI:		http://2dmonkey.com
+	Plugin Name:	LeagueEngine - alefal.it
+	Plugin URI:		http://www.alefal.it
 	Description:	LeagueEngine makes it easy to build and manage leagues and tournaments on your WordPress site
 	Version:		2.3.4
-	Author:			2DMonkey
-	Author URI:		http://2dmonkey.com
+	Author:			Alefal
+	Author URI:		http://www.alefal.it
 	Text Domain: 	leagueengine
 	Domain Path: 	/languages
 */
