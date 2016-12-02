@@ -19,9 +19,11 @@ export class HttpService {
     */
     getCallHttp(call,teamId,playerIdOrRound,matchIdOrType,statOrGroup,tipologiaOrObject) {
         console.log('getCallHttp: '+call+' | '+teamId+' | '+playerIdOrRound+' | '+matchIdOrType);
-        
+
+        //Torneo dei Rioni Storici 2016/17        
         var host = 'http://localhost/alefal.it/PROJECTS/leagueengine';
-        //var host = '/demo/leagueengine';
+
+        //Torneo dei Tifosi 2016
         //var host = 'http://www.amalficoastapps.it/demo/leagueengine';
         
         var url = '';

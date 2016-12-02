@@ -110,7 +110,11 @@ export class TabellinoModal {
           this.home_team_score  = res[0].match[0].home_team_score;
           this.away_team_score  = res[0].match[0].away_team_score;
           this.matchesEvents    = res[0].matchesEvents;
-          this.liveEventId      = res[0].matchesEvents[0].event_id;
+
+          //console.log('-> '+res[0].matchesEvents[0]);
+          //if(res[0].matchesEvents[0]) {
+            this.liveEventId      = res[0].matchesEvents[0].event_id;
+          //}
           
           console.log('home_team_score: ' + this.home_team_score);
           console.log('away_team_score: ' + this.away_team_score);
@@ -119,7 +123,7 @@ export class TabellinoModal {
       })
       .catch(error => {
         console.log('ERROR: ' + error);
-        this.errorMessage = 'Tabellino disponibile solo online! Controlla la tua connessione di rete.';
+        this.errorMessage = 'Tabellino non disponibile!';
         this.errorMessageView = true;
         this.loading.dismiss();
       });
@@ -135,6 +139,15 @@ export class TabellinoModal {
           this.away_team_logo   = res[0].match[0].away_team_logo;
 
           this.matchesEvents  = res[0].matchesEvents;
+
+          if(res[0].matchesEvents[0]) {
+            this.errorMessage = '';
+            this.errorMessageView = false;
+          } else {
+             this.errorMessage = 'Tabellino non disponibile!';
+             this.errorMessageView = true;
+          }
+
         }
       })
       .catch(error => {

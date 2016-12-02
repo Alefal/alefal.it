@@ -12,8 +12,9 @@
 			<div *ngIf="match.homeName && match.awayName">
 
 				<div class="card-header gridHeader">
-					<h3>{{match.homeName}} - {{match.awayName}}</h3>
-					<h6><ion-icon name="calendar"></ion-icon> {{match.match_date}} {{match.match_time}}</h6>
+					<h4>{{match.homeName}} - {{match.awayName}}</h4>
+					<h6><ion-icon name="calendar"></ion-icon> <strong>{{match.match_date}} {{match.match_time}}</strong></h6>
+					<h6><ion-badge color="greenDark">{{match.preview}}</ion-badge></h6>
 
 					<ion-grid>
 						<ion-row>

@@ -33,7 +33,7 @@ if(isset($match_id)) {
         'message' => 'OK'
     );
 
-    print_r($attrs);
+    //print_r($attrs);
     foreach ($attrs as $attr) {
         $matchAttr[] = array(     
             'attrName'          => le_leagueengine_fetch_data_from_id($attr->attribute_id,'data_value'),   

@@ -22,7 +22,7 @@ if(isset($stats) && isset($tipologiaTorneo)) {
                 INNER JOIN ".$table_prefix."leagueengine_data AS DATA_A ON DATA_A.id = PA.attribute_id
                 INNER JOIN ".$table_prefix."leagueengine_data AS DATA_P ON DATA_P.id = PA.player_id
             WHERE DATA_A.data_value = '$stats' AND PC.league_id = $league_id AND PC.season_id = $season_id
-            ORDER BY stat DESC"
+            ORDER BY stat DESC, DATA_P.data_value ASC"
         );
     } else if($tipologiaTorneo == 'tournament') {
         $players = $wpdb->get_results("
@@ -32,7 +32,7 @@ if(isset($stats) && isset($tipologiaTorneo)) {
                 INNER JOIN ".$table_prefix."leagueengine_data AS DATA_A ON DATA_A.id = PA.attribute_id
                 INNER JOIN ".$table_prefix."leagueengine_data AS DATA_P ON DATA_P.id = PA.player_id
             WHERE DATA_A.data_value = '$stats' AND PC.tournament_id = $tournament_id
-            ORDER BY stat DESC"
+            ORDER BY stat DESC, DATA_P.data_value ASC"
         );
     }
 

@@ -108,6 +108,7 @@ function remove_footer(){
 	remove_action( 'wp_footer', 'function_being_removed' );
 }
 
+/*****
 add_action( 'admin_menu', 'remove_menus', 99, 0 );
 function remove_menus(){  
 
@@ -294,3 +295,4 @@ function wps_dashboard_one_layout_column($columns) {
 }
 add_filter('get_user_option_screen_layout_dashboard', 'wps_dashboard_one_layout_dashboard');
 function wps_dashboard_one_layout_dashboard() { return 1; }
+*****/

@@ -28,8 +28,9 @@
 							<img class="img-polaroid" *ngIf="atleta.playerPhoto === null" src="assets/img/userPhoto.png" />
 						</ion-col>
 						<ion-col width-50>
-							<h3 [innerHTML]="atleta.playerName"></h3>
-							<h5>Numero <strong>{{atleta.playerNumber}}</strong></h5>
+							<h6 [innerHTML]="atleta.playerName"></h6>
+							<h6 *ngIf="atleta.playerNumber == 'P'"><strong>Portiere</strong></h6>
+							<h6 *ngIf="atleta.playerNumber == 'C'"><strong>Capitano</strong></h6>							
 						</ion-col>
 						<ion-col width-25 align="right">
 							<a class="card-button dark" (click)="statistiche(atleta.playerId)">
