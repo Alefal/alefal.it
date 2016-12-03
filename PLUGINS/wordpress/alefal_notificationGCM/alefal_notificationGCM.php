@@ -104,11 +104,11 @@ function alefal_notificationGCM_install() {
 	  registerModel varchar(255) DEFAULT '' NOT NULL
 	)";
 
-	$sql .= "CREATE TABLE alfl_versions_app (
+	/*$sql .= "CREATE TABLE alfl_versions_app (
 	  id mediumint(9) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	  nameApp varchar(255) DEFAULT '' NOT NULL,
 	  versionApp varchar(255) DEFAULT '' NOT NULL,
-	)";
+	)";*/
 
 	require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 	dbDelta( $sql );

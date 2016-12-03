@@ -1,8 +1,14 @@
 page-home {
 
+    /*
     ion-slides {
         padding-top: 75px;
     }
+    .swiper-slide {
+        overflow-y: scroll;
+        display: block;
+    }
+    */
     .titleBg {
         background: white;
         margin: 20px;
@@ -24,11 +30,6 @@ page-home {
     }
     .list-ios .item-block .item-inner {
         border: none !important;
-    }
-
-    .swiper-slide {
-        overflow-y: scroll;
-        display: block;
     }
 
     .button-block {

@@ -54,7 +54,7 @@ export class Comunicati {
       })
       .catch(error => {
         console.log('ERROR: ' + error);
-        this.errorMessage = 'Error!';
+        this.errorMessage = 'Si è verificato un errore. Riprovare più tardi!';
         this.errorMessageView = true;
         this.loading.dismiss();
       });

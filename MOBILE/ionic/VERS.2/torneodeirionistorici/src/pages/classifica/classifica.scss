@@ -41,10 +41,19 @@ page-classifica {
     }
 
     ion-col {
-        text-align: center;
+        text-align: left;
     }
     .rankLogoName,
     .rankLogoName ion-col {
         padding: 0;
+    }
+
+    .item-md.item-block .item-inner {
+        padding-right: 0px !important;
+    }
+
+    .iconMore {
+        line-height: 0;
+        font-size: 2em;
     }
 }

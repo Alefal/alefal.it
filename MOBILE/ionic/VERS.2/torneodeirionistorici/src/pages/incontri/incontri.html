@@ -23,7 +23,7 @@
 								<img *ngIf="match.home_team_logo === null" src="assets/img/loghi/logoVuoto.png" class="logoSquadra" />
 							</ion-col>
 							<ion-col width-33 class="result">
-								<h5 *ngIf="match.homeGoal == '' && match.awayGoal == ''">ND</h5>
+								<h5 *ngIf="match.homeGoal == '' && match.awayGoal == ''"><ion-badge color="yellow">Da giocare</ion-badge></h5>
 								<h5 *ngIf="match.homeGoal != '' && match.awayGoal != ''">{{match.result}}</h5>
 							</ion-col>
 							<ion-col width-33>

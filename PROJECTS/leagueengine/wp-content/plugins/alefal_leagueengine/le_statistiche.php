@@ -16,23 +16,23 @@ if(isset($stats) && isset($tipologiaTorneo)) {
 
     if($tipologiaTorneo == 'league') {
         $players = $wpdb->get_results("
-            SELECT PA.player_id, PA.attribute_id, CAST(PA.attribute_value AS INTEGER) AS stat, DATA_A.data_value, DATA_P.data_value
+            SELECT PA.player_id, PA.attribute_id, PA.attribute_value AS stat, DATA_A.data_value, DATA_P.data_value
             FROM ".$table_prefix."leagueengine_player_careers AS PC
                 INNER JOIN ".$table_prefix."leagueengine_player_attributes AS PA ON PA.player_id = PC.player_id
                 INNER JOIN ".$table_prefix."leagueengine_data AS DATA_A ON DATA_A.id = PA.attribute_id
                 INNER JOIN ".$table_prefix."leagueengine_data AS DATA_P ON DATA_P.id = PA.player_id
             WHERE DATA_A.data_value = '$stats' AND PC.league_id = $league_id AND PC.season_id = $season_id
-            ORDER BY stat DESC, DATA_P.data_value ASC"
+            ORDER BY ABS(stat) DESC, DATA_P.data_value ASC"
         );
     } else if($tipologiaTorneo == 'tournament') {
         $players = $wpdb->get_results("
-            SELECT PA.player_id, PA.attribute_id, CAST(PA.attribute_value AS INTEGER) AS stat, DATA_A.data_value, DATA_P.data_value
+            SELECT PA.player_id, PA.attribute_id, PA.attribute_value AS stat, DATA_A.data_value, DATA_P.data_value
             FROM ".$table_prefix."leagueengine_player_careers AS PC
                 INNER JOIN ".$table_prefix."leagueengine_player_attributes AS PA ON PA.player_id = PC.player_id
                 INNER JOIN ".$table_prefix."leagueengine_data AS DATA_A ON DATA_A.id = PA.attribute_id
                 INNER JOIN ".$table_prefix."leagueengine_data AS DATA_P ON DATA_P.id = PA.player_id
             WHERE DATA_A.data_value = '$stats' AND PC.tournament_id = $tournament_id
-            ORDER BY stat DESC, DATA_P.data_value ASC"
+            ORDER BY ABS(stat) DESC, DATA_P.data_value ASC"
         );
     }
 
