@@ -29,6 +29,8 @@ export class LiveModal {
   dangerousVideoUrl:  string;
   videoUrl:           SafeResourceUrl;
 
+  loadingAtleti: boolean = true;
+
   constructor(
     params: NavParams,
     public viewCtrl: ViewController,
@@ -55,6 +57,7 @@ export class LiveModal {
       .getCallHttp('getIncontroAttr','','',this.matchId,'',this.tipologiaTorneo)
       .then(res => {
         //console.log('SUCCESS: ' + JSON.stringify(res));
+        this.loadingAtleti = false;
 
         if(res[0].response[0].result == 'OK') {
           this.attrs = res[0].matchAttr;
@@ -74,6 +77,7 @@ export class LiveModal {
       })
       .catch(error => {
         console.log('ERROR: ' + error);
+        this.loadingAtleti = false;
         this.errorMessage = 'Si è verificato un errore. Riprovare più tardi!';
         this.errorMessageView = true;
         this.loading.dismiss();
@@ -90,10 +94,8 @@ export class LiveModal {
     this.viewCtrl.dismiss();
   }
 
-  updateVideoUrl(id: string) {
-    this.dangerousVideoUrl = 'https://www.youtube.com/embed/' + id + '?autoplay=1&controls=1';
-    this.videoUrl =
-        this.sanitizer.bypassSecurityTrustResourceUrl(this.dangerousVideoUrl);
+  updateVideoUrl(urlYoutube: string) {
+    this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(urlYoutube);
   }
 
   getTabellinoPolling(matchId) {

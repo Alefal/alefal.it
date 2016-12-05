@@ -17,6 +17,7 @@ export class StatisticaModal {
   errorMessageView: any;
 
   tipologiaTorneo: string;
+  loadingAtleti: boolean = true;
 
   constructor(
     public params: NavParams,
@@ -51,6 +52,7 @@ export class StatisticaModal {
       .getCallHttp('getStatistiche','','','',this.stat,this.tipologiaTorneo)
       .then(res => {
         //console.log('SUCCESS: ' + JSON.stringify(res));
+        this.loadingAtleti = false;
 
         if(res[0].response[0].result == 'OK') {
           this.stats = res[0].stats;
@@ -63,6 +65,8 @@ export class StatisticaModal {
       })
       .catch(error => {
         console.log('ERROR: ' + error);
+        this.loadingAtleti = false;
+        
         this.errorMessage = 'Si è verificato un errore. Riprovare più tardi!';
         this.errorMessageView = true;
         this.loading.dismiss();

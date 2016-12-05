@@ -21,9 +21,17 @@
 					</ion-row>
 				</ion-grid>
 			</div>
-			<div class="card-content" *ngFor="let attr of attrs">
-				<div class="video-container" *ngIf="attr.attrName == 'YouTubeCode'">
-					<iframe class="e2e-iframe-trusted-src" width="100%" [src]="videoUrl"></iframe>
+			<div class="card-content">
+				<div style="text-align:center" *ngIf="loadingAtleti">
+					<ion-spinner name="crescent"></ion-spinner>
+				</div>
+				<div *ngFor="let attr of attrs">
+					<div class="video-container" *ngIf="attr.attrName == 'YouTubeCode'">
+						<iframe class="e2e-iframe-trusted-src" width="100%" [src]="videoUrl"></iframe>
+						<!--
+						<iframe src="https://www.youtube.com/embed/4u856utdR94" frameborder="0" allowfullscreen></iframe>
+						-->
+					</div>
 				</div>
 			</div>
 

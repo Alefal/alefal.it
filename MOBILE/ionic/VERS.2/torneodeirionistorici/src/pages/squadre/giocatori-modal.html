@@ -19,9 +19,11 @@
 				<h3>Nessun giocatore</h3>
 			</div>
 
-			<div class="card-content" *ngFor="let atleta of giocatori">
-
-				<ion-grid class="gridHeader">
+			<div class="card-content">
+				<div style="text-align:center" *ngIf="loadingAtleti">
+					<ion-spinner name="crescent"></ion-spinner>
+				</div>
+				<ion-grid class="gridHeader" *ngFor="let atleta of giocatori">
 					<ion-row>
 						<ion-col width-25>
 							<img class="img-polaroid" *ngIf="atleta.playerPhoto !== null" src="{{atleta.playerPhoto}}" />

@@ -52,6 +52,8 @@ export class TabellinoModal {
   liveEventsArray: Array<string> = [];
   livePlayersTeamHomeArray: Array<string>;
 
+  loadingAtleti: boolean = true;
+
   constructor(
     public params: NavParams,
     public viewCtrl: ViewController,
@@ -105,6 +107,7 @@ export class TabellinoModal {
       .then(res => {
         //console.log('SUCCESS: ' + JSON.stringify(res));
 
+        this.loadingAtleti = false;
         if (res[0].response[0].result == 'OK') {
           //this.match          = res[0].match;
           this.home_team_score  = res[0].match[0].home_team_score;
@@ -123,6 +126,7 @@ export class TabellinoModal {
       })
       .catch(error => {
         console.log('ERROR: ' + error);
+        this.loadingAtleti = false;
         this.errorMessage = 'Tabellino non disponibile!';
         this.errorMessageView = true;
         this.loading.dismiss();

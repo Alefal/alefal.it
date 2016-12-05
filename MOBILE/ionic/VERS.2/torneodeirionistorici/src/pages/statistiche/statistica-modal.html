@@ -15,8 +15,11 @@
 					</ion-row>
 				</ion-grid>
 			</div>
-			<div class="card-content" *ngFor="let el of stats">
-				<ion-grid>
+			<div class="card-content">
+				<div style="text-align:center" *ngIf="loadingAtleti">
+					<ion-spinner name="crescent"></ion-spinner>
+				</div>
+				<ion-grid *ngFor="let el of stats">
 					<ion-row>
 						<ion-col width-75>
 							<h6 [innerHTML]="el.player"></h6>

@@ -20,6 +20,7 @@ export class GiocatoriModal {
   playerStats: boolean;
 
   tipologiaTorneo: string;
+  loadingAtleti: boolean = true;
 
   constructor(
     params: NavParams,
@@ -45,6 +46,7 @@ export class GiocatoriModal {
       .getCallHttp('getGiocatori',this.squadraId,'','','',this.tipologiaTorneo)
       .then(res => {
         console.log('SUCCESS: ' + JSON.stringify(res));
+        this.loadingAtleti = false;
 
         if(res[0].response[0].result == 'OK') {
           this.giocatori = res[0].atleti;
@@ -55,6 +57,7 @@ export class GiocatoriModal {
       })
       .catch(error => {
         console.log('ERROR: ' + error);
+        this.loadingAtleti = false;
         this.errorMessage = 'Si è verificato un errore. Riprovare più tardi!';
         this.errorMessageView = true;
         this.loading.dismiss();
