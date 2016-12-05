@@ -28,9 +28,18 @@ $round              = $_GET['round'];
 if(isset($tipologiaTorneo)) {
     
     if($tipologiaTorneo == 'league') {
+        /*
         $matchs = $wpdb->get_results("
             SELECT SM.*
             FROM ".$table_prefix."leagueengine_season_matches AS SM
+            WHERE SM.league_id = $league_id AND SM.season_id = $season_id
+            ORDER BY SM.match_date ASC, SM.match_time ASC"
+        );
+        */
+        $matchs = $wpdb->get_results("
+            SELECT SM.*, SMA.*
+            FROM ".$table_prefix."leagueengine_season_matches AS SM
+            LEFT JOIN ".$table_prefix."leagueengine_season_matches_attributes AS SMA ON SMA.match_id = SM.id AND (SMA.attribute_value LIKE '%SI%' OR SMA.attribute_value LIKE '%NO%')
             WHERE SM.league_id = $league_id AND SM.season_id = $season_id
             ORDER BY SM.match_date ASC, SM.match_time ASC"
         );
@@ -76,7 +85,8 @@ if(isset($tipologiaTorneo)) {
             'away_team_logo'    => le_leagueengine_fetch_data_from_id($match->away_team_id,'image'),
             'result'			=> $match->home_team_score . ' - ' . $match->away_team_score,
             'preview'			=> $match->preview,
-            'report'			=> $match->report
+            'report'			=> $match->report,
+            'giocata'           => $match->attribute_value
         );
     }
 } else {
