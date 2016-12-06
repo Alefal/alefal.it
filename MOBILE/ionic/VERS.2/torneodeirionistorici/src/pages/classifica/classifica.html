@@ -28,7 +28,7 @@
 			<ion-grid>
 				<ion-row>
 					<ion-col width-20>
-						<h3>{{rank.pts}}</h3>
+						<h3 width-75 style="padding-top:10px">{{rank.pts}}</h3>
 					</ion-col>
 					<ion-col width-50>
 						<!--
@@ -47,7 +47,7 @@
 						</ion-grid>
 					</ion-col>
 					<ion-col width-20>
-						<h3>{{rank.diff}}</h3>
+						<h3 width-75 style="padding:10px">{{rank.diff}}</h3>
 					</ion-col>
 					<ion-col width-10 style="text-align:right">
 						<ion-icon class="iconMore" name="more" (click)="presentPopover(rank)"></ion-icon>
@@ -70,26 +70,23 @@
 						</ion-col>
 					</ion-row>
 					<ion-row>
-						<ion-col>
+						<ion-col width-20>
 							<h6>PTI</h6>
 						</ion-col>
 						<ion-col width-50>
 							<h6>SQUADRA</h6>
 						</ion-col>
-						<ion-col>
-							<h6>GIOC</h6>
-						</ion-col>
-						<ion-col>
+						<ion-col width-20>
 							<h6>+/-</h6>
 						</ion-col>
-						<ion-col>&nbsp;</ion-col>
+						<ion-col width-10>&nbsp;</ion-col>
 					</ion-row>
 				</ion-grid>
 				<ion-item *ngFor="let team of group.teams">
 					<ion-grid>
 						<ion-row>
-							<ion-col>
-								<h3>{{team.pts}}</h3>
+							<ion-col width-20>
+								<h3 style="padding-top:10px">{{team.pts}}</h3>
 							</ion-col>
 							<ion-col width-50>
 								<!--
@@ -101,19 +98,16 @@
 											<img *ngIf="team.logo !== null" src="{{team.logo}}" class="logoSquadra" />
 											<img *ngIf="team.logo === null" src="assets/img/logoVuoto.png" class="logoSquadra" />
 										</ion-col>
-										<ion-col width-75>
-											<h3 style="font-weight: bold;">{{team.name}}a</h3>
+										<ion-col width-75 style="padding:10px">
+											<h3 style="font-weight: bold;">{{team.name}}</h3>
 										</ion-col>
 									</ion-row>
 								</ion-grid>
 							</ion-col>
-							<ion-col>
-								<h3>{{team.gioc}}</h3>
+							<ion-col width-20>
+								<h3 style="padding:10px">{{team.diff}}</h3>
 							</ion-col>
-							<ion-col>
-								<h3>{{team.diff}}</h3>
-							</ion-col>
-							<ion-col>
+							<ion-col width-10>
 								<ion-icon name="share-alt" (click)="presentPopover(team)"></ion-icon>
 							</ion-col>
 						</ion-row>

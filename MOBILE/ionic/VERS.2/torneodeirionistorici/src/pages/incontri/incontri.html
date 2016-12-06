@@ -19,7 +19,7 @@
 			<div *ngIf="match.homeName && match.awayName">
 
 				<div class="card-header gridHeader">
-					<h4>{{match.homeName}} - {{match.awayName}}</h4>
+					<h5>{{match.homeName}} - {{match.awayName}}</h5>
 					<h6><ion-icon name="calendar"></ion-icon> <strong>{{match.match_date}} {{match.match_time}}</strong></h6>
 					<h6><ion-badge color="greenDark">{{match.preview}}</ion-badge></h6>
 
@@ -48,7 +48,7 @@
 									<span><ion-icon name="share-alt"></ion-icon> Tabellino</span>
 								</a>
 							</ion-col>
-							<ion-col width-50 align="center" *ngIf="match.youtube != ''">
+							<ion-col width-50 align="center" *ngIf="match.youtube != '' && match.youtube !== null">
 								<a class="card-button primary" (click)="live(match.match_id,match.homeName,match.awayName,match.result,match.home_team_logo,match.away_team_logo)">
 									<span *ngIf="match.youtubeCode != ''"><ion-icon name="eye"></ion-icon> Live</span>
 								</a>

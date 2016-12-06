@@ -1,20 +1,26 @@
 //declare var push: any;
 
-import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Platform, NavController } from 'ionic-angular';
 import { StatusBar, Push } from 'ionic-native';
 
 import { HttpService } from '../providers/http-service';
 
-import { HomePage } from '../pages/home/home';
+import { HomePage }       from '../pages/home/home';
+import { Comunicati }     from '../pages/comunicati/comunicati';
+import { FotoVideo }      from '../pages/foto-video/foto-video';
+import { Incontri }       from '../pages/incontri/incontri';
+import { Classifica }     from '../pages/classifica/classifica';
 
 @Component({
-  template: `<ion-nav [root]="rootPage"></ion-nav>`
+  template: `<ion-nav #myNav [root]="rootPage"></ion-nav>`
 })
 export class TorneoRioniStorici {
+  @ViewChild('myNav') nav: NavController
   rootPage = HomePage;
 
-  constructor(platform: Platform, private httpService: HttpService) {
+  constructor(platform: Platform,private httpService: HttpService) {
+
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -60,7 +66,26 @@ export class TorneoRioniStorici {
         });
         push.on('notification', (data) => {
           console.log(data);
-          alert("Hi, Am a push notification");
+          let json = JSON.parse(JSON.stringify(data.additionalData));
+          //console.log(json.section);
+
+          if(json.section == 'comunicati') {
+            this.nav.push(Comunicati);
+          } else if(json.section == 'fotovideo') {
+            this.nav.push(FotoVideo);
+          }  else if(json.section == 'incontri') {
+            this.nav.push(Incontri, {
+              tipologia: json.tipologia
+            });
+          }  else if(json.section == 'classifica') {
+            this.nav.push(Classifica, {
+              tipologia: json.tipologia
+            });
+          } else {
+            this.nav.push(HomePage);
+          }
+     
+          //alert("Hi, Am a push notification");
         });
         push.on('error', (e) => {
           console.log(e.message);
