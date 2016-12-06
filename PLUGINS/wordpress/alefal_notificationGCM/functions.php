@@ -1,5 +1,5 @@
 <?php
-function sendNotificationGCM($regId,$regModel,$notifTitle,$notifMessage,$notifSection) {
+function sendNotificationGCM($regId,$regModel,$notifTitle,$notifMessage,$notifSection,$notifType) {
 	// API access key from Google API's Console
 	@define( 'API_ACCESS_KEY', 'AIzaSyCkAcxOLF8dsROovAVSoKChHPSrtDAYM1w' );
 	$registrationIds = array( $regId );
@@ -8,12 +8,14 @@ function sendNotificationGCM($regId,$regModel,$notifTitle,$notifMessage,$notifSe
 	(
 		'message' 		=> $notifMessage,
 		'title'			=> $notifTitle,
-		'count'		 	=> '4',
-		'sound'			=> '',
-		'image'		 	=> 'https://s3.amazonaws.com/ionic-forum-static/forum-logo.png',
-		'subtitle' 		=> 'This is a subtitle.',
 		'section'		=> $notifSection,
-		'ALTRO'			=> 'Ancora altro...'
+		'tipologia'		=> $notifType,
+		'subtitle'		=> 'This is a subtitle. subtitle',
+		'tickerText'	=> 'Ticker text here...Ticker text here...Ticker text here',
+		'vibrate'		=> 1,
+		'sound'			=> 1,
+		'largeIcon'		=> 'large_icon',
+		'smallIcon'		=> 'small_icon'
 	);
 
 	

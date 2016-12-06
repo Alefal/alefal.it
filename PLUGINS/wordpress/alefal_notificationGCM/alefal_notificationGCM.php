@@ -69,9 +69,16 @@ function alefal_notificationGCM_options() {
 	    		<br />
 	    		<select name="notifSection" id="notifSection">
 	    			<option value="comunicati">Comunicati</option>
-	    			<option value="giornalino">Giornalino</option>
-	    			<option value="classifica">Classifica</option>
+	    			<option value="fotovideo">Foto e Video</option>
 	    			<option value="incontri">Incontri</option>
+	    			<option value="classifica">Classifica</option>
+	    		</select>
+	    		<br />
+	 	   		Tipologia:
+	    		<br />
+	    		<select name="notifType" id="notifType">
+	    			<option value="league">Campionato</option>
+	    			<option value="tournament">Torneo</option>
 	    		</select>
 	    		<br /><br />
 	 	   		<a 	class="button button-primary button-hero" 
@@ -99,16 +106,18 @@ function alefal_notificationGCM_install() {
 	$charset_collate = $wpdb->get_charset_collate();
 
 	$sql = "CREATE TABLE alfl_register_device (
-	  id mediumint(9) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	  id mediumint(9) NOT NULL AUTO_INCREMENT,
 	  registerId varchar(255) DEFAULT '' NOT NULL,
-	  registerModel varchar(255) DEFAULT '' NOT NULL
-	)";
+	  registerModel varchar(255) DEFAULT '' NOT NULL,
+	  UNIQUE KEY id (id)
+	) $charset_collate;";
 
-	/*$sql .= "CREATE TABLE alfl_versions_app (
-	  id mediumint(9) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	$sql .= "CREATE TABLE alfl_versions_app (
+	  id mediumint(9) NOT NULL AUTO_INCREMENT,
 	  nameApp varchar(255) DEFAULT '' NOT NULL,
 	  versionApp varchar(255) DEFAULT '' NOT NULL,
-	)";*/
+	  UNIQUE KEY id (id)
+	) $charset_collate;";
 
 	require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 	dbDelta( $sql );
@@ -129,11 +138,13 @@ function alefal_notificationGCM_javascript() {
 		var notifTitle 		= jQuery('#notifTitle').val();
 		var notifMessage 	= jQuery('#notifMessage').val();
 		var notifSection 	= jQuery('#notifSection').val();
+		var notifType 		= jQuery('#notifType').val();
 
 		var data = {
 			'notifTitle': notifTitle,
 			'notifMessage': notifMessage,
-			'notifSection': notifSection
+			'notifSection': notifSection,
+			'notifType': notifType
 		};
 
 		// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
@@ -143,6 +154,7 @@ function alefal_notificationGCM_javascript() {
 			jQuery('#notifTitle').val('');
 			jQuery('#notifMessage').val('');
 			jQuery('#notifSection').val('');
+			jQuery('#notifType').val('');
 		});
 	}
 	function callRemoveDevice(regId) {
