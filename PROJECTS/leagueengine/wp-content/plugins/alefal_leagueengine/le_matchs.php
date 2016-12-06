@@ -37,24 +37,31 @@ if(isset($tipologiaTorneo)) {
         );
         */
         $matchs = $wpdb->get_results("
-            SELECT SM.*, SMA.*
+            SELECT SM.*, DATA_A.id, SMA.*
             FROM ".$table_prefix."leagueengine_season_matches AS SM
-            LEFT JOIN ".$table_prefix."leagueengine_season_matches_attributes AS SMA ON SMA.match_id = SM.id AND (SMA.attribute_value LIKE '%SI%' OR SMA.attribute_value LIKE '%NO%')
+            INNER JOIN ".$table_prefix."leagueengine_data AS DATA_A ON DATA_A.data_value LIKE '%YouTubeCode%'
+            LEFT JOIN ".$table_prefix."leagueengine_season_matches_attributes AS SMA ON SMA.match_id = SM.id AND SMA.attribute_id = DATA_A.id
             WHERE SM.league_id = $league_id AND SM.season_id = $season_id
             ORDER BY SM.match_date ASC, SM.match_time ASC"
         );
+
+        //print_r($wpdb->last_query);
     } else if($tipologiaTorneo == 'tournament') {
         if($type == 'knockout') {
             $matchs = $wpdb->get_results("
-                SELECT TM.*
+                SELECT TM.*, DATA_A.id, TMA.*
                 FROM ".$table_prefix."leagueengine_tournament_matches AS TM
+                INNER JOIN ".$table_prefix."leagueengine_data AS DATA_A ON DATA_A.data_value LIKE '%YouTubeCode%'
+                LEFT JOIN ".$table_prefix."leagueengine_tournament_matches_attributes AS TMA ON TMA.match_id = TM.id AND TMA.attribute_id = DATA_A.id
                 WHERE TM.tournament_id = $tournament_id AND round = '$round'
                 ORDER BY TM.match_date ASC, TM.match_time ASC"
             );
         } else {
             $matchs = $wpdb->get_results("
-                SELECT TM.*
+                SELECT TM.*, DATA_A.id, TMA.*
                 FROM ".$table_prefix."leagueengine_tournament_matches AS TM
+                INNER JOIN ".$table_prefix."leagueengine_data AS DATA_A ON DATA_A.data_value LIKE '%YouTubeCode%'
+                LEFT JOIN ".$table_prefix."leagueengine_tournament_matches_attributes AS TMA ON TMA.match_id = TM.id AND TMA.attribute_id = DATA_A.id
                 WHERE TM.tournament_id = $tournament_id AND position_id = $group AND round LIKE '%GROUP%'
                 ORDER BY TM.match_date ASC, TM.match_time ASC"
             );
@@ -86,7 +93,7 @@ if(isset($tipologiaTorneo)) {
             'result'			=> $match->home_team_score . ' - ' . $match->away_team_score,
             'preview'			=> $match->preview,
             'report'			=> $match->report,
-            'giocata'           => $match->attribute_value
+            'youtube'           => $match->attribute_value
         );
     }
 } else {

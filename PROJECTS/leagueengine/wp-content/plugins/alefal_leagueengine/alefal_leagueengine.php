@@ -64,8 +64,6 @@ function alefal_leagueengine_options() {
 
 	}
 
-
-
 	echo '<br /><br /><br />';
 
 	echo '<div>';
@@ -106,6 +104,16 @@ function alefal_leagueengine_options() {
 add_action( 'wp_footer', 'remove_footer' );
 function remove_footer(){
 	remove_action( 'wp_footer', 'function_being_removed' );
+}
+
+add_action('admin_head', 'custom_admin_area');
+function custom_admin_area() {
+	echo '
+		<style>
+   			#wpfooter {
+				position: relative !important;
+			}
+  		</style>';
 }
 
 /*****

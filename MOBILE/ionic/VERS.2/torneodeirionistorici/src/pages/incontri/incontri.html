@@ -2,12 +2,19 @@
 	<ion-navbar color="greenDark">
 		<ion-title>Incontri</ion-title>
 	</ion-navbar>
+
+	<ion-toolbar color="greenDark">
+		<ion-searchbar (ionInput)="getItems($event)" (ionClear)="onCancel($event)" placeholder="Squadra"></ion-searchbar>
+	</ion-toolbar>
 </ion-header>
 
 <ion-content padding class="home-view">
+
 	<div class="errorMessage" *ngIf="errorMessageView">{{errorMessage}}</div>
 
 	<div class="posts" *ngIf="!errorMessageView">
+		
+		
 		<div class="post-card" *ngFor="let match of incontri">
 			<div *ngIf="match.homeName && match.awayName">
 
@@ -20,7 +27,7 @@
 						<ion-row>
 							<ion-col width-33>
 								<img *ngIf="match.home_team_logo !== null" src="{{match.home_team_logo}}" class="logoSquadra" />
-								<img *ngIf="match.home_team_logo === null" src="assets/img/loghi/logoVuoto.png" class="logoSquadra" />
+								<img *ngIf="match.home_team_logo === null" src="assets/img/logoVuoto.png" class="logoSquadra" />
 							</ion-col>
 							<ion-col width-33 class="result">
 								<h5 *ngIf="match.homeGoal == '' && match.awayGoal == ''"><ion-badge color="yellow">Da giocare</ion-badge></h5>
@@ -28,7 +35,7 @@
 							</ion-col>
 							<ion-col width-33>
 								<img *ngIf="match.away_team_logo !== null" src="{{match.away_team_logo}}" class="logoSquadra" />
-								<img *ngIf="match.away_team_logo === null" src="assets/img/loghi/logoVuoto.png" class="logoSquadra" />
+								<img *ngIf="match.away_team_logo === null" src="assets/img/logoVuoto.png" class="logoSquadra" />
 							</ion-col>
 						</ion-row>
 					</ion-grid>
@@ -41,7 +48,7 @@
 									<span><ion-icon name="share-alt"></ion-icon> Tabellino</span>
 								</a>
 							</ion-col>
-							<ion-col width-50 align="center">
+							<ion-col width-50 align="center" *ngIf="match.youtube != ''">
 								<a class="card-button primary" (click)="live(match.match_id,match.homeName,match.awayName,match.result,match.home_team_logo,match.away_team_logo)">
 									<span *ngIf="match.youtubeCode != ''"><ion-icon name="eye"></ion-icon> Live</span>
 								</a>
@@ -64,5 +71,9 @@
 			</div>
 		</div>
 	</div>
+
+	<ion-fab right bottom>
+		<button ion-fab color="greenDark" (click)="getData()"><ion-icon name="refresh"></ion-icon></button>
+	</ion-fab>
 
 </ion-content>

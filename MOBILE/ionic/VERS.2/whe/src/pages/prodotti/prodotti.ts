@@ -88,6 +88,7 @@ export class Prodotti {
   }
 
   getItems(ev) {
+    this.products = this.productAll;
     var val = ev.target.value;
     //this.productFilter = this.products;
 

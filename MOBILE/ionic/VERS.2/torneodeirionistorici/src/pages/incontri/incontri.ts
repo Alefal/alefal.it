@@ -7,7 +7,6 @@ import { ConnectivityService }  from '../../providers/connectivity-service';
 import { TabellinoModal }       from './tabellino-modal';
 import { LiveModal }            from './live-modal';
 
-
 @Component({
   selector: 'page-incontri',
   templateUrl: 'incontri.html'
@@ -15,6 +14,7 @@ import { LiveModal }            from './live-modal';
 export class Incontri {
 
   incontri: any;
+  incontriAll: any;
   loading: any;
   errorMessage: String;
   errorMessageView: any;
@@ -65,18 +65,24 @@ export class Incontri {
         //console.log('SUCCESS: ' + JSON.stringify(res));
 
         if(res[0].response[0].result == 'OK') {
-          this.incontri = res[0].matchs;
+          this.incontri     = res[0].matchs;
+          this.incontriAll  = res[0].matchs;
 
           for (let mtc of this.incontri) {
             //console.log(mtc['match_date'] + ' | ' +mtc['match_time']);
             //console.log(this.convertToDate(mtc['match_date']));
             //console.log(this.convertTime12to24(mtc['match_time']));  
 
-            //Date incontri in MILLISECONDI: confrontare con la data odiera per inviare LocalNotification
+            //Date incontri in MILLISECONDI: confrontare con la data odierna per inviare LocalNotification
             let dateString = this.convertToDate(mtc['match_date'])+' '+this.convertTime12to24(mtc['match_time']);
-            let date = new Date(dateString);
-            //console.log(date.getTime());  
-            
+            let dateMatch = new Date(dateString);
+            let currentTime = new Date();
+
+            if(dateMatch.getTime() < currentTime.getTime()) {
+              console.log('GIOCATA');  
+            } else {
+              console.log('DA GIOCARE');                
+            }
           }
 
           localStorage.setItem('getIncontri_'+this.round,JSON.stringify(this.incontri));
@@ -92,6 +98,22 @@ export class Incontri {
         this.errorMessageView = true;
         this.loading.dismiss();
       });
+  }
+
+  getItems(ev) {
+    this.incontri = this.incontriAll;
+    var val = ev.target.value;
+    //this.productFilter = this.products;
+
+    // if the value is an empty string don't filter the items
+    if (val && val.trim() != '') {
+      this.incontri = this.incontri.filter((item) => {
+        return (item.homeName.toLowerCase().indexOf(val.toLowerCase()) > -1 || item.awayName.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      })
+    }
+  }
+  onCancel(ev) {
+    this.incontri = this.incontriAll;
   }
 
   tabellino(id,teamHome,teamAway,result,home_team_id,away_team_id,home_team_logo,away_team_logo) {

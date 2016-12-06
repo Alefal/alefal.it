@@ -11,7 +11,9 @@ import { ConnectivityService }  from '../../providers/connectivity-service';
 export class StatisticaModal {
 
   stat: string;
-  stats: string;
+  stats: any;
+  statsAll: any;
+  
   loading: any;
   errorMessage: String;
   errorMessageView: any;
@@ -55,7 +57,8 @@ export class StatisticaModal {
         this.loadingAtleti = false;
 
         if(res[0].response[0].result == 'OK') {
-          this.stats = res[0].stats;
+          this.stats    = res[0].stats;
+          this.statsAll = res[0].stats;
           localStorage.setItem('getStatistiche_'+this.stat,JSON.stringify(this.stats));
         } else {
           this.stats = 'Nessun dato! Riprovare più tardi.';
@@ -75,6 +78,22 @@ export class StatisticaModal {
 
   dismiss() {
     this.viewCtrl.dismiss();
+  }
+
+  getItems(ev) {
+    this.stats = this.statsAll;
+    var val = ev.target.value;
+    //this.productFilter = this.products;
+
+    // if the value is an empty string don't filter the items
+    if (val && val.trim() != '') {
+      this.stats = this.stats.filter((item) => {
+        return (item.player.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      })
+    }
+  }
+  onCancel(ev) {
+    this.stats = this.statsAll;
   }
 
 }
