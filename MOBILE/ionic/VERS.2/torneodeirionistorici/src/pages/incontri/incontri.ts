@@ -52,6 +52,8 @@ export class Incontri {
         this.connectivityService.showInfoNoData();
       } else {
         this.incontri = JSON.parse(localStorage.getItem('getIncontri_'+this.round));
+        this.incontriAll = JSON.parse(localStorage.getItem('getIncontri_'+this.round));
+        
         this.connectivityService.showInfo();
       }
     }

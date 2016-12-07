@@ -42,6 +42,8 @@ export class StatisticaModal {
         this.connectivityService.showInfoNoData();
       } else {
         this.stats = JSON.parse(localStorage.getItem('getStatistiche_'+this.stat));
+        this.statsAll = JSON.parse(localStorage.getItem('getStatistiche_'+this.stat));
+        
         this.connectivityService.showInfo();
       }
     }
