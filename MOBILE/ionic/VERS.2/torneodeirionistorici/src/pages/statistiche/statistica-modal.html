@@ -22,7 +22,7 @@
 				</ion-grid>
 			</div>
 			<div class="card-content">
-				<div style="text-align:center" *ngIf="loadingAtleti">
+				<div style="text-align:center" *ngIf="loadingAtleti && networkFound">
 					<ion-spinner name="crescent"></ion-spinner>
 				</div>
 				<ion-grid *ngFor="let el of stats">

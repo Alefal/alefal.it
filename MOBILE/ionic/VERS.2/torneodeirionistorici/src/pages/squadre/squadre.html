@@ -38,7 +38,7 @@
 				</a>
 			</div>
 			-->
-			<div class="card-footer">
+			<div class="card-footer" *ngIf="networkFound">
 				<a class="card-button primary" (click)="vediGiocatori(team.SquadraId,team.Squadra,tipologiaTorneo)">
 					<ion-icon name="share-alt"></ion-icon> Giocatori
 				</a>

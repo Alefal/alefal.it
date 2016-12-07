@@ -1,5 +1,5 @@
 import { Component }      from '@angular/core';
-import { SocialSharing }  from 'ionic-native';
+import { SocialSharing, Network }  from 'ionic-native';
 import { NavController, NavParams, LoadingController }  from 'ionic-angular';
 
 import { Comunicati }     from '../comunicati/comunicati';
@@ -43,13 +43,19 @@ export class HomePage {
   ) { }
 
   ionViewDidLoad() {
-    console.log('home_1: '+this.connectivityService.connectivityFound);
+    this.loading = this.loadingCtrl.create({
+      spinner: 'crescent',
+    });
+    this.loading.present();
+
+    console.log('home_1 - connectivityFound: '+this.connectivityService.connectivityFound);
     
-    if(this.connectivityService.connectivityFound) {
-      this.getData();
-    } else {
-      if(localStorage.getItem('getTorneo') === null) {
-        this.connectivityService.showInfoNoData();
+    setTimeout(() => {
+      console.log('Network.connection: '+JSON.stringify(Network.connection));
+
+      if (Network.connection !== 'none' || this.connectivityService.connectivityFound) {
+        console.log('Connection found!');
+        this.getData();
       } else {
         this.showPage = true;
         this.tournament = JSON.parse(localStorage.getItem('getTorneo'));
@@ -59,18 +65,15 @@ export class HomePage {
         this.tournamentRound  = this.tournament[0].tour_round;
         this.getRounds(this.tournamentRound);
 
+        this.loading.dismiss();
+
         this.connectivityService.showInfo();
       }
-    }
+    }, 3000);
   }
+
   getData(){
     console.log('home_2: getData');
-
-    this.loading = this.loadingCtrl.create({
-      spinner: 'crescent',
-      //content: 'Please wait...'
-    });
-    this.loading.present();
 
     //getTorneo
     this.httpService

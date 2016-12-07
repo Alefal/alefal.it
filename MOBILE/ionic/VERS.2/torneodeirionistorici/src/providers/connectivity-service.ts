@@ -38,12 +38,14 @@ export class ConnectivityService {
   load() {
     Network.onDisconnect().subscribe(() => {
       console.log('network was disconnected :-( ');
+      this.shoConnectionInfo('Nessuna connessione di rete :-( ');
       this.connectivityFound = false;
     });
 
     // watch network for a connection
     Network.onConnect().subscribe(() => {
       console.log('network connected!');
+      this.shoConnectionInfo('Connesso alla rete :-) ');
 
       if(localStorage.getItem('liveEventsArray') === null) {
         console.log('Nessun evento da sincronizzare!');
@@ -72,11 +74,6 @@ export class ConnectivityService {
       }
 
       this.connectivityFound = true;
-      setTimeout(() => {
-        if (Network.connection === 'wifi') {
-          console.log('we got a wifi connection, woohoo!');
-        }
-      }, 3000);
     });
   }
 
@@ -90,6 +87,13 @@ export class ConnectivityService {
   showInfo() {
     let toast = this.toastCtrl.create({
       message: 'Connessione assente! I dati potrebbero non essere aggiornati',
+      duration: 3000
+    });
+    toast.present();
+  }
+  shoConnectionInfo(message) {
+    let toast = this.toastCtrl.create({
+      message: message,
       duration: 3000
     });
     toast.present();

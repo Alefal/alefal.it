@@ -18,6 +18,8 @@ export class FotoVideo {
   errorMessage: String;
   errorMessageView: any;
 
+  networkFound: any;
+
   constructor(
     public navCtrl: NavController,
     private httpService: HttpService,
@@ -27,6 +29,8 @@ export class FotoVideo {
   ) { }
 
   ionViewDidLoad() {
+    this.networkFound = this.connectivityService.connectivityFound;
+
     if(this.connectivityService.connectivityFound) {
       this.getData();
     } else {

@@ -20,6 +20,8 @@ export class Squadre {
 
   tipologiaTorneo: string;
 
+  networkFound: any;
+
   constructor(
     public params: NavParams,
     public navCtrl: NavController,
@@ -32,6 +34,8 @@ export class Squadre {
   }
 
   ionViewDidLoad() {
+    this.networkFound = this.connectivityService.connectivityFound;
+
     if(this.connectivityService.connectivityFound) {
       this.getData();
     } else {

@@ -21,6 +21,8 @@ export class StatisticaModal {
   tipologiaTorneo: string;
   loadingAtleti: boolean = true;
 
+  networkFound: any;
+
   constructor(
     public params: NavParams,
     public viewCtrl: ViewController,
@@ -31,6 +33,8 @@ export class StatisticaModal {
     this.stat = params.get('stat');
     this.tipologiaTorneo = params.get('tipologia'); //league | tournament
   
+    this.networkFound = this.connectivityService.connectivityFound;
+
     if(this.connectivityService.connectivityFound) {
       this.getData();
     } else {

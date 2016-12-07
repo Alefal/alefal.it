@@ -48,7 +48,7 @@
 									<span><ion-icon name="share-alt"></ion-icon> Tabellino</span>
 								</a>
 							</ion-col>
-							<ion-col width-50 align="center" *ngIf="match.youtube != '' && match.youtube !== null">
+							<ion-col width-50 align="center" *ngIf="match.youtube != '' && match.youtube !== null && networkFound">
 								<a class="card-button primary" (click)="live(match.match_id,match.homeName,match.awayName,match.result,match.home_team_logo,match.away_team_logo)">
 									<span *ngIf="match.youtubeCode != ''"><ion-icon name="eye"></ion-icon> Live</span>
 								</a>
@@ -72,7 +72,7 @@
 		</div>
 	</div>
 
-	<ion-fab right bottom>
+	<ion-fab right bottom *ngIf="networkFound">
 		<button ion-fab color="greenDark" (click)="getData()"><ion-icon name="refresh"></ion-icon></button>
 	</ion-fab>
 

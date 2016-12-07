@@ -24,6 +24,8 @@ export class Incontri {
   type: string;
   round: number;
 
+  networkFound: any;
+
   constructor(
     public params: NavParams,
     public navCtrl: NavController,
@@ -41,6 +43,8 @@ export class Incontri {
   }
 
   ionViewDidLoad() {
+    this.networkFound = this.connectivityService.connectivityFound;
+
     if(this.connectivityService.connectivityFound) {
       this.getData();
     } else {
