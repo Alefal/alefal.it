@@ -27,10 +27,7 @@ export class TorneoRioniStorici {
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
 
-      //this.pushNotifications();
-
       //cordova plugin add phonegap-plugin-push --variable SENDER_ID="274440871330"
-      /*** DECOMMENTARE IL PRODUZIONE *****/
       var push = Push.init({
         android: {
           vibrate: true,
@@ -92,7 +89,7 @@ export class TorneoRioniStorici {
           console.log(e.message);
         });
       }
-      /*** ***/
+      
     });
   }
 }

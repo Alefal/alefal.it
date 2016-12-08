@@ -1,10 +1,10 @@
 <?php
 //Locale
-$league_id = 95; 
-$season_id = 96;
+//$league_id = 95; 
+//$season_id = 96;
 //Remote
-//$league_id = 77; 
-//$season_id = 78;
+$league_id = 77; 
+$season_id = 78;
 
 //Locale: Tournament knockout
 //$tournament_id = 4;

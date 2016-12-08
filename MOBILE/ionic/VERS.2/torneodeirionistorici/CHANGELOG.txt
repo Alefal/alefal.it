@@ -22,16 +22,17 @@ phonegap-plugin-push 1.9.1 "PushPlugin"
 - tabellino di ogni incontro
 - statistiche di ogni atleta
 
-=== Vers. 1.0.1 === 
+=== Vers. *.0.1 === 
 - App iniziale con slides informative in attesa dell'inizio del torneo
 
-=== Vers. 1.0.2 === 
+=== Vers. *.0.2 === 
 - Cambio dei loghi a causa delle restrizione di Google Play: i loghi delle squadre di calcio violano il copyright
 
-=== Vers. 1.0.3 === 
+=== Vers. *.0.3 === 
 - Fix per logo app
 
-=== TODO: Vers 1.0.4 ===
+=== Vers *.0.4 ===
 - Plugin Network
   $ ionic plugin add cordova-plugin-network-information
 - Lista giocatori per OFFLINE (nuovo REST Service: le_atleti_all.php)
+- Usabilità offline
