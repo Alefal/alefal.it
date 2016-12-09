@@ -216,7 +216,7 @@ export class HomePage {
     this.httpService
       .getCallHttp('getGiocatoriAll','','','','',tipologiaTorneo)
       .then(res => {
-        console.log('SUCCESS: ' + JSON.stringify(res));
+        //console.log('SUCCESS: ' + JSON.stringify(res));
 
         if(res[0].response[0].result == 'OK') {
           localStorage.setItem('getGiocatori',JSON.stringify(res[0].atleti));

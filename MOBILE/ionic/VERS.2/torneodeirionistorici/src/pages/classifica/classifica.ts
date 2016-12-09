@@ -36,7 +36,7 @@ export class Classifica {
       this.getData();
     } else {
       if(localStorage.getItem('getClassifica') === null) {
-        this.connectivityService.showInfoNoData();
+        this.connectivityService.showInfoNoData('');
       } else {
         this.ranking = JSON.parse(localStorage.getItem('getClassifica'));
         this.connectivityService.showInfo();
@@ -44,10 +44,8 @@ export class Classifica {
     }
   }
   getData(){
-    console.log('Hello Classifica Page');
     this.loading = this.loadingCtrl.create({
-      spinner: 'crescent',
-      //content: 'Please wait...'
+      spinner: 'crescent'
     });
     this.loading.present();
 
@@ -82,9 +80,12 @@ export class Classifica {
     popover.present();
   }
 
-  tournamentMatchs(tipologia,group) {
+  tournamentMatchs(tipologia,sezione,group) {
+    console.log('tournamentMatchs: '+tipologia+' | '+group);
+    
     this.navCtrl.push(Incontri, {
       tipologia: tipologia,
+      sezione: sezione,
       group: group
     });
   }

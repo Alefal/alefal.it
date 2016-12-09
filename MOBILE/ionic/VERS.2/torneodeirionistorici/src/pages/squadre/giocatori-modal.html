@@ -32,7 +32,9 @@
 						<ion-col width-50>
 							<h6 [innerHTML]="atleta.playerName"></h6>
 							<h6 *ngIf="atleta.playerNumber == 'P'"><strong>Portiere</strong></h6>
-							<h6 *ngIf="atleta.playerNumber == 'C'"><strong>Capitano</strong></h6>							
+							<h6 *ngIf="atleta.playerNumber == 'D'"><strong>Difensore</strong></h6>							
+							<h6 *ngIf="atleta.playerNumber == 'C'"><strong>Centrocampista</strong></h6>														
+							<h6 *ngIf="atleta.playerNumber == 'A'"><strong>Attaccante</strong></h6>							
 						</ion-col>
 						<ion-col width-25 align="right">
 							<a class="card-button dark" (click)="statistiche(atleta.playerId)">

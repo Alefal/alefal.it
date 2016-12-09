@@ -98,7 +98,7 @@ export class ConnectivityService {
     });
     toast.present();
   }
-  showInfoNoData() {
+  showInfoNoData(section) {
     let alert = this.alertCtrl.create({
       title: 'Connessione assente!',
       subTitle: 'Nessun dato disponibile',
@@ -106,7 +106,9 @@ export class ConnectivityService {
         {
           text: 'Ok',
           handler: () => {
-            this.nav.popToRoot();
+            if(section != 'statistiche') {
+              this.nav.popToRoot();
+            }
           }
         }
       ]

@@ -40,7 +40,7 @@ export class Squadre {
       this.getData();
     } else {
       if(localStorage.getItem('getSquadre') === null) {
-        this.connectivityService.showInfoNoData();
+        this.connectivityService.showInfoNoData('');
       } else {
         this.squadre = JSON.parse(localStorage.getItem('getSquadre'));
       this.connectivityService.showInfo();

@@ -9,6 +9,19 @@ page-home {
         display: block;
     }
     */
+    .gridHeader {
+        background-color: #003d08;
+        color: white;
+        margin: 0 auto;
+        padding: 15px;
+    }
+    .gridHeader hr {
+        border-bottom: 1px solid white;
+    }
+    .gridHeader img {
+        border: 2px solid #fff500;
+    }
+
     .titleBg {
         background: white;
         margin: 20px;

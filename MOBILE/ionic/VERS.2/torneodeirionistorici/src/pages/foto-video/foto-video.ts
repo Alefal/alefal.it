@@ -35,7 +35,7 @@ export class FotoVideo {
       this.getData();
     } else {
       if(localStorage.getItem('getFotoVideo') === null) {
-        this.connectivityService.showInfoNoData();
+        this.connectivityService.showInfoNoData('');
       } else {
         this.news = JSON.parse(localStorage.getItem('getFotoVideo'));
       this.connectivityService.showInfo();

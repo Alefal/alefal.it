@@ -1,18 +1,34 @@
 <ion-header>
 	<ion-navbar color="greenDark">
+		<!--
 		<ion-title>Torneo dei Rioni Storici</ion-title>
+		-->
+		<ion-title>Torneo dei Tifosi 2016</ion-title>		
 	</ion-navbar>
 </ion-header>
 
 <ion-content padding>
   
 	<ion-slides pager *ngIf="!tournamentName && tournamentType == null" class="home-view" showWhen="portrait">
+		<!-- TDRS
 		<ion-slide>
 			<div class="titleBg">
 				<h3>Torneo dei Rioni Storici</h3>
 				<h6>dal 5 Dicembre 2016</h6>
 				<hr />
 				<h6>12 squadre, 22 giornate, più di 120 atleti, 2 campi su cui giocare</h6>		
+				<hr />
+				<h6>Che il divertimento sia con voi!</h6>	
+			</div>
+		</ion-slide>
+		-->
+		<!-- TDT -->
+		<ion-slide>
+			<div class="titleBg">
+				<h3>Torneo dei Tifosi 2016</h3>
+				<h6>dal 19 al 30 Dicembre 2016</h6>
+				<hr />
+				<h6>6 squadre, 2 gironi, circa 100 atleti</h6>		
 				<hr />
 				<h6>Che il divertimento sia con voi!</h6>	
 			</div>
@@ -122,5 +138,37 @@
 			<ion-icon name="ios-arrow-forward" item-right></ion-icon>
 		</ion-item>
 	</ion-list>
+
+	<ion-grid class="gridHeader">
+		<ion-row>
+			<ion-col style="text-align:center">
+				<h1>In collaborazione con:</h1>
+				<hr />
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col style="text-align:center">
+				<img src="assets/img/sporsor/hotelparsifal.png" />
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col>
+				<img src="assets/img/sporsor/caffecalce.png" />
+			</ion-col>
+			<ion-col>
+				<img src="assets/img/sporsor/duomocaffe.png" />
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col style="text-align:center">
+				<img src="assets/img/sporsor/studiolegalealfieri.png" />
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col style="text-align:center">
+				<img src="assets/img/sporsor/saporedimare.png" />
+			</ion-col>
+		</ion-row>
+	</ion-grid>
 	
 </ion-content>

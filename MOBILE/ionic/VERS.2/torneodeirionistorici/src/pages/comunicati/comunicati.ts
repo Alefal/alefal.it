@@ -34,7 +34,7 @@ export class Comunicati {
       this.getData();
     } else {
       if(localStorage.getItem('getComunicatiUfficiali') === null) {
-        this.connectivityService.showInfoNoData();
+        this.connectivityService.showInfoNoData('');
       } else {
         this.comunicati = JSON.parse(localStorage.getItem('getComunicatiUfficiali'));
       this.connectivityService.showInfo();

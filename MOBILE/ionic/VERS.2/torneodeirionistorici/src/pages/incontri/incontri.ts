@@ -20,6 +20,7 @@ export class Incontri {
   errorMessageView: any;
 
   tipologiaTorneo: string;
+  sezione: string;
   group: number;
   type: string;
   round: number;
@@ -35,11 +36,20 @@ export class Incontri {
     public connectivityService: ConnectivityService
   ) { 
     this.tipologiaTorneo = params.get('tipologia'); //league | tournament
+    
+    //Dalla CLASSIFICA per GRUPPI
+    this.sezione  = params.get('sezione');
     this.group  = params.get('group');
+
     this.type   = params.get('type');
+    //Dalla HOME: semifinale e finale
     this.round  = params.get('round');
 
     console.log('this.round: ' + this.round);
+    console.log('this.group: ' + this.group);
+    console.log('this.sezione: ' + this.sezione);
+    
+    
   }
 
   ionViewDidLoad() {
@@ -48,13 +58,24 @@ export class Incontri {
     if(this.connectivityService.connectivityFound) {
       this.getData();
     } else {
-      if(localStorage.getItem('getIncontri_'+this.round) === null) {
-        this.connectivityService.showInfoNoData();
+      if(this.sezione == 'gruppi') {
+        if(localStorage.getItem('getIncontriGruppo_'+this.group) === null) {
+          this.connectivityService.showInfoNoData('');
+        } else {
+          this.incontri = JSON.parse(localStorage.getItem('getIncontriGruppo_'+this.group));
+          this.incontriAll = JSON.parse(localStorage.getItem('getIncontriGruppo_'+this.group));
+          
+          this.connectivityService.showInfo();
+        }
       } else {
-        this.incontri = JSON.parse(localStorage.getItem('getIncontri_'+this.round));
-        this.incontriAll = JSON.parse(localStorage.getItem('getIncontri_'+this.round));
-        
-        this.connectivityService.showInfo();
+        if(localStorage.getItem('getIncontri_'+this.round) === null) {
+          this.connectivityService.showInfoNoData('');
+        } else {
+          this.incontri = JSON.parse(localStorage.getItem('getIncontri_'+this.round));
+          this.incontriAll = JSON.parse(localStorage.getItem('getIncontri_'+this.round));
+          
+          this.connectivityService.showInfo();
+        }
       }
     }
   }
@@ -91,7 +112,11 @@ export class Incontri {
             }
           }
 
-          localStorage.setItem('getIncontri_'+this.round,JSON.stringify(this.incontri));
+          if(this.sezione == 'gruppi') {
+            localStorage.setItem('getIncontriGruppo_'+this.group,JSON.stringify(this.incontri));
+          } else {
+            localStorage.setItem('getIncontri_'+this.round,JSON.stringify(this.incontri));            
+          }
         } else {
           this.incontri = 'Nessun dato! Riprovare più tardi.';
         }
