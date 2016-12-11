@@ -21,16 +21,19 @@ export class HttpService {
         console.log('getCallHttp: '+call+' | '+teamId+' | '+playerIdOrRound+' | '+matchIdOrType);
 
         //Torneo dei Rioni Storici 2016/17        
-        var host = 'http://localhost/alefal.it/PROJECTS/leagueengine';
+        //var host = 'http://localhost/alefal.it/PROJECTS/leagueengine';
         //var host = 'http://torneodeirionistorici.altervista.org';
 
         //Torneo dei Tifosi 2016
-        //var host = 'http://www.amalficoastapps.it/demo/leagueengine';
+        var host = 'http://www.amalficoastapps.it/demo/leagueengine';
         
         var url = '';
         if(call == 'getTorneo') {
             url = '/wp-content/plugins/alefal_leagueengine/le_typeTournament.php';
         } 
+        else if(call == 'getSponsors') {
+            url = '?json=get_tag_posts&tag_slug=sponsors';
+        }
         else if(call == 'getComunicatiUfficiali') {
             url = '?json=get_tag_posts&tag_slug=comunicatiUfficiali';
         } 

@@ -140,6 +140,8 @@ function alefal_notificationGCM_javascript() {
 		var notifSection 	= jQuery('#notifSection').val();
 		var notifType 		= jQuery('#notifType').val();
 
+		jQuery('#alefal_notificationGCM_ResultNotification').html('Attendere...');
+
 		var data = {
 			'notifTitle': notifTitle,
 			'notifMessage': notifMessage,

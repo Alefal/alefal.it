@@ -139,36 +139,6 @@
 		</ion-item>
 	</ion-list>
 
-	<ion-grid class="gridHeader">
-		<ion-row>
-			<ion-col style="text-align:center">
-				<h1>In collaborazione con:</h1>
-				<hr />
-			</ion-col>
-		</ion-row>
-		<ion-row>
-			<ion-col style="text-align:center">
-				<img src="assets/img/sporsor/hotelparsifal.png" />
-			</ion-col>
-		</ion-row>
-		<ion-row>
-			<ion-col>
-				<img src="assets/img/sporsor/caffecalce.png" />
-			</ion-col>
-			<ion-col>
-				<img src="assets/img/sporsor/duomocaffe.png" />
-			</ion-col>
-		</ion-row>
-		<ion-row>
-			<ion-col style="text-align:center">
-				<img src="assets/img/sporsor/studiolegalealfieri.png" />
-			</ion-col>
-		</ion-row>
-		<ion-row>
-			<ion-col style="text-align:center">
-				<img src="assets/img/sporsor/saporedimare.png" />
-			</ion-col>
-		</ion-row>
-	</ion-grid>
+	<div class="gridHeader" [innerHTML]="sponsors" style="text-align:center"></div>
 	
 </ion-content>

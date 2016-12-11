@@ -28,6 +28,8 @@ export class HomePage {
 
   tournamentRounds: string[] = [];
 
+  sponsors: any;
+
   loading: any;
   errorMessage: String;
   errorMessageView: any;
@@ -58,15 +60,17 @@ export class HomePage {
         this.getData();
       } else {
         this.showPage = true;
+        //Torneo
         this.tournament = JSON.parse(localStorage.getItem('getTorneo'));
         this.tournamentName   = this.tournament[0].tour_name;
         this.tournamentType   = this.tournament[0].tour_type;        
         this.tournamentTeams  = this.tournament[0].tour_teams;  //Math.log2(this.tournamentTeams)
         this.tournamentRound  = this.tournament[0].tour_round;
         this.getRounds(this.tournamentRound);
+        //Sponsors
+        this.sponsors = localStorage.getItem('getSponsors');
 
         this.loading.dismiss();
-
         this.connectivityService.showInfo();
       }
     }, 3000);
@@ -108,6 +112,18 @@ export class HomePage {
         this.errorMessageView = true;
         this.loading.dismiss();
       });
+
+      //getSponsors
+      this.httpService
+        .getCallHttp('getSponsors','','','','','')
+        .then(res => {
+          console.log('SUCCESS: ' + JSON.stringify(res));
+          this.sponsors = res.posts[0].content;
+          localStorage.setItem('getSponsors',JSON.stringify(this.sponsors));
+        })
+        .catch(error => {
+          console.log('ERROR: ' + error);
+        });
 
     
   }
