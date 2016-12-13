@@ -28,3 +28,27 @@
 
 === Player ===
 ?leagueengine=player&pid=33&lid=2&sid=32
+
+
+=== shortcode ===
+add_shortcode('leagueengine_show_leaderboard', 'leagueengine_show_leaderboard');
+add_shortcode('leagueengine_show_league', 'leagueengine_show_league');
+add_shortcode('leagueengine_show_player', 'leagueengine_show_player');
+add_shortcode('leagueengine_show_season', 'leagueengine_show_season');
+add_shortcode('leagueengine_show_season_match', 'leagueengine_show_season_match');
+add_shortcode('leagueengine_show_season_matches', 'leagueengine_show_season_matches');
+add_shortcode('leagueengine_show_season_table', 'leagueengine_show_season_table');
+add_shortcode('leagueengine_show_season_table_widget', 'leagueengine_show_season_table_widget');
+add_shortcode('leagueengine_show_team', 'leagueengine_show_team');
+add_shortcode('leagueengine_show_tournament', 'leagueengine_show_tournament');
+add_shortcode('leagueengine_show_tournament_match', 'leagueengine_show_tournament_match');
+add_shortcode('leagueengine_show_leaderboard', 'leagueengine_show_leaderboard');
+add_shortcode('leagueengine_show_league', 'leagueengine_show_league');
+add_shortcode('leagueengine_show_player', 'leagueengine_show_player');
+add_shortcode('leagueengine_show_season', 'leagueengine_show_season');
+add_shortcode('leagueengine_show_season_match', 'leagueengine_show_season_match');
+add_shortcode('leagueengine_show_season_matches', 'leagueengine_show_season_matches');
+add_shortcode('leagueengine_show_season_table', 'leagueengine_show_season_table');
+add_shortcode('leagueengine_show_team', 'leagueengine_show_team');
+add_shortcode('leagueengine_show_tournament', 'leagueengine_show_tournament');
+add_shortcode('leagueengine_show_tournament_match', 'leagueengine_show_tournament_match');
