@@ -107,8 +107,9 @@
 
     </ion-list>
 
+    <!--
     <div *ngIf="showButtonEditDelete">
-      <ion-fab right bottom fab-fixed>
+      <ion-fab right top>
         <button ion-fab color="dark"><ion-icon name="ios-arrow-back"></ion-icon></button>
         <ion-fab-list side="left">
           <button ion-fab color="dark" (click)="sendMail(ordine.customer.email)"><ion-icon name="mail"></ion-icon></button>
@@ -118,6 +119,20 @@
         </ion-fab-list>
       </ion-fab>
   </div>
-
+  -->
 
 </ion-content>
+
+<ion-footer *ngIf="showButtonEditDelete">
+  <ion-navbar color="primary">
+    <ion-title>Gestione</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="sendMail(ordine.customer.email)"><ion-icon name="mail"></ion-icon></button>
+      <button ion-button icon-only (click)="changeStatus(ordine,ordine.status)"><ion-icon name="swap"></ion-icon></button>
+      <button ion-button icon-only (click)="deleteOrder(ordine.id)"><ion-icon name="trash"></ion-icon></button>
+      <button ion-button icon-only (click)="showNote(ordine.id)"><ion-icon name="paper"></ion-icon></button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-footer>

@@ -35,6 +35,7 @@ export class HomePage {
   errorMessageView: any;
 
   showPage: boolean = false;
+  networkFound: any;
 
   constructor(
     public navCtrl: NavController, 
@@ -45,6 +46,8 @@ export class HomePage {
   ) { }
 
   ionViewDidLoad() {
+    this.networkFound = this.connectivityService.connectivityFound;
+    
     this.loading = this.loadingCtrl.create({
       spinner: 'crescent',
     });

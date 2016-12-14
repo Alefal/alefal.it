@@ -139,6 +139,6 @@
 		</ion-item>
 	</ion-list>
 
-	<div class="gridHeader" [innerHTML]="sponsors" style="text-align:center"></div>
+	<div class="gridHeader" [innerHTML]="sponsors" style="text-align:center" *ngIf="networkFound"></div>
 	
 </ion-content>

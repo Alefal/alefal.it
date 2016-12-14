@@ -87,7 +87,7 @@
 				$output .= '<table class="form">';
 				$output .= '<tr>';
 				$output .= '<th style="width:15%;">'.__('Date/Time','leagueengine').'</th>';
-				$output .= '<th style="width:25%;">'.__('Competition','leagueengine').'</th>';
+				//$output .= '<th style="width:25%;">'.__('Competition','leagueengine').'</th>';
 				$output .= '<th style="width:25%;text-align:center;">'.__('Home','leagueengine').'</th>';
 				$output .= '<th style="width:10%;text-align:center;">'.__('Score','leagueengine').'</th>';
 				$output .= '<th style="width:25%;text-align:center;">'.__('Away','leagueengine').'</th>';
@@ -107,7 +107,7 @@
 				    
 				    $output .= '<tr>';
 				    $output .= '<td><a href="admin.php?page=leagueengine_season_match&lid='.$league_id.'&sid='.$season_id.'&mid='.$match->id.'">' . $match_time . '</a></td>';
-				    $output .= '<td><a href="admin.php?page=leagueengine_league&id='.$league_id.'">' . leagueengine_fetch_data_from_id($league_id,'data_value') . '</a> &dash; <a href="admin.php?page=leagueengine_season_table&lid='.$league_id.'&sid='.$season_id.'">' . leagueengine_fetch_data_from_id($season_id,'data_value') . '</a></td>';
+				    //$output .= '<td><a href="admin.php?page=leagueengine_league&id='.$league_id.'">' . leagueengine_fetch_data_from_id($league_id,'data_value') . '</a> &dash; <a href="admin.php?page=leagueengine_season_table&lid='.$league_id.'&sid='.$season_id.'">' . leagueengine_fetch_data_from_id($season_id,'data_value') . '</a></td>';
 				    
 				    if($league_type == 'players') {
 					 	$output .= '<td style="text-align:center;"><a href="admin.php?page=leagueengine_player&id='.$match->home_team_id.'">' . leagueengine_fetch_data_from_id($match->home_team_id,'data_value') . '</a></td>';   
@@ -141,7 +141,7 @@
 				$output .= '<table class="form">';
 				$output .= '<tr>';
 				$output .= '<th style="width:15%;">'.__('Date/Time','leagueengine').'</th>';
-				$output .= '<th style="width:25%;">'.__('Competition','leagueengine').'</th>';
+				//$output .= '<th style="width:25%;">'.__('Competition','leagueengine').'</th>';
 				$output .= '<th style="width:25%;text-align:center;">'.__('Home','leagueengine').'</th>';
 				$output .= '<th style="width:10%;text-align:center;">'.__('Score','leagueengine').'</th>';
 				$output .= '<th style="width:25%;text-align:center;">'.__('Away','leagueengine').'</th>';
@@ -160,7 +160,7 @@
 				    
 				    $output .= '<tr>';
 				    $output .= '<td><a href="admin.php?page=leagueengine_season_match&lid='.$league_id.'&sid='.$season_id.'&mid='.$match->id.'">' . $match_time . '</a></td>';
-				    $output .= '<td><a href="admin.php?page=leagueengine_tournament&id='.$tournament_id.'">' . leagueengine_fetch_data_from_id($tournament_id,'data_value') . '</a></td>';
+				    //$output .= '<td><a href="admin.php?page=leagueengine_tournament&id='.$tournament_id.'">' . leagueengine_fetch_data_from_id($tournament_id,'data_value') . '</a></td>';
 
 				    if($league_type == 'players') {
 					 	$output .= '<td style="text-align:center;"><a href="admin.php?page=leagueengine_player&id='.$match->home_team_id.'">' . leagueengine_fetch_data_from_id($match->home_team_id,'data_value') . '</a></td>';   
