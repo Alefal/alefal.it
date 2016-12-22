@@ -1,13 +1,13 @@
 <?php
 //Locale
-//$league_id = 95; 
-//$season_id = 96;
+$league_id = 95; 
+$season_id = 96;
 //Remote
 //$league_id = 77; 
 //$season_id = 78;
 
 //Tournament TDT
-$tournament_id = 1;
+//$tournament_id = 1;
 
 function le_leagueengine_table_gp($league,$season,$team) {
 	global $wpdb;

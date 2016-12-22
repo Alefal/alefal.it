@@ -16,6 +16,9 @@
 
 [leagueengine_show_tournament tid="54"]
 
+[leagueengine_show_season_matches lid="77" sid="78" type="all" limit="3"]
+[leagueengine_show_season_matches lid="77" sid="78" type="future"]
+
 === League and Matchs ===
 ?leagueengine=season&lid=2&sid=32
 
