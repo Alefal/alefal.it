@@ -12,7 +12,7 @@
  * License URI: http://www.gnu.org/licenses/gpl-3.0
 */
 
-//add_action( 'admin_menu', 'remove_menus', 99, 0 );
+add_action( 'admin_menu', 'remove_menus', 99, 0 );
 function remove_menus(){  
 
 	//remove_menu_page( 'index.php' );             			//Dashboard
@@ -30,7 +30,7 @@ function remove_menus(){
   	
   	/*** WOOCOMMERCE ***/
   	remove_submenu_page( 'woocommerce', 'wc-addons' );
-  	remove_submenu_page( 'woocommerce', 'wc-reports' );
+  	//remove_submenu_page( 'woocommerce', 'wc-reports' );
   	remove_submenu_page( 'woocommerce', 'wc-status' );
   	remove_submenu_page( 'woocommerce', 'wc-settings' );
 
