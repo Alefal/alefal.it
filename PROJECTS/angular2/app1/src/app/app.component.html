@@ -3,3 +3,9 @@
 </h1>
 
 <app-articolo [articolo]="myArticolo" (like)="mostraMessaggioRingraziamento($event)"></app-articolo>
+
+Inserisci un numero: 
+<input type="number" #numero (keyup)="0" /> 
+<div>
+    Il doppio di {{numero.value}} &egrave; {{numero.value * 2}}
+</div> 
