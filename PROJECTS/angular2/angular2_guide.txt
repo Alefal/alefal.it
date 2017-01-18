@@ -1,0 +1,26 @@
+=== Le fasi del ciclo di vita del componente ===
+OnChanges
+Si verifica quando il valore di una proprietà di input viene modificato. Oltre a verificarsi prima dell'inizializzazione del componente, si verifica anche ogni qualvolta cambia il valore delle proprietà di input
+
+OnInit	
+Rappresenta la fase di inizializzazione del componente e si verifica dopo il primo evento OnChanges.
+Questa fase viene eseguita una sola volta durante il ciclo di vita del componente.
+
+DoCheck	
+Questa fase viene eseguita durante il check interno di Angular per valutare le modifiche ai componenti ed ai dati. Approfondiremo questo aspetto più avanti nella guida.
+
+AfterContentInit	
+In questa fase il contenuto associato al componente è stato inizializzato; in particolare, è stato costruito l'albero degli eventuali componenti figli.
+
+AfterContentChecked	
+Anche questa fase viene eseguita durante un check interno di Angular sui contenuti associati al componente. Come per la fase di DoCheck, essa risulterà più chiara quando parleremo in maniera più dettagliata del processo di change detection di Angular
+
+AfterViewInit	
+Questa è la fase di inizializzazione della view associata al componente. In questa fase il componente risulta mappato sul DOM ed è quindi visibile.
+
+AfterViewChecked	
+Come per le altre fasi checked, anche in questo caso questa fase riguarda il check interno di Angular sulla view appena generata.
+
+OnDestroy	
+Questa è l'ultima fase del ciclo di vita del componente e si verifica prima che Angular lo distrugga definitivamente.
+Questa fase viene eseguita una sola volta durante il ciclo di vita del componente.
