@@ -57,3 +57,14 @@ Le direttive strutturali modificano la struttura del DOM aggiungendo o rimuovend
 Angular 2 propone due approcci alla costruzione e gestione di form:
 1) Template Driven Form: Si basa prevalentemente sulla definizione di una form tramite markup, inclusi i criteri di validazione, in modo simile all'approccio di Angular 1.x
 2) Reactive Form: Detto anche Model Driven Form, questo approccio prevede una definizione minimale del template tramite markup e sposta la logica di validazione all'interno della definizione del componente. Inoltre prevede una modalità alternativa di costruzione della form stessa.
+
+=== PIPE ===
+https://angular.io/docs/ts/latest/api/#!?type=pipe
+
+Pipe		Descrizione
+uppercase	Converte una stringa in caratteri maiuscoli
+lowercase	Converte una stringa in caratteri minuscoli
+slice		Ritorna una sottostringa compresa tra due parametri: inizio e fine
+json		Trasforma un oggetto nella sua rappresentazione JSON
+date		Consente di formattare opportunamente una data
+number		Consente di formattare valori numerici

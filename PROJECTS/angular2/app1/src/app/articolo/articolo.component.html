@@ -3,6 +3,11 @@
 <p> 
     {{articolo.testo}} 
 </p>
+
+<p> 
+  {{articolo.testo | truncate:5}} 
+</p>
+
 <p>
     Voti: {{articolo.numApprezzamenti}} 
     <button (click)="incrementaApprezzamenti($event)" >Mi piace</button> 

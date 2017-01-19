@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms'; 
+
+import { Articolo} from '../articolo/articolo'; 
 
 @Component({
   selector: 'app-articolo-form-reactive',
@@ -8,40 +10,44 @@ import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 })
 export class ArticoloFormReactiveComponent implements OnInit {
 
-	registerForm = new FormGroup({
-    firstname: new FormControl(),
-    lastname: new FormControl(),
-    address: new FormGroup({
-      street: new FormControl(),
-      zip: new FormControl(),
-      city: new FormControl()
-    })
-  });
+  myForm: FormGroup; 
+  @Input() model: Articolo;
 
-	myForm = new FormGroup({ 
-     
-      txtTitolo: new FormControl(), 
-      txtAutore: new FormControl(), 
-      txtTesto: new FormControl() 
+	constructor(fb: FormBuilder) { 
+    this.model = new Articolo();  
+ 
+ 
+    this.myForm = fb.group({ 
+      txtTitolo: ["", [ Validators.required, 
+                Validators.maxLength(30)] 
+            ], 
+      txtAutore: ["", [ Validators.required, 
+                Validators.maxLength(20)] 
+            ], 
+      txtTesto: ["", [  Validators.required, 
+                Validators.minLength(2000),   
+                Validators.maxLength(5000)] 
+            ] 
+    }); 
+
+    this.myForm.valueChanges.subscribe(value => { 
+      this.model.titolo = value.txtTitolo; 
+      this.model.autore = value.txtAutore; 
+      this.model.testo = value.txtTesto; 
     });
 
-	  constructor() { 
-    /*
-    this.myForm = new FormGroup({ 
-     
-      txtTitolo: new FormControl(), 
-      txtAutore: new FormControl(), 
-      txtTesto: new FormControl() 
+    this.myForm.controls["txtTitolo"].valueChanges.subscribe(value => { 
+      console.log('stai modificando il titolo...');
     });
-    */ 
   }  
 
 	  ngOnInit() {
 	  }
 
-
-
     visualizzaArticolo() { 
+
+      console.log(this.model.titolo);
+
     	console.log(this.myForm.value);
 
 	   console.log(this.myForm.controls["txtTitolo"].value); 

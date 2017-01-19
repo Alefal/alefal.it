@@ -11,3 +11,11 @@ Inserisci un numero:
 </div> 
 
 <app-articolo-form-reactive></app-articolo-form-reactive>
+
+<h3>{{"Le Pipe di Angular 2" | uppercase}}</h3>
+<h3>{{"Le Pipe di Angular 2" | slice:3:3*2+1}}</h3> 
+<h3>{{"Le Pipe di Angular 2" | slice:3:7 | uppercase}}</h3>
+
+<span>{{oggi | date }}</span>
+
+<span>{{ 123 | number:"1.2" }}</span>
