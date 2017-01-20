@@ -1,4 +1,4 @@
-<?
+<?php
 // *** Restrict Access To Page: Grant or deny access to this page
 $FF_authorizedUsers=" ";
 $FF_authFailedURL="login.php?action=accessdenied";

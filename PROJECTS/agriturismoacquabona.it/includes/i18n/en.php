@@ -1,4 +1,4 @@
-<?
+<?php
 /* DATABASE */
 define("ERROR_AUTH"		,	"Error authentication db!");
 define("ERROR_DB"		,	"Error selected db!");

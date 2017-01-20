@@ -1,4 +1,4 @@
-<?
+<?php
 /* Funzioni per le date */
 $day;
 $month;

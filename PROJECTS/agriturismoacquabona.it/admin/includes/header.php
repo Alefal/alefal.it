@@ -1,4 +1,4 @@
-<?
+<?php
 require_once("includes/grant.php");
 require('includes/configure.php'); 
 require_once("includes/functions.php");

@@ -1,4 +1,4 @@
-<?
+<?php
 require_once("configure.php");
 
 $id = $_GET['id'];

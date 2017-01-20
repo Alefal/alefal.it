@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 
 $language 	= $_GET['language'];

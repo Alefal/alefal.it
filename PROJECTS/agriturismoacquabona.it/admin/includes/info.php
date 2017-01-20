@@ -6,7 +6,7 @@
 </head>
 
 <body>
-<?
+<?php
 //phpinfo();
 for($i = strtotime("2009-4-1");$i<=strtotime("2009-4-30");$i+=(3600*24)) {
 	echo $i."<br>";

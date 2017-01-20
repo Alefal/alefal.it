@@ -1,4 +1,4 @@
-<? 
+<?php 
 session_start();
 
 require_once("includes/configure.php");
@@ -19,7 +19,7 @@ $today = date(d);
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="EN" lang="EN">
 <head>
-<title><?=TITOLO?></title>
+<title><?php=TITOLO?></title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 <script type="text/javascript" src="js/AC_RunActiveContent.js" ></script>
@@ -54,7 +54,7 @@ var $j = jQuery.noConflict();
 
 $j(function(){
 	//Date
-	$j('.datapickerMio').datepicker({dateFormat: 'dd/mm/yy',minDate: -0<?//=$today-1?>});
+	$j('.datapickerMio').datepicker({dateFormat: 'dd/mm/yy',minDate: -0<?php//=$today-1?>});
 	
 	// Dialog			
 	$j('#dialog').dialog({
@@ -127,28 +127,28 @@ $j(function(){
 
 <div id="header">
 	<div id="language">
-    	<?
+    	<?php
 		$page = basename($_SERVER['PHP_SELF']);
 		?>
 
-    	<a href="includes/i18n/language.php?language=it&page=<?=$page?>">
+    	<a href="includes/i18n/language.php?language=it&page=<?php=$page?>">
         	<img src="images/it.png" border="0" /></a> 
 
         &nbsp;&nbsp;&nbsp;
 
-        <a href="includes/i18n/language.php?language=en&page=<?=$page?>">
+        <a href="includes/i18n/language.php?language=en&page=<?php=$page?>">
         	<img src="images/en.png" border="0" /></a> 
     </div>
     
 	<div id="container">
 		<div id="menu">
             <ul id="thicktabs">
-                <li><a id="leftmostitem" href="index.php"><?=HOME?></a></li>
-                <li><a href="storia.php"><?=STORIA?></a></li>
-                <li><a href="servizi.php"><?=SERVIZI?></a></li>
-                <li><a href="foto.php"><?=FOTO?></a></li>
-                <li><a href="doveSiamo.php"><?=DOVESIAMO?></a></li>
-                <li><a href="contatti.php"><?=CONTATTI?></a></li>
+                <li><a id="leftmostitem" href="index.php"><?php=HOME?></a></li>
+                <li><a href="storia.php"><?php=STORIA?></a></li>
+                <li><a href="servizi.php"><?php=SERVIZI?></a></li>
+                <li><a href="foto.php"><?php=FOTO?></a></li>
+                <li><a href="doveSiamo.php"><?php=DOVESIAMO?></a></li>
+                <li><a href="contatti.php"><?php=CONTATTI?></a></li>
             </ul>
             <br style="clear: left" />
         </div>
@@ -156,15 +156,15 @@ $j(function(){
         
         
 <script type="text/javascript">
-AC_FL_RunContent( 'codebase','http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0','width','800','height','250','src','swf/images<?=$random?>','quality','high','wmode','transparent','pluginspage','http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash','movie','swf/images<?=$random?>' ); //end AC code
+AC_FL_RunContent( 'codebase','http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0','width','800','height','250','src','swf/images<?php=$random?>','quality','high','wmode','transparent','pluginspage','http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash','movie','swf/images<?php=$random?>' ); //end AC code
 </script>
 <noscript>
 <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0" width="800" height="250">
         <param name="wmode" value="transparent" />
-		<param name="movie" value="swf/images<?=$random?>.swf" />
+		<param name="movie" value="swf/images<?php=$random?>.swf" />
         <param name="quality" value="high" />
         <embed 	wmode="transparent"
-        		src="swf/images<?=$random?>.swf" 
+        		src="swf/images<?php=$random?>.swf" 
         		quality="high" 
                 pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" 
                 type="application/x-shockwave-flash" 

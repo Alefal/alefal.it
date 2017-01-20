@@ -1,4 +1,4 @@
-<? require_once("includes/header.php") ?>
+<?php require_once("includes/header.php") ?>
 
 <div id="content">
 	<div id="container">
@@ -6,14 +6,14 @@
         
         	<div id="welcome">
         		<p>
-        	  		<h1><?=TIT_HOME?></h1>
+        	  		<h1><?php=TIT_HOME?></h1>
         	  	</p>
         	  	<p class="lineaH">&nbsp;</p>
-				<?=TST_WELCOME?>
+				<?php=TST_WELCOME?>
         	  	<p>&nbsp;</p>
               
                 <!-- START: ui-dialog -->
-                <div id="dialog" title="<?=TIT_PRENOTA?>">
+                <div id="dialog" title="<?php=TIT_PRENOTA?>">
                     <p>
                     <div id="risultatoRichiesta"></div>
                     </p>
@@ -26,14 +26,14 @@
             <div id="info">
             	<div id="servizi">
                     <p>
-                    <h1><?=TIT_NS_SERVIZI?></h1>
+                    <h1><?php=TIT_NS_SERVIZI?></h1>
                 	</p>
                     <div id="servizio">
                         <div id="foto">
                             <img src="images/servizi/fattoriaC.jpg" width="100px" class="border" />                        
                         </div>
                         <div id="descr">
-                            <?=TST_FATTORIA?>
+                            <?php=TST_FATTORIA?>
                         </div>
                     </div>
                     <br />
@@ -42,7 +42,7 @@
                             <img src="images/servizi/campagnaC.jpg" class="border" />                        
                         </div>
                         <div id="descr">
-                            <?=TST_CAMPAGNA?>
+                            <?php=TST_CAMPAGNA?>
                         </div>
                     </div>
                     <br />
@@ -51,22 +51,22 @@
                             <img src="images/servizi/prodottiC.jpg" width="100px" class="border" />                        
                         </div>
                         <div id="descr">
-                            <?=TST_PRODOTTI?>
+                            <?php=TST_PRODOTTI?>
                         </div>
                     </div>
           		</div>
                 <div id="news">
-                    <h1><?=TIT_NEWS?></h1>
-                	<? require_once("includes/newsView.php") ?>
+                    <h1><?php=TIT_NEWS?></h1>
+                	<?php require_once("includes/newsView.php") ?>
                 </div>
             
           </div>
             
         </div>
         <div id="dx">
-	    	<? require_once("includes/disponibilita.php") ?>
+	    	<?php require_once("includes/disponibilita.php") ?>
         </div>
 	</div>
 </div>
 
-<? require_once("includes/footer.php") ?>
+<?php require_once("includes/footer.php") ?>

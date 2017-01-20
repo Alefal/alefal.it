@@ -4,7 +4,7 @@ Per prenotare una stanza devi cliccare direttamente sul quadratino (di coloro ch
 Per visualizzare la situazione di qualche altro mese, selezionare il mese opportuno dal menu a tendina sulla destra.
 <br /><br />
 
-<? 
+<?php 
 //Primo form con scelta da menu a tendina
 if ((!isset($_GET["Month"])) && (!isset($_GET["Year"]))) {
 	$Month = date("m");

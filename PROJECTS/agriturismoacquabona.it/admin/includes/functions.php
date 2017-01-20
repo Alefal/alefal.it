@@ -1,4 +1,4 @@
-<?
+<?php
 /* Calcola i giorni non lavorativi */
 function calculateWorkingDays($fromDate,$tillDate) {
 	tokDate($fromDate);

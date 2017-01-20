@@ -1,4 +1,4 @@
-<?
+<?php
 /* DATABASE */
 define("ERROR_AUTH"		,	"Errore nell'autenticazione al db!");
 define("ERROR_DB"		,	"Errore nella selezione del db!");

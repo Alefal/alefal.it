@@ -49,7 +49,7 @@ function load() {
 			
 			// Create our "tiny" marker icon
 			var icon = new GIcon();
-			icon.image = "<?=IMG_MAPS?>";
+			icon.image = "<?php=IMG_MAPS?>";
 			//icon.shadow = "http://labs.google.com/ridefinder/images/mm_20_shadow.png";
 			icon.iconSize = new GSize(128, 31);
 			//icon.shadowSize = new GSize(128, 31);

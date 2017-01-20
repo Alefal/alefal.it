@@ -1,4 +1,4 @@
-<?
+<?php
 require_once("includes/configure.php");
 $cms = mysql_pconnect(DB_HOST, DB_USER, DB_PASSWORD) or trigger_error(mysql_error(),E_USER_ERROR);  
 
@@ -95,7 +95,7 @@ if($action == "error") {
 <img src="images/logo_admin.jpg" />
 
 <br /><br />
-<?=$message?>
+<?php=$message?>
 <br />
 
 <form name="loginform" id="loginform" action="login.php" method="post">

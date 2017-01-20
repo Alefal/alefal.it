@@ -1,4 +1,4 @@
-<?
+<?php
 require_once("includes/header.php");
 
 $action = $_GET['action'];
@@ -68,7 +68,7 @@ else if($action == "delete") {
 <DIV id="wpbody">
 	<DIV class="wrap">
     	<br />
- 		<H2>Gestione news <?=$message?></H2> 
+ 		<H2>Gestione news <?php=$message?></H2> 
             <!-- rightnow -->
 			<BR class="clear" />
         
@@ -79,7 +79,7 @@ else if($action == "delete") {
                         Inserisci una nuova news:
                         <div id="insertNews">
                             <p>
-                            	<? include "includes/newsInsert.php"; ?>
+                            	<?php include "includes/newsInsert.php"; ?>
                             </p>     
                         </div>
                     	<!-- FORM INSERIMENTO NEWS -->
@@ -92,7 +92,7 @@ else if($action == "delete") {
                             </H3>
 							<DIV class="dashboard-widget-content">
                                 <p>
-									<? include "includes/newsView.php"; ?>
+									<?php include "includes/newsView.php"; ?>
                                 </p>
                             </DIV>
 						</DIV>
@@ -107,6 +107,6 @@ else if($action == "delete") {
 </DIV>
 <!-- wpbody -->
 
-<?
+<?php
 require_once("includes/footer.php");
 ?>

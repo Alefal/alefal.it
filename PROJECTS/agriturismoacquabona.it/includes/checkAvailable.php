@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 if(isset($_SESSION['disp']))
     unset($_SESSION['disp']);
