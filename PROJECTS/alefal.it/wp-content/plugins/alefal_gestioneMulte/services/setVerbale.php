@@ -51,6 +51,12 @@ error_reporting(E_ALL);
 
 `IMG_VERB`
 `FILE_PATH_IMG_VERB`
+
+`IMG_VERB1`
+`FILE_PATH_IMG1_VERB`
+`IMG_VERB2`
+`FILE_PATH_IMG2_VERB`
+
 `LATI_VERB`
 `LONG_VERB`
   
@@ -175,21 +181,21 @@ if($numeroVerbale != '') {
             `COD_TRSG_VERB`,
             `IMG_VERB`,
             `FILE_PATH_IMG_VERB`,
+            `IMG1_VERB`,
+            `FILE_PATH_IMG1_VERB`,
+            `IMG2_VERB`,
+            `FILE_PATH_IMG2_VERB`
             `LATI_VERB`,
             `LONG_VERB`,
             `ID_AGENTE1_VERB`,
             `ID_AGENTE2_VERB`,
             `NOME_AGENT1_VERB`,
-            `NOME_AGENT2_VERB`,
-            `IMG_VERB`,
-            `FILE_PATH_IMG_VERB`,
-            `IMG_VERB`,
-            `FILE_PATH_IMG_VERB`) values (
+            `NOME_AGENT2_VERB`) values (
                             %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
                             %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
                             %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-                            %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-                            %s, %s, %s, %s)", //IMG1 e IMG2 
+                            %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 
+                            %s, %s, %s, %s, %s)", 
                 $numeroVerbale,
                 $dataVerbale,
                 $oraVerbale,
@@ -225,16 +231,16 @@ if($numeroVerbale != '') {
                 $nomeObbligato,
                 $imgBase64,
                 $filePathImg,
+                $imgBase64_1,
+                $filePathImg1,
+                $imgBase64_2,
+                $filePathImg2,
                 $latVerbale,
                 $longVerbale,
                 $agenteVerbale,
                 $agente2Verbale,
                 $agenteNomeVerbale,
-                $agente2NomeVerbale,
-                $imgBase64_1,
-                $filePathImg1,
-                $imgBase64_2,
-                $filePathImg2);
+                $agente2NomeVerbale);
 
     //echo $sql;
     $result = $wpdb->query($sql);
