@@ -581,9 +581,18 @@ angular.module('starter.controllers', [])
 
   $scope.noteVerbale        = '';
 
-  $scope.imgBase64    = '';
-  $scope.filePathImg  = '';
-  $scope.picData      = '';
+  $scope.imgBase64_0   = '';
+  $scope.filePathImg   = '';
+  $scope.picData       = '';
+
+  $scope.imgBase64_1   = '';
+  $scope.filePathImg1  = '';
+  $scope.picData1      = '';
+
+  $scope.imgBase64_2   = '';
+  $scope.filePathImg2  = '';
+  $scope.picData2      = '';
+
   //$scope.picData      = 'img/icon.png'; //TEST BROWSER
 
   //GEOLOCATION
@@ -598,7 +607,7 @@ angular.module('starter.controllers', [])
       //alert('code: '    + err.code    + '\n' + 'message: ' + err.message + '\n');
     });
 
-  $scope.takePicture = function() {
+  $scope.takePicture = function(numImage) {
 
     var options = {
       quality: 50,
@@ -612,8 +621,18 @@ angular.module('starter.controllers', [])
       function(imageData) {
         $scope.capturePhotoClass = 'capturePhoto';
         console.log('--->>> '+imageData);
-        $scope.filePathImg = ''+imageData+'';
-        $scope.picData = imageData;
+
+        if(numImage == '0') { 
+          $scope.filePathImg = ''+imageData+'';
+          $scope.picData = imageData;
+        } else if(numImage == '1') { 
+          $scope.filePathImg1 = ''+imageData+'';
+          $scope.picData1 = imageData;
+        } else if(numImage == '2') { 
+          $scope.filePathImg2 = ''+imageData+'';
+          $scope.picData2 = imageData;
+        }
+
         $scope.ftLoad = true;
         /*$localstorage.set('fotoUp', imageData);*/
         $ionicLoading.show({
@@ -694,6 +713,9 @@ angular.module('starter.controllers', [])
       $scope.articoloRequired = false;
     }
 
+    /*** Gennaio 2017: Verifica TARGA ***/
+    $scope.verificaTarga($scope.targaVeicolo);
+
     $ionicLoading.show({
       template: 'Attendere...'
     });
@@ -748,8 +770,15 @@ angular.module('starter.controllers', [])
         'nomeObbligato'       : $scope.idObbligato,
         'nomeTrasgres'        : $scope.idTrasgres,
 
-        'imgBase64'           : $scope.picData,
+        'imgBase64_0'         : $scope.picData,
         'filePathImg'         : $scope.filePathImg,
+
+        'imgBase64_1'         : $scope.picData1,
+        'filePathImg1'        : $scope.filePathImg1,
+
+        'imgBase64_2'         : $scope.picData2,
+        'filePathImg2'        : $scope.filePathImg2,
+
         'latVerbale'          : $scope.latVerbale,
         'longVerbale'         : $scope.longVerbale,
 
@@ -768,6 +797,7 @@ angular.module('starter.controllers', [])
     var modalitaOfflineCheck = localStorage.getItem('modalitaOffline');
     if($rootScope.foundConnection && modalitaOfflineCheck == 'false') {
 
+      //SALVATAGGIO VERBALE
       ajaxCallServices.salvaVerbale($scope.verbaleCompleto)
         .success(function (result) {
 
@@ -780,6 +810,7 @@ angular.module('starter.controllers', [])
 
           console.log('NUMERO VERBALE 3: '+numVerbIncremento);
 
+          //UPLOAD FILE
           document.addEventListener('deviceready', function () {
 
               if(angular.isNumber(result[0].message)) {
@@ -788,8 +819,14 @@ angular.module('starter.controllers', [])
                 console.log('ente: '+ente);
 
                 var server = $rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/upload.php?id='+result[0].message;
-                var filePath = $scope.picData;
+                
+                var filePath  = $scope.picData;
+                var filePath1 = $scope.picData1;
+                var filePath2 = $scope.picData2;
                 console.log(filePath);
+                console.log(filePath1);
+                console.log(filePath2);
+
                 var options = {};
 
                 /***** Picture Upload Error Code: 3 - Aggiungere all'header *****/
@@ -803,6 +840,8 @@ angular.module('starter.controllers', [])
                   Connection: 'close'
                 }
 
+                /*
+                //Upload IMAGE0
                 if (filePath != '') {
                   $cordovaFileTransfer.upload(server, filePath, options)
                     .then(function(result) {
@@ -819,10 +858,52 @@ angular.module('starter.controllers', [])
                       // constant progress updates
                       console.log(progress);
                     });
-                  } else {
-                    $ionicLoading.hide();
-                    $scope.showAlert('Salvataggio verbale','Verbale salvato correttamente!',true);
-                  }
+                } else {
+                  $ionicLoading.hide();
+                  $scope.showAlert('Salvataggio verbale','Verbale salvato correttamente!',true);
+                }
+                */
+
+                //Upload IMAGE0
+                if (filePath != '') {
+                  console.log('filePath: '+filePath);
+                  $cordovaFileTransfer.upload(server, filePath, options)
+                    .then(function(result) {
+                      console.log(result);
+                    }, function(err) {
+                      console.log(err);
+                    }, function (progress) {
+                      console.log(progress);
+                    });
+                }
+                //Upload IMAGE1
+                if (filePath1 != '') {
+                  console.log('filePath1: '+filePath1);
+                  $cordovaFileTransfer.upload(server, filePath1, options)
+                    .then(function(result) {
+                      console.log(result);
+                    }, function(err) {
+                      console.log(err);
+                    }, function (progress) {
+                      console.log(progress);
+                    });
+                }
+                //Upload IMAGE2
+                if (filePath2 != '') {
+                  console.log('filePath2: '+filePath2);
+                  $cordovaFileTransfer.upload(server, filePath2, options)
+                    .then(function(result) {
+                      console.log(result);
+                    }, function(err) {
+                      console.log(err);
+                    }, function (progress) {
+                      console.log(progress);
+                    });
+                }
+
+                $ionicLoading.hide();
+                $scope.showAlert('Salvataggio verbale','Verbale salvato correttamente!',true);
+              
               } else {
                 $ionicLoading.hide();
                 $scope.showAlert('Salvataggio verbale','Verbale salvato correttamente!',true);
@@ -883,6 +964,8 @@ angular.module('starter.controllers', [])
     $scope.nomeObbligato    = '';
     $scope.nomeTrasgres     = '';
     $scope.picData          = '';
+    $scope.picData1         = '';
+    $scope.picData2         = '';
 
     /*
     $scope.idAgente2        = ''; //Mantenere ultimo scelto
@@ -960,6 +1043,58 @@ angular.module('starter.controllers', [])
             modal.show();
           }
         });
+  };
+
+  /*** Gennaio 2017: Verifica TARGA ***/
+  $scope.verificaTarga = function(targa) {
+
+    $scope.loading = true;
+
+    $ionicLoading.show({
+      template: 'Verifico targa...'
+    });
+
+    if(targa != '') {
+      ajaxCallServices.getItems('verificaTarga',targa)
+        .success(function (items) {
+
+          if(items[0].response[0].result == 'OK') {
+            $scope.loading = false;
+            $ionicLoading.hide();
+
+            var confirmPopup = $ionicPopup.confirm({
+              title: 'Targa autorizzata!',
+              template: 'Sei sicuro di voler procedere? La targa indicata risulta nell\'elenco AUTORIZZATI.'
+            });
+
+            confirmPopup.then(function(res) {
+              if(res) {
+                console.log('SI');
+                return true;
+              } else {
+                console.log('NO');
+                return false;
+              }
+            });
+
+          } else {
+            $scope.loading = false;
+            $ionicLoading.hide();
+            //se non trovo la targa tra quelli autorizzati vado avanti senza nessun messaggio
+          }
+        }).error(function (error) {
+          $scope.loading = false;
+          $ionicLoading.hide();
+          //se non trovo la targa tra quelli autorizzati vado avanti senza nessun messaggio
+        });
+
+    } else {
+      //non dovrebbe mai andare qui perchè c'è già un controllo precedente
+      $ionicLoading.hide();
+      $scope.targaVeicoloRequired = true;
+      $ionicScrollDelegate.scrollTop(true);
+      return false;
+    }
 
   };
 

@@ -122,15 +122,13 @@
 
     <div class="spacerVertical"></div>
 
-    <!--
-    IMG_VERB
-    -->
+    <!-- IMG_VERB -->
     <div class="row eventTab">
       <div class="col">
         <h4>Scatta foto</h4>
       </div>
       <div class="col" align="right">
-        <button class="button button-dark icon-left ion-ios-camera-outline" ng-click="takePicture()"> Scatta</button>
+        <button class="button button-dark icon-left ion-ios-camera-outline" ng-click="takePicture('0')"> Scatta</button>
       </div>
     </div>
     <div class="list list-inset">
@@ -140,6 +138,46 @@
           Fare UPLOAD del file e aggiungere campo PATH_IMG_VERB
           -->
           <img id="veicoloFoto" class="item" ng-src="{{picData}}" />
+        </div>
+      </label>
+    </div>
+
+    <!-- IMG1_VERB -->
+    <div class="row eventTab">
+      <div class="col">
+        <h4>Aggiungi foto</h4>
+      </div>
+      <div class="col" align="right">
+        <button class="button button-dark icon-left ion-ios-camera-outline" ng-click="takePicture('1')"> Scatta</button>
+      </div>
+    </div>
+    <div class="list list-inset">
+      <label class="item item-input {{capturePhotoClass}}" ng-click="openModalItem('generic')">
+        <div ng-show="picData1" class="item item-image">
+          <!--
+          Fare UPLOAD del file e aggiungere campo PATH_IMG_VERB
+          -->
+          <img id="veicoloFoto" class="item" ng-src="{{picData1}}" />
+        </div>
+      </label>
+    </div>
+
+    <!-- IMG2_VERB -->
+    <div class="row eventTab">
+      <div class="col">
+        <h4>Aggiungi foto</h4>
+      </div>
+      <div class="col" align="right">
+        <button class="button button-dark icon-left ion-ios-camera-outline" ng-click="takePicture('2')"> Scatta</button>
+      </div>
+    </div>
+    <div class="list list-inset">
+      <label class="item item-input {{capturePhotoClass}}" ng-click="openModalItem('generic')">
+        <div ng-show="picData2" class="item item-image">
+          <!--
+          Fare UPLOAD del file e aggiungere campo PATH_IMG_VERB
+          -->
+          <img id="veicoloFoto" class="item" ng-src="{{picData2}}" />
         </div>
       </label>
     </div>

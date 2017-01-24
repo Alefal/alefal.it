@@ -3,10 +3,16 @@ require_once('../../../../wp-config.php');
 
 global $wpdb;
 
-$ente = $_GET['ente'];
+$ente 	= $_GET['ente'];
+$targa 	= $_GET['targa'];
 
 $table_name = 'p_autorizzati';
-$items = $wpdb->get_results("SELECT * FROM $table_name WHERE id_ente LIKE '$ente'");
+
+if($targa == '') {
+	$items = $wpdb->get_results("SELECT * FROM $table_name WHERE id_ente LIKE '$ente'");
+} else {
+	$items = $wpdb->get_results("SELECT * FROM $table_name WHERE id_ente LIKE '$ente' AND TARGA_ATRZ LIKE '$targa'");
+}
 
 $itemsArray = array();
 $resultArray = array();

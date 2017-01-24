@@ -8,8 +8,8 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 
   $ionicPlatform.ready(function() {
 
-    //$rootScope.server = 'http://192.168.1.187/alefal.it/PROJECTS/wordpress';
-    $rootScope.server = 'http://cdsmobile.swstudio.net';
+    $rootScope.server = 'http://www.alefal.it';
+    //$rootScope.server = 'http://cdsmobile.swstudio.net';
     //$rootScope.server = 'http://95.110.159.203';
 
     //TEST WITH BROWSER: device
@@ -188,7 +188,7 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
   };
 
   /***** getItems ****/
-  ajaxCallServices.getItems = function (item) {
+  ajaxCallServices.getItems = function (item,targa) {
 
     var service = '';
 
@@ -202,9 +202,17 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
       service = 'getArtPref.php?ente='+ente;
     } else if(item == 'marche') {
       service = 'getMarche.php';
-    } else if(item == 'autorizzati') {
+    } 
+    
+    else if(item == 'autorizzati') {
       service = 'getAutorizzati.php?ente='+ente;
-    } else if(item == 'vie') {
+    } 
+    /*** Gennaio 2017: Verifica TARGA ***/
+    else if(item == 'verificaTarga') {
+      service = 'getAutorizzati.php?ente='+ente+'&targa='+targa;
+    } 
+
+    else if(item == 'vie') {
       service = 'getVie.php?ente='+ente;
     } else if(item == 'obbligato') {
       service = 'getObbligato.php';
