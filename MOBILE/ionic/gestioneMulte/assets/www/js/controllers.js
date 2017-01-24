@@ -635,16 +635,25 @@ angular.module('starter.controllers', [])
     $scope.indirizzoDescr   = angular.element(document.querySelector('#DESCR_VIA_VERB')).val();
     $scope.noteVerbale      = angular.element(document.querySelector('#NOTE_VERB')).val();
 
-    if (typeof($scope.numeroVerbale) == 'undefined' ||
-          $scope.numeroVerbale == '') {
+
+    if (typeof($scope.picData) == 'undefined' ||
+          $scope.picData == '') {
       $scope.fieldsRequired = true;
+      $scope.fotoRequired = true;
+      $ionicScrollDelegate.scrollTop(true);
+      return false;
+    } else if (typeof($scope.numeroVerbale) == 'undefined' ||
+          $scope.numeroVerbale == '') {
+      $scope.fieldsRequired = false;
+      $scope.fotoRequired = false;
       $scope.verbaleRequired = false;
       $scope.datiVerbaleRequired = true;
       $ionicScrollDelegate.scrollTop(true);
       return false;
     } else if(typeof($scope.targaVeicolo) == 'undefined' ||
           $scope.targaVeicolo == '') {
-      $scope.fieldsRequired = true;
+      $scope.fieldsRequired = false;
+      $scope.fotoRequired = false;
       $scope.verbaleRequired = false;
       $scope.datiVerbaleRequired = false;
       $scope.targaVeicoloRequired = true;
@@ -652,7 +661,8 @@ angular.module('starter.controllers', [])
       return false;
     } else if(typeof($rootScope.indirizzoId) == 'undefined' ||
           $rootScope.indirizzoId == '') {
-      $scope.fieldsRequired = true;
+      $scope.fieldsRequired = false;
+      $scope.fotoRequired = false;
       $scope.verbaleRequired = false;
       $scope.datiVerbaleRequired = false;
       $scope.targaVeicoloRequired = false;
@@ -665,7 +675,8 @@ angular.module('starter.controllers', [])
               $rootScope.art1 == '' ||
               $rootScope.codArt1 == '' ||
               $rootScope.descrArt1 == '') {
-      $scope.fieldsRequired = true;
+      $scope.fieldsRequired = false;
+      $scope.fotoRequired = false;
       $scope.verbaleRequired = false;
       $scope.datiVerbaleRequired = false;
       $scope.targaVeicoloRequired = false;
@@ -675,6 +686,7 @@ angular.module('starter.controllers', [])
       return false;
     } else {
       $scope.fieldsRequired = false;
+      $scope.fotoRequired = false;
       $scope.verbaleRequired = false;
       $scope.datiVerbaleRequired = false;
       $scope.targaVeicoloRequired = false;
