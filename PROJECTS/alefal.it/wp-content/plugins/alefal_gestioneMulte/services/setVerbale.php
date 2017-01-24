@@ -111,6 +111,12 @@ $nomeObbligato      = isset($dataJsonDecode->verbaleCompleto->nomeObbligato)    
 
 $imgBase64          = isset($dataJsonDecode->verbaleCompleto->imgBase64)            ? $dataJsonDecode->verbaleCompleto->imgBase64 : '';
 $filePathImg        = isset($dataJsonDecode->verbaleCompleto->filePathImg)          ? $dataJsonDecode->verbaleCompleto->filePathImg : '';
+
+$imgBase64_1        = isset($dataJsonDecode->verbaleCompleto->imgBase64_1)          ? $dataJsonDecode->verbaleCompleto->imgBase64_1 : '';
+$filePathImg2       = isset($dataJsonDecode->verbaleCompleto->filePathImg1)         ? $dataJsonDecode->verbaleCompleto->filePathImg1 : '';
+$imgBase64_2        = isset($dataJsonDecode->verbaleCompleto->imgBase64_2)          ? $dataJsonDecode->verbaleCompleto->imgBase64_2 : '';
+$filePathImg2       = isset($dataJsonDecode->verbaleCompleto->filePathImg2)         ? $dataJsonDecode->verbaleCompleto->filePathImg2 : '';
+
 $latVerbale         = isset($dataJsonDecode->verbaleCompleto->latVerbale)           ? $dataJsonDecode->verbaleCompleto->latVerbale : '';
 $longVerbale        = isset($dataJsonDecode->verbaleCompleto->longVerbale)          ? $dataJsonDecode->verbaleCompleto->longVerbale : '';
 
@@ -174,11 +180,16 @@ if($numeroVerbale != '') {
             `ID_AGENTE1_VERB`,
             `ID_AGENTE2_VERB`,
             `NOME_AGENT1_VERB`,
-            `NOME_AGENT2_VERB`) values (
+            `NOME_AGENT2_VERB`,
+            `IMG_VERB`,
+            `FILE_PATH_IMG_VERB`,
+            `IMG_VERB`,
+            `FILE_PATH_IMG_VERB`) values (
                             %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
                             %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
                             %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-                            %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", 
+                            %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+                            %s, %s, %s, %s)", //IMG1 e IMG2 
                 $numeroVerbale,
                 $dataVerbale,
                 $oraVerbale,
@@ -219,7 +230,11 @@ if($numeroVerbale != '') {
                 $agenteVerbale,
                 $agente2Verbale,
                 $agenteNomeVerbale,
-                $agente2NomeVerbale);
+                $agente2NomeVerbale,
+                $imgBase64_1,
+                $filePathImg1,
+                $imgBase64_2,
+                $filePathImg2);
 
     //echo $sql;
     $result = $wpdb->query($sql);
