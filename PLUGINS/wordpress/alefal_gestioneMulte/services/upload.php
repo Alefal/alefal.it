@@ -15,7 +15,25 @@ $target_dir = '../uploads/'.$_GET['ente'].'/';
 if ($_FILES) {
   $imageCapture = $_FILES['file']['tmp_name'];
 
-  $id   = $_GET['id'];
+  $id         = $_GET['id'];
+  $numImage   = $_GET['numImage'];
+
+  $filePath = '';
+  $imgVerb  = '';
+
+  if($numImage == 0) {
+    $filePath = 'FILE_PATH_IMG_VERB';
+    $imgVerb  = 'IMG_VERB';
+  } else if($numImage == 1) {
+    $filePath = 'FILE_PATH_IMG1_VERB';
+    $imgVerb  = 'IMG1_VERB';
+  } else if($numImage == 2) {
+    $filePath = 'FILE_PATH_IMG2_VERB';
+    $imgVerb  = 'IMG2_VERB';
+  } else {
+    $filePath = 'FILE_PATH_IMG_VERB';
+    $imgVerb  = 'IMG_VERB';
+  }
 
   $items = $wpdb->get_results("SELECT * FROM $table_name WHERE ID LIKE '$id'");
 
@@ -23,15 +41,15 @@ if ($_FILES) {
     $wpdb->update( 
       $table_name, 
       array( 
-        'FILE_PATH_IMG_VERB' => $id.'_image.jpg',
-        'IMG_VERB' => file_get_contents($imageCapture)
+        $filePath => $id.'_image_'.$numImage.'.jpg',
+        $imgVerb  => file_get_contents($imageCapture)
       ),
       array( 
         'ID' => $id  //WHERE
       )  
     );
 
-    $target_file = $target_dir . $id.'_'.basename($_FILES['file']['name']);
+    $target_file = $target_dir . $id.'_'.$numImage.'_'.basename($_FILES['file']['name']);
     move_uploaded_file($_FILES['file']['tmp_name'], $target_file);
   
     $resultArray[] = array(

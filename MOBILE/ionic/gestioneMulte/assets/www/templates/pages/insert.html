@@ -74,7 +74,8 @@
         <h4>Veicolo</h4>
       </div>
       <div class="col" align="right">
-        <button class="button button-stable icon-left ion-android-checkbox-outline" ng-click="openModalItem('marche')"> Scegli</button>
+        <button class="button button-stable icon-left-right ion-android-checkbox-outline" ng-click="openModalItem('marche')"></button>
+        <button class="button button-assertive icon-left-right ion-gear-b" ng-click="verificaTarga()"></button>
       </div>
     </div>
 
@@ -84,7 +85,7 @@
       <label class="item item-input">
         <i class="icon ion-alert" style="color:red"></i>
         <input type="text" id="TARGA_VERB" name="TARGA_VERB" placeholder="Targa veicolo" ng-model="targaVeicolo" required>
-        <i class="icon ion-model-s"></i>
+        <i class="icon ion-model-s" ng-click="verificaTarga()"></i>
       </label>
       <!--
       <label class="item item-input readonly">
@@ -152,7 +153,7 @@
       </div>
     </div>
     <div class="list list-inset">
-      <label class="item item-input {{capturePhotoClass}}" ng-click="openModalItem('generic')">
+      <label class="item item-input {{capturePhotoClass1}}" ng-click="openModalItem('generic')">
         <div ng-show="picData1" class="item item-image">
           <!--
           Fare UPLOAD del file e aggiungere campo PATH_IMG_VERB
@@ -172,7 +173,7 @@
       </div>
     </div>
     <div class="list list-inset">
-      <label class="item item-input {{capturePhotoClass}}" ng-click="openModalItem('generic')">
+      <label class="item item-input {{capturePhotoClass2}}" ng-click="openModalItem('generic')">
         <div ng-show="picData2" class="item item-image">
           <!--
           Fare UPLOAD del file e aggiungere campo PATH_IMG_VERB
@@ -222,7 +223,7 @@
         <h4>Articolo</h4>
       </div>
       <div class="col" align="right">
-        <button class="button button-positive icon-left ion-android-checkbox-outline" ng-click="openModalItem('articoli','art1')" style="height: 45px;"></button>
+        <button class="button button-positive icon-left-right ion-android-checkbox-outline" ng-click="openModalItem('articoli','art1')" style="height: 45px;"></button>
         <button class="button button-energized icon-left-right ion-star" ng-click="openModalItem('artpref','art1')" style="height: 45px;"></button>
       </div>
     </div>
@@ -260,7 +261,7 @@
         <h4>Articolo</h4>
       </div>
       <div class="col" align="right">
-        <button class="button button-positive icon-left ion-android-checkbox-outline" ng-click="openModalItem('articoli','art2')" style="height: 45px;"></button>
+        <button class="button button-positive icon-left-right ion-android-checkbox-outline" ng-click="openModalItem('articoli','art2')" style="height: 45px;"></button>
         <button class="button button-energized icon-left-right ion-star" ng-click="openModalItem('artpref','art2')" style="height: 45px;"></button>
       </div>
     </div>

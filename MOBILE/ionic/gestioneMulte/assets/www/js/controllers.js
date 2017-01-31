@@ -619,16 +619,18 @@ angular.module('starter.controllers', [])
     };
     $cordovaCamera.getPicture(options).then(
       function(imageData) {
-        $scope.capturePhotoClass = 'capturePhoto';
         console.log('--->>> '+imageData);
 
-        if(numImage == '0') { 
+        if(numImage == '0') {
+          $scope.capturePhotoClass = 'capturePhoto';
           $scope.filePathImg = ''+imageData+'';
           $scope.picData = imageData;
-        } else if(numImage == '1') { 
+        } else if(numImage == '1') {
+          $scope.capturePhotoClass1 = 'capturePhoto1';
           $scope.filePathImg1 = ''+imageData+'';
           $scope.picData1 = imageData;
-        } else if(numImage == '2') { 
+        } else if(numImage == '2') {
+          $scope.capturePhotoClass2 = 'capturePhoto2';
           $scope.filePathImg2 = ''+imageData+'';
           $scope.picData2 = imageData;
         }
@@ -663,7 +665,7 @@ angular.module('starter.controllers', [])
       return false;
     } else if (typeof($scope.numeroVerbale) == 'undefined' ||
           $scope.numeroVerbale == '') {
-      $scope.fieldsRequired = false;
+      $scope.fieldsRequired = true;
       $scope.fotoRequired = false;
       $scope.verbaleRequired = false;
       $scope.datiVerbaleRequired = true;
@@ -671,7 +673,7 @@ angular.module('starter.controllers', [])
       return false;
     } else if(typeof($scope.targaVeicolo) == 'undefined' ||
           $scope.targaVeicolo == '') {
-      $scope.fieldsRequired = false;
+      $scope.fieldsRequired = true;
       $scope.fotoRequired = false;
       $scope.verbaleRequired = false;
       $scope.datiVerbaleRequired = false;
@@ -680,7 +682,7 @@ angular.module('starter.controllers', [])
       return false;
     } else if(typeof($rootScope.indirizzoId) == 'undefined' ||
           $rootScope.indirizzoId == '') {
-      $scope.fieldsRequired = false;
+      $scope.fieldsRequired = true;
       $scope.fotoRequired = false;
       $scope.verbaleRequired = false;
       $scope.datiVerbaleRequired = false;
@@ -694,7 +696,7 @@ angular.module('starter.controllers', [])
               $rootScope.art1 == '' ||
               $rootScope.codArt1 == '' ||
               $rootScope.descrArt1 == '') {
-      $scope.fieldsRequired = false;
+      $scope.fieldsRequired = true;
       $scope.fotoRequired = false;
       $scope.verbaleRequired = false;
       $scope.datiVerbaleRequired = false;
@@ -712,9 +714,6 @@ angular.module('starter.controllers', [])
       $scope.indirizzoRequired = false;
       $scope.articoloRequired = false;
     }
-
-    /*** Gennaio 2017: Verifica TARGA ***/
-    $scope.verificaTarga($scope.targaVeicolo);
 
     $ionicLoading.show({
       template: 'Attendere...'
@@ -818,14 +817,9 @@ angular.module('starter.controllers', [])
                 var ente = localStorage.getItem('agent_ente');
                 console.log('ente: '+ente);
 
-                var server = $rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/upload.php?id='+result[0].message;
-                
                 var filePath  = $scope.picData;
                 var filePath1 = $scope.picData1;
                 var filePath2 = $scope.picData2;
-                console.log(filePath);
-                console.log(filePath1);
-                console.log(filePath2);
 
                 var options = {};
 
@@ -838,6 +832,46 @@ angular.module('starter.controllers', [])
                 }
                 options.headers = {
                   Connection: 'close'
+                }
+
+                //Upload IMAGE0
+                if (filePath != '') {
+                  console.log('filePath: '+filePath);
+                  var server = $rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/upload.php?id='+result[0].message+'&numImage=0';
+                  $cordovaFileTransfer.upload(server, filePath, options)
+                    .then(function(result) {
+                      console.log(result);
+                    }, function(err) {
+                      console.log(err);
+                    }, function (progress) {
+                      console.log(progress);
+                    });
+                }
+                //Upload IMAGE1
+                if (filePath1 != '') {
+                  console.log('filePath1: '+filePath1);
+                  var server = $rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/upload.php?id='+result[0].message+'&numImage=1';
+                  $cordovaFileTransfer.upload(server, filePath1, options)
+                    .then(function(result) {
+                      console.log(result);
+                    }, function(err) {
+                      console.log(err);
+                    }, function (progress) {
+                      console.log(progress);
+                    });
+                }
+                //Upload IMAGE2
+                if (filePath2 != '') {
+                  console.log('filePath2: '+filePath2);
+                  var server = $rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/upload.php?id='+result[0].message+'&numImage=2';
+                  $cordovaFileTransfer.upload(server, filePath2, options)
+                    .then(function(result) {
+                      console.log(result);
+                    }, function(err) {
+                      console.log(err);
+                    }, function (progress) {
+                      console.log(progress);
+                    });
                 }
 
                 /*
@@ -864,46 +898,9 @@ angular.module('starter.controllers', [])
                 }
                 */
 
-                //Upload IMAGE0
-                if (filePath != '') {
-                  console.log('filePath: '+filePath);
-                  $cordovaFileTransfer.upload(server, filePath, options)
-                    .then(function(result) {
-                      console.log(result);
-                    }, function(err) {
-                      console.log(err);
-                    }, function (progress) {
-                      console.log(progress);
-                    });
-                }
-                //Upload IMAGE1
-                if (filePath1 != '') {
-                  console.log('filePath1: '+filePath1);
-                  $cordovaFileTransfer.upload(server, filePath1, options)
-                    .then(function(result) {
-                      console.log(result);
-                    }, function(err) {
-                      console.log(err);
-                    }, function (progress) {
-                      console.log(progress);
-                    });
-                }
-                //Upload IMAGE2
-                if (filePath2 != '') {
-                  console.log('filePath2: '+filePath2);
-                  $cordovaFileTransfer.upload(server, filePath2, options)
-                    .then(function(result) {
-                      console.log(result);
-                    }, function(err) {
-                      console.log(err);
-                    }, function (progress) {
-                      console.log(progress);
-                    });
-                }
-
                 $ionicLoading.hide();
                 $scope.showAlert('Salvataggio verbale','Verbale salvato correttamente!',true);
-              
+
               } else {
                 $ionicLoading.hide();
                 $scope.showAlert('Salvataggio verbale','Verbale salvato correttamente!',true);
@@ -998,7 +995,7 @@ angular.module('starter.controllers', [])
       template: 'Attendere...'
     });
 
-	  $scope.items = new Array();
+    $scope.items = new Array();
     ModalService
       .init(item, $scope)
       .then(function(modal) {
@@ -1046,7 +1043,9 @@ angular.module('starter.controllers', [])
   };
 
   /*** Gennaio 2017: Verifica TARGA ***/
-  $scope.verificaTarga = function(targa) {
+  $scope.verificaTarga = function() {
+
+    targa = angular.element(document.querySelector('#TARGA_VERB')).val();
 
     $scope.loading = true;
 
@@ -1073,7 +1072,7 @@ angular.module('starter.controllers', [])
                 return true;
               } else {
                 console.log('NO');
-                return false;
+                $state.go('app.welcome');
               }
             });
 
@@ -1191,7 +1190,7 @@ angular.module('starter.controllers', [])
   $scope.openModalItem = function(item) {
 
     $scope.loading = true;
-	  $scope.items = new Array();
+    $scope.items = new Array();
 
     $ionicLoading.show({
       template: 'Attendere...'
@@ -1218,7 +1217,7 @@ angular.module('starter.controllers', [])
               }
 
             }).error(function (error) {
-			        $scope.loading = false;
+              $scope.loading = false;
               $ionicLoading.hide();
               $scope.status = 'Unable to load customer data' + error;
             });

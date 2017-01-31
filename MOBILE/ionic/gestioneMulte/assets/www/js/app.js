@@ -202,15 +202,15 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
       service = 'getArtPref.php?ente='+ente;
     } else if(item == 'marche') {
       service = 'getMarche.php';
-    } 
-    
+    }
+
     else if(item == 'autorizzati') {
       service = 'getAutorizzati.php?ente='+ente;
-    } 
+    }
     /*** Gennaio 2017: Verifica TARGA ***/
     else if(item == 'verificaTarga') {
       service = 'getAutorizzati.php?ente='+ente+'&targa='+targa;
-    } 
+    }
 
     else if(item == 'vie') {
       service = 'getVie.php?ente='+ente;

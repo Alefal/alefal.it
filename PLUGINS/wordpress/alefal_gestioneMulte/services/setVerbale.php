@@ -184,7 +184,7 @@ if($numeroVerbale != '') {
             `IMG1_VERB`,
             `FILE_PATH_IMG1_VERB`,
             `IMG2_VERB`,
-            `FILE_PATH_IMG2_VERB`
+            `FILE_PATH_IMG2_VERB`,
             `LATI_VERB`,
             `LONG_VERB`,
             `ID_AGENTE1_VERB`,
