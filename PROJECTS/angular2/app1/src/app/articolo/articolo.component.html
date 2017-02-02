@@ -12,3 +12,12 @@
     Voti: {{articolo.numApprezzamenti}} 
     <button (click)="incrementaApprezzamenti($event)" >Mi piace</button> 
 </p>
+
+<hr />
+<button (click)="getDbData($event)">DATI</button> 
+<ul>
+  <li class="text" *ngFor="let item of items | async">
+    {{item.$value}}
+  </li>
+</ul>
+<hr />

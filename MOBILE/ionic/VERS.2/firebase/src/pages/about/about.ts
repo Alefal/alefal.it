@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
-import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
+import { AngularFire, AuthProviders, AuthMethods, FirebaseListObservable } from 'angularfire2';
 
 @Component({
   selector: 'page-about',
@@ -11,6 +11,7 @@ import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
 export class AboutPage {
 
   errorMessage: string;
+  items: FirebaseListObservable<any[]>;
 
   constructor(public navCtrl: NavController, public af: AngularFire) {
     // Email and password
@@ -28,6 +29,10 @@ export class AboutPage {
       console.error(error);
       alert(error);
     });
+
+    this.items = af.database.list('/items');
+    console.log(this.items);
+
   }
 
 }

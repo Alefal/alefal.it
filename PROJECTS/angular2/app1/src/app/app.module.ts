@@ -9,6 +9,17 @@ import { ArticoloFormReactiveComponent }    from './articolo-form-reactive/artic
 
 import { TruncatePipe }                     from './pipes/truncate.pipe';
 
+import { AngularFireModule }                from 'angularfire2';
+
+// Must export the config
+export const firebaseConfig = {
+  apiKey: 'AIzaSyCtdCEuPNYetrB7zpKaL44dbNKv6su7R3U',
+  authDomain: 'ionic2-a63e2.firebaseapp.com',
+  databaseURL: 'https://ionic2-a63e2.firebaseio.com',
+  storageBucket: 'ionic2-a63e2.appspot.com',
+  messagingSenderId: '981915802905'
+};
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +31,8 @@ import { TruncatePipe }                     from './pipes/truncate.pipe';
     BrowserModule,
     FormsModule,
     HttpModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(firebaseConfig)
   ],
   providers: [],
   bootstrap: [AppComponent]

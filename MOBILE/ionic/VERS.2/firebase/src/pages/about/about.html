@@ -8,4 +8,10 @@
 
 <ion-content padding>
   {{errorMessage}}
+
+  <ul>
+    <li class="text" *ngFor="let item of items | async">
+      {{item.$value}}
+    </li>
+  </ul>
 </ion-content>

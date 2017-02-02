@@ -1,6 +1,8 @@
 import { Component, OnInit, OnChanges, Input, Output, EventEmitter, SimpleChange } from '@angular/core';
 import { Articolo }  from './articolo'
 
+import { AngularFire, AuthProviders, AuthMethods, FirebaseListObservable } from 'angularfire2';
+
 @Component({
   selector: 'app-articolo',
   templateUrl: './articolo.component.html',
@@ -8,10 +10,31 @@ import { Articolo }  from './articolo'
 })
 export class ArticoloComponent implements OnChanges /*OnInit*/ {
 
-	  @Input() articolo: Articolo;
+    items: FirebaseListObservable<any[]>;
+
+	@Input() articolo: Articolo;
     @Output() like = new EventEmitter<number>();
 
-  	constructor() { }
+  	constructor(public af: AngularFire) { 
+        // Email and password
+        af.auth.login({
+            email: 'alefalwebmaster@gmail.com',
+            password: '123456789',
+        },
+        {
+            provider: AuthProviders.Password,
+            method: AuthMethods.Password,
+        }).then(function(success) {
+            console.log(success);
+            //alert(success);
+        }).catch(function(error) {
+            console.error(error);
+            alert(error);
+        });
+
+        this.items = af.database.list('/items');
+        console.log(this.items);
+      }
 
     /*
   	ngOnInit() {
@@ -32,6 +55,11 @@ export class ArticoloComponent implements OnChanges /*OnInit*/ {
         this.articolo.numApprezzamenti = this.articolo.numApprezzamenti + 1;
         //evento like metterà a disposizione il numero di apprezzamenti che l'articolo ha ricevuto
         this.like.emit(this.articolo.numApprezzamenti);
+    }
+
+    getDbData() {
+        this.items = this.af.database.list('items');
+        console.log(this.items);
     }
 
 }
