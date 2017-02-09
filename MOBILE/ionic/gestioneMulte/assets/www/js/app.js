@@ -8,8 +8,8 @@ angular.module('starter', ['ionic','starter.controllers','ngSanitize','pascalpre
 
   $ionicPlatform.ready(function() {
 
-    $rootScope.server = 'http://www.amalficoastapps.it/cms';
-    //$rootScope.server = 'http://cdsmobile.swstudio.net';
+    //$rootScope.server = 'http://www.amalficoastapps.it/cms';
+    $rootScope.server = 'http://cdsmobile.swstudio.net';
     //$rootScope.server = 'http://95.110.159.203';
 
     //TEST WITH BROWSER: device

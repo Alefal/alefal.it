@@ -345,17 +345,23 @@ angular.module('starter.controllers', [])
 
       $scope.verbaleCompleto = items;
 
-      var numeroVerbale = JSON.stringify(items['numeroVerbale']);
-      var imageVerbale  = JSON.stringify(items['imgBase64']);
+      var numeroVerbale   = JSON.stringify(items['numeroVerbale']);
+      var imageVerbale_0  = JSON.stringify(items['imgBase64_0']);
+      var imageVerbale_1  = JSON.stringify(items['imgBase64_1']);
+      var imageVerbale_2  = JSON.stringify(items['imgBase64_2']);
 
       console.log('numeroVerbale -> '+numeroVerbale);
-      console.log('imageVerbale -> '+imageVerbale.replace(/"/g, ''));
+      console.log('imageVerbale_0 -> '+imageVerbale_0.replace(/"/g, ''));
+      console.log('imageVerbale_1 -> '+imageVerbale_1.replace(/"/g, ''));
+      console.log('imageVerbale_2 -> '+imageVerbale_2.replace(/"/g, ''));
 
       console.log('$scope.verbaleCompleto -> '+$scope.verbaleCompleto);
       ajaxCallServices.salvaVerbale($scope.verbaleCompleto).success(function (result) {
 
           console.log('RESULT: '+JSON.stringify(result));
           console.log(result[0].message);
+
+          $scope.messageSincronizzazione += 'Verbale '+JSON.stringify(items['numeroVerbale'])+' salvato<br/>';
 
           document.addEventListener('deviceready', function () {
 
@@ -364,9 +370,11 @@ angular.module('starter.controllers', [])
                 var ente = localStorage.getItem('agent_ente');
                 console.log('ente: '+ente);
 
-                var server = $rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/upload.php?id='+result[0].message+'&ente'+ente;
-                var filePath = imageVerbale.replace(/"/g, '');
-                console.log(filePath);
+                var filePath  = imageVerbale_0.replace(/"/g, '');
+                var filePath1 = imageVerbale_1.replace(/"/g, '');
+                var filePath2 = imageVerbale_2.replace(/"/g, '');
+
+                var options = {};
 
                 // Picture Upload Error Code: 3 - Aggiungere all'header
                 var options = new FileUploadOptions();
@@ -379,6 +387,55 @@ angular.module('starter.controllers', [])
                   Connection: 'close'
                 }
 
+                //Upload IMAGE0
+                if (filePath != '') {
+                  console.log('filePath: '+filePath);
+                  var server = $rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/upload.php?id='+result[0].message+'&numImage=0';
+                  $cordovaFileTransfer.upload(server, filePath, options)
+                    .then(function(result) {
+                      console.log('$cordovaFileTransfer.upload: '+result);
+                      $scope.messageSincronizzazione += 'Immagine 1 caricata<br/>';
+                      $scope.startSincronizzazione = false;
+                    }, function(err) {
+                      $scope.messageSincronizzazione += 'Errore immagine 1<br/>';
+                      $scope.startSincronizzazione = false;
+                    }, function (progress) {
+                      console.log(progress);
+                    });
+                }
+                //Upload IMAGE1
+                if (filePath1 != '') {
+                  console.log('filePath1: '+filePath1);
+                  var server = $rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/upload.php?id='+result[0].message+'&numImage=1';
+                  $cordovaFileTransfer.upload(server, filePath1, options)
+                    .then(function(result) {
+                      console.log('$cordovaFileTransfer.upload: '+result);
+                      $scope.messageSincronizzazione += 'Immagine 2 caricata<br/>';
+                      $scope.startSincronizzazione = false;
+                    }, function(err) {
+                      $scope.messageSincronizzazione += 'Errore immagine 2<br/>';
+                      $scope.startSincronizzazione = false;
+                    }, function (progress) {
+                      console.log(progress);
+                    });
+                }
+                //Upload IMAGE2
+                if (filePath2 != '') {
+                  console.log('filePath2: '+filePath2);
+                  var server = $rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/upload.php?id='+result[0].message+'&numImage=2';
+                  $cordovaFileTransfer.upload(server, filePath2, options)
+                    .then(function(result) {
+                      console.log('$cordovaFileTransfer.upload: '+result);
+                      $scope.messageSincronizzazione += 'Immagine 3 caricata<br/>';
+                      $scope.startSincronizzazione = false;
+                    }, function(err) {
+                      $scope.messageSincronizzazione += 'Errore immagine 3<br/>';
+                      $scope.startSincronizzazione = false;
+                    }, function (progress) {
+                      console.log(progress);
+                    });
+                }
+                /*
                 if (filePath != '') {
                   $cordovaFileTransfer.upload(server, filePath, options)
                     .then(function(result) {
@@ -398,6 +455,7 @@ angular.module('starter.controllers', [])
                     $scope.messageSincronizzazione += 'Verbale '+JSON.stringify(items['numeroVerbale'])+' salvato! <br/>';
                     $scope.startSincronizzazione = false;
                   }
+                  */
               } else {
                 $scope.messageSincronizzazione += 'Verbale '+JSON.stringify(items['numeroVerbale'])+' salvato! <br/>';
                 $scope.startSincronizzazione = false;
@@ -837,7 +895,7 @@ angular.module('starter.controllers', [])
                 //Upload IMAGE0
                 if (filePath != '') {
                   console.log('filePath: '+filePath);
-                  var server = $rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/upload.php?id='+result[0].message+'&numImage=0';
+                  var server = $rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/upload.php?id='+result[0].message+'&numImage=0&ente'+ente;
                   $cordovaFileTransfer.upload(server, filePath, options)
                     .then(function(result) {
                       console.log(result);
@@ -850,7 +908,7 @@ angular.module('starter.controllers', [])
                 //Upload IMAGE1
                 if (filePath1 != '') {
                   console.log('filePath1: '+filePath1);
-                  var server = $rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/upload.php?id='+result[0].message+'&numImage=1';
+                  var server = $rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/upload.php?id='+result[0].message+'&numImage=1&ente'+ente;
                   $cordovaFileTransfer.upload(server, filePath1, options)
                     .then(function(result) {
                       console.log(result);
@@ -863,7 +921,7 @@ angular.module('starter.controllers', [])
                 //Upload IMAGE2
                 if (filePath2 != '') {
                   console.log('filePath2: '+filePath2);
-                  var server = $rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/upload.php?id='+result[0].message+'&numImage=2';
+                  var server = $rootScope.server+'/wp-content/plugins/alefal_gestioneMulte/services/upload.php?id='+result[0].message+'&numImage=2&ente'+ente;
                   $cordovaFileTransfer.upload(server, filePath2, options)
                     .then(function(result) {
                       console.log(result);
@@ -995,7 +1053,7 @@ angular.module('starter.controllers', [])
       template: 'Attendere...'
     });
 
-    $scope.items = new Array();
+	  $scope.items = new Array();
     ModalService
       .init(item, $scope)
       .then(function(modal) {
@@ -1063,7 +1121,7 @@ angular.module('starter.controllers', [])
 
             var confirmPopup = $ionicPopup.confirm({
               title: 'Targa autorizzata!',
-              template: 'Sei sicuro di voler procedere? La targa indicata risulta nell\'elenco AUTORIZZATI.'
+              template: 'Sei sicuro di voler procedere? La targa inserita risulta nell\'elenco AUTORIZZATI.'
             });
 
             confirmPopup.then(function(res) {
@@ -1190,7 +1248,7 @@ angular.module('starter.controllers', [])
   $scope.openModalItem = function(item) {
 
     $scope.loading = true;
-    $scope.items = new Array();
+	  $scope.items = new Array();
 
     $ionicLoading.show({
       template: 'Attendere...'
@@ -1217,7 +1275,7 @@ angular.module('starter.controllers', [])
               }
 
             }).error(function (error) {
-              $scope.loading = false;
+			        $scope.loading = false;
               $ionicLoading.hide();
               $scope.status = 'Unable to load customer data' + error;
             });

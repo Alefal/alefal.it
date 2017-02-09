@@ -42,9 +42,10 @@ v.1.1.10 (13/08/2016):
 - Sezione "Autorizzati" in modalità offline; aggiunta sezione per l'update in IMPOSTAZIONI > SINCRONIZZA 
 - aggiunto in config.xml gli allow-intent (http, https, tel, sms, mailto, geo)
 
-v.1.1.11 (24/01/2017):
-OK    - Sezione "Autorizzati" filtrato per ENTE (modificato anche il service WP "getAutorizzati")
-CHECK - nell'inserimento verbale la foto obbligatoria
-CHECK - aggiungere 2 foto extra facoltative
-CHECK - verifica della targa se fa parte degli AUTORIZZATI: avviso se la targa è autorizzata o meno e messaggio "Sei sicuro di voler procedere? questa targa risulta nell'elenco autorizzate. (si) (no)"
-CHECK - modifica servizio WP "getAutorizzati" per verificare TARGA
+v.1.1.11 (09/02/2017):
+- Sezione "Autorizzati" filtrato per ENTE (modificato anche il service WP "getAutorizzati")
+- nell'inserimento verbale foto obbligatoria
+- possibilità di inserire 2 foto extra facoltative
+- verifica della targa se fa parte degli AUTORIZZATI: avviso se la targa è autorizzata o meno e messaggio "Sei sicuro di voler procedere? questa targa risulta nell'elenco autorizzate. (si) (no)"
+- modifica servizio WP "getAutorizzati" per verificare TARGA
+- modifica servizio di sincronizzazione per accettare 3 foto
