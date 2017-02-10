@@ -1,16 +1,16 @@
 <ion-header>
 	<ion-navbar color="greenDark">
-		<!--
 		<ion-title>Torneo dei Rioni Storici</ion-title>
-		-->
+		<!--
 		<ion-title>Torneo dei Tifosi 2016</ion-title>		
+		-->
 	</ion-navbar>
 </ion-header>
 
 <ion-content padding>
   
 	<ion-slides pager *ngIf="!tournamentName && tournamentType == null" class="home-view" showWhen="portrait">
-		<!-- TDRS
+		<!-- TDRS -->
 		<ion-slide>
 			<div class="titleBg">
 				<h3>Torneo dei Rioni Storici</h3>
@@ -21,8 +21,7 @@
 				<h6>Che il divertimento sia con voi!</h6>	
 			</div>
 		</ion-slide>
-		-->
-		<!-- TDT -->
+		<!-- TDT 
 		<ion-slide>
 			<div class="titleBg">
 				<h3>Torneo dei Tifosi 2016</h3>
@@ -33,6 +32,7 @@
 				<h6>Che il divertimento sia con voi!</h6>	
 			</div>
 		</ion-slide>
+		-->
 	</ion-slides>
 
 	<ion-list class="listStats" *ngIf="tournamentName && tournamentType != null && tournamentType != 'leagueknockout' && tournamentType != 'knockout'">
@@ -139,6 +139,7 @@
 		</ion-item>
 	</ion-list>
 
+	<!-- SPONSORS 
 	<div class="gridHeader" [innerHTML]="sponsors" style="text-align:center" *ngIf="networkFound"></div>
-	
+	-->
 </ion-content>

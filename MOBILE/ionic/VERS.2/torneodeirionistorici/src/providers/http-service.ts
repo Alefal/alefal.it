@@ -22,10 +22,10 @@ export class HttpService {
 
         //Torneo dei Rioni Storici 2016/17        
         //var host = 'http://localhost/alefal.it/PROJECTS/leagueengine';
-        //var host = 'http://torneodeirionistorici.altervista.org';
+        var host = 'http://torneodeirionistorici.altervista.org';
 
         //Torneo dei Tifosi 2016
-        var host = 'http://www.amalficoastapps.it/demo/leagueengine';
+        //var host = 'http://www.amalficoastapps.it/demo/leagueengine';
         
         var url = '';
         if(call == 'getTorneo') {
