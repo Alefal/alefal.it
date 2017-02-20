@@ -18,21 +18,28 @@ export class HttpService {
     getCallHttp(call,username,password,id,object) {
         console.log('getCallHttp: '+call+' | '+username+' | '+password);
         
-        //var host = 'http://localhost/alefal.it/PROJECTS/ece';
-        var host = 'http://www.amalficoastapps.it/demo/ece';
+        var host = 'http://localhost/alefal.it/PROJECTS/ece';
+        //var host = 'http://www.amalficoastapps.it/demo/ece';
         
         var url = '';
         //LOGIN
         if(call == 'authentication') {
             url = '/api/user/generate_auth_cookie/?username='+username+'&password='+password+'&insecure=cool';
         } 
-        //PRODUCTS
+        //CATEGORIES
         else if(call == 'getProductsCategory') {
             url = '/wp-content/plugins/alefal_woocommerce/services/ece_products_cat.php';
         } 
         else if(call == 'getProductsByCategory') {
             url = '/wp-content/plugins/alefal_woocommerce/services/ece_products_cat_filter.php?filterName=category&filterValue='+object;
         } 
+        else if(call == 'getProductsCategorySave') {
+            url = '/wp-content/plugins/alefal_woocommerce/services/ece_products_cat_save.php?name='+object;
+        } 
+        else if(call == 'getProductsCategoryDelete') {
+            url = '/wp-content/plugins/alefal_woocommerce/services/ece_products_cat_delete.php?id='+id;
+        } 
+        //PRODUCTS
         else if(call == 'getProducts') {
             url = '/wp-content/plugins/alefal_woocommerce/services/ece_products.php';
         } 

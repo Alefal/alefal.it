@@ -13,7 +13,55 @@
 
 <ion-content padding>
   
-  <ion-grid>
+
+  <ion-grid *ngIf="appVersion == 'pro'">
+    <ion-row>
+      <ion-col width-50 (click)="navigate('Magazzino')">
+        <div class="homeLink">
+          <ion-icon name="barcode"></ion-icon>
+          <h1>Magazzino</h1>
+        </div>
+      </ion-col>
+      <ion-col width-50 (click)="navigate('Ordini')">
+        <div class="homeLink">
+          <ion-icon name="list-box"></ion-icon>
+          <h1>Ordini</h1>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col width-50 (click)="navigate('Categorie')">
+        <div class="homeLink">
+          <ion-icon name="albums"></ion-icon>
+          <h1>Categorie</h1>
+        </div>
+      </ion-col>
+      <ion-col width-50 (click)="navigate('Prodotti')">
+        <div class="homeLink">
+          <ion-icon name="list"></ion-icon>
+          <h1>Prodotti</h1>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col width-50 (click)="navigate('Clienti')">
+        <div class="homeLink">
+          <ion-icon name="contact"></ion-icon>
+          <h1>Clienti</h1>
+        </div>
+      </ion-col>
+      <ion-col width-50 (click)="navigate('Fornitori')">
+        <div class="homeLink">
+          <ion-icon name="contacts"></ion-icon>
+          <h1>Fornitori</h1>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="appVersion == 'basic'">
     <ion-row>
       <ion-col width-50 (click)="navigate('Magazzino')">
         <div class="homeLink">

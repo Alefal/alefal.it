@@ -211,6 +211,27 @@ class WC_API_Client_Resource_Products extends WC_API_Client_Resource {
 		return $this->do_request();
 	}
 
+	/**
+	 * WORK! Delete a category
+	 *
+	 * DELETE /category/#{id}
+	 *
+	 * @since 2.0
+	 * @param int $id category ID
+	 * @param bool $force true to permanently delete the category, false to trash it
+	 * @return array|object response
+	 */
+	public function delete_category( $id, $force = false ) {
+
+		$this->set_request_args( array(
+			'method' => 'DELETE',
+			'path'   => array( 'categories', $id ),
+			'params' => array( 'force' => $force ),
+		) );
+
+		return $this->do_request();
+	}
+
 
 	/** Convenience methods - these do not map directly to an endpoint ********/
 

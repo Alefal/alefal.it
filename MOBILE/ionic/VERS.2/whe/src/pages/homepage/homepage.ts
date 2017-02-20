@@ -17,6 +17,7 @@ import { Fornitori }  from '../fornitori/fornitori';
 export class Homepage {
 
   userLogged: string;
+  appVersion: String = 'basic';
 
   constructor(
     public params: NavParams,

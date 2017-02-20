@@ -8,6 +8,11 @@
 
   <ion-navbar color="primary">
     <ion-title>Categorie</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="modalCategory()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -16,13 +21,13 @@
 <ion-content>
 
   <ion-list>
-    <ion-item *ngFor="let cat of categories" (click)="getProductsByCat(cat.name,cat.count)">
-      <ion-avatar item-left>
-        <ion-icon name="albums" item-left class="iconsList" color="primary"></ion-icon>
+    <ion-item *ngFor="let cat of categories">
+      <ion-avatar item-left (click)="getProductsByCat(cat.name,cat.count)">
+        <ion-badge item-right color="danger">{{cat.count}}</ion-badge>
       </ion-avatar>
-      <h2>{{cat.name}}</h2>
-      <ion-badge item-right color="danger">{{cat.count}}</ion-badge>
-      <ion-icon name="ios-arrow-forward" item-right></ion-icon>
+      <h2 (click)="getProductsByCat(cat.name,cat.count)">{{cat.name}}</h2>
+      
+      <ion-icon name="trash" item-right (click)="deleteCategory(cat.id,cat.count)"></ion-icon>
     </ion-item>
   </ion-list>
 
