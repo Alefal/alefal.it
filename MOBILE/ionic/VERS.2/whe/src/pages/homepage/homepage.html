@@ -63,15 +63,6 @@
 
   <ion-grid *ngIf="appVersion == 'basic'">
     <ion-row>
-      <ion-col (click)="navigate('Magazzino')">
-        <div class="homeLink">
-          <ion-icon name="barcode"></ion-icon>
-          <h1>Magazzino</h1>
-        </div>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
       <ion-col (click)="navigate('Categorie')">
         <div class="homeLink">
           <ion-icon name="albums"></ion-icon>
@@ -85,6 +76,15 @@
         <div class="homeLink">
           <ion-icon name="list"></ion-icon>
           <h1>Prodotti</h1>
+        </div>
+      </ion-col>
+    </ion-row>
+    
+    <ion-row>
+      <ion-col (click)="navigate('Magazzino')">
+        <div class="homeLink">
+          <ion-icon name="barcode"></ion-icon>
+          <h1>Magazzino</h1>
         </div>
       </ion-col>
     </ion-row>

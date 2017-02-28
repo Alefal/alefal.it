@@ -1,0 +1,9 @@
+v.0.0.1
+- Start
+
+v.1.0.01 -> bug: TODO
+- PRODOTTO: nell'inserimento di un nuovo prodotto la CATEGORIA deve essere obbligatoria
+- PRODOTTO: nella modifica di un prodotto, non viene recuperata la CATEGORIA di appartenenza
+- MAGAZZINO: quando viene aggiornata una quantità non viene recuperata la CATEGORIA
+- MAGAZZINO: cambiare icona in alto a destra per inserimento quantità
+- GENERALE: messaggio di NOT FOUND quando non si trova nulla
