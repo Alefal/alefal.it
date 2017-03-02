@@ -45,7 +45,7 @@ export class ProdottoModal {
     public alertCtrl: AlertController
   ) {
     this.id = params.get('id');
-    console.log(this.id);
+    console.log(this.id+' - '+this.prodCatId);
 
     //CATEGORIE
     this.httpService
@@ -91,8 +91,13 @@ export class ProdottoModal {
             this.prodQuantity = this.product.stock;
             this.prodCatName = this.product.category;
 
-            this.selectCatId = this.product.category;
-
+            for(let cat of this.line_items){
+              console.log('cat -> '+cat.name);
+              if(cat.name == this.product.category) {
+                this.selectCatId = cat.id;
+                this.prodCatId = cat.id;
+              }
+            }
           } else {
             this.nothing = 'Nessun dato! Riprovare più tardi.';
           }
@@ -114,17 +119,24 @@ export class ProdottoModal {
   }
 
   saveProduct(id) {
-    console.log(id);
-    console.log(this.prodTitle);
-    console.log(this.prodPrice);
-    console.log(this.prodDescription);
-    console.log(this.prodManageStock);
-    console.log(this.prodQuantity);
+    //console.log(id);
+    //console.log(this.prodTitle);
+    //console.log(this.prodPrice);
+    //console.log(this.prodDescription);
+    //console.log(this.prodManageStock);
+    //console.log(this.prodQuantity);
     console.log(this.prodCatId);
     console.log(this.prodCatName);
-
-    this.prodCatId = this.selectCatId;
-    console.log(this.prodCatId);   
+   
+    console.log('this.selectCatId: '+this.selectCatId);  
+    if(this.selectCatId != null) {
+      this.prodCatId = this.selectCatId;
+      console.log(this.prodCatId);   
+    }
+    if(!this.prodCatId || this.prodCatId == 0) {
+      this.showAlert();
+      return false;
+    }
 
     this.prodotto = new Prodotto(id, this.prodTitle, this.prodPrice, this.prodDescription, this.prodManageStock, this.prodQuantity, 0, this.prodCatId, this.prodCatName);
 
@@ -206,5 +218,14 @@ export class ProdottoModal {
     });
     confirm.present();
 
+  }
+
+  showAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Attenzione!',
+      subTitle: 'La categoria è obbligatoria',
+      buttons: ['OK']
+    });
+    alert.present();
   }
 }

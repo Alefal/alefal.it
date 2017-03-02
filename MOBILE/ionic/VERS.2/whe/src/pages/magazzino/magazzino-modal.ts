@@ -73,20 +73,17 @@ export class MagazzinoModal {
 
     for (let prod of this.productSelected) {
       console.log(index+' | '+this.productSelected.length);
+      console.log('%o',prod);
+
       let pId: number       = prod['prodId'];
       let PTitle: string    = prod['prodTitle'];
-      let pPrice: number    = prod['prodPrice'];
-      let pDescr: string    = prod['prodDescription'];
-      let pInStock: boolean = true;
       let pQnt              = (Number(prod['prodQuantity']) + Number(prod['prodAddQuantity']));
-      let pCatId: number    = 0;
-      let pCatName: string  = '';
       
-      let prodotto = new Prodotto(pId,PTitle,pPrice,pDescr,pInStock,pQnt,0,pCatId,pCatName);
+      let prodotto = new Prodotto(pId,'',0,'',true,pQnt,0,0,'');
       console.log(prodotto);  
 
       this.httpService
-        .getCallHttp('getProductSave', '', '', '', prodotto)
+        .getCallHttp('getProductSaveQnt', '', '', '', prodotto)
         .then(res => {
           console.log('res: ' + JSON.stringify(res));
           index++;
