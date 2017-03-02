@@ -22,6 +22,10 @@ $tipologiaTorneo = $event['tipologiaTorneo'];
 $home_team_score = $event['home_team_score'];
 $away_team_score = $event['away_team_score'];
 
+if(isset($_GET['torneoId'])) {
+    $tournament_id = $_GET['torneoId'];
+}
+
 //echo $match_id.' | '.$event_id.' | '.$team_id.' | '.$player_id.' | '.$event_time.' | '.$timeline_text.' | '.$tipologiaTorneo;
 //die();
 

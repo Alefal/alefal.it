@@ -36,3 +36,8 @@ phonegap-plugin-push 1.9.1 "PushPlugin"
   $ ionic plugin add cordova-plugin-network-information
 - Lista giocatori per OFFLINE (nuovo REST Service: le_atleti_all.php)
 - Usabilità offline
+
+=== TODO: Vers *.0.5 ===
+- Più tornei di tipologia KNOCKOUT: 
+  l'id del torneo viene passato dall'app ai servizi REST; se cambia l'id deve essere aggiornata l'app 
+  si deve creare prima il torneo sul plugin e poi aggiornare l'app

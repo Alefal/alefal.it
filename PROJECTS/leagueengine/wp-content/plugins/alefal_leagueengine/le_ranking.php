@@ -12,6 +12,10 @@ $finalArray     = array();
 
 $tipologiaTorneo = $_GET['tipologiaTorneo']; //league | tournament
 
+if(isset($_GET['torneoId'])) {
+    $tournament_id = $_GET['torneoId'];
+}
+
 //if(le_leagueengine_fetch_seasons($league_id,$season_id)) {
 if(isset($tipologiaTorneo)) {
 

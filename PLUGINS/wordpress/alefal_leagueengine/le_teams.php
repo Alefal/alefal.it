@@ -11,6 +11,10 @@ $finalArray = array();
 
 $tipologiaTorneo = $_GET['tipologiaTorneo']; //league | tournament
 
+if(isset($_GET['torneoId'])) {
+    $tournament_id = $_GET['torneoId'];
+}
+
 if(isset($tipologiaTorneo)) {
     
     $resultArray[] = array(

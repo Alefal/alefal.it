@@ -25,6 +25,10 @@ $group              = $_GET['group'];
 $type               = $_GET['type'];
 $round              = $_GET['round'];
 
+if(isset($_GET['torneoId'])) {
+    $tournament_id = $_GET['torneoId'];
+}
+
 if(isset($tipologiaTorneo)) {
     
     if($tipologiaTorneo == 'league') {

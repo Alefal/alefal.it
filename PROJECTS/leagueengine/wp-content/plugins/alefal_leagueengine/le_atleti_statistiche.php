@@ -11,6 +11,10 @@ $finalArray = array();
 
 $player_id = $_GET['player_id'];
 
+if(isset($_GET['torneoId'])) {
+    $tournament_id = $_GET['torneoId'];
+}
+
 if(isset($player_id)) { 
     /*
     $player = $wpdb->get_results("

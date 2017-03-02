@@ -17,6 +17,10 @@ $resultArray[] = array(
 //echo $tournament_id;
 //die();
 
+if(isset($_GET['torneoId'])) {
+    $tournament_id = $_GET['torneoId'];
+}
+
 //Tournament
 if($tournament_id != '') {
     $tournament = $wpdb->get_results("

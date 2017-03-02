@@ -1,6 +1,6 @@
 import { Component }      from '@angular/core';
 import { SocialSharing, Network }  from 'ionic-native';
-import { NavController, NavParams, LoadingController }  from 'ionic-angular';
+import { NavController, NavParams, LoadingController, ActionSheetController }  from 'ionic-angular';
 
 import { Comunicati }     from '../comunicati/comunicati';
 import { FotoVideo }      from '../foto-video/foto-video';
@@ -42,7 +42,8 @@ export class HomePage {
     private httpService: HttpService,
     public loadingCtrl: LoadingController,
     public params: NavParams, 
-    public connectivityService: ConnectivityService
+    public connectivityService: ConnectivityService,
+    public actionSheetCtrl: ActionSheetController
   ) { }
 
   ionViewDidLoad() {
@@ -82,53 +83,120 @@ export class HomePage {
   getData(){
     console.log('home_2: getData');
 
-    //getTorneo
-    this.httpService
-      .getCallHttp('getTorneo','','','','','')
-      .then(res => {
-        if(res[0].response[0].result == 'OK') {
-          this.tournament = JSON.stringify(res[0].tournament);
-          console.log('-> '+this.tournament.length);
-          
-          if(this.tournament.length > 2) {
-            this.tournamentName   = res[0].tournament[0].tour_name;
-            this.tournamentType   = res[0].tournament[0].tour_type;
-            this.tournamentTeams  = res[0].tournament[0].tour_teams;  //Math.log2(this.tournamentTeams)
-            this.tournamentRound  = res[0].tournament[0].tour_round;
+    this.loading.dismiss();
+    
+    let actionSheet = this.actionSheetCtrl.create({
+      title: 'Scegli il torneo',
+      enableBackdropDismiss: false,
+      buttons: [
+        {
+          text: 'Fase Finale',
+          handler: () => {
+            console.log('Fase Finale');
 
-            this.getGiocatori(this.tournamentType);
-          } else {
-            console.log('home_3: nessun dato');
+            this.loading = this.loadingCtrl.create({
+              spinner: 'crescent',
+            });
+            this.loading.present();
+
+            //getTorneo
+            this.httpService
+              .getCallHttp('getTorneo','','','','','114')
+              .then(res => {
+                if(res[0].response[0].result == 'OK') {
+                  this.tournament = JSON.stringify(res[0].tournament);
+                  console.log('-> '+this.tournament.length);
+                  
+                  if(this.tournament.length > 2) {
+                    this.tournamentName   = res[0].tournament[0].tour_name;
+                    this.tournamentType   = res[0].tournament[0].tour_type;
+                    this.tournamentTeams  = res[0].tournament[0].tour_teams;  //Math.log2(this.tournamentTeams)
+                    this.tournamentRound  = res[0].tournament[0].tour_round;
+
+                    this.getGiocatori(this.tournamentType);
+                  } else {
+                    console.log('home_3: nessun dato');
+                  }
+                  this.getRounds(this.tournamentRound);
+                  localStorage.setItem('getTorneo',this.tournament);
+                } else {
+                  this.tournament = 'Nessun dato! Riprovare più tardi.';
+                }
+                this.showPage = true;
+                this.loading.dismiss();
+              })
+              .catch(error => {
+                console.log('ERROR: ' + error);
+                this.showPage = true;
+                this.errorMessage = 'Si è verificato un errore. Riprovare più tardi!';
+                this.errorMessageView = true;
+                this.loading.dismiss();
+              });
           }
-          this.getRounds(this.tournamentRound);
-          localStorage.setItem('getTorneo',this.tournament);
-        } else {
-          this.tournament = 'Nessun dato! Riprovare più tardi.';
+        },
+        {
+          text: 'Cucchiaio di Legno',
+          handler: () => {
+            console.log('Cucchiaio di Legno');
+
+            this.loading = this.loadingCtrl.create({
+              spinner: 'crescent',
+            });
+            this.loading.present();
+
+            //getTorneo
+            this.httpService
+              .getCallHttp('getTorneo','','','','','115')
+              .then(res => {
+                if(res[0].response[0].result == 'OK') {
+                  this.tournament = JSON.stringify(res[0].tournament);
+                  console.log('-> '+this.tournament.length);
+                  
+                  if(this.tournament.length > 2) {
+                    this.tournamentName   = res[0].tournament[0].tour_name;
+                    this.tournamentType   = res[0].tournament[0].tour_type;
+                    this.tournamentTeams  = res[0].tournament[0].tour_teams;  //Math.log2(this.tournamentTeams)
+                    this.tournamentRound  = res[0].tournament[0].tour_round;
+
+                    this.getGiocatori(this.tournamentType);
+                  } else {
+                    console.log('home_3: nessun dato');
+                  }
+                  this.getRounds(this.tournamentRound);
+                  localStorage.setItem('getTorneo',this.tournament);
+                } else {
+                  this.tournament = 'Nessun dato! Riprovare più tardi.';
+                }
+                this.showPage = true;
+                this.loading.dismiss();
+              })
+              .catch(error => {
+                console.log('ERROR: ' + error);
+                this.showPage = true;
+                this.errorMessage = 'Si è verificato un errore. Riprovare più tardi!';
+                this.errorMessageView = true;
+                this.loading.dismiss();
+              });
+          }
         }
-        this.showPage = true;
-        this.loading.dismiss();
+      ]
+    });
+    
+    actionSheet.present();
+
+    //getSponsors
+    /*** Per TDT
+    this.httpService
+      .getCallHttp('getSponsors','','','','','')
+      .then(res => {
+        console.log('SUCCESS: ' + JSON.stringify(res));
+        this.sponsors = res.posts[0].content;
+        localStorage.setItem('getSponsors',JSON.stringify(this.sponsors));
       })
       .catch(error => {
         console.log('ERROR: ' + error);
-        this.showPage = true;
-        this.errorMessage = 'Si è verificato un errore. Riprovare più tardi!';
-        this.errorMessageView = true;
-        this.loading.dismiss();
       });
-
-      //getSponsors
-      this.httpService
-        .getCallHttp('getSponsors','','','','','')
-        .then(res => {
-          console.log('SUCCESS: ' + JSON.stringify(res));
-          this.sponsors = res.posts[0].content;
-          localStorage.setItem('getSponsors',JSON.stringify(this.sponsors));
-        })
-        .catch(error => {
-          console.log('ERROR: ' + error);
-        });
-
-    
+    ***/    
   }
 
   navigate(section,tipologia,round) {
@@ -254,5 +322,9 @@ export class HomePage {
     }).catch((e) => {
       console.error('error: '+e);
     });
+  }
+
+  doRefresh(refresher) {
+    window.location.reload();
   }
 }

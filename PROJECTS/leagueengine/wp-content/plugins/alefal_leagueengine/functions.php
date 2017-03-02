@@ -7,7 +7,7 @@ $season_id = 96;
 //$season_id = 78;
 
 //Tournament TDT
-//$tournament_id = 1;
+$tournament_id = 0;
 
 function le_leagueengine_table_gp($league,$season,$team) {
 	global $wpdb;

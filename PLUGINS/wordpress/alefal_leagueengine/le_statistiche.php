@@ -12,6 +12,10 @@ $finalArray = array();
 $stats = $_GET['stat']; //Goals | Assist | Gialli | Rossi
 $tipologiaTorneo = $_GET['tipologiaTorneo']; //league | tournament
 
+if(isset($_GET['torneoId'])) {
+    $tournament_id = $_GET['torneoId'];
+}
+
 if(isset($stats) && isset($tipologiaTorneo)) {
 
     if($tipologiaTorneo == 'league') {

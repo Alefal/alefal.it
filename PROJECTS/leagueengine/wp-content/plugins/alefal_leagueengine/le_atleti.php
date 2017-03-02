@@ -12,6 +12,10 @@ $finalArray = array();
 $team_id = $_GET['team_id'];
 $tipologiaTorneo = $_GET['tipologiaTorneo']; //league | tournamen
 
+if(isset($_GET['torneoId'])) {
+    $tournament_id = $_GET['torneoId'];
+}
+
 if(isset($team_id) && isset($tipologiaTorneo)) {
     /*
     $teams = $wpdb->get_results("

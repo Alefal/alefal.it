@@ -12,6 +12,10 @@ $finalArray = array();
 $match_id           = $_GET['match_id'];
 $tipologiaTorneo    = $_GET['tipologiaTorneo']; //league | tournament
 
+if(isset($_GET['torneoId'])) {
+    $tournament_id = $_GET['torneoId'];
+}
+
 if(isset($match_id)) { 
 
     if($tipologiaTorneo == 'league') {

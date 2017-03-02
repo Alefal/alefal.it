@@ -9,6 +9,9 @@ import 'rxjs/add/operator/toPromise';
   
 @Injectable() 
 export class HttpService {  
+
+    torneoId: String;
+
     constructor(private http:Http) {
          this.http = http;
     }
@@ -21,15 +24,18 @@ export class HttpService {
         console.log('getCallHttp: '+call+' | '+teamId+' | '+playerIdOrRound+' | '+matchIdOrType);
 
         //Torneo dei Rioni Storici 2016/17        
-        //var host = 'http://localhost/alefal.it/PROJECTS/leagueengine';
-        var host = 'http://torneodeirionistorici.altervista.org';
+        var host = 'http://localhost/alefal.it/PROJECTS/leagueengine';
+        //var host = 'http://torneodeirionistorici.altervista.org';
 
         //Torneo dei Tifosi 2016
         //var host = 'http://www.amalficoastapps.it/demo/leagueengine';
         
-        var url = '';
+        var url         = '';
         if(call == 'getTorneo') {
-            url = '/wp-content/plugins/alefal_leagueengine/le_typeTournament.php';
+            if(tipologiaOrObject != '') {
+                this.torneoId = tipologiaOrObject;
+            }
+            url = '/wp-content/plugins/alefal_leagueengine/le_typeTournament.php?torneoId='+this.torneoId;
         } 
         else if(call == 'getSponsors') {
             url = '?json=get_tag_posts&tag_slug=sponsors';
@@ -41,31 +47,31 @@ export class HttpService {
              url = '?json=get_tag_posts&tag_slug=fotoVideo';
         } 
         else if(call == 'getSquadre') {
-            url = '/wp-content/plugins/alefal_leagueengine/le_teams.php?tipologiaTorneo='+tipologiaOrObject;
+            url = '/wp-content/plugins/alefal_leagueengine/le_teams.php?tipologiaTorneo='+tipologiaOrObject+'&torneoId='+this.torneoId;
         } 
         else if(call == 'getGiocatori') {
-            url = '/wp-content/plugins/alefal_leagueengine/le_atleti.php?team_id='+teamId+'&tipologiaTorneo='+tipologiaOrObject;
+            url = '/wp-content/plugins/alefal_leagueengine/le_atleti.php?team_id='+teamId+'&tipologiaTorneo='+tipologiaOrObject+'&torneoId='+this.torneoId;
         } 
         else if(call == 'getGiocatoriAll') {
-            url = '/wp-content/plugins/alefal_leagueengine/le_atleti_all.php?tipologiaTorneo='+tipologiaOrObject;
+            url = '/wp-content/plugins/alefal_leagueengine/le_atleti_all.php?tipologiaTorneo='+tipologiaOrObject+'&torneoId='+this.torneoId;
         } 
         else if(call == 'getGiocatoriStatistiche') {
             url = '/wp-content/plugins/alefal_leagueengine/le_atleti_statistiche.php?player_id='+playerIdOrRound;
         } 
         else if(call == 'getClassifica') {
-            url = '/wp-content/plugins/alefal_leagueengine/le_ranking.php?tipologiaTorneo='+tipologiaOrObject;
+            url = '/wp-content/plugins/alefal_leagueengine/le_ranking.php?tipologiaTorneo='+tipologiaOrObject+'&torneoId='+this.torneoId;
         } 
         else if(call == 'getStatistiche') {
-            url = '/wp-content/plugins/alefal_leagueengine/le_statistiche.php?stat='+statOrGroup+'&tipologiaTorneo='+tipologiaOrObject;
+            url = '/wp-content/plugins/alefal_leagueengine/le_statistiche.php?stat='+statOrGroup+'&tipologiaTorneo='+tipologiaOrObject+'&torneoId='+this.torneoId;
         } 
         else if(call == 'getIncontri') {
-            url = '/wp-content/plugins/alefal_leagueengine/le_matchs.php?round='+playerIdOrRound+'&tipologiaTorneo='+tipologiaOrObject+'&group='+statOrGroup+'&type='+matchIdOrType;
+            url = '/wp-content/plugins/alefal_leagueengine/le_matchs.php?round='+playerIdOrRound+'&tipologiaTorneo='+tipologiaOrObject+'&group='+statOrGroup+'&type='+matchIdOrType+'&torneoId='+this.torneoId;
         } 
         else if(call == 'getIncontroEventi') {
-            url = '/wp-content/plugins/alefal_leagueengine/le_matchEvent.php?event='+encodeURIComponent(tipologiaOrObject);
+            url = '/wp-content/plugins/alefal_leagueengine/le_matchEvent.php?event='+encodeURIComponent(tipologiaOrObject)+'&torneoId='+this.torneoId;
         } 
         else if(call == 'getTabellino') {
-            url = '/wp-content/plugins/alefal_leagueengine/le_matchDetails.php?match_id='+matchIdOrType+'&tipologiaTorneo='+tipologiaOrObject;
+            url = '/wp-content/plugins/alefal_leagueengine/le_matchDetails.php?match_id='+matchIdOrType+'&tipologiaTorneo='+tipologiaOrObject+'&torneoId='+this.torneoId;
         } 
         else if(call == 'getIncontroAttr') {
             url = '/wp-content/plugins/alefal_leagueengine/le_matchAttr.php?match_id='+matchIdOrType+'&tipologiaTorneo='+tipologiaOrObject;

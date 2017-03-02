@@ -25,6 +25,10 @@ $group              = $_GET['group'];
 $type               = $_GET['type'];
 $round              = $_GET['round'];
 
+if(isset($_GET['torneoId'])) {
+    $tournament_id = $_GET['torneoId'];
+}
+
 if(isset($tipologiaTorneo)) {
     
     if($tipologiaTorneo == 'league') {
@@ -37,7 +41,7 @@ if(isset($tipologiaTorneo)) {
         );
         */
         $matchs = $wpdb->get_results("
-            SELECT SM.*, DATA_A.id, SMA.*
+            SELECT SM.id AS matchId, SM.*, DATA_A.id, SMA.*
             FROM ".$table_prefix."leagueengine_season_matches AS SM
             INNER JOIN ".$table_prefix."leagueengine_data AS DATA_A ON DATA_A.data_value LIKE '%YouTubeCode%'
             LEFT JOIN ".$table_prefix."leagueengine_season_matches_attributes AS SMA ON SMA.match_id = SM.id AND SMA.attribute_id = DATA_A.id
@@ -49,7 +53,7 @@ if(isset($tipologiaTorneo)) {
     } else if($tipologiaTorneo == 'tournament') {
         if($type == 'knockout') {
             $matchs = $wpdb->get_results("
-                SELECT TM.*, DATA_A.id, TMA.*
+                SELECT TM.id AS matchId, TM.*, DATA_A.id, TMA.*
                 FROM ".$table_prefix."leagueengine_tournament_matches AS TM
                 INNER JOIN ".$table_prefix."leagueengine_data AS DATA_A ON DATA_A.data_value LIKE '%YouTubeCode%'
                 LEFT JOIN ".$table_prefix."leagueengine_tournament_matches_attributes AS TMA ON TMA.match_id = TM.id AND TMA.attribute_id = DATA_A.id
@@ -58,7 +62,7 @@ if(isset($tipologiaTorneo)) {
             );
         } else {
             $matchs = $wpdb->get_results("
-                SELECT TM.*, DATA_A.id, TMA.*
+                SELECT TM.id AS matchId, TM.*, DATA_A.id, TMA.*
                 FROM ".$table_prefix."leagueengine_tournament_matches AS TM
                 INNER JOIN ".$table_prefix."leagueengine_data AS DATA_A ON DATA_A.data_value LIKE '%YouTubeCode%'
                 LEFT JOIN ".$table_prefix."leagueengine_tournament_matches_attributes AS TMA ON TMA.match_id = TM.id AND TMA.attribute_id = DATA_A.id
@@ -73,13 +77,16 @@ if(isset($tipologiaTorneo)) {
         'message' => 'OK'
     );
 
+    //print_r($wpdb->show_errors());
+    //print_r($wpdb->last_query);
     //print_r($matchs);
+
     foreach ($matchs as $match) {
     	$match_date = date(le_leagueengine_fetch_settings('date_format_php'),strtotime($match->match_date));
         $match_time = date(le_leagueengine_fetch_settings('time_format_php'),strtotime($match->match_time));
 
     	$matchsArray[] = array(
-            'match_id'			=> $match->id,
+            'match_id'			=> $match->matchId,
     		'match_date'		=> $match_date,
             'match_time'		=> $match_time,
             'homeName'			=> le_leagueengine_fetch_data_from_id($match->home_team_id,'data_value'),
