@@ -90,6 +90,51 @@ export class HomePage {
       enableBackdropDismiss: false,
       buttons: [
         {
+          text: 'Campionato',
+          handler: () => {
+            console.log('Campionato');
+
+            this.loading = this.loadingCtrl.create({
+              spinner: 'crescent',
+            });
+            this.loading.present();
+
+            //getTorneo
+            this.httpService
+              .getCallHttp('getTorneo','','','','','')
+              .then(res => {
+                if(res[0].response[0].result == 'OK') {
+                  this.tournament = JSON.stringify(res[0].tournament);
+                  console.log('-> '+this.tournament.length);
+                  
+                  if(this.tournament.length > 2) {
+                    this.tournamentName   = res[0].tournament[0].tour_name;
+                    this.tournamentType   = res[0].tournament[0].tour_type;
+                    this.tournamentTeams  = res[0].tournament[0].tour_teams;  //Math.log2(this.tournamentTeams)
+                    this.tournamentRound  = res[0].tournament[0].tour_round;
+
+                    this.getGiocatori(this.tournamentType);
+                  } else {
+                    console.log('home_3: nessun dato');
+                  }
+                  this.getRounds(this.tournamentRound);
+                  localStorage.setItem('getTorneo',this.tournament);
+                } else {
+                  this.tournament = 'Nessun dato! Riprovare più tardi.';
+                }
+                this.showPage = true;
+                this.loading.dismiss();
+              })
+              .catch(error => {
+                console.log('ERROR: ' + error);
+                this.showPage = true;
+                this.errorMessage = 'Si è verificato un errore. Riprovare più tardi!';
+                this.errorMessageView = true;
+                this.loading.dismiss();
+              });
+          }
+        },
+        {
           text: 'Fase Finale',
           handler: () => {
             console.log('Fase Finale');
@@ -101,7 +146,7 @@ export class HomePage {
 
             //getTorneo
             this.httpService
-              .getCallHttp('getTorneo','','','','','114')
+              .getCallHttp('getTorneo','','','','','248')
               .then(res => {
                 if(res[0].response[0].result == 'OK') {
                   this.tournament = JSON.stringify(res[0].tournament);
@@ -146,7 +191,7 @@ export class HomePage {
 
             //getTorneo
             this.httpService
-              .getCallHttp('getTorneo','','','','','115')
+              .getCallHttp('getTorneo','','','','','249')
               .then(res => {
                 if(res[0].response[0].result == 'OK') {
                   this.tournament = JSON.stringify(res[0].tournament);
@@ -325,6 +370,11 @@ export class HomePage {
   }
 
   doRefresh(refresher) {
+    this.loading = this.loadingCtrl.create({
+      spinner: 'crescent',
+    });
+    this.loading.present();
+
     window.location.reload();
   }
 }
