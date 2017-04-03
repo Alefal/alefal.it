@@ -1,0 +1,35 @@
+=== UPDATE FRAMEWORK ===
+$ npm install -g @angular/cli
+$ ng -v
+@angular/cli: 1.0.0
+
+$ npm install cordova -g
+$ cordova -v
+6.5.0
+
+$ npm install ionic -g
+$ ionic -v
+2.2.1
+
+=== SE NON INSTALLA ===
+npm uninstall ionic -g
+npm uninstall cordova -g
+npm cache clean
+npm install cordova -g
+npm install ionic -g
+
+C:\Users\Alessandro Falcone>cordova -v
+6.4.0
+C:\Users\Alessandro Falcone>npm -v
+4.1.1
+C:\Users\Alessandro Falcone>node -v
+v6.9.4
+C:\Users\Alessandro Falcone>ionic -v
+2.2.1
+
+=== UPDATE project IONIC to latest version ===
+1) cd PROJECT
+2) Rimuovere il contenuto della directory NODE_MODULES
+3) Aggiornare package.json con l'ultima versione
+4) npm cache clean
+5) npm install

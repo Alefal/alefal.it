@@ -1,9 +1,10 @@
 https://cli.angular.io/
 
-npm install -g angular-cli
-ng new myApp
-cd myApp
-ng serve
+> npm install -g angular-cli
+> ng new myApp
+> cd myApp
+> ng serve
+> ng build
 
 http://www.html.it/pag/61181/reactive-form/
 
