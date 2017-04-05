@@ -97,13 +97,58 @@ p{
 
 .header{
 	text-align:center;
-	background:url(../img/agracq/header.jpg) center center no-repeat;
-	padding:280px 0;
+	background:url(../img/agracq/img1.jpg) center center no-repeat;
+	padding:275px 0;
+	/*
+	*/
 }
 .logo{
-	width:130px;
+	width: 300px;
+	/*
 	margin:0 auto 35px;
+	*/
+	margin:0px auto 50px;
 }
+/*
+.containerBxSlider{
+	width: 100%;
+	position: absolute;
+    top: 225px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+}
+*/
+.slider-wrapper ul {
+	margin: 0px;
+}
+
+.bx-viewport, .bx-wrapper{
+	position:relative;
+	width:100%;
+	height:100% !important;
+	top:0;
+	left:0;
+	border: none !important;
+	box-shadow: none !important;
+}
+
+.bxslider, .bxslider li {
+	height: 100vh !important;;
+}
+
+.bxslider li {
+	background-repeat: no-repeat;
+	background-position: top center;
+	background-size: cover;
+}
+
+
+/*
+.main-nav .small-logo img {
+	width: 55px;
+}
+*/
 .header h1{
 	font-family: 'Montserrat',sans-serif;
 	font-size:50px;
@@ -158,6 +203,7 @@ color: #fff;
 	transition:all 0.3s ease-in-out;
 	-moz-transition:all 0.3s ease-in-out;
 	-webkit-transition:all 0.3s ease-in-out;
+	border: 3px solid white;
 }
 .link:hover {
 	text-decoration:none;
@@ -197,7 +243,7 @@ color: #fff;
 	font-family: 'Montserrat', sans-serif;
 	text-decoration: none;
 	line-height:20px;
-	margin:17px 32px;
+	margin:15px 28px;
 	transition:all 0.3s ease-in-out;
 	-moz-transition:all 0.3s ease-in-out;
 	-webkit-transition:all 0.3s ease-in-out;
@@ -352,8 +398,8 @@ color: #fff;
 
 .Portfolio-box{
 	text-align:center;
-	margin-bottom:30px;
-	height:350px;
+	margin-bottom:10px;
+	height:300px;
 	width:350px;
 	overflow:hidden;
 	float:left;
@@ -370,10 +416,11 @@ color: #fff;
 	opacity: 0.6;
 }
 
-.Portfolio-nav li a.current{
+.Portfolio-nav li a/*.current*/{
 	background:#7cc576;
 	color:#fff;
 	text-decoration:none;
+	cursor: default;
 }
 img {
    max-width:100%;
@@ -394,99 +441,22 @@ img {
           transition-property:         transform, opacity;
 }
 
-.main-section.paddind{
+.paddind{
 	padding-bottom:60px;
 }
 
-/* Clients
+/* Maps
 ---------------------------------*/
-.client-part{
-	background:url(../img/section-bg1.jpg) center center no-repeat;
-	background-size:cover;
-	padding:55px 0;
-	text-align:center;
+.maps-section {
+    width: 100%;
 }
-.client-part-haead{
-	color:#fdfdfd;
-	font-size:28px;
-	line-height:41px;
-	margin:30px 0 10px;
-	font-family: ''Open Sans',sans-serif';
-	font-style: italic;
+#map {
+    height: 500px;
+    margin-top: 25px;
 }
-.client{
-	padding:0;
-	margin:20px 0 0;
-	list-style:none;
-	text-align:center;
-}
-.client li{
-	display:inline;
-	margin:0 15px;
-}
-.client li a{
-	display:inline-block;
-}
-.client li a img{
-	margin-bottom:15px;
-	border-radius:50%;
-}
-.client li a:hover{
-	text-decoration:none;
-}
-.client li a h3{
-	color:#ffffff;
-}
-.client li a span{
-	color:#f1f1f1;
-}
-.quote-right{
-	font-style:normal;
-	width:68px;
-	height:68px;
-	margin:0 auto;
-	border:2px solid #7cc576;
-	border-radius:50%;
-	display:block;
-	line-height:68px;
-	text-align:center;
-	font-size:27px;
-	color:#7cc576;
-	cursor: pointer;
-	transition:all 0.3s ease-in-out;
-	-moz-transition:all 0.3s ease-in-out;
-	-webkit-transition:all 0.3s ease-in-out;
-}
-
-.quote-right:hover{
-color: #fff;
-border: 2px solid #fff;
-}
-
-.c-logo-part{
-	background:#7cc576;
-	padding:25px 0;
-    filter: alpha(opacity=60);
-}
-.c-logo-part ul{
-	padding:0;
-	margin:0;
-	list-style:none;
-	text-align:center;
-}
-.c-logo-part ul li{
-	display:inline;
-	margin:0 25px;
-}
-.c-logo-part ul a{
-	display:inline-block;
-	margin: 0 20px;
-}
-.main-section.team{
-	padding:85px 0;
-}
-.main-section.team h6{
-	margin-bottom:40px;
+#map .gmnoprint,
+#map .gm-style-cc {
+	display: none;
 }
 
 
@@ -588,15 +558,22 @@ border: 2px solid #fff;
 	color:#dd4b39;
 }
 
-/* Talk Business
+/* Section BG
 ---------------------------------*/
-.business-talking{
-	background:url(../img/section-bg2.jpg) top center no-repeat;
+.sectionBg1 {
+	background:url(../img/agracq/sectionBg1.png) top center no-repeat;
 	background-size:cover;
 	padding:60px 0 10px;
 	text-align:center;
 }
-.business-talking h2{
+.sectionBg2 {
+	background:url(../img/agracq/sectionBg2.png) top center no-repeat;
+	background-size:cover;
+	padding:60px 0 10px;
+	text-align:center;
+}
+.sectionBg1 h2,
+.sectionBg2 h2 {
 	font-family: 'Montserrat', sans-serif;
 	font-weight:700;
 	padding:0;
@@ -625,7 +602,7 @@ border: 2px solid #fff;
 	font-size: 15px;
 	font-weight:400;
 	float:left;
-	width:102px;
+	width:130px;
 	margin-right:12px;
 	line-height:28px;
 }
@@ -777,7 +754,7 @@ border: 2px solid #fff;
 }
 .footer-logo{
 	margin:15px auto 35px;
-	width: 76px;
+	width: 125px;
 }
 .copyright, .credits{
 	color:#cccccc;
@@ -869,8 +846,15 @@ border: 2px solid #fff;
 	-webkit-animation-delay: 1.2s; 
 }
 
-#map {
-    width: 100%;
-    height: 200px;
-    margin-top: 100px;
+#servizi h2,
+#servizi h6,
+#servizi p {
+	margin: 0 0 20px 0; 
+	text-align:left
+}
+
+#dovesiamo h2,
+#dovesiamo h6 {
+	margin: 0 0 20px 0; 
+	text-align:right
 }

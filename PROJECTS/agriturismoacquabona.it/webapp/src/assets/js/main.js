@@ -2,10 +2,16 @@ $(document).ready(function(e) {
     $('#test').scrollToFixed();
     $('.res-nav_click').click(function(){
         $('.main-nav').slideToggle();
-        return false    
-        
+        return false;
     });
-    
+    $('.bxslider').bxSlider({
+        auto: true,
+        pager: false,
+        controls: false,
+        mode: 'fade',
+        captions: true,
+        adaptiveHeight: true,
+    });
 });
 
 wow = new WOW(
@@ -23,7 +29,7 @@ $(window).load(function(){
 		var $anchor = $(this);
 		
 		$('html, body').stop().animate({
-			scrollTop: $($anchor.attr('href')).offset().top - 102
+			scrollTop: $($anchor.attr('href')).offset().top - 50
 		}, 1500,'easeInOutExpo');
 		/*
 		if you don't want to use the easing effects:
@@ -87,15 +93,15 @@ function init() {
     // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
     var mapOptions = {
         // How zoomed in you want the map to start at (always required)
-        zoom: 15,
+        zoom: 14,
 
         // The latitude and longitude to center the map (always required)
-        center: new google.maps.LatLng(40.650274, 14.608041), // New York
+        center: new google.maps.LatLng(40.650274, 14.608041), // Agriturismo Acquabona
 
         // Disables the default Google Maps UI components
         disableDefaultUI: true,
         scrollwheel: false,
-        draggable: false,
+        draggable: true,
 
         // How you would like to style the map. 
         // This is where you would paste any style found on Snazzy Maps.
@@ -217,8 +223,8 @@ function init() {
     var map = new google.maps.Map(mapElement, mapOptions);
 
     // Custom Map Marker Icon - Customize the map-marker.png file to customize your icon
-    var image = 'img/map-marker.png';
-    var myLatLng = new google.maps.LatLng(40.6700, -73.9400);
+    var image = 'assets/img/map-marker.png';
+    var myLatLng = new google.maps.LatLng(40.650274, 14.608041);
     var beachMarker = new google.maps.Marker({
         position: myLatLng,
         map: map,
