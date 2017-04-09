@@ -33,3 +33,27 @@ C:\Users\Alessandro Falcone>ionic -v
 3) Aggiornare package.json con l'ultima versione
 4) npm cache clean
 5) npm install
+
+=== Angular CLI ===
+Please take the following steps to avoid issues:
+"npm uninstall --save-dev angular-cli"
+"npm install --save-dev @angular/cli@latest"
+
+To migrate angular-cli.json follow the example below:
+
+Before:
+
+"environments": {
+  "source": "environments/environment.ts",
+  "dev": "environments/environment.ts",
+  "prod": "environments/environment.prod.ts"
+}
+
+
+After:
+
+"environmentSource": "environments/environment.ts",
+"environments": {
+  "dev": "environments/environment.ts",
+  "prod": "environments/environment.prod.ts"
+}
