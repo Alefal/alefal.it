@@ -20,12 +20,20 @@ npm install ionic -g
 
 C:\Users\Alessandro Falcone>cordova -v
 6.4.0
+C:\Users\Alessandro Falcone>npm install cordova@latest -g
+
 C:\Users\Alessandro Falcone>npm -v
 4.1.1
+C:\Users\Alessandro Falcone>npm install npm@latest -g
+
 C:\Users\Alessandro Falcone>node -v
 v6.9.4
+
 C:\Users\Alessandro Falcone>ionic -v
 2.2.1
+C:\Users\Alessandro Falcone>npm install ionic@latest -g
+
+
 
 === UPDATE project IONIC to latest version ===
 1) cd PROJECT
