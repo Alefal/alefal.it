@@ -157,7 +157,7 @@ class URE_Capabilities_Groups_Manager {
         $caps['manage_links'] = array('core', 'others');
         $caps['upload_files'] = array('core', 'general'); 
         $caps['import'] = array('core', 'general');
-        $caps['unfiltered_html'] = array('core');
+        $caps['unfiltered_html'] = array('core','general');
         if ($multisite) {
             $caps['unfiltered_html'] = array('deprecated');
         }
@@ -355,6 +355,10 @@ class URE_Capabilities_Groups_Manager {
         $groups = apply_filters('ure_custom_capability_groups', $groups, $cap_id);        
         $groups[] = 'all'; // Every capability belongs to the 'all' group        
         $groups = array_unique($groups);
+        
+        foreach($groups as $key=>$value) {
+            $groups[$key] = 'ure-'. $value;            
+        }
         
         return $groups;
     }

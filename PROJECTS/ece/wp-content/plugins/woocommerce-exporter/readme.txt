@@ -4,8 +4,8 @@ Contributors: visser, visser.labs
 Donate link: https://www.visser.com.au/donations/
 Tags: e-commerce, woocommerce, shop, cart, ecommerce, export, csv, xml, xls, xlsx, excel, customers, products, sales, orders, coupons, users, attributes, subscriptions
 Requires at least: 2.9.2
-Tested up to: 4.3
-Stable tag: 1.8.6
+Tested up to: 4.7
+Stable tag: 1.8.8
 License: GPLv2 or later
 
 Export store details out of WooCommerce into simple formatted files (e.g. CSV, XML, Excel 2007, XLS, etc.).
@@ -132,6 +132,12 @@ http://www.visser.com.au/woocommerce/forums/
 9. Drag-and-drop export fields to your preferred ordering, sorting is saved between screen refreshes.
 
 == Changelog ==
+
+= 1.8.8 =
+* Fixed: Missing WordPress SEO resource
+
+= 1.8.7 =
+* Fixed: Compatibility with WooCommerce 2.6.9
 
 = 1.8.6 =
 * Fixed: Product export failing due to incorrect token check

@@ -47,10 +47,13 @@ class Stock_Manager_Admin {
 
 		add_action( 'admin_init', array( $this, 'output_buffer' ) );
     
+		include_once( 'includes/wcm-class-stock.php' );
+        include_once( 'includes/wcm-class-table.php' );
+
     
-    $this->includes();
+    	//$this->includes();
     
-    add_action( 'admin_init', array( $this, 'generate_csv_file' ) );
+    	add_action( 'admin_init', array( $this, 'generate_csv_file' ) );
     
     
     
@@ -79,12 +82,11 @@ class Stock_Manager_Admin {
 	 * @since     1.0.0      
 	 */
 	private function includes() {
-    if( isset( $_GET['page'] ) && ( $_GET['page'] == 'stock-manager' || $_GET['page'] == 'stock-manager-import-export' ) ){
-        include_once( 'includes/wcm-class-stock.php' );
-        include_once( 'includes/wcm-class-table.php' );
-    }
+    	//if( isset( $_GET['page'] ) && ( $_GET['page'] == 'stock-manager' || $_GET['page'] == 'stock-manager-import-export' ) ){
+        	
+    	//}
   
-  }
+  	}
   
   /**
 	 * Get stock class
@@ -118,8 +120,13 @@ class Stock_Manager_Admin {
 	 */
 	public function enqueue_admin_scripts() {
      if( isset( $_GET['page'] ) && ( $_GET['page'] == 'stock-manager' || $_GET['page'] == 'stock-manager-import-export' ) ){
+
+     		$params = array(
+  				'ajax_nonce' => wp_create_nonce('wsm_update'),
+			);
+			wp_localize_script( $this->plugin_slug . '-admin-script', 'ajax_object', $params );
 			wp_enqueue_script( $this->plugin_slug . '-admin-script', plugins_url( 'assets/js/admin.js', __FILE__ ), array( 'jquery' ), Stock_Manager::VERSION );
-		 }
+		}
 	}
 
 	/**
@@ -156,7 +163,7 @@ class Stock_Manager_Admin {
 	public function display_plugin_admin_page() {
 		include_once( 'views/admin.php' );
 	}
-  /**
+  	/**
 	 * Render the impoer export page for this plugin.
 	 *
 	 * @since    1.0.0
@@ -216,7 +223,7 @@ class Stock_Manager_Admin {
     
       $array_to_csv = array();
       //First line
-      $array_to_csv[] = array('id','SKU','Nome prodotto','Magazzino','Stato','Ordini arretrati','Quantita','Tipo','ID Padre'); 
+      $array_to_csv[] = array('id','sku','Product name','Manage stock','Stock status','Backorders','Stock','Type','Parent ID'); 
        
       $products = $stock->get_products_for_export(); 
       

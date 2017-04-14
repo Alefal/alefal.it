@@ -3,7 +3,7 @@ Contributors: Musilda
 Donate link: 
 Tags: WooCommerce, stock manager
 Requires at least: 3.5.1
-Tested up to: 4.5
+Tested up to: 4.7
 Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -12,7 +12,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 WooCommerce Stock Manager allows you manage stock for products and their variables from one screen. 
 
-Plugin is compatible with WooCommerce 2.1+ and is tested on 2.5.5 version. 
+Plugin is compatible with WooCommerce 2.1+ and is tested on 2.6.8 version. 
 
 A few notes about the plugin:
 
@@ -20,12 +20,19 @@ A few notes about the plugin:
 *   You can set "Stock status" for each product and variation
 *   You can set "Backorders" for each product and variation
 *   You can set "Stock" for each product and variation
+*   You can set "Price" for each product and variation
+*   You can set "Sale price" for each product and variation
+*   You can set "Weight" for each product and variation
 
 Stock field is green, when stock is more than 5 pieces.
 Stock field is yellow, when stock is low than 5 pieces.
 Stock field is red, when stock is 0 pieces.
 
 You can filter products by type, category, stock manage or stock status.
+You can sort products by name or sku.
+Searching products by name or sku.
+
+For better usabillity is possible hide some table cells. 
 
 Variants for variable product is posible edit after click on "Show variables" button.
 Each product or variation, can be save separatelly, or you can save all displayed data.
@@ -75,6 +82,9 @@ Parent SKU - if product is variant, parent product SKU is displayed for better f
 Q: I see white screen, when i click on Export button.
 A: Try increase memory limit.
 
+Q: Quantity change not working.
+A: Be sure, that you have active stock manage.
+
 == Screenshots ==
 
 1. Edit stock product data
@@ -83,6 +93,23 @@ A: Try increase memory limit.
 4. Show product variations
 
 == Changelog ==
+
+= 1.1.4 =
+* Fixed Save all button issue
+
+= 1.1.3 =
+* Typo admin fix
+
+= 1.1.2 =
+* Added input for sku change
+* Use $product->set_stock for set qty value
+* Added searching products by product name
+* Wildcard for searching by sku
+* Product name edit directly in table - green pen icon
+* Added sale price
+* Availability switch off/on table cells - price, sale price, weight, manage stock, stock status, backorders, stock
+* New setting for cells displaying
+* Fixed save all price error
 
 = 1.1.1 =
 * Fixed Search by SKU issue

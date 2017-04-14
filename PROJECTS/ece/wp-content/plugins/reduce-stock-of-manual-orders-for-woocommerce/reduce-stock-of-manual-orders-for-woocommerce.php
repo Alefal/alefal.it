@@ -1,14 +1,28 @@
 <?php
 /**
  * Plugin Name: Reduce stock of manual orders for WooCommerce
- * Plugin URI: https://github.com/claudiosmweb/reduce-stock-of-manual-orders-for-woocommerce
+ * Plugin URI:  https://github.com/claudiosanches/reduce-stock-of-manual-orders-for-woocommerce
  * Description: Automatically reduce or increase stock levels of manual orders in WooCommerce.
- * Author: Claudio Sanches
- * Author URI: https://claudiosmweb.com/
- * Version: 1.0.0
- * License: GPLv2 or later
+ * Author:      Claudio Sanches
+ * Author URI:  https://claudiosmweb.com
+ * Version:     1.0.1
+ * License:     GPLv2 or later
  * Text Domain: reduce-stock-of-manual-orders-for-woocommerce
- * Domain Path: /languages/
+ * Domain Path: /languages
+ *
+ * Reduce stock of manual orders for WooCommerce is free software:
+ * you can redistribute it and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 2 of the License, or any later version.
+ *
+ * Reduce stock of manual orders for WooCommerce is distributed in the hope
+ * that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Reduce stock of manual orders for WooCommerce. If not, see
+ * <https://www.gnu.org/licenses/gpl-2.0.txt>.
  *
  * @package RSMO_WooCommerce
  */
@@ -29,7 +43,7 @@ if ( ! class_exists( 'RSMO_WooCommerce' ) ) :
 		 *
 		 * @var string
 		 */
-		const VERSION = '1.0.0';
+		const VERSION = '1.0.1';
 
 		/**
 		 * Instance of this class.
@@ -74,6 +88,17 @@ if ( ! class_exists( 'RSMO_WooCommerce' ) ) :
 		 */
 		public function load_plugin_textdomain() {
 			load_plugin_textdomain( 'reduce-stock-of-manual-orders-for-woocommerce', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+		}
+
+		/**
+		 * Nornalize order status.
+		 *
+		 * @param  string $status Order status.
+		 *
+		 * @return string
+		 */
+		protected function normalize_order_status( $status ) {
+			return $status = 'wc-' === substr( $status, 0, 3 ) ? substr( $status, 3 ) : $status;
 		}
 
 		/**
@@ -144,9 +169,14 @@ if ( ! class_exists( 'RSMO_WooCommerce' ) ) :
 		 *
 		 * @param int    $order_id Order ID.
 		 * @param string $status Order status.
+		 *
+		 * @return bool
 		 */
 		protected function can_reduce_stock( $order_id, $status ) {
-			return in_array( $status, array( 'wc-processing', 'wc-completed' ), true ) && '1' !== get_post_meta( $order_id, '_order_stock_reduced', true );
+			$status   = $this->normalize_order_status( $status );
+			$statuses = apply_filters( 'rsmo_wc_reduce_stock_statuses', array( 'processing', 'completed' ) );
+
+			return in_array( $status, $statuses, true ) && '1' !== get_post_meta( $order_id, '_order_stock_reduced', true );
 		}
 
 		/**
@@ -154,9 +184,14 @@ if ( ! class_exists( 'RSMO_WooCommerce' ) ) :
 		 *
 		 * @param int    $order_id Order ID.
 		 * @param string $status Order status.
+		 *
+		 * @return bool
 		 */
 		protected function can_increase_stock( $order_id, $status ) {
-			return 'wc-cancelled' === $status && '1' === get_post_meta( $order_id, '_order_stock_reduced', true );
+			$status   = $this->normalize_order_status( $status );
+			$statuses = apply_filters( 'rsmo_wc_increase_stock_statuses', array( 'cancelled' ) );
+
+			return in_array( $status, $statuses, true ) && '1' === get_post_meta( $order_id, '_order_stock_reduced', true );
 		}
 
 		/**

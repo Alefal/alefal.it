@@ -11,8 +11,26 @@
  * License: GPLv3
  * License URI: http://www.gnu.org/licenses/gpl-3.0
 */
+if(!function_exists('wp_get_current_user')) {
+    include(ABSPATH . "wp-includes/pluggable.php"); 
+}
 
-add_action( 'admin_menu', 'remove_menus', 99, 0 );
+function is_shop_manager() {
+    $user = wp_get_current_user();
+
+    if ( isset( $user->roles[0] ) && $user->roles[0] == 'shop_manager' ) {
+        return true;    // when user is shop manager
+    } else {
+        return false;   // when user is not shop manager
+    }
+}
+
+//echo is_admin();
+//die();
+
+if ( !is_admin() || is_shop_manager() ) {
+	add_action( 'admin_menu', 'remove_menus', 99, 0 );
+}
 function remove_menus(){  
 
 	//remove_menu_page( 'index.php' );             			//Dashboard
@@ -26,9 +44,11 @@ function remove_menus(){
   	remove_menu_page( 'tools.php' );                  //Tools
   	remove_menu_page( 'options-general.php' );        //Settings
 
+  	//remove_menu_page( 'users.php' );                  //Users: not work!
   	remove_submenu_page( 'users.php','profile.php' );
   	
   	/*** WOOCOMMERCE ***/
+  	remove_menu_page( 'edit.php?post_type=shop_order' );    //Pages
   	remove_submenu_page( 'woocommerce', 'wc-addons' );
   	//remove_submenu_page( 'woocommerce', 'wc-reports' );
   	remove_submenu_page( 'woocommerce', 'wc-status' );
@@ -42,7 +62,9 @@ function remove_menus(){
 }
 
 // Register the new dashboard widget with the 'wp_dashboard_setup' action
-add_action('wp_dashboard_setup', 'add_dashboard_widgets' );
+if ( !is_admin() || is_shop_manager() ) {
+	add_action('wp_dashboard_setup', 'add_dashboard_widgets' );
+}
 // Function used in the action hook
 function add_dashboard_widgets() {
 	wp_add_dashboard_widget(
@@ -114,7 +136,9 @@ function dashboard_widget_function( $post, $callback_args ) {
 	<?php
 }
 
-add_action( 'admin_init', 'remove_dashboard_meta' );
+if ( !is_admin() || is_shop_manager() ) {
+	add_action( 'admin_init', 'remove_dashboard_meta' );
+}
 function remove_dashboard_meta() {
         remove_meta_box( 'dashboard_incoming_links', 'dashboard', 'normal' );
         remove_meta_box( 'dashboard_plugins', 'dashboard', 'normal' );
@@ -127,7 +151,9 @@ function remove_dashboard_meta() {
         remove_meta_box( 'dashboard_activity', 'dashboard', 'normal');//since 3.8
 }
 
-add_action('admin_head', 'custom_admin_area');
+if ( !is_admin() || is_shop_manager() ) {
+	add_action('admin_head', 'custom_admin_area');
+}
 function custom_admin_area() {
 	echo '
 		<style>
@@ -174,8 +200,9 @@ function custom_script_for_woocommerce() {
 // Register style sheet.
 //add_action( 'wp_enqueue_scripts', 'theme_add_bootstrap' );		//WP: registra nel tema di FE
 //add_action( 'admin_enqueue_scripts', 'theme_add_bootstrap' );		//ADMIN: registra nel BO
-add_action( 'admin_head-index.php', 'theme_add_bootstrap' );		//ADMIN: registra nel BO ma solo nella DASHBOARD
-
+if ( !is_admin() || is_shop_manager() ) {
+	add_action( 'admin_head-index.php', 'theme_add_bootstrap' );		//ADMIN: registra nel BO ma solo nella DASHBOARD
+}
 // Register style sheet
 function theme_add_bootstrap() {
 	wp_register_style( 'bootstrap-css', plugin_dir_url( __FILE__ ) . '/bootstrap/css/bootstrap.min.css' );
@@ -189,7 +216,9 @@ function theme_add_bootstrap() {
 }
 
 // Force One-column dashboard Layout
-add_filter('screen_layout_columns', 'wps_dashboard_one_layout_column');
+if ( !is_admin() || is_shop_manager() ) {
+	add_filter('screen_layout_columns', 'wps_dashboard_one_layout_column');
+}
 function wps_dashboard_one_layout_column($columns) {
 	$columns['dashboard'] = 1;
 	return $columns;

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Stock Manager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-28 07:27+0200\n"
-"PO-Revision-Date: 2016-09-28 07:28+0200\n"
+"POT-Creation-Date: 2016-12-10 12:55+0100\n"
+"PO-Revision-Date: 2016-12-10 12:55+0100\n"
 "Last-Translator: Vladislav Musílek <musilekv@seznam.cz>\n"
 "Language-Team: Toret <vladislav.musilek@toret.cz>\n"
 "Language: cs\n"
@@ -13,171 +13,210 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 1.8.9\n"
+"X-Generator: Poedit 1.8.11\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../admin/class-stock-manager-admin.php:133
-#: ../admin/class-stock-manager-admin.php:134
+#: ../admin/class-stock-manager-admin.php:138
+#: ../admin/class-stock-manager-admin.php:139
 msgid "WooCommerce Stock Manager"
 msgstr "WooCommerce Stock Manager"
 
-#: ../admin/class-stock-manager-admin.php:142
-#: ../admin/class-stock-manager-admin.php:143
+#: ../admin/class-stock-manager-admin.php:147
+#: ../admin/class-stock-manager-admin.php:148
 msgid "Import/Export"
 msgstr "Import/Export"
 
-#: ../admin/class-stock-manager-admin.php:177
+#: ../admin/class-stock-manager-admin.php:182
 msgid "Settings"
 msgstr "Nastavení"
 
 #: ../admin/includes/config.php:6 ../admin/includes/config.php:16
 #: ../admin/includes/config.php:21 ../admin/includes/config.php:26
-#: ../admin/includes/config.php:31 ../admin/views/admin.php:46
+#: ../admin/includes/config.php:31 ../admin/includes/wcm-class-table.php:200
 #: ../admin/views/import-export.php:43 ../admin/views/import-export.php:65
 msgid "SKU"
 msgstr "SKU"
 
-#: ../admin/includes/config.php:11 ../admin/views/admin.php:47
+#: ../admin/includes/config.php:11 ../admin/includes/wcm-class-table.php:210
 msgid "ID"
 msgstr "ID"
 
-#: ../admin/includes/wcm-class-table.php:103 ../admin/views/admin.php:75
-msgid "Show variables"
-msgstr ""
-
-#: ../admin/views/admin.php:35
-msgid "Stock manager"
-msgstr "Stock manager"
-
-#: ../admin/views/admin.php:48
+#: ../admin/includes/wcm-class-table.php:220
 msgid "Name"
 msgstr "Jméno"
 
-#: ../admin/views/admin.php:49 ../admin/views/import-export.php:49
+#: ../admin/includes/wcm-class-table.php:230
+#: ../admin/views/import-export.php:49
 msgid "Product type"
 msgstr "Typ produktu"
 
-#: ../admin/views/admin.php:50
+#: ../admin/includes/wcm-class-table.php:240
 msgid "Parent ID"
 msgstr "ID rodiče"
 
-#: ../admin/views/admin.php:51
+#: ../admin/includes/wcm-class-table.php:250
+#: ../admin/views/components/filter.php:99
 msgid "Price"
-msgstr ""
+msgstr "Cena"
 
-#: ../admin/views/admin.php:52
+#: ../admin/includes/wcm-class-table.php:260
+msgid "Sale price"
+msgstr "Sleva"
+
+#: ../admin/includes/wcm-class-table.php:270
+#: ../admin/views/components/filter.php:103
 msgid "Weight"
-msgstr ""
+msgstr "Hmotnost"
 
-#: ../admin/views/admin.php:53 ../admin/views/components/filter.php:39
-#: ../admin/views/import-export.php:45 ../admin/views/import-export.php:66
+#: ../admin/includes/wcm-class-table.php:280
+#: ../admin/views/components/filter.php:40
+#: ../admin/views/components/filter.php:105 ../admin/views/import-export.php:45
+#: ../admin/views/import-export.php:66
 msgid "Manage stock"
 msgstr "Spravovat sklad"
 
-#: ../admin/views/admin.php:54 ../admin/views/components/filter.php:45
-#: ../admin/views/import-export.php:46 ../admin/views/import-export.php:67
+#: ../admin/includes/wcm-class-table.php:290
+#: ../admin/views/components/filter.php:46
+#: ../admin/views/components/filter.php:107 ../admin/views/import-export.php:46
+#: ../admin/views/import-export.php:67
 msgid "Stock status"
 msgstr "Stav skladu"
 
-#: ../admin/views/admin.php:55 ../admin/views/import-export.php:47
+#: ../admin/includes/wcm-class-table.php:300
+#: ../admin/views/components/filter.php:109 ../admin/views/import-export.php:47
 #: ../admin/views/import-export.php:68
 msgid "Backorders"
 msgstr "Objednávání"
 
-#: ../admin/views/admin.php:56 ../admin/views/import-export.php:48
+#: ../admin/includes/wcm-class-table.php:310
+#: ../admin/views/components/filter.php:111 ../admin/views/import-export.php:48
 #: ../admin/views/import-export.php:69
 msgid "Stock"
 msgstr "Skladem"
 
-#: ../admin/views/admin.php:58 ../admin/views/admin.php:123
-#: ../admin/views/admin.php:205
+#: ../admin/includes/wcm-class-table.php:320
+#: ../admin/includes/wcm-class-table.php:374
+#: ../admin/includes/wcm-class-table.php:535
 msgid "Save"
 msgstr "Uložit"
 
-#: ../admin/views/admin.php:85 ../admin/views/admin.php:99
-#: ../admin/views/admin.php:166 ../admin/views/admin.php:180
+#: ../admin/includes/wcm-class-table.php:375
+msgid "Close"
+msgstr "Zavřít"
+
+#: ../admin/includes/wcm-class-table.php:390 ../admin/views/admin.php:75
+msgid "Show variables"
+msgstr "Zobrazit varianty"
+
+#: ../admin/includes/wcm-class-table.php:447
+#: ../admin/includes/wcm-class-table.php:479
 msgid "Yes"
 msgstr "Ano"
 
-#: ../admin/views/admin.php:86 ../admin/views/admin.php:97
-#: ../admin/views/admin.php:167 ../admin/views/admin.php:178
+#: ../admin/includes/wcm-class-table.php:448
+#: ../admin/includes/wcm-class-table.php:477
 msgid "No"
 msgstr "Ne"
 
-#: ../admin/views/admin.php:91 ../admin/views/admin.php:172
-#: ../admin/views/components/filter.php:46
+#: ../admin/includes/wcm-class-table.php:462
+#: ../admin/views/components/filter.php:47
 msgid "In stock"
 msgstr "Skladem"
 
-#: ../admin/views/admin.php:92 ../admin/views/admin.php:173
-#: ../admin/views/components/filter.php:47
+#: ../admin/includes/wcm-class-table.php:463
+#: ../admin/views/components/filter.php:48
 msgid "Out of stock"
 msgstr "Není skladem"
 
-#: ../admin/views/admin.php:98 ../admin/views/admin.php:179
+#: ../admin/includes/wcm-class-table.php:478
 msgid "Notify"
 msgstr "Upozornit"
 
-#: ../admin/views/admin.php:218
+#: ../admin/views/admin.php:47
+msgid "Stock manager"
+msgstr "Stock manager"
+
+#: ../admin/views/admin.php:141
 msgid "Save all"
 msgstr "Uložit vše"
 
 #: ../admin/views/components/filter.php:3
 msgid "Filter"
-msgstr ""
+msgstr "Filtr"
 
 #: ../admin/views/components/filter.php:4
-#: ../admin/views/components/filter.php:62
+#: ../admin/views/components/filter.php:63
 msgid "Search by sku"
-msgstr ""
+msgstr "Hledat dle sku"
 
-#: ../admin/views/components/filter.php:14
-msgid "Order by"
-msgstr ""
+#: ../admin/views/components/filter.php:5
+#: ../admin/views/components/filter.php:73
+msgid "Search by product name"
+msgstr "Hledat dle názvu produktu"
+
+#: ../admin/views/components/filter.php:6
+msgid "Display setting"
+msgstr "Nastavení zobrazení"
 
 #: ../admin/views/components/filter.php:15
-msgid "Product name ASC"
-msgstr ""
+msgid "Order by"
+msgstr "Řadit dle"
 
 #: ../admin/views/components/filter.php:16
-msgid "Product name DESC"
-msgstr ""
+msgid "Product name ASC"
+msgstr "Název produktu A-Z"
 
 #: ../admin/views/components/filter.php:17
-msgid "SKU ASC"
-msgstr ""
+msgid "Product name DESC"
+msgstr "název produktu Z-A"
 
 #: ../admin/views/components/filter.php:18
-msgid "SKU DESC"
-msgstr ""
+msgid "SKU ASC"
+msgstr "SKU vzestupně"
 
-#: ../admin/views/components/filter.php:22
+#: ../admin/views/components/filter.php:19
+msgid "SKU DESC"
+msgstr "SKU sestupně"
+
+#: ../admin/views/components/filter.php:23
 msgid "Simple products"
 msgstr "Jednoduché produkty"
 
-#: ../admin/views/components/filter.php:23
+#: ../admin/views/components/filter.php:24
 msgid "Products with variation"
 msgstr "Produkty s variantami"
 
-#: ../admin/views/components/filter.php:27
+#: ../admin/views/components/filter.php:28
 msgid "All categories"
 msgstr "Všechny kategorie"
 
-#: ../admin/views/components/filter.php:40
+#: ../admin/views/components/filter.php:41
 msgid "No manage stock"
 msgstr "Ne spravovat sklad"
 
-#: ../admin/views/components/filter.php:41
+#: ../admin/views/components/filter.php:42
 msgid "Yes manage stock"
 msgstr "Ano spravovat sklad"
 
-#: ../admin/views/components/filter.php:51
+#: ../admin/views/components/filter.php:52
 msgid "Show"
 msgstr "Zobrazit"
 
-#: ../admin/views/components/filter.php:53
+#: ../admin/views/components/filter.php:54
 msgid "Clear filter"
 msgstr "Vyčistit filter"
+
+#: ../admin/views/components/filter.php:96
+msgid "Hide or display cells"
+msgstr "Skrýt, nebo zobrazit buňky"
+
+#: ../admin/views/components/filter.php:101
+msgid "Sales price"
+msgstr "Sleva"
+
+#: ../admin/views/components/filter.php:117
+msgid "Save setting"
+msgstr "Uložit nastavení"
 
 #: ../admin/views/import-export.php:35
 msgid "Import"
@@ -201,7 +240,7 @@ msgstr "Formát souboru."
 
 #: ../admin/views/import-export.php:44
 msgid "Product name"
-msgstr ""
+msgstr "Název produktu"
 
 #: ../admin/views/import-export.php:50
 msgid "Parent SKU"
@@ -251,19 +290,19 @@ msgstr ""
 
 #: ../admin/views/import-export.php:76
 msgid "Upload csv file"
-msgstr ""
+msgstr "Nahrát csv soubor"
 
 #: ../admin/views/import-export.php:84
 msgid "Upload"
-msgstr ""
+msgstr "Nahrát"
 
 #: ../admin/views/import-export.php:95
 msgid "The file "
-msgstr ""
+msgstr "Soubor"
 
 #: ../admin/views/import-export.php:122
 msgid "Product with ID: "
-msgstr ""
+msgstr "Produkt s ID:"
 
 #: ../admin/views/import-export.php:133
 msgid "Sorry, there was an error uploading your file."
@@ -271,15 +310,15 @@ msgstr ""
 
 #: ../admin/views/import-export.php:147
 msgid "Export"
-msgstr ""
+msgstr "Export"
 
 #: ../admin/views/import-export.php:150
 msgid "You can download csv file, with your stock data. "
-msgstr ""
+msgstr "Můžete stáhnout csv soubor, s vašimi daty."
 
 #: ../admin/views/import-export.php:151
 msgid "Create export file"
-msgstr ""
+msgstr "Vytvořit soubor exportu"
 
 #~ msgid "Show wariables"
 #~ msgstr "Zobrazit varianty"

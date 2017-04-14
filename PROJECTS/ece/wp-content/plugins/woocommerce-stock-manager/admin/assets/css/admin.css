@@ -448,6 +448,36 @@ cursor: default;
   padding: 6px;
   margin-right:10px;
 }
+/**
+ * Search by title
+ *
+ */  
+.filter-by-title{
+  float:left;
+  width:100%;
+  margin:10px 0;
+  padding:10px 0;
+  border-top:solid 1px #ccc;
+  border-bottom:solid 1px #ccc;
+} 
+.filter-by-title .title-seach-field{
+  float: left;
+  padding: 6px;
+  margin-right:10px;
+}
+
+/**
+ * Filter display
+ *
+ */  
+.filter-display{
+  float:left;
+  width:100%;
+  margin:10px 0;
+  padding:10px 0;
+  border-top:solid 1px #ccc;
+  border-bottom:solid 1px #ccc;
+} 
 
 /**
  * Manager navigation
@@ -484,3 +514,45 @@ cursor: default;
 
 
 .line-price{ width:100px; }
+
+
+.table-bordered tr td.table_name_box{
+  position:relative;
+  overflow: visible;
+  padding-right:30px;
+}
+.table_name_box .dashicons{
+  display:none;
+  position:absolute;
+  right:2px;
+  top:2px;
+  cursor:pointer;
+  color:#43b610;
+}
+.table_name_box:hover .dashicons{
+  display:block;
+}
+.table_name_box .item-post-title-wrap{
+    display:none;
+    position: absolute;
+    left: 6px;
+    top: 6px;
+    width: 350px;
+    z-index: 1000;
+    box-sizing: border-box;
+    padding: 10px;
+    background: #dddddd;
+}
+
+.table_name_box .item-post-title{
+    padding:8px;
+}
+
+.table_name_box .item-post-title-button{
+    margin-top:10px;
+}
+.table_name_box .item-post-title-button-close{
+    margin-top:10px;
+    margin-left:10px;
+}
+

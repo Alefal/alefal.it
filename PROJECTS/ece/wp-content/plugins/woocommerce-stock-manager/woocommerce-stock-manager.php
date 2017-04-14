@@ -3,7 +3,7 @@
  * Plugin Name:       WooCommerce Stock Manager
  * Plugin URI:        http:/toret.cz
  * Description:       WooCommerce Stock Manager
- * Version:           1.1.1
+ * Version:           1.1.4
  * Author:            Vladislav Musílek
  * Author URI:        http://toret.cz
  * Text Domain:       stock-manager
@@ -51,29 +51,73 @@ if ( is_admin() && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {
 	
     if( current_user_can('manage_woocommerce') ){
 
-    $product_id   = sanitize_text_field($_POST['product']);
+        $product_id   = sanitize_text_field( $_POST['product'] );
 
-    check_ajax_referer( 'wsm-ajax-nonce-'.$product_id, 'secure' );
+        check_ajax_referer( 'wsm-ajax-nonce-'.$product_id, 'secure' );
 
-      $manage_stock = sanitize_text_field($_POST['manage_stock']);
-      $stock_status = sanitize_text_field($_POST['stock_status']);
-      $backorders   = sanitize_text_field($_POST['backorders']);
-      $stock        = sanitize_text_field($_POST['stock']);
-      $price        = sanitize_text_field($_POST['regular_price']);
-      $weight       = sanitize_text_field($_POST['weight']);
+        $sku          = sanitize_text_field($_POST['sku']);
+
+        $manage_stock = sanitize_text_field( $_POST['manage_stock'] );
+        $stock_status = sanitize_text_field( $_POST['stock_status'] );
+        $backorders   = sanitize_text_field( $_POST['backorders'] );
+        $stock        = sanitize_text_field( $_POST['stock'] );       
+        $weight       = sanitize_text_field( $_POST['weight'] );
   
-      update_post_meta($product_id, '_manage_stock', $manage_stock);
-      update_post_meta($product_id, '_stock_status', $stock_status);
-      update_post_meta($product_id, '_backorders', $backorders);
-      update_post_meta($product_id, '_stock', $stock);
+        update_post_meta( $product_id, '_sku', $sku );
+        update_post_meta( $product_id, '_manage_stock', $manage_stock );
+        update_post_meta( $product_id, '_stock_status', $stock_status );
+        update_post_meta( $product_id, '_backorders', $backorders );
+        
+        $_product = wc_get_product( $product_id );
+        //Set stock via product class
+        $_product->set_stock( $stock );
 
-      wsm_save_price( $product_id, $price );
-      update_post_meta($product_id, '_weight', $weight);
+            if( !empty( $_POST['regular_price'] ) ){
+                $price = sanitize_text_field($_POST['regular_price']);
+                if( !empty( $_POST['sales_price'] ) ){
+                    $sale_price   = sanitize_text_field($_POST['sales_price']);
+                    wsm_save_price( $product_id, $price, $sale_price );
+                }else{
+                    wsm_save_price( $product_id, $price );
+                }
+            }   
+
+        update_post_meta($product_id, '_weight', $weight);
      
     }
 
      exit();
   }  
+
+
+add_action( 'wp_ajax_wsm_save_title_product', 'stock_manager_wsm_save_title_product' ); 
+
+  /**
+   * Save product title
+   *
+   */        
+  function stock_manager_wsm_save_title_product(){
+    
+    if( current_user_can('manage_woocommerce') ){
+
+        //check_ajax_referer( 'wsm_update', 'security' );
+
+        $item   = sanitize_text_field($_POST['item']);
+        $title   = sanitize_text_field($_POST['title']);
+        
+        $args = array(
+            'ID'           => $item,
+            'post_title'   => $title,
+        );
+
+        $product_id = wp_update_post( $args );
+
+        
+     
+    }
+    echo $product_id;
+    exit($product_id);
+}  
   
   
   /**
@@ -95,18 +139,46 @@ if ( is_admin() && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {
   }  
 
 
-  /**
-   *
-   *
-   */
-  function wsm_save_price( $product_id, $regular_price ){
+    /**
+     *
+     *
+     */
+    function wsm_save_price( $product_id, $regular_price, $sale_price = null ){
 
-    update_post_meta( $product_id, '_regular_price', $regular_price );
+        //$sale_price =  get_post_meta( $product_id, '_sale_price', true );
+        $date_from = get_post_meta( $product_id, '_sale_price_dates_from', true );
+        $date_from = ( '' === $date_from ) ? '' : date( 'Y-m-d', $date_from );
+        $date_to =  get_post_meta( $product_id, '_sale_price_dates_to', true );
+        $date_to = ( '' === $date_to ) ? '' : date( 'Y-m-d', $date_to );
+
+        if( $sale_price === null ){
+            $sale_price =  get_post_meta( $product_id, '_sale_price', true );
+        }
+            _wc_save_product_price( $product_id, $regular_price, $sale_price, $date_from, $date_to );
     
-    $_product = new WC_Product( $product_id );
-
-    if( $_product->is_on_sale() === false ){
-      update_post_meta( $product_id, '_price', $regular_price );
     }
 
-  }
+
+
+function wsm_search_by_title_only( $search, &$wp_query )
+{
+    global $wpdb;
+    if ( empty( $search ) )
+        return $search; // skip processing - no search term in query
+    $q = $wp_query->query_vars;
+    $n = ! empty( $q['exact'] ) ? '' : '%';
+    $search = '';
+    $searchand = '';
+    foreach ( (array) $q['search_terms'] as $term ) {
+        $term = esc_sql( $wpdb->esc_like( $term ) );
+        $search .= "{$searchand}($wpdb->posts.post_title LIKE '{$n}{$term}{$n}')";
+        $searchand = ' AND ';
+    }
+    if ( ! empty( $search ) ) {
+        $search = " AND ({$search}) ";
+        if ( ! is_user_logged_in() )
+            $search .= " AND ($wpdb->posts.post_password = '') ";
+    }
+    return $search;
+}
+

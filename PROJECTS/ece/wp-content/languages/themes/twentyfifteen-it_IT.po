@@ -2,12 +2,12 @@
 # This file is distributed under the same license as the Themes - Twenty Fifteen package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2015-08-18 16:52:11+0000\n"
+"PO-Revision-Date: 2016-12-19 09:42:03+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: GlotPress/2.3.0-alpha\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
 "Language: it\n"
 "Project-Id-Version: Themes - Twenty Fifteen\n"
 
@@ -160,18 +160,18 @@ msgstr "Menu e widget"
 msgid "Skip to content"
 msgstr "Vai al contenuto"
 
-#: functions.php:270
+#: functions.php:283
 msgid "collapse child menu"
 msgstr "chiudi i menù child"
 
-#: functions.php:269
+#: functions.php:282
 msgid "expand child menu"
 msgstr "apri i menù child"
 
 #. Translators: To add an additional character subset specific to your
 #. language, translate this to 'greek', 'cyrillic', 'devanagari' or
 #. 'vietnamese'. Do not translate into your own language.
-#: functions.php:199
+#: functions.php:212
 msgctxt "Add new subset (greek, cyrillic, devanagari, vietnamese)"
 msgid "no-subset"
 msgstr "Nessun subset"
@@ -179,7 +179,7 @@ msgstr "Nessun subset"
 #. Translators: If there are characters in your language that are not supported
 #. by Inconsolata, translate this to 'off'. Do not translate into your own
 #. language.
-#: functions.php:191
+#: functions.php:204
 msgctxt "Inconsolata font: on or off"
 msgid "on"
 msgstr "on"
@@ -187,7 +187,7 @@ msgstr "on"
 #. Translators: If there are characters in your language that are not supported
 #. by Noto Serif, translate this to 'off'. Do not translate into your own
 #. language.
-#: functions.php:183
+#: functions.php:196
 msgctxt "Noto Serif font: on or off"
 msgid "on"
 msgstr "on"
@@ -195,16 +195,16 @@ msgstr "on"
 #. Translators: If there are characters in your language that are not supported
 #. by Noto Sans, translate this to 'off'. Do not translate into your own
 #. language.
-#: functions.php:175
+#: functions.php:188
 msgctxt "Noto Sans font: on or off"
 msgid "on"
 msgstr "on"
 
-#: functions.php:149
+#: functions.php:162
 msgid "Add widgets here to appear in your sidebar."
 msgstr "I widget aggiunti qui appariranno nella tua barra laterale."
 
-#: functions.php:147
+#: functions.php:160
 msgid "Widget Area"
 msgstr "Area widget"
 
@@ -218,9 +218,9 @@ msgstr "Menu principale"
 
 #: footer.php:25
 msgid "Proudly powered by %s"
-msgstr "Utilizza %s"
+msgstr "Proudly powered by %s"
 
-#. #-#-#-#-#  twentyfifteen.pot (Twenty Fifteen 1.6)  #-#-#-#-#
+#. #-#-#-#-#  twentyfifteen.pot (Twenty Fifteen 1.7)  #-#-#-#-#
 #. Author URI of the plugin/theme
 #: footer.php:25
 msgid "https://wordpress.org/"

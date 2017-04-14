@@ -2,7 +2,8 @@
       <ul class="stock-manager-navigation">
         <li><span class="navigation-filter-default activ"><?php _e('Filter','stock-manager'); ?></span></li>
         <li><span class="navigation-filter-by-sku"><?php _e('Search by sku','stock-manager'); ?></span></li>
-        <!--<li><span class="navigation-filter-display"><?php //_e('Display setting','stock-manager'); ?></span></li>-->
+        <li><span class="navigation-filter-by-title"><?php _e('Search by product name','stock-manager'); ?></span></li>
+        <li><span class="navigation-filter-display"><?php _e('Display setting','stock-manager'); ?></span></li>
       </ul>
       
       <div class="clear"></div>
@@ -60,6 +61,60 @@
           <input type="text" name="sku" class="sku-seach-field" />
           <input type="hidden" name="page" value="stock-manager" />
           <input type="submit" name="show-sku-item" value="<?php _e('Search by sku','stock-manager'); ?>" class="btn btn-info" />
+        </form>
+      </div>
+      
+      <div class="clear"></div>
+
+      <div class="filter-by-title filter-block">
+        <form method="get" action="">
+          <input type="text" name="product-title" class="title-seach-field" />
+          <input type="hidden" name="page" value="stock-manager" />
+          <input type="submit" name="show-sku-item" value="<?php _e('Search by product name','stock-manager'); ?>" class="btn btn-info" />
+        </form>
+      </div>
+      
+      <div class="clear"></div>
+
+
+      <div class="filter-display filter-block">
+        <form method="post" action="">
+        <?php 
+          $display_option = get_option( 'wsm_display_option' ); 
+          if( empty( $display_option ) ){ 
+            $display_option = array(  
+              'price' => 'display',
+              'sales_price' => 'no',
+              'weight' => 'display',
+              'manage_stock' => 'display',
+              'stock_status' => 'display',
+              'backorders' => 'display',
+              'stock' => 'display',
+            );
+          } 
+        ?>
+        <h2><?php _e('Hide or display cells','stock-manager'); ?></h2>
+          <table class="table-bordered">
+            <tr>
+              <td><?php _e('Price','stock-manager'); ?></td>
+              <td><input type="checkbox" name="price" <?php if( !empty( $display_option['price'] ) && $display_option['price'] == 'display' ){ echo 'checked="checked"'; } ?> value="ok" /></td>
+              <td><?php _e('Sales price','stock-manager'); ?></td>
+              <td><input type="checkbox" name="sales_price" <?php if( !empty( $display_option['sales_price'] ) && $display_option['sales_price'] == 'display' ){ echo 'checked="checked"'; } ?> value="ok" /></td>
+              <td><?php _e('Weight','stock-manager'); ?></td>
+              <td><input type="checkbox" name="weight" <?php if( !empty( $display_option['weight'] ) && $display_option['weight'] == 'display' ){ echo 'checked="checked"'; } ?> value="ok" /></td>
+              <td><?php _e('Manage stock','stock-manager'); ?></td>
+              <td><input type="checkbox" name="manage_stock" <?php if( !empty( $display_option['manage_stock'] ) && $display_option['manage_stock'] == 'display' ){ echo 'checked="checked"'; } ?> value="ok" /></td>
+              <td><?php _e('Stock status','stock-manager'); ?></td>
+              <td><input type="checkbox" name="stock_status" <?php if( !empty( $display_option['stock_status'] ) && $display_option['stock_status'] == 'display' ){ echo 'checked="checked"'; } ?> value="ok" /></td>
+              <td><?php _e('Backorders','stock-manager'); ?></td>
+              <td><input type="checkbox" name="backorders" <?php if( !empty( $display_option['backorders'] ) && $display_option['backorders'] == 'display' ){ echo 'checked="checked"'; } ?> value="ok" /></td>
+              <td><?php _e('Stock','stock-manager'); ?></td>
+              <td><input type="checkbox" name="stock" <?php if( !empty( $display_option['stock'] ) && $display_option['stock'] == 'display' ){ echo 'checked="checked"'; } ?> value="ok" /></td>
+            </tr>  
+          </table>
+          
+          <input type="hidden" name="page-filter-display" value="filter-display" />
+          <input type="submit" name="show-sku-item" value="<?php _e('Save setting','stock-manager'); ?>" class="btn btn-info" />
         </form>
       </div>
       

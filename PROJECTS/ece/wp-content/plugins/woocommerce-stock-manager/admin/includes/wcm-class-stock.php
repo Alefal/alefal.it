@@ -64,6 +64,7 @@ class WCM_Stock {
   	public function get_products($data = array()){
   
     	if(isset($_GET['sku'])){ return $this->get_product_by_sku($_GET['sku']); }
+        if(isset($_GET['product-title'])){ return $this->get_product_by_product_title($_GET['product-title']); }
   
     	$args = array();
     	$args['post_type'] = 'product';
@@ -333,28 +334,78 @@ class WCM_Stock {
    * Save all meta data
    *
    */        
-  public function save_all($data){
-    foreach($data['product_id'] as $key => $item){
+    public function save_all($data){
+
+        foreach($data['product_id'] as $key => $item){
   
-      $manage_stock = sanitize_text_field($data['manage_stock'][$item]);
-      $stock_status = sanitize_text_field($data['stock_status'][$item]);
-      $backorders   = sanitize_text_field($data['backorders'][$item]);
-      $stock        = sanitize_text_field($data['stock'][$item]);
-      $price        = sanitize_text_field($data['regular_price'][$item]);
-      $weight       = sanitize_text_field($data['weight'][$item]);
-  
-      update_post_meta($item, '_manage_stock', $manage_stock);
-      update_post_meta($item, '_stock_status', $stock_status);
-      update_post_meta($item, '_backorders', $backorders);
-      update_post_meta($item, '_stock', $stock);
+            $_product = wc_get_product( $item );
 
-      wsm_save_price( $item, $price );
+            $sku          = sanitize_text_field($data['sku'][$item]);
+            update_post_meta($item, '_sku', $sku);
 
+            if( !empty( $data['manage_stock'] ) ){
+                $manage_stock = sanitize_text_field($data['manage_stock'][$item]);
+                update_post_meta($item, '_manage_stock', $manage_stock);
+            }
+            if( !empty( $data['stock_status'] ) ){
+                $stock_status = sanitize_text_field($data['stock_status'][$item]);
+                update_post_meta($item, '_stock_status', $stock_status);
+            }
+            if( !empty( $data['backorders'] ) ){
+                $backorders   = sanitize_text_field($data['backorders'][$item]);
+                update_post_meta($item, '_backorders', $backorders);
+            }
+            if( !empty( $data['stock'] ) ){
+                $stock        = sanitize_text_field($data['stock'][$item]);
+                $_product->set_stock( $stock );
+                }
+            if( !empty( $data['weight'] ) ){
+                $weight       = sanitize_text_field($data['weight'][$item]);
+                update_post_meta($item, '_weight', $weight);
+            }
+                      
+            if( !empty( $data['regular_price'] ) ){
+                $price        = sanitize_text_field($data['regular_price'][$item]);
+                if( !empty( $data['sales_price'] ) ){
+                    $sale_price   = sanitize_text_field($data['sales_price'][$item]);
+                    wsm_save_price( $item, $price, $sale_price );
+                }else{
+                    wsm_save_price( $item, $price );
+                }
+            }         
+      
+                        
 
-      update_post_meta($item, '_weight', $weight);
+            
+
+            
      
-    }   
-  }
+        }   
+    }
+
+    /**
+   * Save all meta data
+   *
+   */        
+    public function save_filter_display($data){
+
+        $option = array();
+        
+        if( !empty( $data['price'] ) ){ $option['price'] = 'display'; }else{ $option['price'] = 'no'; }
+        if( !empty( $data['sales_price'] ) ){ $option['sales_price'] = 'display'; }else{ $option['sales_price'] = 'no'; }
+        if( !empty( $data['weight'] ) ){ $option['weight'] = 'display'; }else{ $option['weight'] = 'no'; }
+        if( !empty( $data['manage_stock'] ) ){ $option['manage_stock'] = 'display'; }else{ $option['manage_stock'] = 'no'; }
+        if( !empty( $data['stock_status'] ) ){ $option['stock_status'] = 'display'; }else{ $option['stock_status'] = 'no'; }
+        if( !empty( $data['backorders'] ) ){ $option['backorders'] = 'display'; }else{ $option['backorders'] = 'no'; }
+        if( !empty( $data['stock'] ) ){ $option['stock'] = 'display'; }else{ $option['stock'] = 'no'; }
+
+
+        if( !empty( $option ) ){
+            update_option( 'wsm_display_option', $option );
+        }
+     
+        
+    }
   
   /**
    *
@@ -386,22 +437,49 @@ class WCM_Stock {
     return;
   }
   
-  /**
-   *
-   *
-   */
-  private function get_product_by_sku($sku){
-      $args = array();
-    
-      $args['post_type']  = 'product';
-      $args['meta_key']   = '_sku';
-      $args['meta_value'] = $sku;
+    /**
+     * Get products by sku
+     *
+     */
+    private function get_product_by_sku($sku){
+        $args = array();
+        $args['post_type']  = 'product';
+        $args['meta_query'] = array(
+            array(
+                'key'       => '_sku',
+                'value'     => $sku,
+                'compare'   => 'LIKE'
+            )
+        );
    
-    $the_query = new WP_Query( $args );
+        $the_query = new WP_Query( $args );
     
-    return $the_query;
+        return $the_query;
   
-  }         
+    }   
+
+        /**
+     * Get products by sku
+     *
+     */
+    private function get_product_by_product_title($title){
+
+        add_filter( 'posts_search', 'wsm_search_by_title_only', 500, 2 );
+
+        $args = array();
+        $args['post_type']  = 'product';
+        $args['s'] = $title;
+        $args['post_status']  = 'publish';
+        $args['orderby']  = 'title';
+        $args['order']  = 'ASC';
+ 
+        $the_query = new WP_Query( $args );
+
+        remove_filter( 'posts_search', 'wsm_search_by_title_only' );
+    
+        return $the_query;
+  
+    }         
   
   
   

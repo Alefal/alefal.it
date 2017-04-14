@@ -38,3 +38,9 @@
 11-11-2016 @ 11:08:52 - Error: No export fields were selected, defaulted to all
 11-11-2016 @ 11:08:56 - Error: No export fields were selected, defaulted to all
 11-11-2016 @ 11:09:51 - Error: No export fields were selected, defaulted to all
+04-14-2017 @ 16:10:55 - Error: No export fields were selected, defaulted to all
+04-14-2017 @ 16:10:57 - Fatal error: A fatal PHP error was encountered during the export process, we couldn't detect or diagnose it further. - PHP response: Cannot access protected property WC_Order::$id in E:\xampp\htdocs\alefal.it\PROJECTS\ece\wp-content\plugins\woocommerce-store-exporter-deluxe\includes\order.php on line 2360
+04-14-2017 @ 16:15:57 - Error: No export fields were selected, defaulted to all
+04-14-2017 @ 16:15:58 - Fatal error: A fatal PHP error was encountered during the export process, we couldn't detect or diagnose it further. - PHP response: Cannot access protected property WC_Order::$id in E:\xampp\htdocs\alefal.it\PROJECTS\ece\wp-content\plugins\woocommerce-store-exporter-deluxe\includes\order.php on line 2360
+04-14-2017 @ 16:16:03 - Error: No export fields were selected, defaulted to all
+04-14-2017 @ 16:16:05 - Fatal error: A fatal PHP error was encountered during the export process, we couldn't detect or diagnose it further. - PHP response: Cannot access protected property WC_Order::$id in E:\xampp\htdocs\alefal.it\PROJECTS\ece\wp-content\plugins\woocommerce-store-exporter-deluxe\includes\order.php on line 2360
