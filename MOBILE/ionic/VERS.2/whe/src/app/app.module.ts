@@ -1,6 +1,11 @@
 import { NgModule, ErrorHandler }                     from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler }   from 'ionic-angular';
 import { WheApp }                                     from './app.component';
+import { BrowserModule }                              from '@angular/platform-browser';
+import { HttpModule }                                 from '@angular/http';
+
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { Login }                    from '../pages/login/login';
 import { Homepage }                 from '../pages/homepage/homepage';
@@ -34,6 +39,8 @@ import { HttpService }              from '../providers/http-service';
     MagazzinoModal
   ],
   imports: [
+    BrowserModule,
+    HttpModule,
     IonicModule.forRoot(WheApp)
   ],
   bootstrap: [IonicApp],
@@ -53,6 +60,8 @@ import { HttpService }              from '../providers/http-service';
     MagazzinoModal
   ],
   providers: [
+    StatusBar,
+    SplashScreen,
     {
       provide: ErrorHandler, 
       useClass: IonicErrorHandler

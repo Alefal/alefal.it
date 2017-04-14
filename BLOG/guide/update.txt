@@ -1,4 +1,7 @@
 === UPDATE FRAMEWORK ===
+NODE
+https://nodejs.org/it/
+
 $ npm install -g @angular/cli
 $ ng -v
 @angular/cli: 1.0.0
@@ -9,7 +12,11 @@ $ cordova -v
 
 $ npm install ionic -g
 $ ionic -v
-2.2.1
+2.2.2
+
+$ npm install npm@latest -g
+$ npm -v
+4.5.0
 
 === SE NON INSTALLA ===
 npm uninstall ionic -g
@@ -18,29 +25,15 @@ npm cache clean
 npm install cordova -g
 npm install ionic -g
 
-C:\Users\Alessandro Falcone>cordova -v
-6.4.0
-C:\Users\Alessandro Falcone>npm install cordova@latest -g
-
-C:\Users\Alessandro Falcone>npm -v
-4.1.1
-C:\Users\Alessandro Falcone>npm install npm@latest -g
-
-C:\Users\Alessandro Falcone>node -v
-v6.9.4
-
-C:\Users\Alessandro Falcone>ionic -v
-2.2.1
-C:\Users\Alessandro Falcone>npm install ionic@latest -g
-
-
+Ripetere UPDATE di sopra
 
 === UPDATE project IONIC to latest version ===
 1) cd PROJECT
 2) Rimuovere il contenuto della directory NODE_MODULES
-3) Aggiornare package.json con l'ultima versione
-4) npm cache clean
-5) npm install
+3) Aggiornare package.json con l'ultima versione (https://github.com/driftyco/ionic/blob/master/CHANGELOG.md)
+4) npm install @ionic-native/core --save
+5) npm cache clean
+6) npm install
 
 === Angular CLI ===
 Please take the following steps to avoid issues:
@@ -92,3 +85,11 @@ package.json
   "sw-toolbox": "3.4.0",
   "zone.js": "^0.8.4"
 },
+
+=== ANDROID SDK ===
+Aggiornare l'SDK di Android.
+
+Scaricare tools a questo indirizzo
+https://dl.google.com/android/repository/tools_r25.2.3-windows.zip
+
+e copiarlo al path E:\Development\Android\sdk\tools

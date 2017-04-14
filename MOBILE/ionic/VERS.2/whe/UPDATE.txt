@@ -1,0 +1,66 @@
+=== Update project from ionic 2 to ionic 3 === 
+1) cd PROJECT
+2) Rimuovere il contenuto della directory NODE_MODULES
+3) Aggiornare package.json con l'ultima versione (https://github.com/driftyco/ionic/blob/master/CHANGELOG.md)
+4) npm install @ionic-native/core --save
+5) npm cache clean
+6) npm install
+
+=== CODE ===
+-> app.module.ts
+
+...
+import { HttpModule }                   from '@angular/http';
+import { BrowserModule }                from '@angular/platform-browser';
+import { StatusBar }                    from '@ionic-native/status-bar';
+import { SplashScreen }                 from '@ionic-native/splash-screen';
+...
+imports: [
+    BrowserModule,
+    HttpModule,
+    IonicModule.forRoot(WheApp)
+],
+...
+providers: [
+    StatusBar,
+    SplashScreen,
+    ...
+]
+...
+
+-> app.component.ts
+
+import { Component, ViewChild } from '@angular/core';
+import { Nav, Platform }        from 'ionic-angular';
+import { StatusBar }            from '@ionic-native/status-bar';
+import { SplashScreen }         from '@ionic-native/splash-screen';
+
+import { Login } from '../pages/login/login';
+
+
+@Component({
+  templateUrl: 'app.html'
+})
+export class WheApp {
+  @ViewChild(Nav) nav: Nav;
+
+  rootPage: any = Login;
+
+  //MENU
+  //pages: Array<{title: string, component: any}>;
+
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+    platform.ready().then(() => {
+      // Okay, so the platform is ready and our plugins are available.
+      // Here you can do any higher level native things you might need.
+      statusBar.styleDefault();
+      splashScreen.hide();
+    });
+  }
+
+  openPage(page) {
+    // Reset the content nav to have just this page
+    // we wouldn't want the back button to show in this scenario
+    this.nav.setRoot(page.component);
+  }
+}

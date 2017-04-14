@@ -11,8 +11,8 @@ import { HttpService }          from '../../providers/http-service';
 })
 export class Login {
 
-  username:   string = 'admin';
-  password:   string = 'admin';
+  username:   string = '';
+  password:   string = '';
   userLogged: string;
 
   loading: any;

@@ -7,3 +7,5 @@ OK - PRODOTTO: nella modifica di un prodotto, non viene recuperata la CATEGORIA 
 OK - MAGAZZINO: quando viene aggiornata una quantità non viene recuperata la CATEGORIA: creare servizio per aggiornare solo quantità
 OK - MAGAZZINO: cambiare icona in alto a destra per inserimento quantità
 - GENERALE: messaggio di NOT FOUND quando non si trova nulla
+
+v.1.0.02 -> passaggio a IONIC 3 e ANGULAR 4
