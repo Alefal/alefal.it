@@ -17,13 +17,21 @@ import { Fornitori }  from '../fornitori/fornitori';
 export class Homepage {
 
   userLogged: string;
-  appVersion: String = 'pro'; //basic | pro
+  appVersion: String = ''; //basic | pro
 
   constructor(
     public params: NavParams,
     public navCtrl: NavController
   ) {
     this.userLogged = params.get('userLogged');
+
+    if(localStorage.getItem('version') == 'basic') {
+      this.appVersion = 'basic';
+    } else if(localStorage.getItem('version') == 'pro') {
+      this.appVersion = 'pro';
+    } else  {
+      this.appVersion = 'basic';
+    }
   }
 
   ionViewDidLoad() {

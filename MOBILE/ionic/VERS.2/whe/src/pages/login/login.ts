@@ -24,7 +24,7 @@ export class Login {
     public params: NavParams, 
     private httpService: HttpService,
     public loadingCtrl: LoadingController
-  ) {}
+  ) { }
 
   ionViewDidLoad() {
     console.log('Hello Login Page');
@@ -52,6 +52,15 @@ export class Login {
           this.errorMessageView = true;
         } else if(res.status == 'ok') {
           this.userLogged = res.user.nickname;
+
+          console.log('-> '+res.user.capabilities.administrator);
+
+          if(res.user.capabilities.administrator) {
+            localStorage.setItem('version', 'pro');
+          } else {
+            localStorage.setItem('version', 'basic');            
+          }
+          
           //TODO: parametri nel localStorage
           //this.navCtrl.push(Homepage, {
            // userLogged: this.userLogged
