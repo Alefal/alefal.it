@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavParams, ViewController, LoadingController, AlertController } from 'ionic-angular';
+import { Platform, NavParams, ViewController, LoadingController, AlertController } from 'ionic-angular';
 
 import { HttpService } from '../../providers/http-service';
 
@@ -29,8 +29,17 @@ export class CategoriaModal {
     private httpService: HttpService,
     public loadingCtrl: LoadingController,
     public viewCtrl: ViewController,
-    public alertCtrl: AlertController
-  ) {}
+    public alertCtrl: AlertController,
+    private platform: Platform
+  ) {
+    platform.registerBackButtonAction(() => {
+      console.log("Back button action called");
+
+      this.viewCtrl.dismiss({
+        action: 'noRefresh'
+      });
+    }, 1);
+  }
 
   dismiss() {
     this.viewCtrl.dismiss({

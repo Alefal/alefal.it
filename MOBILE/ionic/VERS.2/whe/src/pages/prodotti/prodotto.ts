@@ -1,6 +1,7 @@
 export class Prodotto {
   public prodId: number;
   public prodTitle: string;
+  public prodSku: string;
   public prodPrice: number;
   public prodDescription: string;
   public prodManageStock: boolean;
@@ -12,6 +13,7 @@ export class Prodotto {
   constructor(
       prodId: number, 
       prodTitle: string, 
+      prodSku: string, 
       prodPrice: number, 
       prodDescription: string, 
       prodManageStock: boolean, 
@@ -22,6 +24,7 @@ export class Prodotto {
 
     this.prodId = prodId;
     this.prodTitle = prodTitle;
+    this.prodSku = prodSku;
     this.prodPrice = prodPrice;
     this.prodDescription = prodDescription;
     this.prodManageStock = prodManageStock;

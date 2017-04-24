@@ -14,6 +14,7 @@ $productId = $product['prodId'];
 $productArray = array(
     'title'             => $product['prodTitle'], 
     'type'              => 'simple', 
+    'sku'               => $product['prodSku'], 
     'price'             => $product['prodPrice'], 
     'regular_price'     => $product['prodPrice'], 
     'description'       => $product['prodDescription'],

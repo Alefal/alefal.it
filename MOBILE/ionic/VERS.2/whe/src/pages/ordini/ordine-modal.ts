@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavParams, ViewController, LoadingController, AlertController, ModalController } from 'ionic-angular';
+import { Platform, NavParams, ViewController, LoadingController, AlertController, ModalController } from 'ionic-angular';
 
 import { Ordine }       from './ordine';
 import { Prodotto }     from '../prodotti/prodotto';
@@ -54,8 +54,16 @@ export class OrdineModal {
     private loadingCtrl: LoadingController,
     private viewCtrl: ViewController,
     private alertCtrl: AlertController,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController,
+    private platform: Platform
   ) {
+    platform.registerBackButtonAction(() => {
+      console.log("Back button action called");
+
+      this.viewCtrl.dismiss({
+        action: 'noRefresh'
+      });
+    }, 1);
 
     this.ordineEdit = params.get('ordine');
     //console.log('Modale: '+this.ordineEdit);
@@ -151,6 +159,7 @@ export class OrdineModal {
     for (let prod of this.selectedProducts) {
       let pId: number       = prod['id'];
       let pTitle: string    = prod['title'];
+      let pSku: string      = prod['sku'];
       let pPrice: number    = prod['price'];
       let pDescr: string    = prod['description'];
       let pInStock: boolean = true;
@@ -158,7 +167,7 @@ export class OrdineModal {
       let pCatId: number    = 0;
       let pCatName: string  = '';
       
-      let prodotto = new Prodotto(pId,pTitle,pPrice,pDescr,pInStock,pQnt,0,pCatId,pCatName);
+      let prodotto = new Prodotto(pId,pTitle,pSku,pPrice,pDescr,pInStock,pQnt,0,pCatId,pCatName);
       //console.log(prodotto);  
 
       this.selectedProductsQnt.push(prodotto);

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavParams, ViewController, LoadingController, AlertController, ToastController } from 'ionic-angular';
+import { Platform, NavParams, ViewController, LoadingController, AlertController, ToastController } from 'ionic-angular';
 
 import { Prodotto }    from '../prodotti/prodotto';
 
@@ -35,8 +35,16 @@ export class MagazzinoModal {
     public loadingCtrl: LoadingController,
     public viewCtrl: ViewController,
     public alertCtrl: AlertController,
-    public toastCtrl: ToastController
+    public toastCtrl: ToastController,
+    private platform: Platform
   ) {
+    platform.registerBackButtonAction(() => {
+      console.log("Back button action called");
+
+      this.viewCtrl.dismiss({
+        action: 'noRefresh'
+      });
+    }, 1);
 
     this.productSelected = params.get('productSelected');
     console.log('this.productSelected: '+this.productSelected);
@@ -79,7 +87,7 @@ export class MagazzinoModal {
       let PTitle: string    = prod['prodTitle'];
       let pQnt              = (Number(prod['prodQuantity']) + Number(prod['prodAddQuantity']));
       
-      let prodotto = new Prodotto(pId,'',0,'',true,pQnt,0,0,'');
+      let prodotto = new Prodotto(pId,'','',0,'',true,pQnt,0,0,'');
       console.log(prodotto);  
 
       this.httpService

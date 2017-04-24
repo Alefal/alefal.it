@@ -15,6 +15,8 @@ export class Login {
   password:   string = '';
   userLogged: string;
 
+  appVersion: String = ''; //basic | pro
+
   loading: any;
   errorMessage: string;
   errorMessageView: any;
@@ -53,9 +55,10 @@ export class Login {
         } else if(res.status == 'ok') {
           this.userLogged = res.user.nickname;
 
-          console.log('-> '+res.user.capabilities.administrator);
+          console.log('pro  -> '+res.user.capabilities.pro);
+          console.log('demo -> '+res.user.capabilities.demo);
 
-          if(res.user.capabilities.administrator) {
+          if(res.user.capabilities.pro) {
             localStorage.setItem('version', 'pro');
           } else {
             localStorage.setItem('version', 'basic');            

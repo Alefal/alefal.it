@@ -80,13 +80,13 @@ export class Magazzino {
     this.products = this.productAll;
   }
 
-  setChecked(id,title,price,description,qnt) {
+  setChecked(id,title,sku,price,description,qnt) {
     let instock: boolean = true;
     let addQnt: number = 0;
     let catId: number    = 0;
     let catName: string  = '';
 
-    this.prodotto = new Prodotto(id,title,price,description,instock,qnt,addQnt,catId,catName);
+    this.prodotto = new Prodotto(id,title,sku,price,description,instock,qnt,addQnt,catId,catName);
     let prodId = this.prodotto.getProdId();
     let addProduct: boolean = true;
 

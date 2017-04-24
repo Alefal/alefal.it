@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavParams, ViewController, LoadingController, AlertController } from 'ionic-angular';
+import { Platform, NavParams, ViewController, LoadingController, AlertController } from 'ionic-angular';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 import { Prodotto } from './prodotto';
 
@@ -27,6 +28,7 @@ export class ProdottoModal {
 
   //Product items
   prodTitle: string;
+  prodSku: string;
   prodPrice: number;
   prodDescription: string;
   prodManageStock: boolean = true;
@@ -42,8 +44,18 @@ export class ProdottoModal {
     private httpService: HttpService,
     public loadingCtrl: LoadingController,
     public viewCtrl: ViewController,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    private platform: Platform,
+    private barcodeScanner: BarcodeScanner
   ) {
+    platform.registerBackButtonAction(() => {
+      console.log("Back button action called");
+
+      this.viewCtrl.dismiss({
+        action: 'noRefresh'
+      });
+    }, 1);
+
     this.id = params.get('id');
     console.log(this.id+' - '+this.prodCatId);
 
@@ -85,6 +97,7 @@ export class ProdottoModal {
             this.product = res[0].output[0];
 
             this.prodTitle = this.product.title;
+            this.prodSku = this.product.sku;
             this.prodPrice = this.product.price;
             this.prodDescription = this.product.description;
             this.prodManageStock = true;
@@ -138,7 +151,7 @@ export class ProdottoModal {
       return false;
     }
 
-    this.prodotto = new Prodotto(id, this.prodTitle, this.prodPrice, this.prodDescription, this.prodManageStock, this.prodQuantity, 0, this.prodCatId, this.prodCatName);
+    this.prodotto = new Prodotto(id, this.prodTitle, this.prodSku, this.prodPrice, this.prodDescription, this.prodManageStock, this.prodQuantity, 0, this.prodCatId, this.prodCatName);
 
     this.loading = this.loadingCtrl.create({
       spinner: 'crescent',
@@ -227,5 +240,19 @@ export class ProdottoModal {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  scanProductBarcode() {
+    console.log('scanProductBarcode');
+    this.barcodeScanner.scan().then((barcodeData) => {
+      // Success! Barcode data is here
+      console.log('barcodeData: '+barcodeData.text);
+      this.prodSku = barcodeData.text;
+    }, (err) => {
+      // An error occurred
+      console.log('ERROR: ' + err);
+      this.errorMessage = 'Error: '+err;
+      this.errorMessageView = true;
+    });
   }
 }

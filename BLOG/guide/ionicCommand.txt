@@ -11,6 +11,7 @@ $ ionic g provider SERVICENAME
 
 $ ionic serve --lab (layout per iOS, Android e Windows Phone)
 $ ionic run android
+$ ionic run android -l -c -s --debug //android device + log console
 
 $ ionic platform add/update/remove ios/android
 $ ionic platform ls

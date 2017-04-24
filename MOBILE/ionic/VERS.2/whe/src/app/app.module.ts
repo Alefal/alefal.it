@@ -4,8 +4,9 @@ import { WheApp }                                     from './app.component';
 import { BrowserModule }                              from '@angular/platform-browser';
 import { HttpModule }                                 from '@angular/http';
 
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+import { StatusBar }      from '@ionic-native/status-bar';
+import { SplashScreen }   from '@ionic-native/splash-screen';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 import { Login }                    from '../pages/login/login';
 import { Homepage }                 from '../pages/homepage/homepage';
@@ -62,6 +63,7 @@ import { HttpService }              from '../providers/http-service';
   providers: [
     StatusBar,
     SplashScreen,
+    BarcodeScanner,
     {
       provide: ErrorHandler, 
       useClass: IonicErrorHandler

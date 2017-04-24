@@ -26,6 +26,7 @@ if(isset($productId)) {
         $eceOutputArray[] = array(        
             'id'            => $item->id,
             'title'         => $item->title,
+            'sku'           => $item->sku,
             'price'         => $item->price,
             'description'   => $item->description,
             'stock'         => $item->stock_quantity,

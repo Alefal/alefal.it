@@ -27,7 +27,8 @@
         <img src="{{prod.images[0].src}}" />
       </ion-thumbnail>
       <h2>{{prod.title}} <ion-badge color="secondary">{{prod.category}}</ion-badge></h2>
-      <h3>Prezzo di vendita: <ion-icon name="logo-euro"></ion-icon> {{prod.price}}</h3>
+      <h3>Prezzo di vendita: <i>{{prod.price}}</i> <ion-icon name="logo-euro"></ion-icon></h3>
+      <h3>SKU: <i>{{prod.sku}}</i> <ion-icon name="barcode"></ion-icon></h3>      
       <p>In magazzino: <strong>{{prod.stock}}</strong></p>
       <ion-icon name="ios-arrow-forward" item-right></ion-icon>
     </ion-item>

@@ -18,8 +18,8 @@ export class HttpService {
     getCallHttp(call,username,password,id,object) {
         console.log('getCallHttp: '+call+' | '+username+' | '+password);
         
-        var host = 'http://localhost/alefal.it/PROJECTS/ece';
-        //var host = 'http://www.amalficoastapps.it/demo/ece';
+        //var host = 'http://localhost/alefal.it/PROJECTS/ece';
+        var host = 'http://www.amalficoastapps.it/demo/ece';
         
         var url = '';
         //LOGIN
@@ -80,7 +80,7 @@ export class HttpService {
             url = '/wp-content/plugins/alefal_woocommerce/services/ece_users.php?role=stock_fornitore';
         }
 
-        console.log('URL: '+url);
+        console.log('URL: '+host+''+url);
         var response = this.http.get(host+''+url)
             .toPromise()
             .then(response => response.json())

@@ -1,6 +1,7 @@
 === UPDATE FRAMEWORK ===
 NODE
 https://nodejs.org/it/
+6.10.2
 
 $ npm install -g @angular/cli
 $ ng -v
