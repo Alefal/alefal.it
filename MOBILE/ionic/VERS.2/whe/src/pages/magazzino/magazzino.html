@@ -21,7 +21,7 @@
         <ion-checkbox 
           color="dark" 
           [checked]="exists(prod.id)"
-          (click)="setChecked(prod.id,prod.title,prod.price,prod.description,prod.stock)"
+          (click)="setChecked(prod.id,prod.title,prod.sku,prod.price,prod.description,prod.stock)"
           id={{prod.id}}></ion-checkbox>
 
         <ion-label>

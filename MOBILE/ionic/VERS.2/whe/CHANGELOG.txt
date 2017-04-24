@@ -10,5 +10,6 @@ TODO -> GENERALE: messaggio di NOT FOUND quando non si trova nulla
 
 v.1.0.02 -> passaggio a IONIC 3 e ANGULAR 4
 
-v.1.0.03 -> bug
+v.1.0.03 -> fix and barcode scanner
 - se c'è una modale aperta e si preme il tasto back del dispositivo, la modale rimane attiva e non la navigazione non funziona più
+- nei prodotti aggiunto BARCODE SCANNER

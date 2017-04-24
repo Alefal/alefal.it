@@ -25,7 +25,7 @@ export class MagazzinoModal {
   //Product items
   prodTitle: string;
   prodQuantity: number;
-  prodAddQuantity: number;
+  prodAddQuantity: number = null;
 
   intervalId: any;
 
@@ -47,7 +47,8 @@ export class MagazzinoModal {
     }, 1);
 
     this.productSelected = params.get('productSelected');
-    console.log('this.productSelected: '+this.productSelected);
+    console.log('---> ');
+    console.log('%o',this.productSelected);
   }
 
   dismiss() {

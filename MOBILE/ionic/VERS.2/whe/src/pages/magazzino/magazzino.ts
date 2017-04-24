@@ -92,7 +92,7 @@ export class Magazzino {
 
     let index = 0;
     for (let prod of this.productSelected) {
-      //console.log('-> '+JSON.stringify(prod)+' | '+prodId);
+      console.log('-> '+JSON.stringify(prod)+' | '+prodId);
 
       if(prod.getProdId() == prodId) {
         console.log('Prodotto da eliminare: '+prodId);
@@ -107,11 +107,11 @@ export class Magazzino {
       console.log('Aggiungo Prodotto: '+prodId);      
       this.productSelected.push(this.prodotto);
     } 
-    /** debug
+    /** debug*/
     for (let prod of this.productSelected) {
       console.log(prod);  
     }
-    **/
+    /**/
   }
   getAllChecked() {
     /** debug
