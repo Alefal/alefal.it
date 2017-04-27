@@ -9,10 +9,59 @@ $eceFinalArray      = array();
 $lineItemsArray     = array();
 
 $order = json_decode($_GET['order'],true);
-
-//$order = json_decode('{"id":0,"status":"pending","total":60,"total_tax":0,"total_line_items_quantity":3,"line_items":[{"id":110,"title":"Prodotto%202","price":"20","description":"<p>Prodotto%202:%20quantità%20iniziale%2050</p>\n","stock":100,"images":[{"id":0,"created_at":"2016-11-21T14:44:26Z","updated_at":"2016-11-21T14:44:26Z","src":"http://localhost/alefal.it/PROJECTS/ece/wp-content/plugins/woocommerce/assets/images/placeholder.png","title":"Segnaposto","alt":"Segnaposto","position":0}]},{"id":101,"title":"Prodotto%201","price":"9.99","description":"<p>Prodotto%201:%20quantità%20iniziale%20100</p>\n","stock":140,"images":[{"id":0,"created_at":"2016-11-21T14:44:26Z","updated_at":"2016-11-21T14:44:26Z","src":"http://localhost/alefal.it/PROJECTS/ece/wp-content/plugins/woocommerce/assets/images/placeholder.png","title":"Segnaposto","alt":"Segnaposto","position":0}]}],"customer":[{"id":8,"user_email":"alefal1@hotmail.it","user_nicename":"cliente","user_status":"0","display_name":"cliente","billing_first_name":"Ale","billing_last_name":"Fal","billing_company":"","billing_address_1":"Via%20Seggio","billing_address_2":"","billing_city":"Scala","billing_postcode":"84010","billing_country":"Salerno","billing_state":"Italia","billing_phone":"33312345678","billing_email":"","shipping_first_name":"Ale","shipping_last_name":"Fal","shipping_company":"","shipping_address_1":"Via%20Seggio","shipping_address_2":"","shipping_city":"Scala","shipping_postcode":"84010","shipping_country":"Salerno","shipping_state":"Italia"}],"note":"Ordine%20salvato"}',true);
-
-//$order = json_decode('{"id":0,"status":"processing","total":149.97,"total_tax":0,"total_line_items_quantity":6,"line_items":"","stock":135,"images":"","customer":"","note":"Ordine salvato"}',true);
+/*
+$order = json_decode('
+    {  
+       "id":115,
+       "status":"completed",
+       "total":0,
+       "total_tax":0,
+       "total_line_items_quantity":0,
+       "line_items":[  
+          {  
+             "prodId":80,
+             "prodTitle":"Don Luigi Rosso",
+             "prodSku":"",
+             "prodPrice":"20",
+             "prodDescription":"",
+             "prodManageStock":true,
+             "prodQuantity":69,
+             "prodAddQuantity":"1",
+             "prodCatId":0,
+             "prodCatName":""
+          }
+       ],
+       "customer":{  
+          "id":8,
+          "user_email":"alefal1@hotmail.it",
+          "user_nicename":"cliente",
+          "user_status":"0",
+          "display_name":"cliente",
+          "billing_first_name":"",
+          "billing_last_name":"",
+          "billing_company":"",
+          "billing_address_1":"",
+          "billing_address_2":"",
+          "billing_city":"",
+          "billing_postcode":"",
+          "billing_country":"",
+          "billing_state":"",
+          "billing_phone":"",
+          "billing_email":"",
+          "shipping_first_name":"",
+          "shipping_last_name":"",
+          "shipping_company":"",
+          "shipping_address_1":"",
+          "shipping_address_2":"",
+          "shipping_city":"",
+          "shipping_postcode":"",
+          "shipping_country":"",
+          "shipping_state":""
+       },
+       "note":"Ordine completato e salvato"
+    }
+    ',true);
+*/
 
 $id         = $order['id'];
 $customer   = $order['customer'];

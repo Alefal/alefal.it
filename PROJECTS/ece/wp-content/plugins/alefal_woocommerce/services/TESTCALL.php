@@ -14,13 +14,43 @@ $productArray = array(
     'categories'        => array( 6 ) //con l'ID funziona
 );
 
+$order = [
+    'order' => [
+        //'payment_details' => [],
+        'billing_address' => [],
+        'shipping_address' => [],
+        'customer_id' => 2,
+        'line_items' => [
+            [
+                'product_id' => 16,
+                'variation_id' => 16,
+                'quantity' => 2
+            ]
+        ],
+        'shipping_lines' => [
+            [
+                'method_id' => 'flat_rate',
+                'method_title' => 'Coperti',
+                'total' => 10
+            ]
+        ]
+    ]
+];
+
+$order_refund = [
+    'order_refund' => [
+        'amount' => 10,
+        'line_items' => []
+    ]
+];
+
 try {
 
 	$woocommerce = new WC_API_Client( $store_url, $consumer_key, $consumer_secret, $options );
     
     print '<pre>';
     //$eceGetCallArray = $woocommerce->products->create_category( array( 'product_category' => array( 'name' => 'Test Category' ) ) );
-    $eceGetCallArray = $woocommerce->products->delete_category( 139,true );
+    //$eceGetCallArray = $woocommerce->products->delete_category( 139,true );
 
     //$eceGetCallArray = $woocommerce->products->get();
     //$eceGetCallArray = $woocommerce->products->get_categories();
@@ -28,15 +58,16 @@ try {
 	//$eceGetCallArray = $woocommerce->products->get(null, array('filter[limit]' => 50 , 'fields' => 'id,status' ));
     //$eceGetCallArray = $woocommerce->products->get(null, array('filter[name]' => 'Test Product'));
     //$eceGetCallArray = $woocommerce->products->get(null, array( 'search' => 'Test Product'));
-    //$eceGetCallArray = $woocommerce->order_notes->get( 126 );
-    /*
-    $eceGetCallArray = $woocommerce->orders->create( 
-        array( 
-            'name' => 'TESTTTTT'
-        )
-    );
-    */
+    
     //$eceGetCallArray = $woocommerce->orders->get();
+    //$eceGetCallArray = $woocommerce->orders->create($order);
+    $eceGetCallArray = $woocommerce->orders->update(122,$order);
+    //$eceGetCallArray = $woocommerce->orders->delete(118,true);
+
+    //$eceGetCallArray = $woocommerce->order_refunds->get(122);
+    //$eceGetCallArray = $woocommerce->order_refunds->update(122,122,$order_refund);
+    
+    //$eceGetCallArray = $woocommerce->order_notes->get( 122 );
 
     print_r($eceGetCallArray);
 	print '</pre>';
