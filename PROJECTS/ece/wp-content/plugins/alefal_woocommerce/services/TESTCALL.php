@@ -19,12 +19,12 @@ $order = [
         //'payment_details' => [],
         'billing_address' => [],
         'shipping_address' => [],
-        'customer_id' => 2,
+        'customer_id' => 9,
         'line_items' => [
             [
-                'product_id' => 16,
-                'variation_id' => 16,
-                'quantity' => 2
+                'id' => 28,             //Numero della riga del LINE ITEM; per eliminare una riga 'product_id' => null
+                'product_id' => 141,
+                'quantity' => 10
             ]
         ],
         'shipping_lines' => [
@@ -32,6 +32,11 @@ $order = [
                 'method_id' => 'flat_rate',
                 'method_title' => 'Coperti',
                 'total' => 10
+                /*
+                Aggiungere anche 
+                [total_tax] => 0.44
+                [price] => 0.20
+                */
             ]
         ]
     ]
@@ -61,7 +66,7 @@ try {
     
     //$eceGetCallArray = $woocommerce->orders->get();
     //$eceGetCallArray = $woocommerce->orders->create($order);
-    $eceGetCallArray = $woocommerce->orders->update(122,$order);
+    $eceGetCallArray = $woocommerce->orders->update(144,$order);
     //$eceGetCallArray = $woocommerce->orders->delete(118,true);
 
     //$eceGetCallArray = $woocommerce->order_refunds->get(122);
