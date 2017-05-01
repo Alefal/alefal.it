@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import {ContactService}    from './contact.service';
-import {Email}             from './interfaces/Email';
+import { LanguageService }    from './language.service';
 
 @Component({
   selector: 'app-root',
@@ -9,35 +8,32 @@ import {Email}             from './interfaces/Email';
 })
 export class AppComponent {
   title = 'Benvenuti in Agriturismo Acquabona!';
-  sendmessage   = 'false';
-  errormessage  = 'false';
 
-  constructor(private _contactService : ContactService) { 
-    this.sendmessage   = 'false';
-    this.errormessage  = 'false';
+  langIT: boolean = false;
+  langEN: boolean = false;
+
+  constructor(private language: LanguageService) { }
+
+  ngOnInit() {
+    if(this.language.check() == 'it' || this.language.check() == 'IT') {
+      this.langIT = true;
+      this.langEN = false;
+    } else {
+      this.langIT = false;
+      this.langEN = true;
+    }
   }
 
-  public message: Email = {name: '', email: '', subject: '', message: ''};
-  onSubmit() {
-      this._contactService.postEmail(this.message).subscribe(
-        response => this.handleResponse(response),
-        error => this.handleResponse(error)
-      );
+  changeLang(lang) {
+    this.language.changeLang(lang);
+
+    if(lang == 'it' || lang == 'IT') {
+      this.langIT = true;
+      this.langEN = false;
+    } else {
+      this.langIT = false;
+      this.langEN = true;
     }
- 
-    handleResponse(response){
-      debugger;
-      console.log('msg is: {response.status}');
- 
-      if(response.statusText =='OK'){
-        this.message = {name: '', email: '', subject: '', message: ''};
-        this.sendmessage = 'true';
-      } else {
-        this.errormessage = 'true';
-      }
-      /*
-      if(response.status =='error'){
-      }
-      */
-    }
+  }
+
 }

@@ -88,6 +88,10 @@
 	.Portfolio-box{}
 	.portfolioContainer{ width:350px; margin:0px auto !important; } */
 	
+	.bx-wrapper,
+	.bx-viewport {
+		min-height: 400px;
+	}
 	
 }
 
@@ -100,6 +104,11 @@
 	.c-logo-part ul li{ display:block;}
 	.Portfolio-box{  max-width:300px !important; width:96.4% !important; margin:0 !important}
 	.Portfolio-box img { max-width:100%;}
-	.portfolioContainer{ width:280px !important; margin:0 auto !important } 
+	.portfolioContainer{ width:280px !important; margin:0 auto !important }
+
+	.bx-wrapper,
+	.bx-viewport {
+		min-height: 400px;
+	}
 	
 }

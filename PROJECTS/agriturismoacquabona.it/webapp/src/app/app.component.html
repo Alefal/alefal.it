@@ -1,176 +1,334 @@
-<header class="header slider-wrapper" id="header"><!--header-start-->
-    <!--
-    <ul class="bxslider">
-        <li style="background:url(assets/img/agracq/img1.jpg);"></li>
-        <li style="background:url(assets/img/agracq/img2.jpg);"></li>
-        <li style="background:url(assets/img/agracq/img3.jpg);"></li>
-    </ul>
-    -->
-	<div class="container containerBxSlider">
-    	<figure class="logo animated fadeInDown delay-07s">
-        	<a href="#"><img src="assets/img/agracq/logo.png" alt=""></a>	
-        </figure>	
-        <!--
-        <h1 class="animated fadeInDown delay-07s">{{title}}</h1>
-        <ul class="we-create animated fadeInUp delay-1s">
-        	<li>Per la tua splendida vacanza a due passi dal Mare e dalla Montagna</li>
-        </ul>
-        -->
-        <a class="link animated fadeInUp delay-1s servicelink" href="#storia">Visita</a>
-    </div>
-</header><!--header-end-->
+<!-- Section Header -->
+<header class="header slider-wrapper" id="header">
+    <!--header-start-->
+    <div class="headerLink">
+        <div class="row">
+            <div class="col-lg-3 col-sm-3">&nbsp;</div>
+            <div class="col-lg-3 col-sm-3">
+                <i class="fa fa-phone"></i> <a href="tel:+393282010433">+39 328 201 04 33</a>
+            </div>
+            <div class="col-lg-3 col-sm-3">
+                <i class="fa fa-envelope-open-o" aria-hidden="true"></i> <a href="mailto:agriacquabona@gmail.com">agriacquabona@gmail.com</a>
+            </div>
+            <div class="col-lg-3 col-sm-3">
+                <div class="dropdown language-dropdown" *ngIf="langIT">
+                    <a data-toggle="dropdown" href="javascript:void(0);"><span class="change-text">Italiano </span><i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown-menu language-change">
+                        <li><a href="javascript:void(0);" (click)="changeLang('en');">English </a></li>
+                    </ul>
+                </div>
 
-<nav class="main-nav-outer" id="test"><!--main-nav-start-->
-	<div class="container">
+                <div class="dropdown language-dropdown" *ngIf="langEN">
+                    <a data-toggle="dropdown" href="javascript:void(0);"><span class="change-text">English </span><i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown-menu language-change">
+                        <li><a href="javascript:void(0);" (click)="changeLang('it');">Italiano </a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="container containerBxSlider">
+        <figure class="logo animated fadeInDown delay-07s">
+            <a href="#"><img src="assets/img/agracq/logo.png" alt=""></a>
+        </figure>
+        <a class="link animated fadeInUp delay-1s servicelink" href="#storia">
+            <span *ngIf="langIT">Visita</span>
+            <span *ngIf="langEN">Visit</span>
+        </a>
+    </div>
+</header>
+<!--header-end-->
+
+<nav class="main-nav-outer" id="headerMenu">
+    <!--main-nav-start-->
+    <div class="container">
         <ul class="main-nav">
-        	<li><a href="#header">Home</a></li>
-            <li><a href="#storia">Storia</a></li>
-            <li><a href="#servizi">Servizi</a></li>
-            <li class="small-logo"><a href="#header"><img src="assets/img/agracq/logoNav.png" alt=""></a></li>
-            <li><a href="#gallery">Foto</a></li>
-            <li><a href="#dovesiamo">Dove Siamo</a></li>
-            <li><a href="#contact">Contatti</a></li>
+            <li><a href="#header">Home</a></li>
+            <li>
+                <a href="#storia">
+                    <span *ngIf="langIT">Storia</span>
+                    <span *ngIf="langEN">History</span>
+                </a>
+            </li>
+            <li>
+                <a href="#servizi">
+                    <span *ngIf="langIT">Servizi</span>
+                    <span *ngIf="langEN">Services</span>
+                </a>
+            </li>
+            <li class="small-logo">
+                <a href="#header"><img src="assets/img/agracq/logoNav.png" alt=""></a>
+            </li>
+            <li>
+                <a href="#gallery">
+                    <span *ngIf="langIT">Foto</span>
+                    <span *ngIf="langEN">Photo</span>
+                </a>
+            </li>
+            <li>
+                <a href="#dovesiamo">
+                    <span *ngIf="langIT">Dove Siamo</span>
+                    <span *ngIf="langEN">Where we are</span>
+                </a>
+            </li>
+            <li>
+                <a href="#contact">
+                    <span *ngIf="langIT">Contatti</span>
+                    <span *ngIf="langEN">Contacts</span>
+                </a>
+            </li>
         </ul>
         <a class="res-nav_click" href="#"><i class="fa fa-bars" aria-hidden="true"></i></a>
     </div>
-</nav><!--main-nav-end-->
+</nav>
+<!--main-nav-end-->
 
-
-
-<section class="main-section" id="storia"><!--main-section-start-->
-	<div class="container" style="text-align:justify">
-    	<h2>Storia</h2>
+<!-- Section History -->
+<section class="main-section" id="storia">
+    <!--main-section-start-->
+    <!-- ITALIANO -->
+    <div class="container" style="text-align:justify" *ngIf="langIT">
+        <h2>Storia</h2>
         <p>
-            La storia ci narra che la parte antica della struttura risale al VI secolo d.C. e quello di <strong>S. Maria de Aquabona</strong> era il piu' antico monastero di suore benedettine, dei quattro esistenti nel comune di Scala. <br />
-            <br />
-            Oltre le due abbazie maschili:
-            <br />
-            1) <b><em>SS Benedetto e Scolastica in Tavernata</em></b>, che sorgeva nell'alta valle del canneto, in territorio allora di Scala tra Pontone e Pogerola;
-            <br />
-            2) <b><em>Monasterium Sanctorum Iuliani et Marciani in monte Cerbellano de Scala</em></b>, cioe' in un luogo (oltre 1.100 m. s. l. m. con maggiore solitudine e di minori contatti con le classi dirigenti dello stato).
-            
-            <br /><br />
-            L'antica diocesi di Scala aveva ben quattro  monasteri femminili, il primo era situato quasi al centro della citta', alquanto  sotto la cattedrale, verso la <b><em>lama di Priso</em></b> e non lontano dalle sponde del fiumicello che qui lascia il nome di <b><em>Reginna</em></b> e prende quello di <b><em>Dragone</em></b>, sorgeva quello di <b><em>Santa Maria de Aquabona</em></b>.
-        </p>
-        
-        <br /><br />
-    	<div class="row">
-        	<div class="col-lg-6 col-sm-6 wow fadeInLeft delay-05s">
-            	<p>
-                    La tradizione lo riteneva fondato a <b><em>Romanis</em></b>; anche alcuni autori benedettini lo assegnarono al secolo VI. Sarebbe dunque contemporaneo a San Benedetto. Le prove mancano, ma puo' ben darsi che il cenobio dell'Acquabona sia il piu' antico dei quattro monasteri di donne. La comunita' esisteva ancora nel secolo XIII, poi si estinse, forse per la vicinanza dell'altra di San Cataldo. Gli edifici andarono man mano in rovina, parte fu trasformata in casa colonica. Resto' una cappella, la quale dopo la meta' del secolo XVI era cosi' poco importante che le visite pastorali neppure la elencano. Solo Mons. Perimezzi l'anno 1710 vi si reco' trovandovi un solo altare <b><em>pauperrime ornatum</em></b>. 
+            La storia ci narra che la parte antica della struttura risale al VI secolo d.C. e quello di <strong>S. Maria de Aquabona</strong>            era il piu' antico monastero di suore benedettine, dei quattro esistenti nel comune di Scala. <br />
+            <br /> Oltre le due abbazie maschili:
+            <br /> 1) <b><em>SS Benedetto e Scolastica in Tavernata</em></b>, che sorgeva nell'alta valle del canneto, in
+            territorio allora di Scala tra Pontone e Pogerola;
+            <br /> 2) <b><em>Monasterium Sanctorum Iuliani et Marciani in monte Cerbellano de Scala</em></b>, cioe' in un
+            luogo (oltre 1.100 m. s. l. m. con maggiore solitudine e di minori contatti con le classi dirigenti dello stato).
 
-                    <br /><br />
-                    La cappella ando' travolta in una disastrosa alluvione la notte del 20 Gennaio 1764. Qualche traccia della costruzione monastica ancora esiste presso la fontana e nel fondo agricolo, ambedue denominati dell'Acquabona.
+            <br /><br /> L'antica diocesi di Scala aveva ben quattro monasteri femminili, il primo era situato quasi al centro
+            della citta', alquanto sotto la cattedrale, verso la <b><em>lama di Priso</em></b> e non lontano dalle sponde
+            del fiumicello che qui lascia il nome di <b><em>Reginna</em></b> e prende quello di <b><em>Dragone</em></b>,
+            sorgeva quello di <b><em>Santa Maria de Aquabona</em></b>.
+        </p>
+
+        <br /><br />
+        <div class="row">
+            <div class="col-lg-6 col-sm-6 wow fadeInLeft delay-05s">
+                <p>
+                    La tradizione lo riteneva fondato a <b><em>Romanis</em></b>; anche alcuni autori benedettini lo assegnarono
+                    al secolo VI. Sarebbe dunque contemporaneo a San Benedetto. Le prove mancano, ma puo' ben darsi che il
+                    cenobio dell'Acquabona sia il piu' antico dei quattro monasteri di donne. La comunita' esisteva ancora
+                    nel secolo XIII, poi si estinse, forse per la vicinanza dell'altra di San Cataldo. Gli edifici andarono
+                    man mano in rovina, parte fu trasformata in casa colonica. Resto' una cappella, la quale dopo la meta'
+                    del secolo XVI era cosi' poco importante che le visite pastorali neppure la elencano. Solo Mons. Perimezzi
+                    l'anno 1710 vi si reco' trovandovi un solo altare <b><em>pauperrime ornatum</em></b>.
+
+                    <br /><br /> La cappella ando' travolta in una disastrosa alluvione la notte del 20 Gennaio 1764. Qualche
+                    traccia della costruzione monastica ancora esiste presso la fontana e nel fondo agricolo, ambedue denominati
+                    dell'Acquabona.
                 </p>
             </div>
             <figure class="col-lg-6 col-sm-6  text-right wow fadeInUp delay-02s">
-            	<img src="assets/img/agracq/litografia.jpg" alt="" style="border: 20px solid #efefef;" />
+                <img src="assets/img/agracq/litografia.jpg" alt="" style="border: 20px solid #efefef;" />
             </figure>
-        
-        </div>
-	</div>
-</section><!--main-section-end-->
 
-<section class="sectionBg1"><!--sectionBg-start-->
-	<div class="container">
+        </div>
+    </div>
+
+    <!-- ENGLISH -->
+    <div class="container" style="text-align:justify" *ngIf="langEN">
+        <h2>History</h2>
+        <br /><br />
+        <div class="row">
+            <div class="col-lg-6 col-sm-6 wow fadeInLeft delay-05s">
+                <p>
+                    History tells that the structure was of the VIth  century and was the most ancient monastery of sisters <b>'benedettine'</b>, of four existing in the town hall of Scala. 
+                    
+                    <br /><br /> Around the XIIIth century the monastery of <b>'benedettine'</b> sisters decline and part of the buildings had been assigned to farmhouse; once chapel remained that was disastrous in a flood in the 1764. 
+
+                    <br /><br /> Recently renovated, the  building was used to farm holidays without to modify the ancient structure; now you can see the crosses vault in the room assigned to the restaurant.
+                </p>
+            </div>
+            <figure class="col-lg-6 col-sm-6  text-right wow fadeInUp delay-02s">
+                <img src="assets/img/agracq/litografia.jpg" alt="" style="border: 20px solid #efefef;" />
+            </figure>
+
+        </div>
+    </div>
+</section>
+<!--main-section-end-->
+
+<!-- Section Services -->
+<section class="sectionBg1">
+    <!--sectionBg-start-->
+    <div class="container">
         <h2>&nbsp;</h2>
     </div>
-</section><!--sectionBg-end-->
+</section>
+<!--sectionBg-end-->
 
-<section class="main-section paddind" id="servizi"><!--main-section-start-->
-	<div class="container paddind">
-    	<h2>Servizi</h2>
-    	<h6>
-            La nostra azienda dispone di 3 camere con possibilita' di una tripla, per un totale di 7 posti letto. 
-            <br /><br />
-            Le camere, ospitali e confortevoli, recentemente ristrutturate sono arredate in stile arte povera, ognuna con:
+<section class="main-section paddind" id="servizi">
+    <!--main-section-start-->
+    <div class="container paddind">
+        <h2 *ngIf="langIT">Servizi</h2>
+        <h2 *ngIf="langEN">Services</h2>
+        <h6>
+            Our company has 3 bedrooms with possibility of a triple, for a total of 7 beds. The rooms, hospitable and comfortable, recently renovated are furnished in arte povera style, each with:
         </h6>
-        <div class="portfolioFilter">  
+        <div class="portfolioFilter">
             <ul class="Portfolio-nav wow fadeIn delay-02s">
-                <li><a href="javascript:void(0);" class="current">bagno privato</a></li>
-                <li><a href="javascript:void(0);">doccia</a></li>
-                <li><a href="javascript:void(0);">asciugacapelli</a></li>
-                <li><a href="javascript:void(0);">TV satellitare</a></li>
-                <li><a href="javascript:void(0);">aria condizionata</a></li>
-                <li><a href="javascript:void(0);">collegamento a internet</a></li>
-                <li><a href="javascript:void(0);">cassetta di sicurezza</a></li>
+                <li>
+                    <i class="fa fa-bath" aria-hidden="true"></i> 
+                    <span *ngIf="langIT">bagno privato</span>
+                    <span *ngIf="langEN">private bath</span>
+                </li>
+                <li>
+                    <i class="fa fa-shower" aria-hidden="true"></i> 
+                    <span *ngIf="langIT">doccia</span>
+                    <span *ngIf="langEN">shower</span>
+                </li>
+                <li>
+                    <i class="fa fa-fire" aria-hidden="true"></i> 
+                    <span *ngIf="langIT">asciugacapelli</span>
+                    <span *ngIf="langEN">hair dryer</span>
+                </li>
+                <li>
+                    <i class="fa fa-television" aria-hidden="true"></i> 
+                    <span *ngIf="langIT">TV satellitare</span>
+                    <span *ngIf="langEN">satellite TV</span>
+                </li>
+                <li>
+                    <i class="fa fa-snowflake-o" aria-hidden="true"></i> 
+                    <span *ngIf="langIT">aria condizionata</span>
+                    <span *ngIf="langEN">air conditioning</span>
+                </li>
+                <li>
+                    <i class="fa fa-wifi" aria-hidden="true"></i> 
+                    <span *ngIf="langIT">collegamento a internet</span>
+                    <span *ngIf="langEN">internet connection</span>
+                </li>
+                <li>
+                    <i class="fa fa-key" aria-hidden="true"></i> 
+                    <span *ngIf="langIT">cassetta di sicurezza</span>
+                    <span *ngIf="langEN">safe</span>
+                </li>
             </ul>
-        </div> 
+        </div>
 
         <div class="portfolioContainer wow fadeInUp delay-04s">
             <div class=" Portfolio-box printdesign">
-                <a href="#"><img src="assets/img/agracq/torre_ziro.png" alt=""></a>	
-                <h3>Camera 1</h3>
+                <img src="assets/img/agracq/cam1.jpg" alt="">
+                <h3 *ngIf="langIT">Camere</h3>
+                <h3 *ngIf="langEN">Rooms</h3>                
             </div>
             <div class="Portfolio-box webdesign">
-                <a href="#"><img src="assets/img/agracq/valle_ferriere.png" alt=""></a>	
-                <h3>Camera 2</h3>
+                <img src="assets/img/agracq/cam2.jpg" alt="">
+                <h3 *ngIf="langIT">Camere</h3>
+                <h3 *ngIf="langEN">Rooms</h3>                
             </div>
             <div class="Portfolio-box webdesign">
-                <a href="#"><img src="assets/img/agracq/valle_mulini.png" alt=""></a>	
-                <h3>Camera 3</h3>
+                <img src="assets/img/agracq/cam3.jpg" alt="">
+                <h3 *ngIf="langIT">Camere</h3>
+                <h3 *ngIf="langEN">Rooms</h3>                
             </div>
         </div>
 
-        <h6>
+        <h6 *ngIf="langIT">
             L'azienda inoltre dispone di un'ampia sala ristorazione dove potrete degustare i nostri prodotti tipici:
         </h6>
-
-        <div class="portfolioFilter">  
-            <ul class="Portfolio-nav wow fadeIn delay-02s">
-                <li><a href="javascript:void(0);" class="current">la pasta fatta a mano</a></li>
-                <li><a href="javascript:void(0);">la grigliata di carne</a></li>
-                <li><a href="javascript:void(0);">tanti altri piatti realizzati con i prodotti del nostro orto</a></li>
-            </ul>
-        </div> 
-        <h6>
-            Inoltre l'Agriturismo Acquabona da la possibilita' di:
-            <br /><br />
-                1) Escursioni storico-culturali, alle localita' piu' famose della Costa d'Amalfi
-                <br /><br />
-                2) Escursioni naturalistiche:
+        <h6 *ngIf="langEN">
+            The company also offers a restaurant where you can taste our typical products:
         </h6>
 
-        <div class="portfolioFilter">  
+        <div class="portfolioFilter">
             <ul class="Portfolio-nav wow fadeIn delay-02s">
-                <li><a href="javascript:void(0);" class="current">Riserva Naturale Orientata Valle delle Ferriere</a></li>
-                <li><a href="javascript:void(0);">Valle dei Mulini con discesa ad Amalfi</a></li>
-                <li><a href="javascript:void(0);">Sentieri dei Monti Lattari tracciati dal CAI</a></li>
+                <li>
+                    <i class="fa fa-hand-paper-o" aria-hidden="true"></i> 
+                    <span *ngIf="langIT">la pasta fatta a mano</span>
+                    <span *ngIf="langEN">The handmade pasta</span>
+                </li>
+                <li>
+                    <i class="fa fa-fire" aria-hidden="true"></i> 
+                    <span *ngIf="langIT">la grigliata di carne</span>
+                    <span *ngIf="langEN">The grilled meat</span>
+                </li>
+                <li>
+                    <i class="fa fa-spoon" aria-hidden="true"></i> 
+                    <span *ngIf="langIT">piatti con prodotti del nostro orto</span>
+                    <span *ngIf="langEN">Many other dishes made with products from our garden</span>
+                </li>
             </ul>
-        </div> 
+        </div>
+        <h6 *ngIf="langIT">
+            Inoltre l'<strong>Agriturismo Acquabona</strong> da la possibilita' di effettuare:
+            <br /><br /> 1) Escursioni storico-culturali, alle localita' piu' famose della <strong>Costa d'Amalfi</strong>
+            <br /><br /> 2) Escursioni naturalistiche:
+        </h6>
+        <h6 *ngIf="langEN">
+            In addition, the <strong>Rural Acquabona</strong> by the possibility of:
+            <br /><br /> 1) Historical and cultural excursions, the most famous along the <strong> Amalfi Coast</strong>
+            <br /><br /> 2) Nature:
+        </h6>
+
+        <div class="portfolioFilter">
+            <ul class="Portfolio-nav wow fadeIn delay-02s">
+                <li>
+                    <i class="fa fa-map-signs" aria-hidden="true"></i> 
+                    <span *ngIf="langIT">Riserva Naturale Orientata Valle delle Ferriere</span>
+                    <span *ngIf="langEN">Nature Reserve Ferriere Valley</span>
+                </li>
+                <li>
+                    <i class="fa fa-map-signs" aria-hidden="true"></i> 
+                    <span *ngIf="langIT">Valle dei Mulini con discesa ad Amalfi</span>
+                    <span *ngIf="langEN">Valley of the Mulines with descent to Amalfi</span>
+                </li>
+                <li>
+                    <i class="fa fa-map-signs" aria-hidden="true"></i> 
+                    <span *ngIf="langIT">Sentieri dei Monti Lattari tracciati dal CAI</span>
+                    <span *ngIf="langEN">Trails Mountains Lattari tracked by CAI</span>
+                </li>
+            </ul>
+        </div>
 
         <div class="portfolioContainer wow fadeInUp delay-04s">
             <div class=" Portfolio-box printdesign">
-                <a href="#"><img src="assets/img/agracq/torre_ziro.png" alt=""></a>	
-                <h3>Torre dello Ziro</h3>
+                <img src="assets/img/agracq/torre_ziro.png" alt="">
+                <h3 *ngIf="langIT">Torre dello Ziro</h3>
+                <h3 *ngIf="langEN">Tower of Ziro</h3>
             </div>
             <div class="Portfolio-box webdesign">
-                <a href="#"><img src="assets/img/agracq/valle_ferriere.png" alt=""></a>	
-                <h3>Valle delle Ferriere</h3>
+                <img src="assets/img/agracq/valle_ferriere.png" alt="">
+                <h3 *ngIf="langIT">Valle delle Ferriere</h3>
+                <h3 *ngIf="langEN">Ferriere Valley</h3>
             </div>
             <div class="Portfolio-box webdesign">
-                <a href="#"><img src="assets/img/agracq/valle_mulini.png" alt=""></a>	
-                <h3>Valle dei Mulini</h3>
+                <img src="assets/img/agracq/valle_mulini.png" alt="">
+                <h3 *ngIf="langIT">Valle dei Mulini</h3>
+                <h3 *ngIf="langEN">Valley of the Mulines</h3>
             </div>
         </div>
 
-        <h6>
-                3) Partecipazione alle attivita' agricole: raccolta dei maggiori prodotti aziendali
-                (uva, limoni, noci, fichi, castagne, ortaggi di stagione etc.)
-                <br /><br />
-                4) Preparazione di conserve e marmellate con i prodotti aziendali
-                <br /><br />
-                5) Partecipazione alla conduzione degli allevamenti presenti in azienda:
-                bovini da latte, galline, conigli e altri animali di bassa corte
-                <br /><br />
-                6) Passeggiate ecologiche
-                <br /><br />
-                7) L'azienda fa parte dell'associazione 'Strada del vino Costa d'Amalfi' e, su richiesta specifica, organizza degustazioni con prodotti tipici
+        <h6 *ngIf="langIT">
+            3) Partecipazione alle attivita' agricole: raccolta dei maggiori prodotti aziendali (uva, limoni, noci, fichi, castagne,
+            ortaggi di stagione etc.)
+            <br /><br /> 4) Preparazione di conserve e marmellate con i prodotti aziendali
+            <br /><br /> 5) Partecipazione alla conduzione degli allevamenti presenti in azienda: bovini da latte, galline,
+            conigli e altri animali di bassa corte
+            <br /><br /> 6) Passeggiate ecologiche
+            <br /><br /> 7) L'azienda fa parte inoltre dell'associazione <strong>'Strada del vino Costa d'Amalfi'</strong>            e, su richiesta specifica, organizza degustazioni con prodotti tipici
         </h6>
-        
-	</div>
-</section><!--main-section-end-->
+        <h6 *ngIf="langEN">
+            3) Participation in agricultural activities: collection of the biggest corporate products
+            (grapes, lemons, walnuts, figs, chestnuts and seasonal vegetables etc.)
+            <br /><br /> 
+            4) Preparation of jams and preserves with the produce business
+            <br /><br /> 
+            5) Participation in the conduct of farming in the company:
+   dairy cattle, chickens, rabbits and other animals of low court
+            <br /><br /> 
+            6) Walking ecological
+            <br /><br /> 
+            7)The company is part of the <strong>'Wine Streef of Amalfi Coast'</strong> and, on specific request, organizes tastings with local products
+        </h6>
 
+    </div>
+</section>
+<!--main-section-end-->
+
+<!-- Section Gallery -->
 <section class="sectionBg2"><!--sectionBg-start-->
 	<div class="container">
         <h2>&nbsp;</h2>
@@ -179,86 +337,93 @@
 
 <section class="main-section team" id="gallery"><!--main-section team-start-->
 	<div class="container">
-        <h2>FOTO</h2>
-        <h6>Clicca sulle foto per visualizzare le foto della categoria</h6>
+        <h2 *ngIf="langIT">FOTO</h2>
+        <h6 *ngIf="langIT">Clicca sulle foto per visualizzare le foto della categoria</h6>
+
+        <h2 *ngIf="langEN">PHOTO</h2>
+        <h6 *ngIf="langEN">Click on the pictures to see photos of the category</h6>
         <div class="team-leader-block clearfix">
             <div class="team-leader-box">
                 <div class="team-leader wow fadeInDown delay-03s"> 
-                    <div class="team-leader-shadow"><a href="#"></a></div>
-                    <img src="assets/img/agracq/prodotti.png" alt="">
+                    <div class="team-leader-shadow"></div>
+                    <img src="assets/img/agracq/photos/01_agriturismo.png" alt="">
                     <ul>
-                        <li><a href="#" class="fa fa-picture-o"></a></li>
+                        <li><a href="javascript:void(0)" onclick="openGallery('Agriturismo');" class="fa fa-picture-o"></a></li>
                     </ul>
                 </div>
-                <h3 class="wow fadeInDown delay-03s">Agriturismo</h3>
-                <span class="wow fadeInDown delay-03s">Scopri il nostro agriturismo</span>
-            </div>
-            <div class="team-leader-box">
-                <div class="team-leader wow fadeInDown delay-03s"> 
-                    <div class="team-leader-shadow"><a href="#"></a></div>
-                    <img src="assets/img/agracq/prodotti.png" alt="">
-                    <ul>
-                        <li><a href="#" class="fa fa-picture-o"></a></li>
-                    </ul>
-                </div>
-                <h3 class="wow fadeInDown delay-03s">Agriturismo</h3>
-                <span class="wow fadeInDown delay-03s">Scopri il nostro agriturismo</span>
-            </div>
-            <div class="team-leader-box">
-                <div class="team-leader wow fadeInDown delay-03s"> 
-                    <div class="team-leader-shadow"><a href="#"></a></div>
-                    <img src="assets/img/agracq/prodotti.png" alt="">
-                    <ul>
-                        <li><a href="#" class="fa fa-picture-o"></a></li>
-                    </ul>
-                </div>
-                <h3 class="wow fadeInDown delay-03s">Agriturismo</h3>
-                <span class="wow fadeInDown delay-03s">Scopri il nostro agriturismo</span>
+                <h3 class="wow fadeInDown delay-03s" *ngIf="langIT">Agriturismo</h3>
+                <h3 class="wow fadeInDown delay-03s" *ngIf="langEN">Farmhouse</h3>
             </div>
 
             <div class="team-leader-box">
                 <div class="team-leader wow fadeInDown delay-03s"> 
-                    <div class="team-leader-shadow"><a href="#"></a></div>
-                    <img src="assets/img/agracq/prodotti.png" alt="">
+                    <div class="team-leader-shadow"></div>
+                    <img src="assets/img/agracq/photos/02_ristorante.png" alt="">
                     <ul>
-                        <li><a href="#" class="fa fa-picture-o"></a></li>
+                        <li><a href="javascript:void(0)" onclick="openGallery('Ristorante');" class="fa fa-picture-o"></a></li>
                     </ul>
                 </div>
-                <h3 class="wow fadeInDown delay-03s">Agriturismo</h3>
-                <span class="wow fadeInDown delay-03s">Scopri il nostro agriturismo</span>
+                <h3 class="wow fadeInDown delay-03s" *ngIf="langIT">Ristorante</h3>
+                <h3 class="wow fadeInDown delay-03s" *ngIf="langEN">Restaurant</h3>
             </div>
+
             <div class="team-leader-box">
                 <div class="team-leader wow fadeInDown delay-03s"> 
-                    <div class="team-leader-shadow"><a href="#"></a></div>
-                    <img src="assets/img/agracq/prodotti.png" alt="">
+                    <div class="team-leader-shadow"></div>
+                    <img src="assets/img/agracq/photos/03_camere.png" alt="">
                     <ul>
-                        <li><a href="#" class="fa fa-picture-o"></a></li>
+                        <li><a href="javascript:void(0)" onclick="openGallery('Camere');" class="fa fa-picture-o"></a></li>
                     </ul>
                 </div>
-                <h3 class="wow fadeInDown delay-03s">Agriturismo</h3>
-                <span class="wow fadeInDown delay-03s">Scopri il nostro agriturismo</span>
+                <h3 class="wow fadeInDown delay-03s" *ngIf="langIT">Camere</h3>
+                <h3 class="wow fadeInDown delay-03s" *ngIf="langEN">Rooms</h3>
             </div>
+
             <div class="team-leader-box">
                 <div class="team-leader wow fadeInDown delay-03s"> 
-                    <div class="team-leader-shadow"><a href="#"></a></div>
-                    <img src="assets/img/agracq/prodotti.png" alt="">
+                    <div class="team-leader-shadow"></div>
+                    <img src="assets/img/agracq/photos/04_piatti.png" alt="">
                     <ul>
-                        <li><a href="#" class="fa fa-picture-o"></a></li>
+                        <li><a href="javascript:void(0)" onclick="openGallery('Piatti');" class="fa fa-picture-o"></a></li>
                     </ul>
                 </div>
-                <h3 class="wow fadeInDown delay-03s">Agriturismo</h3>
-                <span class="wow fadeInDown delay-03s">Scopri il nostro agriturismo</span>
+                <h3 class="wow fadeInDown delay-03s" *ngIf="langIT">Piatti</h3>
+                <h3 class="wow fadeInDown delay-03s" *ngIf="langEN">Dishes</h3>
+            </div>
+
+            <div class="team-leader-box">
+                <div class="team-leader wow fadeInDown delay-03s"> 
+                    <div class="team-leader-shadow"></div>
+                    <img src="assets/img/agracq/photos/05_fattoria.png" alt="">
+                    <ul>
+                        <li><a href="javascript:void(0)" onclick="openGallery('Fattoria');" class="fa fa-picture-o"></a></li>
+                    </ul>
+                </div>
+                <h3 class="wow fadeInDown delay-03s" *ngIf="langIT">Fattoria</h3>
+                <h3 class="wow fadeInDown delay-03s" *ngIf="langEN">Farm</h3>
+            </div>
+
+            <div class="team-leader-box">
+                <div class="team-leader wow fadeInDown delay-03s"> 
+                    <div class="team-leader-shadow"></div>
+                    <img src="assets/img/agracq/photos/06_altro.png" alt="">
+                    <ul>
+                        <li><a href="javascript:void(0)" onclick="openGallery('Altro');" class="fa fa-picture-o"></a></li>
+                    </ul>
+                </div>
+                <h3 class="wow fadeInDown delay-03s" *ngIf="langIT">Altro</h3>
+                <h3 class="wow fadeInDown delay-03s" *ngIf="langEN">Other</h3>
             </div>
         </div>
     </div>
 </section><!--main-section team-end-->
 
-
+<!-- Section Where -->
 <!-- Map Section -->
 <section class="main-section maps-section" id="dovesiamo"><!--maps-section start-->
     <div class="container">
-        <h2>DOVE SIAMO </h2>
-        <h6>
+        <h2 *ngIf="langIT">DOVE SIAMO</h2>
+        <h6 *ngIf="langIT">
             Immerso nella <b>Valle del Dragone</b> a circa 300 metri sul livello del mare, sorge l'<b>Agriturismo Acquabona</b>.  
             <br /><br />
             E' la struttura ideale per gli amanti delle escursioni e delle passeggiate, potrete raggiungere le perle della Costiera Amalfitana comodamente a piedi essendo l'agriturismo posizionato a  pochi minuti da <b>Ravello</b>, con le sue magnifiche <b>ville Rufolo e Cimbrone</b> e dalla affascinante <b>Amalfi</b>. 
@@ -267,92 +432,231 @@
             <br /><br />
             <a href="http://maps.google.com/?q=40.650274,14.608041" target="_blank"><i class="fa fa-map-signs"></i> Come arrivarci</a>
         </h6>
+
+        <h2 *ngIf="langEN">WHERE WE ARE</h2>
+        <h6 *ngIf="langEN">
+            Farm holidays 'Acquabona' rises in the <b>Dragone's Valley</b> to about 300 metres on the level of the sea.   
+            <br /><br />
+            It's a beautiful structure for the people that love treakking and walkking, infact you'll visited  the Amalfitan Coast pearls also to walking, because it's not very countres faraway to the splendid <b>Ravello</b> or the actractive <b>Amalfi</b>.  
+            <br /><br />
+            Besides you'll have the possibility to know some natural places like the <b>Tower of the Jar</b> (Torre dello Ziro), <b>The Valley of the 'Ferriere'</b>, <b>Mountains of Saint Marie</b> (Santa Maria dei Monti) a place with a beautiful view on the coast, here you can eat a pocket lunch after the long excurtion. There are only some trips that you'll make during your vacation.
+            <br /><br />
+            <a href="http://maps.google.com/?q=40.650274,14.608041" target="_blank"><i class="fa fa-map-signs"></i> How to get there</a>
+        </h6>
     </div>
     <div id="map"></div>
 </section><!--maps-section end-->
 
+<!-- Section Contact -->
+<section class="main-section contact" id="contact" style="width: 99%">
 
-<div class="container">
-<section class="main-section contact" id="contact">
-	
-        <div class="row">
-            <div class="col-lg-3 col-sm-3"></div>
-        	<div class="col-lg-9 col-sm-9 wow fadeInLeft">
-            	<div class="contact-info-box address clearfix">
-                	<h3><i class="fa fa-map-marker"></i>Indirizzo:</h3>
-                	<span>via Acquabona, 84010 Scala (Sa) - Costiera Amalfitana</span>
-                </div>
-                <div class="contact-info-box phone clearfix">
-                	<h3><i class="fa fa-phone"></i>Telefono:</h3>
-                	<a href="tel:+39089858023">+39 089 858023</a> - <a href="tel:+393282010433">+39 328 201 04 33</a>
-                </div>
-                <div class="contact-info-box email clearfix">
-                	<h3><i class="fa fa-pencil"></i>email:</h3>
-                	<a href="mailto:agriacquabona@gmail.com">agriacquabona@gmail.com</a>
-                </div>
-            	<div class="contact-info-box hours clearfix">
-                	<h3><i class="fa fa-clock-o"></i>Orari:</h3>
-                	<span><strong>Apertura:</strong> Martedì - Domenica<br><strong>Giornata di riposo:</strong> Lunedì</span>
-                </div>
-                <ul class="social-link">
-                    <!--
+    <div class="row">
+        <div class="col-lg-3 col-sm-3"></div>
+        <div class="col-lg-9 col-sm-9 wow fadeInLeft">
+            <div class="contact-info-box address clearfix">
+                <h3 *ngIf="langIT"><i class="fa fa-map-marker"></i>Indirizzo:</h3>
+                <span *ngIf="langIT">via Acquabona, 84010 Scala (Sa) - Costiera Amalfitana</span>
+
+                <h3 *ngIf="langEN"><i class="fa fa-map-marker"></i>Address:</h3>
+                <span *ngIf="langEN">street Acquabona, 84010 Scala (Sa) - Amalfi Coast</span>
+            </div>
+            <div class="contact-info-box phone clearfix">
+                <h3 *ngIf="langIT"><i class="fa fa-phone"></i>Telefono:</h3>
+                <h3 *ngIf="langEN"><i class="fa fa-phone"></i>Phone:</h3>
+                <a href="tel:+39089858023">+39 089 858023</a> - <a href="tel:+393282010433">+39 328 201 04 33</a>
+            </div>
+            <div class="contact-info-box email clearfix">
+                <h3><i class="fa fa-pencil"></i>Email:</h3>
+                <a href="mailto:agriacquabona@gmail.com">agriacquabona@gmail.com</a>
+            </div>
+            <div class="contact-info-box hours clearfix">
+                <h3 *ngIf="langIT"><i class="fa fa-clock-o"></i>Orari:</h3>
+                <span *ngIf="langIT"><strong>Apertura:</strong> Tutti i giorni</span>
+
+                <h3 *ngIf="langEN"><i class="fa fa-clock-o"></i>Timetables:</h3>
+                <span *ngIf="langEN"><strong>Opening:</strong> Everyday</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-sm-12" align="center">
+            <ul class="social-link">
+                <!--
                 	<li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
                     -->
-                    <li class="facebook"><a href="https://www.facebook.com/agriturismo.acquabona.1/" target="_blank"><i class="fa fa-facebook"></i></a></li>
-                    <li class="gplus"><a href="https://plus.google.com/105995280911778220723" target="_blank"><i class="fa fa-google-plus"></i></a></li>
-                    <!--
+                <li class="facebook"><a href="https://www.facebook.com/agriturismo.acquabona.1/" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                <li class="gplus"><a href="https://plus.google.com/105995280911778220723" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+                <!--
                     <li class="pinterest"><a href="#"><i class="fa fa-pinterest"></i></a></li>
                     <li class="dribbble"><a href="#"><i class="fa fa-dribbble"></i></a></li>
                     -->
-                </ul>
-            </div>
-            <!--
-        	<div class="col-lg-6 col-sm-5 wow fadeInUp delay-05s">
-            	<div class="form">
-                	{{sendmessage}} - {{errormessage}}
-                    <div id="sendmessage" *ngIf="sendmessage == 'true'">Your message has been sent. Thank you!</div>
-                    <div id="errormessage" *ngIf="errormessage == 'true'">Error!</div>
-                    <form action="sendEmail.php" (ngSubmit)="onSubmit()" method="post" role="form" class="contactForm">
-                        <div class="form-group">
-                            <input type="text" name="name" class="form-control input-text" id="name" placeholder="* Your Name" required [(ngModel)]="message.name" />
-                            <div class="validation"></div>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control input-text" name="email" id="email" placeholder="* Your Email" required [(ngModel)]="message.email" />
-                            <div class="validation"></div>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control input-text" name="subject" id="subject" placeholder="* Subject" required [(ngModel)]="message.subject" />
-                            <div class="validation"></div>
-                        </div>
-                        <div class="form-group">
-                            <textarea class="form-control input-text text-area" name="message" rows="5" placeholder="* Message" required [(ngModel)]="message.message"></textarea>
-                            <div class="validation"></div>
-                        </div>
-                        
-                        <div class="text-center"><button type="submit" class="input-btn">Send Message</button></div>
-                    </form>
-                </div>	
-            </div>
-            -->
-        </div>
-</section>
-</div>
-<footer class="footer">
-    <div class="container">
-        <div class="footer-logo"><a href="#"><img src="assets/img/agracq/logo.png" alt=""></a></div>
-        <span class="copyright">&copy; 2017 Agriturismo Acquabona. All Rights Reserved</span>
-        <div class="credits">
-             Powereb by <a href="https://www.alefal.it" target="_blank">Alefal.it</a>
-        </div>
-        <div class="credits">
-            <!-- 
-                All the links in the footer should remain intact. 
-                You can delete the links only if you purchased the pro version.
-                Licensing information: https://bootstrapmade.com/license/
-                Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Knight
-            -->
-            <a href="https://bootstrapmade.com/free-business-bootstrap-themes-website-templates/" target="_blank">Business Bootstrap Themes</a> by <a href="https://bootstrapmade.com/" target="_blank">BootstrapMade</a>
+            </ul>
         </div>
     </div>
-</footer>
+</section>
+
+<!-- Section Footer -->
+<app-footer></app-footer>
+
+<!-- Modal AGRITURISMO -->
+<div id="modalGalleryAgriturismo" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" *ngIf="langIT">Agriturismo</h4>
+        <h4 class="modal-title" *ngIf="langEN">Farmhouse</h4>
+      </div>
+      <div class="modal-body">
+        <!-- AGRITURISMO -->
+        <ul class="bxsliderAgriturismo">
+            <li><img src="assets/img/agracq/photos/agriturismo/Acquabona_1.JPG" /></li>
+            <li><img src="assets/img/agracq/photos/agriturismo/Acquabona_2.JPG" /></li>
+            <li><img src="assets/img/agracq/photos/agriturismo/Acquabona_25.JPG" /></li>
+            <li><img src="assets/img/agracq/photos/agriturismo/Acquabona_49.JPG" /></li>            
+        </ul>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Modal RISTORANTE -->
+<div id="modalGalleryRistorante" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" *ngIf="langIT">Ristorante</h4>
+        <h4 class="modal-title" *ngIf="langEN">Restaurant</h4>
+      </div>
+      <div class="modal-body">
+        <!-- RISTORANTE -->
+        <ul class="bxsliderRistorante">
+            <li><img src="assets/img/agracq/photos/ristorante/Acquabona_15.JPG" /></li>
+            <li><img src="assets/img/agracq/photos/ristorante/Acquabona_16.JPG" /></li>
+            <li><img src="assets/img/agracq/photos/ristorante/Acquabona_17.JPG" /></li>
+            <li><img src="assets/img/agracq/photos/ristorante/Acquabona_18.JPG" /></li>            
+            <li><img src="assets/img/agracq/photos/ristorante/Acquabona_23.JPG" /></li>            
+            <li><img src="assets/img/agracq/photos/ristorante/Acquabona_24.JPG" /></li>            
+            <li><img src="assets/img/agracq/photos/ristorante/Acquabona_26.JPG" /></li>            
+            <li><img src="assets/img/agracq/photos/ristorante/Acquabona_34.JPG" /></li>            
+        </ul>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Modal CAMERE -->
+<div id="modalGalleryCamere" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" *ngIf="langIT">Camere</h4>
+        <h4 class="modal-title" *ngIf="langEN">Rooms</h4>
+      </div>
+      <div class="modal-body">
+        <!-- CAMERE -->
+        <ul class="bxsliderCamere">
+            <li><img src="assets/img/agracq/photos/camere/Acquabona_3.JPG" /></li>
+            <li><img src="assets/img/agracq/photos/camere/Acquabona_4.JPG" /></li>
+            <li><img src="assets/img/agracq/photos/camere/Acquabona_5.JPG" /></li>
+            <li><img src="assets/img/agracq/photos/camere/Acquabona_6.JPG" /></li>            
+            <li><img src="assets/img/agracq/photos/camere/Acquabona_7.JPG" /></li>            
+            <li><img src="assets/img/agracq/photos/camere/Acquabona_8.JPG" /></li>            
+            <li><img src="assets/img/agracq/photos/camere/Acquabona_9.JPG" /></li>            
+            <li><img src="assets/img/agracq/photos/camere/Acquabona_10.JPG" /></li>            
+            <li><img src="assets/img/agracq/photos/camere/Acquabona_11.JPG" /></li>            
+            <li><img src="assets/img/agracq/photos/camere/Acquabona_12.JPG" /></li>            
+            <li><img src="assets/img/agracq/photos/camere/Acquabona_13.JPG" /></li>            
+            <li><img src="assets/img/agracq/photos/camere/Acquabona_14.JPG" /></li>            
+        </ul>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Modal PIATTI -->
+<div id="modalGalleryPiatti" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" *ngIf="langIT">Piatti</h4>
+        <h4 class="modal-title" *ngIf="langEN">Dishes</h4>
+      </div>
+      <div class="modal-body">
+        <!-- PIATTI -->
+        <ul class="bxsliderPiatti">
+            <li><img src="assets/img/agracq/photos/piatti/Acquabona_36.JPG" /></li>
+            <li><img src="assets/img/agracq/photos/piatti/Acquabona_37.JPG" /></li>
+            <li><img src="assets/img/agracq/photos/piatti/Acquabona_38.JPG" /></li>
+            <li><img src="assets/img/agracq/photos/piatti/Acquabona_39.JPG" /></li>            
+            <li><img src="assets/img/agracq/photos/piatti/Acquabona_40.JPG" /></li>            
+            <li><img src="assets/img/agracq/photos/piatti/Acquabona_41.JPG" /></li>            
+            <li><img src="assets/img/agracq/photos/piatti/Acquabona_42.JPG" /></li>   
+            <!--         
+            <li><img src="assets/img/agracq/photos/piatti/Acquabona_43.JPG" /></li>            
+            -->
+            <li><img src="assets/img/agracq/photos/piatti/Acquabona_44.JPG" /></li>            
+            <!--         
+            <li><img src="assets/img/agracq/photos/piatti/Acquabona_45.JPG" /></li>            
+            -->
+            <li><img src="assets/img/agracq/photos/piatti/Acquabona_46.JPG" /></li>            
+            <!--         
+            <li><img src="assets/img/agracq/photos/piatti/Acquabona_47.JPG" /></li>            
+            -->
+            <li><img src="assets/img/agracq/photos/piatti/Acquabona_48.JPG" /></li>            
+        </ul>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Modal FATTORIA -->
+<div id="modalGalleryFattoria" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" *ngIf="langIT">Fattoria</h4>
+        <h4 class="modal-title" *ngIf="langEN">Farm</h4>
+      </div>
+      <div class="modal-body">
+        <!-- FATTORIA -->
+        <ul class="bxsliderFattoria">
+            <li><img src="assets/img/agracq/photos/fattoria/Acquabona_19.JPG" /></li>
+            <li><img src="assets/img/agracq/photos/fattoria/Acquabona_20.JPG" /></li>
+            <li><img src="assets/img/agracq/photos/fattoria/Acquabona_21.JPG" /></li>
+            <li><img src="assets/img/agracq/photos/fattoria/Acquabona_22.JPG" /></li>            
+        </ul>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Modal ALTRO -->
+<div id="modalGalleryAltro" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" *ngIf="langIT">Altro</h4>
+        <h4 class="modal-title" *ngIf="langEN">Other</h4>
+      </div>
+      <div class="modal-body">
+        <!-- ALTRO -->
+        <ul class="bxsliderAltro">
+            <li><img src="assets/img/agracq/photos/dettagli/Acquabona_27.JPG" /></li>
+            <li><img src="assets/img/agracq/photos/dettagli/Acquabona_28.JPG" /></li>
+            <li><img src="assets/img/agracq/photos/dettagli/Acquabona_29.JPG" /></li>
+            <li><img src="assets/img/agracq/photos/dettagli/Acquabona_30.JPG" /></li>
+            <li><img src="assets/img/agracq/photos/dettagli/Acquabona_31.JPG" /></li>            
+            <li><img src="assets/img/agracq/photos/dettagli/Acquabona_32.JPG" /></li>            
+            <li><img src="assets/img/agracq/photos/dettagli/Acquabona_33.JPG" /></li>            
+            <li><img src="assets/img/agracq/photos/dettagli/Acquabona_35.JPG" /></li>                                    
+        </ul>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

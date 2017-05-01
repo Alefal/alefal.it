@@ -3,12 +3,15 @@ import { NgModule }       from '@angular/core';
 import { FormsModule }    from '@angular/forms';
 import { HttpModule }     from '@angular/http';
 
-import {ContactService}   from './contact.service';
-import { AppComponent }   from './app.component';
+import { AppComponent }       from './app.component';
+import { LanguageService }    from './language.service';
+
+import { FooterComponent }    from './footer/footer.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -16,7 +19,7 @@ import { AppComponent }   from './app.component';
     HttpModule
   ],
   providers: [
-    ContactService
+    LanguageService
   ],
   bootstrap: [AppComponent]
 })
