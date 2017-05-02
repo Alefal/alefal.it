@@ -22,9 +22,17 @@ $order = [
         'customer_id' => 9,
         'line_items' => [
             [
-                'id' => 28,             //Numero della riga del LINE ITEM; per eliminare una riga 'product_id' => null
-                'product_id' => 141,
-                'quantity' => 10
+                'id' => 47,             //Numero della riga del LINE ITEM; per eliminare una riga 'product_id' => null
+                'product_id' => 16,
+                'quantity' => 10,
+                'meta' => [
+                    [
+                        //'id' => 1,
+                        'key' => 'note',
+                        'value' => 'descrizione della nota',
+                        'label' => 'note',
+                    ]
+                ]
             ]
         ],
         'shipping_lines' => [
@@ -66,7 +74,7 @@ try {
     
     //$eceGetCallArray = $woocommerce->orders->get();
     //$eceGetCallArray = $woocommerce->orders->create($order);
-    $eceGetCallArray = $woocommerce->orders->update(144,$order);
+    $eceGetCallArray = $woocommerce->orders->update(125,$order);
     //$eceGetCallArray = $woocommerce->orders->delete(118,true);
 
     //$eceGetCallArray = $woocommerce->order_refunds->get(122);
