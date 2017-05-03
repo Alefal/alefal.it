@@ -19,8 +19,8 @@ $order = [
         //'payment_details' => [],
         'billing_address' => [],
         'shipping_address' => [],
-        'customer_id' => 9,
-        'line_items' => [
+        //'customer_id' => 9,
+        /*'line_items' => [
             [
                 'id' => 47,             //Numero della riga del LINE ITEM; per eliminare una riga 'product_id' => null
                 'product_id' => 16,
@@ -34,7 +34,7 @@ $order = [
                     ]
                 ]
             ]
-        ],
+        ],*/
         'shipping_lines' => [
             [
                 'method_id' => 'flat_rate',
@@ -65,7 +65,7 @@ try {
     //$eceGetCallArray = $woocommerce->products->create_category( array( 'product_category' => array( 'name' => 'Test Category' ) ) );
     //$eceGetCallArray = $woocommerce->products->delete_category( 139,true );
 
-    $eceGetCallArray = $woocommerce->products->get();
+    //$eceGetCallArray = $woocommerce->products->get();
     //$eceGetCallArray = $woocommerce->products->get_categories();
     //$eceGetCallArray = $woocommerce->products->create($productArray);
 	//$eceGetCallArray = $woocommerce->products->get(null, array('filter[limit]' => 50 , 'fields' => 'id,status' ));
@@ -74,7 +74,7 @@ try {
     
     //$eceGetCallArray = $woocommerce->orders->get();
     //$eceGetCallArray = $woocommerce->orders->create($order);
-    //$eceGetCallArray = $woocommerce->orders->update(125,$order);
+    $eceGetCallArray = $woocommerce->orders->update(173,$order);
     //$eceGetCallArray = $woocommerce->orders->delete(118,true);
 
     //$eceGetCallArray = $woocommerce->order_refunds->get(122);

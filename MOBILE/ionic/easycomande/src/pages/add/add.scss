@@ -1,0 +1,37 @@
+page-add {
+
+    ion-segment {
+        display: block;
+        white-space: nowrap;
+        font-size: 0;
+        overflow: auto;
+        background-color: #f5f5f5;
+        border-top: rgba(0, 0, 0, 0.1) solid 2px;
+
+        &::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+            display: none;
+        }
+
+        ion-segment-button.segment-button {
+            display: inline-block!important;
+            min-width: 100px!important;
+            width: auto!important;
+        }
+    }
+
+    .item-md p {
+        white-space: initial;
+    }
+
+    .active {
+        border-color: #488aff !important;
+        opacity: 1 !important;
+    }
+
+    .list-md .item-block .item-inner {
+        border: none !important;
+    }
+
+}

@@ -1,0 +1,35 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Menu</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <ion-segment>
+    <ion-segment-button *ngFor="let cat of categories" (click)="loadData(cat.name)" [class.active]="cat.name == categoryName">
+      {{cat.name}}
+    </ion-segment-button>
+  </ion-segment>
+
+  <div>
+    <ion-list>
+      <ion-item><h3>{{categoryName}}</h3></ion-item>
+      <ion-item *ngFor="let prod of products">
+        <ion-thumbnail item-left>
+          <img src="{{prod.images[0].src}}" />
+        </ion-thumbnail>
+        <h2>{{prod.title}}
+          <ion-badge color="secondary">{{prod.category}}</ion-badge>
+        </h2>
+        <h3><i [innerHTML]="prod.description"></i></h3>
+        <ion-badge item-right color="secondary">
+          <ion-icon name="logo-euro"></ion-icon> {{prod.price}}</ion-badge>
+      </ion-item>
+    </ion-list>
+  </div>
+
+</ion-content>

@@ -28,11 +28,12 @@ try {
 	foreach ($eceGetCallArray->products as $item) {
 		//print_r($item);
         $eceOutputArray[] = array(        
-            'id'      	=> $item->id,
-            'title'     => $item->title,
-            'price'		=> $item->price,
-            'stock'		=> $item->stock_quantity,
-            'images'    => $item->images
+            'id'      	   => $item->id,
+            'title'        => $item->title,
+            'price'		   => $item->price,
+            'description'  => $item->description,
+            'stock'		   => $item->stock_quantity,
+            'images'       => $item->images
 
         );  
     }
