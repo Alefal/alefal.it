@@ -22,7 +22,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
 					<?php do_action( 'wcdn_after_branding', $order ); ?>
 				</div><!-- .order-branding -->
 
-
+				<!--
 				<div class="order-addresses<?php if( !wcdn_has_shipping_address( $order ) ) : ?> no-shipping-address<?php endif; ?>">
 					<div class="billing-address">
 						<h3><?php _e( 'Billing Address', 'woocommerce-delivery-notes' ); ?></h3>
@@ -45,7 +45,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
 					<?php do_action( 'wcdn_after_addresses', $order ); ?>
 				</div><!-- .order-addresses -->
 
-
+				<!--
 				<div class="order-info">
 					<h2><?php wcdn_document_title(); ?></h2>
 
@@ -141,17 +141,26 @@ if ( !defined( 'ABSPATH' ) ) exit;
 					<?php do_action( 'wcdn_after_items', $order ); ?>
 				</div><!-- .order-items -->
 				
-				
+		
 				<div class="order-notes">
 					<?php if( wcdn_has_customer_notes( $order ) ) : ?>
-						<h4><?php _e( 'Customer Note', 'woocommerce-delivery-notes' ); ?></h4>
+						<h4>TAVOLO</h4>
 						<?php wcdn_customer_notes( $order ); ?>
 					<?php endif; ?>
 					
 					<?php do_action( 'wcdn_after_notes', $order ); ?>
 				</div><!-- .order-notes -->
-					
 				
+				<div class="order-notes">
+					<h4><?php _e( 'Customer Note', 'woocommerce-delivery-notes' ); ?></h4>
+					<?php 
+					$orderNotes = get_private_order_notes($order->id);
+					foreach( $orderNotes as $note ) : 
+						echo $note['note_content'].'<br />'; 
+					endforeach; 
+					?>
+				</div>
+
 				<div class="order-thanks">
 					<?php wcdn_personal_notes(); ?>
 					

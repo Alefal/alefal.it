@@ -19,22 +19,22 @@ $order = [
         //'payment_details' => [],
         'billing_address' => [],
         'shipping_address' => [],
+        'note' => 'Tavolo 1, 2 coperti',
         //'customer_id' => 9,
-        /*'line_items' => [
+        'line_items' => [
             [
-                'id' => 47,             //Numero della riga del LINE ITEM; per eliminare una riga 'product_id' => null
-                'product_id' => 16,
+                //'id' => 47,             //Numero della riga del LINE ITEM; per eliminare una riga 'product_id' => null
+                'product_id' => 162,
                 'quantity' => 10,
                 'meta' => [
                     [
-                        'id' => 1,
                         'key' => 'note',
                         'value' => 'descrizione della nota',
                         'label' => 'note',
                     ]
                 ]
             ]
-        ],*/
+        ],
         'shipping_lines' => [
             [
                 'method_id' => 'flat_rate',
@@ -57,6 +57,11 @@ $order_refund = [
     ]
 ];
 
+$orderNote = [
+    'note' => 'Order ok customer!!!',
+    'customer_note' => true
+];
+
 try {
 
 	$woocommerce = new WC_API_Client( $store_url, $consumer_key, $consumer_secret, $options );
@@ -73,14 +78,15 @@ try {
     //$eceGetCallArray = $woocommerce->products->get(null, array( 'search' => 'Test Product'));
     
     //$eceGetCallArray = $woocommerce->orders->get();
-    //$eceGetCallArray = $woocommerce->orders->create($order);
-    $eceGetCallArray = $woocommerce->orders->update(173,$order);
+    $eceGetCallArray = $woocommerce->orders->create($order);
+    //$eceGetCallArray = $woocommerce->orders->update(173,$order);
     //$eceGetCallArray = $woocommerce->orders->delete(118,true);
 
     //$eceGetCallArray = $woocommerce->order_refunds->get(122);
     //$eceGetCallArray = $woocommerce->order_refunds->update(122,122,$order_refund);
     
     //$eceGetCallArray = $woocommerce->order_notes->get( 122 );
+    //$eceGetCallArray = $woocommerce->order_notes->create(173,$orderNote);
 
     print_r($eceGetCallArray);
 	print '</pre>';

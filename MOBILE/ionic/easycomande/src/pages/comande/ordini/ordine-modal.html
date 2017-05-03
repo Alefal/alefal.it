@@ -65,12 +65,7 @@
     <ion-list *ngIf="sectionDetail">
 
       <ion-item>
-        <h3>Ordine num. <strong>{{ordine.order_number}}</strong> in stato <strong>{{ordine.status}}</strong></h3> 
-      </ion-item>
-
-      <ion-item>
-        <p>Cliente</p>
-        <h2>{{ordine.customer.first_name}} {{ordine.customer.last_name}}</h2>
+        <h3>Ordine per <strong>{{ordine.note}}</strong></h3> 
       </ion-item>
 
       <ion-item>
@@ -84,8 +79,8 @@
       </ion-item>
 
       <ion-item>
-        <p>Tasse</p>
-        <h2>{{ordine.total_tax}}</h2>
+        <p>Coperti</p>
+        <h2>{{ordine.shipping_lines | json}}</h2>
       </ion-item>
 
       <ion-item>
@@ -98,11 +93,6 @@
         <ion-note item-right>
           <em>&euro; {{prod.quantity * prod.price}}</em>
         </ion-note>
-      </ion-item>
-
-      <ion-item>
-        <p>Note</p>
-        <h2><strong>{{ordine.note}}</strong></h2>
       </ion-item>
 
     </ion-list>

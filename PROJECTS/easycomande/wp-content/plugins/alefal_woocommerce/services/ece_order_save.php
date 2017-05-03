@@ -9,6 +9,9 @@ $eceFinalArray      = array();
 $lineItemsArray     = array();
 
 $order = json_decode($_GET['order'],true);
+//print_r($order);
+//die();
+
 /*
 $order = json_decode('
     {  
@@ -63,66 +66,40 @@ $order = json_decode('
     ',true);
 */
 
-$id         = $order['id'];
-$customer   = $order['customer'];
-//print_r($customer);
-//print_r($customer['id']);
+$id = $order['id'];
 
 foreach ($order['line_items'] as $item) {
     $lineItemsArray[] = array(        
-        'product_id'    => $item['prodId'],
-        'quantity'      => $item['prodAddQuantity']
+        'product_id'    => $item['id'],
+        'quantity'      => $item['quantity']
     ); 
 }
 //print_r($lineItemsArray);
 //die();
 
-$orderArray = array(
-    'status'                    => $order['status'],
-    /*
-    'total'                     => $order['total'],
-    'total_tax'                 => $order['total_tax'],
-    'total_line_items_quantity' => $order['total_line_items_quantity'],
-    */
-    
-    'customer_id'               => $customer['id'],
-    'shipping_address'          => array
-        (
-                'first_name'          => $customer['shipping_first_name']
-            ,   'last_name'           => $customer['shipping_last_name']
-            ,   'address_1'           => $customer['shipping_address_1']
-            ,   'address_2'           => $customer['shipping_address_2']
-            ,   'city'                => $customer['shipping_city']
-            ,   'postcode'            => $customer['shipping_postcode']
-            ,   'country'             => $customer['shipping_country']
-            ,   'state'               => $customer['shipping_state']
-        ),
+$orderArray = [
+    'order' => [
+        'note'                        => $order['note'],
+        //'status'                      => $order['status'],
+        'billing_address'             => [],
+        'shipping_address'            => [],
+        //'total'                       => $order['total'],
+        //'total_tax'                   => $order['total_tax'],
+        //'total_line_items_quantity'   => $order['total_line_items_quantity'],
+        //'customer_id'                 => 9,
+        'line_items'                  => $lineItemsArray,
+        'shipping_lines'              => [
+            [
+                'method_id'     => 'flat_rate',
+                'method_title'  => 'Coperti',
+                'total'         => 10
+            ]
+        ]
+    ]
+];
 
-    'billing_address'           => array
-        (
-                'first_name'          => $customer['billing_first_name']
-            ,   'last_name'           => $customer['billing_last_name']
-            ,   'address_1'           => $customer['billing_address_1']
-            ,   'address_2'           => $customer['billing_address_2']
-            ,   'city'                => $customer['billing_city']
-            ,   'postcode'            => $customer['billing_postcode']
-            ,   'country'             => $customer['billing_country']
-            ,   'state'               => $customer['billing_state']
-        ),
-
-    'line_items'                => $lineItemsArray,
-    /*
-    'line_items'                => array
-        (
-            array
-            (
-                'product_id'         => 101,   
-                'quantity'           => 7
-            )
-        ),
-    */
-    'note'                      => $order['note'],
-);
+//print_r($orderArray);
+//die();
 
 try {
 
@@ -134,9 +111,14 @@ try {
     $woocommerce = new WC_API_Client( $store_url, $consumer_key, $consumer_secret, $options );
     //print '<pre>';
     if($id == 0) {
-        $woocommerce->orders->create($orderArray);
+        $responseAfterSave = $woocommerce->orders->create($orderArray);
+        $orderIdSave = $responseAfterSave->order->id;
+        
+        //print_r($responseAfterSave);
+        //die();
+
         $eceOutputArray[] = array(        
-            'id'        => 'NEW',
+            'id'        =>  $orderIdSave,
             'message'   => 'Ordine salvato correttamente'
         ); 
 
@@ -147,16 +129,6 @@ try {
             'message'   => 'Ordine salvato correttamente'
         ); 
     }
-
-    //Reduce stock
-    foreach ($order['line_items'] as $item) {
-        $product        = $woocommerce->products->get($item['prodId']);
-        $product_qnt    = $product->product->stock_quantity;
-        $woocommerce->products->update_stock($item['prodId'],($product_qnt - $item['prodAddQuantity']));
-    }
-    //print_r($eceGetCallArray->product);
-    //print_r($eceOutputArray);
-    //print '</pre>';
 
 } catch ( WC_API_Client_Exception $e ) {
     $eceResultArray[] = array(

@@ -39,7 +39,8 @@ export class OrdineModal {
   total_line_items_quantity: number = 0;
   line_items: any;
   customer: any;
-  note: any;  
+  note: any; 
+  shipping_lines: any;
 
   sectionCreate: boolean = false;
   sectionDetail: boolean = false;
@@ -123,6 +124,7 @@ export class OrdineModal {
       this.line_items                 = this.ordineEdit.line_items;
       this.customer                   = this.ordineEdit.customer;
       this.note                       = this.ordineEdit.note;
+      this.shipping_lines             = this.shipping_lines;
       
       this.ordine = new Ordine(
         this.id,
@@ -136,7 +138,8 @@ export class OrdineModal {
         this.total_line_items_quantity,
         this.line_items,
         this.customer,
-        this.note
+        this.note,
+        this.shipping_lines
       );
       console.log(this.ordine);
     }
@@ -213,7 +216,8 @@ export class OrdineModal {
       this.total_line_items_quantity,
       this.line_items,
       this.customer,
-      this.note
+      this.note,
+      0
     );
 
     console.log('ORDINE: '+JSON.stringify(this.ordine));

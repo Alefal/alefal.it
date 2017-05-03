@@ -68,8 +68,15 @@ export class HttpService {
         else if(call == 'getOrderDelete') {
             url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_delete.php?id='+id;
         } 
+        //ORDER NOTES
         else if(call == 'getOrderNote') {
             url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_note.php?id='+id;
+        } 
+        else if(call == 'getOrderNoteSave') {
+            url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_note_save.php?id='+id+'&orderNotes='+JSON.stringify(object);
+        } 
+        else if(call == 'getOrderNoteDelete') {
+            url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_note_delete.php?id='+id+'&orderNotes='+JSON.stringify(object);
         } 
         //USERS
         else if(call == 'getCustomer') {

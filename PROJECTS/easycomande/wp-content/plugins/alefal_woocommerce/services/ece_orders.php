@@ -32,7 +32,8 @@ try {
             'total_line_items_quantity' => $item->total_line_items_quantity,
             'line_items'                => $item->line_items,
             'customer'                  => $item->customer,
-            'note'                      => $item->note
+            'note'                      => $item->note,
+            'shipping_lines'            => $item->shipping_lines[0]
 
         );  
     }

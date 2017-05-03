@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController, ViewController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, ViewController, ToastController, PopoverController } from 'ionic-angular';
 
 import { HttpService }          from '../../../providers/http-service';
 
@@ -25,6 +25,8 @@ export class ProdottiModal {
     private httpService: HttpService,
     public loadingCtrl: LoadingController,
     private viewCtrl: ViewController,
+    public toastCtrl: ToastController,
+    public popoverCtrl: PopoverController
   ) { 
     this.categoryName = params.get('categoryName');
     this.loadData(this.categoryName);
@@ -97,5 +99,13 @@ export class ProdottiModal {
     this.viewCtrl.dismiss({
       action: prod
     });
+  }
+
+  infoProduct(prod) {
+    let toast = this.toastCtrl.create({
+      message: prod.description,
+      duration: 3000
+    });
+    toast.present();
   }
 }

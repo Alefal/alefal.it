@@ -1,12 +1,16 @@
 <ion-header>
   <ion-navbar color="primary">
     <ion-title>Comande</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addNote()">
+        <ion-icon name="create"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-
 <ion-content>
-
 
   <ion-list padding>
 
@@ -15,7 +19,7 @@
         <ion-col col-6>
           <ion-item>
             <ion-label floating>Tavolo</ion-label>
-            <ion-input type="number"></ion-input>
+            <ion-input type="number" [(ngModel)]="numTavolo"></ion-input>
           </ion-item>
         </ion-col>
         <ion-col col-6>
@@ -37,6 +41,7 @@
 
   <ion-list>
     <ion-item *ngFor="let prod of products">
+      <ion-icon name="close" color="danger" item-left (click)="removeProduct(prod.id)"></ion-icon>
       <h2>{{prod.title}}</h2>
       <ion-badge color="dark" item-right>{{prod.price}}</ion-badge>
     </ion-item>
@@ -46,8 +51,17 @@
     </ion-item>
   </ion-list>
 
-  <div padding>
-    <button ion-button color="primary" block>Salva</button>
+  <ion-card *ngFor="let nota of notes">
+    <ion-card-header>
+      <ion-icon name="close" color="danger" item-left (click)="removeNote(nota.id)"></ion-icon>
+    </ion-card-header>
+    <ion-card-content>
+      {{nota.nota}}
+    </ion-card-content>
+  </ion-card>
+
+  <div>
+    <button ion-button full large color="danger" block [disabled]="totaleOrdine == 0" (click)="saveOrder()">Salva</button>
   </div>
 
 </ion-content>

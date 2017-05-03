@@ -10,7 +10,8 @@ export class Ordine {
   public total_line_items_quantity: number;
   public line_items: any;
   public customer: any;
-  public note: any;    
+  public note: string;    
+  public shipping_lines: number; 
   
   constructor(
     id: number,
@@ -24,7 +25,8 @@ export class Ordine {
     total_line_items_quantity: number,
     line_items: any,
     customer: any,
-    note: any
+    note: string,
+    shipping_lines: number
   ) {
 
     this.id                         = id;
@@ -39,6 +41,7 @@ export class Ordine {
     this.line_items                 = line_items;
     this.customer                   = customer;
     this.note                       = note;
+    this.shipping_lines             = shipping_lines;
   }
 
   getOrderId(): string {
