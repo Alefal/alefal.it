@@ -19,6 +19,7 @@ export class HttpService {
         console.log('getCallHttp: '+call+' | '+username+' | '+password);
         
         var host = 'http://localhost/alefal.it/PROJECTS/easycomande';
+        //var host = 'http://www.amalficoastapps.it/demo/easycomande';
         
         var url = '';
         //LOGIN

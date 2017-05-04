@@ -21,7 +21,7 @@
 // ** MySQL settings - You can get this info from your web host ** //
 //REMOTE
 /*
-define('DB_NAME', 'Sql879752_3');
+define('DB_NAME', 'Sql879752_4');
 define('DB_USER', 'Sql879752');
 define('DB_PASSWORD', '3r22nw0etv');
 define('DB_HOST', '62.149.150.236');
