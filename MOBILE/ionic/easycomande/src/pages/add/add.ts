@@ -3,6 +3,9 @@ import { NavController, NavParams, LoadingController, ModalController, ViewContr
 
 import { HttpService }          from '../../providers/http-service';
 
+import { HomePage }          from '../home/home';
+import { ComandePage }          from '../comande/comande';
+
 import { ProdottiModal }        from './prodotti/prodotti-modal';
 
 import { Ordine }               from '../../models/ordine';
@@ -15,15 +18,20 @@ import { Nota }                 from '../../models/nota';
 })
 export class AddPage {
 
+  ordine: Ordine;
+  ordineId: number = 0;
+  ordineEdit: boolean = false;
+
   products: Prodotto[] = new Array<Prodotto>();
   notes: Nota[] = new Array<Nota>();
 
   notaId: number = 1;
+  notaOrdine: string = '';
 
   numTavolo: string = '';
   numCoperti: number = 0;
   totCoperti: number = 0;
-  totaleOrdine: number = 0;
+  totaleOrdine: any = 0;
 
   categories: any;
 
@@ -43,7 +51,24 @@ export class AddPage {
     public viewCtrl: ViewController,
     public alertCtrl: AlertController,
   ) { 
-    this.categoryName = params.get('categoriaNome');
+    //Order edit: go from ordinePage
+    if(params.get('ordine')) {
+      this.ordine = params.get('ordine');
+      console.log(this.ordine.shipping_lines.total);
+
+      this.ordineEdit = true;
+      this.ordineId = this.ordine.id;
+      this.notaOrdine = this.ordine.note;
+      //this.totaleOrdine = this.ordine.total;
+
+      /*
+      for (let prod of this.ordine.line_items) {
+        let prodotto = new Prodotto(prod.id,prod.product_id,prod.name,prod.price,'',1);
+        this.products.push(prodotto);
+      }
+      console.log('%o',this.products);
+      */
+    }
 
     this.loadCategories();
     //this.loadData(this.categoriaNome);
@@ -82,19 +107,20 @@ export class AddPage {
     let modal = this.modalCtrl.create(ProdottiModal, { categoryName: cat });
     modal.present();
     modal.onDidDismiss(data => {
-      console.log('-> '+JSON.stringify(data.action));
+      console.log('data.action -> '+JSON.stringify(data.action));
       if(data.action != '') {
-        let pId     = data.action.id;
+        let pId     = 0;
+        let pProdId = data.action.id;
         let pTitle  = data.action.title;
         let pPrice  = data.action.price;
         let pDescr  = data.action.description;
 
-        let prodotto = new Prodotto(pId,pTitle,pPrice,pDescr,1);
+        let prodotto = new Prodotto(pId,pProdId,pTitle,pPrice,pDescr,1);
 
         this.products.push(prodotto);
-        this.totaleOrdine = this.totaleOrdine + parseFloat(pPrice);
+        this.totaleOrdine = parseFloat(this.totaleOrdine) + parseFloat(pPrice);
 
-        console.log('-> '+JSON.stringify(this.products));
+        console.log('%o','this.products -> '+JSON.stringify(this.products));
       }
     });
   }
@@ -115,8 +141,8 @@ export class AddPage {
     this.totaleOrdine = totOrdine + this.totCoperti;
   }
 
-  removeProduct(prodId) {
-    console.log(prodId);
+  removeProduct(prodTitle) {
+    console.log(prodTitle);
 
     let confirm = this.alertCtrl.create({
       title: 'Cancellazione!',
@@ -129,10 +155,22 @@ export class AddPage {
           }
         },
         {
-          text: 'Cancella',
+          text: 'Conferma',
           handler: () => {
             console.log('Conferma');
-            this.products.splice( this.products.indexOf(prodId), 1 );
+            console.log('%o',this.products);
+
+            let cont: number = 0;
+            for (let prod of this.products) {
+              console.log('Title: '+prod['title']+' | '+prodTitle);
+              if(prod['title'] == prodTitle) {
+                console.log('Elimino: '+cont);
+                this.products.splice(cont,1);
+              }
+              cont++;
+            }
+
+            //this.products.splice( this.products.indexOf(prodTitle), 1 );
 
             //Ricalcolo totale
             let totOrdine: any = 0;
@@ -216,11 +254,13 @@ export class AddPage {
     console.log(this.numTavolo +'|'+ this.totCoperti +'|'+ this.numCoperti +'|'+ this.totaleOrdine);
     console.log(JSON.stringify(this.notes));
 
-    let nota = 'Tavolo '+this.numTavolo+', numero di coperti '+this.numCoperti;
+    if(!this.ordineEdit) {
+      this.notaOrdine = 'Tavolo '+this.numTavolo+', numero di coperti '+this.numCoperti;
+    }
 
     let ordine = new Ordine(
-      0,                                //this.id,
-      0,                                //this.order_number,
+      this.ordineId,                    //this.id,
+      this.ordineId,                    //this.order_number,
       '',                               //this.created_at,
       '',                               //this.updated_at,
       '',                               //this.completed_at,
@@ -230,7 +270,7 @@ export class AddPage {
       this.products.length,             //this.total_line_items_quantity,
       this.products,                    //this.line_items,
       '',                               //this.customer,
-      nota,                             //this.note,
+      this.notaOrdine,                  //this.note,
       this.totCoperti                   //shipping_lines
     );
 
@@ -254,9 +294,7 @@ export class AddPage {
             this.saveNote(orderIdSave,note);
           }
 
-          this.viewCtrl.dismiss({
-            action: 'refresh'
-          });
+          this.navCtrl.setRoot(HomePage);
         } else {
           this.nothing = 'Nessun dato! Riprovare più tardi.';
         }
@@ -282,13 +320,11 @@ export class AddPage {
         } else {
           this.nothing = 'Nessun dato! Riprovare più tardi.';
         }
-        this.loading.dismiss();
       })
       .catch(error => {
         console.log('ERROR: ' + error);
         this.errorMessage = 'Error!';
         this.errorMessageView = true;
-        this.loading.dismiss();
       });
   }
 

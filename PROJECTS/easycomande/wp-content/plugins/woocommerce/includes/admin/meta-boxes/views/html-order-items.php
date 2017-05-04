@@ -117,6 +117,7 @@ if ( wc_tax_enabled() ) {
 		}
 	?>
 	<table class="wc-order-totals">
+		<!-- Alessandro
 		<tr>
 			<td class="label"><?php echo wc_help_tip( __( 'This is the total discount. Discounts are defined per line item.', 'woocommerce' ) ); ?> <?php _e( 'Discount:', 'woocommerce' ); ?></td>
 			<td width="1%"></td>
@@ -124,11 +125,11 @@ if ( wc_tax_enabled() ) {
 				<?php echo wc_price( $order->get_total_discount(), array( 'currency' => $order->get_currency() ) ); ?>
 			</td>
 		</tr>
-
+		-->
 		<?php do_action( 'woocommerce_admin_order_totals_after_discount', $order->get_id() ); ?>
 
 		<tr>
-			<td class="label"><?php echo wc_help_tip( __( 'This is the shipping and handling total costs for the order.', 'woocommerce' ) ); ?> <?php _e( 'Shipping:', 'woocommerce' ); ?></td>
+			<td class="label"><?php //echo wc_help_tip( __( 'This is the shipping and handling total costs for the order.', 'woocommerce' ) ); ?> <?php _e( 'Coperti:', 'woocommerce' ); ?></td>
 			<td width="1%"></td>
 			<td class="total"><?php
 				if ( ( $refunded = $order->get_total_shipping_refunded() ) > 0 ) {
@@ -192,9 +193,11 @@ if ( wc_tax_enabled() ) {
 		<?php if ( wc_tax_enabled() && $order->is_editable() ) : ?>
 			<button type="button" class="button add-order-tax"><?php _e( 'Add tax', 'woocommerce' ); ?></button>
 		<?php endif; ?>
+		<!-- Alessandro
 		<?php if ( 0 < $order->get_total() - $order->get_total_refunded() || 0 < absint( $order->get_item_count() - $order->get_item_count_refunded() ) ) : ?>
 			<button type="button" class="button refund-items"><?php _e( 'Refund', 'woocommerce' ); ?></button>
 		<?php endif; ?>
+		-->
 		<?php
 			// allow adding custom buttons
 			do_action( 'woocommerce_order_item_add_action_buttons', $order );
@@ -206,8 +209,10 @@ if ( wc_tax_enabled() ) {
 </div>
 <div class="wc-order-data-row wc-order-add-item wc-order-data-row-toggle" style="display:none;">
 	<button type="button" class="button add-order-item"><?php _e( 'Add product(s)', 'woocommerce' ); ?></button>
+	<!-- Alessandro
 	<button type="button" class="button add-order-fee"><?php _e( 'Add fee', 'woocommerce' ); ?></button>
-	<button type="button" class="button add-order-shipping"><?php _e( 'Add shipping cost', 'woocommerce' ); ?></button>
+	-->
+	<button type="button" class="button add-order-shipping"><?php _e( 'Coperti', 'woocommerce' ); ?></button>
 	<?php
 		// allow adding custom buttons
 		do_action( 'woocommerce_order_item_add_line_buttons', $order );

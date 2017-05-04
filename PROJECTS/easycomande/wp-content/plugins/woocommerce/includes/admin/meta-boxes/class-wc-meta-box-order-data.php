@@ -199,13 +199,14 @@ class WC_Meta_Box_Order_Data {
 						echo '. ';
 					}
 
-					if ( $ip_address = $order->get_customer_ip_address() ) {
+					//Alessandro
+					//if ( $ip_address = $order->get_customer_ip_address() ) {
 						/* translators: %s: IP address */
-						printf(
-							__( 'Customer IP: %s', 'woocommerce' ),
-							'<span class="woocommerce-Order-customerIP">' . esc_html( $ip_address ) . '</span>'
-						);
-					}
+						//printf(
+						//	__( 'Customer IP: %s', 'woocommerce' ),
+						//	'<span class="woocommerce-Order-customerIP">' . esc_html( $ip_address ) . '</span>'
+						//);
+					//}
 				?></p>
 
 				<div class="order_data_column_container">
@@ -215,7 +216,7 @@ class WC_Meta_Box_Order_Data {
 						<p class="form-field form-field-wide"><label for="order_date"><?php _e( 'Order date:', 'woocommerce' ) ?></label>
 							<input type="text" class="date-picker" name="order_date" id="order_date" maxlength="10" value="<?php echo date_i18n( 'Y-m-d', strtotime( $post->post_date ) ); ?>" pattern="<?php echo esc_attr( apply_filters( 'woocommerce_date_input_html_pattern', '[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])' ) ); ?>" />@&lrm;<input type="number" class="hour" placeholder="<?php esc_attr_e( 'h', 'woocommerce' ) ?>" name="order_date_hour" id="order_date_hour" min="0" max="23" step="1" value="<?php echo date_i18n( 'H', strtotime( $post->post_date ) ); ?>" pattern="([01]?[0-9]{1}|2[0-3]{1})" />:<input type="number" class="minute" placeholder="<?php esc_attr_e( 'm', 'woocommerce' ) ?>" name="order_date_minute" id="order_date_minute" min="0" max="59" step="1" value="<?php echo date_i18n( 'i', strtotime( $post->post_date ) ); ?>" pattern="[0-5]{1}[0-9]{1}" />&lrm;
 						</p>
-
+						<!-- Alessandro
 						<p class="form-field form-field-wide wc-order-status"><label for="order_status"><?php _e( 'Order status:', 'woocommerce' ) ?> <?php
 							if ( $order->needs_payment() ) {
 								printf( '<a href="%s">%s</a>',
@@ -266,8 +267,10 @@ class WC_Meta_Box_Order_Data {
 								<option value="<?php echo esc_attr( $user_id ); ?>" selected="selected"><?php echo htmlspecialchars( $user_string ); ?></option>
 							</select>
 						</p>
+						-->
 						<?php do_action( 'woocommerce_admin_order_data_after_order_details', $order ); ?>
 					</div>
+					<!--
 					<div class="order_data_column">
 						<h3>
 							<?php _e( 'Billing details', 'woocommerce' ); ?>
@@ -357,20 +360,24 @@ class WC_Meta_Box_Order_Data {
 							do_action( 'woocommerce_admin_order_data_after_billing_address', $order );
 						?>
 					</div>
+					-->
 					<div class="order_data_column">
 
 						<h3>
 							<?php _e( 'Shipping details', 'woocommerce' ); ?>
+							<!--
 							<a href="#" class="edit_address"><?php _e( 'Edit', 'woocommerce' ); ?></a>
 							<span>
 								<a href="#" class="load_customer_shipping" style="display:none;"><?php _e( 'Load shipping address', 'woocommerce' ); ?></a>
 								<a href="#" class="billing-same-as-shipping" style="display:none;"><?php _e( 'Copy billing address', 'woocommerce' ); ?></a>
 							</span>
+							-->
 						</h3>
 						<?php
 							// Display values
 							echo '<div class="address">';
 
+								/*
 								if ( $order->get_formatted_shipping_address() ) {
 									echo '<p><strong>' . __( 'Address:', 'woocommerce' ) . '</strong>' . wp_kses( $order->get_formatted_shipping_address(), array( 'br' => array() ) ) . '</p>';
 								} else {
@@ -394,6 +401,7 @@ class WC_Meta_Box_Order_Data {
 										echo '<p><strong>' . esc_html( $field['label'] ) . ':</strong> ' . make_clickable( esc_html( $field_value ) ) . '</p>';
 									}
 								}
+								*/
 
 								if ( apply_filters( 'woocommerce_enable_order_notes_field', 'yes' == get_option( 'woocommerce_enable_order_comments', 'yes' ) ) && $post->post_excerpt ) {
 									echo '<p><strong>' . __( 'Customer provided note:', 'woocommerce' ) . '</strong> ' . nl2br( esc_html( $post->post_excerpt ) ) . '</p>';

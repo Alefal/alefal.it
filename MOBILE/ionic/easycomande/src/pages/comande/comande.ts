@@ -4,7 +4,7 @@ import { NavController, NavParams, LoadingController, ModalController } from 'io
 import { HttpService }    from '../../providers/http-service';
 
 import { Ordine }         from '../../models/ordine';
-import { OrdineModal }    from './ordini/ordine-modal';
+import { OrdinePage }    from './ordini/ordine';
 
 @Component({
   selector: 'page-comande',
@@ -71,7 +71,8 @@ export class ComandePage {
       this.orders = this.orders.filter((item) => {
         //console.log(JSON.stringify(item.order_number)+' | '+val);
         
-        return (item.order_number == val);
+        //return (item.order_number == val);
+        return item.note.toLowerCase().indexOf(val.toLowerCase()) > -1
       })
     }
   }
@@ -79,18 +80,10 @@ export class ComandePage {
     this.orders = this.ordersAll;
   }
 
-  modalOrder(ordine) {
+  orderDetail(ordine) {
     console.log(ordine);
-    let modal = this.modalCtrl.create(OrdineModal, { ordine: ordine });
-    modal.present();
-    modal.onDidDismiss(data => {
-      console.log('-> '+data.action);
-      if(data.action == 'refresh') {
-        console.log('Ricarico la lista dei prodotti');
-        this.loadData();
-      } else {
-        console.log('Chiudi finestra prodotto');
-      }
+    this.navCtrl.push(OrdinePage, {
+      ordine: ordine
     });
   }
 

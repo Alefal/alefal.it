@@ -11,7 +11,7 @@ export class Ordine {
   public line_items: any;
   public customer: any;
   public note: string;    
-  public shipping_lines: number; 
+  public shipping_lines: any; 
   
   constructor(
     id: number,
@@ -26,7 +26,7 @@ export class Ordine {
     line_items: any,
     customer: any,
     note: string,
-    shipping_lines: number
+    shipping_lines: any
   ) {
 
     this.id                         = id;

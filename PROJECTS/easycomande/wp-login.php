@@ -927,6 +927,8 @@ default:
 </form>
 
 <?php if ( ! $interim_login ) { ?>
+
+<!--
 <p id="nav">
 <?php if ( ! isset( $_GET['checkemail'] ) || ! in_array( $_GET['checkemail'], array( 'confirm', 'newpass' ) ) ) :
 	if ( get_option( 'users_can_register' ) ) :
@@ -939,6 +941,8 @@ default:
 	<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php _e( 'Lost your password?' ); ?></a>
 <?php endif; ?>
 </p>
+-->
+
 <?php } ?>
 
 <script type="text/javascript">
@@ -979,6 +983,6 @@ try {
 </script>
 
 <?php
-login_footer();
+//login_footer();
 break;
 } // end action switch

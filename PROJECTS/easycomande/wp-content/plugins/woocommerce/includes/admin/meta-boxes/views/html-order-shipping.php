@@ -14,10 +14,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<td class="name">
 		<div class="view">
-			<?php echo esc_html( $item->get_name() ? $item->get_name() : __( 'Shipping', 'woocommerce' ) ); ?>
+			<!-- Alessandro -->
+			Coperti
+			<?php //echo esc_html( $item->get_name() ? $item->get_name() : __( 'Coperti', 'woocommerce' ) ); ?>
 		</div>
 		<div class="edit" style="display: none;">
 			<input type="hidden" name="shipping_method_id[]" value="<?php echo esc_attr( $item_id ); ?>" />
+			<!-- Alessandro
 			<input type="text" class="shipping_method_name" placeholder="<?php esc_attr_e( 'Shipping name', 'woocommerce' ); ?>" name="shipping_method_title[<?php echo esc_attr( $item_id ); ?>]" value="<?php echo esc_attr( $item->get_name() ); ?>" />
 			<select class="shipping_method" name="shipping_method[<?php echo esc_attr( $item_id ); ?>]">
 				<optgroup label="<?php esc_attr_e( 'Shipping method', 'woocommerce' ); ?>">
@@ -43,10 +46,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 					?>
 				</optgroup>
 			</select>
+			-->
 		</div>
 
 		<?php do_action( 'woocommerce_before_order_itemmeta', $item_id, $item, null ) ?>
-		<?php include( 'html-order-item-meta.php' ); ?>
+		<?php //include( 'html-order-item-meta.php' ); ?>
 		<?php do_action( 'woocommerce_after_order_itemmeta', $item_id, $item, null ) ?>
 	</td>
 

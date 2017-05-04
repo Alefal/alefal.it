@@ -38,6 +38,7 @@ class WC_Meta_Box_Order_Actions {
 
 			<?php do_action( 'woocommerce_order_actions_start', $post->ID ); ?>
 
+			<!-- Alessandro
 			<li class="wide" id="actions">
 				<select name="wc_order_action">
 					<option value=""><?php _e( 'Actions', 'woocommerce' ); ?></option>
@@ -68,7 +69,7 @@ class WC_Meta_Box_Order_Actions {
 
 				<button class="button wc-reload"><span><?php _e( 'Apply', 'woocommerce' ); ?></span></button>
 			</li>
-
+			-->
 			<li class="wide">
 				<div id="delete-action"><?php
 

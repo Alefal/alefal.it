@@ -70,36 +70,14 @@ $id = $order['id'];
 
 foreach ($order['line_items'] as $item) {
     $lineItemsArray[] = array(        
-        'product_id'    => $item['id'],
+        'product_id'    => $item['product_id'],
         'quantity'      => $item['quantity']
     ); 
 }
 //print_r($lineItemsArray);
 //die();
 
-$orderArray = [
-    'order' => [
-        'note'                        => $order['note'],
-        //'status'                      => $order['status'],
-        'billing_address'             => [],
-        'shipping_address'            => [],
-        //'total'                       => $order['total'],
-        //'total_tax'                   => $order['total_tax'],
-        //'total_line_items_quantity'   => $order['total_line_items_quantity'],
-        //'customer_id'                 => 9,
-        'line_items'                  => $lineItemsArray,
-        'shipping_lines'              => [
-            [
-                'method_id'     => 'flat_rate',
-                'method_title'  => 'Coperti',
-                'total'         => 10
-            ]
-        ]
-    ]
-];
 
-//print_r($orderArray);
-//die();
 
 try {
 
@@ -111,6 +89,30 @@ try {
     $woocommerce = new WC_API_Client( $store_url, $consumer_key, $consumer_secret, $options );
     //print '<pre>';
     if($id == 0) {
+        //INSERT
+        $orderArray = [
+            'order' => [
+                'note'                        => $order['note'],
+                //'status'                      => $order['status'],
+                'billing_address'             => [],
+                'shipping_address'            => [],
+                //'total'                       => $order['total'],
+                //'total_tax'                   => $order['total_tax'],
+                //'total_line_items_quantity'   => $order['total_line_items_quantity'],
+                //'customer_id'                 => 9,
+                'line_items'                  => $lineItemsArray,
+                'shipping_lines'              => [
+                    [
+                        'method_id'     => 'flat_rate',
+                        'method_title'  => 'Coperti',
+                        'total'         => $order['shipping_lines']
+                    ]
+                ]
+            ]
+        ];
+        //print_r($orderArray);
+        //die();
+
         $responseAfterSave = $woocommerce->orders->create($orderArray);
         $orderIdSave = $responseAfterSave->order->id;
         
@@ -123,6 +125,23 @@ try {
         ); 
 
     } else {
+        //EDIT
+        $orderArray = [
+            'order' => [
+                'note'                        => $order['note'],
+                //'status'                      => $order['status'],
+                'billing_address'             => [],
+                'shipping_address'            => [],
+                //'total'                       => $order['total'],
+                //'total_tax'                   => $order['total_tax'],
+                //'total_line_items_quantity'   => $order['total_line_items_quantity'],
+                //'customer_id'                 => 9,
+                'line_items'                  => $lineItemsArray
+            ]
+        ];
+        //print_r($orderArray);
+        //die();
+
         $woocommerce->orders->update($id,$orderArray);
         $eceOutputArray[] = array(        
             'id'        => $id,

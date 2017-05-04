@@ -70,7 +70,7 @@ try {
     //$eceGetCallArray = $woocommerce->products->create_category( array( 'product_category' => array( 'name' => 'Test Category' ) ) );
     //$eceGetCallArray = $woocommerce->products->delete_category( 139,true );
 
-    //$eceGetCallArray = $woocommerce->products->get();
+    $eceGetCallArray = $woocommerce->products->get();
     //$eceGetCallArray = $woocommerce->products->get_categories();
     //$eceGetCallArray = $woocommerce->products->create($productArray);
 	//$eceGetCallArray = $woocommerce->products->get(null, array('filter[limit]' => 50 , 'fields' => 'id,status' ));
@@ -78,7 +78,7 @@ try {
     //$eceGetCallArray = $woocommerce->products->get(null, array( 'search' => 'Test Product'));
     
     //$eceGetCallArray = $woocommerce->orders->get();
-    $eceGetCallArray = $woocommerce->orders->create($order);
+    //$eceGetCallArray = $woocommerce->orders->create($order);
     //$eceGetCallArray = $woocommerce->orders->update(173,$order);
     //$eceGetCallArray = $woocommerce->orders->delete(118,true);
 

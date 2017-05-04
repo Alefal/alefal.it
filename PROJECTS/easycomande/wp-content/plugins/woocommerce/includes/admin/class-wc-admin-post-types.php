@@ -303,8 +303,9 @@ class WC_Admin_Post_Types {
 		$columns['order_title']      = __( 'Order', 'woocommerce' );
 		$columns['billing_address']  = __( 'Billing', 'woocommerce' );
 		$columns['shipping_address'] = __( 'Ship to', 'woocommerce' );
-		$columns['customer_message'] = '<span class="notes_head tips" data-tip="' . esc_attr__( 'Customer message', 'woocommerce' ) . '">' . esc_attr__( 'Customer message', 'woocommerce' ) . '</span>';
-		$columns['order_notes']      = '<span class="order-notes_head tips" data-tip="' . esc_attr__( 'Order notes', 'woocommerce' ) . '">' . esc_attr__( 'Order notes', 'woocommerce' ) . '</span>';
+		//Alessandro: custom view
+		//$columns['customer_message'] = '<span class="notes_head tips" data-tip="' . esc_attr__( 'Customer message', 'woocommerce' ) . '">' . esc_attr__( 'Customer message', 'woocommerce' ) . '</span>';
+		$columns['order_notes']      = '<span class="order-notes_head tips" data-tip="' . esc_attr__( 'Note', 'woocommerce' ) . '">' . esc_attr__( 'Note', 'woocommerce' ) . '</span>';
 		$columns['order_date']       = __( 'Date', 'woocommerce' );
 		$columns['order_total']      = __( 'Total', 'woocommerce' );
 		$columns['order_actions']    = __( 'Actions', 'woocommerce' );
@@ -539,6 +540,7 @@ class WC_Admin_Post_Types {
 			case 'order_date' :
 				printf( '<time datetime="%s">%s</time>', esc_attr( $the_order->get_date_created()->date( 'c' ) ), esc_html( $the_order->get_date_created()->date_i18n( apply_filters( 'woocommerce_admin_order_date_format', __( 'Y-m-d', 'woocommerce' ) ) ) ) );
 			break;
+			/* //Alessandro: custom view
 			case 'customer_message' :
 				if ( $the_order->get_customer_note() ) {
 					echo '<span class="note-on tips" data-tip="' . wc_sanitize_tooltip( $the_order->get_customer_note() ) . '">' . __( 'Yes', 'woocommerce' ) . '</span>';
@@ -547,6 +549,7 @@ class WC_Admin_Post_Types {
 				}
 
 			break;
+			*/
 			case 'billing_address' :
 
 				if ( $address = $the_order->get_formatted_billing_address() ) {
@@ -561,16 +564,8 @@ class WC_Admin_Post_Types {
 
 			break;
 			case 'shipping_address' :
-
-				if ( $address = $the_order->get_formatted_shipping_address() ) {
-					echo '<a target="_blank" href="' . esc_url( $the_order->get_shipping_address_map_url() ) . '">' . esc_html( preg_replace( '#<br\s*/?>#i', ', ', $address ) ) . '</a>';
-				} else {
-					echo '&ndash;';
-				}
-
-				if ( $the_order->get_shipping_method() ) {
-					echo '<small class="meta">' . __( 'Via', 'woocommerce' ) . ' ' . esc_html( $the_order->get_shipping_method() ) . '</small>';
-				}
+				//Alessandro: custom view
+				echo $the_order->get_customer_note();
 
 			break;
 			case 'order_notes' :

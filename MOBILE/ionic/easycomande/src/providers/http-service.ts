@@ -68,6 +68,9 @@ export class HttpService {
         else if(call == 'getOrderDelete') {
             url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_delete.php?id='+id;
         } 
+        else if(call == 'getOrderDeleteLineItem') {
+            url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_delete_line_item.php?order='+JSON.stringify(object);
+        } 
         //ORDER NOTES
         else if(call == 'getOrderNote') {
             url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_note.php?id='+id;

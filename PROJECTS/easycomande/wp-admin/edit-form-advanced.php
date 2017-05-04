@@ -273,7 +273,8 @@ if ( post_type_supports($post_type, 'trackbacks') )
 	add_meta_box('trackbacksdiv', __('Send Trackbacks'), 'post_trackback_meta_box', null, 'normal', 'core');
 
 if ( post_type_supports($post_type, 'custom-fields') )
-	add_meta_box('postcustom', __('Custom Fields'), 'post_custom_meta_box', null, 'normal', 'core');
+	//Alessandro
+	//add_meta_box('postcustom', __('Custom Fields'), 'post_custom_meta_box', null, 'normal', 'core');
 
 /**
  * Fires in the middle of built-in meta box registration.

@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>{{ordine.note}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-fab top right edge>
+    <button ion-fab mini color="dark"><ion-icon name="ios-arrow-down"></ion-icon></button>
+    <ion-fab-list>
+      <button ion-fab (click)="editOrder(ordine)"><ion-icon name="create"></ion-icon></button>
+      <button ion-fab (click)="addNote(ordine.id)"><ion-icon name="list"></ion-icon></button>
+      <button ion-fab (click)="showNote(ordine.id)"><ion-icon name="eye"></ion-icon></button>
+      <button ion-fab (click)="deleteOrder(ordine.id)"><ion-icon name="trash"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+  
+  <ion-list>
+
+    <ion-item>
+      <h3>Ordine per <strong>{{ordine.note}}</strong></h3>
+    </ion-item>
+
+    <ion-item>
+      <p>Eseguito il</p>
+      <h2>{{ordine.created_at | date: 'dd/MM/yyyy HH:mm'}}</h2>
+    </ion-item>
+
+    <ion-item>
+      <p>Totale (coperti inclusi)</p>
+      <h2>{{ordine.total}}</h2>
+    </ion-item>
+
+    <ion-item>
+      <p>Coperti</p>
+      <h2>{{ordine.shipping_lines.total}}</h2>
+    </ion-item>
+
+    <ion-item>
+      <p>Prodotti</p>
+      <h3><strong>{{ordine.total_line_items_quantity}}</strong> prodotto/i acquistato/i</h3>
+    </ion-item>
+
+    <ion-item *ngFor="let prod of ordine.line_items">
+      <ion-icon name="remove-circle" color="danger" item-left (click)="deleteProduct(ordine,prod)"></ion-icon>
+      <h2>{{prod.quantity}} x {{prod.name}}</h2>
+      <ion-note item-right>
+        <em>&euro; {{prod.quantity * prod.price}}</em>
+      </ion-note>
+    </ion-item>
+
+  </ion-list>
+
+  <!--
+  <div>
+    <ion-fab right top>
+      <button ion-fab color="dark"><ion-icon name="ios-arrow-back"></ion-icon></button>
+      <ion-fab-list side="left">
+        <button ion-fab color="dark" (click)="sendMail(ordine.customer.email)"><ion-icon name="mail"></ion-icon></button>
+        <button ion-fab color="dark" (click)="changeStatus(ordine,ordine.status)"><ion-icon name="swap"></ion-icon></button>
+        <button ion-fab color="dark" (click)="deleteOrder(ordine.id)"><ion-icon name="trash"></ion-icon></button>
+        <button ion-fab color="dark" (click)="showNote(ordine.id)"><ion-icon name="paper"></ion-icon></button>
+      </ion-fab-list>
+    </ion-fab>
+  </div>
+  -->
+
+</ion-content>
+
+<!--
+<ion-footer>
+  <ion-navbar color="primary">
+    <ion-title>Gestione</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="deleteOrder(ordine.id)"><ion-icon name="trash"></ion-icon></button>
+      <button ion-button icon-only (click)="showNote(ordine.id)"><ion-icon name="create"></ion-icon></button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-footer>
+-->
