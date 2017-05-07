@@ -20,7 +20,8 @@ try {
 
 	foreach ($eceGetCallArray->orders as $item) {
 		//print_r($item);
-        $eceOutputArray[] = array(        
+        $eceOutputArray[] = array(  
+            /*      
             'id'      	                => $item->id,
             'order_number'              => $item->order_number,
             'created_at'                => $item->created_at,
@@ -34,6 +35,24 @@ try {
             'customer'                  => $item->customer,
             'note'                      => $item->note,
             'shipping_lines'            => $item->shipping_lines[0]
+            */
+            'id'                        => $item->id,
+            'order_number'              => $item->order_number,
+            'created_at'                => $item->created_at,
+            'updated_at'                => $item->updated_at,
+            'completed_at'              => $item->completed_at,
+            'status'                    => $item->status,
+            'total'                     => $item->total,
+            'subtotal'                  => $item->subtotal,
+            'total_line_items_quantity' => $item->total_line_items_quantity,
+            'total_tax'                 => $item->total_tax,
+            'total_shipping'            => $item->total_shipping,
+            'cart_tax'                  => $item->cart_tax,
+            'shipping_tax'              => $item->shipping_tax,
+            'note'                      => $item->note,
+            'line_items'                => $item->line_items,
+            'shipping_lines'            => $item->shipping_lines,
+            'tax_lines'                 => $item->tax_lines
 
         );  
     }

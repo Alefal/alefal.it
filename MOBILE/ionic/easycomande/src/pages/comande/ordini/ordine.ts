@@ -3,6 +3,7 @@ import { Platform, NavParams, LoadingController, AlertController, NavController 
 
 import { Ordine }   from '../../../models/ordine';
 import { Prodotto } from '../../../models/prodotto';
+import { Ship }     from '../../../models/ship';
 import { Nota }     from '../../../models/nota';
 
 import { ComandePage }    from '../comande';
@@ -22,21 +23,6 @@ export class OrdinePage {
   loading: any;
   errorMessage: string;
   errorMessageView: any;
-
-  //Order
-  id: number;
-  order_number: number;
-  created_at: string;
-  updated_at: string;
-  completed_at: string;
-  status: string;
-  total: number = 0;
-  total_tax: number = 0;
-  total_line_items_quantity: number = 0;
-  line_items: any;
-  customer: any;
-  note: any;
-  shipping_lines: any;
 
   constructor(
     public navCtrl: NavController,
@@ -215,6 +201,25 @@ export class OrdinePage {
     let prodotto = new Prodotto(prod.id,null,'',prod.price,prod.description,1);
 
     let ordine = new Ordine(
+      ordineId,         //this.id
+      ordineId,         //this.order_number
+      '',               //this.created_at
+      '',               //this.updated_at
+      '',               //this.completed_at
+      '',               //this.status
+      0,                //this.total
+      0,                //this.subtotal
+      0,                //this.total_line_items_quantity
+      0,                //this.total_tax
+      0,                //this.total_shipping
+      0,                //this.cart_tax
+      0,                //this.shipping_tax
+      '',               //this.note
+      prodotto,         //this.line_items
+      0,                //this.shipping_lines
+      0                 //this.tax_lines
+
+      /*
       ordineId,                         //this.id,
       ordineId,                         //this.order_number,
       '',                               //this.created_at,
@@ -228,6 +233,7 @@ export class OrdinePage {
       '',                               //this.customer,
       '',                               //this.note,
       0                                 //shipping_lines
+      */
     );
 
     let confirm = this.alertCtrl.create({
@@ -252,6 +258,78 @@ export class OrdinePage {
 
             this.httpService
               .getCallHttp('getOrderDeleteLineItem', '', '', '', ordine)
+              .then(res => {
+                console.log('res: ' + JSON.stringify(res));
+
+                if (res[0].response[0].result == 'OK') {
+                  this.navCtrl.getPrevious();
+                } else {
+                  this.nothing = 'Nessun dato! Riprovare più tardi.';
+                }
+                this.loading.dismiss();
+              })
+              .catch(error => {
+                console.log('ERROR: ' + error);
+                this.errorMessage = 'Error!';
+                this.errorMessageView = true;
+                this.loading.dismiss();
+              });
+
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
+  deleteShip(ordineId,ship) {
+    console.log('deleteShip ordine: '+ordineId);
+    console.log('%o',ship);
+
+    let shipping = new Ship(ship.id,null,'',0);
+
+    let ordine = new Ordine(
+      ordineId,         //this.id
+      ordineId,         //this.order_number
+      '',               //this.created_at
+      '',               //this.updated_at
+      '',               //this.completed_at
+      '',               //this.status
+      0,                //this.total
+      0,                //this.subtotal
+      0,                //this.total_line_items_quantity
+      0,                //this.total_tax
+      0,                //this.total_shipping
+      0,                //this.cart_tax
+      0,                //this.shipping_tax
+      '',               //this.note
+      '',               //this.line_items
+      shipping,         //this.shipping_lines
+      0                 //this.tax_lines
+    );
+
+    let confirm = this.alertCtrl.create({
+      title: 'Cancellazione!',
+      message: 'Sei sicuro di voler cancellare il prodotto ?',
+      buttons: [
+        {
+          text: 'Annulla',
+          handler: () => {
+            console.log('Annulla');
+          }
+        },
+        {
+          text: 'Cancella',
+          handler: () => {
+            console.log('Conferma');
+            this.loading = this.loadingCtrl.create({
+              spinner: 'crescent',
+              //content: 'Please wait...'
+            });
+            this.loading.present();
+
+            this.httpService
+              .getCallHttp('getOrderDeleteShipping', '', '', '', ordine)
               .then(res => {
                 console.log('res: ' + JSON.stringify(res));
 

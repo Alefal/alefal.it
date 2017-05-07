@@ -16,16 +16,15 @@ $productArray = array(
 
 $order = [
     'order' => [
-        //'payment_details' => [],
-        'billing_address' => [],
-        'shipping_address' => [],
         'note' => 'Tavolo 1, 2 coperti',
+        'status' => 'pending',
         //'customer_id' => 9,
+        //'total_tax' => 0.00, <- TODO: servizio 10%
         'line_items' => [
             [
                 //'id' => 47,             //Numero della riga del LINE ITEM; per eliminare una riga 'product_id' => null
-                'product_id' => 162,
-                'quantity' => 10,
+                'product_id' => 161,
+                'quantity' => 5,
                 'meta' => [
                     [
                         'key' => 'note',
@@ -38,15 +37,25 @@ $order = [
         'shipping_lines' => [
             [
                 'method_id' => 'flat_rate',
-                'method_title' => 'Coperti',
-                'total' => 10
+                'method_title' => 'Piatto del giorno',
+                'total' => 25
                 /*
                 Aggiungere anche 
                 [total_tax] => 0.44
                 [price] => 0.20
                 */
             ]
-        ]
+        ]/*,
+        'fee_lines' => [
+            [
+                'id'    => 203,         // TODO: nel caso di nuovo calcolo
+                'title' => 'Servizio',
+                'total' => 13           // <- TODO: calcolare servizio: 10% del totale
+            ]
+        ]*/,
+        //'payment_details' => [],
+        'billing_address' => [],
+        'shipping_address' => []
     ]
 ];
 
@@ -70,16 +79,16 @@ try {
     //$eceGetCallArray = $woocommerce->products->create_category( array( 'product_category' => array( 'name' => 'Test Category' ) ) );
     //$eceGetCallArray = $woocommerce->products->delete_category( 139,true );
 
-    $eceGetCallArray = $woocommerce->products->get();
+    //$eceGetCallArray = $woocommerce->products->get();
     //$eceGetCallArray = $woocommerce->products->get_categories();
     //$eceGetCallArray = $woocommerce->products->create($productArray);
 	//$eceGetCallArray = $woocommerce->products->get(null, array('filter[limit]' => 50 , 'fields' => 'id,status' ));
     //$eceGetCallArray = $woocommerce->products->get(null, array('filter[name]' => 'Test Product'));
     //$eceGetCallArray = $woocommerce->products->get(null, array( 'search' => 'Test Product'));
     
-    //$eceGetCallArray = $woocommerce->orders->get();
+    $eceGetCallArray = $woocommerce->orders->get(227);
     //$eceGetCallArray = $woocommerce->orders->create($order);
-    //$eceGetCallArray = $woocommerce->orders->update(173,$order);
+    //$eceGetCallArray = $woocommerce->orders->update(212,$order);
     //$eceGetCallArray = $woocommerce->orders->delete(118,true);
 
     //$eceGetCallArray = $woocommerce->order_refunds->get(122);

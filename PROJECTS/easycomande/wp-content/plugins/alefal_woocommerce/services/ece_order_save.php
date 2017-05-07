@@ -7,9 +7,12 @@ $eceOutputArray     = array();
 $eceFinalArray      = array();
 
 $lineItemsArray     = array();
+$shipItemsArray     = array();
 
 $order = json_decode($_GET['order'],true);
+//print '<pre>';
 //print_r($order);
+//print '</pre>';
 //die();
 
 /*
@@ -77,6 +80,16 @@ foreach ($order['line_items'] as $item) {
 //print_r($lineItemsArray);
 //die();
 
+foreach ($order['shipping_lines'] as $item) {
+    $shipItemsArray[] = array(        
+        'method_id'     => $item['method_id'],
+        'method_title'  => $item['method_title'],
+        'total'         => $item['total']
+    ); 
+}
+//print_r($lineItemsArray);
+//die();
+
 
 
 try {
@@ -101,6 +114,8 @@ try {
                 //'total_line_items_quantity'   => $order['total_line_items_quantity'],
                 //'customer_id'                 => 9,
                 'line_items'                  => $lineItemsArray,
+                'shipping_lines'              => $shipItemsArray
+                /*
                 'shipping_lines'              => [
                     [
                         'method_id'     => 'flat_rate',
@@ -108,6 +123,7 @@ try {
                         'total'         => $order['shipping_lines']
                     ]
                 ]
+                */
             ]
         ];
         //print_r($orderArray);

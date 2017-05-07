@@ -11,14 +11,10 @@ $lineItemsArray     = array();
 $order = json_decode($_GET['order'],true);
 $id = $order['id'];
 
-//print_r($order['line_items']);
-//die();
-
-//Numero della riga del LINE ITEM; per eliminare una riga 'product_id' => null
+//Numero della riga del shipping_lines
 $lineItemsArray[] = array(   
-    'id'            => $order['line_items']['id'],     
-    'product_id'    => null,
-    'quantity'      => $order['line_items']['quantity']
+    'id'            => $order['shipping_lines']['id'],     
+    'method_id'     => null
 ); 
 
 try {
@@ -32,7 +28,7 @@ try {
     
     $orderArray = [
         'order' => [
-            'line_items'                  => $lineItemsArray
+            'shipping_lines'  => $lineItemsArray
         ]
     ];
     //print_r($orderArray);

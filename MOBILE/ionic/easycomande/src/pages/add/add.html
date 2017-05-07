@@ -1,16 +1,18 @@
 <ion-header>
   <ion-navbar color="primary">
     <ion-title>Comande</ion-title>
-
-    <ion-buttons end *ngIf="!ordineEdit">
-      <button ion-button icon-only (click)="addNote()">
-        <ion-icon name="document"></ion-icon>
-      </button>
-    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
+
+  <ion-fab top right edge>
+    <button ion-fab mini color="dark"><ion-icon name="ios-arrow-down"></ion-icon></button>
+    <ion-fab-list>
+      <button ion-fab (click)="addShip()"><ion-icon name="create"></ion-icon></button>
+      <button ion-fab (click)="addNote()" *ngIf="!ordineEdit"><ion-icon name="list"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
 
   <ion-list padding>
 
@@ -45,6 +47,7 @@
   </ion-segment>
 
   <ion-list>
+    <!-- PRODUCTS -->
     <ion-item *ngFor="let prod of products">
       <ion-icon name="close" color="danger" item-left (click)="removeProduct(prod.title)" *ngIf="prod.id == 0"></ion-icon>
       <!--
@@ -53,19 +56,36 @@
       <h2>{{prod.title}}</h2>
       <ion-badge color="dark" item-right>{{prod.price}}</ion-badge>
     </ion-item>
+
+    <!-- SHIPPING -->
+    <ion-item *ngFor="let ship of ships" style="border-top: 1px solid #f5f5f5;">
+      <ion-icon name="close" color="danger" item-left (click)="removeShip(ship.id,ship.total)"></ion-icon>
+      <h2>{{ship.method_title}}</h2>
+      <ion-badge color="dark" item-right>{{ship.total}}</ion-badge>
+    </ion-item>
+
     <ion-item *ngIf="totaleOrdine != 0 || numeroCoperti != 0" style="border-top: 1px solid #f5f5f5;">
       <h2>TOTALE</h2>
-      <ion-badge color="dark" item-right><ion-icon name="logo-euro"></ion-icon> {{totaleOrdine}}</ion-badge>
+      <ion-badge color="dark" item-right>
+        <ion-icon name="logo-euro"></ion-icon> {{totaleOrdine}}</ion-badge>
     </ion-item>
   </ion-list>
 
   <div *ngIf="!ordineEdit">
     <ion-card *ngFor="let nota of notes">
-      <ion-card-header>
-        <ion-icon name="close" color="danger" item-left (click)="removeNote(nota.id)"></ion-icon>
-      </ion-card-header>
       <ion-card-content>
+        <ion-row>
+          <ion-col col-11>
+            {{nota.nota}}
+          </ion-col>
+          <ion-col col-1>
+            <ion-icon name="close" color="danger" item-left (click)="removeNote(nota.id)"></ion-icon>
+          </ion-col>
+        </ion-row>
+        <!--
+        <ion-icon name="close" color="danger" item-right (click)="removeNote(nota.id)"></ion-icon>
         {{nota.nota}}
+        -->
       </ion-card-content>
     </ion-card>
   </div>
@@ -74,7 +94,7 @@
     <button ion-button full large color="danger" block [disabled]="totaleOrdine == 0" (click)="saveOrder()">
       <span *ngIf="!ordineEdit">Salva</span>
       <span *ngIf="ordineEdit">Modifica</span>
-    </button>   
+    </button>
   </div>
 
 </ion-content>

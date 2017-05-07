@@ -642,6 +642,7 @@ class WC_Admin_Post_Types {
 
 						$actions = array();
 
+						/* Alessandro: hide button 'pending' to 'processing'
 						if ( $the_order->has_status( array( 'pending', 'on-hold' ) ) ) {
 							$actions['processing'] = array(
 								'url'       => wp_nonce_url( admin_url( 'admin-ajax.php?action=woocommerce_mark_order_status&status=processing&order_id=' . $post->ID ), 'woocommerce-mark-order-status' ),
@@ -649,6 +650,13 @@ class WC_Admin_Post_Types {
 								'action'    => "processing",
 							);
 						}
+						*/
+
+						$actions['view'] = array(
+							'url'       => admin_url( 'post.php?post=' . $post->ID . '&action=edit' ),
+							'name'      => __( 'View', 'woocommerce' ),
+							'action'    => "view",
+						);
 
 						if ( $the_order->has_status( array( 'pending', 'on-hold', 'processing' ) ) ) {
 							$actions['complete'] = array(
@@ -657,12 +665,6 @@ class WC_Admin_Post_Types {
 								'action'    => "complete",
 							);
 						}
-
-						$actions['view'] = array(
-							'url'       => admin_url( 'post.php?post=' . $post->ID . '&action=edit' ),
-							'name'      => __( 'View', 'woocommerce' ),
-							'action'    => "view",
-						);
 
 						$actions = apply_filters( 'woocommerce_admin_order_actions', $actions, $the_order );
 

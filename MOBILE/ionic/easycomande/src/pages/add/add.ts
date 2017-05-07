@@ -11,6 +11,7 @@ import { ProdottiModal }        from './prodotti/prodotti-modal';
 import { Ordine }               from '../../models/ordine';
 import { Prodotto }             from '../../models/prodotto';
 import { Nota }                 from '../../models/nota';
+import { Ship }                 from '../../models/ship';
 
 @Component({
   selector: 'page-add',
@@ -24,8 +25,11 @@ export class AddPage {
 
   products: Prodotto[] = new Array<Prodotto>();
   notes: Nota[] = new Array<Nota>();
+  ships: Ship[] = new Array<Ship>();
 
   notaId: number = 1;
+  shipId: number = 1;
+  
   notaOrdine: string = '';
 
   numTavolo: string = '';
@@ -125,9 +129,14 @@ export class AddPage {
     });
   }
 
+  /**
+   * Non usato per il calcolo in quanto viene calcolato il 10% di servizio sul TOTALE;
+   * utilizzato per aggiornare il numero di coperti
+   */
   updateTotal(coperti:number) {
     console.log('coperti -> '+coperti);
     this.numCoperti = coperti;
+    /*
     this.totCoperti = coperti * 1.5;
     let totOrdine: any = 0;
 
@@ -139,6 +148,7 @@ export class AddPage {
     }
     console.log('totCoperti -> '+this.totCoperti);
     this.totaleOrdine = totOrdine + this.totCoperti;
+    */
   }
 
   removeProduct(prodTitle) {
@@ -238,7 +248,18 @@ export class AddPage {
           text: 'Cancella',
           handler: () => {
             console.log('Conferma');
-            this.notes.splice( this.products.indexOf(notaId), 1 );
+
+            let cont: number = 0;
+            for (let note of this.notes) {
+              console.log('Title: '+note['id']+' | '+notaId);
+              if(note['id'] == notaId) {
+                console.log('Elimino: '+cont);
+                this.notes.splice(cont,1);
+              }
+              cont++;
+            }
+            
+            //this.notes.splice( this.notes.indexOf(notaId), 1 );
 
             this.notaId = this.notaId - 1;
             console.log('this.notaId: '+this.notaId);
@@ -249,22 +270,122 @@ export class AddPage {
     confirm.present();
   }
 
+  addShip() {
+    let prompt = this.alertCtrl.create({
+      title: 'Nota',
+      message: 'Aggiungi un piatto fuoti menu',
+      inputs: [
+        {
+          name: 'nomePiatto',
+          placeholder: 'Piatto',
+          type: 'text'
+        },
+        {
+          name: 'prezzoPiatto',
+          placeholder: 'Prezzo',
+          type: 'number'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancella',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Salva',
+          handler: data => {
+            console.log('Saved clicked: '+data.nota);
+            let ship = new Ship(this.shipId,'flat_rate',data.nomePiatto,data.prezzoPiatto);
+            this.ships.push(ship);
+
+            this.totaleOrdine += parseFloat(data.prezzoPiatto);
+
+            this.shipId = this.shipId + 1;
+            console.log('this.shipId: '+this.shipId);
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
+  removeShip(shipId,shipTotal) {
+    console.log(shipId);
+
+    let confirm = this.alertCtrl.create({
+      title: 'Cancellazione!',
+      message: 'Sei sicuro di voler cancellare il piatto ?',
+      buttons: [
+        {
+          text: 'Annulla',
+          handler: () => {
+            console.log('Annulla');
+          }
+        },
+        {
+          text: 'Cancella',
+          handler: () => {
+            console.log('Conferma');
+            
+            let cont: number = 0;
+            for (let ship of this.ships) {
+              console.log('Title: '+ship['id']+' | '+shipId);
+              if(ship['id'] == shipId) {
+                console.log('Elimino: '+cont);
+                this.ships.splice(cont,1);
+              }
+              cont++;
+            }
+            
+            this.totaleOrdine -= parseFloat(shipTotal);
+
+            this.shipId = this.shipId - 1;
+            console.log('this.shipId: '+this.shipId);
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
   saveOrder() {
-    console.log(JSON.stringify(this.products));
+    console.log('PRODUCTS: '+JSON.stringify(this.products));
     console.log(this.numTavolo +'|'+ this.totCoperti +'|'+ this.numCoperti +'|'+ this.totaleOrdine);
-    console.log(JSON.stringify(this.notes));
+    console.log('SHIPS: '+JSON.stringify(this.ships));
+    console.log('NOTES: '+JSON.stringify(this.notes));
 
     if(!this.ordineEdit) {
       this.notaOrdine = 'Tavolo '+this.numTavolo+', numero di coperti '+this.numCoperti;
     }
 
     let ordine = new Ordine(
+      this.ordineId,          //this.id
+      this.ordineId,          //this.order_number
+      '',                     //this.created_at
+      '',                     //this.updated_at
+      '',                     //this.completed_at
+      'pending',              //this.status -> deve essere 'pending' altrimenti non viene calcolato il totale,
+      this.totaleOrdine,      //this.total
+      0,                      //this.subtotal
+      this.products.length,   //this.total_line_items_quantity
+      0,                      //this.total_tax
+      0,                      //this.total_shipping
+      0,                      //this.cart_tax
+      0,                      //this.shipping_tax
+      this.notaOrdine,        //this.note
+      this.products,          //this.line_items
+      this.ships,             //this.shipping_lines
+      0                       //this.tax_lines
+    );
+    /*
+    let ordine = new Ordine(
       this.ordineId,                    //this.id,
       this.ordineId,                    //this.order_number,
       '',                               //this.created_at,
       '',                               //this.updated_at,
       '',                               //this.completed_at,
-      'pending',                        //this.status,
+      'pending',                        //this.status -> deve essere 'pending' altrimenti non viene calcolato il totale,
       this.totaleOrdine,                //this.total,
       this.totCoperti,                  //this.total_tax,
       this.products.length,             //this.total_line_items_quantity,
@@ -273,7 +394,7 @@ export class AddPage {
       this.notaOrdine,                  //this.note,
       this.totCoperti                   //shipping_lines
     );
-
+    */
     console.log('ORDINE: '+JSON.stringify(ordine));
 
     this.loading = this.loadingCtrl.create({

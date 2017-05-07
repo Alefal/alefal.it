@@ -1,4 +1,6 @@
 export class Ordine {
+
+  /*
   public id: number;
   public order_number: number;
   public created_at: string;
@@ -12,7 +14,27 @@ export class Ordine {
   public customer: any;
   public note: string;    
   public shipping_lines: any; 
+  */
   
+  public id: number;
+  public order_number: number;
+  public created_at: string;
+  public updated_at: string;
+  public completed_at: string;
+  public status: string;
+  public total: number;
+  public subtotal: number;
+  public total_line_items_quantity: number;
+  public total_tax: number;
+  public total_shipping: number;
+  public cart_tax: number;
+  public shipping_tax: number;
+  public note: string; 
+  public line_items: any;
+  public shipping_lines: any;
+  public tax_lines: any;
+  
+
   constructor(
     id: number,
     order_number: number,
@@ -21,12 +43,16 @@ export class Ordine {
     completed_at: string,
     status: string,
     total: number,
-    total_tax: number,
+    subtotal: number,
     total_line_items_quantity: number,
-    line_items: any,
-    customer: any,
+    total_tax: number,
+    total_shipping: number,
+    cart_tax: number,
+    shipping_tax: number,
     note: string,
-    shipping_lines: any
+    line_items: any,
+    shipping_lines: any,
+    tax_lines: any
   ) {
 
     this.id                         = id;
@@ -36,12 +62,16 @@ export class Ordine {
     this.completed_at               = completed_at;
     this.status                     = status;
     this.total                      = total;
-    this.total_tax                  = total_tax;
+    this.subtotal                   = subtotal;
     this.total_line_items_quantity  = total_line_items_quantity;
+    this.total_tax                  = total_tax;
+    this.total_shipping             = total_shipping;
+    this.cart_tax                   = cart_tax;
+    this.shipping_tax               = shipping_tax;
+    this.note                       = note; 
     this.line_items                 = line_items;
-    this.customer                   = customer;
-    this.note                       = note;
     this.shipping_lines             = shipping_lines;
+    this.tax_lines                  = tax_lines;
   }
 
   getOrderId(): string {
