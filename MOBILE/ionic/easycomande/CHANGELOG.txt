@@ -1,0 +1,22 @@
+Easy Comande
+
+=== Plugins ===
+cordova-plugin-console 1.0.5 "Console"
+cordova-plugin-device 1.1.4 "Device"
+cordova-plugin-splashscreen 4.0.3 "Splashscreen"
+cordova-plugin-statusbar 2.2.1 "StatusBar"
+cordova-plugin-whitelist 1.3.1 "Whitelist"
+ionic-plugin-keyboard 2.2.1 "Keyboard"
+
+=== Vers. 0.0.1===
+- Menu
+- Lista Ordinazioni
+- Ordinazione
+-- Edit
+-- Add Note
+-- View Note
+-- Delete Order
+- Add Ordinazione
+-- Piatto da Menu
+-- Piatto fuori Menu
+-- Note
