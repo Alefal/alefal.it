@@ -86,7 +86,7 @@ try {
     //$eceGetCallArray = $woocommerce->products->get(null, array('filter[name]' => 'Test Product'));
     //$eceGetCallArray = $woocommerce->products->get(null, array( 'search' => 'Test Product'));
     
-    $eceGetCallArray = $woocommerce->orders->get(227);
+    $eceGetCallArray = $woocommerce->orders->get();
     //$eceGetCallArray = $woocommerce->orders->create($order);
     //$eceGetCallArray = $woocommerce->orders->update(212,$order);
     //$eceGetCallArray = $woocommerce->orders->delete(118,true);
@@ -101,6 +101,7 @@ try {
 	print '</pre>';
 
 } catch ( WC_API_Client_Exception $e ) {
+    echo 'catch!';
     echo $e->getMessage() . PHP_EOL;
     echo $e->getCode() . PHP_EOL;
 
