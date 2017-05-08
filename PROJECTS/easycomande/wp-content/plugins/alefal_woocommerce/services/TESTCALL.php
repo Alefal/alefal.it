@@ -86,7 +86,7 @@ try {
     //$eceGetCallArray = $woocommerce->products->get(null, array('filter[name]' => 'Test Product'));
     //$eceGetCallArray = $woocommerce->products->get(null, array( 'search' => 'Test Product'));
     
-    $eceGetCallArray = $woocommerce->orders->get();
+    $eceGetCallArray = $woocommerce->orders->get(232);
     //$eceGetCallArray = $woocommerce->orders->create($order);
     //$eceGetCallArray = $woocommerce->orders->update(212,$order);
     //$eceGetCallArray = $woocommerce->orders->delete(118,true);

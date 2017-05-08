@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController, ModalController } from 'ionic-angular';
+import { App, NavController, NavParams, LoadingController, ModalController } from 'ionic-angular';
 
 import { HttpService }    from '../../providers/http-service';
 
@@ -31,6 +31,7 @@ export class ComandePage {
   ) {}
 
   ionViewDidLoad() {
+    console.log("ionViewDidLoad");
     this.loadData();
   }
 
@@ -42,7 +43,7 @@ export class ComandePage {
     this.loading.present();
 
     this.httpService
-      .getCallHttp('getOrders','','','','')
+      .getCallHttp('getOrders','','',0,'')
       .then(res => {
         //console.log('res: '+JSON.stringify(res));
 
@@ -82,9 +83,21 @@ export class ComandePage {
 
   orderDetail(ordine) {
     console.log(ordine);
+    let modal = this.modalCtrl.create(OrdinePage, { ordine: ordine });
+    modal.present();
+    modal.onDidDismiss(data => {
+      console.log('data.action -> '+JSON.stringify(data.action));
+      if(data.action == 'reload') {
+        //Ricaricare ordine
+        console.log('Ricaricare ordine');
+        this.loadData();
+      }
+    });
+    /*
     this.navCtrl.push(OrdinePage, {
       ordine: ordine
     });
+    */
   }
 
 }

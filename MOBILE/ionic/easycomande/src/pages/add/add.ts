@@ -55,10 +55,13 @@ export class AddPage {
     public viewCtrl: ViewController,
     public alertCtrl: AlertController,
   ) { 
+    console.log('constructor Add');
+
     //Order edit: go from ordinePage
     if(params.get('ordine')) {
       this.ordine = params.get('ordine');
-      console.log(this.ordine.shipping_lines.total);
+      console.log('%o',this.ordine);
+      //console.log(this.ordine.shipping_lines.total);
 
       this.ordineEdit = true;
       this.ordineId = this.ordine.id;
@@ -272,8 +275,8 @@ export class AddPage {
 
   addShip() {
     let prompt = this.alertCtrl.create({
-      title: 'Nota',
-      message: 'Aggiungi un piatto fuoti menu',
+      title: 'Speciale',
+      message: 'Aggiungi un piatto fuori menu',
       inputs: [
         {
           name: 'nomePiatto',
@@ -415,7 +418,11 @@ export class AddPage {
             this.saveNote(orderIdSave,note);
           }
 
-          this.navCtrl.setRoot(HomePage);
+          if(!this.ordineEdit) {
+            this.navCtrl.setRoot(HomePage);
+          } else {
+            this.dismiss();
+          }
         } else {
           this.nothing = 'Nessun dato! Riprovare più tardi.';
         }
@@ -447,6 +454,12 @@ export class AddPage {
         this.errorMessage = 'Error!';
         this.errorMessageView = true;
       });
+  }
+
+  dismiss() {
+    this.viewCtrl.dismiss({
+      action: ''
+    });
   }
 
 }

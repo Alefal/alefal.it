@@ -12,7 +12,7 @@
   <!--
   <ion-searchbar (ionInput)="getItems($event)" (ionClear)="onCancel($event)" placeholder="Ricerca numero ordine"></ion-searchbar>
   -->
-  <ion-list>
+  <ion-list *ngIf="orders?.length >= 0">
     <ion-item *ngFor="let order of orders" (click)="orderDetail(order)">
       <ion-icon name="time"             item-left class="iconsList" color="pending"     *ngIf="order.status == 'pending'"></ion-icon>
       <ion-icon name="ios-more"         item-left class="iconsList" color="primary"     *ngIf="order.status == 'processing' || order.status == 'on-hold'"></ion-icon>
@@ -29,5 +29,9 @@
       <ion-icon name="eye" item-right color="primary"></ion-icon>
     </ion-item>
   </ion-list>
+
+  <h3 *ngIf="orders?.length < 0" padding>
+    Nessuna ordinazione presente
+  </h3>
 
 </ion-content>

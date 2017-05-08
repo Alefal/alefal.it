@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Platform, NavParams, LoadingController, AlertController, NavController } from 'ionic-angular';
+import { Platform, NavParams, LoadingController, AlertController, NavController, ModalController, ViewController } from 'ionic-angular';
 
 import { Ordine }   from '../../../models/ordine';
 import { Prodotto } from '../../../models/prodotto';
@@ -30,22 +30,62 @@ export class OrdinePage {
     private httpService: HttpService,
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
-    private platform: Platform
+    private platform: Platform,
+    public viewCtrl: ViewController,
+    public modalCtrl: ModalController
   ) {
     platform.registerBackButtonAction(() => {
       console.log("Back button action called");
     }, 1);
 
     this.ordine = params.get('ordine');
-    console.log(this.ordine);
+    console.log('constructor: '+this.ordine);
+  }
+
+  ionViewDidLoad() {
+    console.log("ionViewDidLoad");
   }
 
   editOrder(ordine) {
+    let modal = this.modalCtrl.create(AddPage, { ordine: ordine });
+    modal.present();
+    modal.onDidDismiss(data => {
+      console.log('data.action -> '+JSON.stringify(data.action));
+      //Ricaricare ordine
+      this.showOrder(this.ordine.id);
+    });
+    /*
     this.navCtrl.push(AddPage, {
       ordine: ordine
     });
+    */
   }
 
+  showOrder(id) {
+    /* NON MI AGGIORNA L'ARRAY 'orders' NEL TEMPLATE
+    this.httpService
+      .getCallHttp('getOrders', '', '', id, '')
+      .then(res => {
+        console.log('res: ' + JSON.stringify(res));
+
+        if (res[0].response[0].result == 'OK') {
+          //Dati ricaricati
+          this.ordine = res[0].output;
+          console.log(this.ordine);
+        } else {
+          this.nothing = 'Nessun dato! Riprovare più tardi.';
+        }
+      })
+      .catch(error => {
+        console.log('ERROR: ' + error);
+        this.errorMessage = 'Error!';
+        this.errorMessageView = true;
+      });
+    */
+    this.viewCtrl.dismiss({
+      action: 'reload'
+    });
+  }
   deleteOrder(id) {
     console.log(id);
 
@@ -75,7 +115,9 @@ export class OrdinePage {
                 console.log('res: ' + JSON.stringify(res));
 
                 if (res[0].response[0].result == 'OK') {
-                  this.navCtrl.push(ComandePage);
+                  this.viewCtrl.dismiss({
+                    action: 'reload'
+                  });
                 } else {
                   this.nothing = 'Nessun dato! Riprovare più tardi.';
                 }
@@ -113,10 +155,10 @@ export class OrdinePage {
           let noteComplete: string = '';
           for (let prod of res[0].output) {
 
-            var d = new Date(prod['created_at']);
-            var datestring = d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear() + " ore " + d.getHours() + ":" + d.getMinutes();
+            //var d = new Date(prod['created_at']);
+            //var datestring = d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear() + " ore " + d.getHours() + ":" + d.getMinutes();
 
-            let nData: string = datestring;
+            //let nData: string = datestring;
             let nMessage: string = prod['note'];
 
             //noteComplete += nData + '<br />' + nMessage + '<br /><hr /><br />';
@@ -262,7 +304,7 @@ export class OrdinePage {
                 console.log('res: ' + JSON.stringify(res));
 
                 if (res[0].response[0].result == 'OK') {
-                  this.navCtrl.getPrevious();
+                  this.showOrder(ordineId);
                 } else {
                   this.nothing = 'Nessun dato! Riprovare più tardi.';
                 }
@@ -334,7 +376,7 @@ export class OrdinePage {
                 console.log('res: ' + JSON.stringify(res));
 
                 if (res[0].response[0].result == 'OK') {
-                  this.navCtrl.getPrevious();
+                  this.showOrder(ordineId);
                 } else {
                   this.nothing = 'Nessun dato! Riprovare più tardi.';
                 }
@@ -352,6 +394,12 @@ export class OrdinePage {
       ]
     });
     confirm.present();
+  }
+
+  dismiss() {
+    this.viewCtrl.dismiss({
+      action: ''
+    });
   }
 
 }

@@ -1,6 +1,12 @@
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title>Comande</ion-title>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="dismiss()">
+        <ion-icon ios="ios-close" md="md-close"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title>Ordinazione</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -9,16 +15,16 @@
   <ion-fab top right edge>
     <button ion-fab mini color="dark"><ion-icon name="ios-arrow-down"></ion-icon></button>
     <ion-fab-list>
-      <button ion-fab (click)="addShip()"><ion-icon name="create"></ion-icon></button>
-      <button ion-fab (click)="addNote()" *ngIf="!ordineEdit"><ion-icon name="list"></ion-icon></button>
+      <button ion-fab (click)="addShip()"><ion-icon name="restaurant"></ion-icon></button>
+      <button ion-fab (click)="addNote()"><ion-icon name="list"></ion-icon></button>
     </ion-fab-list>
   </ion-fab>
 
   <ion-list padding>
 
-    <ion-item *ngIf="ordineEdit" style="text-align:center">
+    <ion-item *ngIf="ordineEdit" style="text-align:center" padding>
       <h3>Ordine per <strong>{{ordine.note}}</strong></h3>
-      <h3>Totale <i>{{ordine.total}} &euro;</i> di cui <i>{{ordine.shipping_lines.total}} &euro;</i> per coperti</h3>
+      <h3>Totale <i>{{ordine.total}} &euro;</i> di cui <i>{{ordine.tax_lines[0].total}} &euro;</i> per servizio</h3>
     </ion-item>
 
     <ion-grid *ngIf="!ordineEdit">
@@ -71,7 +77,7 @@
     </ion-item>
   </ion-list>
 
-  <div *ngIf="!ordineEdit">
+  <div>
     <ion-card *ngFor="let nota of notes">
       <ion-card-content>
         <ion-row>

@@ -18,8 +18,8 @@ export class HttpService {
     getCallHttp(call,username,password,id,object) {
         console.log('getCallHttp: '+call+' | '+username+' | '+password);
         
-        var host = 'http://localhost/alefal.it/PROJECTS/easycomande';
-        //var host = 'http://www.amalficoastapps.it/demo/easycomande';
+        //var host = 'http://localhost/alefal.it/PROJECTS/easycomande';
+        var host = 'http://www.amalficoastapps.it/demo/easycomande';
         
         var url = '';
         //LOGIN
@@ -41,7 +41,7 @@ export class HttpService {
 
         //ORDERS
         else if(call == 'getOrders') {
-            url = '/wp-content/plugins/alefal_woocommerce/services/ece_orders.php';
+            url = '/wp-content/plugins/alefal_woocommerce/services/ece_orders.php?id='+id;
         }  
         else if(call == 'getOrderSave') {
             url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_save.php?order='+JSON.stringify(object);
@@ -69,6 +69,13 @@ export class HttpService {
         }
 
         console.log('URL: '+host+''+url);
+
+        /*
+        var response = this.http.get(host+''+url).map(res => res.json()).subscribe(data => {
+            return data;
+        });
+        */
+
         var response = this.http.get(host+''+url)
             .toPromise()
             .then(response => response.json())

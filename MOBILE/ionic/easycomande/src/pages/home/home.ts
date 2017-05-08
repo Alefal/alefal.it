@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
 
 import { LoginPage }    from '../login/login';
 import { ComandePage }  from '../comande/comande';
@@ -12,7 +12,11 @@ import { AddPage }      from '../add/add'
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public modalCtrl: ModalController
+  ) {
   }
 
   ionViewDidLoad() {
@@ -27,7 +31,10 @@ export class HomePage {
       this.navCtrl.push(MenuPage);
     }
     else if(page == 'Add') {
-      this.navCtrl.push(AddPage);
+      //this.navCtrl.push(AddPage);
+      let modal = this.modalCtrl.create(AddPage);
+      modal.present();
+      modal.onDidDismiss(data => {});
     }
   }
 

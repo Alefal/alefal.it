@@ -87,7 +87,7 @@ foreach ($order['shipping_lines'] as $item) {
         'total'         => $item['total']
     ); 
 }
-//print_r($lineItemsArray);
+//print_r($shipItemsArray);
 //die();
 
 
@@ -152,7 +152,8 @@ try {
                 //'total_tax'                   => $order['total_tax'],
                 //'total_line_items_quantity'   => $order['total_line_items_quantity'],
                 //'customer_id'                 => 9,
-                'line_items'                  => $lineItemsArray
+                'line_items'                  => $lineItemsArray,
+                'shipping_lines'              => $shipItemsArray
             ]
         ];
         //print_r($orderArray);
