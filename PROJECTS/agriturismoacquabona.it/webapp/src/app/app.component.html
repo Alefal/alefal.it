@@ -165,8 +165,11 @@
     <div class="container paddind">
         <h2 *ngIf="langIT">Servizi</h2>
         <h2 *ngIf="langEN">Services</h2>
-        <h6>
-            Our company has 3 bedrooms with possibility of a triple, for a total of 7 beds. The rooms, hospitable and comfortable, recently renovated are furnished in arte povera style, each with:
+        <h6 *ngIf="langIT">
+            La nostra azienda dispone di 3 camere con possibilita' di una tripla, per un totale di 7 posti letto. Le camere, ospitali e confortevoli, recentemente ristrutturate sono arredate in stile arte povera, ognuna con 
+        </h6>
+        <h6 *ngIf="langEN">
+            Our company has 3 bedrooms with possibility of a triple, for a total of 7 beds. The rooms, hospitable and comfortable, recently renovated are furnished in "arte povera" style, each with:
         </h6>
         <div class="portfolioFilter">
             <ul class="Portfolio-nav wow fadeIn delay-02s">
@@ -411,8 +414,8 @@
                         <li><a href="javascript:void(0)" onclick="openGallery('Altro');" class="fa fa-picture-o"></a></li>
                     </ul>
                 </div>
-                <h3 class="wow fadeInDown delay-03s" *ngIf="langIT">Altro</h3>
-                <h3 class="wow fadeInDown delay-03s" *ngIf="langEN">Other</h3>
+                <h3 class="wow fadeInDown delay-03s" *ngIf="langIT">Dettagli</h3>
+                <h3 class="wow fadeInDown delay-03s" *ngIf="langEN">Details</h3>
             </div>
         </div>
     </div>
@@ -641,15 +644,17 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" *ngIf="langIT">Altro</h4>
-        <h4 class="modal-title" *ngIf="langEN">Other</h4>
+        <h4 class="modal-title" *ngIf="langIT">Dettagli</h4>
+        <h4 class="modal-title" *ngIf="langEN">Details</h4>
       </div>
       <div class="modal-body">
         <!-- ALTRO -->
         <ul class="bxsliderAltro">
             <li><img src="assets/img/agracq/photos/dettagli/Acquabona_27.JPG" /></li>
             <li><img src="assets/img/agracq/photos/dettagli/Acquabona_28.JPG" /></li>
+            <!--
             <li><img src="assets/img/agracq/photos/dettagli/Acquabona_29.JPG" /></li>
+            -->
             <li><img src="assets/img/agracq/photos/dettagli/Acquabona_30.JPG" /></li>
             <li><img src="assets/img/agracq/photos/dettagli/Acquabona_31.JPG" /></li>            
             <li><img src="assets/img/agracq/photos/dettagli/Acquabona_32.JPG" /></li>            
