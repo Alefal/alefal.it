@@ -44,7 +44,7 @@ export class LoginPage {
 
     this.httpService
       .getCallHttp('authentication',this.username,this.password,'','')
-      .then(res => {
+      .subscribe(res => {
         console.log('res: '+JSON.stringify(res));
 
         if(res.status == 'error') {
@@ -87,8 +87,8 @@ export class LoginPage {
         }
         */
         this.loading.dismiss();
-      })
-      .catch(error => {
+      },
+      error => {
         console.log('ERROR: ' + error);
         this.errorMessage = 'Error!';
         this.errorMessageView = true;

@@ -49,7 +49,7 @@ $order = json_decode('
           "billing_address_1":"",
           "billing_address_2":"",
           "billing_city":"",
-          "billing_postcode":"",
+          "billing_GETcode":"",
           "billing_country":"",
           "billing_state":"",
           "billing_phone":"",
@@ -60,7 +60,7 @@ $order = json_decode('
           "shipping_address_1":"",
           "shipping_address_2":"",
           "shipping_city":"",
-          "shipping_postcode":"",
+          "shipping_GETcode":"",
           "shipping_country":"",
           "shipping_state":""
        },

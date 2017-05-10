@@ -44,7 +44,7 @@ export class ComandePage {
 
     this.httpService
       .getCallHttp('getOrders','','',0,'')
-      .then(res => {
+      .subscribe(res => {
         //console.log('res: '+JSON.stringify(res));
 
         if(res[0].response[0].result == 'OK') {
@@ -54,8 +54,8 @@ export class ComandePage {
           this.nothing = 'Nessun dato! Riprovare più tardi.';
         }
         this.loading.dismiss();
-      })
-      .catch(error => {
+      },
+      error => {
         console.log('ERROR: ' + error);
         this.errorMessage = 'Error!';
         this.errorMessageView = true;

@@ -6,6 +6,8 @@ import { ComandePage }  from '../comande/comande';
 import { MenuPage }     from '../menu/menu';
 import { AddPage }      from '../add/add'
 
+import { HttpService } from '../../providers/http-service';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
@@ -15,12 +17,24 @@ export class HomePage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController,
+    private httpService: HttpService,
   ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Home');
+
+    this.httpService.getCallHttp('getOrders', '', '', 0, '')
+      .subscribe(
+        res => {
+          console.log('res: '+JSON.stringify(res));
+        },
+        error => {
+          console.log('res: '+JSON.stringify(<any>error));
+        }
+      );
+        
   }
 
    navigate(page) {

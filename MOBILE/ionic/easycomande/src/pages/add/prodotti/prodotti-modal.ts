@@ -47,7 +47,7 @@ export class ProdottiModal {
     if(categoriaNome && categoriaNome != ''){
       this.httpService
         .getCallHttp('getProductsByCategory', '', '', '', categoriaNome)
-        .then(res => {
+        .subscribe(res => {
           //console.log('res: '+JSON.stringify(res));
 
           if (res[0].response[0].result == 'OK') {
@@ -56,8 +56,8 @@ export class ProdottiModal {
             this.nothing = 'Nessun dato! Riprovare più tardi.';
           }
           this.loading.dismiss();
-        })
-        .catch(error => {
+        },
+        error => {
           console.log('ERROR: ' + error);
           this.errorMessage = 'Error!';
           this.errorMessageView = true;
@@ -66,7 +66,7 @@ export class ProdottiModal {
     } else {
       this.httpService
         .getCallHttp('getProducts', '', '', '', '')
-        .then(res => {
+        .subscribe(res => {
           //console.log('res: '+JSON.stringify(res));
 
           if (res[0].response[0].result == 'OK') {
@@ -75,8 +75,8 @@ export class ProdottiModal {
             this.nothing = 'Nessun dato! Riprovare più tardi.';
           }
           this.loading.dismiss();
-        })
-        .catch(error => {
+        },
+        error => {
           console.log('ERROR: ' + error);
           this.errorMessage = 'Error!';
           this.errorMessageView = true;

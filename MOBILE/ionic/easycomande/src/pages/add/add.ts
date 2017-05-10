@@ -93,15 +93,15 @@ export class AddPage {
 
     this.httpService
       .getCallHttp('getProductsCategory', '', '', '', '')
-      .then(res => {
+      .subscribe(res => {
         if (res[0].response[0].result == 'OK') {
           this.categories = res[0].output;
         } else {
           this.nothing = 'Nessun dato! Riprovare più tardi.';
         }
         this.loading.dismiss();
-      })
-      .catch(error => {
+      },
+      error => {
         console.log('ERROR: ' + error);
         this.errorMessage = 'Error!';
         this.errorMessageView = true;
@@ -381,23 +381,7 @@ export class AddPage {
       this.ships,             //this.shipping_lines
       0                       //this.tax_lines
     );
-    /*
-    let ordine = new Ordine(
-      this.ordineId,                    //this.id,
-      this.ordineId,                    //this.order_number,
-      '',                               //this.created_at,
-      '',                               //this.updated_at,
-      '',                               //this.completed_at,
-      'pending',                        //this.status -> deve essere 'pending' altrimenti non viene calcolato il totale,
-      this.totaleOrdine,                //this.total,
-      this.totCoperti,                  //this.total_tax,
-      this.products.length,             //this.total_line_items_quantity,
-      this.products,                    //this.line_items,
-      '',                               //this.customer,
-      this.notaOrdine,                  //this.note,
-      this.totCoperti                   //shipping_lines
-    );
-    */
+
     console.log('ORDINE: '+JSON.stringify(ordine));
 
     this.loading = this.loadingCtrl.create({
@@ -407,7 +391,7 @@ export class AddPage {
 
     this.httpService
       .getCallHttp('getOrderSave', '', '', '', ordine)
-      .then(res => {
+      .subscribe(res => {
         console.log('res: ' + JSON.stringify(res));
 
         if (res[0].response[0].result == 'OK') {
@@ -427,8 +411,8 @@ export class AddPage {
           this.nothing = 'Nessun dato! Riprovare più tardi.';
         }
         this.loading.dismiss();
-      })
-      .catch(error => {
+      },
+      error => {
         console.log('ERROR: ' + error);
         this.errorMessage = 'Error!';
         this.errorMessageView = true;
@@ -440,7 +424,7 @@ export class AddPage {
 
     this.httpService
       .getCallHttp('getOrderNoteSave', '', '', orderIdSave, notes)
-      .then(res => {
+      .subscribe(res => {
         //console.log('res: ' + JSON.stringify(res));
 
         if (res[0].response[0].result == 'OK') {
@@ -448,8 +432,8 @@ export class AddPage {
         } else {
           this.nothing = 'Nessun dato! Riprovare più tardi.';
         }
-      })
-      .catch(error => {
+      },
+      error => {
         console.log('ERROR: ' + error);
         this.errorMessage = 'Error!';
         this.errorMessageView = true;

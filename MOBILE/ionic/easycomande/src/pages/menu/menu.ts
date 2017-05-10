@@ -43,7 +43,7 @@ export class MenuPage {
 
     this.httpService
       .getCallHttp('getProductsCategory', '', '', '', '')
-      .then(res => {
+      .subscribe(res => {
         this.loading.dismiss();
         
         if (res[0].response[0].result == 'OK') {
@@ -52,8 +52,8 @@ export class MenuPage {
         } else {
           this.nothing = 'Nessun dato! Riprovare più tardi.';
         }
-      })
-      .catch(error => {
+      },
+      error => {
         console.log('ERROR: ' + error);
         this.errorMessage = 'Error!';
         this.errorMessageView = true;
@@ -72,7 +72,7 @@ export class MenuPage {
     if(categoriaNome && categoriaNome != ''){
       this.httpService
         .getCallHttp('getProductsByCategory', '', '', '', categoriaNome)
-        .then(res => {
+        .subscribe(res => {
           //console.log('res: '+JSON.stringify(res));
 
           if (res[0].response[0].result == 'OK') {
@@ -81,8 +81,8 @@ export class MenuPage {
             this.nothing = 'Nessun dato! Riprovare più tardi.';
           }
           this.loading.dismiss();
-        })
-        .catch(error => {
+        },
+        error => {
           console.log('ERROR: ' + error);
           this.errorMessage = 'Error!';
           this.errorMessageView = true;
@@ -91,7 +91,7 @@ export class MenuPage {
     } else {
       this.httpService
         .getCallHttp('getProducts', '', '', '', '')
-        .then(res => {
+        .subscribe(res => {
           //console.log('res: '+JSON.stringify(res));
 
           if (res[0].response[0].result == 'OK') {
@@ -100,8 +100,8 @@ export class MenuPage {
             this.nothing = 'Nessun dato! Riprovare più tardi.';
           }
           this.loading.dismiss();
-        })
-        .catch(error => {
+        },
+        error => {
           console.log('ERROR: ' + error);
           this.errorMessage = 'Error!';
           this.errorMessageView = true;

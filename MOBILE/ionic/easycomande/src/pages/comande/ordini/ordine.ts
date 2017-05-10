@@ -111,7 +111,7 @@ export class OrdinePage {
 
             this.httpService
               .getCallHttp('getOrderDelete', '', '', id, '')
-              .then(res => {
+              .subscribe(res => {
                 console.log('res: ' + JSON.stringify(res));
 
                 if (res[0].response[0].result == 'OK') {
@@ -122,8 +122,8 @@ export class OrdinePage {
                   this.nothing = 'Nessun dato! Riprovare più tardi.';
                 }
                 this.loading.dismiss();
-              })
-              .catch(error => {
+              },
+              error => {
                 console.log('ERROR: ' + error);
                 this.errorMessage = 'Error!';
                 this.errorMessageView = true;
@@ -147,7 +147,7 @@ export class OrdinePage {
 
     this.httpService
       .getCallHttp('getOrderNote', '', '', id, '')
-      .then(res => {
+      .subscribe(res => {
         console.log('res: ' + JSON.stringify(res));
 
         if (res[0].response[0].result == 'OK') {
@@ -174,8 +174,8 @@ export class OrdinePage {
           this.nothing = 'Nessun dato! Riprovare più tardi.';
         }
         this.loading.dismiss();
-      })
-      .catch(error => {
+      },
+      error => {
         console.log('ERROR: ' + error);
         this.errorMessage = 'Error!';
         this.errorMessageView = true;
@@ -213,7 +213,7 @@ export class OrdinePage {
             
             this.httpService
               .getCallHttp('getOrderNoteSave', '', '', id, nota)
-              .then(res => {
+              .subscribe(res => {
                 //console.log('res: ' + JSON.stringify(res));
 
                 if (res[0].response[0].result == 'OK') {
@@ -222,8 +222,8 @@ export class OrdinePage {
                   this.nothing = 'Nessun dato! Riprovare più tardi.';
                 }
                 this.loading.dismiss();
-              })
-              .catch(error => {
+              },
+              error => {
                 console.log('ERROR: ' + error);
                 this.errorMessage = 'Error!';
                 this.errorMessageView = true;
@@ -260,22 +260,6 @@ export class OrdinePage {
       prodotto,         //this.line_items
       0,                //this.shipping_lines
       0                 //this.tax_lines
-
-      /*
-      ordineId,                         //this.id,
-      ordineId,                         //this.order_number,
-      '',                               //this.created_at,
-      '',                               //this.updated_at,
-      '',                               //this.completed_at,
-      '',                               //this.status,
-      0,                                //this.total,
-      0,                                //this.total_tax,
-      0,                                //this.total_line_items_quantity,
-      prodotto,                         //this.line_items,
-      '',                               //this.customer,
-      '',                               //this.note,
-      0                                 //shipping_lines
-      */
     );
 
     let confirm = this.alertCtrl.create({
@@ -300,7 +284,7 @@ export class OrdinePage {
 
             this.httpService
               .getCallHttp('getOrderDeleteLineItem', '', '', '', ordine)
-              .then(res => {
+              .subscribe(res => {
                 console.log('res: ' + JSON.stringify(res));
 
                 if (res[0].response[0].result == 'OK') {
@@ -309,8 +293,8 @@ export class OrdinePage {
                   this.nothing = 'Nessun dato! Riprovare più tardi.';
                 }
                 this.loading.dismiss();
-              })
-              .catch(error => {
+              },
+              error => {
                 console.log('ERROR: ' + error);
                 this.errorMessage = 'Error!';
                 this.errorMessageView = true;
@@ -372,7 +356,7 @@ export class OrdinePage {
 
             this.httpService
               .getCallHttp('getOrderDeleteShipping', '', '', '', ordine)
-              .then(res => {
+              .subscribe(res => {
                 console.log('res: ' + JSON.stringify(res));
 
                 if (res[0].response[0].result == 'OK') {
@@ -381,8 +365,8 @@ export class OrdinePage {
                   this.nothing = 'Nessun dato! Riprovare più tardi.';
                 }
                 this.loading.dismiss();
-              })
-              .catch(error => {
+              },
+              error => {
                 console.log('ERROR: ' + error);
                 this.errorMessage = 'Error!';
                 this.errorMessageView = true;
