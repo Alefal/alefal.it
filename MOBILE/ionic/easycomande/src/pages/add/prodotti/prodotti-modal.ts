@@ -39,49 +39,36 @@ export class ProdottiModal {
   loadData(categoriaNome) {
     this.categoryName = categoriaNome;
 
-    this.loading = this.loadingCtrl.create({
-      spinner: 'crescent'
-    });
-    this.loading.present();
+    if(localStorage.getItem(this.categoryName) === null) {
+      this.loading = this.loadingCtrl.create({
+        spinner: 'crescent'
+      });
+      this.loading.present();
 
-    if(categoriaNome && categoriaNome != ''){
-      this.httpService
-        .getCallHttp('getProductsByCategory', '', '', '', categoriaNome)
-        .subscribe(res => {
-          //console.log('res: '+JSON.stringify(res));
+      if(categoriaNome && categoriaNome != ''){
+        this.httpService
+          .getCallHttp('getProductsByCategory', '', '', '', categoriaNome)
+          .subscribe(res => {
+            //console.log('res: '+JSON.stringify(res));
 
-          if (res[0].response[0].result == 'OK') {
-            this.products = res[0].output;
-          } else {
-            this.nothing = 'Nessun dato! Riprovare più tardi.';
-          }
-          this.loading.dismiss();
-        },
-        error => {
-          console.log('ERROR: ' + error);
-          this.errorMessage = 'Error!';
-          this.errorMessageView = true;
-          this.loading.dismiss();
-        });
+            if (res[0].response[0].result == 'OK') {
+              this.products = res[0].output;
+            } else {
+              this.nothing = 'Nessun dato! Riprovare più tardi.';
+            }
+            this.loading.dismiss();
+          },
+          error => {
+            console.log('ERROR: ' + error);
+            this.errorMessage = 'Error!';
+            this.errorMessageView = true;
+            this.loading.dismiss();
+          });
+      } else {
+        console.log('Nessuna categoria passata');
+      }
     } else {
-      this.httpService
-        .getCallHttp('getProducts', '', '', '', '')
-        .subscribe(res => {
-          //console.log('res: '+JSON.stringify(res));
-
-          if (res[0].response[0].result == 'OK') {
-            this.products = res[0].output;
-          } else {
-            this.nothing = 'Nessun dato! Riprovare più tardi.';
-          }
-          this.loading.dismiss();
-        },
-        error => {
-          console.log('ERROR: ' + error);
-          this.errorMessage = 'Error!';
-          this.errorMessageView = true;
-          this.loading.dismiss();
-        });
+      this.products = JSON.parse(localStorage.getItem(this.categoryName));
     }
   }
 
@@ -102,10 +89,44 @@ export class ProdottiModal {
   }
 
   infoProduct(prod) {
+    /*
     let toast = this.toastCtrl.create({
       message: prod.description,
       duration: 3000
     });
     toast.present();
+    */
+    let popover = this.popoverCtrl.create(PopoverPage, { product: prod });
+    popover.present({
+      ev: prod
+    });
+  }
+}
+
+@Component({
+  template: `
+    <ion-card>
+      <ion-card-header>
+        <h2>{{prod.title}}</h2>
+      </ion-card-header>
+      <ion-card-content>
+        <h3><i [innerHTML]="prod.description"></i></h3>
+      </ion-card-content>
+    </ion-card>
+  `
+})
+export class PopoverPage {
+
+  prod: any;
+  constructor(
+    public viewCtrl: ViewController,
+    public params: NavParams,
+  ) {
+    this.prod = params.get('product');
+    console.log('%o',this.prod);
+  }
+
+  close() {
+    this.viewCtrl.dismiss();
   }
 }

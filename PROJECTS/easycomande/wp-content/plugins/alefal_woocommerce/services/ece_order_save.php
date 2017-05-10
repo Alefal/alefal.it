@@ -15,60 +15,6 @@ $order = json_decode($_GET['order'],true);
 //print '</pre>';
 //die();
 
-/*
-$order = json_decode('
-    {  
-       "id":115,
-       "status":"completed",
-       "total":0,
-       "total_tax":0,
-       "total_line_items_quantity":0,
-       "line_items":[  
-          {  
-             "prodId":80,
-             "prodTitle":"Don Luigi Rosso",
-             "prodSku":"",
-             "prodPrice":"20",
-             "prodDescription":"",
-             "prodManageStock":true,
-             "prodQuantity":69,
-             "prodAddQuantity":"1",
-             "prodCatId":0,
-             "prodCatName":""
-          }
-       ],
-       "customer":{  
-          "id":8,
-          "user_email":"alefal1@hotmail.it",
-          "user_nicename":"cliente",
-          "user_status":"0",
-          "display_name":"cliente",
-          "billing_first_name":"",
-          "billing_last_name":"",
-          "billing_company":"",
-          "billing_address_1":"",
-          "billing_address_2":"",
-          "billing_city":"",
-          "billing_GETcode":"",
-          "billing_country":"",
-          "billing_state":"",
-          "billing_phone":"",
-          "billing_email":"",
-          "shipping_first_name":"",
-          "shipping_last_name":"",
-          "shipping_company":"",
-          "shipping_address_1":"",
-          "shipping_address_2":"",
-          "shipping_city":"",
-          "shipping_GETcode":"",
-          "shipping_country":"",
-          "shipping_state":""
-       },
-       "note":"Ordine completato e salvato"
-    }
-    ',true);
-*/
-
 $id = $order['id'];
 
 foreach ($order['line_items'] as $item) {
@@ -89,8 +35,6 @@ foreach ($order['shipping_lines'] as $item) {
 }
 //print_r($shipItemsArray);
 //die();
-
-
 
 try {
 

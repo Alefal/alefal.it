@@ -27,7 +27,17 @@ export class MenuPage {
   ) { 
     this.categoryName = params.get('categoriaNome');
 
-    this.loadCategories();
+    //Dati NON presenti in memoria: li recupero dal server
+    if(localStorage.getItem('categories') === null) {
+      this.loadCategories();
+    } else {
+      this.categories = JSON.parse(localStorage.getItem('categories'));
+      console.log('res -> '+this.categories[0].name);
+      this.categoryName = this.categories[0].name;
+
+      this.products = JSON.parse(localStorage.getItem(this.categories[0].name));
+    }
+    //this.loadCategories();
     //this.loadData(this.categoriaNome);
   }
 
@@ -64,50 +74,36 @@ export class MenuPage {
   loadData(categoriaNome) {
     this.categoryName = categoriaNome;
 
-    this.loading = this.loadingCtrl.create({
-      spinner: 'crescent'
-    });
-    this.loading.present();
+    if(localStorage.getItem(this.categoryName) === null) {
+      this.loading = this.loadingCtrl.create({
+        spinner: 'crescent'
+      });
+      this.loading.present();
 
-    if(categoriaNome && categoriaNome != ''){
-      this.httpService
-        .getCallHttp('getProductsByCategory', '', '', '', categoriaNome)
-        .subscribe(res => {
-          //console.log('res: '+JSON.stringify(res));
+      if(categoriaNome && categoriaNome != ''){
+        this.httpService
+          .getCallHttp('getProductsByCategory', '', '', '', categoriaNome)
+          .subscribe(res => {
+            //console.log('res: '+JSON.stringify(res));
 
-          if (res[0].response[0].result == 'OK') {
-            this.products = res[0].output;
-          } else {
-            this.nothing = 'Nessun dato! Riprovare più tardi.';
-          }
-          this.loading.dismiss();
-        },
-        error => {
-          console.log('ERROR: ' + error);
-          this.errorMessage = 'Error!';
-          this.errorMessageView = true;
-          this.loading.dismiss();
-        });
+            if (res[0].response[0].result == 'OK') {
+              this.products = res[0].output;
+            } else {
+              this.nothing = 'Nessun dato! Riprovare più tardi.';
+            }
+            this.loading.dismiss();
+          },
+          error => {
+            console.log('ERROR: ' + error);
+            this.errorMessage = 'Error!';
+            this.errorMessageView = true;
+            this.loading.dismiss();
+          });
+      } else {
+        console.log('Nessuna categoria passata');
+      }
     } else {
-      this.httpService
-        .getCallHttp('getProducts', '', '', '', '')
-        .subscribe(res => {
-          //console.log('res: '+JSON.stringify(res));
-
-          if (res[0].response[0].result == 'OK') {
-            this.products = res[0].output;
-          } else {
-            this.nothing = 'Nessun dato! Riprovare più tardi.';
-          }
-          this.loading.dismiss();
-        },
-        error => {
-          console.log('ERROR: ' + error);
-          this.errorMessage = 'Error!';
-          this.errorMessageView = true;
-          this.loading.dismiss();
-        });
+      this.products = JSON.parse(localStorage.getItem(this.categoryName));
     }
   }
-
 }

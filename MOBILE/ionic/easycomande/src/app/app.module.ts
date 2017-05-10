@@ -14,7 +14,7 @@ import { MenuPage }         from '../pages/menu/menu';
 import { AddPage }          from '../pages/add/add';
 
 
-import { ProdottiModal }    from '../pages/add/prodotti/prodotti-modal';
+import { ProdottiModal, PopoverPage }    from '../pages/add/prodotti/prodotti-modal';
 
 import { StatusBar }        from '@ionic-native/status-bar';
 import { SplashScreen }     from '@ionic-native/splash-screen';
@@ -28,7 +28,8 @@ import { SplashScreen }     from '@ionic-native/splash-screen';
     MenuPage,
     AddPage,
     OrdinePage,
-    ProdottiModal
+    ProdottiModal,
+    PopoverPage
   ],
   imports: [
     BrowserModule,
@@ -44,7 +45,8 @@ import { SplashScreen }     from '@ionic-native/splash-screen';
     MenuPage,
     AddPage,
     OrdinePage,
-    ProdottiModal
+    ProdottiModal,
+    PopoverPage
   ],
   providers: [
     HttpService,

@@ -8,7 +8,7 @@ cordova-plugin-statusbar 2.2.1 "StatusBar"
 cordova-plugin-whitelist 1.3.1 "Whitelist"
 ionic-plugin-keyboard 2.2.1 "Keyboard"
 
-=== Vers. 0.0.1===
+=== Vers. 0.0.1 ===
 - Menu
 - Lista Ordinazioni
 - Ordinazione
@@ -20,3 +20,15 @@ ionic-plugin-keyboard 2.2.1 "Keyboard"
 -- Piatto da Menu
 -- Piatto fuori Menu
 -- Note
+
+=== Vers. 1.0.2 ===
+- Categorie e Piatti in cache
+- Click su tutta la riga per la scelta di un Piatto
+- Le informazioni di un piatto escono in popover con la descrizione in html
+- Obbligatorietà campi per salvataggio Ordinazione
+- Promise to Observable per le chiamate HTTP
+- Fix Bug
+
+=== Vers. 1.0.3 ===
+- Fix bug in fase di creazione di un'ordinazione:
+  nella cancellazione di un prodotto dal menu vengono cancellati più prodotti con lo stesso nome

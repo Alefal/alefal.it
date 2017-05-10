@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title>Easy Comande</ion-title>
+    <ion-title>Easy Comande (v.1.0.3)</ion-title>
 
     <ion-buttons end>
       <button ion-button icon-only (click)="logout()">
@@ -35,7 +35,7 @@
   </ion-grid>
 
   <ion-fab right bottom>
-    <button style="margin-bottom:15px;" ion-fab color="dark"><ion-icon name="refresh"></ion-icon></button>
+    <button padding ion-fab (click)="dataRefresh()" color="dark" style="margin-bottom:15px;"><ion-icon name="refresh"></ion-icon></button>
     <button padding ion-fab (click)="navigate('Add')"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
 

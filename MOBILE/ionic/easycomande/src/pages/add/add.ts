@@ -77,7 +77,13 @@ export class AddPage {
       */
     }
 
-    this.loadCategories();
+    //Dati NON presenti in memoria: li recupero dal server
+    if(localStorage.getItem('categories') === null) {
+      this.loadCategories();
+    } else {
+      this.categories = JSON.parse(localStorage.getItem('categories'));
+    }
+    //this.loadCategories();
     //this.loadData(this.categoriaNome);
   }
 
@@ -179,6 +185,7 @@ export class AddPage {
               if(prod['title'] == prodTitle) {
                 console.log('Elimino: '+cont);
                 this.products.splice(cont,1);
+                return;
               }
               cont++;
             }
@@ -258,6 +265,7 @@ export class AddPage {
               if(note['id'] == notaId) {
                 console.log('Elimino: '+cont);
                 this.notes.splice(cont,1);
+                return;
               }
               cont++;
             }
@@ -337,6 +345,7 @@ export class AddPage {
               if(ship['id'] == shipId) {
                 console.log('Elimino: '+cont);
                 this.ships.splice(cont,1);
+                return;
               }
               cont++;
             }
@@ -357,6 +366,16 @@ export class AddPage {
     console.log(this.numTavolo +'|'+ this.totCoperti +'|'+ this.numCoperti +'|'+ this.totaleOrdine);
     console.log('SHIPS: '+JSON.stringify(this.ships));
     console.log('NOTES: '+JSON.stringify(this.notes));
+
+    if(this.numTavolo == '' || this.numCoperti == 0 || this.totaleOrdine == 0) {
+      let alert = this.alertCtrl.create({
+        title: 'Completa la tua ordinazione!',
+        subTitle: 'Il numero del tavolo, i coperti e i piatti sono necessari per l\'ordinazione!',
+        buttons: ['OK']
+      });
+      alert.present();
+      return false;
+    }
 
     if(!this.ordineEdit) {
       this.notaOrdine = 'Tavolo '+this.numTavolo+', numero di coperti '+this.numCoperti;
