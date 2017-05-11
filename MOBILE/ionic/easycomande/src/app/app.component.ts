@@ -18,12 +18,12 @@ export class EasyComandeApp {
   products: any;
 
   constructor(
-    platform: Platform,
-    statusBar: StatusBar,
-    splashScreen: SplashScreen,
+    private statusBar: StatusBar,
+    private _platform: Platform,
+    private _splashScreen: SplashScreen,
     private httpService: HttpService
   ) {
-    platform.ready().then(() => {
+    this._platform.ready().then(() => {
       console.log('EasyComandeApp');
 
       if(localStorage.getItem('categories') === null) {
@@ -35,7 +35,11 @@ export class EasyComandeApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
-      splashScreen.hide();
+      //splashScreen.hide();
+
+      setTimeout(() => {
+        this._splashScreen.hide();
+      }, 100);
     });
   }
 
