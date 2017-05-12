@@ -9,7 +9,7 @@
 if ( !defined( 'ABSPATH' ) ) exit;
 ?>
 
-				<div class="order-branding">
+				<div class="order-branding" align="center">
 					<div class="company-logo">
 						<?php if( wcdn_get_company_logo_id() ) : ?><?php wcdn_company_logo(); ?><?php endif; ?>
 					</div>
@@ -63,13 +63,24 @@ if ( !defined( 'ABSPATH' ) ) exit;
 				</div><!-- .order-info -->
 				
 				
+				<div class="order-notes" align="center">
+					<?php if( wcdn_has_customer_notes( $order ) ) : ?>
+						<h2>
+							<?php wcdn_customer_notes( $order ); ?>
+						</h2>
+					<?php endif; ?>
+					
+					<?php do_action( 'wcdn_after_notes', $order ); ?>
+				</div><!-- .order-notes -->
+				
 				<div class="order-items">
 					<table>
 						<thead>
 							<tr>
 								<th class="head-name"><span><?php _e('Product', 'woocommerce-delivery-notes'); ?></span></th>
-								<th class="head-item-price"><span><?php _e('Price', 'woocommerce-delivery-notes'); ?></span></th>
+								<th class="head-item-price"><span><?php _e('Prezzo', 'woocommerce-delivery-notes'); ?></span></th>
 								<th class="head-quantity"><span><?php _e('Quantity', 'woocommerce-delivery-notes'); ?></span></th>
+								<th class="head-quantity"><span><?php _e('Servizio (10%)', 'woocommerce-delivery-notes'); ?></span></th>
 								<th class="head-price"><span><?php _e('Total', 'woocommerce-delivery-notes'); ?></span></th>
 							</tr>
 						</thead>
@@ -111,10 +122,19 @@ if ( !defined( 'ABSPATH' ) ) exit;
 											</dl>
 										</td>
 										<td class="product-item-price">
-											<span><?php echo wcdn_get_formatted_item_price( $order, $item ); ?></span>
+											<span><?php echo wcdn_get_formatted_item_price( $order, $item, 'excl' ); ?></span>
 										</td>
 										<td class="product-quantity">
 											<span><?php echo apply_filters( 'wcdn_order_item_quantity', $item['qty'], $item ); ?></span>
+										</td>
+										<td class="product-quantity">
+											<?php
+											$itemWithTax 	= $order->get_item_total($item,true,false);
+											$itemWithoutTax = $order->get_item_total($item,false,false);
+											$itemTax 		= $itemWithTax - $itemWithoutTax;
+
+											echo wc_price($itemTax);
+											?>
 										</td>
 										<td class="product-price">
 											<span><?php echo $order->get_formatted_line_subtotal( $item ); ?></span>
@@ -125,13 +145,14 @@ if ( !defined( 'ABSPATH' ) ) exit;
 						</tbody>
 						
 						<tfoot>							
-							<?php if( $totals = $order->get_order_item_totals() ) : ?>
+							<?php if( $totals = $order->get_order_item_totals(true) ) : ?>
 								<?php foreach( $totals as $total ) : ?>
+									<?php
+									//var_dump($total);
+									?>
 									<tr>
 										<td class="total-name"><span><?php echo $total['label']; ?></span></td>
-										<td class="total-item-price"></td>
-										<td class="total-quantity"></td>
-										<td class="total-price"><span><?php echo $total['value']; ?></span></td>
+										<td class="total-price" colspan="4"><span><?php echo $total['value']; ?></span></td>
 									</tr>
 								<?php endforeach; ?>
 							<?php endif; ?>
@@ -141,22 +162,13 @@ if ( !defined( 'ABSPATH' ) ) exit;
 					<?php do_action( 'wcdn_after_items', $order ); ?>
 				</div><!-- .order-items -->
 				
-		
 				<div class="order-notes">
-					<?php if( wcdn_has_customer_notes( $order ) ) : ?>
-						<h4>TAVOLO</h4>
-						<?php wcdn_customer_notes( $order ); ?>
-					<?php endif; ?>
-					
-					<?php do_action( 'wcdn_after_notes', $order ); ?>
-				</div><!-- .order-notes -->
-				
-				<div class="order-notes">
-					<h4><?php _e( 'Customer Note', 'woocommerce-delivery-notes' ); ?></h4>
+					<h2><?php _e( 'Customer Note', 'woocommerce-delivery-notes' ); ?>:</h2>
+					<br />
 					<?php 
 					$orderNotes = get_private_order_notes($order->id);
 					foreach( $orderNotes as $note ) : 
-						echo $note['note_content'].'<br />'; 
+						print '<h4>'.$note['note_content'].'</h4><hr /><br />'; 
 					endforeach; 
 					?>
 				</div>
@@ -168,7 +180,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
 				</div><!-- .order-thanks -->
 					
 					
-				<div class="order-colophon">
+				<div class="order-colophon" align="right">
 					<div class="colophon-policies">
 						<?php wcdn_policies_conditions(); ?>
 					</div>

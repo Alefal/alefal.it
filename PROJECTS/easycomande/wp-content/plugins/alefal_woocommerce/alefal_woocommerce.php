@@ -35,7 +35,7 @@ function remove_menus(){
 
 	//remove_menu_page( 'index.php' );             			//Dashboard
 	remove_submenu_page( 'index.php','update-core.php' );	//remove_submenu_page( $menu_slug, $submenu_slug );
-  	//remove_menu_page( 'edit.php' );                   //Posts
+  	remove_menu_page( 'edit.php' );                   //Posts
   	remove_menu_page( 'upload.php' );                 //Media
   	remove_menu_page( 'edit.php?post_type=page' );    //Pages
   	remove_menu_page( 'edit-comments.php' );          //Comments
@@ -44,7 +44,7 @@ function remove_menus(){
   	remove_menu_page( 'tools.php' );                  //Tools
   	remove_menu_page( 'options-general.php' );        //Settings
 
-  	//remove_menu_page( 'users.php' );                  //Users: not work!
+  	remove_menu_page( 'users.php' );                  //Users
   	remove_submenu_page( 'users.php','profile.php' );
   	
   	/*** WOOCOMMERCE ***/

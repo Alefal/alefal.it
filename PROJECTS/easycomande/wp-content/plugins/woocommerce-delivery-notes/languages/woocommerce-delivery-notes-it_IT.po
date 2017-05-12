@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Print Invoices & Delivery Notes\n"
 "Report-Msgid-Bugs-To: http://deckerweb.de/kontakt/\n"
 "POT-Creation-Date: 2014-04-17 20:02+0100\n"
-"PO-Revision-Date: 2016-11-10 09:49+0100\n"
+"PO-Revision-Date: 2017-05-12 14:50+0200\n"
 "Last-Translator: Massimiliano Losego <losegomax@gmail.com>\n"
 "Language-Team: Massimiliano Losego <losegomax@gmail.com>\n"
 "Language: it_IT\n"
@@ -289,7 +289,7 @@ msgstr "Stampa fattura"
 #: ../includes/class-wcdn-writepanel.php:109
 #: ../includes/class-wcdn-writepanel.php:193
 msgid "Print Delivery Note"
-msgstr "Stampa nota di consegna"
+msgstr "Stampa ordinazione"
 
 #: ../includes/class-wcdn-writepanel.php:164
 #, php-format
@@ -323,7 +323,7 @@ msgstr "Fattura"
 
 #: ../includes/wcdn-template-functions.php:34
 msgid "Delivery Note"
-msgstr "Nota di consegna"
+msgstr "Ordinazione"
 
 #: ../includes/wcdn-template-functions.php:36
 msgid "Order"
@@ -331,7 +331,7 @@ msgstr "Ordine"
 
 #: ../includes/wcdn-template-functions.php:214
 msgid "Order Number"
-msgstr "Numero dell'ordine"
+msgstr "Ordinazione"
 
 #: ../includes/wcdn-template-functions.php:219
 msgid "Order Date"
