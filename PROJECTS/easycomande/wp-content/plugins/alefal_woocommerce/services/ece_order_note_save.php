@@ -6,8 +6,8 @@ $eceResultArray		= array();
 $eceOutputArray 	= array();
 $eceFinalArray 		= array();
 
-$orderId = $_GET['id'];
-$orderNote = json_decode($_GET['orderNotes'],true);;
+$orderId = $_POST['id'];
+$orderNote = json_decode($_POST['orderNotes'],true);;
 
 try {
 

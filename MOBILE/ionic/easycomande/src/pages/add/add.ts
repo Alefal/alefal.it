@@ -367,14 +367,28 @@ export class AddPage {
     console.log('SHIPS: '+JSON.stringify(this.ships));
     console.log('NOTES: '+JSON.stringify(this.notes));
 
-    if(this.numTavolo == '' || this.numCoperti == 0 || this.totaleOrdine == 0) {
-      let alert = this.alertCtrl.create({
-        title: 'Completa la tua ordinazione!',
-        subTitle: 'Il numero del tavolo, i coperti e i piatti sono necessari per l\'ordinazione!',
-        buttons: ['OK']
-      });
-      alert.present();
-      return false;
+    //Controllo sui campi solo in fase di ADD
+    if(!this.ordineEdit) {
+      if(this.numTavolo == '' || this.numCoperti == 0 || this.totaleOrdine == 0) {
+        let alert = this.alertCtrl.create({
+          title: 'Completa la tua ordinazione!',
+          subTitle: 'Il numero del tavolo, i coperti e i piatti sono necessari per l\'ordinazione!',
+          buttons: ['OK']
+        });
+        alert.present();
+        return false;
+      }
+    } else {
+      //In EDIT controllo solo totale per evitare di modificare un ordine cancellando TUTTI i prodotti
+      if(this.totaleOrdine == 0) {
+        let alert = this.alertCtrl.create({
+          title: 'Completa la tua ordinazione!',
+          subTitle: 'I piatti sono necessari per l\'ordinazione!',
+          buttons: ['OK']
+        });
+        alert.present();
+        return false;
+      }
     }
 
     if(!this.ordineEdit) {

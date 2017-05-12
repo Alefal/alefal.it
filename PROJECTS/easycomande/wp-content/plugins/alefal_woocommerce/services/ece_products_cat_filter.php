@@ -6,8 +6,8 @@ $eceResultArray		= array();
 $eceOutputArray 	= array();
 $eceFinalArray 		= array();
 
-$filterName     = $_GET['filterName'];
-$filterValue    = $_GET['filterValue'];
+$filterName     = $_POST['filterName'];
+$filterValue    = $_POST['filterValue'];
 
 try {
 

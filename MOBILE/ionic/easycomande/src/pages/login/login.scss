@@ -10,4 +10,10 @@ page-login {
         font-style: italic;
     }
 
+    .vertical-align-content > * {
+        display: flex!important;
+        align-content: center!important;
+        align-items: center!important;
+    }
+
 }

@@ -32,3 +32,7 @@ ionic-plugin-keyboard 2.2.1 "Keyboard"
 === Vers. 1.0.3 ===
 - Fix bug in fase di creazione di un'ordinazione:
   nella cancellazione di un prodotto dal menu vengono cancellati più prodotti con lo stesso nome
+- Icon e Splash
+- Fix bug
+- Modifica di tutte le call da GET a POST
+- Modifica servizi PHP per ricervere request POST

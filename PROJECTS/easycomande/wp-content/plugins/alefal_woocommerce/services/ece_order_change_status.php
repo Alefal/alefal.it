@@ -6,8 +6,8 @@ $eceResultArray		= array();
 $eceOutputArray 	= array();
 $eceFinalArray 		= array();
 
-$order          = json_decode($_GET['order'],true);
-$orderStatus    = $_GET['orderStatus'];
+$order          = json_decode($_POST['order'],true);
+$orderStatus    = $_POST['orderStatus'];
 
 //print_r($order);
 //die();

@@ -24,7 +24,8 @@
 
     <ion-item *ngIf="ordineEdit" style="text-align:center" padding>
       <h3>Ordine per <strong>{{ordine.note}}</strong></h3>
-      <h3>Totale <i>{{ordine.total}} &euro;</i> di cui <i>{{ordine.tax_lines[0].total}} &euro;</i> per servizio</h3>
+      <h3 *ngIf="ordine.total != 0">Totale <i>{{ordine.total}} &euro;</i> di cui <i>{{ordine.tax_lines[0].total}} &euro;</i> per servizio</h3>
+      <h3 *ngIf="ordine.total == 0">Totale <i>{{ordine.total}} &euro;</i></h3>
     </ion-item>
 
     <ion-grid *ngIf="!ordineEdit">

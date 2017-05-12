@@ -6,7 +6,7 @@ $eceResultArray     = array();
 $eceOutputArray     = array();
 $eceFinalArray      = array();
 
-$orderId = $_GET['id'];
+$orderId = $_POST['id'];
 
 if(isset($orderId)) {
 

@@ -8,7 +8,7 @@ $eceFinalArray      = array();
 
 $lineItemsArray     = array();
 
-$order = json_decode($_GET['order'],true);
+$order = json_decode($_POST['order'],true);
 $id = $order['id'];
 
 //print_r($order['line_items']);

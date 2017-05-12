@@ -1,0 +1,4 @@
+\Android\sdk\tools\templates\gradle\wrapper NOT FOUND quando viene lanciata l'app sul devices...
+
+estrarre il file templates.zip nella directory
+\Android\sdk\tools\

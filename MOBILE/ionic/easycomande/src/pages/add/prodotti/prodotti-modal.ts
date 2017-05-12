@@ -104,6 +104,7 @@ export class ProdottiModal {
 }
 
 @Component({
+  selector: 'popover',
   template: `
     <ion-card>
       <ion-card-header>

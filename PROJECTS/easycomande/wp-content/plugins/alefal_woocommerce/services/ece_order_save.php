@@ -9,7 +9,7 @@ $eceFinalArray      = array();
 $lineItemsArray     = array();
 $shipItemsArray     = array();
 
-$order = json_decode($_GET['order'],true);
+$order = json_decode($_POST['order'],true);
 //print '<pre>';
 //print_r($order);
 //print '</pre>';
