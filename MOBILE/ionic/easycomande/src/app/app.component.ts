@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { LoginPage } from '../pages/login/login';
 import { HomePage } from '../pages/home/home';
+import { TabsPage } from '../pages/tabs/tabs';
 
 import { HttpService } from '../providers/http-service';
 
@@ -12,7 +13,8 @@ import { HttpService } from '../providers/http-service';
   templateUrl: 'app.html'
 })
 export class EasyComandeApp {
-  rootPage: any = HomePage;
+  //rootPage: any = HomePage;
+  rootPage:any = TabsPage;
 
   categories: any;
   products: any;

@@ -1,11 +1,15 @@
 <ion-header>
-
-  <ion-navbar color="primary">
-    <ion-title>Menu</ion-title>
+  <ion-navbar color="dark">
+    <ion-title>Easy Comande (v.1.0.4)</ion-title>
+    <!--
+    <ion-buttons end>
+      <button ion-button icon-only (click)="logout()">
+        <ion-icon name="power"></ion-icon>
+      </button>
+    </ion-buttons>
+    -->
   </ion-navbar>
-
 </ion-header>
-
 
 <ion-content>
 
@@ -31,5 +35,9 @@
       </ion-item>
     </ion-list>
   </div>
+
+  <ion-fab right bottom>
+    <button padding ion-fab (click)="dataRefresh()" color="dark" style="margin-bottom:15px;"><ion-icon name="refresh"></ion-icon></button>
+  </ion-fab>
 
 </ion-content>

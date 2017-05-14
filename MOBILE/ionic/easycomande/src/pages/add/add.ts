@@ -3,7 +3,8 @@ import { NavController, NavParams, LoadingController, ModalController, ViewContr
 
 import { HttpService }          from '../../providers/http-service';
 
-import { HomePage }          from '../home/home';
+import { HomePage }             from '../home/home';
+import { TabsPage }             from '../tabs/tabs';
 import { ComandePage }          from '../comande/comande';
 
 import { ProdottiModal }        from './prodotti/prodotti-modal';
@@ -436,7 +437,7 @@ export class AddPage {
           }
 
           if(!this.ordineEdit) {
-            this.navCtrl.setRoot(HomePage);
+            this.navCtrl.setRoot(TabsPage);
           } else {
             this.dismiss();
           }

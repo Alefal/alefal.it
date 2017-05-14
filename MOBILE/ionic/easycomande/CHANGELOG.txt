@@ -36,3 +36,11 @@ ionic-plugin-keyboard 2.2.1 "Keyboard"
 - Fix bug
 - Modifica di tutte le call da GET a POST
 - Modifica servizi PHP per ricervere request POST
+
+=== Vers. 1.0.4 ===
+- Struttura a TABS con "Comande" e "Menu"
+- Eliminazione della "Login" e della "Home"
+- Funzionalità "Refresh" nella pagina "Menu"
+- Funzionalità "Add" nella pagina "Comande"
+- Colore header "dark"
+- Modifiche all'ordine solo se non è "completed"

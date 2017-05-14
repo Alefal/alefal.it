@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar color="primary">
+  <ion-navbar color="dark">
     <ion-buttons left>
       <button ion-button icon-only (click)="dismiss()">
         <ion-icon ios="ios-close" md="md-close"></ion-icon>
@@ -15,8 +15,8 @@
   <ion-fab top right edge>
     <button ion-fab mini color="dark"><ion-icon name="ios-arrow-down"></ion-icon></button>
     <ion-fab-list>
-      <button ion-fab (click)="editOrder(ordine)"><ion-icon name="create"></ion-icon></button>
-      <button ion-fab (click)="addNote(ordine.id)"><ion-icon name="list"></ion-icon></button>
+      <button *ngIf="ordine.status != 'completed'" ion-fab (click)="editOrder(ordine)"><ion-icon name="create"></ion-icon></button>
+      <button *ngIf="ordine.status != 'completed'" ion-fab (click)="addNote(ordine.id)"><ion-icon name="list"></ion-icon></button>
       <button ion-fab (click)="showNote(ordine.id)"><ion-icon name="eye"></ion-icon></button>
       <button ion-fab (click)="deleteOrder(ordine.id)"><ion-icon name="trash"></ion-icon></button>
     </ion-fab-list>
@@ -53,7 +53,8 @@
     </ion-item>
 
     <ion-item *ngFor="let prod of ordine.line_items">
-      <ion-icon name="remove-circle" color="danger" item-left (click)="deleteProduct(ordine.id,prod)"></ion-icon>
+      <ion-icon *ngIf="ordine.status != 'completed'" name="remove-circle" color="danger" item-left (click)="deleteProduct(ordine.id,prod)"></ion-icon>
+      <ion-icon *ngIf="ordine.status == 'completed'" name="checkmark" color="secondary" item-left></ion-icon>
       <h2>{{prod.quantity}} x {{prod.name}}</h2>
       <ion-note item-right>
         <em>&euro; {{prod.quantity * prod.price}}</em>
@@ -66,7 +67,8 @@
     </ion-item>
 
     <ion-item *ngFor="let ship of ordine.shipping_lines">
-      <ion-icon name="remove-circle" color="danger" item-left (click)="deleteShip(ordine.id,ship)"></ion-icon>
+      <ion-icon *ngIf="ordine.status != 'completed'" name="remove-circle" color="danger" item-left (click)="deleteShip(ordine.id,ship)"></ion-icon>
+      <ion-icon *ngIf="ordine.status == 'completed'" name="checkmark" color="secondary" item-left></ion-icon>
       <h2>{{ship.method_title}}</h2>
       <ion-note item-right>
         <em>&euro; {{ship.total}}</em>

@@ -39,7 +39,7 @@ export class OrdinePage {
     }, 1);
 
     this.ordine = params.get('ordine');
-    console.log('constructor: '+this.ordine);
+    console.log('%o', this.ordine);
   }
 
   ionViewDidLoad() {
@@ -151,20 +151,16 @@ export class OrdinePage {
         console.log('res: ' + JSON.stringify(res));
 
         if (res[0].response[0].result == 'OK') {
-
           let noteComplete: string = '';
-          for (let prod of res[0].output) {
 
-            //var d = new Date(prod['created_at']);
-            //var datestring = d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear() + " ore " + d.getHours() + ":" + d.getMinutes();
-
-            //let nData: string = datestring;
-            let nMessage: string = prod['note'];
-
-            //noteComplete += nData + '<br />' + nMessage + '<br /><hr /><br />';
-            noteComplete += nMessage + '<br /><hr /><br />';
-
+          if(res[0].output == '') {
+            noteComplete = 'Nessuna nota per l\'ordine'; 
+          } else {
+            for (let prod of res[0].output) {
+              let nMessage: string = prod['note'];
+            }
           }
+          
           let alert = this.alertCtrl.create();
           alert.setTitle('Note');
           alert.setMessage(noteComplete);

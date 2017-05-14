@@ -4,7 +4,10 @@ import { App, NavController, NavParams, LoadingController, ModalController } fro
 import { HttpService }    from '../../providers/http-service';
 
 import { Ordine }         from '../../models/ordine';
-import { OrdinePage }    from './ordini/ordine';
+import { OrdinePage }     from './ordini/ordine';
+
+import { LoginPage }    from '../login/login';
+import { AddPage }      from '../add/add'
 
 @Component({
   selector: 'page-comande',
@@ -98,6 +101,16 @@ export class ComandePage {
       ordine: ordine
     });
     */
+  }
+
+  navigate(page) {
+    let modal = this.modalCtrl.create(AddPage);
+    modal.present();
+    modal.onDidDismiss(data => {});
+  }
+  logout() {
+    console.log('logout');
+    this.navCtrl.setRoot(LoginPage);
   }
 
 }

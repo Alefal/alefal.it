@@ -1,11 +1,15 @@
 <ion-header>
-
-  <ion-navbar color="primary">
-    <ion-title>Comande</ion-title>
+  <ion-navbar color="dark">
+    <ion-title>Easy Comande (v.1.0.4)</ion-title>
+    <!--
+    <ion-buttons end>
+      <button ion-button icon-only (click)="logout()">
+        <ion-icon name="power"></ion-icon>
+      </button>
+    </ion-buttons>
+    -->
   </ion-navbar>
-
 </ion-header>
-
 
 <ion-content>
 
@@ -33,5 +37,9 @@
   <h3 *ngIf="orders?.length < 0" padding>
     Nessuna ordinazione presente
   </h3>
+
+  <ion-fab right bottom>
+    <button padding ion-fab (click)="navigate('Add')" color="dark" style="margin-bottom:15px;"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
 
 </ion-content>

@@ -6,6 +6,7 @@ import { HttpModule }                                 from '@angular/http';
 import { EasyComandeApp }   from './app.component';
 import { HttpService }      from '../providers/http-service';
 
+import { TabsPage }         from '../pages/tabs/tabs';
 import { LoginPage }        from '../pages/login/login';
 import { HomePage }         from '../pages/home/home';
 import { ComandePage }      from '../pages/comande/comande';
@@ -23,6 +24,7 @@ import { SplashScreen }     from '@ionic-native/splash-screen';
   declarations: [
     EasyComandeApp,
     LoginPage,
+    TabsPage,
     HomePage,
     ComandePage,
     MenuPage,
@@ -40,6 +42,7 @@ import { SplashScreen }     from '@ionic-native/splash-screen';
   entryComponents: [
     EasyComandeApp,
     LoginPage,
+    TabsPage,
     HomePage,
     ComandePage,
     MenuPage,
