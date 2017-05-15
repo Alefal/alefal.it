@@ -6,7 +6,7 @@ import { Prodotto } from '../../../models/prodotto';
 import { Ship }     from '../../../models/ship';
 import { Nota }     from '../../../models/nota';
 
-import { ComandePage }    from '../comande';
+//import { ComandePage }    from '../comande';
 import { AddPage }    from '../../add/add';
 
 import { HttpService } from '../../../providers/http-service';

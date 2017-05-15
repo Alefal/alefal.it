@@ -2,3 +2,8 @@
 
 estrarre il file templates.zip nella directory
 \Android\sdk\tools\
+
+
+Se ci sono problemi con plugins NATIVE ciò dipende dalle versioni:
+npm uninstall --save @ionic-native/core
+npm install --save @ionic-native/core@latest

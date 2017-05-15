@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
-import { App, NavController, NavParams, LoadingController, ModalController } from 'ionic-angular';
+import { Component, ViewChild  } from '@angular/core';
+import { App, NavController, NavParams, LoadingController, ModalController, Content } from 'ionic-angular';
 
-import { HttpService }    from '../../providers/http-service';
+import { HttpService }          from '../../providers/http-service';
+import { ConnectivityService }  from '../../providers/connectivity-service';
 
-import { Ordine }         from '../../models/ordine';
-import { OrdinePage }     from './ordini/ordine';
+import { Ordine }           from '../../models/ordine';
+import { OrdinePage }       from './ordini/ordine';
 
-import { LoginPage }    from '../login/login';
-import { AddPage }      from '../add/add'
+import { LoginPage }        from '../login/login';
+import { AddPage }          from '../add/add'
 
 @Component({
   selector: 'page-comande',
@@ -25,17 +26,65 @@ export class ComandePage {
   errorMessage: string;
   errorMessageView: any;
 
+  @ViewChild(Content) content: Content;
+
+  private tabbarHeight: string;
+  private headerHeight: string;
+  private contentBox;
+
+  networkFound: any;
+
   constructor(
     public navCtrl: NavController,
     public params: NavParams, 
     private httpService: HttpService,
     public loadingCtrl: LoadingController,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController,
+    public connectivityService: ConnectivityService
   ) {}
 
   ionViewDidLoad() {
     console.log("ionViewDidLoad");
+
+    this.networkFound = this.connectivityService.connectivityFound;
+
+    if(this.networkFound) {
+      this.loadData();
+    } else {
+      this.connectivityService.shoConnectionInfo('Connessione assente.');
+    }
+  }
+
+  /*** Hide HEADER
+  ionViewDidEnter() {
+    this.contentBox = document.querySelector(".scroll-content")['style'];
+    this.tabbarHeight = this.contentBox.marginTop;
+
+    let headerMarginTmp: number = parseInt(this.tabbarHeight.substring(0,this.tabbarHeight.length-2)) / 2;
+    this.headerHeight = headerMarginTmp+'px'; //TODO: recuperare valore cioè la metà di tabbarHeight
+    console.log('tabBarHeight: '+this.tabbarHeight+' | '+this.headerHeight);
+  }
+
+  scrollingFun(e) {
+    //console.log("scrollingFun: "+e.scrollTop+' | '+this.content.getContentDimensions().contentTop);
+    if (e.scrollTop > 25) {
+      console.log('scrollingFun - IF');
+      document.querySelector('.header')['style'].display = 'none';
+      document.querySelector('.tabbar')['style'].top = '0';
+      this.contentBox.marginTop = this.headerHeight;
+    } else {
+      console.log('scrollingFun - ELSE');
+      document.querySelector('.header')['style'].display = 'block';
+      document.querySelector('.tabbar')['style'].top = this.headerHeight;
+      this.contentBox.marginTop = this.tabbarHeight;
+    }
+  }
+  ***/
+
+  doRefresh(refresher) {
+    console.log("ionViewDidLoad");
     this.loadData();
+    refresher.complete();
   }
 
   loadData() {

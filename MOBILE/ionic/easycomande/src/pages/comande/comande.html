@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar color="dark">
-    <ion-title>Easy Comande (v.1.0.4)</ion-title>
+    <ion-title>Easy Comande (v.1.0.5)</ion-title>
     <!--
     <ion-buttons end>
       <button ion-button icon-only (click)="logout()">
@@ -11,8 +11,20 @@
   </ion-navbar>
 </ion-header>
 
+<!-- Hide HEADER
+<ion-content (ionScroll)="scrollingFun($event)">
+-->
 <ion-content>
 
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  
   <!--
   <ion-searchbar (ionInput)="getItems($event)" (ionClear)="onCancel($event)" placeholder="Ricerca numero ordine"></ion-searchbar>
   -->
@@ -38,7 +50,7 @@
     Nessuna ordinazione presente
   </h3>
 
-  <ion-fab right bottom>
+  <ion-fab right bottom *ngIf="networkFound">
     <button padding ion-fab (click)="navigate('Add')" color="dark" style="margin-bottom:15px;"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
 
