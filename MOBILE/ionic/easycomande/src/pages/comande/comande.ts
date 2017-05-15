@@ -32,7 +32,7 @@ export class ComandePage {
   private headerHeight: string;
   private contentBox;
 
-  networkFound: any;
+  networkFound: boolean = false;
 
   constructor(
     public navCtrl: NavController,
@@ -51,7 +51,7 @@ export class ComandePage {
     if(this.networkFound) {
       this.loadData();
     } else {
-      this.connectivityService.shoConnectionInfo('Connessione assente.');
+      this.connectivityService.showConnectionInfo('Nessuna connessione di rete :-( ');
     }
   }
 
