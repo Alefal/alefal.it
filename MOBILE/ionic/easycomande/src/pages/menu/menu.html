@@ -1,13 +1,16 @@
 <ion-header>
   <ion-navbar color="dark">
     <ion-title>Easy Comande (v.1.0.5)</ion-title>
-    <!--
+
     <ion-buttons end>
-      <button ion-button icon-only (click)="logout()">
-        <ion-icon name="power"></ion-icon>
+      <button ion-button icon-only *ngIf="connectivityService.connectivityFound" (click)="connectivityService.showConnectionInfo('Connessione ok')">
+        <ion-icon name="ios-wifi"></ion-icon>
+      </button>
+      <button ion-button icon-only *ngIf="!connectivityService.connectivityFound" (click)="connectivityService.showConnectionInfo('Connessione assente. Alcune operazioni non sono disponibili!')">
+        <ion-icon name="information-circle"></ion-icon>
       </button>
     </ion-buttons>
-    -->
+
   </ion-navbar>
 </ion-header>
 
@@ -36,7 +39,7 @@
     </ion-list>
   </div>
 
-  <ion-fab right bottom>
+  <ion-fab right bottom *ngIf="connectivityService.connectivityFound">
     <button padding ion-fab (click)="dataRefresh()" color="dark" style="margin-bottom:15px;"><ion-icon name="refresh"></ion-icon></button>
   </ion-fab>
 

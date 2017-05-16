@@ -157,7 +157,13 @@ export class OrdinePage {
             noteComplete = 'Nessuna nota per l\'ordine'; 
           } else {
             for (let prod of res[0].output) {
+              //var d = new Date(prod['created_at']);
+              //var datestring = d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear() + " ore " + d.getHours() + ":" + d.getMinutes();
+              //let nData: string = datestring;
               let nMessage: string = prod['note'];
+
+              //noteComplete += nData + '<br />' + nMessage + '<br /><hr /><br />';
+              noteComplete += nMessage + '<br /><hr /><br />';
             }
           }
           

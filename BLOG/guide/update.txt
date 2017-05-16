@@ -19,6 +19,18 @@ $ npm install npm@latest -g
 $ npm -v
 4.5.0
 
+$ npm list ionic-native
+-- (empty)
+$ npm install --save @ionic-native/core@latest
+-- @ionic-native/core@3.8.0
+
+    ____________________________________
+   │                                    │      
+   │  Update available 4.5.0 → 4.6.1    │
+   │     Run npm i -g npm to update     │
+   │____________________________________│
+
+
 === SE NON INSTALLA ===
 npm uninstall ionic -g
 npm uninstall cordova -g

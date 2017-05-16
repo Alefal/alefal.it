@@ -32,8 +32,6 @@ export class ComandePage {
   private headerHeight: string;
   private contentBox;
 
-  networkFound: boolean = false;
-
   constructor(
     public navCtrl: NavController,
     public params: NavParams, 
@@ -46,9 +44,8 @@ export class ComandePage {
   ionViewDidLoad() {
     console.log("ionViewDidLoad");
 
-    this.networkFound = this.connectivityService.connectivityFound;
 
-    if(this.networkFound) {
+    if(this.connectivityService.connectivityFound) {
       this.loadData();
     } else {
       this.connectivityService.showConnectionInfo('Nessuna connessione di rete :-( ');

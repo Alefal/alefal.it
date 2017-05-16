@@ -1,9 +1,27 @@
+=== gradle ===
 \Android\sdk\tools\templates\gradle\wrapper NOT FOUND quando viene lanciata l'app sul devices...
 
 estrarre il file templates.zip nella directory
 \Android\sdk\tools\
 
-
+=== ionic native ===
 Se ci sono problemi con plugins NATIVE ciò dipende dalle versioni:
 npm uninstall --save @ionic-native/core
 npm install --save @ionic-native/core@latest
+
+=== Optimize Ionic 2 App for Production ===
+app/main.ts
+
+<code>
+	import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+	import {enableProdMode} from '@angular/core';
+
+	import { AppModule } from './app.module';
+
+	// this is the magic wand
+	enableProdMode();
+
+	platformBrowserDynamic().bootstrapModule(AppModule);
+</code>
+
+$ ionic build android --prod --release

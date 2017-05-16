@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController, ModalController } from 'ionic-angular';
 
 import { HttpService }          from '../../providers/http-service';
+import { ConnectivityService }  from '../../providers/connectivity-service';
 
 import { LoginPage }    from '../login/login';
 import { AddPage }      from '../add/add'
@@ -28,12 +29,19 @@ export class MenuPage {
     private httpService: HttpService,
     public loadingCtrl: LoadingController,
     public modalCtrl: ModalController,
+    public connectivityService: ConnectivityService
   ) { 
     this.categoryName = params.get('categoriaNome');
 
     //Dati NON presenti in memoria: li recupero dal server
     if(localStorage.getItem('categories') === null) {
-      this.loadCategories();
+
+      if(this.connectivityService.connectivityFound) {
+        this.loadCategories();
+      } else {
+        this.connectivityService.showConnectionInfo('Nessuna connessione di rete :-( ');
+      }
+
     } else {
       this.categories = JSON.parse(localStorage.getItem('categories'));
       console.log('res -> '+this.categories[0].name);
