@@ -18,20 +18,31 @@ $order = [
     'order' => [
         'note' => 'Tavolo 1, 2 coperti',
         'status' => 'pending',
-        //'customer_id' => 9,
+        'customer_id' => 0,
         //'total_tax' => 0.00, <- TODO: servizio 10%
         'line_items' => [
             [
                 //'id' => 47,             //Numero della riga del LINE ITEM; per eliminare una riga 'product_id' => null
                 'product_id' => 161,
-                'quantity' => 5,
-                'meta' => [
+                'quantity' => 1,
+                'meta_data' => [
                     [
-                        'key' => 'note',
-                        'value' => 'descrizione della nota',
-                        'label' => 'note',
+                        'label' => 'Nota',
+                        'key' => 'Nota',
+                        'value' => 'Notaaaaaaaaaaaaaaaaaa'
+                    ]
+                ],
+                //'variation_id' => 1,
+                'variations' => [
+                    'pa_color' => 'Black'
+                ]
+                /*
+                'variations' => [
+                    [
+                        'pa_nota' => 'notaaaaaaaaaaaaaaaa',
                     ]
                 ]
+                */
             ]
         ],
         'shipping_lines' => [
@@ -86,7 +97,7 @@ try {
     //$eceGetCallArray = $woocommerce->products->get(null, array('filter[name]' => 'Test Product'));
     //$eceGetCallArray = $woocommerce->products->get(null, array( 'search' => 'Test Product'));
     
-    $eceGetCallArray = $woocommerce->orders->get(232);
+    $eceGetCallArray = $woocommerce->orders->get();
     //$eceGetCallArray = $woocommerce->orders->create($order);
     //$eceGetCallArray = $woocommerce->orders->update(212,$order);
     //$eceGetCallArray = $woocommerce->orders->delete(118,true);
