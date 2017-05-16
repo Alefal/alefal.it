@@ -23,6 +23,8 @@ import { ProdottiModal, PopoverPage }    from '../pages/add/prodotti/prodotti-mo
 
 //import { AppProviders }     from './app.providers';
 
+import { OrderByPipe }      from '../pipes/order-by-pipe';
+
 @NgModule({
   declarations: [
     EasyComandeApp,
@@ -35,6 +37,7 @@ import { ProdottiModal, PopoverPage }    from '../pages/add/prodotti/prodotti-mo
     OrdinePage,
     ProdottiModal,
     PopoverPage,
+    OrderByPipe
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar color="dark">
-    <ion-title>Easy Comande (v.1.0.5)</ion-title>
+    <ion-title>Easy Comande (v.1.0.6)</ion-title>
 
     <ion-buttons end>
       <button ion-button icon-only *ngIf="connectivityService.connectivityFound" (click)="connectivityService.showConnectionInfo('Connessione ok')">
@@ -17,7 +17,7 @@
 <ion-content>
 
   <ion-segment>
-    <ion-segment-button *ngFor="let cat of categories" (click)="loadData(cat.name)" [class.active]="cat.name == categoryName">
+    <ion-segment-button *ngFor="let cat of categories  | orderBy:'id'" (click)="loadData(cat.name)" [class.active]="cat.name == categoryName">
       {{cat.name}}
     </ion-segment-button>
   </ion-segment>
@@ -25,7 +25,7 @@
   <div>
     <ion-list>
       <ion-item><h3>{{categoryName}}</h3></ion-item>
-      <ion-item *ngFor="let prod of products">
+      <ion-item *ngFor="let prod of products | orderBy:'id'">
         <ion-thumbnail item-left>
           <img src="{{prod.images[0].src}}" />
         </ion-thumbnail>

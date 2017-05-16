@@ -48,14 +48,14 @@
   </ion-list>
 
   <ion-segment>
-    <ion-segment-button *ngFor="let cat of categories" (click)="modalProducts(cat.name)" [class.active]="cat.name == categoryName">
+    <ion-segment-button *ngFor="let cat of categories | orderBy:'id'" (click)="modalProducts(cat.name)" [class.active]="cat.name == categoryName">
       {{cat.name}}
     </ion-segment-button>
   </ion-segment>
 
   <ion-list>
     <!-- PRODUCTS -->
-    <ion-item *ngFor="let prod of products">
+    <ion-item *ngFor="let prod of products | orderBy:'id'">
       <ion-icon name="close" color="danger" item-left (click)="removeProduct(prod.title)" *ngIf="prod.id == 0"></ion-icon>
       <!--
       <ion-icon name="remove-circle" color="danger" item-left (click)="deleteProduct(ordine.id,prod)" *ngIf="prod.id != 0"></ion-icon>

@@ -56,3 +56,6 @@ ionic-plugin-keyboard 2.2.1 "Keyboard"
 - Metodi "getOrders" "getOrderDelete" "getOrderNote" "getOrderNoteDelete" in GET
 - Aggiunto url "192.168.1.100"
 - Ottimizzazione per PROD (vedi main.ts) e "ionic build android --prod --release"
+
+=== Vers. 1.0.6 ===
+- Pipe per ordinamento lista "categorie" e "prodotti"
