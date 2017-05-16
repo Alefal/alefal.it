@@ -50,3 +50,9 @@ ionic-plugin-keyboard 2.2.1 "Keyboard"
 - "Pull to refresh" nella pagina delle "Comande"
 - Aggiunto plugin "cordova-plugin-network-information"
 - Aggiornato "@ionic-native/core" alla versione "^3.8.0"
+- Check Network: "add" e "refresh" non disponibile se offline
+- Check Network: bottone nell'header per indicare se c'è connessione o meno con messaggio
+- Fix bug "view note"
+- Metodi "getOrders" "getOrderDelete" "getOrderNote" "getOrderNoteDelete" in GET
+- Aggiunto url "192.168.1.100"
+- Ottimizzazione per PROD (vedi main.ts) e "ionic build android --prod --release"

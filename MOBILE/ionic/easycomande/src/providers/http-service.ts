@@ -19,6 +19,7 @@ export class HttpService {
         console.log('getCallHttp: ' + call + ' | ' + username + ' | ' + password);
 
         //let host = 'http://localhost/alefal.it/PROJECTS/easycomande';
+        //let host = 'http://192.168.1.100/alefal.it/PROJECTS/easycomande';
         let host = 'http://www.amalficoastapps.it/demo/easycomande';
 
         let url     = '';
@@ -48,9 +49,9 @@ export class HttpService {
 
         //ORDERS
         else if (call == 'getOrders') {
-            //url = '/wp-content/plugins/alefal_woocommerce/services/ece_orders.php?id=' + id;
-            url = '/wp-content/plugins/alefal_woocommerce/services/ece_orders.php';
-            body.set('id',id);
+            url = '/wp-content/plugins/alefal_woocommerce/services/ece_orders.php?id=' + id;
+            //url = '/wp-content/plugins/alefal_woocommerce/services/ece_orders.php';
+            //body.set('id',id);
         }
         else if (call == 'getOrderSave') {
             //url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_save.php?order=' + JSON.stringify(object);
@@ -58,9 +59,9 @@ export class HttpService {
             body.set('order',JSON.stringify(object));
         }
         else if (call == 'getOrderDelete') {
-            //url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_delete.php?id=' + id;
-            url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_delete.php';
-            body.set('id',id);
+            url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_delete.php?id=' + id;
+            //url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_delete.php';
+            //body.set('id',id);
         }
         else if (call == 'getOrderDeleteLineItem') {
             //url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_delete_line_item.php?order=' + JSON.stringify(object);
@@ -76,9 +77,9 @@ export class HttpService {
 
         //ORDER NOTES
         else if (call == 'getOrderNote') {
-            //url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_note.php?id=' + id;
-            url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_note.php';
-            body.set('id',id);
+            url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_note.php?id=' + id;
+            //url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_note.php';
+            //body.set('id',id);
         }
         else if (call == 'getOrderNoteSave') {
             //url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_note_save.php?id=' + id + '&orderNotes=' + JSON.stringify(object);
@@ -87,10 +88,9 @@ export class HttpService {
             body.set('orderNotes',JSON.stringify(object));
         }
         else if (call == 'getOrderNoteDelete') {
-            //url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_note_delete.php?id=' + id + '&orderNotes=' + JSON.stringify(object);
-            url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_note_delete.php';
-            body.set('id',id);
-            body.set('orderNotes',JSON.stringify(object));
+            url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_note_delete.php?id=' + id;
+            //url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_note_delete.php';
+            //body.set('id',id);
         }
 
         console.log('URL: ' + host + '' + url);
