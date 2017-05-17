@@ -129,7 +129,7 @@ export class AddPage {
         let pPrice  = data.action.price;
         let pDescr  = data.action.description;
 
-        let prodotto = new Prodotto(pId,pProdId,pTitle,pPrice,pDescr,1);
+        let prodotto = new Prodotto(pId,pProdId,pTitle,pPrice,pDescr,1,'');
 
         this.products.push(prodotto);
         this.totaleOrdine = parseFloat(this.totaleOrdine) + parseFloat(pPrice);
@@ -159,6 +159,44 @@ export class AddPage {
     console.log('totCoperti -> '+this.totCoperti);
     this.totaleOrdine = totOrdine + this.totCoperti;
     */
+  }
+
+  addMetaProduct(prod:Prodotto) {
+    console.log('%ò',prod);
+
+    let prompt = this.alertCtrl.create({
+      title: 'Nota',
+      message: 'Aggiungi una nota al piatto',
+      inputs: [
+        {
+          name: 'notaPiatto',
+          placeholder: 'Nota'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancella',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Salva',
+          handler: data => {
+            console.log('Saved clicked: '+data.notaPiatto);
+            prod.setMeta(data.notaPiatto);
+
+            console.log('%ò',prod);
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
+
+  removeMetaProduct(prod:Prodotto) {
+    console.log('%ò',prod);
+    prod.setMeta('');
   }
 
   removeProduct(prodTitle) {

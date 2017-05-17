@@ -5,6 +5,7 @@ export class Prodotto {
   public price: number;
   public description: string;
   public quantity: number; 
+  public meta: string = '';
 
   constructor(
       id: number, 
@@ -12,7 +13,8 @@ export class Prodotto {
       title: string, 
       price: number, 
       description: string, 
-      quantity: number) {
+      quantity: number,
+      meta: string) {
 
     this.id = id;
     this.product_id = product_id;
@@ -20,9 +22,14 @@ export class Prodotto {
     this.price = price;
     this.description = description;
     this.quantity = quantity;  
+    this.meta = meta;
   }
 
   public getProdId(): string {
     return this.id+'';
+  }
+
+  public setMeta(meta) {
+    this.meta = meta;
   }
 }

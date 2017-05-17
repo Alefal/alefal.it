@@ -242,7 +242,7 @@ export class OrdinePage {
     console.log('deleteProduct ordine: '+ordineId);
     console.log('%o',prod);
 
-    let prodotto = new Prodotto(prod.id,null,'',prod.price,prod.description,1);
+    let prodotto = new Prodotto(prod.id,null,'',prod.price,prod.description,1,'');
 
     let ordine = new Ordine(
       ordineId,         //this.id

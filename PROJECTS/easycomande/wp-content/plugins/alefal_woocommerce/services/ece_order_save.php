@@ -1,4 +1,5 @@
 <?php
+require_once('../../../../wp-config.php');
 require_once( 'ece_settings.php' );
 
 $eceGetCallArray    = array();
@@ -8,6 +9,7 @@ $eceFinalArray      = array();
 
 $lineItemsArray     = array();
 $shipItemsArray     = array();
+$lineItemsMetaArray = array();
 
 $order = json_decode($_POST['order'],true);
 //print '<pre>';
@@ -22,8 +24,9 @@ foreach ($order['line_items'] as $item) {
         'product_id'    => $item['product_id'],
         'quantity'      => $item['quantity']
     ); 
-}
-//print_r($lineItemsArray);
+    array_push($lineItemsMetaArray, $item['meta']);
+};
+//rint_r($lineItemsMetaArray);
 //die();
 
 foreach ($order['shipping_lines'] as $item) {
@@ -44,7 +47,7 @@ try {
     );
 
     $woocommerce = new WC_API_Client( $store_url, $consumer_key, $consumer_secret, $options );
-    //print '<pre>';
+    print '<pre>';
     if($id == 0) {
         //INSERT
         $orderArray = [
@@ -70,11 +73,24 @@ try {
                 */
             ]
         ];
-        //print_r($orderArray);
-        //die();
+        print_r($orderArray);
+        die();
 
-        $responseAfterSave = $woocommerce->orders->create($orderArray);
-        $orderIdSave = $responseAfterSave->order->id;
+        $responseAfterSave  = $woocommerce->orders->create($orderArray);
+        $orderIdSave        = $responseAfterSave->order->id;
+        $orderLineItemSaved = $responseAfterSave->order->line_items;
+
+        //TODO: check if meta exist...
+        foreach ($orderLineItemSaved as $key=>$item) {
+            $item_id    = $item->id;
+            $meta_key   = 'note:';
+            $meta_value = $lineItemsMetaArray[$key];
+            $unique     = false;
+            $data_store = WC_Data_Store::load( 'order-item' );
+            $data_store->add_metadata( $item_id, $meta_key, $meta_value, $unique );
+            $cache_key = WC_Cache_Helper::get_cache_prefix( 'order-items' ) . 'object_meta_' . $item_id;
+            wp_cache_delete( $cache_key, 'order-items' );
+        }
         
         //print_r($responseAfterSave);
         //die();
@@ -109,6 +125,7 @@ try {
             'message'   => 'Ordine salvato correttamente'
         ); 
     }
+    print '</pre>';
 
 } catch ( WC_API_Client_Exception $e ) {
     $eceResultArray[] = array(

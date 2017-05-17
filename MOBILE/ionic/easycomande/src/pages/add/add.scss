@@ -37,8 +37,18 @@ page-add {
     ion-card {
        background-color: #defb97 !important;
     }
+    ion-card.prodMetaCard {
+       margin: 0 !important;
+    }
     ion-card-header {
        text-align: right;
+    }
+    .prodMetaCard .card-content-md {
+        padding: 0px 10px 0px 5px;
+    }
+    .prodMeta {
+        padding: 12px;
+        white-space: normal;
     }
 
     [padding] h1:first-child, [padding] h2:first-child, [padding] h3:first-child, [padding] h4:first-child, [padding] h5:first-child, [padding] h6:first-child {

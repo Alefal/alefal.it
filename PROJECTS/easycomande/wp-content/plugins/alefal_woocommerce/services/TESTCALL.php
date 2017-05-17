@@ -20,6 +20,7 @@ $order = [
         'status' => 'pending',
         'customer_id' => 0,
         //'total_tax' => 0.00, <- TODO: servizio 10%
+        /*
         'line_items' => [
             [
                 //'id' => 47,             //Numero della riga del LINE ITEM; per eliminare una riga 'product_id' => null
@@ -36,15 +37,9 @@ $order = [
                 'variations' => [
                     'pa_color' => 'Black'
                 ]
-                /*
-                'variations' => [
-                    [
-                        'pa_nota' => 'notaaaaaaaaaaaaaaaa',
-                    ]
-                ]
-                */
             ]
         ],
+        */
         'shipping_lines' => [
             [
                 'method_id' => 'flat_rate',
@@ -84,7 +79,7 @@ $orderNote = [
 
 try {
 
-	$woocommerce = new WC_API_Client( $store_url, $consumer_key, $consumer_secret, $options );
+    $woocommerce = new WC_API_Client( $store_url, $consumer_key, $consumer_secret, $options );
     
     print '<pre>';
     //$eceGetCallArray = $woocommerce->products->create_category( array( 'product_category' => array( 'name' => 'Test Category' ) ) );
@@ -97,9 +92,9 @@ try {
     //$eceGetCallArray = $woocommerce->products->get(null, array('filter[name]' => 'Test Product'));
     //$eceGetCallArray = $woocommerce->products->get(null, array( 'search' => 'Test Product'));
     
-    $eceGetCallArray = $woocommerce->orders->get();
+    //$eceGetCallArray = $woocommerce->orders->get();
     //$eceGetCallArray = $woocommerce->orders->create($order);
-    //$eceGetCallArray = $woocommerce->orders->update(212,$order);
+    $eceGetCallArray = $woocommerce->orders->update(238,$order);
     //$eceGetCallArray = $woocommerce->orders->delete(118,true);
 
     //$eceGetCallArray = $woocommerce->order_refunds->get(122);
@@ -107,6 +102,23 @@ try {
     
     //$eceGetCallArray = $woocommerce->order_notes->get( 122 );
     //$eceGetCallArray = $woocommerce->order_notes->create(173,$orderNote);
+
+    $orderLineItemSaved = $eceGetCallArray->order->line_items;
+
+    foreach ($orderLineItemSaved as $item) {
+        $item_id    = $item->id;
+        $meta_key   = 'nota';
+        $meta_value = 'hamburger di chianina';
+        $data_store = WC_Data_Store::load( 'order-item' );
+
+        $data_store->add_metadata( $item_id, $meta_key, $meta_value, false );
+        //$data_store->delete_metadata( $item_id, $meta_key, $meta_value, false );
+        
+        $cache_key = WC_Cache_Helper::get_cache_prefix( 'order-items' ) . 'object_meta_' . $item_id;
+        wp_cache_delete( $cache_key, 'order-items' );
+    }
+
+    $eceGetCallArray = $woocommerce->orders->get($eceGetCallArray->order->id);
 
     print_r($eceGetCallArray);
 	print '</pre>';
