@@ -56,6 +56,22 @@
       <ion-icon *ngIf="ordine.status != 'completed'" name="remove-circle" color="danger" item-left (click)="deleteProduct(ordine.id,prod)"></ion-icon>
       <ion-icon *ngIf="ordine.status == 'completed'" name="checkmark" color="secondary" item-left></ion-icon>
       <h2>{{prod.quantity}} x {{prod.name}}</h2>
+
+      <ion-card class="prodMetaCard" *ngFor="let meta of prod.meta">
+        <ion-card-content *ngIf="meta.value != ''">
+          <ion-row>
+            <ion-col col-11 class="prodMeta">
+              {{meta.value}}
+            </ion-col>
+            <ion-col col-1>
+              <!--
+              <ion-icon name="close" color="danger" item-left (click)="removeMetaProduct(prod)"></ion-icon>
+              -->
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+
       <ion-note item-right>
         <em>&euro; {{prod.quantity * prod.price}}</em>
       </ion-note>

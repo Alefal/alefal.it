@@ -3,9 +3,9 @@ import { NavController, NavParams, LoadingController, ModalController, ViewContr
 
 import { HttpService }          from '../../providers/http-service';
 
-import { HomePage }             from '../home/home';
 import { TabsPage }             from '../tabs/tabs';
-import { ComandePage }          from '../comande/comande';
+//import { HomePage }             from '../home/home';
+//import { ComandePage }          from '../comande/comande';
 
 import { ProdottiModal }        from './prodotti/prodotti-modal';
 

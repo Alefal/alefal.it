@@ -1,5 +1,4 @@
 <?php
-require_once('../../../../wp-config.php');
 require_once( 'ece_settings.php' );
 
 $eceGetCallArray    = array();
@@ -26,7 +25,7 @@ foreach ($order['line_items'] as $item) {
     ); 
     array_push($lineItemsMetaArray, $item['meta']);
 };
-//rint_r($lineItemsMetaArray);
+//print_r($lineItemsMetaArray);
 //die();
 
 foreach ($order['shipping_lines'] as $item) {
@@ -47,7 +46,7 @@ try {
     );
 
     $woocommerce = new WC_API_Client( $store_url, $consumer_key, $consumer_secret, $options );
-    print '<pre>';
+    //print '<pre>';
     if($id == 0) {
         //INSERT
         $orderArray = [
@@ -73,14 +72,15 @@ try {
                 */
             ]
         ];
-        print_r($orderArray);
-        die();
+        //print_r($orderArray);
+        //die();
 
         $responseAfterSave  = $woocommerce->orders->create($orderArray);
         $orderIdSave        = $responseAfterSave->order->id;
         $orderLineItemSaved = $responseAfterSave->order->line_items;
 
         //TODO: check if meta exist...
+        require_once('../../../../wp-config.php');
         foreach ($orderLineItemSaved as $key=>$item) {
             $item_id    = $item->id;
             $meta_key   = 'note:';
@@ -125,7 +125,7 @@ try {
             'message'   => 'Ordine salvato correttamente'
         ); 
     }
-    print '</pre>';
+    //print '</pre>';
 
 } catch ( WC_API_Client_Exception $e ) {
     $eceResultArray[] = array(
