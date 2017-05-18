@@ -124,6 +124,27 @@ try {
         $orderLineItemSaved = $responseAfterSave->order->line_items;
 
         //TODO: rivedere algoritmo - FOR(orderLineItemSaved.LENGHT; lineItemsMetaArray.LENGHT; i++)
+
+        //print '-> '.count($orderLineItemSaved).'<br />';
+        //print '-> '.count($lineItemsMetaArray).'<br />';
+
+        require_once('../../../../wp-config.php');
+        $count = 0;
+        for ($i = count($orderLineItemSaved) - 1; $i >= (count($orderLineItemSaved) - count($lineItemsMetaArray)); $i--) {
+            //print '-> '.$orderLineItemSaved[$i]->id.'<br />';
+
+            $item_id    = $orderLineItemSaved[$i]->id;
+            $meta_key   = 'note';
+            $meta_value = $lineItemsMetaArray[$count];
+            $unique     = false;
+            $data_store = WC_Data_Store::load( 'order-item' );
+            $data_store->add_metadata( $item_id, $meta_key, $meta_value, $unique );
+            $cache_key = WC_Cache_Helper::get_cache_prefix( 'order-items' ) . 'object_meta_' . $item_id;
+            wp_cache_delete( $cache_key, 'order-items' );
+
+            $count++;
+        }
+        /*
         require_once('../../../../wp-config.php');
         foreach ($orderLineItemSaved as $key=>$item) {
             $item_id    = $item->id;
@@ -135,6 +156,7 @@ try {
             $cache_key = WC_Cache_Helper::get_cache_prefix( 'order-items' ) . 'object_meta_' . $item_id;
             wp_cache_delete( $cache_key, 'order-items' );
         }
+        */
 
         $eceOutputArray[] = array(        
             'id'        => $id,

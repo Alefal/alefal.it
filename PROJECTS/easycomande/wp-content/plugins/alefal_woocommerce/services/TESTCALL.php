@@ -92,9 +92,9 @@ try {
     //$eceGetCallArray = $woocommerce->products->get(null, array('filter[name]' => 'Test Product'));
     //$eceGetCallArray = $woocommerce->products->get(null, array( 'search' => 'Test Product'));
     
-    //$eceGetCallArray = $woocommerce->orders->get();
+    $eceGetCallArray = $woocommerce->orders->get(329);
     //$eceGetCallArray = $woocommerce->orders->create($order);
-    $eceGetCallArray = $woocommerce->orders->update(238,$order);
+    //$eceGetCallArray = $woocommerce->orders->update(238,$order);
     //$eceGetCallArray = $woocommerce->orders->delete(118,true);
 
     //$eceGetCallArray = $woocommerce->order_refunds->get(122);
