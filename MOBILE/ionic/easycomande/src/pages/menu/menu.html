@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar color="dark">
-    <ion-title>Easy Comande (v.1.0.6)</ion-title>
+    <ion-title>Easy Comande (v.1.0.7)</ion-title>
 
     <ion-buttons end>
       <button ion-button icon-only *ngIf="connectivityService.connectivityFound" (click)="connectivityService.showConnectionInfo('Connessione ok')">
@@ -33,7 +33,7 @@
           <ion-badge color="secondary">{{prod.category}}</ion-badge>
         </h2>
         <h3><i [innerHTML]="prod.description"></i></h3>
-        <ion-badge item-right color="secondary">
+        <ion-badge item-right color="secondary" *ngIf="prod.price != ''">
           <ion-icon name="logo-euro"></ion-icon> {{prod.price}}</ion-badge>
       </ion-item>
     </ion-list>

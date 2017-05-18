@@ -12,7 +12,7 @@ import { AddPage }    from '../../add/add';
 import { HttpService } from '../../../providers/http-service';
 
 @Component({
-  selector: 'ordine',
+  selector: 'ordine-modal',
   templateUrl: 'ordine.html'
 })
 export class OrdinePage {

@@ -61,4 +61,5 @@ ionic-plugin-keyboard 2.2.1 "Keyboard"
 - Pipe per ordinamento lista "categorie" e "prodotti"
 
 === TODO: Vers. 1.0.7 ===
-- Gestione "note" per singolo prodotto e non per intero ordine
+- Gestione "note" per singolo prodotto
+- Fix bug

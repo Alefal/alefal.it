@@ -80,7 +80,9 @@ if ( !defined( 'ABSPATH' ) ) exit;
 								<th class="head-name"><span><?php _e('Product', 'woocommerce-delivery-notes'); ?></span></th>
 								<th class="head-item-price"><span><?php _e('Prezzo', 'woocommerce-delivery-notes'); ?></span></th>
 								<th class="head-quantity"><span><?php _e('Quantity', 'woocommerce-delivery-notes'); ?></span></th>
+								<!--
 								<th class="head-quantity"><span><?php _e('Servizio (10%)', 'woocommerce-delivery-notes'); ?></span></th>
+								-->
 								<th class="head-price"><span><?php _e('Total', 'woocommerce-delivery-notes'); ?></span></th>
 							</tr>
 						</thead>
@@ -127,6 +129,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
 										<td class="product-quantity">
 											<span><?php echo apply_filters( 'wcdn_order_item_quantity', $item['qty'], $item ); ?></span>
 										</td>
+										<!--
 										<td class="product-quantity">
 											<?php
 											$itemWithTax 	= $order->get_item_total($item,true,false);
@@ -136,6 +139,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
 											echo wc_price($itemTax);
 											?>
 										</td>
+										-->
 										<td class="product-price">
 											<span><?php echo $order->get_formatted_line_subtotal( $item ); ?></span>
 										</td>

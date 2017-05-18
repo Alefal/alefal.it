@@ -126,7 +126,7 @@ export class AddPage {
         let pId     = 0;
         let pProdId = data.action.id;
         let pTitle  = data.action.title;
-        let pPrice  = data.action.price;
+        let pPrice  = data.action.price ? data.action.price : 0;
         let pDescr  = data.action.description;
 
         let prodotto = new Prodotto(pId,pProdId,pTitle,pPrice,pDescr,1,'');
@@ -199,8 +199,8 @@ export class AddPage {
     prod.setMeta('');
   }
 
-  removeProduct(prodTitle) {
-    console.log(prodTitle);
+  removeProduct(prod) {
+    console.log('%ò',prod);
 
     let confirm = this.alertCtrl.create({
       title: 'Cancellazione!',
@@ -220,11 +220,11 @@ export class AddPage {
 
             let cont: number = 0;
             for (let prod of this.products) {
-              console.log('Title: '+prod['title']+' | '+prodTitle);
-              if(prod['title'] == prodTitle) {
+              console.log('Title: '+prod['title']+' | '+prod.title);
+              if(prod['title'] == prod.title) {
                 console.log('Elimino: '+cont);
                 this.products.splice(cont,1);
-                return;
+                break;
               }
               cont++;
             }
@@ -232,6 +232,8 @@ export class AddPage {
             //this.products.splice( this.products.indexOf(prodTitle), 1 );
 
             //Ricalcolo totale
+            this.totaleOrdine -= parseFloat(prod.price);
+            /*
             let totOrdine: any = 0;
             for (let prod of this.products) {
               let pPrice: any    = prod['price'];
@@ -241,6 +243,7 @@ export class AddPage {
             }
             console.log('totCoperti -> '+this.totCoperti);
             this.totaleOrdine = totOrdine + this.totCoperti;
+            */
           }
         }
       ]
@@ -346,11 +349,12 @@ export class AddPage {
         {
           text: 'Salva',
           handler: data => {
-            console.log('Saved clicked: '+data.nota);
-            let ship = new Ship(this.shipId,'flat_rate',data.nomePiatto,data.prezzoPiatto);
+            console.log('Piatto speciale: '+JSON.stringify(data));
+            let prezzoPiatto: any = data.prezzoPiatto ? data.prezzoPiatto : 0;
+            let ship = new Ship(this.shipId,'flat_rate',data.nomePiatto,prezzoPiatto);
             this.ships.push(ship);
 
-            this.totaleOrdine += parseFloat(data.prezzoPiatto);
+            this.totaleOrdine = parseFloat(this.totaleOrdine) + parseFloat(prezzoPiatto);
 
             this.shipId = this.shipId + 1;
             console.log('this.shipId: '+this.shipId);
@@ -384,7 +388,7 @@ export class AddPage {
               if(ship['id'] == shipId) {
                 console.log('Elimino: '+cont);
                 this.ships.splice(cont,1);
-                return;
+                break;
               }
               cont++;
             }
@@ -467,17 +471,28 @@ export class AddPage {
         console.log('res: ' + JSON.stringify(res));
 
         if (res[0].response[0].result == 'OK') {
-          let orderIdSave = res[0].output[0].id;
-          //this.saveNote(orderIdSave,JSON.stringify(this.notes));
+          if(res[0].output[0]) {
+            let orderIdSave = res[0].output[0].id;
+            //this.saveNote(orderIdSave,JSON.stringify(this.notes));
 
-          for (let note of this.notes) {
-            this.saveNote(orderIdSave,note);
+            for (let note of this.notes) {
+              this.saveNote(orderIdSave,note);
+            }
+          } else {
+            let alert = this.alertCtrl.create({
+              title: 'Attenzione',
+              subTitle: 'L\'ordinazione non è stata salvata! Prova ad aggiornare i menu e rifai l\'ordinazione',
+              buttons: ['OK']
+            });
+            alert.present();
+            this.loading.dismiss();
+            return false;
           }
 
           if(!this.ordineEdit) {
             this.navCtrl.setRoot(TabsPage);
           } else {
-            this.dismiss();
+            this.loading.dismiss();
           }
         } else {
           this.nothing = 'Nessun dato! Riprovare più tardi.';

@@ -19,7 +19,7 @@
 
         <h2 (click)="addProduct(prod)">
           {{prod.title}}
-          <ion-badge color="dark">
+          <ion-badge color="dark" *ngIf="prod.price != ''">
             <ion-icon name="logo-euro"></ion-icon> {{prod.price}}
           </ion-badge>
         </h2>

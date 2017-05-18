@@ -62,7 +62,7 @@
     </ion-item>
 
     <ion-item *ngFor="let prod of products | orderBy:'id'">
-      <ion-icon name="close" color="danger" item-left (click)="removeProduct(prod.title)" *ngIf="prod.id == 0"></ion-icon>
+      <ion-icon name="close" color="danger" item-left (click)="removeProduct(prod)" *ngIf="prod.id == 0"></ion-icon>
       <ion-icon name="create" color="dark" item-left (click)="addMetaProduct(prod)"></ion-icon>
       
       <h2>{{prod.title}}</h2>

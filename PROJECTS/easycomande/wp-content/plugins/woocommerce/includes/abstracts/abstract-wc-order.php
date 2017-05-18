@@ -1392,12 +1392,19 @@ abstract class WC_Abstract_Order extends WC_Abstract_Legacy_Order {
 	public function get_shipping_to_display( $tax_display = '' ) {
 		$tax_display = $tax_display ? $tax_display : get_option( 'woocommerce_tax_display_cart' );
 
+		//Alessandro
+		//var_dump($this->get_shipping_methods());
+		$shipping = '';
+		foreach ( $this->get_shipping_methods() as $item_shipping ) {
+			$shipping .= '<strong>'.$item_shipping['name'].'</strong>: &euro; '.$item_shipping['total'].' ('.$item_shipping['taxes']['total'][1].')<hr />';
+		}
+
 		if ( $this->get_shipping_total() != 0 ) {
 
 			if ( 'excl' === $tax_display ) {
 
 				// Show shipping excluding tax.
-				$shipping = wc_price( $this->get_shipping_total(), array( 'currency' => $this->get_currency() ) );
+				$shipping .= wc_price( $this->get_shipping_total(), array( 'currency' => $this->get_currency() ) );
 
 				if ( $this->get_shipping_tax() != 0 && $this->get_prices_include_tax() ) {
 					$shipping .= apply_filters( 'woocommerce_order_shipping_to_display_tax_label', '&nbsp;<small class="tax_label">' . WC()->countries->ex_tax_or_vat() . '</small>', $this, $tax_display );
@@ -1405,7 +1412,7 @@ abstract class WC_Abstract_Order extends WC_Abstract_Legacy_Order {
 			} else {
 
 				// Show shipping including tax.
-				$shipping = wc_price( $this->get_shipping_total() + $this->get_shipping_tax(), array( 'currency' => $this->get_currency() ) );
+				$shipping .= wc_price( $this->get_shipping_total() + $this->get_shipping_tax(), array( 'currency' => $this->get_currency() ) );
 
 				if ( $this->get_shipping_tax() != 0 && ! $this->get_prices_include_tax() ) {
 					$shipping .= apply_filters( 'woocommerce_order_shipping_to_display_tax_label', '&nbsp;<small class="tax_label">' . WC()->countries->inc_tax_or_vat() . '</small>', $this, $tax_display );
@@ -1413,7 +1420,7 @@ abstract class WC_Abstract_Order extends WC_Abstract_Legacy_Order {
 			}
 
 			/* translators: %s: shipping method */
-			$shipping .= apply_filters( 'woocommerce_order_shipping_to_display_shipped_via', '&nbsp;<small class="shipped_via">' . sprintf( __( 'via %s', 'woocommerce' ), $this->get_shipping_method() ) . '</small>', $this );
+			//$shipping .= apply_filters( 'woocommerce_order_shipping_to_display_shipped_via', '&nbsp;<small class="shipped_via">' . sprintf( __( 'via %s', 'woocommerce' ), $this->get_shipping_method() ) . '</small>', $this );
 
 		} elseif ( $this->get_shipping_method() ) {
 			$shipping = $this->get_shipping_method();
@@ -1473,7 +1480,7 @@ abstract class WC_Abstract_Order extends WC_Abstract_Legacy_Order {
 	protected function add_order_item_totals_shipping_row( &$total_rows, $tax_display ) {
 		if ( $this->get_shipping_method() ) {
 			$total_rows['shipping'] = array(
-				'label' => __( 'Shipping:', 'woocommerce' ),
+				'label' => __( 'Piatti fuori menu:', 'woocommerce' ),
 				'value'    => $this->get_shipping_to_display( $tax_display ),
 			);
 		}

@@ -34,7 +34,8 @@ export class MenuPage {
     this.categoryName = params.get('categoriaNome');
 
     //Dati NON presenti in memoria: li recupero dal server
-    if(localStorage.getItem('categories') === null) {
+    console.log('localStorage -> '+localStorage.getItem('categories').length);
+    if(localStorage.getItem('categories') === null || localStorage.getItem('categories').length == 2) {
 
       if(this.connectivityService.connectivityFound) {
         this.loadCategories();
@@ -70,6 +71,8 @@ export class MenuPage {
         
         if (res[0].response[0].result == 'OK') {
           this.categories = res[0].output;
+          localStorage.setItem('categories', JSON.stringify(this.categories));
+
           this.loadData(res[0].output[0].name);
         } else {
           this.nothing = 'Nessun dato! Riprovare più tardi.';
@@ -100,6 +103,7 @@ export class MenuPage {
 
             if (res[0].response[0].result == 'OK') {
               this.products = res[0].output;
+              localStorage.setItem(categoriaNome, JSON.stringify(this.products));
             } else {
               this.nothing = 'Nessun dato! Riprovare più tardi.';
             }

@@ -83,7 +83,7 @@ try {
         require_once('../../../../wp-config.php');
         foreach ($orderLineItemSaved as $key=>$item) {
             $item_id    = $item->id;
-            $meta_key   = 'note:';
+            $meta_key   = 'note';
             $meta_value = $lineItemsMetaArray[$key];
             $unique     = false;
             $data_store = WC_Data_Store::load( 'order-item' );
