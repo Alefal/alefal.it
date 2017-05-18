@@ -492,7 +492,7 @@ export class AddPage {
           if(!this.ordineEdit) {
             this.navCtrl.setRoot(TabsPage);
           } else {
-            this.loading.dismiss();
+            this.dismiss();
           }
         } else {
           this.nothing = 'Nessun dato! Riprovare più tardi.';

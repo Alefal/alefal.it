@@ -79,7 +79,7 @@ try {
         $orderIdSave        = $responseAfterSave->order->id;
         $orderLineItemSaved = $responseAfterSave->order->line_items;
 
-        //TODO: check if meta exist...
+        //Se META non esiste viene inserito valore vuoto
         require_once('../../../../wp-config.php');
         foreach ($orderLineItemSaved as $key=>$item) {
             $item_id    = $item->id;
@@ -119,7 +119,23 @@ try {
         //print_r($orderArray);
         //die();
 
-        $woocommerce->orders->update($id,$orderArray);
+        $responseAfterSave  = $woocommerce->orders->update($id,$orderArray);
+        $orderIdSave        = $id;
+        $orderLineItemSaved = $responseAfterSave->order->line_items;
+
+        //TODO: rivedere algoritmo - FOR(orderLineItemSaved.LENGHT; lineItemsMetaArray.LENGHT; i++)
+        require_once('../../../../wp-config.php');
+        foreach ($orderLineItemSaved as $key=>$item) {
+            $item_id    = $item->id;
+            $meta_key   = 'note';
+            $meta_value = $lineItemsMetaArray[$key];
+            $unique     = false;
+            $data_store = WC_Data_Store::load( 'order-item' );
+            $data_store->add_metadata( $item_id, $meta_key, $meta_value, $unique );
+            $cache_key = WC_Cache_Helper::get_cache_prefix( 'order-items' ) . 'object_meta_' . $item_id;
+            wp_cache_delete( $cache_key, 'order-items' );
+        }
+
         $eceOutputArray[] = array(        
             'id'        => $id,
             'message'   => 'Ordine salvato correttamente'
