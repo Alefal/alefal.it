@@ -123,16 +123,17 @@ export class AddPage {
     modal.onDidDismiss(data => {
       console.log('data.action -> '+JSON.stringify(data.action));
       if(data.action != '') {
-        let pId     = 0;
-        let pProdId = data.action.id;
-        let pTitle  = data.action.title;
-        let pPrice  = data.action.price ? data.action.price : 0;
-        let pDescr  = data.action.description;
+        let pId             = 0;
+        let pProdId         = data.action.id;
+        let pTitle          = data.action.title;
+        let pPrice          = data.action.price ? data.action.price : 0;
+        let pPriceTotal     = pPrice;
+        let pDescr          = data.action.description;
 
-        let prodotto = new Prodotto(pId,pProdId,pTitle,pPrice,pDescr,1,'');
+        let prodotto = new Prodotto(pId,pProdId,pTitle,pPrice,pPriceTotal,pDescr,1,'');
 
         this.products.push(prodotto);
-        this.totaleOrdine = parseFloat(this.totaleOrdine) + parseFloat(pPrice);
+        this.totaleOrdine = Number.parseFloat(this.totaleOrdine) + Number.parseFloat(pPrice);
 
         console.log('%o','this.products -> '+JSON.stringify(this.products));
       }
@@ -199,6 +200,31 @@ export class AddPage {
     prod.setMeta('');
   }
 
+  addQuantity(prod:Prodotto) {
+    console.log('%ò',prod);
+    let newQuantity = prod.quantity + 1;
+    let newPrice:number = prod.price * newQuantity;
+    console.log('newPrice -> ',newPrice);
+
+    prod.setQuantity(newQuantity);
+    prod.setPriceTotal(newPrice);
+    this.totaleOrdine = Number.parseFloat(this.totaleOrdine) + prod.price;
+  }
+  removeQuantity(prod:Prodotto) {
+    console.log('%ò',prod);
+    let newQuantity = prod.quantity - 1;
+    let newPrice = prod.price * newQuantity;
+
+    prod.setPriceTotal(newPrice);
+    this.totaleOrdine = Number.parseFloat(this.totaleOrdine) - prod.price;
+
+    if(newQuantity > 0) {
+      prod.setQuantity(newQuantity);
+    } else {
+      this.removeProduct(prod);
+    }
+  }
+
   removeProduct(prod) {
     console.log('%ò',prod);
 
@@ -219,10 +245,10 @@ export class AddPage {
             console.log('%o',this.products);
 
             let cont: number = 0;
-            for (let prod of this.products) {
-              console.log('Title: '+prod['title']+' | '+prod.title);
-              if(prod['title'] == prod.title) {
-                console.log('Elimino: '+cont);
+            for (let prodEl of this.products) {
+              console.log('Title: '+prodEl['title']+' | '+prod.title);
+              if(prodEl['title'] == prod.title && prodEl['quantity'] == prod.quantity && prodEl['meta'] == prod.meta) {
+                console.log('Elimino: '+prod.title);
                 this.products.splice(cont,1);
                 break;
               }
@@ -354,7 +380,7 @@ export class AddPage {
             let ship = new Ship(this.shipId,'flat_rate',data.nomePiatto,prezzoPiatto);
             this.ships.push(ship);
 
-            this.totaleOrdine = parseFloat(this.totaleOrdine) + parseFloat(prezzoPiatto);
+            this.totaleOrdine = Number.parseFloat(this.totaleOrdine) + parseFloat(prezzoPiatto);
 
             this.shipId = this.shipId + 1;
             console.log('this.shipId: '+this.shipId);

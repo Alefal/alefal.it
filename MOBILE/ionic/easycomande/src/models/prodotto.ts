@@ -3,6 +3,7 @@ export class Prodotto {
   public product_id: number;
   public title: string;
   public price: number;
+  public priceTotal: number;
   public description: string;
   public quantity: number; 
   public meta: string = '';
@@ -12,6 +13,7 @@ export class Prodotto {
       product_id: number,
       title: string, 
       price: number, 
+      priceTotal: number, 
       description: string, 
       quantity: number,
       meta: string) {
@@ -20,6 +22,7 @@ export class Prodotto {
     this.product_id = product_id;
     this.title = title;
     this.price = price;
+    this.priceTotal = priceTotal;    
     this.description = description;
     this.quantity = quantity;  
     this.meta = meta;
@@ -31,5 +34,13 @@ export class Prodotto {
 
   public setMeta(meta) {
     this.meta = meta;
+  }
+
+  public setQuantity(quantity:number) {
+    this.quantity = quantity;
+  }
+
+  public setPriceTotal(priceTotal:number) {
+    this.priceTotal = priceTotal;
   }
 }
