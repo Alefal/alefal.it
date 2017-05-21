@@ -49,6 +49,7 @@ page-add {
     .prodMeta {
         padding: 12px;
         white-space: normal;
+        font-size: 0.8em;
     }
 
     [padding] h1:first-child, [padding] h2:first-child, [padding] h3:first-child, [padding] h4:first-child, [padding] h5:first-child, [padding] h6:first-child {
@@ -58,6 +59,21 @@ page-add {
     .itemIsExtra {
         background-color: #defb97 !important;
         font-style: italic;
+        font-size: 1.2rem;
+    }
+
+    .itemProduct {
+        padding-left: 5px;
+    }
+    .itemProduct ion-icon {
+        margin-right: 5px;
+        font-size: 2.5rem;
+    }
+    .itemProduct .item-inner {
+        margin-left: 10px !important;
+    }
+    ion-note,
+    .itemProduct ion-card ion-icon {
         font-size: 1.2rem;
     }
 

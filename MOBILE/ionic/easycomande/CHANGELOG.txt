@@ -64,8 +64,9 @@ ionic-plugin-keyboard 2.2.1 "Keyboard"
 - Gestione "note" per singolo prodotto
 - Fix bug
 
-=== TODO: Vers. 1.0.8 ===
+=== Vers. 1.0.8 ===
 - Aggiunta dei bottoni "-" e "+" per la quantità di un piatto
 - Nella cancellazione di un piatto in un ordine fatto viene decrementata la quantità se superiore a 1, altrimenti viene cancellato il piatto dall'ordine
 - Legare "piatto" a "extra":
-  nelle note dare la possibilità di aggiungere un "extra" (select) che viene scritto nella nota e viene incrementato il prezzo del panino con il prezzo dell'extra
+  nelle note dare la possibilità di aggiungere un "extra" (select) che viene scritto nella nota e viene aggiunto il prodotto extra per il totale
+- Quando viene modificato un ordine e si torna alla lista delle ordinazioni, l'ultimo ordine modificato è evidenziato

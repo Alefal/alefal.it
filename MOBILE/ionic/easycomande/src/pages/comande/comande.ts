@@ -1,5 +1,5 @@
 import { Component, ViewChild  } from '@angular/core';
-import { App, NavController, NavParams, LoadingController, ModalController, Content } from 'ionic-angular';
+import { App, NavController, NavParams, LoadingController, ModalController, Content, AlertController } from 'ionic-angular';
 
 import { HttpService }          from '../../providers/http-service';
 import { ConnectivityService }  from '../../providers/connectivity-service';
@@ -18,6 +18,8 @@ export class ComandePage {
 
   orders: any;
   ordersAll: any;
+
+  orderIdSaved: any;
 
   ordine: Ordine;
 
@@ -38,7 +40,8 @@ export class ComandePage {
     private httpService: HttpService,
     public loadingCtrl: LoadingController,
     public modalCtrl: ModalController,
-    public connectivityService: ConnectivityService
+    public connectivityService: ConnectivityService,
+    public alertCtrl: AlertController
   ) {}
 
   ionViewDidLoad() {
@@ -46,7 +49,7 @@ export class ComandePage {
 
 
     if(this.connectivityService.connectivityFound) {
-      this.loadData();
+      this.loadData('');
     } else {
       this.connectivityService.showConnectionInfo('Nessuna connessione di rete :-( ');
     }
@@ -80,11 +83,12 @@ export class ComandePage {
 
   doRefresh(refresher) {
     console.log("ionViewDidLoad");
-    this.loadData();
+    this.loadData('');
     refresher.complete();
   }
 
-  loadData() {
+  loadData(orderIdSave) {
+    this.orderIdSaved = orderIdSave;
     this.loading = this.loadingCtrl.create({
       spinner: 'crescent',
       //content: 'Please wait...'
@@ -105,6 +109,13 @@ export class ComandePage {
         this.loading.dismiss();
       },
       error => {
+        let alert = this.alertCtrl.create({
+          title: 'Attenzione',
+          subTitle: 'Problemi di connessione con il server...',
+          buttons: ['OK']
+        });
+        alert.present();
+
         console.log('ERROR: ' + error);
         this.errorMessage = 'Error!';
         this.errorMessageView = true;
@@ -139,7 +150,7 @@ export class ComandePage {
       if(data.action == 'reload') {
         //Ricaricare ordine
         console.log('Ricaricare ordine');
-        this.loadData();
+        this.loadData(data.orderIdSave);
       }
     });
     /*

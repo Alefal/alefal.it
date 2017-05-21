@@ -3,8 +3,9 @@ export class Prodotto {
   public product_id: number;
   public title: string;
   public price: number;
-  public existExtra: boolean = false;
-  public isExtra: boolean = false;
+  public existExtra: boolean = false;   //Utile per capire se ad un prodotto è associato un extra
+  public isExtra: boolean = false;      //Utile per individuare un prodotto EXTRA che è stato associato ad un altro prodotto
+  public hasExtra: boolean = false;     //Utile per capire se ad un prodotto può essere associato un extra (PANINO)
   public priceTotal: number;
   public description: string;
   public quantity: number; 
@@ -17,6 +18,7 @@ export class Prodotto {
       price: number, 
       existExtra: boolean, 
       isExtra: boolean, 
+      hasExtra: boolean, 
       priceTotal: number, 
       description: string, 
       quantity: number,
@@ -28,6 +30,7 @@ export class Prodotto {
     this.price = price;
     this.existExtra = existExtra;
     this.isExtra = isExtra;
+    this.hasExtra = hasExtra;
     this.priceTotal = priceTotal;    
     this.description = description;
     this.quantity = quantity;
@@ -60,8 +63,10 @@ export class Prodotto {
   public setExistExtra(existExtra:boolean) {
     this.existExtra = existExtra;
   }
-
   public setIsExtra(isExtra:boolean) {
     this.isExtra = isExtra;
+  }
+  public setHasExtra(hasExtra:boolean) {
+    this.hasExtra = hasExtra;
   }
 }

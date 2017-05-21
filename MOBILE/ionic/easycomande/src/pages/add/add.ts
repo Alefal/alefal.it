@@ -132,10 +132,12 @@ export class AddPage {
       console.log('data.action -> '+JSON.stringify(data.action));
 
       let isExtra: boolean = false;
+      let hasExtra: boolean = false;
       if(cat == 'Extra') {
         isExtra = true;
-      } else {
-        isExtra = false;
+      }
+      if(cat == 'Panini') {
+        hasExtra = true;
       }
       if(data.action != '') {
         let pId             = 0;
@@ -146,7 +148,7 @@ export class AddPage {
         let pPriceTotal     = pPrice;
         let pDescr          = data.action.description;
 
-        let prodotto = new Prodotto(pId,pProdId,pTitle,pPrice,pExistExtra,isExtra,pPriceTotal,pDescr,1,'');
+        let prodotto = new Prodotto(pId,pProdId,pTitle,pPrice,pExistExtra,isExtra,hasExtra,pPriceTotal,pDescr,1,'');
 
         this.products.push(prodotto);
         this.totaleOrdine = Number.parseFloat(this.totaleOrdine) + Number.parseFloat(pPrice);
@@ -213,8 +215,7 @@ export class AddPage {
     
   }
 
-  addExtra(prod:any) {
-
+  addExtra(prod:Prodotto) {
     let alert = this.alertCtrl.create();
     alert.setTitle('Extra');
     alert.setMessage('Aggiungi una extra al piatto');
@@ -226,7 +227,7 @@ export class AddPage {
       alert.addInput({
           type: 'radio',
           label: extra.title+' ('+extra.price+')',
-          value: extra.title+'|'+extra.price
+          value: extra.id+'|'+extra.title+'|'+extra.price
         });
     }
 
@@ -235,35 +236,29 @@ export class AddPage {
       text: 'Aggiungi',
       handler: data => {
         console.log(data);
+        prod.setExistExtra(true);
+
         let splitted = data.split('|'); 
-        let title = splitted[0];
-        let price = splitted[1];
+        let eId     = splitted[0];
+        let eTitle  = splitted[1];
+        let ePrice  = splitted[2];
 
         let pId             = 0;
-        let pProdId         = 0;
-        let pTitle          = title;
-        let pPrice          = price ? price : 0;
-        let pExistExtra     = true;        
+        let pProdId         = eId;
+        let pTitle          = eTitle;
+        let pPrice          = ePrice ? ePrice : 0;
+        let pExistExtra     = false;        
         let pIsExtra        = true;
+        let pHasExtra       = false;
         let pPriceTotal     = pPrice;
         let pDescr          = '';
 
-        let prodotto = new Prodotto(pId,pProdId,pTitle,pPrice,pExistExtra,pIsExtra,pPriceTotal,pDescr,1,'');
+        let prodotto = new Prodotto(pId,pProdId,pTitle,pPrice,pExistExtra,pIsExtra,pHasExtra,pPriceTotal,pDescr,1,'');
 
         this.products.push(prodotto);
         this.totaleOrdine = Number.parseFloat(this.totaleOrdine) + Number.parseFloat(pPrice);
 
-        prod.setExtra(title);
-        /*
-        prod.setPriceExtra(price);
-
-        let newPrice:any      = Number.parseFloat(prod.price) + Number.parseFloat(prod.priceExtra);
-        let newPriceTotal:any = (Number.parseFloat(prod.price) + Number.parseFloat(prod.priceExtra)) * Number.parseFloat(prod.quantity);
-
-        //prod.setSubtotal(newPriceTotal);
-        prod.setPriceTotal(newPriceTotal);
-        this.totaleOrdine = Number.parseFloat(this.totaleOrdine) + Number.parseFloat(prod.priceExtra);
-        */
+        prod.setExtra(eTitle);
       }
     });
 
@@ -273,18 +268,8 @@ export class AddPage {
 
   removeMetaProduct(prod:any) {
     console.log('%ò',prod);
-
-    /*
-    let newPrice:any      = Number.parseFloat(prod.price) - Number.parseFloat(prod.priceExtra);
-    let newPriceTotal:any = Number.parseFloat(prod.price) * Number.parseFloat(prod.quantity);
-
-    prod.setPrice(newPrice);
-    prod.setPriceTotal(newPriceTotal);
-    this.totaleOrdine = Number.parseFloat(this.totaleOrdine) - Number.parseFloat(prod.priceExtra);
-    */
-
     prod.removeMeta('');
-    prod.setPriceExtra(0);
+    prod.setExistExtra(false);
   }
 
   addQuantity(prod:any) {
@@ -305,10 +290,9 @@ export class AddPage {
     prod.setPriceTotal(newPrice);
 
     if(newQuantity > 0) {
-      prod.setQuantity(newQuantity);
       this.totaleOrdine = Number.parseFloat(this.totaleOrdine) - Number.parseFloat(prod.price);
+      prod.setQuantity(newQuantity);
     } else {
-      this.totaleOrdine = 0;
       this.removeProduct(prod);
     }
   }
@@ -343,22 +327,9 @@ export class AddPage {
               cont++;
             }
 
-            //this.products.splice( this.products.indexOf(prodTitle), 1 );
-
             //Ricalcolo totale
             console.log('Ricalcolo: '+this.totaleOrdine+' - '+prod.price);
             this.totaleOrdine = Number.parseFloat(this.totaleOrdine) - Number.parseFloat(prod.price);
-            /*
-            let totOrdine: any = 0;
-            for (let prod of this.products) {
-              let pPrice: any    = prod['price'];
-              console.log('pPrice -> '+pPrice);
-              totOrdine = parseFloat(pPrice) + parseFloat(totOrdine);
-              console.log('totOrdine -> '+totOrdine);
-            }
-            console.log('totCoperti -> '+this.totCoperti);
-            this.totaleOrdine = totOrdine + this.totCoperti;
-            */
           }
         }
       ]
@@ -585,9 +556,10 @@ export class AddPage {
       .subscribe(res => {
         console.log('res: ' + JSON.stringify(res));
 
+        let orderIdSave: any;
         if (res[0].response[0].result == 'OK') {
           if(res[0].output[0]) {
-            let orderIdSave = res[0].output[0].id;
+            orderIdSave = res[0].output[0].id;
             //this.saveNote(orderIdSave,JSON.stringify(this.notes));
 
             for (let note of this.notes) {
@@ -607,7 +579,7 @@ export class AddPage {
           if(!this.ordineEdit) {
             this.navCtrl.setRoot(TabsPage);
           } else {
-            this.dismiss();
+            this.dismiss(orderIdSave);
           }
         } else {
           this.nothing = 'Nessun dato! Riprovare più tardi.';
@@ -642,9 +614,10 @@ export class AddPage {
       });
   }
 
-  dismiss() {
+  dismiss(orderIdSave) {
     this.viewCtrl.dismiss({
-      action: '' //closeAdd: per chiudere una sola modal ma non viene fatto il refresh degli ordini
+      action: '', //closeAdd: per chiudere una sola modal ma non viene fatto il refresh degli ordini
+      orderIdSave: orderIdSave
     });
   }
 

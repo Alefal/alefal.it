@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar color="dark">
-    <ion-title>Easy Comande (v.1.0.7)</ion-title>
+    <ion-title>Easy Comande (v.1.0.8)</ion-title>
     
     <ion-buttons end>
       <button ion-button icon-only *ngIf="connectivityService.connectivityFound" (click)="connectivityService.showConnectionInfo('Connessione ok')">
@@ -32,7 +32,7 @@
   <ion-searchbar (ionInput)="getItems($event)" (ionClear)="onCancel($event)" placeholder="Ricerca numero ordine"></ion-searchbar>
   -->
   <ion-list *ngIf="orders?.length > 0">
-    <ion-item *ngFor="let order of orders" (click)="orderDetail(order)">
+    <ion-item *ngFor="let order of orders" (click)="orderDetail(order)" [ngClass]="{'orderEditable': orderIdSaved == order.id}">
       <ion-icon name="time"             item-left class="iconsList" color="pending"     *ngIf="order.status == 'pending'"></ion-icon>
       <ion-icon name="ios-more"         item-left class="iconsList" color="primary"     *ngIf="order.status == 'processing' || order.status == 'on-hold'"></ion-icon>
       

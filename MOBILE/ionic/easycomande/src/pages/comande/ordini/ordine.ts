@@ -57,7 +57,7 @@ export class OrdinePage {
       }
       */
       //Ricaricare ordine
-      this.showOrder(this.ordine.id);
+      this.showOrder(this.ordine.id,data.orderIdSave);
     });
     /*
     this.navCtrl.push(AddPage, {
@@ -66,7 +66,7 @@ export class OrdinePage {
     */
   }
 
-  showOrder(id) {
+  showOrder(id,orderIdSave) {
     /* NON MI AGGIORNA L'ARRAY 'orders' NEL TEMPLATE
     this.httpService
       .getCallHttp('getOrders', '', '', id, '')
@@ -88,7 +88,8 @@ export class OrdinePage {
     */
 
     this.viewCtrl.dismiss({
-      action: 'reload'
+      action: 'reload',
+      orderIdSave: orderIdSave
     });
   }
   deleteOrder(id) {
@@ -247,7 +248,7 @@ export class OrdinePage {
     console.log('deleteProduct ordine: '+ordineId);
     console.log('%o',prod);
 
-    let prodotto = new Prodotto(prod.id,prod.product_id,prod.title,prod.price,false,false,prod.price,prod.description,prod.quantity,'');
+    let prodotto = new Prodotto(prod.id,prod.product_id,prod.title,prod.price,false,false,false,prod.price,prod.description,prod.quantity,'');
 
     let ordine = new Ordine(
       ordineId,         //this.id
@@ -295,7 +296,7 @@ export class OrdinePage {
                 console.log('res: ' + JSON.stringify(res));
 
                 if (res[0].response[0].result == 'OK') {
-                  this.showOrder(ordineId);
+                  this.showOrder(ordineId,0);
                 } else {
                   this.nothing = 'Nessun dato! Riprovare più tardi.';
                 }
@@ -367,7 +368,7 @@ export class OrdinePage {
                 console.log('res: ' + JSON.stringify(res));
 
                 if (res[0].response[0].result == 'OK') {
-                  this.showOrder(ordineId);
+                  this.showOrder(ordineId,0);
                 } else {
                   this.nothing = 'Nessun dato! Riprovare più tardi.';
                 }
