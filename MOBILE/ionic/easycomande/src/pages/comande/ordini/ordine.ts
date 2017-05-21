@@ -51,6 +51,11 @@ export class OrdinePage {
     modal.present();
     modal.onDidDismiss(data => {
       console.log('data.action -> '+JSON.stringify(data.action));
+      /* Non ricarica ordine
+      if(data.action == 'closeAdd'){
+        return false;
+      }
+      */
       //Ricaricare ordine
       this.showOrder(this.ordine.id);
     });
@@ -65,23 +70,23 @@ export class OrdinePage {
     /* NON MI AGGIORNA L'ARRAY 'orders' NEL TEMPLATE
     this.httpService
       .getCallHttp('getOrders', '', '', id, '')
-      .then(res => {
+      .subscribe(res => {
         console.log('res: ' + JSON.stringify(res));
 
         if (res[0].response[0].result == 'OK') {
-          //Dati ricaricati
           this.ordine = res[0].output;
-          console.log(this.ordine);
+          console.log('%ò',this.ordine);
         } else {
           this.nothing = 'Nessun dato! Riprovare più tardi.';
         }
-      })
-      .catch(error => {
+      },
+      error => {
         console.log('ERROR: ' + error);
         this.errorMessage = 'Error!';
         this.errorMessageView = true;
       });
     */
+
     this.viewCtrl.dismiss({
       action: 'reload'
     });
@@ -238,11 +243,11 @@ export class OrdinePage {
     prompt.present();
   }
 
-  deleteProduct(ordineId,prod) {
+  deleteProduct(ordineId,prod:Prodotto) {
     console.log('deleteProduct ordine: '+ordineId);
     console.log('%o',prod);
 
-    let prodotto = new Prodotto(prod.id,null,'',prod.price,prod.price,prod.description,1,'');
+    let prodotto = new Prodotto(prod.id,prod.product_id,prod.title,prod.price,false,false,prod.price,prod.description,prod.quantity,'');
 
     let ordine = new Ordine(
       ordineId,         //this.id

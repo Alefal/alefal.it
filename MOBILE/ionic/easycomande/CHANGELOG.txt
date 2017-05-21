@@ -66,6 +66,6 @@ ionic-plugin-keyboard 2.2.1 "Keyboard"
 
 === TODO: Vers. 1.0.8 ===
 - Aggiunta dei bottoni "-" e "+" per la quantità di un piatto
-- Bug su calcolo totale: viene fatta la concatenazione
+- Nella cancellazione di un piatto in un ordine fatto viene decrementata la quantità se superiore a 1, altrimenti viene cancellato il piatto dall'ordine
 - Legare "piatto" a "extra":
   nelle note dare la possibilità di aggiungere un "extra" (select) che viene scritto nella nota e viene incrementato il prezzo del panino con il prezzo dell'extra

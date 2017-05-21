@@ -67,15 +67,23 @@ export class AddPage {
       this.ordineEdit = true;
       this.ordineId = this.ordine.id;
       this.notaOrdine = this.ordine.note;
-      //this.totaleOrdine = this.ordine.total;
 
-      /*
+      /***
+      this.totaleOrdine = this.ordine.subtotal;
+
       for (let prod of this.ordine.line_items) {
-        let prodotto = new Prodotto(prod.id,prod.product_id,prod.name,prod.price,'',1);
+        let priceTotal = prod.price * prod.quantity;
+        let meta = '';
+        if(prod.meta.length > 0) {
+          meta = prod.meta[0].value;
+        }
+        //let meta = prod.meta[0].value ? prod.meta[0].value : '';
+        let prodotto = new Prodotto(prod.id,prod.product_id,prod.name,prod.price,priceTotal,'',prod.quantity,meta);
         this.products.push(prodotto);
+
       }
+      ***/
       console.log('%o',this.products);
-      */
     }
 
     //Dati NON presenti in memoria: li recupero dal server
@@ -122,15 +130,23 @@ export class AddPage {
     modal.present();
     modal.onDidDismiss(data => {
       console.log('data.action -> '+JSON.stringify(data.action));
+
+      let isExtra: boolean = false;
+      if(cat == 'Extra') {
+        isExtra = true;
+      } else {
+        isExtra = false;
+      }
       if(data.action != '') {
         let pId             = 0;
         let pProdId         = data.action.id;
         let pTitle          = data.action.title;
         let pPrice          = data.action.price ? data.action.price : 0;
+        let pExistExtra     = false;        
         let pPriceTotal     = pPrice;
         let pDescr          = data.action.description;
 
-        let prodotto = new Prodotto(pId,pProdId,pTitle,pPrice,pPriceTotal,pDescr,1,'');
+        let prodotto = new Prodotto(pId,pProdId,pTitle,pPrice,pExistExtra,isExtra,pPriceTotal,pDescr,1,'');
 
         this.products.push(prodotto);
         this.totaleOrdine = Number.parseFloat(this.totaleOrdine) + Number.parseFloat(pPrice);
@@ -192,15 +208,86 @@ export class AddPage {
         }
       ]
     });
+    
     prompt.present();
+    
   }
 
-  removeMetaProduct(prod:Prodotto) {
+  addExtra(prod:any) {
+
+    let alert = this.alertCtrl.create();
+    alert.setTitle('Extra');
+    alert.setMessage('Aggiungi una extra al piatto');
+
+    let extras: any = JSON.parse(localStorage.getItem('Extra'));
+    console.log('%ò',extras);
+
+    for (let extra of extras) {
+      alert.addInput({
+          type: 'radio',
+          label: extra.title+' ('+extra.price+')',
+          value: extra.title+'|'+extra.price
+        });
+    }
+
+    alert.addButton('Annulla');
+    alert.addButton({
+      text: 'Aggiungi',
+      handler: data => {
+        console.log(data);
+        let splitted = data.split('|'); 
+        let title = splitted[0];
+        let price = splitted[1];
+
+        let pId             = 0;
+        let pProdId         = 0;
+        let pTitle          = title;
+        let pPrice          = price ? price : 0;
+        let pExistExtra     = true;        
+        let pIsExtra        = true;
+        let pPriceTotal     = pPrice;
+        let pDescr          = '';
+
+        let prodotto = new Prodotto(pId,pProdId,pTitle,pPrice,pExistExtra,pIsExtra,pPriceTotal,pDescr,1,'');
+
+        this.products.push(prodotto);
+        this.totaleOrdine = Number.parseFloat(this.totaleOrdine) + Number.parseFloat(pPrice);
+
+        prod.setExtra(title);
+        /*
+        prod.setPriceExtra(price);
+
+        let newPrice:any      = Number.parseFloat(prod.price) + Number.parseFloat(prod.priceExtra);
+        let newPriceTotal:any = (Number.parseFloat(prod.price) + Number.parseFloat(prod.priceExtra)) * Number.parseFloat(prod.quantity);
+
+        //prod.setSubtotal(newPriceTotal);
+        prod.setPriceTotal(newPriceTotal);
+        this.totaleOrdine = Number.parseFloat(this.totaleOrdine) + Number.parseFloat(prod.priceExtra);
+        */
+      }
+    });
+
+    alert.present();
+    
+  }
+
+  removeMetaProduct(prod:any) {
     console.log('%ò',prod);
-    prod.setMeta('');
+
+    /*
+    let newPrice:any      = Number.parseFloat(prod.price) - Number.parseFloat(prod.priceExtra);
+    let newPriceTotal:any = Number.parseFloat(prod.price) * Number.parseFloat(prod.quantity);
+
+    prod.setPrice(newPrice);
+    prod.setPriceTotal(newPriceTotal);
+    this.totaleOrdine = Number.parseFloat(this.totaleOrdine) - Number.parseFloat(prod.priceExtra);
+    */
+
+    prod.removeMeta('');
+    prod.setPriceExtra(0);
   }
 
-  addQuantity(prod:Prodotto) {
+  addQuantity(prod:any) {
     console.log('%ò',prod);
     let newQuantity = prod.quantity + 1;
     let newPrice:number = prod.price * newQuantity;
@@ -208,19 +295,20 @@ export class AddPage {
 
     prod.setQuantity(newQuantity);
     prod.setPriceTotal(newPrice);
-    this.totaleOrdine = Number.parseFloat(this.totaleOrdine) + prod.price;
+    this.totaleOrdine = Number.parseFloat(this.totaleOrdine) + Number.parseFloat(prod.price);
   }
-  removeQuantity(prod:Prodotto) {
+  removeQuantity(prod:any) {
     console.log('%ò',prod);
     let newQuantity = prod.quantity - 1;
     let newPrice = prod.price * newQuantity;
 
     prod.setPriceTotal(newPrice);
-    this.totaleOrdine = Number.parseFloat(this.totaleOrdine) - prod.price;
 
     if(newQuantity > 0) {
       prod.setQuantity(newQuantity);
+      this.totaleOrdine = Number.parseFloat(this.totaleOrdine) - Number.parseFloat(prod.price);
     } else {
+      this.totaleOrdine = 0;
       this.removeProduct(prod);
     }
   }
@@ -258,7 +346,8 @@ export class AddPage {
             //this.products.splice( this.products.indexOf(prodTitle), 1 );
 
             //Ricalcolo totale
-            this.totaleOrdine -= parseFloat(prod.price);
+            console.log('Ricalcolo: '+this.totaleOrdine+' - '+prod.price);
+            this.totaleOrdine = Number.parseFloat(this.totaleOrdine) - Number.parseFloat(prod.price);
             /*
             let totOrdine: any = 0;
             for (let prod of this.products) {
@@ -555,7 +644,7 @@ export class AddPage {
 
   dismiss() {
     this.viewCtrl.dismiss({
-      action: ''
+      action: '' //closeAdd: per chiudere una sola modal ma non viene fatto il refresh degli ordini
     });
   }
 

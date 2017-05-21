@@ -11,15 +11,33 @@ $lineItemsArray     = array();
 $order = json_decode($_POST['order'],true);
 $id = $order['id'];
 
-//print_r($order['line_items']);
-//die();
 
 //Numero della riga del LINE ITEM; per eliminare una riga 'product_id' => null
-$lineItemsArray[] = array(   
-    'id'            => $order['line_items']['id'],     
-    'product_id'    => null,
-    'quantity'      => $order['line_items']['quantity']
-); 
+$newQuantity = $order['line_items']['quantity'] - 1;
+$price = $order['line_items']['price'];
+if($newQuantity == 0) {
+    $lineItemsArray[] = array(   
+        'id'            => $order['line_items']['id'],     
+        'product_id'    => null,
+        'quantity'      => $order['line_items']['quantity']
+    ); 
+} else {
+    $lineItemsArray[] = array(   
+        'id'            => $order['line_items']['id'],
+        'price'         => $order['line_items']['price'],          
+        'product_id'    => $order['line_items']['product_id'],
+        'quantity'      => $newQuantity,
+        'subtotal'      => $newQuantity * $price,
+        'subtotal_tax'  => $newQuantity * $price * 10 / 100,
+        'tax_class'     => '',
+        'total'         => $newQuantity * $price,
+        'total_tax'     => $newQuantity * $price * 10 / 100
+    ); 
+}
+//print '<pre>';
+//print_r($lineItemsArray);
+//print '</pre>';
+//die();
 
 try {
 

@@ -20,12 +20,12 @@ $order = [
         'status' => 'pending',
         'customer_id' => 0,
         //'total_tax' => 0.00, <- TODO: servizio 10%
-        /*
         'line_items' => [
             [
                 //'id' => 47,             //Numero della riga del LINE ITEM; per eliminare una riga 'product_id' => null
                 'product_id' => 161,
-                'quantity' => 1,
+                'quantity' => 5,
+                'price' => 8,
                 'meta_data' => [
                     [
                         'label' => 'Nota',
@@ -39,7 +39,6 @@ $order = [
                 ]
             ]
         ],
-        */
         'shipping_lines' => [
             [
                 'method_id' => 'flat_rate',
@@ -92,8 +91,8 @@ try {
     //$eceGetCallArray = $woocommerce->products->get(null, array('filter[name]' => 'Test Product'));
     //$eceGetCallArray = $woocommerce->products->get(null, array( 'search' => 'Test Product'));
     
-    $eceGetCallArray = $woocommerce->orders->get(329);
-    //$eceGetCallArray = $woocommerce->orders->create($order);
+    //$eceGetCallArray = $woocommerce->orders->get(329);
+    $eceGetCallArray = $woocommerce->orders->create($order);
     //$eceGetCallArray = $woocommerce->orders->update(238,$order);
     //$eceGetCallArray = $woocommerce->orders->delete(118,true);
 
