@@ -1,14 +1,3 @@
-function openGallery(section) {
-    console.log(section);
-    $('#modalGallery'+section).modal('show');
-
-    $('.bxslider'+section).bxSlider({
-        mode: 'fade',
-        //adaptiveHeight: true,
-        auto: true
-    });
-}
-
 $(document).ready(function (e) {
     $('#headerMenu').scrollToFixed();
     $('.res-nav_click').click(function () {

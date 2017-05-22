@@ -351,7 +351,7 @@
                     <div class="team-leader-shadow"></div>
                     <img src="assets/img/agracq/photos/01_agriturismo.png" alt="">
                     <ul>
-                        <li><a href="javascript:void(0)" onclick="openGallery('Agriturismo');" class="fa fa-picture-o"></a></li>
+                        <li><a href="javascript:void(0)" (click)="openGallery('Agriturismo');" class="fa fa-picture-o"></a></li>
                     </ul>
                 </div>
                 <h3 class="wow fadeInDown delay-03s" *ngIf="langIT">Agriturismo</h3>
@@ -363,7 +363,7 @@
                     <div class="team-leader-shadow"></div>
                     <img src="assets/img/agracq/photos/02_ristorante.png" alt="">
                     <ul>
-                        <li><a href="javascript:void(0)" onclick="openGallery('Ristorante');" class="fa fa-picture-o"></a></li>
+                        <li><a href="javascript:void(0)" (click)="openGallery('Ristorante');" class="fa fa-picture-o"></a></li>
                     </ul>
                 </div>
                 <h3 class="wow fadeInDown delay-03s" *ngIf="langIT">Ristorante</h3>
@@ -375,7 +375,7 @@
                     <div class="team-leader-shadow"></div>
                     <img src="assets/img/agracq/photos/03_camere.png" alt="">
                     <ul>
-                        <li><a href="javascript:void(0)" onclick="openGallery('Camere');" class="fa fa-picture-o"></a></li>
+                        <li><a href="javascript:void(0)" (click)="openGallery('Camere');" class="fa fa-picture-o"></a></li>
                     </ul>
                 </div>
                 <h3 class="wow fadeInDown delay-03s" *ngIf="langIT">Camere</h3>
@@ -387,7 +387,7 @@
                     <div class="team-leader-shadow"></div>
                     <img src="assets/img/agracq/photos/04_piatti.png" alt="">
                     <ul>
-                        <li><a href="javascript:void(0)" onclick="openGallery('Piatti');" class="fa fa-picture-o"></a></li>
+                        <li><a href="javascript:void(0)" (click)="openGallery('Piatti');" class="fa fa-picture-o"></a></li>
                     </ul>
                 </div>
                 <h3 class="wow fadeInDown delay-03s" *ngIf="langIT">Piatti</h3>
@@ -399,7 +399,7 @@
                     <div class="team-leader-shadow"></div>
                     <img src="assets/img/agracq/photos/05_fattoria.png" alt="">
                     <ul>
-                        <li><a href="javascript:void(0)" onclick="openGallery('Fattoria');" class="fa fa-picture-o"></a></li>
+                        <li><a href="javascript:void(0)" (click)="openGallery('Fattoria');" class="fa fa-picture-o"></a></li>
                     </ul>
                 </div>
                 <h3 class="wow fadeInDown delay-03s" *ngIf="langIT">Fattoria</h3>
@@ -411,7 +411,7 @@
                     <div class="team-leader-shadow"></div>
                     <img src="assets/img/agracq/photos/06_altro.png" alt="">
                     <ul>
-                        <li><a href="javascript:void(0)" onclick="openGallery('Altro');" class="fa fa-picture-o"></a></li>
+                        <li><a href="javascript:void(0)" (click)="openGallery('Altro');" class="fa fa-picture-o"></a></li>
                     </ul>
                 </div>
                 <h3 class="wow fadeInDown delay-03s" *ngIf="langIT">Dettagli</h3>
@@ -502,7 +502,7 @@
 <app-footer></app-footer>
 
 <!-- Modal AGRITURISMO -->
-<div id="modalGalleryAgriturismo" class="modal fade" tabindex="-1" role="dialog">
+<div *ngIf="showGalleryAgriturismo" id="modalGalleryAgriturismo" class="modal fade" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -524,7 +524,7 @@
 </div><!-- /.modal -->
 
 <!-- Modal RISTORANTE -->
-<div id="modalGalleryRistorante" class="modal fade" tabindex="-1" role="dialog">
+<div *ngIf="showGalleryRistorante" id="modalGalleryRistorante" class="modal fade" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -550,7 +550,7 @@
 </div><!-- /.modal -->
 
 <!-- Modal CAMERE -->
-<div id="modalGalleryCamere" class="modal fade" tabindex="-1" role="dialog">
+<div *ngIf="showGalleryCamere" id="modalGalleryCamere" class="modal fade" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -580,7 +580,7 @@
 </div><!-- /.modal -->
 
 <!-- Modal PIATTI -->
-<div id="modalGalleryPiatti" class="modal fade" tabindex="-1" role="dialog">
+<div *ngIf="showGalleryPiatti" id="modalGalleryPiatti" class="modal fade" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -617,7 +617,7 @@
 </div><!-- /.modal -->
 
 <!-- Modal FATTORIA -->
-<div id="modalGalleryFattoria" class="modal fade" tabindex="-1" role="dialog">
+<div *ngIf="showGalleryFattoria" id="modalGalleryFattoria" class="modal fade" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -639,7 +639,7 @@
 </div><!-- /.modal -->
 
 <!-- Modal ALTRO -->
-<div id="modalGalleryAltro" class="modal fade" tabindex="-1" role="dialog">
+<div *ngIf="showGalleryAltro" id="modalGalleryAltro" class="modal fade" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">

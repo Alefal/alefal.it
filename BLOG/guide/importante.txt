@@ -25,3 +25,14 @@ app/main.ts
 </code>
 
 $ ionic build android --prod --release
+
+=== Optimize Angular for Production ===
+# these are equivalent
+ng build --target=production --environment=prod
+ng build --prod --env=prod
+ng build --prod
+# and so are these
+ng build --target=development --environment=dev
+ng build --dev --e=dev
+ng build --dev
+ng build
