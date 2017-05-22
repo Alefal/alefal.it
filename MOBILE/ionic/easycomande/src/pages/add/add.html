@@ -48,7 +48,7 @@
   </ion-list>
 
   <ion-segment>
-    <ion-segment-button *ngFor="let cat of categories | orderBy:'id'" (click)="modalProducts(cat.name)" [class.active]="cat.name == categoryName">
+    <ion-segment-button *ngFor="let cat of categories | orderBy:'id'" (click)="modalProducts(cat)" [class.active]="cat.name == categoryName">
       {{cat.name}}
     </ion-segment-button>
   </ion-segment>

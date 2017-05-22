@@ -126,17 +126,17 @@ export class AddPage {
 
   modalProducts(cat) {
     console.log(cat);
-    let modal = this.modalCtrl.create(ProdottiModal, { categoryName: cat });
+    let modal = this.modalCtrl.create(ProdottiModal, { categoryName: cat.name });
     modal.present();
     modal.onDidDismiss(data => {
       console.log('data.action -> '+JSON.stringify(data.action));
 
       let isExtra: boolean = false;
       let hasExtra: boolean = false;
-      if(cat == 'Extra') {
+      if(cat.slug == 'extra') {
         isExtra = true;
       }
-      if(cat == 'Panini') {
+      if(cat.slug == 'i-panini') {
         hasExtra = true;
       }
       if(data.action != '') {

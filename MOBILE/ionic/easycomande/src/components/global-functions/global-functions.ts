@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
 
 import { AddPage }          from '../../pages/add/add';
-import { LoginPage }        from '../../pages/login/login';
+//import { LoginPage }        from '../../pages/login/login';
 
 export abstract class GlobalFunctions {
 
@@ -18,7 +18,7 @@ export abstract class GlobalFunctions {
   }
   logout() {
     console.log('logout');
-    this.navCtrl.setRoot(LoginPage);
+    //this.navCtrl.setRoot(LoginPage);
   }
 
 }

@@ -296,7 +296,7 @@ export class OrdinePage {
                 console.log('res: ' + JSON.stringify(res));
 
                 if (res[0].response[0].result == 'OK') {
-                  this.showOrder(ordineId,0);
+                  this.showOrder(ordineId,ordineId);
                 } else {
                   this.nothing = 'Nessun dato! Riprovare più tardi.';
                 }

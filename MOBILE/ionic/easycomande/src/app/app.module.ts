@@ -12,8 +12,8 @@ import { ConnectivityService }  from '../providers/connectivity-service';
 
 import { EasyComandeApp }   from './app.component';
 import { TabsPage }         from '../pages/tabs/tabs';
-import { LoginPage }        from '../pages/login/login';
-import { HomePage }         from '../pages/home/home';
+//import { LoginPage }        from '../pages/login/login';
+//import { HomePage }         from '../pages/home/home';
 import { ComandePage }      from '../pages/comande/comande';
 import { OrdinePage }       from '../pages/comande/ordini/ordine';
 import { MenuPage }         from '../pages/menu/menu';
@@ -28,9 +28,9 @@ import { OrderByPipe }      from '../pipes/order-by-pipe';
 @NgModule({
   declarations: [
     EasyComandeApp,
-    LoginPage,
     TabsPage,
-    HomePage,
+    //LoginPage,
+    //HomePage,
     ComandePage,
     MenuPage,
     AddPage,
@@ -47,9 +47,9 @@ import { OrderByPipe }      from '../pipes/order-by-pipe';
   bootstrap: [IonicApp],
   entryComponents: [
     EasyComandeApp,
-    LoginPage,
     TabsPage,
-    HomePage,
+    //LoginPage,
+    //HomePage,
     ComandePage,
     MenuPage,
     AddPage,

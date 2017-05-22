@@ -4,8 +4,8 @@ import { NavController, NavParams, LoadingController, ModalController } from 'io
 import { HttpService }          from '../../providers/http-service';
 import { ConnectivityService }  from '../../providers/connectivity-service';
 
-import { LoginPage }    from '../login/login';
-import { AddPage }      from '../add/add'
+//import { LoginPage }    from '../login/login';
+//import { AddPage }      from '../add/add'
 
 @Component({
   selector: 'page-menu',
@@ -190,15 +190,5 @@ export class MenuPage {
           this.loading.dismiss();
         }
       );
-  }
-
-  navigate(page) {
-    let modal = this.modalCtrl.create(AddPage);
-    modal.present();
-    modal.onDidDismiss(data => {});
-  }
-  logout() {
-    console.log('logout');
-    this.navCtrl.setRoot(LoginPage);
   }
 }

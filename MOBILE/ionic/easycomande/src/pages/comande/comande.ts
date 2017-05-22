@@ -1,14 +1,15 @@
 import { Component, ViewChild  } from '@angular/core';
-import { App, NavController, NavParams, LoadingController, ModalController, Content, AlertController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, ModalController, Content, AlertController } from 'ionic-angular';
 
 import { HttpService }          from '../../providers/http-service';
 import { ConnectivityService }  from '../../providers/connectivity-service';
 
+import { AddPage }          from '../add/add';
 import { Ordine }           from '../../models/ordine';
 import { OrdinePage }       from './ordini/ordine';
 
-import { LoginPage }        from '../login/login';
-import { AddPage }          from '../add/add'
+//import { LoginPage }        from '../login/login';
+//import { AddPage }          from '../add/add'
 
 @Component({
   selector: 'page-comande',
@@ -30,9 +31,9 @@ export class ComandePage {
 
   @ViewChild(Content) content: Content;
 
-  private tabbarHeight: string;
-  private headerHeight: string;
-  private contentBox;
+  //private tabbarHeight: string;
+  //private headerHeight: string;
+  //private contentBox;
 
   constructor(
     public navCtrl: NavController,
@@ -160,14 +161,10 @@ export class ComandePage {
     */
   }
 
-  navigate(page) {
+  addOrder() {
     let modal = this.modalCtrl.create(AddPage);
     modal.present();
     modal.onDidDismiss(data => {});
-  }
-  logout() {
-    console.log('logout');
-    this.navCtrl.setRoot(LoginPage);
   }
 
 }
