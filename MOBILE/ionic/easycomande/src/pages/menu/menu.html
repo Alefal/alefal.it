@@ -7,7 +7,7 @@
         <ion-icon name="ios-wifi"></ion-icon>
       </button>
       <button ion-button icon-only *ngIf="!connectivityService.connectivityFound" (click)="connectivityService.showConnectionInfo('Connessione assente. Alcune operazioni non sono disponibili!')">
-        <ion-icon name="information-circle"></ion-icon>
+        <ion-icon name="warning"></ion-icon>
       </button>
     </ion-buttons>
 

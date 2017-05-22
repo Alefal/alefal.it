@@ -7,7 +7,7 @@
         <ion-icon name="ios-wifi"></ion-icon>
       </button>
       <button ion-button icon-only *ngIf="!connectivityService.connectivityFound" (click)="connectivityService.showConnectionInfo('Connessione assente. Alcune operazioni non sono disponibili!')">
-        <ion-icon name="information-circle"></ion-icon>
+        <ion-icon name="warning"></ion-icon>
       </button>
     </ion-buttons>
 
@@ -53,9 +53,11 @@
     Nessuna ordinazione presente
   </h5>
 
+  <!--
   <h5 *ngIf="!connectivityService.connectivityFound" padding>
     Connessione assente...
   </h5>
+  -->
 
   <ion-fab right bottom *ngIf="connectivityService.connectivityFound">
     <button padding ion-fab (click)="addOrder()" color="dark" style="margin-bottom:15px;"><ion-icon name="add"></ion-icon></button>
