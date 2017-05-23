@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
         }
       },
       error => {
-        this.alertService.error('Authentication failed!');
+        this.alertService.error('ORDINI: Dati non disponibili! Si è verificato un errore.');
       });
   }
 

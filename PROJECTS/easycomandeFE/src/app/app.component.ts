@@ -9,7 +9,6 @@ import { AuthenticationService } from './_services/index';
 })
 export class AppComponent {
   title = 'app works!';
-  userLogged: boolean = false;
 
   constructor(public authenticationService: AuthenticationService) {}
 }
