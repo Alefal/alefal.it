@@ -4,7 +4,8 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { AlertService, HttpService } from '../_services/index';
 
-import {ConfirmationPopoverModule} from 'angular-confirmation-popover';
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
+import { LoadingBar, LoadingBarService } from "ng2-loading-bar";
 
 import { Ordine } from '../_models/ordine';
 import { Prodotto } from '../_models/prodotto';
@@ -34,12 +35,17 @@ export class OrdineComponent implements OnInit {
 
   eliminaPiatto: boolean = true;
 
+  height = 2;
+  color = "#4092F1";
+  runInterval = 300;
+
   constructor(
     private location: Location,
     private router: Router,
     private route: ActivatedRoute,
     private httpService: HttpService, 
     private alertService: AlertService,
+    private loadingBarService: LoadingBarService
   ) { }
 
   ngOnInit(): void {
@@ -75,6 +81,8 @@ export class OrdineComponent implements OnInit {
   }
 
   deleteProduct(ordineId,prod:Prodotto) {
+    this.loadingBarService.start();
+
     console.log('deleteProduct ordine: '+ordineId);
     console.log('%o',prod);
 

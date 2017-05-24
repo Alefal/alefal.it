@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { AlertService, HttpService } from '../_services/index';
+import { LoadingBar, LoadingBarService } from "ng2-loading-bar";
 
 import { Ordine } from '../_models/ordine';
 
@@ -24,9 +25,12 @@ export class HomeComponent implements OnInit {
     private alertService: AlertService,
     private router: Router,
     private route: ActivatedRoute,
+    private loadingBarService: LoadingBarService
   ) {}
 
   ngOnInit() {
+    this.loadingBarService.start();
+
     this.route.params
       .subscribe(params => {
         if(params['ordineId']) {
@@ -52,6 +56,8 @@ export class HomeComponent implements OnInit {
         if(res[0].response[0].result == 'OK') {
           this.orders = res[0].output;
           this.ordersAll = res[0].output;
+
+          this.loadingBarService.complete();
         } else {
           this.nothing = 'Nessun dato! Riprovare più tardi.';
         }

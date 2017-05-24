@@ -8,7 +8,8 @@ import { routing }          from './app.routing';
 import { AuthGuard }        from './_guards/index';
 import { AlertService, AuthenticationService, HttpService } from './_services/index';
 
-import {ConfirmationPopoverModule} from 'angular-confirmation-popover';
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
+import { LoadingBar, LoadingBarService } from "ng2-loading-bar";
 
 import { AlertComponent }   from './_directives/index';
 
@@ -23,7 +24,8 @@ import { OrdineComponent } from './ordine/ordine.component';
     LoginComponent,
     HomeComponent,
     AlertComponent,
-    OrdineComponent
+    OrdineComponent,
+    LoadingBar
   ],
   imports: [
     BrowserModule,
@@ -39,7 +41,8 @@ import { OrdineComponent } from './ordine/ordine.component';
     AuthGuard,
     AlertService,
     AuthenticationService,
-    HttpService
+    HttpService,
+    LoadingBarService
   ],
   bootstrap: [AppComponent]
 })

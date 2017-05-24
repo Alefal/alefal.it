@@ -1,0 +1,3 @@
+.loading-bar, .loading-bar-progress {
+    z-index: 100010 !important;
+}

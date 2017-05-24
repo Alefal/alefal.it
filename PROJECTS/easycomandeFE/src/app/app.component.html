@@ -1,3 +1,12 @@
+<loading-bar #loadingBar [height]="height" [color]="color" [runInterval]="runInterval"></loading-bar>
+
+<!--
+<button (click)="loadingBar.start()">start</button><br/>
+<button (click)="loadingBar.stop()">stop</button><br/>
+<button (click)="loadingBar.reset()">reset</button><br/>
+<button (click)="loadingBar.complete()">complete</button><br/>
+-->
+
 <div class="app app-default">
 
     <aside *ngIf="authenticationService.checkUserLogged()" class="app-sidebar" id="sidebar">
