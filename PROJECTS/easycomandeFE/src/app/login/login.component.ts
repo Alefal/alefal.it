@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { AlertService, AuthenticationService } from '../_services/index';
+import { User } from '../_models/user';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import { AlertService, AuthenticationService } from '../_services/index';
 })
 export class LoginComponent implements OnInit {
 
-  model: any = {};
+  model: User = new User();
   loading = false;
 
   constructor(
@@ -22,6 +23,9 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     // reset login status
     this.authenticationService.logout();
+    this.model.username = 'manager';
+    this.model.password = 'manager';
+    
   }
 
   login() {

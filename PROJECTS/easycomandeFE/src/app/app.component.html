@@ -36,7 +36,7 @@
         </div>
         <div class="sidebar-footer">
             <div class="appVersion">
-                <span class="badge badge-danger pull-right">Version 1.0.8</span>
+                <span class="badge badge-danger">Version 1.0.8</span>
             </div>
         </div>
     </aside>
@@ -100,7 +100,6 @@
                                         <a href="#">
                                             <span class="badge badge-warning pull-right">10</span>
                                             <div class="message">
-                                                <img class="profile" src="https://placehold.it/100x100">
                                                 <div class="content">
                                                 <div class="title">"Payment Confirmation.."</div>
                                                 <div class="description">Alan Anderson</div>
@@ -108,30 +107,7 @@
                                             </div>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="#">
-                                            <span class="badge badge-warning pull-right">5</span>
-                                            <div class="message">
-                                                <img class="profile" src="https://placehold.it/100x100">
-                                                <div class="content">
-                                                <div class="title">"Hello World"</div>
-                                                <div class="description">Marco  Harmon</div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <span class="badge badge-warning pull-right">2</span>
-                                            <div class="message">
-                                                <img class="profile" src="https://placehold.it/100x100">
-                                                <div class="content">
-                                                <div class="title">"Order Confirmation.."</div>
-                                                <div class="description">Brenda Lawson</div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
+                                    
                                     <li class="dropdown-footer">
                                         <a href="#">View All <i class="fa fa-angle-right" aria-hidden="true"></i></a>
                                     </li>
@@ -187,9 +163,9 @@
                                 </div>
                                 <ul class="action">
                                     <li>
-                                        <a href="#">
-                                        <span class="badge badge-danger pull-right">5</span>
-                                        Ordini
+                                        <a [routerLink]="['/home']">
+                                            <span class="badge badge-danger pull-right">5</span>
+                                            Ordini
                                         </a>
                                     </li>
                                     <li>

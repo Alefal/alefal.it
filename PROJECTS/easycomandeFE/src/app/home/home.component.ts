@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router} from '@angular/router';
 
 import { AlertService, HttpService } from '../_services/index';
 
@@ -18,7 +19,11 @@ export class HomeComponent implements OnInit {
   ordine: any;
   nothing: string;
 
-  constructor(private httpService: HttpService, private alertService: AlertService) {}
+  constructor(
+    private httpService: HttpService, 
+    private alertService: AlertService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.loadData('');
@@ -51,8 +56,8 @@ export class HomeComponent implements OnInit {
     this.orders = this.ordersAll;
   }
 
-  orderDetail(ordine) {
-    
+  orderDetail(order) {
+    this.router.navigate(['/ordine', JSON.stringify(order)]);
   }
 
   addOrder() {

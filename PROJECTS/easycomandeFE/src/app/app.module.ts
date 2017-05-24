@@ -13,13 +13,15 @@ import { AlertComponent }   from './_directives/index';
 import { AppComponent }     from './app.component';
 import { LoginComponent }   from './login/login.component';
 import { HomeComponent }    from './home/home.component';
+import { OrdineComponent } from './ordine/ordine.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    AlertComponent
+    AlertComponent,
+    OrdineComponent
   ],
   imports: [
     BrowserModule,
