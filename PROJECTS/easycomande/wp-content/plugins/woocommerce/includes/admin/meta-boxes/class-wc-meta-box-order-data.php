@@ -216,7 +216,7 @@ class WC_Meta_Box_Order_Data {
 						<p class="form-field form-field-wide"><label for="order_date"><?php _e( 'Order date:', 'woocommerce' ) ?></label>
 							<input type="text" class="date-picker" name="order_date" id="order_date" maxlength="10" value="<?php echo date_i18n( 'Y-m-d', strtotime( $post->post_date ) ); ?>" pattern="<?php echo esc_attr( apply_filters( 'woocommerce_date_input_html_pattern', '[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])' ) ); ?>" />@&lrm;<input type="number" class="hour" placeholder="<?php esc_attr_e( 'h', 'woocommerce' ) ?>" name="order_date_hour" id="order_date_hour" min="0" max="23" step="1" value="<?php echo date_i18n( 'H', strtotime( $post->post_date ) ); ?>" pattern="([01]?[0-9]{1}|2[0-3]{1})" />:<input type="number" class="minute" placeholder="<?php esc_attr_e( 'm', 'woocommerce' ) ?>" name="order_date_minute" id="order_date_minute" min="0" max="59" step="1" value="<?php echo date_i18n( 'i', strtotime( $post->post_date ) ); ?>" pattern="[0-5]{1}[0-9]{1}" />&lrm;
 						</p>
-						<!-- Alessandro
+						<!-- ALESSANDRO: scegli STATO e CLIENTE -->
 						<p class="form-field form-field-wide wc-order-status"><label for="order_status"><?php _e( 'Order status:', 'woocommerce' ) ?> <?php
 							if ( $order->needs_payment() ) {
 								printf( '<a href="%s">%s</a>',
@@ -233,7 +233,7 @@ class WC_Meta_Box_Order_Data {
 								}
 							?>
 						</select></p>
-
+						<!--
 						<p class="form-field form-field-wide wc-customer-user">
 							<label for="customer_user"><?php _e( 'Customer:', 'woocommerce' ) ?> <?php
 								if ( $order->get_user_id( 'edit' ) ) {
@@ -270,7 +270,7 @@ class WC_Meta_Box_Order_Data {
 						-->
 						<?php do_action( 'woocommerce_admin_order_data_after_order_details', $order ); ?>
 					</div>
-					<!--
+					<!-- ALESSANDRO: Dettagli di fatturazione
 					<div class="order_data_column">
 						<h3>
 							<?php _e( 'Billing details', 'woocommerce' ); ?>
@@ -361,12 +361,14 @@ class WC_Meta_Box_Order_Data {
 						?>
 					</div>
 					-->
+
+					<!-- ALESSANDRO: Cliente -->
 					<div class="order_data_column">
 
 						<h3>
 							<?php _e( 'Shipping details', 'woocommerce' ); ?>
-							<!--
 							<a href="#" class="edit_address"><?php _e( 'Edit', 'woocommerce' ); ?></a>
+							<!--
 							<span>
 								<a href="#" class="load_customer_shipping" style="display:none;"><?php _e( 'Load shipping address', 'woocommerce' ); ?></a>
 								<a href="#" class="billing-same-as-shipping" style="display:none;"><?php _e( 'Copy billing address', 'woocommerce' ); ?></a>
@@ -404,7 +406,7 @@ class WC_Meta_Box_Order_Data {
 								*/
 
 								if ( apply_filters( 'woocommerce_enable_order_notes_field', 'yes' == get_option( 'woocommerce_enable_order_comments', 'yes' ) ) && $post->post_excerpt ) {
-									echo '<p><strong>' . __( 'Customer provided note:', 'woocommerce' ) . '</strong> ' . nl2br( esc_html( $post->post_excerpt ) ) . '</p>';
+									echo '<p><strong>' . __( 'TAVOLO:', 'woocommerce' ) . '</strong> ' . nl2br( esc_html( $post->post_excerpt ) ) . '</p>';
 								}
 
 							echo '</div>';
@@ -412,6 +414,7 @@ class WC_Meta_Box_Order_Data {
 							// Display form
 							echo '<div class="edit_address">';
 
+							/*
 							if ( ! empty( self::$shipping_fields ) ) {
 								foreach ( self::$shipping_fields as $key => $field ) {
 									if ( ! isset( $field['type'] ) ) {
@@ -431,10 +434,11 @@ class WC_Meta_Box_Order_Data {
 									}
 								}
 							}
+							*/
 
 							if ( apply_filters( 'woocommerce_enable_order_notes_field', 'yes' == get_option( 'woocommerce_enable_order_comments', 'yes' ) ) ) {
 								?>
-								<p class="form-field form-field-wide"><label for="excerpt"><?php _e( 'Customer provided note', 'woocommerce' ) ?>:</label>
+								<p class="form-field form-field-wide"><label for="excerpt"><?php _e( 'TAVOLO', 'woocommerce' ) ?>:</label>
 								<textarea rows="1" cols="40" name="excerpt" tabindex="6" id="excerpt" placeholder="<?php esc_attr_e( 'Customer\'s notes about the order', 'woocommerce' ); ?>"><?php echo wp_kses_post( $post->post_excerpt ); ?></textarea></p>
 								<?php
 							}

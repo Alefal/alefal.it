@@ -49,11 +49,19 @@ Ripetere UPDATE di sopra
 6) npm install
 
 === Angular CLI ===
+https://github.com/angular/angular-cli/wiki/stories-1.0-update
+
 Delete folder node_modules
 
 Please take the following steps to avoid issues:
-"npm uninstall --save-dev angular-cli"
-"npm install --save-dev @angular/cli@latest"
+$ npm uninstall -g @angular/cli         # Remove global package
+$ npm uninstall --save-dev @angular/cli # Remove from package.json
+
+$ rm -rf node_modules dist # Use rmdir on Windows
+$ npm cache clean
+
+$ npm install -g @angular/cli@latest          # Global package
+$ npm install --save-dev @angular/cli@latest  # Local package
 
 To migrate angular-cli.json follow the example below:
 
@@ -75,7 +83,7 @@ After:
 
 $ npm install @angular/common@latest @angular/compiler@latest @angular/compiler-cli@latest @angular/core@latest @angular/forms@latest @angular/http@latest @angular/platform-browser@latest @angular/platform-browser-dynamic@latest @angular/platform-server@latest @angular/router@latest @angular/animations@latest typescript@latest --save
 
-$ npm install
+$ npm install                                 # Restore removed dependencies
 
 === Create Ionic 3 App ===
 ionic info
