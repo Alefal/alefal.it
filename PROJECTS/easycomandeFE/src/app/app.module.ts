@@ -8,6 +8,8 @@ import { routing }          from './app.routing';
 import { AuthGuard }        from './_guards/index';
 import { AlertService, AuthenticationService, HttpService } from './_services/index';
 
+import {ConfirmationPopoverModule} from 'angular-confirmation-popover';
+
 import { AlertComponent }   from './_directives/index';
 
 import { AppComponent }     from './app.component';
@@ -27,7 +29,11 @@ import { OrdineComponent } from './ordine/ordine.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing
+    routing,
+    ConfirmationPopoverModule.forRoot({
+      confirmButtonType: 'danger', // set defaults here
+      focusButton: 'confirm'
+    })
   ],
   providers: [
     AuthGuard,

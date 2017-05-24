@@ -4,10 +4,14 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { AlertService, HttpService } from '../_services/index';
 
+import {ConfirmationPopoverModule} from 'angular-confirmation-popover';
+
 import { Ordine } from '../_models/ordine';
 import { Prodotto } from '../_models/prodotto';
 import { Ship } from '../_models/ship';
 import { Nota } from '../_models/nota';
+
+declare var jQuery:any;
 
 @Component({
   selector: 'app-ordine',
@@ -15,6 +19,14 @@ import { Nota } from '../_models/nota';
   styleUrls: ['./ordine.component.css']
 })
 export class OrdineComponent implements OnInit {
+
+  placements: string[] = ['top']; //not work
+  title: string = 'Sei sicuro?';
+  message: string = 'Sei sicuro di voler eliminare il piatto selezionato ?';
+  confirmText: string = 'SI <i class="glyphicon glyphicon-ok"></i>';
+  cancelText: string = 'NO <i class="glyphicon glyphicon-remove"></i>';
+  confirmClicked: boolean = false;
+  cancelClicked: boolean = false;
 
   ordine: Ordine;
   notes: Nota[] = new Array<Nota>();
@@ -94,7 +106,7 @@ export class OrdineComponent implements OnInit {
         console.log('res: ' + JSON.stringify(res));
 
         if (res[0].response[0].result == 'OK') {
-          //this.showOrder(ordineId,ordineId);
+          this.backToOrders(ordineId);
         } else {
           this.alertService.error('PIATTI: Non è stato possibile cancellare il piatto');
         }
@@ -136,7 +148,7 @@ export class OrdineComponent implements OnInit {
         console.log('res: ' + JSON.stringify(res));
 
         if (res[0].response[0].result == 'OK') {
-          //this.showOrder(ordineId,ordineId);
+          this.backToOrders(ordineId);
         } else {
           this.alertService.error('SPECIALI: Non è stato possibile cancellare il piatto');
         }
@@ -146,10 +158,10 @@ export class OrdineComponent implements OnInit {
       });
   }
 
-  backToOrders() {
+  backToOrders(ordineId) {
     console.log('backToOrders');
     //this.location.back();
-    this.router.navigate(['/home']);
+    this.router.navigate(['/home',{ordineId:ordineId}]);
   }
 
 }

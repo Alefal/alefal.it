@@ -1,13 +1,17 @@
 .orderDetail .card.card-banner .card-body .content .value {
-    font-size: 3em;
+    font-size: 2.5em;
     padding-top: 1rem;
+}
+
+.popover {
+  z-index: 10000;
 }
 
 .card.card-banner .card-body {
     z-index: 1;
 }
 .card.card-banner .card-body .icon {
-    z-index: 9999;
+    z-index: 999;
 }
 
 /* NOTE */

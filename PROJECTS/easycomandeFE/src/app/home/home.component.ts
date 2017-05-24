@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router} from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { AlertService, HttpService } from '../_services/index';
 
@@ -22,10 +22,19 @@ export class HomeComponent implements OnInit {
   constructor(
     private httpService: HttpService, 
     private alertService: AlertService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
   ) {}
 
   ngOnInit() {
+    this.route.params
+      .subscribe(params => {
+        if(params['ordineId']) {
+          this.orderIdSaved = JSON.parse(params['ordineId']);
+          console.log('%o', this.orderIdSaved);
+        }
+      });
+
     this.loadData('');
   }
 
