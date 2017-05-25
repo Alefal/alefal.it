@@ -42,7 +42,7 @@ export class Product {
   }
 
   public setMeta(meta) {
-    this.meta += meta;
+    this.meta = meta;
   }
   public setExtra(extra) {
     this.meta += ' - Extra: '+extra+' - ';

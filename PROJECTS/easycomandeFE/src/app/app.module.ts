@@ -22,8 +22,6 @@ import { OrderComponent }   from './order/order.component';
 import { AddComponent }     from './add/add.component';
 import { MenuComponent }    from './menu/menu.component';
 
-import { ModalModule }      from 'ngx-bootstrap/modal';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,8 +42,7 @@ import { ModalModule }      from 'ngx-bootstrap/modal';
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'danger', // set defaults here
       focusButton: 'confirm'
-    }),
-    ModalModule.forRoot()
+    })
   ],
   providers: [
     AuthGuard,

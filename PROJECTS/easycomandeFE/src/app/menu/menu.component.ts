@@ -30,6 +30,45 @@ export class MenuComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    //Dati NON presenti in memoria: li recupero dal server
+    console.log('localStorage -> '+localStorage.getItem('categories').length);
+    if(localStorage.getItem('categories') === null || localStorage.getItem('categories').length == 2) {
+
+      if (localStorage.getItem('categories') === null) {
+        this.loadCategories();
+      } else {
+        this.categories = JSON.parse(localStorage.getItem('categories'));
+      }
+
+    } else {
+      this.categories = JSON.parse(localStorage.getItem('categories'));
+      console.log('res -> '+this.categories[0].name);
+      this.categoryName = this.categories[0].name;
+
+      this.products = JSON.parse(localStorage.getItem(this.categories[0].name));
+    }
+  }
+
+  loadCategories() {
+    this.loadingBarService.start();
+    this.httpService
+      .getCallHttp('getProductsCategory', '', '', '', '')
+      .subscribe(res => {
+        //console.log('res: '+JSON.stringify(res));
+
+        if (res[0].response[0].result == 'OK') {
+          this.categories = res[0].output;
+
+          this.loadData(res[0].output[0].name);
+        } else {
+          this.alertService.error('Nessun dato! Riprovare più tardi.');
+        }
+        this.loadingBarService.complete();
+      },
+      error => {
+        this.alertService.error('ORDINI: Dati non disponibili! Si è verificato un errore.');
+        this.loadingBarService.complete();
+      });
   }
 
   loadData(categoriaNome) {

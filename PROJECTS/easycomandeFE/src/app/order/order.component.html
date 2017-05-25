@@ -1,8 +1,30 @@
-<div class="btn-floating" id="help-actions" *ngIf="ordine.status != 'completed'">
+<div class="btn-floating btn-floating-edit" id="help-actions" *ngIf="ordine.status != 'completed'">
   <div class="btn-bg"></div>
-  <button type="button" class="btn btn-default btn-toggle" data-toggle="toggle">
+  <button type="button" class="btn btn-default btn-toggle" data-toggle="toggle" (click)="editOrder(ordine)">
     <i class="icon fa fa-pencil"></i>
   </button>
+</div>
+
+<div class="btn-floating btn-floating-delete" id="help-actions" *ngIf="ordine.status != 'completed'">
+  <div class="btn-bg"></div>
+  <button 
+    type="button" 
+    class="btn btn-default btn-toggle" 
+    data-toggle="toggle" 
+    mwlConfirmationPopover
+    [title]="title"
+    [message]="message"
+    [confirmText]="confirmText"
+    [cancelText]="cancelText"
+    [placement]="bottom"
+    (confirm)="deleteOrder(ordine.id)"
+    (cancel)="cancelClicked = true"
+    confirmButtonType="danger"
+    cancelButtonType="default"
+    [appendToBody]="true">
+    <i class="icon fa fa-close"></i>
+  </button>
+
 </div>
 
 <div class="row" (click)="backToOrders(0)">

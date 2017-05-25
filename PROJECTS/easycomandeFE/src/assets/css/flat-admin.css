@@ -1823,7 +1823,29 @@ body {
     body .app-container > app-add > ui-view > ui-view > ui-view > div.row > [class*="col-"] {
       margin-bottom: 30px; 
     }
-    /*** END: app-home ***/
+    /*** END: app-add ***/
+
+    /*** START: app-menu ***/   
+    body .app-container > app-menu > div:first-child, 
+    body .app-container > app-menu > ui-view > div:first-child, 
+    body .app-container > app-menu > ui-view > ui-view > div:first-child, 
+    body .app-container > app-menu > ui-view > ui-view > ui-view > div:first-child {
+      margin-top: 30px; 
+    }
+    body .app-container > app-menu > div.row, 
+    body .app-container > app-menu > ui-view > div.row, 
+    body .app-container > app-menu > ui-view > ui-view > div.row, 
+    body .app-container > app-menu > ui-view > ui-view > ui-view > div.row {
+      padding-left: 30px;
+      padding-right: 30px; 
+    }
+    body .app-container > app-menu > div.row > [class*="col-"], 
+    body .app-container > app-menu > ui-view > div.row > [class*="col-"], 
+    body .app-container > app-menu > ui-view > ui-view > div.row > [class*="col-"], 
+    body .app-container > app-menu > ui-view > ui-view > ui-view > div.row > [class*="col-"] {
+      margin-bottom: 30px; 
+    }
+    /*** END: app-menu ***/
     
     body .app-container .app-heading {
       display: -ms-flexbox;

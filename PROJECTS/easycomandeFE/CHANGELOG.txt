@@ -1,0 +1,4 @@
+TODO:
+- la nota può essere aggiunta in EDIT; eliminare il controllo sul TOTALE se siamo in EDIT
+- aggiungere l'incremento e decremento di un piatto
+- aggiungere la scelta dell'extra per un panino

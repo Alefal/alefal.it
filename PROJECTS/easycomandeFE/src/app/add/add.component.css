@@ -9,6 +9,7 @@
 .panel-group {
     overflow-y: auto;
     max-height: 500px;
+    box-shadow: 0 5px 5px 2px rgba(0,0,0,0.1);
 }
 
 .itemIsExtra {
@@ -26,4 +27,55 @@
 
 .iconAddNote {
     margin-left: 100px;
+}
+
+.itemProduct {
+    border-bottom: 1px solid #ccc;
+}
+
+.productName {
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* NOTE */
+.quote-container {
+  margin-top: 30px;
+  position: relative;
+}
+
+.note {
+  color: #333;
+  position: relative;
+  width: 75%;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 15px;
+  box-shadow: 0 5px 5px 2px rgba(0,0,0,0.1);
+}
+
+.note .author {
+  display: block;
+  margin: 40px 0 0 0;
+  text-align: right;
+}
+
+.yellow {
+  background: #eae672;
+  border-left-width: 0px;
+  -webkit-transform: rotate(2deg);
+  -moz-transform: rotate(2deg);
+  -o-transform: rotate(2deg);
+  -ms-transform: rotate(2deg);
+  transform: rotate(2deg);
+}
+
+.alert {
+    padding: 5px 15px;
+    margin-bottom: 0px;
+}
+.alert-dismissable .close, .alert-dismissible .close {
+    left: 10px;
 }

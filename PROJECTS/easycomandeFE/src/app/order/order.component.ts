@@ -7,12 +7,12 @@ import { AlertService, HttpService } from '../_services/index';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { LoadingBar, LoadingBarService } from "ng2-loading-bar";
 
-import { Order }    from '../_models/order';
-import { Product }  from '../_models/product';
-import { Ship }     from '../_models/ship';
-import { Note }     from '../_models/note';
+import { Order } from '../_models/order';
+import { Product } from '../_models/product';
+import { Ship } from '../_models/ship';
+import { Note } from '../_models/note';
 
-declare var jQuery:any;
+declare var jQuery: any;
 
 @Component({
   selector: 'app-order',
@@ -43,7 +43,7 @@ export class OrderComponent implements OnInit {
     private location: Location,
     private router: Router,
     private route: ActivatedRoute,
-    private httpService: HttpService, 
+    private httpService: HttpService,
     private alertService: AlertService,
     private loadingBarService: LoadingBarService
   ) { }
@@ -51,9 +51,11 @@ export class OrderComponent implements OnInit {
   ngOnInit(): void {
     this.route.params
       .subscribe(params => {
-        this.ordine = JSON.parse(params['order']);
-        this.getNote(this.ordine.id);
-        //console.log('%o', this.ordine);
+        if (params['order']) {
+          this.ordine = JSON.parse(params['order']);
+          this.getNote(this.ordine.id);
+          //console.log('%o', this.ordine);
+        }
       });
   }
 
@@ -61,14 +63,14 @@ export class OrderComponent implements OnInit {
     this.httpService
       .getCallHttp('getOrderNote', '', '', id, '')
       .subscribe(res => {
-        console.log('res: '+JSON.stringify(res));
+        console.log('res: ' + JSON.stringify(res));
 
-        if(res[0].response[0].result == 'OK') {
-          if(res[0].output == '') {
-            this.noteComplete = 'Nessuna nota per l\'ordine'; 
+        if (res[0].response[0].result == 'OK') {
+          if (res[0].output == '') {
+            this.noteComplete = 'Nessuna nota per l\'ordine';
           } else {
             for (let prod of res[0].output) {
-              let nota = new Note(prod['id'],prod['note'],true);
+              let nota = new Note(prod['id'], prod['note'], true);
               this.notes.push(nota);
             }
             console.log('%o', this.notes);
@@ -80,13 +82,13 @@ export class OrderComponent implements OnInit {
       });
   }
 
-  deleteProduct(ordineId,prod:Product) {
+  deleteProduct(ordineId, prod: Product) {
     this.loadingBarService.start();
 
-    console.log('deleteProduct ordine: '+ordineId);
-    console.log('%o',prod);
+    console.log('deleteProduct ordine: ' + ordineId);
+    console.log('%o', prod);
 
-    let prodotto = new Product(prod.id,prod.product_id,prod.title,prod.price,false,false,false,prod.price,prod.description,prod.quantity,'');
+    let prodotto = new Product(prod.id, prod.product_id, prod.title, prod.price, false, false, false, prod.price, prod.description, prod.quantity, '');
 
     let ordine = new Order(
       ordineId,         //this.id
@@ -124,11 +126,13 @@ export class OrderComponent implements OnInit {
       });
   }
 
-  deleteShip(ordineId,ship) {
-    console.log('deleteShip ordine: '+ordineId);
-    console.log('%o',ship);
+  deleteShip(ordineId, ship) {
+    this.loadingBarService.start();
 
-    let shipping = new Ship(ship.id,null,'',0);
+    console.log('deleteShip ordine: ' + ordineId);
+    console.log('%o', ship);
+
+    let shipping = new Ship(ship.id, null, '', 0);
 
     let ordine = new Order(
       ordineId,         //this.id
@@ -169,7 +173,34 @@ export class OrderComponent implements OnInit {
   backToOrders(ordineId) {
     console.log('backToOrders');
     //this.location.back();
-    this.router.navigate(['/home',{ordineId:ordineId}]);
+    this.router.navigate(['/home', { ordineId: ordineId }]);
+  }
+
+  editOrder(order) {
+    console.log('editOrder');
+    this.router.navigate(['/add', JSON.stringify(order)]);
+  }
+
+  deleteOrder(id) {
+    this.loadingBarService.start();
+
+    this.httpService
+      .getCallHttp('getOrderDelete', '', '', id, '')
+      .subscribe(res => {
+        console.log('res: ' + JSON.stringify(res));
+
+        if (res[0].response[0].result == 'OK') {
+          this.router.navigate(['/home']);
+        } else {
+          this.alertService.error('Nessun dato! Riprovare più tardi.');
+        }
+        this.loadingBarService.complete();
+      },
+      error => {
+        this.alertService.error('ERROR: ' + error);
+        this.loadingBarService.complete();
+      });
+
   }
 
 }
