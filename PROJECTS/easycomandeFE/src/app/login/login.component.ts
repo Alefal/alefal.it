@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { AlertService, AuthenticationService } from '../_services/index';
+import { LoadingBar, LoadingBarService } from 'ng2-loading-bar';
+
 import { User } from '../_models/user';
 
 @Component({
@@ -18,6 +20,7 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
+    private loadingBarService: LoadingBarService,
     private alertService: AlertService) { }
 
   ngOnInit() {
@@ -29,7 +32,9 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.loading = true;
+    //this.loading = true;
+
+    this.loadingBarService.start();
 
     /*
     if (this.model.username == 'admin' && this.model.password == 'admin') {
@@ -47,17 +52,20 @@ export class LoginComponent implements OnInit {
 
         if(data.status == 'error') {
           this.alertService.error(data.error);
-          this.loading = false;
+          this.loadingBarService.complete();
+          //this.loading = false;
         } else if(data.status == 'ok') {
           this.router.navigate(['/home']);
         } else {
           this.alertService.error('Authentication failed!');
-          this.loading = false;
+          this.loadingBarService.complete();
+          //this.loading = false;
         }
       },
       error => {
         this.alertService.error(error);
-        this.loading = false;
+        this.loadingBarService.complete();
+        //this.loading = false;
       });
     
   }

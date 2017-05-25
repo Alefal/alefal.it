@@ -4,14 +4,14 @@
 }
 
 .popover {
-  z-index: 10000;
+    z-index: 1000000;
 }
 
 .card.card-banner .card-body {
     z-index: 1;
 }
 .card.card-banner .card-body .icon {
-    z-index: 999;
+    z-index: 998;
 }
 
 /* NOTE */

@@ -1,0 +1,192 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-body app-heading">
+        <div class="app-title">
+          <div class="title">
+            <span class="highlight">Ordinazione</span>
+            <span class="badge badge-danger pull-right orderAddTotal">{{totaleOrdine}}</span>
+          </div>
+
+          <hr />
+
+          <div class="form-group" align="right">
+            <div class="col-md-9 col-md-offset-3">
+              <button type="submit" class="btn btn-primary">Salva</button>
+              <a class="btn btn-danger" [routerLink]="['/home']">Annulla</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-body">
+        <form class="form form-horizontal">
+          <div class="section">
+            <div class="section-title">Informazioni</div>
+            <div class="section-body">
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="col-md-3 control-label">Tavolo</label>
+                    <div class="col-md-9">
+                      <input type="number" class="form-control" placeholder="" [(ngModel)]="numTavolo" name="numTavolo" />
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <div class="col-md-3">
+                      <label class="control-label">Coperti</label>
+                      <!--
+                      <p class="control-label-help">( short detail of products , 150 max words )</p>
+                      -->
+                    </div>
+                    <div class="col-md-9">
+                      <input type="number" class="form-control" placeholder="" required name="numeroCoperti" #numeroCoperti (blur)="updateTotal(numeroCoperti.value)"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              </div>
+          </div>
+
+          <div class="section">
+            <div class="section-title">Piatti da menu</div>
+            <div class="section-body">
+              <div class="row" *ngIf="productsInCart?.length > 0">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" *ngFor="let prod of productsInCart | orderBy:'id'" [ngClass]="{'itemIsExtra': prod.isExtra}">
+                  <div class="card card-banner card-blue-light">
+                    <div class="card-body">
+                      <div 
+                        mwlConfirmationPopover
+                        [title]="title"
+                        [message]="message"
+                        [confirmText]="confirmText"
+                        [cancelText]="cancelText"
+                        [placement]="bottom"
+                        (confirm)="removeProduct(prod)"
+                        (cancel)="cancelClicked = true"
+                        confirmButtonType="danger"
+                        cancelButtonType="default"
+                        [appendToBody]="true"
+                        class="icon fa fa-times fa-4x">
+                      </div>
+                      <div class="icon fa fa-pencil fa-4x iconAddNote" (click)="addMetaProduct(prod)" *ngIf="!prod.isExtra"></div>
+                      <div class="content">
+
+                        <div class="title"><em>{{prod.quantity}} x {{prod.title}}</em></div>
+
+                        <div *ngFor="let meta of prod.meta">
+                          <div *ngIf="meta.value != ''">
+                            <span class="badge badge-warning">{{meta.value}}</span>
+                          </div>
+                        </div>
+
+                        <div class="value"><span class="sign">&euro; </span>{{prod.quantity * prod.price}}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+           
+
+          <div class="form-footer">
+            <div class="form-group">
+              <div class="col-md-9 col-md-offset-3">
+                <button type="submit" class="btn btn-primary">Salva</button>
+                <a class="btn btn-danger" [routerLink]="['/home']">Annulla</a>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+
+    <!--
+    <div class="card">
+      <div class="card-header">
+        Menu
+      </div>
+      <div class="card-body">
+        ...
+      </div>
+    </div>
+    -->
+
+    <!--
+    <div class="card card-tab card-mini" *ngIf="categories?.length > 0">
+      <div class="card-header">
+        <ul class="nav nav-tabs">
+          <li role="tab1" *ngFor="let cat of categories | orderBy:'id'" (click)="loadData(cat.name)" [class.active]="cat.name == categoryName">
+            <a href="#{{cat.id}}" role="tab1" data-toggle="tab" aria-expanded="true"><span class="badge badge-warning">{{cat.count}}</span> {{cat.name}}</a>
+          </li>
+        </ul>
+      </div>
+      <div class="card-body tab-content no-padding" *ngIf="products?.length > 0">
+        <div role="tabpanel" class="tab-pane active listProductByCategory" id="tab1">
+          <div class="list-group">
+            <a href="#" class="list-group-item" *ngFor="let prod of products | orderBy:'title'">
+              <span class="badge">&euro; {{prod.price}}</span> <h5>{{prod.title}}</h5>
+              <p><i [innerHTML]="prod.description"></i></p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    -->
+
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" *ngIf="categories?.length > 0">
+      <div class="panel panel-success" *ngFor="let cat of categories | orderBy:'id'" (click)="loadData(cat.name)" [class.active]="cat.name == categoryName">
+        <div class="panel-heading" role="tab" id="heading{{cat.id}}">
+          <h4 class="panel-title">
+            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{cat.id}}" aria-expanded="true" attr.aria-controls="collapse{{cat.id}}">
+              {{cat.name}} <span class="badge badge-warning pull-right">{{cat.count}}</span>
+            </a>
+          </h4>
+        </div>
+        <div id="collapse{{cat.id}}" class="panel-collapse collapse" role="tabpanel" attr.aria-labelledby="heading{{cat.id}}">
+          <div class="panel-body" *ngFor="let prod of products | orderBy:'title'">
+            <h5 (click)="addProducts(cat,prod)">{{prod.title}}</h5> <span class="badge pull-right">&euro; {{prod.price}}</span>
+            <p><i [innerHTML]="prod.description"></i></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<button type="button" class="btn btn-primary" (click)="show()">Static modal</button>
+
+<div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Static modal</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="staticModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        This is static modal, backdrop click will not close it.
+        Click <b>&times;</b> to close modal.
+      </div>
+    </div>
+  </div>
+</div>

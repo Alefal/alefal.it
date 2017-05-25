@@ -4,13 +4,17 @@ import { AuthGuard }            from './_guards/index';
 
 import { LoginComponent }       from './login/login.component';
 import { HomeComponent }        from './home/home.component';
-import { OrdineComponent }      from './ordine/ordine.component';
+import { AddComponent }         from './add/add.component';
+import { OrderComponent }       from './order/order.component';
+import { MenuComponent }        from './menu/menu.component';
 
 const appRoutes: Routes = [
     { path: '',                 component: LoginComponent },
     { path: 'login',            component: LoginComponent },
     { path: 'home',             component: HomeComponent, canActivate: [AuthGuard] },
-    { path: 'ordine/:order',    component: OrdineComponent },
+    { path: 'add',              component: AddComponent, canActivate: [AuthGuard] },
+    { path: 'menu',             component: MenuComponent, canActivate: [AuthGuard] },
+    { path: 'ordine/:order',    component: OrderComponent },
 
     // otherwise redirect to home
     { path: '**', redirectTo: '' }

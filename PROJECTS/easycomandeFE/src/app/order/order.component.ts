@@ -7,19 +7,19 @@ import { AlertService, HttpService } from '../_services/index';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { LoadingBar, LoadingBarService } from "ng2-loading-bar";
 
-import { Ordine } from '../_models/ordine';
-import { Prodotto } from '../_models/prodotto';
-import { Ship } from '../_models/ship';
-import { Nota } from '../_models/nota';
+import { Order }    from '../_models/order';
+import { Product }  from '../_models/product';
+import { Ship }     from '../_models/ship';
+import { Note }     from '../_models/note';
 
 declare var jQuery:any;
 
 @Component({
-  selector: 'app-ordine',
-  templateUrl: './ordine.component.html',
-  styleUrls: ['./ordine.component.css']
+  selector: 'app-order',
+  templateUrl: './order.component.html',
+  styleUrls: ['./order.component.css']
 })
-export class OrdineComponent implements OnInit {
+export class OrderComponent implements OnInit {
 
   placements: string[] = ['top']; //not work
   title: string = 'Sei sicuro?';
@@ -29,8 +29,8 @@ export class OrdineComponent implements OnInit {
   confirmClicked: boolean = false;
   cancelClicked: boolean = false;
 
-  ordine: Ordine;
-  notes: Nota[] = new Array<Nota>();
+  ordine: Order;
+  notes: Note[] = new Array<Note>();
   noteComplete: string;
 
   eliminaPiatto: boolean = true;
@@ -68,7 +68,7 @@ export class OrdineComponent implements OnInit {
             this.noteComplete = 'Nessuna nota per l\'ordine'; 
           } else {
             for (let prod of res[0].output) {
-              let nota = new Nota(prod['id'],prod['note'],true);
+              let nota = new Note(prod['id'],prod['note'],true);
               this.notes.push(nota);
             }
             console.log('%o', this.notes);
@@ -80,15 +80,15 @@ export class OrdineComponent implements OnInit {
       });
   }
 
-  deleteProduct(ordineId,prod:Prodotto) {
+  deleteProduct(ordineId,prod:Product) {
     this.loadingBarService.start();
 
     console.log('deleteProduct ordine: '+ordineId);
     console.log('%o',prod);
 
-    let prodotto = new Prodotto(prod.id,prod.product_id,prod.title,prod.price,false,false,false,prod.price,prod.description,prod.quantity,'');
+    let prodotto = new Product(prod.id,prod.product_id,prod.title,prod.price,false,false,false,prod.price,prod.description,prod.quantity,'');
 
-    let ordine = new Ordine(
+    let ordine = new Order(
       ordineId,         //this.id
       ordineId,         //this.order_number
       '',               //this.created_at
@@ -130,7 +130,7 @@ export class OrdineComponent implements OnInit {
 
     let shipping = new Ship(ship.id,null,'',0);
 
-    let ordine = new Ordine(
+    let ordine = new Order(
       ordineId,         //this.id
       ordineId,         //this.order_number
       '',               //this.created_at

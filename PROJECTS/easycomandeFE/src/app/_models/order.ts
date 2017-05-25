@@ -1,4 +1,4 @@
-export class Ordine {
+export class Order {
 
   /*
   public id: number;

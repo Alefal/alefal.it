@@ -13,10 +13,16 @@ import { LoadingBar, LoadingBarService } from "ng2-loading-bar";
 
 import { AlertComponent }   from './_directives/index';
 
+import { OrderByPipe }      from './_pipes/order-by-pipe';
+
 import { AppComponent }     from './app.component';
 import { LoginComponent }   from './login/login.component';
 import { HomeComponent }    from './home/home.component';
-import { OrdineComponent } from './ordine/ordine.component';
+import { OrderComponent }   from './order/order.component';
+import { AddComponent }     from './add/add.component';
+import { MenuComponent }    from './menu/menu.component';
+
+import { ModalModule }      from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -24,8 +30,11 @@ import { OrdineComponent } from './ordine/ordine.component';
     LoginComponent,
     HomeComponent,
     AlertComponent,
-    OrdineComponent,
-    LoadingBar
+    OrderComponent,
+    LoadingBar,
+    AddComponent,
+    MenuComponent,
+    OrderByPipe
   ],
   imports: [
     BrowserModule,
@@ -35,7 +44,8 @@ import { OrdineComponent } from './ordine/ordine.component';
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'danger', // set defaults here
       focusButton: 'confirm'
-    })
+    }),
+    ModalModule.forRoot()
   ],
   providers: [
     AuthGuard,

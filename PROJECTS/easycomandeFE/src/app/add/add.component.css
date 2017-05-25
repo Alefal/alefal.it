@@ -1,0 +1,29 @@
+.orderAddTotal {
+    font-size: 1em;
+    padding: 10px;
+}
+.listProductByCategory {
+    padding: 0 !important;
+}
+
+.panel-group {
+    overflow-y: auto;
+    max-height: 500px;
+}
+
+.itemIsExtra {
+    background-color: #defb97 !important;
+    font-style: italic;
+    font-size: 1.2rem;
+}
+
+.card.card-banner .card-body .icon {
+    z-index: 998;
+}
+.popover {
+    z-index: 1000000;
+}
+
+.iconAddNote {
+    margin-left: 100px;
+}

@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { AlertService, HttpService } from '../_services/index';
-import { LoadingBar, LoadingBarService } from "ng2-loading-bar";
+import { LoadingBar, LoadingBarService } from 'ng2-loading-bar';
 
-import { Ordine } from '../_models/ordine';
+import { Order } from '../_models/order';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +18,6 @@ export class HomeComponent implements OnInit {
 
   orderIdSaved: any;
   ordine: any;
-  nothing: string;
 
   constructor(
     private httpService: HttpService, 
@@ -56,14 +55,14 @@ export class HomeComponent implements OnInit {
         if(res[0].response[0].result == 'OK') {
           this.orders = res[0].output;
           this.ordersAll = res[0].output;
-
-          this.loadingBarService.complete();
         } else {
-          this.nothing = 'Nessun dato! Riprovare più tardi.';
+          this.alertService.error('Nessun dato! Riprovare più tardi.');
         }
+        this.loadingBarService.complete();
       },
       error => {
         this.alertService.error('ORDINI: Dati non disponibili! Si è verificato un errore.');
+        this.loadingBarService.complete();
       });
   }
 

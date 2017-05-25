@@ -1,4 +1,4 @@
-export class Nota {
+export class Note {
   public id: number;
   public nota: string;
   public customer_note: boolean;    

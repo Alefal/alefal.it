@@ -1,3 +1,6 @@
 .loading-bar, .loading-bar-progress {
-    z-index: 100010 !important;
+    z-index: 1000010 !important;
+}
+.popover {
+    z-index: 1000000;
 }

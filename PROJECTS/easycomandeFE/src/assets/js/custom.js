@@ -1,17 +1,14 @@
-$(function(){
-
-    //$(document).off('.data-api');
-
-    $('.sidebar-toggle').click(function() {
-        if($('.app-sidebar').is(':visible')) {
-            $('.app-sidebar').css('transform','translate(-100%, 0)');
-            $('.app-sidebar').hide();
-        } else {
-            $('.app-sidebar').css('transform','translate(0, 0)');
-            $('.app-sidebar').show();
-        }
+$(function () {
+    $('.sidebar-toggle').bind('click', function (e) {
+        console.log('sidebar-toggle');
+        $('#sidebar').toggleClass('active');
+        $('.app-container').toggleClass('__sidebar');
     });
 
-    //$('[data-toggle="popover"]').popover();
-    //$('.popup').popover();
+    $('.navbar-toggle').bind('click', function (e) {
+        console.log('navbar-toggle');
+        
+        $('#navbar').toggleClass('active');
+        $('.app-container').toggleClass('__navbar');
+    });
 });

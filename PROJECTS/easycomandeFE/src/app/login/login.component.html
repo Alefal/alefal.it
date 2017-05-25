@@ -1,24 +1,72 @@
+<!--
 <div class="container loginAuthentication">
     <div class="card card-container">
-        <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
         <img id="profile-img" class="profile-img-card" src="/assets/img/flat-avatar.png" />
         <p id="profile-name" class="profile-name-card"></p>
         <form class="form-signin" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
-            <input type="text" placeholder="Username" class="form-control" name="username" [(ngModel)]="model.username" #username="ngModel" required autofocus />
+            <input type="text" placeholder="Username" class="form-control" name="username" [(ngModel)]="model.username" #username="ngModel"
+                required autofocus />
             <div *ngIf="f.submitted && !username.valid" class="help-block">
                 <span class="badge badge-danger pull-right">Username is required</span>
             </div>
-            
-            <input type="password" placeholder="Password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required />
+
+            <input type="password" placeholder="Password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel"
+                required />
             <div *ngIf="f.submitted && !password.valid" class="help-block">
                 <span class="badge badge-danger pull-right">Password is required</span>
             </div>
 
             <button [disabled]="loading" class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Login</button>
         </form>
-        <!-- /form -->
         <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
-                />
+        />
     </div>
-    <!-- /card-container -->
+</div>
+-->
+
+<div class="loginAuthentication app-login">
+    <div class="flex-center">
+        <div class="app-header"></div>
+        <div class="app-body">
+            <div class="app-block">
+                <div class="app-form">
+                    <div class="form-header">
+                        <div class="app-brand"><span class="highlight">Easy</span> Comande</div>
+                    </div>
+                    <form class="form-signin" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">
+                            <i class="fa fa-user" aria-hidden="true"></i></span>
+                            <input type="text" placeholder="Username" class="form-control" name="username" [(ngModel)]="model.username" #username="ngModel"
+                                required autofocus />
+                        </div>
+                        <div *ngIf="f.submitted && !username.valid" class="help-block">
+                            <span class="badge badge-danger pull-right">Username is required</span>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon2">
+                            <i class="fa fa-key" aria-hidden="true"></i></span>
+                            <input type="password" placeholder="Password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel"
+                                required />
+                        </div>
+                        <div *ngIf="f.submitted && !password.valid" class="help-block">
+                            <span class="badge badge-danger pull-right">Password is required</span>
+                        </div>
+                        <div class="text-center">
+                            <button [disabled]="loading" class="btn btn-success btn-submit btn-large" type="submit">Login</button>
+                        </div>
+                    </form>
+
+                    <div class="form-line">
+                        <div class="title">&nbsp;</div>
+                    </div>
+                    <div class="form-footer">
+                        Version 1.0.8
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="app-footer">
+        </div>
+    </div>
 </div>

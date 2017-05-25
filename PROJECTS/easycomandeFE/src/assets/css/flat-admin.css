@@ -1773,28 +1773,58 @@ body {
     min-height: 100vh;
     position: relative;
     overflow-x: hidden;
-    padding-left: 180px; }
+    padding-left: 180px; 
+    }
     body .app-container .content-heading {
       margin-bottom: 30px; }
       body .app-container .content-heading .title {
         font-size: 1.75em;
         font-weight: 200; }
+
+    /*** START: app-home ***/   
     body .app-container > app-home > div:first-child, 
     body .app-container > app-home > ui-view > div:first-child, 
     body .app-container > app-home > ui-view > ui-view > div:first-child, 
     body .app-container > app-home > ui-view > ui-view > ui-view > div:first-child {
-      margin-top: 30px; }
+      margin-top: 30px; 
+    }
     body .app-container > app-home > div.row, 
     body .app-container > app-home > ui-view > div.row, 
     body .app-container > app-home > ui-view > ui-view > div.row, 
     body .app-container > app-home > ui-view > ui-view > ui-view > div.row {
       padding-left: 30px;
-      padding-right: 30px; }
-      body .app-container > app-home > div.row > [class*="col-"], 
-      body .app-container > app-home > ui-view > div.row > [class*="col-"], 
-      body .app-container > app-home > ui-view > ui-view > div.row > [class*="col-"], 
-      body .app-container > app-home > ui-view > ui-view > ui-view > div.row > [class*="col-"] {
-        margin-bottom: 30px; }
+      padding-right: 30px; 
+    }
+    body .app-container > app-home > div.row > [class*="col-"], 
+    body .app-container > app-home > ui-view > div.row > [class*="col-"], 
+    body .app-container > app-home > ui-view > ui-view > div.row > [class*="col-"], 
+    body .app-container > app-home > ui-view > ui-view > ui-view > div.row > [class*="col-"] {
+      margin-bottom: 30px; 
+    }
+    /*** END: app-home ***/   
+
+    /*** START: app-add ***/   
+    body .app-container > app-add > div:first-child, 
+    body .app-container > app-add > ui-view > div:first-child, 
+    body .app-container > app-add > ui-view > ui-view > div:first-child, 
+    body .app-container > app-add > ui-view > ui-view > ui-view > div:first-child {
+      margin-top: 30px; 
+    }
+    body .app-container > app-add > div.row, 
+    body .app-container > app-add > ui-view > div.row, 
+    body .app-container > app-add > ui-view > ui-view > div.row, 
+    body .app-container > app-add > ui-view > ui-view > ui-view > div.row {
+      padding-left: 30px;
+      padding-right: 30px; 
+    }
+    body .app-container > app-add > div.row > [class*="col-"], 
+    body .app-container > app-add > ui-view > div.row > [class*="col-"], 
+    body .app-container > app-add > ui-view > ui-view > div.row > [class*="col-"], 
+    body .app-container > app-add > ui-view > ui-view > ui-view > div.row > [class*="col-"] {
+      margin-bottom: 30px; 
+    }
+    /*** END: app-home ***/
+    
     body .app-container .app-heading {
       display: -ms-flexbox;
       display: flex;
@@ -2962,7 +2992,7 @@ aside.app-sidebar {
       border-bottom-color: #29c75f; }
 
 .app-login {
-  background: #29c75f;
+  /*background: #29c75f;*/
   padding: 0 !important; }
   .app-login .app-body {
     position: relative;
