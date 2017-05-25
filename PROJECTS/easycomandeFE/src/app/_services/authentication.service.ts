@@ -6,13 +6,16 @@ import 'rxjs/add/operator/map'
 @Injectable()
 export class AuthenticationService {
 
+    //host = 'http://localhost/alefal.it/PROJECTS/easycomande';
+    //host = 'http://192.168.1.100/alefal.it/PROJECTS/easycomande';
+    host = 'http://www.amalficoastapps.it/demo/easycomande';
+    
     constructor(private http: Http) { }
 
     login(username: string, password: string) {
-        let host = 'http://localhost/alefal.it/PROJECTS/easycomande';
         let url = '/api/user/generate_auth_cookie/?username=' + username + '&password=' + password + '&insecure=cool';
 
-        return this.http.get(host + '' + url)
+        return this.http.get(this.host + '' + url)
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
                 let user = response.json();
