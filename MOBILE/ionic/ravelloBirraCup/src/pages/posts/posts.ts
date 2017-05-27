@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, NavController }   from 'ionic-angular';
 
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 import { FacebookProvider } from '../../providers/facebook/facebook';
 
@@ -16,7 +17,12 @@ export class PostsPage {
 
   posts: any;
 
-  constructor(public navCtrl: NavController, private fb: Facebook, private facebookProvider: FacebookProvider) {
+  constructor(
+    public navCtrl: NavController, 
+    private fb: Facebook, 
+    private facebookProvider: FacebookProvider,  
+    private socialSharing: SocialSharing
+  ) {
 
     this.fb.getAccessToken()
       .then((res: string) => console.log('getAccessToken', res))
@@ -39,8 +45,16 @@ export class PostsPage {
     
   }
 
+  share(message) {
+    this.socialSharing.share(message, 'Birra Ravello Cup 2017', '', '').then(() => {
+      console.log('success');
+    }).catch((e) => {
+      console.error('error: '+e);
+    });
+  }
+
   openPage() {
-    this.nav.setRoot(HomePage);
+    this.navCtrl.setRoot(HomePage);
   }
 
 }

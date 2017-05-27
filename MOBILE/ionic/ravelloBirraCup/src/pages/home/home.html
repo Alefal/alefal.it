@@ -1,40 +1,30 @@
 <ion-header>
 	<ion-navbar color="greenDark">
-		<ion-title>Ravello Birra Cup 2017</ion-title>
+		<button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+		<ion-title>Birra Ravello Cup 2017</ion-title>
 		<ion-buttons end>
 			<button ion-button icon-only (click)="openPage()">
-				<ion-icon name="swap"></ion-icon>
+				<ion-icon name="list-box"></ion-icon>
 			</button>
 		</ion-buttons>
 	</ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  
+
 	<ion-slides pager *ngIf="!tournamentName && tournamentType == null" class="home-view" showWhen="portrait">
-		<!-- TDRS -->
 		<ion-slide>
 			<div class="titleBg">
-				<h3>Torneo dei Rioni Storici</h3>
-				<h6>dal 5 Dicembre 2016</h6>
+				<h3>Fantacoast Birra Ravello Cup</h3>
+				<h6>chiusura iscrizioni 2 giugno 2017</h6>
 				<hr />
-				<h6>12 squadre, 22 giornate, più di 120 atleti, 2 campi su cui giocare</h6>		
+				<h6>ASTA il 3 giugno 2017 ore 16.30</h6>
 				<hr />
-				<h6>Che il divertimento sia con voi!</h6>	
+				<h6>Auditorium "Oscar Niemeyer" - Ravello</h6>
 			</div>
 		</ion-slide>
-		<!-- TDT 
-		<ion-slide>
-			<div class="titleBg">
-				<h3>Torneo dei Tifosi 2016</h3>
-				<h6>dal 19 al 30 Dicembre 2016</h6>
-				<hr />
-				<h6>6 squadre, 2 gironi, circa 100 atleti</h6>		
-				<hr />
-				<h6>Che il divertimento sia con voi!</h6>	
-			</div>
-		</ion-slide>
-		-->
 	</ion-slides>
 
 	<ion-list class="listStats" *ngIf="tournamentName && tournamentType != null && tournamentType != 'leagueknockout' && tournamentType != 'knockout'">
@@ -61,16 +51,6 @@
 		<ion-item (click)="navigate('Squadre','league','')">
 			<ion-icon name="football" item-left></ion-icon>
 			Squadre
-			<ion-icon name="ios-arrow-forward" item-right></ion-icon>
-		</ion-item>
-		<ion-item (click)="navigate('Comunicati','','')">
-			<ion-icon name="bookmarks" item-left></ion-icon>
-			Comunicati
-			<ion-icon name="ios-arrow-forward" item-right></ion-icon>
-		</ion-item>
-		<ion-item (click)="navigate('FotoVideo','','')">
-			<ion-icon name="images" item-left></ion-icon>
-			Foto e Video
 			<ion-icon name="ios-arrow-forward" item-right></ion-icon>
 		</ion-item>
 	</ion-list>
@@ -101,16 +81,6 @@
 			Squadre
 			<ion-icon name="ios-arrow-forward" item-right></ion-icon>
 		</ion-item>
-		<ion-item (click)="navigate('Comunicati','','')">
-			<ion-icon name="bookmarks" item-left></ion-icon>
-			Comunicati
-			<ion-icon name="ios-arrow-forward" item-right></ion-icon>
-		</ion-item>
-		<ion-item (click)="navigate('FotoVideo','','')">
-			<ion-icon name="images" item-left></ion-icon>
-			Foto e Video
-			<ion-icon name="ios-arrow-forward" item-right></ion-icon>
-		</ion-item>
 	</ion-list>
 
 	<ion-list class="listStats" *ngIf="tournamentType == 'knockout'">
@@ -127,16 +97,6 @@
 		<ion-item (click)="navigate('Squadre','tournament','')">
 			<ion-icon name="football" item-left></ion-icon>
 			Squadre
-			<ion-icon name="ios-arrow-forward" item-right></ion-icon>
-		</ion-item>
-		<ion-item (click)="navigate('Comunicati','','')">
-			<ion-icon name="bookmarks" item-left></ion-icon>
-			Comunicati
-			<ion-icon name="ios-arrow-forward" item-right></ion-icon>
-		</ion-item>
-		<ion-item (click)="navigate('FotoVideo','','')">
-			<ion-icon name="images" item-left></ion-icon>
-			Foto e Video
 			<ion-icon name="ios-arrow-forward" item-right></ion-icon>
 		</ion-item>
 	</ion-list>

@@ -104,7 +104,7 @@ export class TabellinoModal {
 
     this.httpService
       .getCallHttp('getTabellino','','',matchId,'',this.tipologiaTorneo)
-      .then(res => {
+      .subscribe(res => {
         //console.log('SUCCESS: ' + JSON.stringify(res));
 
         this.loadingAtleti = false;
@@ -123,8 +123,8 @@ export class TabellinoModal {
           console.log('away_team_score: ' + this.away_team_score);
         }
         this.loading.dismiss();
-      })
-      .catch(error => {
+      },
+      error => {
         console.log('ERROR: ' + error);
         this.loadingAtleti = false;
         this.errorMessage = 'Tabellino non disponibile!';
@@ -135,7 +135,7 @@ export class TabellinoModal {
   getTabellinoPolling(matchId) {
     this.httpService
       .getCallHttp('getTabellino','','',matchId,'',this.tipologiaTorneo)
-      .then(res => {
+      .subscribe(res => {
         if (res[0].response[0].result == 'OK') {
           //this.match          = res[0].match;
           this.result           = res[0].match[0].home_team_score +' - '+ res[0].match[0].away_team_score;
@@ -153,8 +153,8 @@ export class TabellinoModal {
           }
 
         }
-      })
-      .catch(error => {
+      },
+      error => {
         console.log('ERROR: ' + error);
       });
   }
@@ -177,7 +177,7 @@ export class TabellinoModal {
       this.liveSelectedGiocatore = '';
       this.httpService
         .getCallHttp('getGiocatori',this.liveSquadraId,'','','',this.tipologiaTorneo)
-        .then(res => {
+        .subscribe(res => {
           console.log('SUCCESS: ' + JSON.stringify(res));
 
           if(res[0].response[0].result == 'OK') {
@@ -185,8 +185,8 @@ export class TabellinoModal {
           } else {
             this.liveGiocatori = 'Nessun dato! Riprovare più tardi.';
           }
-        })
-        .catch(error => {
+        },
+        error => {
           console.log('ERROR: ' + error);
         });
     } else {
@@ -220,7 +220,7 @@ export class TabellinoModal {
         
         this.httpService
           .getCallHttp('getIncontroEventi','','','','',event)
-          .then(res => {
+          .subscribe(res => {
             console.log('SUCCESS: ' + JSON.stringify(res));
 
             if(res[0].response[0].result == 'OK') {
@@ -229,8 +229,8 @@ export class TabellinoModal {
               console.log('KO');
             }
             this.loading.dismiss();
-          })
-          .catch(error => {
+          },
+          error => {
             console.log('ERROR: ' + error);
             this.loading.dismiss();
           });

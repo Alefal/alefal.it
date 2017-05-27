@@ -3,11 +3,8 @@ import { Nav }   from 'ionic-angular';
 import { NavController, NavParams, LoadingController, ActionSheetController }  from 'ionic-angular';
 
 import { Network } from '@ionic-native/network';
-import { SocialSharing } from '@ionic-native/social-sharing';
 
 import { PostsPage }      from '../posts/posts';
-import { Comunicati }     from '../comunicati/comunicati';
-import { FotoVideo }      from '../foto-video/foto-video';
 import { Squadre }        from '../squadre/squadre';
 import { Incontri }       from '../incontri/incontri';
 import { Classifica }     from '../classifica/classifica';
@@ -49,18 +46,12 @@ export class HomePage {
     public params: NavParams, 
     public connectivityService: ConnectivityService,
     public actionSheetCtrl: ActionSheetController,
-    private network: Network,
-    private socialSharing: SocialSharing
+    private network: Network
   ) { }
 
   ionViewDidLoad() {
     this.networkFound = this.connectivityService.connectivityFound;
     
-    this.loading = this.loadingCtrl.create({
-      spinner: 'crescent',
-    });
-    this.loading.present();
-
     console.log('home_1 - connectivityFound: '+this.connectivityService.connectivityFound);
     
     setTimeout(() => {
@@ -81,185 +72,59 @@ export class HomePage {
         //Sponsors
         this.sponsors = localStorage.getItem('getSponsors');
 
-        this.loading.dismiss();
         this.connectivityService.showInfo();
       }
-    }, 3000);
+    }, 0);
   }
 
   getData(){
-    console.log('home_2: getData');
+    console.log('Campionato');
 
-    this.loading.dismiss();
-    
-    let actionSheet = this.actionSheetCtrl.create({
-      title: 'Scegli il torneo',
-      enableBackdropDismiss: false,
-      buttons: [
-        {
-          text: 'Campionato',
-          handler: () => {
-            console.log('Campionato');
-
-            this.loading = this.loadingCtrl.create({
-              spinner: 'crescent',
-            });
-            this.loading.present();
-
-            //getTorneo
-            this.httpService
-              .getCallHttp('getTorneo','','','','','')
-              .then(res => {
-                if(res[0].response[0].result == 'OK') {
-                  this.tournament = JSON.stringify(res[0].tournament);
-                  console.log('-> '+this.tournament.length);
-                  
-                  if(this.tournament.length > 2) {
-                    this.tournamentName   = res[0].tournament[0].tour_name;
-                    this.tournamentType   = res[0].tournament[0].tour_type;
-                    this.tournamentTeams  = res[0].tournament[0].tour_teams;  //Math.log2(this.tournamentTeams)
-                    this.tournamentRound  = res[0].tournament[0].tour_round;
-
-                    this.getGiocatori(this.tournamentType);
-                  } else {
-                    console.log('home_3: nessun dato');
-                  }
-                  this.getRounds(this.tournamentRound);
-                  localStorage.setItem('getTorneo',this.tournament);
-                } else {
-                  this.tournament = 'Nessun dato! Riprovare più tardi.';
-                }
-                this.showPage = true;
-                this.loading.dismiss();
-              })
-              .catch(error => {
-                console.log('ERROR: ' + error);
-                this.showPage = true;
-                this.errorMessage = 'Si è verificato un errore. Riprovare più tardi!';
-                this.errorMessageView = true;
-                this.loading.dismiss();
-              });
-          }
-        },
-        {
-          text: 'Fase Finale',
-          handler: () => {
-            console.log('Fase Finale');
-
-            this.loading = this.loadingCtrl.create({
-              spinner: 'crescent',
-            });
-            this.loading.present();
-
-            //getTorneo
-            this.httpService
-              .getCallHttp('getTorneo','','','','','248')
-              .then(res => {
-                if(res[0].response[0].result == 'OK') {
-                  this.tournament = JSON.stringify(res[0].tournament);
-                  console.log('-> '+this.tournament.length);
-                  
-                  if(this.tournament.length > 2) {
-                    this.tournamentName   = res[0].tournament[0].tour_name;
-                    this.tournamentType   = res[0].tournament[0].tour_type;
-                    this.tournamentTeams  = res[0].tournament[0].tour_teams;  //Math.log2(this.tournamentTeams)
-                    this.tournamentRound  = res[0].tournament[0].tour_round;
-
-                    this.getGiocatori(this.tournamentType);
-                  } else {
-                    console.log('home_3: nessun dato');
-                  }
-                  this.getRounds(this.tournamentRound);
-                  localStorage.setItem('getTorneo',this.tournament);
-                } else {
-                  this.tournament = 'Nessun dato! Riprovare più tardi.';
-                }
-                this.showPage = true;
-                this.loading.dismiss();
-              })
-              .catch(error => {
-                console.log('ERROR: ' + error);
-                this.showPage = true;
-                this.errorMessage = 'Si è verificato un errore. Riprovare più tardi!';
-                this.errorMessageView = true;
-                this.loading.dismiss();
-              });
-          }
-        },
-        {
-          text: 'Cucchiaio di Legno',
-          handler: () => {
-            console.log('Cucchiaio di Legno');
-
-            this.loading = this.loadingCtrl.create({
-              spinner: 'crescent',
-            });
-            this.loading.present();
-
-            //getTorneo
-            this.httpService
-              .getCallHttp('getTorneo','','','','','249')
-              .then(res => {
-                if(res[0].response[0].result == 'OK') {
-                  this.tournament = JSON.stringify(res[0].tournament);
-                  console.log('-> '+this.tournament.length);
-                  
-                  if(this.tournament.length > 2) {
-                    this.tournamentName   = res[0].tournament[0].tour_name;
-                    this.tournamentType   = res[0].tournament[0].tour_type;
-                    this.tournamentTeams  = res[0].tournament[0].tour_teams;  //Math.log2(this.tournamentTeams)
-                    this.tournamentRound  = res[0].tournament[0].tour_round;
-
-                    this.getGiocatori(this.tournamentType);
-                  } else {
-                    console.log('home_3: nessun dato');
-                  }
-                  this.getRounds(this.tournamentRound);
-                  localStorage.setItem('getTorneo',this.tournament);
-                } else {
-                  this.tournament = 'Nessun dato! Riprovare più tardi.';
-                }
-                this.showPage = true;
-                this.loading.dismiss();
-              })
-              .catch(error => {
-                console.log('ERROR: ' + error);
-                this.showPage = true;
-                this.errorMessage = 'Si è verificato un errore. Riprovare più tardi!';
-                this.errorMessageView = true;
-                this.loading.dismiss();
-              });
-          }
-        }
-      ]
+    this.loading = this.loadingCtrl.create({
+      spinner: 'crescent',
     });
-    
-    actionSheet.present();
+    this.loading.present();
 
-    //getSponsors
-    /*** Per TDT
+    //getTorneo
     this.httpService
-      .getCallHttp('getSponsors','','','','','')
-      .then(res => {
-        console.log('SUCCESS: ' + JSON.stringify(res));
-        this.sponsors = res.posts[0].content;
-        localStorage.setItem('getSponsors',JSON.stringify(this.sponsors));
-      })
-      .catch(error => {
+      .getCallHttp('getTorneo','','','','','')
+      .subscribe(res => {
+        if(res[0].response[0].result == 'OK') {
+          this.tournament = JSON.stringify(res[0].tournament);
+          console.log('-> '+this.tournament.length);
+          
+          if(this.tournament.length > 2) {
+            this.tournamentName   = res[0].tournament[0].tour_name;
+            this.tournamentType   = res[0].tournament[0].tour_type;
+            this.tournamentTeams  = res[0].tournament[0].tour_teams;  //Math.log2(this.tournamentTeams)
+            this.tournamentRound  = res[0].tournament[0].tour_round;
+
+            this.getGiocatori(this.tournamentType);
+          } else {
+            console.log('home_3: nessun dato');
+          }
+          this.getRounds(this.tournamentRound);
+          localStorage.setItem('getTorneo',this.tournament);
+        } else {
+          this.tournament = 'Nessun dato! Riprovare più tardi.';
+        }
+        this.showPage = true;
+        this.loading.dismiss();
+      },
+      error => {
         console.log('ERROR: ' + error);
-      });
-    ***/    
+        this.showPage = true;
+        this.errorMessage = 'Si è verificato un errore. Riprovare più tardi!';
+        this.errorMessageView = true;
+        this.loading.dismiss();
+      });   
   }
 
   navigate(section,tipologia,round) {
     console.log('-> '+section+' | '+tipologia+' | '+round);
     console.log('-> '+this.connectivityService.connectivityFound);
 
-    if(section == 'Comunicati'){
-      this.navCtrl.push(Comunicati);
-    } else if(section == 'FotoVideo'){
-      this.navCtrl.push(FotoVideo);
-    } else if(section == 'Squadre'){
+    if(section == 'Squadre'){
       this.navCtrl.push(Squadre, {
         tipologia: tipologia
       });
@@ -354,7 +219,7 @@ export class HomePage {
     //getGiocatori
     this.httpService
       .getCallHttp('getGiocatoriAll','','','','',tipologiaTorneo)
-      .then(res => {
+      .subscribe(res => {
         //console.log('SUCCESS: ' + JSON.stringify(res));
 
         if(res[0].response[0].result == 'OK') {
@@ -362,18 +227,10 @@ export class HomePage {
         } else {
           localStorage.setItem('getGiocatori','ND');
         }
-      })
-      .catch(error => {
+      },
+      error => {
         console.log('ERROR: ' + error);
       });
-  }
-
-  share() {
-    this.socialSharing.share('Scarica l\'app ufficiale del Torneo dei Tifosi 2016 al link:', 'Torneo dei Tifosi 2016', '', 'https://play.google.com/store/apps/details?id=com.ionicframework.alefal.torneodeitifosi&hl=it').then(() => {
-      console.log('success');
-    }).catch((e) => {
-      console.error('error: '+e);
-    });
   }
 
   doRefresh(refresher) {
@@ -386,6 +243,6 @@ export class HomePage {
   }
 
   openPage() {
-    this.nav.setRoot(PostsPage);
+    this.navCtrl.setRoot(HomePage);
   }
 }

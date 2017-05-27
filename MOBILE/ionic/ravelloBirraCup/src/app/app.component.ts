@@ -3,15 +3,16 @@ import { Nav, Platform }                  from 'ionic-angular';
 import { StatusBar }                      from '@ionic-native/status-bar';
 import { SplashScreen }                   from '@ionic-native/splash-screen';
 import { Push, PushObject, PushOptions }  from '@ionic-native/push';
+import { OneSignal }                      from '@ionic-native/onesignal';
 
 import { HttpService }    from '../providers/http-service';
 
 import { PostsPage }      from '../pages/posts/posts';
 import { HomePage }       from '../pages/home/home';
-import { Comunicati }     from '../pages/comunicati/comunicati';
-import { FotoVideo }      from '../pages/foto-video/foto-video';
 import { Incontri }       from '../pages/incontri/incontri';
 import { Classifica }     from '../pages/classifica/classifica';
+import { Statistiche }    from '../pages/statistiche/statistiche';
+import { Squadre }        from '../pages/squadre/squadre';
 
 @Component({
   templateUrl: 'app.html'
@@ -20,27 +21,26 @@ export class RavelloBirraCup {
   @ViewChild(Nav) nav: Nav;
   rootPage: any = PostsPage;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, component: any, icon: string}>;
 
   constructor(
     public platform: Platform, 
     public statusBar: StatusBar, 
     public splashScreen: SplashScreen,
     private httpService: HttpService,
-    private push: Push
+    private push: Push,
+    private _oneSignal: OneSignal
   ) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'News', component: PostsPage },
-      { title: 'Torneo', component: PostsPage },
-      { title: 'Incontri', component: PostsPage },
-      { title: 'Classifica', component: PostsPage },
-      { title: 'Statistiche', component: PostsPage },
-      { title: 'Squadre', component: PostsPage },
-      { title: 'Comunicati', component: PostsPage },
-      { title: 'Foto e Video', component: PostsPage },
+      { title: 'News',        component: PostsPage,     icon: 'list-box' },
+      { title: 'Torneo',      component: HomePage,      icon: 'football' },
+      { title: 'Incontri',    component: Incontri,      icon: 'information' },
+      { title: 'Classifica',  component: Classifica,    icon: 'quote' },
+      { title: 'Statistiche', component: Statistiche,   icon: 'trending-up' },
+      { title: 'Squadre',     component: Squadre,       icon: 'people' },
     ];
 
   }
@@ -52,6 +52,22 @@ export class RavelloBirraCup {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
+      this._oneSignal.startInit('9539b123-55d4-41e1-b0c9-4353431b81f5', '981915802905');
+      this._oneSignal.inFocusDisplaying(this._oneSignal.OSInFocusDisplayOption.Notification);
+      this._oneSignal.setSubscription(true);
+      this._oneSignal.handleNotificationReceived().subscribe(
+        (notification: any) => {
+          console.log('Received a notification', notification);
+          // handle received here how you wish.
+      });
+      this._oneSignal.handleNotificationOpened().subscribe(
+        (notification: any) => {
+          console.log('Received a notification', notification);
+          // handle opened here how you wish.
+      });
+      this._oneSignal.endInit();  
+
+      /***
       //cordova plugin add phonegap-plugin-push --variable SENDER_ID="274440871330"
       const options: PushOptions = {
         android: {
@@ -115,6 +131,7 @@ export class RavelloBirraCup {
         pushObject.on('error').subscribe(error => console.error('Error with Push plugin', error));
 
       }
+        ***/
     });
   }
 

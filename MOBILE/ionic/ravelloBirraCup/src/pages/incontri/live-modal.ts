@@ -55,7 +55,7 @@ export class LiveModal {
 
     this.httpService
       .getCallHttp('getIncontroAttr','','',this.matchId,'',this.tipologiaTorneo)
-      .then(res => {
+      .subscribe(res => {
         //console.log('SUCCESS: ' + JSON.stringify(res));
         this.loadingAtleti = false;
 
@@ -74,8 +74,8 @@ export class LiveModal {
 
         
         this.loading.dismiss();
-      })
-      .catch(error => {
+      },
+      error => {
         console.log('ERROR: ' + error);
         this.loadingAtleti = false;
         this.errorMessage = 'Si è verificato un errore. Riprovare più tardi!';
@@ -101,15 +101,15 @@ export class LiveModal {
   getTabellinoPolling(matchId) {
     this.httpService
       .getCallHttp('getTabellino','','',matchId,'',this.tipologiaTorneo)
-      .then(res => {
+      .subscribe(res => {
         if (res[0].response[0].result == 'OK') {
           //this.match          = res[0].match;
           this.result           = res[0].match[0].home_team_score +' - '+ res[0].match[0].away_team_score;
           this.home_team_logo   = res[0].match[0].home_team_logo;
           this.away_team_logo   = res[0].match[0].away_team_logo;
         }
-      })
-      .catch(error => {
+      },
+      error => {
         console.log('ERROR: ' + error);
       });
   }

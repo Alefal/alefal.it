@@ -58,7 +58,7 @@ export class ConnectivityService {
           
           this.httpService
             .getCallHttp('getIncontroEventi','','','','',event)
-            .then(res => {
+            .subscribe(res => {
               console.log('SUCCESS: ' + JSON.stringify(res));
 
               if(res[0].response[0].result == 'OK') {
@@ -66,8 +66,8 @@ export class ConnectivityService {
               } else {
                 console.log('KO: '+JSON.stringify(event));
               }
-            })
-            .catch(error => {
+            },
+            error => {
               console.log('ERROR: ' + error);
             });
           

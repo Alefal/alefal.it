@@ -1,6 +1,7 @@
 import { BrowserModule }                            from '@angular/platform-browser';
 import { ErrorHandler, NgModule }                   from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { HttpModule }                               from '@angular/http';
 
 import { StatusBar }                      from '@ionic-native/status-bar';
 import { SplashScreen }                   from '@ionic-native/splash-screen';
@@ -9,15 +10,12 @@ import { SocialSharing }                  from '@ionic-native/social-sharing';
 import { Push, PushObject, PushOptions }  from '@ionic-native/push';
 import { Network }                        from '@ionic-native/network';
 import { Device }                         from '@ionic-native/device';
-import { HTTP }                           from '@ionic-native/http';
+//import { HTTP }                           from '@ionic-native/http';
+import { OneSignal }                      from '@ionic-native/onesignal';
 
 import { RavelloBirraCup }          from './app.component';
 import { PostsPage }                from '../pages/posts/posts';
 import { HomePage }                 from '../pages/home/home';
-import { Comunicati }               from '../pages/comunicati/comunicati';
-import { ComunicatoModal }          from '../pages/comunicati/comunicato-modal';
-import { FotoVideo }                from '../pages/foto-video/foto-video';
-import { FotoVideoModal }           from '../pages/foto-video/foto-video-modal';
 import { Squadre }                  from '../pages/squadre/squadre';
 import { GiocatoriModal }           from '../pages/squadre/giocatori-modal';
 import { Incontri }                 from '../pages/incontri/incontri';
@@ -39,10 +37,6 @@ import { FillPipe }                 from '../pipes/fill.pipe';
     RavelloBirraCup,
     PostsPage,
     HomePage,
-    Comunicati,
-    ComunicatoModal,
-    FotoVideo,
-    FotoVideoModal,
     Squadre,
     GiocatoriModal,
     Incontri,
@@ -56,6 +50,7 @@ import { FillPipe }                 from '../pipes/fill.pipe';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(RavelloBirraCup),
   ],
   bootstrap: [IonicApp],
@@ -63,10 +58,6 @@ import { FillPipe }                 from '../pipes/fill.pipe';
     RavelloBirraCup,
     PostsPage,
     HomePage,
-    Comunicati,
-    ComunicatoModal,
-    FotoVideo,
-    FotoVideoModal,
     Squadre,
     GiocatoriModal,
     Incontri,
@@ -85,7 +76,7 @@ import { FillPipe }                 from '../pipes/fill.pipe';
     Push,
     Network,
     Device,
-    HTTP,
+    OneSignal,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     FacebookProvider,
     ConnectivityService,

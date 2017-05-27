@@ -88,7 +88,7 @@ export class Incontri {
 
     this.httpService
       .getCallHttp('getIncontri','',this.round,this.type,this.group,this.tipologiaTorneo)
-      .then(res => {
+      .subscribe(res => {
         //console.log('SUCCESS: ' + JSON.stringify(res));
 
         if(res[0].response[0].result == 'OK') {
@@ -122,8 +122,8 @@ export class Incontri {
         }
 
         this.loading.dismiss();
-      })
-      .catch(error => {
+      },
+      error => {
         console.log('ERROR: ' + error);
         this.errorMessage = 'Si è verificato un errore. Riprovare più tardi!';
         this.errorMessageView = true;

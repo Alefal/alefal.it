@@ -51,7 +51,7 @@ export class Classifica {
 
     this.httpService
       .getCallHttp('getClassifica','','','','',this.tipologiaTorneo)
-      .then(res => {
+      .subscribe(res => {
         //console.log('SUCCESS: ' + JSON.stringify(res));
 
         if(res[0].response[0].result == 'OK') {
@@ -62,8 +62,8 @@ export class Classifica {
         }
 
         this.loading.dismiss();
-      })
-      .catch(error => {
+      },
+      error => {
         console.log('ERROR: ' + error);
         this.errorMessage = 'Si è verificato un errore. Riprovare più tardi!';
         this.errorMessageView = true;

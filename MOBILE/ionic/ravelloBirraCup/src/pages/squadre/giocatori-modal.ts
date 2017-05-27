@@ -44,7 +44,7 @@ export class GiocatoriModal {
 
     this.httpService
       .getCallHttp('getGiocatori',this.squadraId,'','','',this.tipologiaTorneo)
-      .then(res => {
+      .subscribe(res => {
         console.log('SUCCESS: ' + JSON.stringify(res));
         this.loadingAtleti = false;
 
@@ -54,8 +54,8 @@ export class GiocatoriModal {
           this.giocatori = 'Nessun dato! Riprovare più tardi.';
         }
         this.loading.dismiss();
-      })
-      .catch(error => {
+      },
+      error => {
         console.log('ERROR: ' + error);
         this.loadingAtleti = false;
         this.errorMessage = 'Si è verificato un errore. Riprovare più tardi!';
@@ -79,7 +79,7 @@ export class GiocatoriModal {
 
     this.httpService
       .getCallHttp('getGiocatoriStatistiche','',playerId,'','','')
-      .then(res => {
+      .subscribe(res => {
         //console.log('SUCCESS: ' + JSON.stringify(res));
         //console.log('SUCCESS: ' + JSON.stringify(res[0].atleta));
         this.playerStats = false;
@@ -96,8 +96,8 @@ export class GiocatoriModal {
         }
 
         this.loading.dismiss();
-      })
-      .catch(error => {
+      },
+      error => {
         console.log('ERROR: ' + error);
         this.errorMessage = 'Si è verificato un errore. Riprovare più tardi!';
         this.errorMessageView = true;

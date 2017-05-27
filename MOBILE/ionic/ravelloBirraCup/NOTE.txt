@@ -37,3 +37,9 @@ Riferimenti:
 https://developers.facebook.com/docs/javascript/reference/FB.api
 https://developers.facebook.com/tools/explorer
 https://developers.facebook.com/docs/graph-api
+
+
+
+
+
+http://www.codingandclimbing.co.uk/blog/ionic-2-setup-push-notifications-for-android-with-onesignal

@@ -56,7 +56,7 @@ export class Squadre {
 
     this.httpService
       .getCallHttp('getSquadre','','','','',this.tipologiaTorneo)
-      .then(res => {
+      .subscribe(res => {
         //console.log('SUCCESS: ' + JSON.stringify(res));
 
         if(res[0].response[0].result == 'OK') {
@@ -66,8 +66,8 @@ export class Squadre {
           this.squadre = 'Nessun dato! Riprovare più tardi.';
         }
         this.loading.dismiss();
-      })
-      .catch(error => {
+      },
+      error => {
         console.log('ERROR: ' + error);
         this.errorMessage = 'Si è verificato un errore. Riprovare più tardi!';
         this.errorMessageView = true;

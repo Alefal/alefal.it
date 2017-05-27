@@ -1,19 +1,19 @@
 import {Injectable} from '@angular/core';
-
-import { HTTP } from '@ionic-native/http';
-
+import { Http, Response, Headers, RequestOptions }   from '@angular/http';
 import { Device } from '@ionic-native/device';
 
-//import {Observable} from 'rxjs/Observable';
-import 'rxjs/Rx';
-import 'rxjs/add/operator/toPromise';
+import { Observable }       from 'rxjs/Observable';
+//import { Observable }       from 'rxjs/Rx';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/observable/throw';
   
 @Injectable() 
 export class HttpService {  
 
     torneoId: String = '';
 
-    constructor(private http:HTTP, private device: Device) {
+    constructor(private http:Http, private device: Device) {
          this.http = http;
     }
   
@@ -24,14 +24,15 @@ export class HttpService {
     getCallHttp(call,teamId,playerIdOrRound,matchIdOrType,statOrGroup,tipologiaOrObject) {
         console.log('getCallHttp: '+call+' | '+teamId+' | '+playerIdOrRound+' | '+matchIdOrType);
 
-        //Torneo dei Rioni Storici 2016/17        
-        //var host = 'http://localhost/alefal.it/PROJECTS/leagueengine';
-        var host = 'http://torneodeirionistorici.altervista.org';
-
-        //Torneo dei Tifosi 2016
-        //var host = 'http://www.amalficoastapps.it/demo/leagueengine';
+        //Fantacoast Birra Ravello Cup        
+        //let host = 'http://localhost/alefal.it/PROJECTS/leagueengine';
+        let host = 'http://www.amalficoastapps.it/demo/leagueengine';
         
-        var url         = '';
+        let url     = '';
+        let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+        let options = new RequestOptions({ headers: headers });
+        let body    = new URLSearchParams();
+
         if(call == 'getTorneo') {
             if(tipologiaOrObject != '') {
                 this.torneoId = tipologiaOrObject;
@@ -83,15 +84,38 @@ export class HttpService {
 
         console.log('URL: '+url);
 
-        var response = this.http.get(host+''+url)
-               .toPromise()
-               .then(response => response.json())
-               .catch(this.handleError);
+        return this.http.post(host + '' + url, body.toString(), options)
+            .map(this.extractData)
+            .catch(this.handleError);
+
+        /*
+        var response = this.http.get(host+''+url, {}, {})
+            .then(data => {
+                response => response.json()
+            })
+            .catch(error => {
+                this.handleError
+            });
         return response;
+        */
     }
 
-    private handleError(error: any) {
-        console.error('An error occurred', error);
-        return Promise.reject(error.message || error);
+    private extractData(res: Response) {
+        let body = res.json();
+        return body || {};
+    }
+
+    private handleError(error: Response | any) {
+        // In a real world app, you might use a remote logging infrastructure
+        let errMsg: string;
+        if (error instanceof Response) {
+            const body = error.json() || '';
+            const err = body.error || JSON.stringify(body);
+            errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+        } else {
+            errMsg = error.message ? error.message : error.toString();
+        }
+        console.error(errMsg);
+        return Observable.throw(errMsg);
     }
 }

@@ -59,7 +59,7 @@ export class StatisticaModal {
 
     this.httpService
       .getCallHttp('getStatistiche','','','',this.stat,this.tipologiaTorneo)
-      .then(res => {
+      .subscribe(res => {
         //console.log('SUCCESS: ' + JSON.stringify(res));
         this.loadingAtleti = false;
 
@@ -72,8 +72,8 @@ export class StatisticaModal {
         }
 
         this.loading.dismiss();
-      })
-      .catch(error => {
+      },
+      error => {
         console.log('ERROR: ' + error);
         this.loadingAtleti = false;
         
