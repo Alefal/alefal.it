@@ -1,8 +1,6 @@
 {
   "name": "torneodeirionistorici",
   "app_id": "",
-  "v2": true,
-  "typescript": true,
   "proxies": [
     {
       "path": "/torneodeirionistorici/rest",
@@ -16,5 +14,6 @@
       "path": "/demo/leagueengine",
       "proxyUrl": "http://www.amalficoastapps.it/demo/leagueengine"
     }
-  ]
+  ],
+  "type": "ionic-angular"
 }

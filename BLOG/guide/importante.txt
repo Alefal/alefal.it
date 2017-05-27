@@ -9,6 +9,10 @@ Se ci sono problemi con plugins NATIVE ciò dipende dalle versioni:
 npm uninstall --save @ionic-native/core
 npm install --save @ionic-native/core@latest
 
+La prima volta che si crea un'app è sempre necessario installare ionic-native
+
+Ogni provider di ionic-native deve essere inserito in app.module.ts in "providers"
+
 === Optimize Ionic 2 App for Production ===
 app/main.ts
 
@@ -36,3 +40,18 @@ ng build --target=development --environment=dev
 ng build --dev --e=dev
 ng build --dev
 ng build
+
+=== START APP IONIC ANGULAR ===
+$ ionic start ravelloBirraCup sidemenu --type=ionic-angular
+
+Tutti i comandi di ionic-cli "ionic" sono cambiati in "ionic cordova..."
+
+https://cordova.apache.org/announcements/2017/04/05/android-release.html
+
+---
+
+https://services.gradle.org/distributions/gradle-3.5-bin.zip
+GRADLE_HOME
+D:\Development\gradle-3.5\bin
+
+Aggiungere GRADLE_HOME in PATH

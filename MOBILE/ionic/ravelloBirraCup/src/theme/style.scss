@@ -1,0 +1,45 @@
+.home-view ion-content {
+    background: #EAEAEA;
+    vertical-align: middle;
+}
+.home-view .card-header {
+    padding: 15px 15px 0 15px;
+}
+.home-view .card-footer {
+    border-top: 1px solid #ddd;
+    padding: 15px;
+    margin-top: 20px;
+}
+.home-view .card-content p {
+    padding: 0 15px;
+}
+.home-view .card-content img {
+    height: auto;
+    width: calc(100% + 32px);
+    margin-left: -16px;
+}
+.home-view .card-content ul, .home-view .card-content ol {
+    list-style-type: square;
+    padding: 0 0 0 40px;
+    margin: 14px 0;
+}
+.home-view .author {
+    font-weight: 400;
+    color: #4584b0;
+}
+.home-view .posts {
+    display: block;
+    position: relative;
+    border-radius: .25rem;
+    overflow: hidden;
+    margin: 0 auto;
+}
+.home-view .post-card {
+    margin: 15px;
+    padding: 15px;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 1px 2px #f2f2f2;
+    background: #FFF;
+    border-radius: 3px;
+}

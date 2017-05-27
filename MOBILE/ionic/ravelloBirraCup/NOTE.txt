@@ -1,0 +1,39 @@
+HASH KEY:
+/ALWZm8juqONRGG5NUvCKx4AOi0=
+StLceQYOitReyF1YpvUVAE/RmjY=
+
+https://graph.facebook.com/oauth/access_token?grant_type=client_credentials&client_id=1681612498761867&client_secret=94defebc08c4767400062314ecdbc397
+
+ID app
+1681612498761867
+Chiave segreta
+94defebc08c4767400062314ecdbc397
+Nome
+AlefalLoginApp
+
+Facebook App Name   => AlefalLoginApp
+Facebook App Id     => 1681612498761867
+
+$ ionic start loginFacebook --v2 --ts
+$ cd loginFacebook
+$ ionic run android
+$ ionic cordova plugin add cordova-plugin-facebook4 --variable APP_ID="1681612498761867" --variable APP_NAME="AlefalLoginApp"
+
+$ ionic g provider fb-provider
+
+Se appare il messaggio "facebook login invalid key hash" copiare l'hash key dell'errore e copiarlo nelle impostazioni dell'app Facebook:
+https://developers.facebook.com/apps/1681612498761867/settings/
+Android -> Hash chiave (Gli hash principali contengono 28 caratteri inclusa = alla fine)
+
+### Facebook API ###
+/** API */
+Facebook.api('/me',['user_birthday']).then((response) => {
+    console.log('Success: ', JSON.stringify(response));
+    console.log('Good to see you, ' + response.name + '.');        
+}, (err) => {
+    console.error('Unable to execute sql: ', err);
+});
+Riferimenti:
+https://developers.facebook.com/docs/javascript/reference/FB.api
+https://developers.facebook.com/tools/explorer
+https://developers.facebook.com/docs/graph-api

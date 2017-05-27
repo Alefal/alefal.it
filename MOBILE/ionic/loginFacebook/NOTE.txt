@@ -4,7 +4,7 @@ Facebook App Id     => 1681612498761867
 $ ionic start loginFacebook --v2 --ts
 $ cd loginFacebook
 $ ionic run android
-$ cordova plugin add cordova-plugin-facebook4 --variable APP_ID="1681612498761867" --variable APP_NAME="AlefalLoginApp"
+$ ionic cordova plugin add cordova-plugin-facebook4 --variable APP_ID="1681612498761867" --variable APP_NAME="AlefalLoginApp"
 
 $ ionic g provider fb-provider
 
