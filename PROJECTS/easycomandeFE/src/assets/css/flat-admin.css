@@ -2211,13 +2211,15 @@ a:hover {
               margin-bottom: 0;
               font-weight: 300;
               font-size: 0.9em; }
-              .navbar .navbar-collapse .navbar-nav > li.dropdown .dropdown-menu > ul > li a {
+              .navbar .navbar-collapse .navbar-nav > li.dropdown .dropdown-menu > ul > li a,
+              .navbar .navbar-collapse .navbar-nav > li.dropdown .dropdown-menu > ul > li .dropdownContent {
                 display: block;
                 text-decoration: none;
                 color: #444;
                 padding: 1.2rem;
                 font-weight: 400; }
-                .navbar .navbar-collapse .navbar-nav > li.dropdown .dropdown-menu > ul > li a .message {
+                .navbar .navbar-collapse .navbar-nav > li.dropdown .dropdown-menu > ul > li a .message,
+                .navbar .navbar-collapse .navbar-nav > li.dropdown .dropdown-menu > ul > li .dropdownContent .message {
                   display: -ms-flexbox;
                   display: flex;
                   -ms-flex-direction: row;
@@ -2229,17 +2231,21 @@ a:hover {
                   -ms-flex-pack: start;
                       justify-content: flex-start;
                   padding-right: 40px; }
-                  .navbar .navbar-collapse .navbar-nav > li.dropdown .dropdown-menu > ul > li a .message .content {
+                  .navbar .navbar-collapse .navbar-nav > li.dropdown .dropdown-menu > ul > li a .message .content,
+                  .navbar .navbar-collapse .navbar-nav > li.dropdown .dropdown-menu > ul > li .dropdownContent .message .content {
                     -ms-flex: 1;
                         flex: 1; }
-                    .navbar .navbar-collapse .navbar-nav > li.dropdown .dropdown-menu > ul > li a .message .content .title {
+                    .navbar .navbar-collapse .navbar-nav > li.dropdown .dropdown-menu > ul > li a .message .content .title,
+                    .navbar .navbar-collapse .navbar-nav > li.dropdown .dropdown-menu > ul > li .dropdownContent .message .content .title {
                       font-weight: 400;
                       font-size: 1em; }
-                    .navbar .navbar-collapse .navbar-nav > li.dropdown .dropdown-menu > ul > li a .message .content .description {
+                    .navbar .navbar-collapse .navbar-nav > li.dropdown .dropdown-menu > ul > li a .message .content .description,
+                    .navbar .navbar-collapse .navbar-nav > li.dropdown .dropdown-menu > ul > li .dropdownContent .message .content .description {
                       font-weight: 400;
                       font-size: 0.85em;
                       opacity: 0.4; }
-                  .navbar .navbar-collapse .navbar-nav > li.dropdown .dropdown-menu > ul > li a .message .profile {
+                  .navbar .navbar-collapse .navbar-nav > li.dropdown .dropdown-menu > ul > li a .message .profile,
+                  .navbar .navbar-collapse .navbar-nav > li.dropdown .dropdown-menu > ul > li .dropdownContent .message .profile {
                     width: 30px;
                     height: 30px;
                     border-radius: 50%;
@@ -2248,7 +2254,8 @@ a:hover {
                 border-radius: 3px;
                 font-weight: 400;
                 font-weight: 1.4em; }
-              .navbar .navbar-collapse .navbar-nav > li.dropdown .dropdown-menu > ul > li:hover a {
+              .navbar .navbar-collapse .navbar-nav > li.dropdown .dropdown-menu > ul > li:hover a,
+              .navbar .navbar-collapse .navbar-nav > li.dropdown .dropdown-menu > ul > li:hover .dropdownContent {
                 background-color: rgba(141, 146, 147, 0.1);
                 color: #222;
                 cursor: pointer; }

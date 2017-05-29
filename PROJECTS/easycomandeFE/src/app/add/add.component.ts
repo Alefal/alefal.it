@@ -62,7 +62,9 @@ export class AddComponent implements OnInit {
   prezzoSpeciale: string = '';
   //Nota generica
   notaGenerica: string = '';
-
+  //Extra
+  extra: any;
+  extras: any;
 
   constructor(
     private httpService: HttpService,
@@ -76,9 +78,9 @@ export class AddComponent implements OnInit {
     //Order edit: go from ordinePage
     this.route.params
       .subscribe(params => {
-        if(params['order']) {
+        if (params['order']) {
           this.ordine = JSON.parse(params['order']);
-          console.log('%o',this.ordine);
+          console.log('%o', this.ordine);
 
           this.ordineEdit = true;
           this.ordineId = this.ordine.id;
@@ -149,6 +151,31 @@ export class AddComponent implements OnInit {
     this.numCoperti = coperti;
   }
 
+  //PRODUCT
+  addQuantity(prod: any) {
+    console.log('%ò', prod);
+    let newQuantity = prod.quantity + 1;
+    let newPrice: number = prod.price * newQuantity;
+    console.log('newPrice -> ', newPrice);
+
+    prod.setQuantity(newQuantity);
+    prod.setPriceTotal(newPrice);
+    this.totaleOrdine = Number.parseFloat(this.totaleOrdine) + Number.parseFloat(prod.price);
+  }
+  removeQuantity(prod: any) {
+    console.log('%ò', prod);
+    let newQuantity = prod.quantity - 1;
+    let newPrice = prod.price * newQuantity;
+
+    prod.setPriceTotal(newPrice);
+
+    if (newQuantity > 0) {
+      this.totaleOrdine = Number.parseFloat(this.totaleOrdine) - Number.parseFloat(prod.price);
+      prod.setQuantity(newQuantity);
+    } else {
+      this.removeProduct(prod);
+    }
+  }
   addProducts(cat, prod) {
     //console.log('cat -> ' + JSON.stringify(cat));
     //console.log('prod -> ' + JSON.stringify(prod));
@@ -255,7 +282,6 @@ export class AddComponent implements OnInit {
   }
 
   //NOTE
-  //SPECIAL
   openModalAddNote() {
     this.modalTitle = 'Nota Generica';
     this.modalSection = 'addGenericNote';
@@ -291,11 +317,58 @@ export class AddComponent implements OnInit {
     console.log('this.notaId: ' + this.notaId);
   }
 
+  //ADD EXTRA
+  openModalAddExtra(prod: Product) {
+    console.log('%ò', prod);
+    this.prodTmp = prod;
+
+    this.modalTitle = 'Extra';
+    this.modalSection = 'addProductExtra';
+
+    this.extras = JSON.parse(localStorage.getItem('Extra'));
+    console.log('%ò', this.extras);
+
+    jQuery('#genericAddModal').modal();
+  }
+  setExtra(extra: any) {
+    this.extra = extra;
+    console.log('EXTRA -> '+this.extra);
+  }
+  addExtra() {
+    //console.log('%ò',this.extra);
+    this.prodTmp.setExistExtra(true);
+
+    let splitted = this.extra.split('|');
+    let eId = splitted[0];
+    let eTitle = splitted[1];
+    let ePrice = splitted[2];
+
+    let pId = 0;
+    let pProdId = eId;
+    let pTitle = eTitle;
+    let pPrice = ePrice ? ePrice : 0;
+    let pExistExtra = false;
+    let pIsExtra = true;
+    let pHasExtra = false;
+    let pPriceTotal = pPrice;
+    let pDescr = '';
+
+    let prodotto = new Product(pId, pProdId, pTitle, pPrice, pExistExtra, pIsExtra, pHasExtra, pPriceTotal, pDescr, 1, '');
+
+    this.products.push(prodotto);
+    this.totaleOrdine = Number.parseFloat(this.totaleOrdine) + Number.parseFloat(pPrice);
+
+    this.prodTmp.setExtra(eTitle);
+
+    jQuery('#genericAddModal').modal('hide');
+  }
+
+  //SAVE ORDER
   saveOrder() {
     console.log('PRODUCTS: ' + JSON.stringify(this.products));
     console.log(this.numTavolo + '|' + this.totCoperti + '|' + this.numCoperti + '|' + this.totaleOrdine);
-    console.log('SHIPS: ' + JSON.stringify(this.ships));
-    console.log('NOTES: ' + JSON.stringify(this.notes));
+    console.log('SHIPS: ' + JSON.stringify(this.ships) + ' - '+this.ships.length);
+    console.log('NOTES: ' + JSON.stringify(this.notes) + ' - '+this.notes.length);
 
     //Controllo sui campi solo in fase di ADD
     if (!this.ordineEdit) {
@@ -304,8 +377,8 @@ export class AddComponent implements OnInit {
         return false;
       }
     } else {
-      //In EDIT controllo solo totale per evitare di modificare un ordine cancellando TUTTI i prodotti
-      if (this.totaleOrdine == 0) {
+      //In EDIT controllo il totale, gli speciali e le note
+      if (this.totaleOrdine == 0 && this.ships.length == 0 && this.notes.length == 0) {
         this.alertService.error('Completa la tua ordinazione! I piatti sono necessari per l\'ordinazione!');
         return false;
       }
@@ -357,10 +430,10 @@ export class AddComponent implements OnInit {
             this.alertService.error('Attenzione: L\'ordinazione non è stata salvata! Prova ad aggiornare i menu e rifai l\'ordinazione');
             return false;
           }
-          this.router.navigate(['/home',{ordineId:orderIdSave}]);
+          this.router.navigate(['/home', { ordineId: orderIdSave }]);
 
         } else {
-           this.alertService.error('Nessun dato! Riprovare più tardi.');
+          this.alertService.error('Nessun dato! Riprovare più tardi.');
         }
         this.loadingBarService.complete();
       },
@@ -369,7 +442,7 @@ export class AddComponent implements OnInit {
         this.loadingBarService.complete();
       });
   }
-
+  //SAVE NOTES
   saveNote(orderIdSave, notes) {
     this.httpService
       .getCallHttp('getOrderNoteSave', '', '', orderIdSave, notes)
