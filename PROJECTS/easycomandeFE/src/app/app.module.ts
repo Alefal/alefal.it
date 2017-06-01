@@ -9,7 +9,9 @@ import { AuthGuard }        from './_guards/index';
 import { AlertService, AuthenticationService, HttpService } from './_services/index';
 
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
-import { LoadingBar, LoadingBarService } from "ng2-loading-bar";
+//import { LoadingBar, LoadingBarService } from "ng2-loading-bar";
+import { LoadingBarModule } from "ng2-loading-bar";
+
 
 import { AlertComponent }   from './_directives/index';
 
@@ -29,7 +31,7 @@ import { MenuComponent }    from './menu/menu.component';
     HomeComponent,
     AlertComponent,
     OrderComponent,
-    LoadingBar,
+    //LoadingBar,
     AddComponent,
     MenuComponent,
     OrderByPipe
@@ -38,6 +40,7 @@ import { MenuComponent }    from './menu/menu.component';
     BrowserModule,
     FormsModule,
     HttpModule,
+    LoadingBarModule,
     routing,
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'danger', // set defaults here
@@ -48,8 +51,8 @@ import { MenuComponent }    from './menu/menu.component';
     AuthGuard,
     AlertService,
     AuthenticationService,
-    HttpService,
-    LoadingBarService
+    HttpService/*,
+    LoadingBarService*/
   ],
   bootstrap: [AppComponent]
 })

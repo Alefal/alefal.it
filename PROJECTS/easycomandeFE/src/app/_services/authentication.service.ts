@@ -6,9 +6,11 @@ import 'rxjs/add/operator/map'
 @Injectable()
 export class AuthenticationService {
 
+    //Test with VM
+    host = 'http://192.168.164.133/easycomande';
     //host = 'http://localhost/alefal.it/PROJECTS/easycomande';
     //host = 'http://192.168.1.100/alefal.it/PROJECTS/easycomande';
-    host = 'http://www.amalficoastapps.it/demo/easycomande';
+    //host = 'http://www.amalficoastapps.it/demo/easycomande';
     
     constructor(private http: Http) { }
 
