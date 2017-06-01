@@ -1,4 +1,4 @@
-import { IonicErrorHandler, ToastController }    from 'ionic-angular';
+import { IonicErrorHandler }    from 'ionic-angular';
 
 import { ErrorHandler }         from '@angular/core';
 

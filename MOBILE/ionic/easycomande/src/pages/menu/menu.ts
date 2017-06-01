@@ -34,7 +34,7 @@ export class MenuPage {
     this.categoryName = params.get('categoriaNome');
 
     //Dati NON presenti in memoria: li recupero dal server
-    console.log('localStorage -> '+localStorage.getItem('categories').length);
+    //console.log('localStorage -> '+localStorage.getItem('categories').length);
     if(localStorage.getItem('categories') === null || localStorage.getItem('categories').length == 2) {
 
       if(this.connectivityService.connectivityFound) {

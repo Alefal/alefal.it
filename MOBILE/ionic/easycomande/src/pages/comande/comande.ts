@@ -112,7 +112,7 @@ export class ComandePage {
       error => {
         let alert = this.alertCtrl.create({
           title: 'Attenzione',
-          subTitle: 'Problemi di connessione con il server...',
+          subTitle: 'Problemi di comunicazione con il server',
           buttons: ['OK']
         });
         alert.present();

@@ -1,4 +1,6 @@
 import { Injectable }       from '@angular/core';
+import { AlertController }  from 'ionic-angular';
+
 import { Http, Response, Headers, RequestOptions }   from '@angular/http';
 
 import { Observable }       from 'rxjs/Observable';
@@ -9,7 +11,7 @@ import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class HttpService {
-    constructor(private http: Http) {
+    constructor(private http: Http, public alertCtrl: AlertController) {
         this.http = http;
     }
 
@@ -20,8 +22,10 @@ export class HttpService {
     getCallHttp(call, username, password, id, object) {
         console.log('getCallHttp: ' + call + ' | ' + username + ' | ' + password);
 
+        //////////Official release
+        let host = 'http://192.168.1.100/easycomande';
         //let host = 'http://localhost/alefal.it/PROJECTS/easycomande';
-        let host = 'http://192.168.1.100/alefal.it/PROJECTS/easycomande';
+        //let host = 'http://192.168.1.100/alefal.it/PROJECTS/easycomande';
         //let host = 'http://www.amalficoastapps.it/demo/easycomande';
 
         let url     = '';
@@ -117,6 +121,12 @@ export class HttpService {
         } else {
             errMsg = error.message ? error.message : error.toString();
         }
+        let alert = this.alertCtrl.create({
+          title: 'Attenzione',
+          subTitle: 'Problemi di comunicazione con il server',
+          buttons: ['OK']
+        });
+        alert.present();
         console.error(errMsg);
         return Observable.throw(errMsg);
     }

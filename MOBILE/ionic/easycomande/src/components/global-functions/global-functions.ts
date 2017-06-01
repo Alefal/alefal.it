@@ -1,4 +1,3 @@
-import { Component } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
 
 import { AddPage }          from '../../pages/add/add';

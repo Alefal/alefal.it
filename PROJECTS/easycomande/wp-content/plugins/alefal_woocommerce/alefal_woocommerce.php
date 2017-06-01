@@ -172,6 +172,9 @@ function custom_admin_area() {
 			.col-md-4 {
 				padding: 15px;
 			}
+			.postbox-container {
+			    width: 100% !important;
+			}
   		</style>';
 }
 
