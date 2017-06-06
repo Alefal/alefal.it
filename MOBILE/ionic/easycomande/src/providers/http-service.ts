@@ -23,10 +23,10 @@ export class HttpService {
         console.log('getCallHttp: ' + call + ' | ' + username + ' | ' + password);
 
         //////////Official release
-        let host = 'http://192.168.1.100/easycomande';
+        //let host = 'http://192.168.1.100/easycomande';
         //let host = 'http://localhost/alefal.it/PROJECTS/easycomande';
         //let host = 'http://192.168.1.100/alefal.it/PROJECTS/easycomande';
-        //let host = 'http://www.amalficoastapps.it/demo/easycomande';
+        let host = 'http://www.amalficoastapps.it/demo/easycomande';
 
         let url     = '';
         let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
