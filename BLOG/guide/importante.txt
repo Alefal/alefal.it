@@ -1,3 +1,7 @@
+=== DATABASE ===
+https://code.tutsplus.com/articles/visual-database-creation-with-mysql-workbench--net-10975
+
+
 === gradle ===
 \Android\sdk\tools\templates\gradle\wrapper NOT FOUND quando viene lanciata l'app sul devices...
 
