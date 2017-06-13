@@ -7,6 +7,7 @@ use App\Menu;
 use App\Order;
 use App\Item;
 use App\Extra;
+use App\Special;
 use App\Note;
 use App\State;
 use App\User;
@@ -37,6 +38,7 @@ class HomeController extends Controller
         $numOrders              = Order::count();
         $numItems               = Item::count();
         $numExtras              = Extra::count();
+        $numSpecials            = Special::count();
         $numNotes               = Note::count();
         $numStates              = State::count();
         $numUsers               = User::count();
@@ -47,6 +49,7 @@ class HomeController extends Controller
             'numOrders',
             'numItems',
             'numExtras',
+            'numSpecials',
             'numNotes',
             'numStates',
             'numUsers'

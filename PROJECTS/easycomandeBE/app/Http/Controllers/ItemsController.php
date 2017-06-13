@@ -30,8 +30,9 @@ class ItemsController extends Controller
     public function index(Request $request)
     {
         $items = Item::orderBy('items.id','ASC')->paginate(100);
+        $orders = Order::all();
 
-        return view('items.index',compact('items'))
+        return view('items.index',compact('items','orders'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
@@ -58,8 +59,10 @@ class ItemsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'note' => 'required',
-            'order_id' => 'required'
+            'quantity' => 'required',
+            'menu_id' => 'required',
+            'order_id' => 'required',
+            'state_id' => 'required'
         ]);
 
         $menu       = Menu::find($request->menu_id);
@@ -130,12 +133,13 @@ class ItemsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        /*
         $this->validate($request, [
-            'note' => 'required',
-            'order_id' => 'required'
+            'quantity' => 'required',
+            'menu_id' => 'required',
+            'order_id' => 'required',
+            'state_id' => 'required'
         ]);
-        */
+
         Item::find($id)->update($request->all());
         return redirect()->route('items.index')
                         ->with('success','Item updated successfully');

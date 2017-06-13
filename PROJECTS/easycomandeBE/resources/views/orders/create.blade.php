@@ -62,8 +62,8 @@
                         <div class="form-group">
                             <label for="states">State</label>
                             <select class="form-control" name="state_id">
-                                @foreach($states as $item)
-                                    <option value="{{$item->id}}">{{$item->state}}</option>
+                                @foreach($states as $state)
+                                    <option value="{{$state->id}}">{{$state->state}}</option>
                                 @endforeach
                             </select>
                         </div>

@@ -58,8 +58,8 @@
                         <div class="form-group">
                             <label for="states">State</label>
                             <select class="form-control" name="state_id">
-                                @foreach($states as $item)
-                                    <option value="{{ $item->id }}" {{ $selectedState == $item->id ? 'selected="selected"' : '' }}>{{ $item->state }}</option>
+                                @foreach($states as $state)
+                                    <option value="{{ $state->id }}" {{ $selectedState == $state->id ? 'selected="selected"' : '' }}>{{ $state->state }}</option>
                                 @endforeach
                             </select>
                         </div>

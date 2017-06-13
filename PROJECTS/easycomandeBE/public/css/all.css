@@ -27,6 +27,12 @@ html {
     margin-bottom: 15px !important;
 }
 
+.disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    background: #eaeaea;
+}
+
 .sweet-overlay {
     z-index: 1000000 !important;
 }

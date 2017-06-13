@@ -52,8 +52,8 @@
                         <div class="form-group">
                             <label for="categories">Categories</label>
                             <select class="form-control" name="category_id">
-                                @foreach($categories as $item)
-                                    <option value="{{ $item->id }}" {{ $selectedCategory == $item->id ? 'selected="selected"' : '' }}>{{ $item->name }}</option>
+                                @foreach($categories as $cat)
+                                    <option value="{{ $cat->id }}" {{ $selectedCategory == $cat->id ? 'selected="selected"' : '' }}>{{ $cat->name }}</option>
                                 @endforeach
                             </select>
                         </div>

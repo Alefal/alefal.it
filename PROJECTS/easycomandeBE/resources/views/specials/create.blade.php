@@ -10,7 +10,7 @@
                     Create New Item
                 </h4>
                 <div class="card-action">
-                    <a href="{{ route('notes.index') }}">
+                    <a href="{{ route('specials.index') }}">
                         <i class="fa fa-arrow-circle-o-left fa-3x fa-fw" aria-hidden="true"></i>
                     </a>
                 </div>
@@ -28,16 +28,22 @@
                     </div>
                 @endif
 
-                {!! Form::open(array('route' => 'notes.store','method'=>'POST')) !!}
+                {!! Form::open(array('route' => 'specials.store','method'=>'POST')) !!}
                 
                 <div class="row">
-                    <div class="col-xs-6 col-md-6">
+                    <div class="col-xs-6 col-md-4">
                         <div class="form-group">
-                            <label for="name">Note</label>
-                            {!! Form::text('note', null, array('placeholder' => 'Note','class' => 'form-control')) !!}
+                            <label for="name">Special</label>
+                            {!! Form::text('special', null, array('placeholder' => 'Special','class' => 'form-control')) !!}
                         </div>
                     </div>
-                    <div class="col-xs-6 col-md-6">
+                    <div class="col-xs-6 col-md-4">
+                        <div class="form-group">
+                            <label for="name">Price</label>
+                            {!! Form::number('price', null, array('placeholder' => 'Price','class' => 'form-control')) !!}
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-4">
                         <div class="form-group">
                             <label for="categories">Orders</label>
                             <select class="form-control" name="order_id">
@@ -45,6 +51,15 @@
                                     <option value="{{$order->id}}">{{$order->client}}</option>
                                 @endforeach
                             </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 col-xs-12 center">
+                        <div class="form-group">
+                            <label for="note">Note</label>
+                            {!! Form::text('note', null, array('placeholder' => 'Note','class' => 'form-control')) !!}
                         </div>
                     </div>
                 </div>

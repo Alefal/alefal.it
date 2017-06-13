@@ -8,6 +8,8 @@
 |
 */
 
+use App\State;
+
 /* ---------------------------------------------------------------------------
  * SORT FUNCTIONS
  * --------------------------------------------------------------------------- */
@@ -43,13 +45,13 @@ function manipulateJsonResponseCategories($jsonData) {
     $json = '{ "results" : [';
     for ($i=0; $i<count($categories); $i++) {
 
-        $descr =  stripslashes($categories[$i]['description']);
+        $descr =  $categories[$i]['description'];
 
         $json .= '{';
         $json .= '"id":"'.$categories[$i]['id'].'",';
         $json .= '"name":"'.$categories[$i]['name'].'",';
         $json .= '"count":"'.$categories[$i]['count'].'",';
-        $json .= '"description":"'.htmlspecialchars($descr).'"';
+        $json .= '"description":'.json_encode($descr,JSON_UNESCAPED_SLASHES).'';
         $json .='},';
     }
     $json = rtrim($json,',');
@@ -71,12 +73,12 @@ function manipulateJsonResponseMenu($jsonData,$categories) {
     for ($i=0; $i<count($menu); $i++) {
 
         for ($j=0; $j<count($categories); $j++) {
-            if($menu[$i]['categories_id'] == $categories[$j]['id']) {
+            if($menu[$i]['category_id'] == $categories[$j]['id']) {
                 $category = $categories[$j]['name'];
             }
         }
     
-        $descr =  stripslashes($menu[$i]['description']);
+        $descr =  $menu[$i]['description'];
 
         $json .= '{';
         $json .= '"id":"'.$menu[$i]['id'].'",';
@@ -84,7 +86,7 @@ function manipulateJsonResponseMenu($jsonData,$categories) {
         $json .= '"price":"'.$menu[$i]['price'].'",';
         $json .= '"priceoffer":"'.$menu[$i]['priceoffer'].'",';
         $json .= '"category":"'.$category.'",';
-        $json .= '"description":"'.htmlspecialchars($descr).'"';
+        $json .= '"description":'.json_encode($descr,JSON_UNESCAPED_SLASHES).'';
         $json .='},';
     }
     $json = rtrim($json,',');
@@ -129,7 +131,7 @@ function manipulateJsonResponseOrders($jsonData,$states) {
 /* ---------------------------------------------------------------------------
  * Manipulate Json Response: MENU for CATEGORY
  * --------------------------------------------------------------------------- */
-function manipulateJsonResponseOrder($jsonData,$items,$notes) {
+function manipulateJsonResponseOrder($jsonData,$items,$specials,$notes) {
     //$jsonData = str_replace("\\","", $jsonData);
     $order = json_decode($jsonData, true);
 
@@ -158,11 +160,25 @@ function manipulateJsonResponseOrder($jsonData,$items,$notes) {
     $json = rtrim($json,',');
     $json .= '],';
 
+    $json .= '"specials":[';
+    for ($j=0; $j<count($specials); $j++) {
+        $json .= '{';
+
+        $json .= '"name": "'.$specials[$j]['special'].'",';
+        $json .= '"price": "'.$specials[$j]['price'].'",';
+        $json .= '"note": "'.$specials[$j]['note'].'",';
+
+        $json = rtrim($json,',');
+        $json .= '},';
+    }
+    $json = rtrim($json,',');
+    $json .= '],';
+
     $json .= '"notes":[';
     for ($j=0; $j<count($notes); $j++) {
         $json .= '{';
 
-        $json .= '"note": "'.$items[$j]['note'].'",';
+        $json .= '"note": "'.$notes[$j]['note'].'",';
 
         $json = rtrim($json,',');
         $json .= '},';
@@ -192,7 +208,7 @@ function manipulateJsonResponseMenuForCategory($jsonData,$categories,$catId) {
     
     $json = '{ "results" : [';
     for ($i=0; $i<count($menu); $i++) {
-        $descr =  stripslashes($menu[$i]['description']);
+        $descr =  $menu[$i]['description'];
 
         $json .= '{';
         $json .= '"id":"'.$menu[$i]['id'].'",';
@@ -200,7 +216,36 @@ function manipulateJsonResponseMenuForCategory($jsonData,$categories,$catId) {
         $json .= '"price":"'.$menu[$i]['price'].'",';
         $json .= '"priceoffer":"'.$menu[$i]['priceoffer'].'",';
         $json .= '"category":"'.$category.'",';
-        $json .= '"description":"'.htmlspecialchars($descr).'"';
+        $json .= '"description":'.json_encode($descr,JSON_UNESCAPED_SLASHES).'';
+        $json .='},';
+    }
+    $json = rtrim($json,',');
+    $json .= ']}';
+
+    return $json;
+}
+
+/* ---------------------------------------------------------------------------
+ * Manipulate Json Response: SPECIALS for ORDER
+ * --------------------------------------------------------------------------- */
+function manipulateJsonResponseSpecialsForOrder($jsonData,$orders,$orderId) {
+    //$jsonData = str_replace("\\","", $jsonData);
+    $specials = json_decode($jsonData, true);
+    
+    $order = '';
+    for ($j=0; $j<count($orders); $j++) {
+        if($orderId == $orders[$j]['id']) {
+            $order = $orders[$j]['client'];
+        }
+    }
+    
+    $json = '{ "results" : [';
+    for ($i=0; $i<count($specials); $i++) {
+        $json .= '{';
+        $json .= '"id":"'.$specials[$i]['id'].'",';
+        $json .= '"special":"'.$specials[$i]['special'].'",';
+        $json .= '"price":"'.$specials[$i]['price'].'",';
+        $json .= '"order":"'.$order.'"';
         $json .='},';
     }
     $json = rtrim($json,',');
@@ -247,14 +292,14 @@ function manipulateJsonResponseExtra($jsonData) {
     $json = '{ "results" : [';
     for ($i=0; $i<count($extra); $i++) {
 
-        $descr =  stripslashes($extra[$i]['description']);
+        $descr =  $extra[$i]['description'];
 
         $json .= '{';
         $json .= '"id":"'.$extra[$i]['id'].'",';
         $json .= '"name":"'.$extra[$i]['name'].'",';
         $json .= '"price":"'.$extra[$i]['price'].'",';
         $json .= '"priceoffer":"'.$extra[$i]['priceoffer'].'",';
-        $json .= '"description":"'.htmlspecialchars($descr).'"';
+        $json .= '"description":'.json_encode($descr,JSON_UNESCAPED_SLASHES).'';
         $json .='},';
     }
     $json = rtrim($json,',');
@@ -266,7 +311,7 @@ function manipulateJsonResponseExtra($jsonData) {
 /* ---------------------------------------------------------------------------
  * Manipulate Json Response: STATE
  * --------------------------------------------------------------------------- */
-function manipulateJsonResponseState($jsonData) {
+function manipulateJsonResponseState() {
     //$jsonData = str_replace("\\","", $jsonData);
     $state = json_decode($jsonData, true);
 
@@ -274,10 +319,41 @@ function manipulateJsonResponseState($jsonData) {
     for ($i=0; $i<count($state); $i++) {
         $json .= '{';
         $json .= '"id":"'.$state[$i]['id'].'",';
-        $json .= '"name":"'.$state[$i]['name'].'"';
+        $json .= '"name":"'.$state[$i]['state'].'"';
         
         $json .='},';
     }
+    $json = rtrim($json,',');
+    $json .= ']}';
+
+    return $json;
+}
+
+/* ---------------------------------------------------------------------------
+ * Save: STATE -> /jsondata/save/state/{"state":"processing"}
+ * --------------------------------------------------------------------------- */
+function saveState($request) {
+    $item = json_decode($request, true);
+    
+    $json = '{ "results" : [';
+
+    try{
+        $state = new State();
+        $state->state = $item['state'];
+        $state->save();
+
+        $json .= '{';
+            $json .= '"operation":"success",';
+            $json .= '"message":"success"';
+        $json .='},';
+    }
+    catch(Exception $e){
+        $json .= '{';
+            $json .= '"operation":"error",';
+            $json .= '"message":"'.$e->getMessage().'"';
+        $json .='},';
+    }
+
     $json = rtrim($json,',');
     $json .= ']}';
 

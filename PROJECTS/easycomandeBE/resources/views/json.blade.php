@@ -25,7 +25,7 @@
                             <tr>
                                 <td>categories</td>
                                 <td>
-                                    jsondata/categories <i class="fa fa-code fa-lg" aria-hidden="true"></i>
+                                    <i class="fa fa-code fa-lg" aria-hidden="true"></i> jsondata/categories
                                 </td>
                                 <td align="right">
                                     <div class="btn-group">
@@ -38,7 +38,7 @@
                             <tr>
                                 <td>menu</td>
                                 <td>
-                                    jsondata/menu <i class="fa fa-code fa-lg" aria-hidden="true"></i>
+                                    <i class="fa fa-code fa-lg" aria-hidden="true"></i> jsondata/menu
                                 </td>
                                 <td align="right">
                                     <div class="btn-group">
@@ -51,7 +51,7 @@
                             <tr>
                                 <td>menu for category</td>
                                 <td>
-                                    jsondata/menuforcat/{catId} <i class="fa fa-code fa-lg" aria-hidden="true"></i>
+                                    <i class="fa fa-code fa-lg" aria-hidden="true"></i> jsondata/menuforcat/{catId}
                                 </td>
                                 <td align="right">
                                     <div class="btn-group">
@@ -64,7 +64,7 @@
                             <tr>
                                 <td>orders</td>
                                 <td>
-                                    jsondata/orders <i class="fa fa-code fa-lg" aria-hidden="true"></i>
+                                    <i class="fa fa-code fa-lg" aria-hidden="true"></i> jsondata/orders
                                 </td>
                                 <td align="right">
                                     <div class="btn-group">
@@ -75,9 +75,48 @@
                                 </td>
                             </tr>
                             <tr>
+                                <td>order</td>
+                                <td>
+                                    <i class="fa fa-code fa-lg" aria-hidden="true"></i> jsondata/order/{orderId}
+                                </td>
+                                <td align="right">
+                                    <div class="btn-group">
+                                        <a class="btn btn-default btn-xs" target="_blank" href="jsondata/order/1">
+                                            <i class="fa fa-eye fa-1x fa-lg" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>specialsfororder</td>
+                                <td>
+                                    <i class="fa fa-code fa-lg" aria-hidden="true"></i> jsondata/specialsfororder/{orderId}
+                                </td>
+                                <td align="right">
+                                    <div class="btn-group">
+                                        <a class="btn btn-default btn-xs" target="_blank" href="jsondata/specialsfororder/1">
+                                            <i class="fa fa-eye fa-1x fa-lg" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>notesfororder</td>
+                                <td>
+                                    <i class="fa fa-code fa-lg" aria-hidden="true"></i> jsondata/notesfororder/{orderId}
+                                </td>
+                                <td align="right">
+                                    <div class="btn-group">
+                                        <a class="btn btn-default btn-xs" target="_blank" href="jsondata/notesfororder/1">
+                                            <i class="fa fa-eye fa-1x fa-lg" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
                                 <td>extra</td>
                                 <td>
-                                    jsondata/extra <i class="fa fa-code fa-lg" aria-hidden="true"></i>
+                                    <i class="fa fa-code fa-lg" aria-hidden="true"></i> jsondata/extra
                                 </td>
                                 <td align="right">
                                     <div class="btn-group">
@@ -90,7 +129,7 @@
                             <tr>
                                 <td>state</td>
                                 <td>
-                                    jsondata/state <i class="fa fa-code fa-lg" aria-hidden="true"></i>
+                                    <i class="fa fa-code fa-lg" aria-hidden="true"></i> jsondata/state
                                 </td>
                                 <td align="right">
                                     <div class="btn-group">
@@ -102,7 +141,7 @@
                             </tr>
                             <tr>
                                 <td>users</td>
-                                <td><i class="fa fa-asterisk fa-lg" aria-hidden="true"></i> jsondata/users</td>
+                                <td> <i class="fa fa-code fa-lg" aria-hidden="true"></i> jsondata/users</td>
                                 <td align="right">
                                     <div class="btn-group">
                                         <a class="btn btn-default btn-xs" target="_blank" href="jsondata/users">

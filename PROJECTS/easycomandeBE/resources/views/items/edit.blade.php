@@ -5,7 +5,7 @@
         <div class="card card-mini">
             <div class="card-header">
                 <h4 class="card-title">
-                    {{ $item->id }}
+                   
                 </h4>
                 <div class="card-action">
                     <a href="{{ route('items.index') }}">
@@ -37,8 +37,8 @@
                         <div class="form-group">
                             <label for="menu_id">Menu</label>
                             <select class="form-control" name="menu_id">
-                                @foreach($menu as $item)
-                                    <option value="{{ $item->id }}" {{ $selectedMenu == $item->id ? 'selected="selected"' : '' }}>{{ $item->name }}</option>
+                                @foreach($menu as $piatto)
+                                    <option value="{{ $piatto->id }}" {{ $selectedMenu == $piatto->id ? 'selected="selected"' : '' }}>{{ $piatto->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -46,9 +46,9 @@
                     <div class="col-xs-6 col-md-4">
                         <div class="form-group">
                             <label for="order_id">Order</label>
-                            <select class="form-control" name="order_id">
-                                @foreach($orders as $item)
-                                    <option value="{{ $item->id }}" {{ $selectedOrder == $item->id ? 'selected="selected"' : '' }}>{{ $item->client }}</option>
+                            <select class="form-control disabled" name="order_id">
+                                @foreach($orders as $order)
+                                    <option value="{{ $order->id }}" {{ $selectedOrder == $order->id ? 'selected="selected"' : '' }}>{{ $order->client }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -66,8 +66,8 @@
                         <div class="form-group">
                             <label for="state_id">State</label>
                             <select class="form-control" name="state_id">
-                                @foreach($states as $item)
-                                    <option value="{{ $item->id }}" {{ $selectedState == $item->id ? 'selected="selected"' : '' }}>{{ $item->state }}</option>
+                                @foreach($states as $state)
+                                    <option value="{{ $state->id }}" {{ $selectedState == $state->id ? 'selected="selected"' : '' }}>{{ $state->state }}</option>
                                 @endforeach
                             </select>
                         </div>

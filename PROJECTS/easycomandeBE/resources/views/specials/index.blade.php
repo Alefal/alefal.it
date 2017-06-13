@@ -14,10 +14,10 @@
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">
-                    Notes
+                    Specials
                 </h4>
                 <div class="card-action">
-                    <a href="{{ route('notes.create') }}">
+                    <a href="{{ route('specials.create') }}">
                         <i class="fa fa-plus-circle fa-3x fa-fw" aria-hidden="true"></i>
                     </a>
                 </div>
@@ -27,7 +27,8 @@
                     <table class="table card-table table-striped">
                         <thead>
                             <tr>
-                                <th>Note</th>
+                                <th>Name</th>
+                                <th>Price</th>
                                 <th>Client</th>
                                 <th></th>
                             </tr>
@@ -35,7 +36,8 @@
                         <tbody>
                             @foreach ($items as $key => $item)
                             <tr class="@if ($key > 0 && $key % 2) odd @else even @endif">
-                                <td>{{ $item->note }}</td>
+                                <td>{{ $item->special }}</td>
+                                <td>{{ $item->price }}</td>
                                 <td>
                                     @foreach($orders as $order)
                                         @if ($item->order_id == $order->id) 
@@ -45,13 +47,13 @@
                                 </td>
                                 <td align="right">
                                     <div class="btn-group">
-                                        <a class="btn btn-default btn-xs" href="{{ route('notes.show',$item->id) }}">
+                                        <a class="btn btn-default btn-xs" href="{{ route('specials.show',$item->id) }}">
                                             <i class="fa fa-eye fa-1x fa-lg" aria-hidden="true"></i>
                                         </a>
-                                        <a class="btn btn-default btn-xs" href="{{ route('notes.edit',$item->id) }}">
+                                        <a class="btn btn-default btn-xs" href="{{ route('specials.edit',$item->id) }}">
                                             <i class="fa fa-pencil fa-1x fa-lg" aria-hidden="true"></i>
                                         </a>
-                                        {!! Form::open(['method' => 'DELETE','route' => ['notes.destroy', $item->id],'style'=>'display:inline']) !!} 
+                                        {!! Form::open(['method' => 'DELETE','route' => ['specials.destroy', $item->id],'style'=>'display:inline']) !!} 
                                         {!! Form::button('<span class="fa fa-minus-circle fa-1x fa-lg"></span>', ['id' => '', 'class' => 'btn btn-danger btn-xs buttonDelete']) !!} 
                                         {!! Form::close() !!}
                                     </div>

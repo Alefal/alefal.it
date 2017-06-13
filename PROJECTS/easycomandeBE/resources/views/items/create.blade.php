@@ -41,8 +41,8 @@
                         <div class="form-group">
                             <label for="menu_id">Menu</label>
                             <select class="form-control" name="menu_id">
-                                @foreach($menu as $item)
-                                    <option value="{{$item->id}}">{{$item->name}}</option>
+                                @foreach($menu as $piatto)
+                                    <option value="{{$piatto->id}}">{{$piatto->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -51,8 +51,8 @@
                         <div class="form-group">
                             <label for="order_id">Order</label>
                             <select class="form-control" name="order_id">
-                                @foreach($orders as $item)
-                                    <option value="{{$item->id}}">{{$item->client}}</option>
+                                @foreach($orders as $order)
+                                    <option value="{{$order->id}}">{{$order->client}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -70,8 +70,8 @@
                         <div class="form-group">
                             <label for="state_id">State</label>
                             <select class="form-control" name="state_id">
-                                @foreach($states as $item)
-                                    <option value="{{$item->id}}">{{$item->state}}</option>
+                                @foreach($states as $state)
+                                    <option value="{{$state->id}}">{{$state->state}}</option>
                                 @endforeach
                             </select>
                         </div>

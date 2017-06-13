@@ -61,6 +61,8 @@
                                 <li><a href="{{ url('/menu') }}">Menu</a></li>
                                 <li><a href="{{ url('/orders') }}">Orders</a></li>
                                 <li><a href="{{ url('/items') }}">Items</a></li>
+                                <li><a href="{{ url('/notes') }}">Notes</a></li>
+                                <li><a href="{{ url('/specials') }}">Specials</a></li>
                                 <li><a href="{{ url('/extra') }}">Extra</a></li>
                                 <li><a href="{{ url('/state') }}">States</a></li>
                                 <li><a href="{{ url('/users') }}">Users</a></li>

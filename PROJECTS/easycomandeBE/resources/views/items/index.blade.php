@@ -30,6 +30,7 @@
                                 <th>Qnt</th>
                                 <th>Total</th>
                                 <th>Service</th>
+                                <th>Order</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -39,6 +40,13 @@
                                 <td>{{ $item->quantity }}</td>
                                 <td>{{ $item->total }}</td>
                                 <td>{{ $item->service }}</td>
+                                <td>
+                                    @foreach($orders as $order)
+                                        @if ($item->order_id == $order->id) 
+                                            {{ $order->client }}
+                                        @endif
+                                    @endforeach
+                                </td>
                                 <td align="right">
                                     <div class="btn-group">
                                         <a class="btn btn-default btn-xs" href="{{ route('items.show',$item->id) }}">
