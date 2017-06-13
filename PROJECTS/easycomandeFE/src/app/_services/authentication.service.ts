@@ -10,8 +10,13 @@ export class AuthenticationService {
 
     login(username: string, password: string) {
        
+        let user = '{"status":"ok","cookie":"manager|1498594528|wMOUVNoDXabZuO8Z36fIuQzykhuAr51bW1KVFLa9Uup|a8c18b06c0242a2b4eae96aa3cd1b153377b9358c547d2d94a07516643f564ae","cookie_name":"wordpress_logged_in_6f218fbacc4196119d6944f2a57b20b9","user":{"id":4,"username":"manager","nicename":"manager","email":"alefalwebmaster1@gmail.com","url":"","registered":"2016-05-09 14:07:41","displayname":"Ale Fal","firstname":"Ale","lastname":"Fal","nickname":"manager","description":"","capabilities":{"shop_manager":true},"avatar":null}}';
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        return user;
+
+        /***
         //////////Official release
-        let host = 'http://192.168.1.100/easycomande';
+        //let host = 'http://192.168.1.100/easycomande';
         //let host = 'http://localhost/alefal.it/PROJECTS/easycomande';
         //let host = 'http://192.168.1.100/alefal.it/PROJECTS/easycomande';
         //let host = 'http://www.amalficoastapps.it/demo/easycomande';
@@ -28,6 +33,7 @@ export class AuthenticationService {
                 }
                 return user;
             });
+        ***/
     }
 
     logout() {

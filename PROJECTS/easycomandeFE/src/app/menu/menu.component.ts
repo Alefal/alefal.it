@@ -56,13 +56,10 @@ export class MenuComponent implements OnInit {
       .subscribe(res => {
         //console.log('res: '+JSON.stringify(res));
 
-        if (res[0].response[0].result == 'OK') {
-          this.categories = res[0].output;
+        this.categories = res.results;
+        this.loadData(this.categories[0].id);
 
-          this.loadData(res[0].output[0].name);
-        } else {
-          this.alertService.error('Nessun dato! Riprovare più tardi.');
-        }
+        //this.alertService.error('Nessun dato! Riprovare più tardi.');
         this.loadingBarService.complete();
       },
       error => {
@@ -81,12 +78,12 @@ export class MenuComponent implements OnInit {
           .subscribe(res => {
             //console.log('res: '+JSON.stringify(res));
 
-            if (res[0].response[0].result == 'OK') {
-              this.products = res[0].output;
+            //if (res[0].response[0].result == 'OK') {
+              this.products = res.results;
               localStorage.setItem(categoriaNome, JSON.stringify(this.products));
-            } else {
-              this.alertService.error('Nessun dato! Riprovare più tardi.');
-            }
+            //} else {
+            //  this.alertService.error('Nessun dato! Riprovare più tardi.');
+            //}
           },
           error => {
             console.log('ERROR: ' + error);
@@ -114,7 +111,7 @@ export class MenuComponent implements OnInit {
       .subscribe(
         res => {
           console.log('res: ' + JSON.stringify(res));
-          this.categories = res[0].output;
+          this.categories = res.results;
           console.log('this.categories: ' + this.categories);
           localStorage.setItem('categories', JSON.stringify(this.categories));
 
@@ -125,10 +122,10 @@ export class MenuComponent implements OnInit {
               nameFirstCat = cat.name;
             }
             this.httpService
-              .getCallHttp('getProductsByCategory', '', '', '', cat.name)
+              .getCallHttp('getProductsByCategory', '', '', '', cat.id)
               .subscribe(res => {
                 console.log(' -> res: ' + JSON.stringify(res));
-                this.products = res[0].output;
+                this.products = res.results;
                 localStorage.setItem(cat.name, JSON.stringify(this.products));
 
                 if(index == this.categories.length - 1) {

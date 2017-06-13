@@ -17,6 +17,12 @@ $ composer update
 //New key
 $ php artisan key:generate
 
+//Cache
+composer dump-autoload
+composer clear-cache
+php artisan cache:clear
+php artisan view:clear
+
 
 ########## AUTH ##########
 https://laravel.com/docs/5.4/authentication

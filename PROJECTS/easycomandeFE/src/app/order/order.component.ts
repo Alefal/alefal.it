@@ -9,7 +9,7 @@ import { LoadingBar, LoadingBarService } from "ng2-loading-bar";
 
 import { Order } from '../_models/order';
 import { Product } from '../_models/product';
-import { Ship } from '../_models/ship';
+import { Special } from '../_models/special';
 import { Note } from '../_models/note';
 
 declare var jQuery: any;
@@ -52,10 +52,30 @@ export class OrderComponent implements OnInit {
     this.route.params
       .subscribe(params => {
         if (params['order']) {
-          this.ordine = JSON.parse(params['order']);
-          this.getNote(this.ordine.id);
-          //console.log('%o', this.ordine);
+          let ordineTmp = JSON.parse(params['order']);
+
+          this.loadOrder(ordineTmp.id);
+          //this.getNote(ordine.id);
         }
+      });
+  }
+
+  loadOrder(orderId) {
+    this.httpService
+      .getCallHttp('getOrder','','',orderId,'')
+      .subscribe(res => {
+        //console.log('res: '+JSON.stringify(res));
+
+        //if(res[0].response[0].result == 'OK') {
+          this.ordine = res.results[0];
+        //} else {
+        //  this.alertService.error('Nessun dato! Riprovare più tardi.');
+        //}
+        this.loadingBarService.complete();
+      },
+      error => {
+        this.alertService.error('ORDINI: Dati non disponibili! Si è verificato un errore.');
+        this.loadingBarService.complete();
       });
   }
 
@@ -65,17 +85,17 @@ export class OrderComponent implements OnInit {
       .subscribe(res => {
         console.log('res: ' + JSON.stringify(res));
 
-        if (res[0].response[0].result == 'OK') {
-          if (res[0].output == '') {
+        //if (res[0].response[0].result == 'OK') {
+          if (res.results== '') {
             this.noteComplete = 'Nessuna nota per l\'ordine';
           } else {
-            for (let prod of res[0].output) {
-              let nota = new Note(prod['id'], prod['note'], true);
+            for (let prod of res.results) {
+              let nota = new Note(prod['id'], prod['note']);
               this.notes.push(nota);
             }
             console.log('%o', this.notes);
           }
-        }
+        //}
       },
       error => {
         this.alertService.error('NOTE: Dati non disponibili! Si è verificato un errore.');
@@ -88,26 +108,30 @@ export class OrderComponent implements OnInit {
     console.log('deleteProduct ordine: ' + ordineId);
     console.log('%o', prod);
 
-    let prodotto = new Product(prod.id, prod.product_id, prod.title, prod.price, false, false, false, prod.price, prod.description, prod.quantity, '');
+    let prodotto = new Product(
+      prod.id,
+      0,
+      0,
+      0,
+      '',
+      '',
+      '',
+      0,
+      false,
+      false,
+      false
+    );
 
     let ordine = new Order(
-      ordineId,         //this.id
-      ordineId,         //this.order_number
-      '',               //this.created_at
-      '',               //this.updated_at
-      '',               //this.completed_at
-      '',               //this.status
-      0,                //this.total
-      0,                //this.subtotal
-      0,                //this.total_line_items_quantity
-      0,                //this.total_tax
-      0,                //this.total_shipping
-      0,                //this.cart_tax
-      0,                //this.shipping_tax
-      '',               //this.note
-      prodotto,         //this.line_items
-      0,                //this.shipping_lines
-      0                 //this.tax_lines
+      ordineId,         //id: number,
+      '',               //date: string,
+      '',               //client: string,
+      0,                //totalorder: number,
+      0,                //totalservice: number,
+      '',               //state: string,
+      prodotto,         //items: any,
+      '',               //specials: any,
+      '',               //notes: string
     );
 
     this.httpService
@@ -132,26 +156,18 @@ export class OrderComponent implements OnInit {
     console.log('deleteShip ordine: ' + ordineId);
     console.log('%o', ship);
 
-    let shipping = new Ship(ship.id, null, '', 0);
+    let shipping = new Special(ship.id, '', 0, '');
 
     let ordine = new Order(
-      ordineId,         //this.id
-      ordineId,         //this.order_number
-      '',               //this.created_at
-      '',               //this.updated_at
-      '',               //this.completed_at
-      '',               //this.status
-      0,                //this.total
-      0,                //this.subtotal
-      0,                //this.total_line_items_quantity
-      0,                //this.total_tax
-      0,                //this.total_shipping
-      0,                //this.cart_tax
-      0,                //this.shipping_tax
-      '',               //this.note
-      '',               //this.line_items
-      shipping,         //this.shipping_lines
-      0                 //this.tax_lines
+      ordineId,         //id: number,
+      '',               //date: string,
+      '',               //client: string,
+      0,                //totalorder: number,
+      0,                //totalservice: number,
+      '',               //state: string,
+      '',               //items: any,
+      shipping,         //specials: any,
+      '',               //notes: string
     );
 
     this.httpService

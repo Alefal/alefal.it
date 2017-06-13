@@ -46,7 +46,9 @@ export class LoginComponent implements OnInit {
     }
     */
     
-    this.authenticationService.login(this.model.username, this.model.password)
+    this.authenticationService.login(this.model.username, this.model.password);
+    this.router.navigate(['/home']);
+    /*
       .subscribe(data => {
         console.log('res: '+JSON.stringify(data));
 
@@ -66,7 +68,7 @@ export class LoginComponent implements OnInit {
         this.alertService.error(error);
         this.loadingBarService.complete();
         //this.loading = false;
-      });
+      });*/
     
   }
 

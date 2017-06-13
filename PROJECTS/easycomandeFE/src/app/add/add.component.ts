@@ -8,7 +8,7 @@ import { LoadingBar, LoadingBarService } from 'ng2-loading-bar';
 
 import { Order } from '../_models/order';
 import { Product } from '../_models/product';
-import { Ship } from '../_models/ship';
+import { Special } from '../_models/special';
 import { Note } from '../_models/note';
 
 declare var jQuery: any;
@@ -36,7 +36,7 @@ export class AddComponent implements OnInit {
   products: Product[] = new Array<Product>();
 
   notes: Note[] = new Array<Note>();
-  ships: Ship[] = new Array<Ship>();
+  ships: Special[] = new Array<Special>();
 
   notaId: number = 1;
   shipId: number = 1;
@@ -60,6 +60,7 @@ export class AddComponent implements OnInit {
   prodTmp: Product;
   //Speciale
   prezzoSpeciale: string = '';
+  notaSpeciale: string = '';
   //Nota generica
   notaGenerica: string = '';
   //Extra
@@ -84,7 +85,7 @@ export class AddComponent implements OnInit {
 
           this.ordineEdit = true;
           this.ordineId = this.ordine.id;
-          this.notaOrdine = this.ordine.note;
+          this.notaOrdine = this.ordine.notes;
         }
       });
 
@@ -177,8 +178,8 @@ export class AddComponent implements OnInit {
     }
   }
   addProducts(cat, prod) {
-    //console.log('cat -> ' + JSON.stringify(cat));
-    //console.log('prod -> ' + JSON.stringify(prod));
+    console.log('cat -> ' + JSON.stringify(cat));
+    console.log('prod -> ' + JSON.stringify(prod));
 
     let isExtra: boolean = false;
     let hasExtra: boolean = false;
@@ -191,13 +192,24 @@ export class AddComponent implements OnInit {
     if (prod != '') {
       let pId = 0;
       let pProdId = prod.id;
-      let pTitle = prod.title;
+      let pTitle = prod.name;
       let pPrice = prod.price ? prod.price : 0;
       let pExistExtra = false;
       let pPriceTotal = pPrice;
-      let pDescr = prod.description;
 
-      let product = new Product(pId, pProdId, pTitle, pPrice, pExistExtra, isExtra, hasExtra, pPriceTotal, pDescr, 1, '');
+      let product = new Product(
+        pProdId,
+        1,
+        pPriceTotal,
+        0,
+        '',
+        pTitle,
+        'pending',
+        pPrice,
+        pExistExtra,
+        isExtra,
+        hasExtra
+      );
 
       this.products.push(product);
       this.totaleOrdine = Number.parseFloat(this.totaleOrdine) + Number.parseFloat(pPrice);
@@ -227,7 +239,7 @@ export class AddComponent implements OnInit {
     console.log('%ò', prod);
     this.prodTmp = prod;
 
-    this.modalTitle = prod.title;
+    this.modalTitle = prod.menuname;
     this.modalSection = 'notaPiatto';
     this.notaAlPiatto = '';
     jQuery('#genericAddModal').modal();
@@ -246,17 +258,18 @@ export class AddComponent implements OnInit {
   }
 
   //SPECIAL
-  openModalAddShip() {
+  openModalAddSpecial() {
     this.modalTitle = 'Speciale';
     this.modalSection = 'addSpecial';
     this.nomeSpeciale = '';
     this.prezzoSpeciale = '';
+    this.notaSpeciale = '';
     jQuery('#genericAddModal').modal();
   }
-  addShip() {
+  addSpecial() {
     console.log('Piatto speciale: ' + this.nomeSpeciale + ' | ' + this.prezzoSpeciale);
     let prezzoPiatto: any = this.prezzoSpeciale ? this.prezzoSpeciale : 0;
-    let ship = new Ship(this.shipId, 'flat_rate', this.nomeSpeciale, prezzoPiatto);
+    let ship = new Special(this.shipId, this.nomeSpeciale, prezzoPiatto,this.notaSpeciale);
     this.ships.push(ship);
 
     this.totaleOrdine = Number.parseFloat(this.totaleOrdine) + parseFloat(prezzoPiatto);
@@ -265,7 +278,7 @@ export class AddComponent implements OnInit {
     console.log('this.shipId: ' + this.shipId);
     jQuery('#genericAddModal').modal('hide');
   }
-  removeShip(shipId, shipTotal) {
+  removeSpecial(shipId, shipTotal) {
     let cont: number = 0;
     for (let ship of this.ships) {
       console.log('Title: ' + ship['id'] + ' | ' + shipId);
@@ -290,7 +303,7 @@ export class AddComponent implements OnInit {
   }
   addNote() {
     console.log('Nota: ' + this.notaGenerica);
-    let nota = new Note(this.notaId, this.notaGenerica, true);
+    let nota = new Note(this.notaId, this.notaGenerica);
     this.notes.push(nota);
 
     this.notaId = this.notaId + 1;
@@ -353,7 +366,19 @@ export class AddComponent implements OnInit {
     let pPriceTotal = pPrice;
     let pDescr = '';
 
-    let prodotto = new Product(pId, pProdId, pTitle, pPrice, pExistExtra, pIsExtra, pHasExtra, pPriceTotal, pDescr, 1, '');
+    let prodotto = new Product(
+        pProdId,
+        1,
+        pPriceTotal,
+        0,
+        '',
+        pTitle,
+        'pending',
+        pPrice,
+        pExistExtra,
+        pIsExtra,
+        pHasExtra
+      );
 
     this.products.push(prodotto);
     this.totaleOrdine = Number.parseFloat(this.totaleOrdine) + Number.parseFloat(pPrice);
@@ -389,23 +414,15 @@ export class AddComponent implements OnInit {
     }
 
     let ordine = new Order(
-      this.ordineId,          //this.id
-      this.ordineId,          //this.order_number
-      '',                     //this.created_at
-      '',                     //this.updated_at
-      '',                     //this.completed_at
-      'pending',              //this.status -> deve essere 'pending' altrimenti non viene calcolato il totale,
-      this.totaleOrdine,      //this.total
-      0,                      //this.subtotal
-      this.products.length,   //this.total_line_items_quantity
-      0,                      //this.total_tax
-      0,                      //this.total_shipping
-      0,                      //this.cart_tax
-      0,                      //this.shipping_tax
-      this.notaOrdine,        //this.note
-      this.products,          //this.line_items
-      this.ships,             //this.shipping_lines
-      0                       //this.tax_lines
+      this.ordineId,        //id: number,
+      '',                   //date: string,
+      '',                   //client: string,
+      0,                    //totalorder: number,
+      0,                    //totalservice: number,
+      '',                   //state: string,
+      this.products,        //items: any,
+      this.ships,           //specials: any,
+      this.notaOrdine,      //notes: string
     );
 
     console.log('ORDINE: ' + JSON.stringify(ordine));

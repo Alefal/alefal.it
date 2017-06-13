@@ -16,13 +16,15 @@
         <h4>Nessun piatto disponibile</h4>
       </div>
       <div class="card-body" *ngIf="products?.length > 0">
-        <div class="media social-post" *ngFor="let prod of products | orderBy:'title'">
+        <div class="media social-post" *ngFor="let prod of products | orderBy:'name'">
+          <!--
           <div class="media-left">
             <img src="{{prod.images[0].src}}" />
           </div>
+          -->
           <div class="media-body">
             <div class="media-heading">
-              <h4 class="title">{{prod.title}} <span *ngIf="prod.price != ''" class="badge badge-warning pull-right">&euro; {{prod.price}}</span></h4>
+              <h4 class="title">{{prod.name}} <span *ngIf="prod.price != ''" class="badge badge-warning pull-right">&euro; {{prod.price}}</span></h4>
               <h5 class="timeing">{{prod.category}}</h5>
             </div>
             <div class="media-content" [innerHTML]="prod.description"></div>

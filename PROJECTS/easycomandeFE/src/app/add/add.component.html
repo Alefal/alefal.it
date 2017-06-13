@@ -12,7 +12,7 @@
 
           <div class="form-group" align="center">
             <div class="col-md-12">
-              <button type="submit" class="btn btn-info btn-lg" (click)="openModalAddShip()"><i class="fa fa-asterisk fa-1x"></i> Speciale</button>
+              <button type="submit" class="btn btn-info btn-lg" (click)="openModalAddSpecial()"><i class="fa fa-asterisk fa-1x"></i> Speciale</button>
               <button type="submit" class="btn btn-warning btn-lg" (click)="openModalAddNote()"><i class="fa fa-pencil-square-o fa-1x"></i> Nota Generica</button>
               
               <span style="margin: 0 30px"></span>
@@ -64,8 +64,8 @@
               <div class="row" *ngIf="ordineEdit">
                 <div class="col-md-12">
                   <h3>Ordine per <strong>{{ordine.note}}</strong></h3>
-                  <h4 *ngIf="ordine.total != 0">Totale <i>{{ordine.total}} &euro;</i> di cui <i>{{ordine.tax_lines[0].total}} &euro;</i> per servizio</h4>
-                  <h4 *ngIf="ordine.total == 0">Totale <i>{{ordine.total}} &euro;</i></h4>
+                  <h4 *ngIf="ordine.total != 0">Totale <i>{{ordine.totalorder}} &euro;</i> di cui <i>{{ordine.totalservice}} &euro;</i> per servizio</h4>
+                  <h4 *ngIf="ordine.total == 0">Totale <i>{{ordine.totalorder}} &euro;</i></h4>
                 </div>
               </div>
 
@@ -92,11 +92,11 @@
                       <div class="icon fa fa-cutlery fa-4x iconAddExtra" (click)="openModalAddExtra(prod)" *ngIf="!prod.existExtra && !prod.isExtra && prod.hasExtra"></div>                      
 
                       <div class="content itemProduct">
-                        <div class="title"><em>{{prod.quantity}} x {{prod.title}}</em></div>
+                        <div class="title"><em>{{prod.quantity}} x {{prod.menuname}}</em></div>
 
                         <div class="alert alert-danger alert-dismissable fade in" *ngIf="prod.meta != ''">
                           <a href="javascript:void(0);" (click)="removeMetaProduct(prod)" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                          {{prod.meta}}
+                          {{prod.note}}
                         </div>
 
                         <div class="value"><span class="sign">&euro; </span>{{prod.quantity * prod.price}}</div>
@@ -116,12 +116,15 @@
                   <div class="card card-banner card-yellow-light">
                     <div class="card-body">
                       <div mwlConfirmationPopover [title]="title" [message]="message" [confirmText]="confirmText" [cancelText]="cancelText" [placement]="bottom"
-                        (confirm)="removeShip(ship.id,ship.total)" (cancel)="cancelClicked = true" confirmButtonType="danger" cancelButtonType="default"
+                        (confirm)="removeSpecial(ship.id,ship.price)" (cancel)="cancelClicked = true" confirmButtonType="danger" cancelButtonType="default"
                         [appendToBody]="true" class="icon fa fa-times fa-4x">
                       </div>
                       <div class="content itemProduct">
-                        <div class="title"><em>1 x {{ship.method_title}}</em></div>
-                        <div class="value"><span class="sign">&euro; </span>{{ship.total}}</div>
+                        <div class="title"><em>1 x {{ship.special}}</em></div>
+                        <div *ngIf="ship.note != ''">
+                          <span class="badge badge-warning">{{ship.note}}</span>
+                        </div>
+                        <div class="value"><span class="sign">&euro; </span>{{ship.price}}</div>
                       </div>
                     </div>
                   </div>
@@ -158,7 +161,7 @@
       <div class="quote-container" *ngFor="let nota of notes">
         <blockquote class="note yellow">
           <div class="icon fa fa-times fa-2x" (click)="removeNote(nota.id)" style="cursor:pointer"></div>
-          {{nota.nota}}
+          {{nota.note}}
         </blockquote>
       </div>
     </div>
@@ -204,6 +207,11 @@
             <i class="fa fa-money" aria-hidden="true"></i></span>
             <input type="text" class="form-control" placeholder="Prezzo" aria-describedby="prezzoSpeciale" [(ngModel)]="prezzoSpeciale" />
           </div>
+          <div class="input-group">
+            <span class="input-group-addon" id="notaSpeciale">
+            <i class="fa fa-pencil" aria-hidden="true"></i></span>
+            <input type="text" class="form-control" placeholder="Nota" aria-describedby="notaSpeciale" [(ngModel)]="notaSpeciale" />
+          </div>
         </div>
 
         <div *ngIf="modalSection == 'addGenericNote'" class="modalContent">
@@ -229,7 +237,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Chiudi</button>
         <button *ngIf="modalSection == 'notaPiatto'" type="button" class="btn btn-sm btn-success" (click)="addMetaProduct()">Aggiungi Nota</button>
-        <button *ngIf="modalSection == 'addSpecial'" type="button" class="btn btn-sm btn-success" (click)="addShip()">Aggiungi Speciale</button>
+        <button *ngIf="modalSection == 'addSpecial'" type="button" class="btn btn-sm btn-success" (click)="addSpecial()">Aggiungi Speciale</button>
         <button *ngIf="modalSection == 'addGenericNote'" type="button" class="btn btn-sm btn-success" (click)="addNote()">Aggiungi Nota Generica</button>
         <button *ngIf="modalSection == 'addProductExtra'" type="button" class="btn btn-sm btn-success" (click)="addExtra()">Aggiungi Extra</button>
       </div>

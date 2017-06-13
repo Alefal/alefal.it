@@ -39,14 +39,14 @@ export class AppComponent {
       .subscribe(res => {
         console.log('%ò',res);
 
-        if(res[0].response[0].result == 'OK') {
-          this.orders = res[0].output;
+        //if(res[0].response[0].result == 'OK') {
+          this.orders = res.results;
 
           for (let order of this.orders) {
-            console.log(order.note+' -> '+order.status);
-            if(order.status == 'pending') {
+            console.log(order.client+' -> '+order.state);
+            if(order.state == 'pending') {
               this.orderPendingLength += 1;
-            } else if(order.status == 'completed') {
+            } else if(order.state == 'completed') {
               this.orderSuccessLength += 1;
             } else {
               //nothing: case not defined
@@ -55,9 +55,9 @@ export class AppComponent {
 
           //console.log('this.orderPendingLength -> '+this.orderPendingLength);
           //console.log('this.orderSuccessLength -> '+this.orderSuccessLength);
-        } else {
-          this.alertService.error('Nessun dato! Riprovare più tardi.');
-        }
+        //} else {
+        //  this.alertService.error('Nessun dato! Riprovare più tardi.');
+        //}
         this.loadingBarService.complete();
       },
       error => {

@@ -49,7 +49,7 @@ use App\State;
 use App\User;
 
 use Illuminate\Http\Request;
-
+    
 Route::get('jsondata/categories', function(){
     return manipulateJsonResponseCategories(Category::all());
 });
@@ -69,7 +69,7 @@ Route::get('jsondata/order/{orderId}', function($orderId){
     $specials   = Order::find($orderId)->specials;
     $notes      = Order::find($orderId)->notes;
 
-    return manipulateJsonResponseOrder($order,$items,$specials,$notes);
+    return manipulateJsonResponseOrder($order,$items,$specials,$notes,State::all());
 });
 Route::get('jsondata/specialsfororder/{orderId}', function($orderId){
     $specials = Special::where('order_id',$orderId)->get();

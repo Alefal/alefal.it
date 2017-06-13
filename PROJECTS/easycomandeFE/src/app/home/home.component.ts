@@ -52,12 +52,12 @@ export class HomeComponent implements OnInit {
       .subscribe(res => {
         //console.log('res: '+JSON.stringify(res));
 
-        if(res[0].response[0].result == 'OK') {
-          this.orders = res[0].output;
-          this.ordersAll = res[0].output;
-        } else {
-          this.alertService.error('Nessun dato! Riprovare più tardi.');
-        }
+        //if(res[0].response[0].result == 'OK') {
+          this.orders = res.results;
+          this.ordersAll = res.results;
+        //} else {
+        //  this.alertService.error('Nessun dato! Riprovare più tardi.');
+        //}
         this.loadingBarService.complete();
       },
       error => {

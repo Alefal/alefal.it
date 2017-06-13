@@ -1,17 +1,14 @@
 export class Note {
   public id: number;
-  public nota: string;
-  public customer_note: boolean;    
+  public note: string;
   
   constructor(
     id: number,
-    nota: string,
-    customer_note: boolean
+    note: string
   ) {
 
     this.id                   = id;
-    this.nota                 = nota;
-    this.customer_note        = customer_note;
+    this.note                 = note;
   }
 
   getOrderId(): string {

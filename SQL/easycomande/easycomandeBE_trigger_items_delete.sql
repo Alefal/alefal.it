@@ -1,4 +1,4 @@
-DROP TRIGGER `easycomandeBE`.`items_AFTER_DELETE`;
+/*DROP TRIGGER `easycomandeBE`.`items_AFTER_DELETE`;*/
 
 delimiter |
 CREATE TRIGGER `easycomandeBE`.`items_AFTER_DELETE` AFTER DELETE ON `items` FOR EACH ROW
@@ -10,4 +10,3 @@ END;
 delimiter ;
 
 /*SET FOREIGN_KEY_CHECKS=0;*/
-/*DELETE FROM items WHERE id = 7;*/
