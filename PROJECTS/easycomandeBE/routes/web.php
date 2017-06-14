@@ -91,7 +91,7 @@ Route::get('jsondata/users', function(){
     ]);
 });
 
-/*** TEST ***/
-Route::get('jsondata/save/state/{request}', function($request){
-    return saveState($request);
+/*** SAVE from APP / WEBAPP ***/
+Route::get('jsondata/save/order/{request}', function($request){
+    return saveOrder($request);
 });

@@ -24,8 +24,7 @@ class Order extends Model
      */
     public function items()
     {
-        $itemsArray = $this->hasMany('App\Item');
-        return $itemsArray;
+        return $this->hasMany('App\Item');
     }
 
     /**

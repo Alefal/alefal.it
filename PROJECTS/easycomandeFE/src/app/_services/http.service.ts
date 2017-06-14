@@ -40,8 +40,8 @@ export class HttpService {
         }
         //CATEGORIES
         else if (call == 'getProductsCategory') {
-            //url = '/wp-content/plugins/alefal_woocommerce/services/ece_products_cat.php';
             url = '/jsondata/categories';
+            //url = '/wp-content/plugins/alefal_woocommerce/services/ece_products_cat.php';
         }
         else if (call == 'getProductsByCategory') {
             url = '/jsondata/menuforcat/'+object;
@@ -61,9 +61,9 @@ export class HttpService {
             url = '/jsondata/order/'+id;
         }
         else if (call == 'getOrderSave') {
-            //url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_save.php?order=' + JSON.stringify(object);
-            url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_save.php';
-            body.set('order',JSON.stringify(object));
+            url = '/jsondata/save/order/'+JSON.stringify(object);
+            //url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_save.php';
+            //body.set('order',JSON.stringify(object));
         }
         else if (call == 'getOrderDelete') {
             url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_delete.php?id=' + id;

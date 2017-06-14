@@ -116,8 +116,8 @@ CREATE TABLE IF NOT EXISTS `easycomandeBE`.`items` (
   CONSTRAINT `fk_items_orders1`
     FOREIGN KEY (`order_id`)
     REFERENCES `easycomandeBE`.`orders` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_items_state1`
     FOREIGN KEY (`state_id`)
     REFERENCES `easycomandeBE`.`state` (`id`)

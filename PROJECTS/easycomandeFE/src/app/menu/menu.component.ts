@@ -7,7 +7,7 @@ import { LoadingBar, LoadingBarService } from 'ng2-loading-bar';
 
 import { Order }    from '../_models/order';
 import { Product }  from '../_models/product';
-import { Ship }     from '../_models/ship';
+import { Special }  from '../_models/special';
 import { Note }     from '../_models/note';
 
 @Component({

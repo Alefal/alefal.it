@@ -11,19 +11,14 @@ class Item extends Model
 
     protected $fillable=[
         'id',
+        'menu_id',
         'quantity',
         'total',
         'service',
         'note',
-        'menu_id',
         'order_id',
         'state_id',
         'menuname',
         'statename'
     ];
-
-    public function item()
-    {
-        return $this->belongsTo('App\Menu');
-    }
 }

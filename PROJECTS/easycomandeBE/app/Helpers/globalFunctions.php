@@ -8,6 +8,11 @@
 |
 */
 
+use App\Menu;
+use App\Order;
+use App\Item;
+use App\Special;
+use App\Note;
 use App\State;
 
 /* ---------------------------------------------------------------------------
@@ -101,77 +106,6 @@ function manipulateJsonResponseMenu($jsonData,$categories) {
 /* ---------------------------------------------------------------------------
  * Manipulate Json Response: MENU for CATEGORY
  * --------------------------------------------------------------------------- */
-function manipulateJsonResponseOrder($jsonData,$items,$specials,$notes,$states) {
-    //$jsonData = str_replace("\\","", $jsonData);
-    $order = json_decode($jsonData, true);
-
-    for ($j=0; $j<count($states); $j++) {
-        if($order['state_id'] == $states[$j]['id']) {
-            $state = $states[$j]['state'];
-        }
-    }
-
-    $json = '{ "results" : [';
-    $json .= '{';
-    $json .= '"id":"'.$order['id'].'",';
-    $json .= '"date":"'.$order['date'].'",';
-    $json .= '"client":"'.$order['client'].'",';
-    $json .= '"totalorder":"'.$order['totalorder'].'",';
-    $json .= '"totalservice":"'.$order['totalservice'].'",';
-    $json .= '"state":"'.$state.'",';
-
-    $json .= '"items":[';
-    for ($j=0; $j<count($items); $j++) {
-        $json .= '{';
-
-        $json .= '"name": "'.$items[$j]['menuname'].'",';
-        $json .= '"quantity": "'.$items[$j]['quantity'].'",';
-        $json .= '"total": "'.$items[$j]['total'].'",';
-        $json .= '"service": "'.$items[$j]['service'].'",';
-        $json .= '"note": "'.$items[$j]['note'].'",';
-        $json .= '"state": "'.$items[$j]['statename'].'",';
-
-        $json = rtrim($json,',');
-        $json .= '},';
-    }
-    $json = rtrim($json,',');
-    $json .= '],';
-
-    $json .= '"specials":[';
-    for ($j=0; $j<count($specials); $j++) {
-        $json .= '{';
-
-        $json .= '"name": "'.$specials[$j]['special'].'",';
-        $json .= '"price": "'.$specials[$j]['price'].'",';
-        $json .= '"note": "'.$specials[$j]['note'].'",';
-
-        $json = rtrim($json,',');
-        $json .= '},';
-    }
-    $json = rtrim($json,',');
-    $json .= '],';
-
-    $json .= '"notes":[';
-    for ($j=0; $j<count($notes); $j++) {
-        $json .= '{';
-
-        $json .= '"note": "'.$notes[$j]['note'].'",';
-
-        $json = rtrim($json,',');
-        $json .= '},';
-    }
-    $json = rtrim($json,',');
-    $json .= ']';
-    
-    $json .='}';
-    $json .= ']}';
-
-    return $json;
-}
-
-/* ---------------------------------------------------------------------------
- * Manipulate Json Response: MENU for CATEGORY
- * --------------------------------------------------------------------------- */
 function manipulateJsonResponseMenuForCategory($jsonData,$categories,$catId) {
     //$jsonData = str_replace("\\","", $jsonData);
     $menu = json_decode($jsonData, true);
@@ -179,6 +113,7 @@ function manipulateJsonResponseMenuForCategory($jsonData,$categories,$catId) {
     $category = '';
     for ($j=0; $j<count($categories); $j++) {
         if($catId == $categories[$j]['id']) {
+            $categoryId = $categories[$j]['id'];
             $category = $categories[$j]['name'];
             $category_slug  = $categories[$j]['slug'];
         }
@@ -193,6 +128,7 @@ function manipulateJsonResponseMenuForCategory($jsonData,$categories,$catId) {
         $json .= '"name":"'.$menu[$i]['name'].'",';
         $json .= '"price":"'.$menu[$i]['price'].'",';
         $json .= '"priceoffer":"'.$menu[$i]['priceoffer'].'",';
+        $json .= '"category_id":"'.$categoryId.'",';
         $json .= '"category":"'.$category.'",';
         $json .= '"category_slug":"'.$category_slug.'",';
         $json .= '"description":'.json_encode($descr,JSON_UNESCAPED_SLASHES).'';
@@ -232,6 +168,83 @@ function manipulateJsonResponseOrders($jsonData,$states) {
         $json .='},';
     }
     $json = rtrim($json,',');
+    $json .= ']}';
+
+    return $json;
+}
+
+/* ---------------------------------------------------------------------------
+ * Manipulate Json Response: ORDER
+ * --------------------------------------------------------------------------- */
+function manipulateJsonResponseOrder($jsonData,$items,$specials,$notes,$states) {
+    //$jsonData = str_replace("\\","", $jsonData);
+    $order = json_decode($jsonData, true);
+
+    for ($j=0; $j<count($states); $j++) {
+        if($order['state_id'] == $states[$j]['id']) {
+            $state = $states[$j]['state'];
+        }
+    }
+
+    $json = '{ "results" : [';
+    $json .= '{';
+    $json .= '"id":"'.$order['id'].'",';
+    $json .= '"date":"'.$order['date'].'",';
+    $json .= '"client":"'.$order['client'].'",';
+    $json .= '"totalorder":"'.$order['totalorder'].'",';
+    $json .= '"totalservice":"'.$order['totalservice'].'",';
+    $json .= '"state":"'.$state.'",';
+
+    $json .= '"items":[';
+    for ($j=0; $j<count($items); $j++) {
+        $menu = json_decode(Menu::where('id',$items[$j]['menu_id'])->get(), true);
+
+        $json .= '{';
+
+        $json .= '"id": "'.$items[$j]['id'].'",';
+        //$json .= '"name": "'.$items[$j]['menuname'].'",';
+        $json .= '"name": "'.$menu[0]['name'].'",';
+        $json .= '"quantity": "'.$items[$j]['quantity'].'",';
+        $json .= '"price": "'.$menu[0]['price'].'",';
+        $json .= '"total": "'.$items[$j]['total'].'",';
+        $json .= '"service": "'.$items[$j]['service'].'",';
+        $json .= '"note": "'.$items[$j]['note'].'",';
+        $json .= '"state": "'.$items[$j]['statename'].'",';
+        $json .= '"menu_id": "'.$items[$j]['menu_id'].'",';
+
+        $json = rtrim($json,',');
+        $json .= '},';
+    }
+    $json = rtrim($json,',');
+    $json .= '],';
+
+    $json .= '"specials":[';
+    for ($j=0; $j<count($specials); $j++) {
+        $json .= '{';
+
+        $json .= '"name": "'.$specials[$j]['special'].'",';
+        $json .= '"price": "'.$specials[$j]['price'].'",';
+        $json .= '"note": "'.$specials[$j]['note'].'",';
+
+        $json = rtrim($json,',');
+        $json .= '},';
+    }
+    $json = rtrim($json,',');
+    $json .= '],';
+
+    $json .= '"notes":[';
+    for ($j=0; $j<count($notes); $j++) {
+        $json .= '{';
+
+        $json .= '"note": "'.$notes[$j]['note'].'",';
+
+        $json = rtrim($json,',');
+        $json .= '},';
+    }
+    $json = rtrim($json,',');
+    $json .= ']';
+    
+    $json .='}';
     $json .= ']}';
 
     return $json;
@@ -370,4 +383,116 @@ function saveState($request) {
     $json .= ']}';
 
     return $json;
+}
+
+/* ---------------------------------------------------------------------------
+ * Save: STATE -> /jsondata/save/state/{"state":"processing"}
+ * --------------------------------------------------------------------------- */
+function saveOrder($request) {
+    $order = json_decode($request, true);
+
+    /*
+    print '<pre>';
+    print_r($order);
+    print '</pre>';
+    die();
+    */
+
+    $json = '{ "results" : [';
+
+    try{
+        if($order['id'] == 0) {
+            $orderSave = new Order();
+            $orderSave->date            = $order['date']; 
+            $orderSave->client          = $order['client']; 
+            $orderSave->totalorder      = $order['totalorder']; 
+            $orderSave->totalservice    = $order['totalservice']; 
+
+            $states = State::all();
+            for ($j=0; $j<count($states); $j++) {
+                if($order['state'] == $states[$j]['state']) {
+                    $orderSave->state_id = $states[$j]['id']; 
+                }
+            }
+
+            $orderSave->save();
+            $lastInsertedOrderId = $orderSave->id;
+        } else {
+            $orderSave = Order::find($order['id']);
+            $lastInsertedOrderId = $orderSave->id;
+        }
+
+        /*
+        print '<pre>';
+        print_r($order);
+        print '<hr />';
+        print_r($orderSave);
+        print '</pre>';
+        die();
+        */        
+
+        try{
+
+            foreach ($order['items'] as $item) {
+                $product = new Item();
+                //$product->id        = $item['id'];          
+                $product->menu_id   = $item['menu_id'];
+                $product->quantity  = $item['quantity'];
+                $product->total     = $item['total'];
+                $product->service   = $item['service'];
+                $product->note      = $item['note'];
+                $product->order_id  = $lastInsertedOrderId;
+                $product->state_id  = $item['state_id'];
+                $product->menuname  = $item['menuname'];
+                $product->statename = $item['statename'];
+
+                $product->save();
+            };
+
+            foreach ($order['specials'] as $item) {
+                $special = new Special();
+                //$special->id        = $item['id'];
+                $special->special   = $item['special'];
+                $special->price     = $item['price'];
+                $special->note      = $item['note'];
+                $special->order_id  = $lastInsertedOrderId;
+
+                $special->save();
+            };
+
+            foreach ($order['notes'] as $item) {
+                $note = new Note();
+                //$note->id        = $item['id'];
+                $note->note      = $item['note'];
+                $note->order_id  = $lastInsertedOrderId;
+
+                $note->save();
+            };
+
+            $json .= '{';
+                $json .= '"operation":"success",';
+                $json .= '"message":"'.$lastInsertedOrderId.'"';
+            $json .='},';
+
+        }
+        catch(Exception $e){
+            $json .= '{';
+                $json .= '"operation":"error",';
+                $json .= '"message":"'.$e->getMessage().'"';
+            $json .='},';
+        }
+    
+    }
+    catch(Exception $e){
+        $json .= '{';
+            $json .= '"operation":"error",';
+            $json .= '"message":"'.$e->getMessage().'"';
+        $json .='},';
+    }
+
+    $json = rtrim($json,',');
+    $json .= ']}';
+
+    return $json;
+    
 }

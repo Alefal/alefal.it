@@ -70,8 +70,8 @@ export class HomeComponent implements OnInit {
     this.orders = this.ordersAll;
   }
 
-  orderDetail(order) {
-    this.router.navigate(['/ordine', JSON.stringify(order)]);
+  orderDetail(orderId) {
+    this.router.navigate(['/ordine', orderId]);
   }
 
 }

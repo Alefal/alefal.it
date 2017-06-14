@@ -52,9 +52,8 @@ export class OrderComponent implements OnInit {
     this.route.params
       .subscribe(params => {
         if (params['order']) {
-          let ordineTmp = JSON.parse(params['order']);
-
-          this.loadOrder(ordineTmp.id);
+          let ordineId = params['order'];
+          this.loadOrder(ordineId);
           //this.getNote(ordine.id);
         }
       });
@@ -110,6 +109,7 @@ export class OrderComponent implements OnInit {
 
     let prodotto = new Product(
       prod.id,
+      prod.menu_id,
       0,
       0,
       0,
@@ -119,7 +119,9 @@ export class OrderComponent implements OnInit {
       0,
       false,
       false,
-      false
+      false,
+      0,
+      0
     );
 
     let ordine = new Order(

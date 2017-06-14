@@ -41,7 +41,7 @@ export class AddComponent implements OnInit {
   notaId: number = 1;
   shipId: number = 1;
 
-  notaOrdine: string = '';
+  clienteOrdine: string = '';
 
   numTavolo: string = '';
   numCoperti: number = 0;
@@ -73,7 +73,7 @@ export class AddComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private loadingBarService: LoadingBarService
-  ) { }
+  ) {}
 
   ngOnInit() {
     //Order edit: go from ordinePage
@@ -85,7 +85,7 @@ export class AddComponent implements OnInit {
 
           this.ordineEdit = true;
           this.ordineId = this.ordine.id;
-          this.notaOrdine = this.ordine.notes;
+          //this.notes = this.ordine.notes;
         }
       });
 
@@ -103,13 +103,10 @@ export class AddComponent implements OnInit {
       .subscribe(res => {
         //console.log('res: '+JSON.stringify(res));
 
-        if (res[0].response[0].result == 'OK') {
-          this.categories = res[0].output;
+        this.categories = res.results;
+        this.loadData(this.categories[0].id);
 
-          this.loadData(res[0].output[0].name);
-        } else {
-          this.alertService.error('Nessun dato! Riprovare più tardi.');
-        }
+        //this.alertService.error('Nessun dato! Riprovare più tardi.');
         this.loadingBarService.complete();
       },
       error => {
@@ -128,12 +125,12 @@ export class AddComponent implements OnInit {
           .subscribe(res => {
             //console.log('res: '+JSON.stringify(res));
 
-            if (res[0].response[0].result == 'OK') {
-              this.productsMenu = res[0].output;
+            //if (res[0].response[0].result == 'OK') {
+              this.productsMenu = res.results;
               localStorage.setItem(categoriaNome, JSON.stringify(this.productsMenu));
-            } else {
-              this.alertService.error('Nessun dato! Riprovare più tardi.');
-            }
+            //} else {
+            //  this.alertService.error('Nessun dato! Riprovare più tardi.');
+            //}
           },
           error => {
             console.log('ERROR: ' + error);
@@ -161,6 +158,8 @@ export class AddComponent implements OnInit {
 
     prod.setQuantity(newQuantity);
     prod.setPriceTotal(newPrice);
+    prod.setPriceServiceTotal(newPrice * 10 / 100);
+
     this.totaleOrdine = Number.parseFloat(this.totaleOrdine) + Number.parseFloat(prod.price);
   }
   removeQuantity(prod: any) {
@@ -169,6 +168,7 @@ export class AddComponent implements OnInit {
     let newPrice = prod.price * newQuantity;
 
     prod.setPriceTotal(newPrice);
+    prod.setPriceServiceTotal(newPrice * 10 / 100);
 
     if (newQuantity > 0) {
       this.totaleOrdine = Number.parseFloat(this.totaleOrdine) - Number.parseFloat(prod.price);
@@ -180,7 +180,7 @@ export class AddComponent implements OnInit {
   addProducts(cat, prod) {
     console.log('cat -> ' + JSON.stringify(cat));
     console.log('prod -> ' + JSON.stringify(prod));
-
+        
     let isExtra: boolean = false;
     let hasExtra: boolean = false;
     if (cat.slug == 'extra') {
@@ -190,25 +190,30 @@ export class AddComponent implements OnInit {
       hasExtra = true;
     }
     if (prod != '') {
-      let pId = 0;
-      let pProdId = prod.id;
-      let pTitle = prod.name;
-      let pPrice = prod.price ? prod.price : 0;
+      let pId         = 0;
+      let pProdId     = prod.id;
+      let pTitle      = prod.name;
+      let pPrice      = prod.price ? prod.price : 0;
       let pExistExtra = false;
       let pPriceTotal = pPrice;
 
+      let pPriceService = Number.parseFloat(pPriceTotal) * 10 / 100;
+
       let product = new Product(
-        pProdId,
+        pId,
+        pProdId,          //menu_id
         1,
         pPriceTotal,
-        0,
+        pPriceService,
         '',
         pTitle,
         'pending',
         pPrice,
         pExistExtra,
         isExtra,
-        hasExtra
+        hasExtra,
+        0,                //order_id
+        1                 //state_id -> pending
       );
 
       this.products.push(product);
@@ -220,9 +225,9 @@ export class AddComponent implements OnInit {
   removeProduct(prod) {
     let cont: number = 0;
     for (let prodEl of this.products) {
-      console.log('Title: ' + prodEl['title'] + ' | ' + prod.title);
-      if (prodEl['title'] == prod.title && prodEl['quantity'] == prod.quantity && prodEl['meta'] == prod.meta) {
-        console.log('Elimino: ' + prod.title);
+      console.log('Title: ' + prodEl['menuname'] + ' | ' + prod.menuname);
+      if (prodEl['menuname'] == prod.menuname && prodEl['quantity'] == prod.quantity && prodEl['note'] == prod.note) {
+        console.log('Elimino: ' + prod.menuname);
         this.products.splice(cont, 1);
         break;
       }
@@ -348,7 +353,7 @@ export class AddComponent implements OnInit {
     console.log('EXTRA -> '+this.extra);
   }
   addExtra() {
-    //console.log('%ò',this.extra);
+    console.log('%ò',this.extra);
     this.prodTmp.setExistExtra(true);
 
     let splitted = this.extra.split('|');
@@ -367,6 +372,7 @@ export class AddComponent implements OnInit {
     let pDescr = '';
 
     let prodotto = new Product(
+        pId,
         pProdId,
         1,
         pPriceTotal,
@@ -377,7 +383,9 @@ export class AddComponent implements OnInit {
         pPrice,
         pExistExtra,
         pIsExtra,
-        pHasExtra
+        pHasExtra,
+        0,
+        0
       );
 
     this.products.push(prodotto);
@@ -390,10 +398,10 @@ export class AddComponent implements OnInit {
 
   //SAVE ORDER
   saveOrder() {
-    console.log('PRODUCTS: ' + JSON.stringify(this.products));
     console.log(this.numTavolo + '|' + this.totCoperti + '|' + this.numCoperti + '|' + this.totaleOrdine);
+    console.log('PRODUCTS: ' + JSON.stringify(this.products));
     console.log('SHIPS: ' + JSON.stringify(this.ships) + ' - '+this.ships.length);
-    console.log('NOTES: ' + JSON.stringify(this.notes) + ' - '+this.notes.length);
+    console.log('NOTES: ' + JSON.stringify(this.notes) + ' - '+this.notes.length); 
 
     //Controllo sui campi solo in fase di ADD
     if (!this.ordineEdit) {
@@ -410,19 +418,40 @@ export class AddComponent implements OnInit {
     }
 
     if (!this.ordineEdit) {
-      this.notaOrdine = 'Tavolo ' + this.numTavolo + ', numero di coperti ' + this.numCoperti;
+      this.clienteOrdine = 'Tavolo ' + this.numTavolo + ', numero di coperti ' + this.numCoperti;
     }
+
+    let today: string = Date.now().toLocaleString();
+
+    let reTime = /(\d+\-\d+\-\d+)\D\:(\d+\:\d+\:\d+).+/;
+    let originalTime = Date();
+    let newTime = originalTime.replace(reTime, '$1 $2');
+    console.log('newTime:', newTime);
+
+    let date            = new Date(); // had to remove the colon (:) after the T in order to make it work
+    let day             = date.getDate();
+    let monthIndex      = date.getMonth()+1;
+    let year            = date.getFullYear();
+    let minutes         = date.getMinutes();
+    let hours           = date.getHours();
+    let seconds         = date.getSeconds();
+    let todayFormatted  = year+'-'+monthIndex+'-'+day+' '+ hours+':'+minutes+':'+seconds;
+
+    console.log('todayFormatted:', todayFormatted);
+
+
+    console.log('-> '+today);
 
     let ordine = new Order(
       this.ordineId,        //id: number,
-      '',                   //date: string,
-      '',                   //client: string,
+      todayFormatted,       //date: string,
+      this.clienteOrdine,   //client: string,
       0,                    //totalorder: number,
       0,                    //totalservice: number,
-      '',                   //state: string,
+      'pending',            //state: string,
       this.products,        //items: any,
       this.ships,           //specials: any,
-      this.notaOrdine,      //notes: string
+      this.notes,           //notes: string
     );
 
     console.log('ORDINE: ' + JSON.stringify(ordine));
@@ -432,9 +461,18 @@ export class AddComponent implements OnInit {
     this.httpService
       .getCallHttp('getOrderSave', '', '', '', ordine)
       .subscribe(res => {
-        console.log('res: ' + JSON.stringify(res));
+        //console.log('res: ' + JSON.stringify(res));
+        console.log('ordineId: ' + res.results[0].message);
 
         let orderIdSave: any;
+        if (res.results[0].operation == 'success') {
+          orderIdSave = res.results[0].message;
+          this.router.navigate(['/home', { ordineId: orderIdSave }]);
+        } else {
+          this.alertService.error('Attenzione: L\'ordinazione non è stata salvata! Prova ad aggiornare i menu e rifai l\'ordinazione');
+          return false;
+        }
+        /*
         if (res[0].response[0].result == 'OK') {
           if (res[0].output[0]) {
             orderIdSave = res[0].output[0].id;
@@ -452,6 +490,7 @@ export class AddComponent implements OnInit {
         } else {
           this.alertService.error('Nessun dato! Riprovare più tardi.');
         }
+        */
         this.loadingBarService.complete();
       },
       error => {
@@ -459,7 +498,7 @@ export class AddComponent implements OnInit {
         this.loadingBarService.complete();
       });
   }
-  //SAVE NOTES
+  //SAVE NOTES: not used !
   saveNote(orderIdSave, notes) {
     this.httpService
       .getCallHttp('getOrderNoteSave', '', '', orderIdSave, notes)

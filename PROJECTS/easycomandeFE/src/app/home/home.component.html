@@ -24,7 +24,7 @@
 
 <!-- Orders list -->
 <div class="row" *ngIf="orders?.length > 0">
-  <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" *ngFor="let order of orders" (click)="orderDetail(order)" [ngClass]="{'orderEditable': orderIdSaved == order.id}">
+  <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" *ngFor="let order of orders" (click)="orderDetail(order.id)" [ngClass]="{'orderEditable': orderIdSaved == order.id}">
     <!-- card-yellow-light -->
     <div class="card card-banner card-blue-light" *ngIf="order.state == 'pending'">
       <div class="card-body">

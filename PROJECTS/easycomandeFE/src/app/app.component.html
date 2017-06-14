@@ -11,13 +11,18 @@
 
     <aside *ngIf="authenticationService.checkUserLogged()" class="app-sidebar" id="sidebar">
         <div class="sidebar-header">
-            <a class="sidebar-brand" href="#"><span class="highlight">Easy</span> Comande</a>
+            <a class="sidebar-brand" href="#">
+                <img class="img-responsive" src="./assets/img/logo-small.png" style="width: 80%;padding-top: 75px;" />
+                <!--
+                <span class="highlight">Easy</span> Comande
+                -->
+            </a>
             <button type="button" class="sidebar-toggle">
                 <i class="fa fa-times"></i>
             </button>
         </div>
         <div class="sidebar-menu">
-            <ul class="sidebar-nav">
+            <ul class="sidebar-nav" style="padding: 8rem 0 !important;">
                 <li class="active">
                     <a [routerLink]="['/home']">
                         <div class="icon">
@@ -78,7 +83,12 @@
                             </button>
                         </li>
                         <li class="logo">
-                            <a class="navbar-brand" href="#"><span class="highlight">Easy</span> Comande</a>
+                            <a class="navbar-brand" href="#">
+                                <img class="img-responsive" src="./assets/img/logo-small.png">
+                                <!--
+                                <span class="highlight">Easy</span> Comande
+                                -->
+                            </a>
                         </li>
                         <li>
                             <button type="button" class="navbar-toggle">
