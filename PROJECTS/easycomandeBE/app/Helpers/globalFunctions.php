@@ -8,6 +8,7 @@
 |
 */
 
+use App\Category;
 use App\Menu;
 use App\Order;
 use App\Item;
@@ -197,7 +198,13 @@ function manipulateJsonResponseOrder($jsonData,$items,$specials,$notes,$states) 
 
     $json .= '"items":[';
     for ($j=0; $j<count($items); $j++) {
-        $menu = json_decode(Menu::where('id',$items[$j]['menu_id'])->get(), true);
+        $menu       = json_decode(Menu::where('id',$items[$j]['menu_id'])->get(), true);
+        $category   = json_decode(Category::where('id',$menu[0]['category_id'])->get(), true);
+        $extra = false;
+
+        if($category[0]['slug'] == 'extra') {
+            $extra = true;
+        }
 
         $json .= '{';
 
@@ -210,6 +217,7 @@ function manipulateJsonResponseOrder($jsonData,$items,$specials,$notes,$states) 
         $json .= '"service": "'.$items[$j]['service'].'",';
         $json .= '"note": "'.$items[$j]['note'].'",';
         $json .= '"state": "'.$items[$j]['statename'].'",';
+        $json .= '"isExtra": "'.$extra.'",';
         $json .= '"menu_id": "'.$items[$j]['menu_id'].'",';
 
         $json = rtrim($json,',');
@@ -222,6 +230,7 @@ function manipulateJsonResponseOrder($jsonData,$items,$specials,$notes,$states) 
     for ($j=0; $j<count($specials); $j++) {
         $json .= '{';
 
+        $json .= '"id": "'.$specials[$j]['id'].'",';
         $json .= '"name": "'.$specials[$j]['special'].'",';
         $json .= '"price": "'.$specials[$j]['price'].'",';
         $json .= '"note": "'.$specials[$j]['note'].'",';
@@ -236,6 +245,7 @@ function manipulateJsonResponseOrder($jsonData,$items,$specials,$notes,$states) 
     for ($j=0; $j<count($notes); $j++) {
         $json .= '{';
 
+        $json .= '"id": "'.$notes[$j]['id'].'",';
         $json .= '"note": "'.$notes[$j]['note'].'",';
 
         $json = rtrim($json,',');
@@ -386,7 +396,7 @@ function saveState($request) {
 }
 
 /* ---------------------------------------------------------------------------
- * Save: STATE -> /jsondata/save/state/{"state":"processing"}
+ * Save: ORDER
  * --------------------------------------------------------------------------- */
 function saveOrder($request) {
     $order = json_decode($request, true);
@@ -498,7 +508,7 @@ function saveOrder($request) {
 }
 
 /* ---------------------------------------------------------------------------
- * Save: STATE -> /jsondata/save/state/{"state":"processing"}
+ * Delete: ORDER
  * --------------------------------------------------------------------------- */
 function deleteOrder($orderId) {
     $json = '{ "results" : [';
@@ -509,6 +519,93 @@ function deleteOrder($orderId) {
         $json .= '{';
             $json .= '"operation":"success",';
             $json .= '"message":"'.$orderId.'"';
+        $json .='},';
+
+    }
+    catch(Exception $e){
+        $json .= '{';
+            $json .= '"operation":"error",';
+            $json .= '"message":"'.$e->getMessage().'"';
+        $json .='},';
+    }
+
+    $json = rtrim($json,',');
+    $json .= ']}';
+
+    return $json;
+    
+}
+
+/* ---------------------------------------------------------------------------
+ * Delete: ITEM
+ * --------------------------------------------------------------------------- */
+function deleteItem($itemId) {
+    $json = '{ "results" : [';
+
+    try{
+        $itemDelete = Item::find($itemId);
+        $itemDelete->delete();
+        $json .= '{';
+            $json .= '"operation":"success",';
+            $json .= '"message":"'.$itemId.'"';
+        $json .='},';
+
+    }
+    catch(Exception $e){
+        $json .= '{';
+            $json .= '"operation":"error",';
+            $json .= '"message":"'.$e->getMessage().'"';
+        $json .='},';
+    }
+
+    $json = rtrim($json,',');
+    $json .= ']}';
+
+    return $json;
+    
+}
+
+/* ---------------------------------------------------------------------------
+ * Delete: SPECIAL
+ * --------------------------------------------------------------------------- */
+function deleteSpecial($specialId) {
+    $json = '{ "results" : [';
+
+    try{
+        $specialDelete = Special::find($specialId);
+        $specialDelete->delete();
+        $json .= '{';
+            $json .= '"operation":"success",';
+            $json .= '"message":"'.$specialId.'"';
+        $json .='},';
+
+    }
+    catch(Exception $e){
+        $json .= '{';
+            $json .= '"operation":"error",';
+            $json .= '"message":"'.$e->getMessage().'"';
+        $json .='},';
+    }
+
+    $json = rtrim($json,',');
+    $json .= ']}';
+
+    return $json;
+    
+}
+
+/* ---------------------------------------------------------------------------
+ * Delete: NOTE
+ * --------------------------------------------------------------------------- */
+function deleteNote($noteId) {
+    $json = '{ "results" : [';
+
+    try{
+        $noteDelete = Note::find($noteId);
+        $noteDelete->delete();
+        $json .= '{';
+            $json .= '"operation":"success",';
+            $json .= '"message":"'.$noteId.'"';
         $json .='},';
 
     }

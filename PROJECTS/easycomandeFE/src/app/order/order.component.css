@@ -14,6 +14,12 @@
     z-index: 998;
 }
 
+.itemIsExtra .content {
+    background-color: #defb97 !important;
+    font-style: italic;
+    font-size: 1.2rem;
+}
+
 /* NOTE */
 .quote-container {
   margin-top: 30px;
@@ -49,8 +55,25 @@
 
 /*** BUTTON FAB ***/
 .btn-floating-edit {
+    bottom: 170px;
+}
+.btn-floating-edit .btn-bg {
+    border-color: #0f5f2a;
+    border-bottom-color: #0f5f2a;
+    background-color: #298e4b;
+    box-shadow: 0 2px 3px rgba(231, 76, 60, 0.3);
+}
+
+.btn-floating-print {
     bottom: 100px;
 }
+.btn-floating-print .btn-bg {
+    border-color: #fff;
+    border-bottom-color: #fff;
+    background-color: #333;
+    box-shadow: 0 2px 3px rgba(231, 76, 60, 0.3);
+}
+
 .btn-floating-delete {
     bottom: 30px;
 }

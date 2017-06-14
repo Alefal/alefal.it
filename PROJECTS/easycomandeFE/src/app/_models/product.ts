@@ -52,7 +52,7 @@ export class Product {
   }
 
   public setMeta(note) {
-    this.note = note;
+    this.note += note;
   }
   public setExtra(extra) {
     this.note += ' - Extra: '+extra+' - ';

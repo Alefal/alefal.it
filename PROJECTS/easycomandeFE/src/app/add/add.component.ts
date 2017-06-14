@@ -369,6 +369,9 @@ export class AddComponent implements OnInit {
     let pIsExtra = true;
     let pHasExtra = false;
     let pPriceTotal = pPrice;
+
+    let pPriceService = Number.parseFloat(pPriceTotal) * 10 / 100;
+
     let pDescr = '';
 
     let prodotto = new Product(
@@ -376,7 +379,7 @@ export class AddComponent implements OnInit {
         pProdId,
         1,
         pPriceTotal,
-        0,
+        pPriceService,
         '',
         pTitle,
         'pending',
@@ -385,7 +388,7 @@ export class AddComponent implements OnInit {
         pIsExtra,
         pHasExtra,
         0,
-        0
+        1
       );
 
     this.products.push(prodotto);
@@ -498,7 +501,7 @@ export class AddComponent implements OnInit {
         this.loadingBarService.complete();
       });
   }
-  //SAVE NOTES: not used !
+  //NON USATO
   saveNote(orderIdSave, notes) {
     this.httpService
       .getCallHttp('getOrderNoteSave', '', '', orderIdSave, notes)

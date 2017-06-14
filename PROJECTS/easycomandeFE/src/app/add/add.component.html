@@ -227,9 +227,9 @@
           <h5>Aggiungi un extra all'ordine</h5>
           <hr />
           <div class="radio" *ngFor="let extra of extras; let idx = index;">
-              <input type="radio" name="optionsRadiosExtra" id="extra{{extra.id}}" value="{{extra.id}}|{{extra.title}}|{{extra.price}}" (change)="setExtra(extra.id+'|'+extra.title+'|'+extra.price)" />
+              <input type="radio" name="optionsRadiosExtra" id="extra{{extra.id}}" value="{{extra.id}}|{{extra.name}}|{{extra.price}}" (change)="setExtra(extra.id+'|'+extra.name+'|'+extra.price)" />
               <label for="extra{{extra.id}}">
-                  {{extra.title}} ({{extra.price}})
+                  {{extra.name}} ({{extra.price}})
               </label>
           </div>
       </div>

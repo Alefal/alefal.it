@@ -70,22 +70,28 @@ export class HttpService {
             //url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_delete.php?id=' + id;
         }
         else if (call == 'getOrderDeleteLineItem') {
-            //url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_delete_line_item.php?order=' + JSON.stringify(object);
+            url = '/jsondata/item/delete/'+id;
+            /*
             url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_delete_line_item.php';
             body.set('order',JSON.stringify(object));
+            */
         }
-        else if (call == 'getOrderDeleteShipping') {
+        else if (call == 'getOrderDeleteSpecial') {
+            url = '/jsondata/special/delete/'+id;
+            /*
             console.log('%o', object);
-            //url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_delete_shipping.php?order=' + JSON.stringify(object);
             url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_delete_shipping.php';
             body.set('order',JSON.stringify(object));
+            */
         }
 
         //ORDER NOTES
+        //NON USATO
         else if (call == 'getOrderNote') {
             url = '/jsondata/notesfororder/'+id;
             //url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_note.php?id=' + id;
         }
+        //NON USATO
         else if (call == 'getOrderNoteSave') {
             //url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_note_save.php?id=' + id + '&orderNotes=' + JSON.stringify(object);
             url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_note_save.php';
@@ -93,9 +99,8 @@ export class HttpService {
             body.set('orderNotes',JSON.stringify(object));
         }
         else if (call == 'getOrderNoteDelete') {
-            url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_note_delete.php?id=' + id;
-            //url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_note_delete.php';
-            //body.set('id',id);
+            url = '/jsondata/note/delete/'+id;
+            //url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_note_delete.php?id=' + id;
         }
 
         console.log('URL: ' + host + '' + url);

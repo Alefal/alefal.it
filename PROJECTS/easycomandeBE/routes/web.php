@@ -99,3 +99,15 @@ Route::get('jsondata/order/save/{request}', function($request){
 Route::get('jsondata/order/delete/{orderId}', function($orderId){
     return deleteOrder($orderId);
 });
+/*** Delete ITEM from APP / WEBAPP ***/
+Route::get('jsondata/item/delete/{itemId}', function($itemId){
+    return deleteItem($itemId);
+});
+/*** Delete SPECIAL from APP / WEBAPP ***/
+Route::get('jsondata/special/delete/{specialId}', function($specialId){
+    return deleteSpecial($specialId);
+});
+/*** Delete NOTE from APP / WEBAPP ***/
+Route::get('jsondata/note/delete/{noteId}', function($noteId){
+    return deleteNote($noteId);
+});

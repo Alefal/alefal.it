@@ -24,6 +24,7 @@ export class OrderComponent implements OnInit {
   placements: string[] = ['top']; //not work
   title: string = 'Sei sicuro?';
   message: string = 'Sei sicuro di voler eliminare il piatto selezionato ?';
+  messageOrder: string = 'Sei sicuro di voler eliminare l\'ordine selezionato ?';
   confirmText: string = 'SI <i class="glyphicon glyphicon-ok"></i>';
   cancelText: string = 'NO <i class="glyphicon glyphicon-remove"></i>';
   confirmClicked: boolean = false;
@@ -78,6 +79,7 @@ export class OrderComponent implements OnInit {
       });
   }
 
+  //NON USATO
   getNote(id) {
     this.httpService
       .getCallHttp('getOrderNote', '', '', id, '')
@@ -101,90 +103,66 @@ export class OrderComponent implements OnInit {
       });
   }
 
-  deleteProduct(ordineId, prod: Product) {
+  deleteProduct(productId,orderId) {
     this.loadingBarService.start();
 
-    console.log('deleteProduct ordine: ' + ordineId);
-    console.log('%o', prod);
-
-    let prodotto = new Product(
-      prod.id,
-      prod.menu_id,
-      0,
-      0,
-      0,
-      '',
-      '',
-      '',
-      0,
-      false,
-      false,
-      false,
-      0,
-      0
-    );
-
-    let ordine = new Order(
-      ordineId,         //id: number,
-      '',               //date: string,
-      '',               //client: string,
-      0,                //totalorder: number,
-      0,                //totalservice: number,
-      '',               //state: string,
-      prodotto,         //items: any,
-      '',               //specials: any,
-      '',               //notes: string
-    );
+    console.log('deleteProduct: ' + productId);
 
     this.httpService
-      .getCallHttp('getOrderDeleteLineItem', '', '', '', ordine)
+      .getCallHttp('getOrderDeleteLineItem', '', '', productId, '')
       .subscribe(res => {
         console.log('res: ' + JSON.stringify(res));
 
-        if (res[0].response[0].result == 'OK') {
-          this.backToOrders(ordineId);
+        if (res.results[0].operation == 'success') {
+          this.backToOrders(orderId);
         } else {
-          this.alertService.error('PIATTI: Non è stato possibile cancellare il piatto');
+          this.alertService.error('PRODUCT: Non è stato possibile cancellare il piatto');
         }
       },
       error => {
-        this.alertService.error('PIATTI: Dati non disponibili! Si è verificato un errore.');
+        this.alertService.error('PRODUCT: Dati non disponibili! Si è verificato un errore.');
       });
   }
 
-  deleteShip(ordineId, ship) {
+  deleteSpecial(specialId,orderId) {
     this.loadingBarService.start();
 
-    console.log('deleteShip ordine: ' + ordineId);
-    console.log('%o', ship);
-
-    let shipping = new Special(ship.id, '', 0, '');
-
-    let ordine = new Order(
-      ordineId,         //id: number,
-      '',               //date: string,
-      '',               //client: string,
-      0,                //totalorder: number,
-      0,                //totalservice: number,
-      '',               //state: string,
-      '',               //items: any,
-      shipping,         //specials: any,
-      '',               //notes: string
-    );
+    console.log('deleteSpecial: ' + specialId);
 
     this.httpService
-      .getCallHttp('getOrderDeleteShipping', '', '', '', ordine)
+      .getCallHttp('getOrderDeleteSpecial', '', '', specialId, '')
       .subscribe(res => {
         console.log('res: ' + JSON.stringify(res));
 
-        if (res[0].response[0].result == 'OK') {
-          this.backToOrders(ordineId);
+        if (res.results[0].operation == 'success') {
+          this.backToOrders(orderId);
         } else {
           this.alertService.error('SPECIALI: Non è stato possibile cancellare il piatto');
         }
       },
       error => {
         this.alertService.error('SPECIALI: Dati non disponibili! Si è verificato un errore.');
+      });
+  }
+
+  deleteNote(noteId,orderId) {
+    this.loadingBarService.start();
+
+    console.log('deleteNote: ' + noteId);
+
+    this.httpService
+      .getCallHttp('getOrderNoteDelete', '', '', noteId, '')
+      .subscribe(res => {
+        console.log('res: ' + JSON.stringify(res));
+
+        if (res.results[0].operation == 'success') {
+          this.backToOrders(orderId);
+        } else {
+          this.alertService.error('NOTE: Non è stato possibile cancellare il piatto');
+        }
+      },
+      error => {
+        this.alertService.error('NOTE: Dati non disponibili! Si è verificato un errore.');
       });
   }
 
@@ -199,6 +177,10 @@ export class OrderComponent implements OnInit {
     this.router.navigate(['/add', JSON.stringify(order)]);
   }
 
+  printOrder(order) {
+    console.log('printOrder',JSON.stringify(order));
+  }
+
   deleteOrder(id) {
     this.loadingBarService.start();
 
@@ -207,7 +189,7 @@ export class OrderComponent implements OnInit {
       .subscribe(res => {
         console.log('res: ' + JSON.stringify(res));
 
-        if (res[0].response[0].result == 'OK') {
+        if (res.results[0].operation == 'success') {
           this.router.navigate(['/home']);
         } else {
           this.alertService.error('Nessun dato! Riprovare più tardi.');
