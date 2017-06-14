@@ -91,7 +91,11 @@ Route::get('jsondata/users', function(){
     ]);
 });
 
-/*** SAVE from APP / WEBAPP ***/
-Route::get('jsondata/save/order/{request}', function($request){
+/*** Save/Update ORDER from APP / WEBAPP ***/
+Route::get('jsondata/order/save/{request}', function($request){
     return saveOrder($request);
+});
+/*** Delete ORDER from APP / WEBAPP ***/
+Route::get('jsondata/order/delete/{orderId}', function($orderId){
+    return deleteOrder($orderId);
 });

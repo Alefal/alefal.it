@@ -496,3 +496,32 @@ function saveOrder($request) {
     return $json;
     
 }
+
+/* ---------------------------------------------------------------------------
+ * Save: STATE -> /jsondata/save/state/{"state":"processing"}
+ * --------------------------------------------------------------------------- */
+function deleteOrder($orderId) {
+    $json = '{ "results" : [';
+
+    try{
+        $orderDelete = Order::find($orderId);
+        $orderDelete->delete();
+        $json .= '{';
+            $json .= '"operation":"success",';
+            $json .= '"message":"'.$orderId.'"';
+        $json .='},';
+
+    }
+    catch(Exception $e){
+        $json .= '{';
+            $json .= '"operation":"error",';
+            $json .= '"message":"'.$e->getMessage().'"';
+        $json .='},';
+    }
+
+    $json = rtrim($json,',');
+    $json .= ']}';
+
+    return $json;
+    
+}

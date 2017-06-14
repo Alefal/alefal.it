@@ -61,14 +61,13 @@ export class HttpService {
             url = '/jsondata/order/'+id;
         }
         else if (call == 'getOrderSave') {
-            url = '/jsondata/save/order/'+JSON.stringify(object);
+            url = '/jsondata/order/save/'+JSON.stringify(object);
             //url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_save.php';
             //body.set('order',JSON.stringify(object));
         }
         else if (call == 'getOrderDelete') {
-            url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_delete.php?id=' + id;
-            //url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_delete.php';
-            //body.set('id',id);
+            url = '/jsondata/order/delete/'+id;
+            //url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_delete.php?id=' + id;
         }
         else if (call == 'getOrderDeleteLineItem') {
             //url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_delete_line_item.php?order=' + JSON.stringify(object);
