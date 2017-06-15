@@ -14,6 +14,8 @@ class Special extends Model
         'special',
         'price',
         'note',
-        'order_id'
+        'order_id',
+        'state_id',
+        'statename'
     ];
 }

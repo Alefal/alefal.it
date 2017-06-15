@@ -1,4 +1,4 @@
 TODO:
 - authentication
 - print order
-- STATE anche per gli SPECIALI
+- change ORDER state

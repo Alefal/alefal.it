@@ -65,6 +65,9 @@ export class HttpService {
             //url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_save.php';
             //body.set('order',JSON.stringify(object));
         }
+        else if (call == 'getOrderChangeOrderState') {
+            url = '/jsondata/order/change/state/'+id;
+        }
         else if (call == 'getOrderDelete') {
             url = '/jsondata/order/delete/'+id;
             //url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_delete.php?id=' + id;
@@ -82,6 +85,10 @@ export class HttpService {
             url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_delete_line_item.php';
             body.set('order',JSON.stringify(object));
             */
+        }
+
+        else if (call == 'getOrderChangeSpecialState') {
+            url = '/jsondata/special/change/state/'+id;
         }
         else if (call == 'getOrderDeleteSpecial') {
             url = '/jsondata/special/delete/'+id;

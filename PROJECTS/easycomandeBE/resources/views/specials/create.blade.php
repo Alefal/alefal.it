@@ -56,10 +56,20 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-12 col-xs-12 center">
+                    <div class="col-md-6 col-xs-8 center">
                         <div class="form-group">
                             <label for="note">Note</label>
                             {!! Form::text('note', null, array('placeholder' => 'Note','class' => 'form-control')) !!}
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-4">
+                        <div class="form-group">
+                            <label for="state_id">State</label>
+                            <select class="form-control" name="state_id">
+                                @foreach($states as $state)
+                                    <option value="{{$state->id}}">{{$state->state}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                 </div>

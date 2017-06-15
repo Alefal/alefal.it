@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Special;
 use App\Order;
+use App\State;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -42,7 +43,8 @@ class SpecialsController extends Controller
     public function create()
     {
         $orders = Order::all();
-        return view('specials.create',compact('orders'));
+        $states = State::all();
+        return view('specials.create',compact('orders','states'));
     }
 
     /**
@@ -59,7 +61,19 @@ class SpecialsController extends Controller
             'order_id' => 'required'
         ]);
 
-        Special::create($request->all());
+        $item = new Special();
+        $item->special      = $request->special;
+        $item->price        = $request->price;
+        $item->note         = $request->note;
+        $item->order_id     = $request->order_id;
+        $item->state_id     = $request->state_id;
+
+        $stateName  = State::find($item->state_id)->state;
+        $item->statename    = $stateName;
+
+        $item->save();
+
+        //Special::create($request->all());
         return redirect()->route('specials.index')
                         ->with('success','Item created successfully');
     }
@@ -88,10 +102,12 @@ class SpecialsController extends Controller
     {
         $item       = Special::find($id);
         $orders     = Order::all();
+        $states     = State::all();
 
         $selectedOrder   = Special::find($id)->order_id;
+        $selectedState   = Special::find($id)->state_id;
         
-        return view('specials.edit',compact('item','orders','selectedOrder'));
+        return view('specials.edit',compact('item','orders','states','selectedOrder','selectedState'));
     }
 
     /**
@@ -109,7 +125,16 @@ class SpecialsController extends Controller
             'order_id' => 'required'
         ]);
 
-        Special::find($id)->update($request->all());
+        $item = Special::find($id);
+        $item->note         = $request->note;
+        $item->state_id     = $request->state_id;
+
+        $stateName  = State::find($item->state_id)->state;
+        $item->statename    = $stateName;
+
+        $item->save();
+
+        //Special::find($id)->update($request->all());
         return redirect()->route('specials.index')
                         ->with('success','Item updated successfully');
     }

@@ -95,6 +95,10 @@ Route::get('jsondata/users', function(){
 Route::get('jsondata/order/save/{request}', function($request){
     return saveOrder($request);
 });
+/*** Change state ORDER from APP / WEBAPP ***/
+Route::get('/jsondata/order/change/state/{itemId}', function($itemId){
+    return changeStateOrder($itemId);
+});
 /*** Delete ORDER from APP / WEBAPP ***/
 Route::get('jsondata/order/delete/{orderId}', function($orderId){
     return deleteOrder($orderId);
@@ -107,6 +111,11 @@ Route::get('/jsondata/item/change/state/{itemId}', function($itemId){
 /*** Delete ITEM from APP / WEBAPP ***/
 Route::get('jsondata/item/delete/{itemId}', function($itemId){
     return deleteItem($itemId);
+});
+
+/*** Change state SPECIAL from APP / WEBAPP ***/
+Route::get('/jsondata/special/change/state/{itemId}', function($itemId){
+    return changeStateSpecial($itemId);
 });
 /*** Delete SPECIAL from APP / WEBAPP ***/
 Route::get('jsondata/special/delete/{specialId}', function($specialId){

@@ -1,5 +1,12 @@
 <div class="btn-floating btn-floating-edit" id="help-actions" *ngIf="ordine?.state != 'completed'">
   <div class="btn-bg"></div>
+  <button type="button" class="btn btn-default btn-toggle" data-toggle="toggle" (click)="changeOrderState(ordine.id)">
+    <i class="icon fa fa-check-square-o"></i>
+  </button>
+</div>
+
+<div class="btn-floating btn-floating-state" id="help-actions" *ngIf="ordine?.state != 'completed'">
+  <div class="btn-bg"></div>
   <button type="button" class="btn btn-default btn-toggle" data-toggle="toggle" (click)="editOrder(ordine)">
     <i class="icon fa fa-pencil"></i>
   </button>
@@ -72,7 +79,7 @@
               class="icon fa fa-times fa-4x" 
               *ngIf="ordine.state != 'completed' && prod.state != 'completed'">
             </div>
-            <div class="icon fa fa-check-square-o fa-4x iconCheckItem" *ngIf="ordine.state != 'completed' && prod.state != 'completed'" (click)="checkItemState(prod.id,ordine.id)"></div>
+            <div class="icon fa fa-check-square-o fa-4x iconCheckItem" *ngIf="ordine.state != 'completed' && prod.state != 'completed'" (click)="changeItemState(prod.id,ordine.id)"></div>
             <!-- COMPLETED -->
             <div class="icon fa fa-check fa-4x" *ngIf="prod.state == 'completed'"></div>
 
@@ -83,7 +90,7 @@
                 <span class="badge badge-warning">{{prod.note}}</span>
               </div>
 
-              <div class="value"><span class="sign">&euro; </span>{{prod.quantity * prod.price}}</div>
+              <div class="value"><span class="sign">&euro; </span>{{prod.total}}</div>
             </div>
           </div>
         </div>
@@ -107,9 +114,11 @@
               cancelButtonType="default"
               [appendToBody]="true"
               class="icon fa fa-times fa-4x" 
-              *ngIf="ordine.state != 'completed'">
+              *ngIf="ordine.state != 'completed' && special.state != 'completed'">
             </div>
-            <div class="icon fa fa-check fa-4x" *ngIf="ordine.state == 'completed'"></div>
+            <div class="icon fa fa-check-square-o fa-4x iconCheckItem" *ngIf="ordine.state != 'completed' && special.state != 'completed'" (click)="changeSpecialState(special.id,ordine.id)"></div>
+            <!-- COMPLETED -->
+            <div class="icon fa fa-check fa-4x" *ngIf="special.state == 'completed'"></div>
             <div class="content">
               <div class="title"><em>1 x {{special.name}}</em></div>
 

@@ -259,8 +259,13 @@ export class OrderComponent implements OnInit {
       }
       template += ''+
       '      <tr class="'+classItem+'">'+
-      '        <td>'+item.quantity+'x </td>'+
-      '        <td>'+item.name+'<br /><em>('+item.note+')</em></td>'+
+      '        <td>'+item.quantity+'x </td>';
+      if(item.note != '') {
+        template += '<td>'+item.name+'<br /><em>('+item.note+')</em></td>';
+      } else {
+        template += '<td>'+item.name+'</td>';        
+      }
+      template += ''+
       '        <td>&euro; '+item.price+'</td>'+
       '        <td>&euro; '+item.total+'</td>'+
       '      </tr>';
@@ -316,8 +321,8 @@ export class OrderComponent implements OnInit {
     return template;
   }
 
-  checkItemState(prodId,orderId) {
-    console.log('checkItemState: ' + prodId);
+  changeItemState(prodId,orderId) {
+    console.log('changeItemState: ' + prodId);
     this.loadingBarService.start();
 
 
@@ -327,13 +332,54 @@ export class OrderComponent implements OnInit {
         console.log('res: ' + JSON.stringify(res));
 
         if (res.results[0].operation == 'success') {
-          this.refreshOrder(orderId);
+          this.backToOrders(orderId);
         } else {
           this.alertService.error('ITEM: Non è stato possibile modificare lo stato');
         }
       },
       error => {
         this.alertService.error('ITEM: Dati non disponibili! Si è verificato un errore.');
+      });
+  }
+
+  changeSpecialState(specialId,orderId) {
+    console.log('changeSpecialState: ' + specialId);
+    this.loadingBarService.start();
+
+
+    this.httpService
+      .getCallHttp('getOrderChangeSpecialState', '', '', specialId, '')
+      .subscribe(res => {
+        console.log('res: ' + JSON.stringify(res));
+
+        if (res.results[0].operation == 'success') {
+          this.backToOrders(orderId);
+        } else {
+          this.alertService.error('SPECIAL: Non è stato possibile modificare lo stato');
+        }
+      },
+      error => {
+        this.alertService.error('SPECIAL: Dati non disponibili! Si è verificato un errore.');
+      });
+  }
+
+  changeOrderState(orderId) {
+    console.log('changeOrderState: ' + orderId);
+    this.loadingBarService.start();
+
+    this.httpService
+      .getCallHttp('getOrderChangeOrderState', '', '', orderId, '')
+      .subscribe(res => {
+        console.log('res: ' + JSON.stringify(res));
+
+        if (res.results[0].operation == 'success') {
+          this.backToOrders(orderId);
+        } else {
+          this.alertService.error('ORDER: Non è stato possibile modificare lo stato');
+        }
+      },
+      error => {
+        this.alertService.error('ORDER: Dati non disponibili! Si è verificato un errore.');
       });
   }
 

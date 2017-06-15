@@ -56,7 +56,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-xs-6 col-md-8">
+                    <div class="col-md-6 col-xs-8 center">
                         <div class="form-group">
                             <label for="note">Note</label>
                             {!! Form::text('note', null, array('placeholder' => 'Note','class' => 'form-control')) !!}

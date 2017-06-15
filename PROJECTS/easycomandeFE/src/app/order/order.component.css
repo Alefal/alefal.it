@@ -59,9 +59,19 @@
 
 /*** BUTTON FAB ***/
 .btn-floating-edit {
-    bottom: 170px;
+    bottom: 240px;
 }
 .btn-floating-edit .btn-bg {
+    border-color: #ca940b;
+    border-bottom-color: #ca940b;
+    background-color: #FFBC11;
+    box-shadow: 0 2px 3px rgba(231, 76, 60, 0.3);
+}
+
+.btn-floating-state {
+    bottom: 170px;
+}
+.btn-floating-state .btn-bg {
     border-color: #0f5f2a;
     border-bottom-color: #0f5f2a;
     background-color: #298e4b;
