@@ -41,7 +41,7 @@
                             <div class="icon">
                                 <i class="fa fa-tasks" aria-hidden="true"></i>
                             </div>
-                            <div class="title">Dashboard</div>
+                            <div class="title">AMMINISTRAZIONE</div>
                         </a>
                     </li>
 
@@ -129,7 +129,7 @@
                             </li>
                         </ul>
                         <ul class="nav navbar-nav navbar-left">
-                            <li class="navbar-title">Dashboard</li>
+                            <li class="navbar-title">AMMINISTRAZIONE</li>
                             <!-- TODO
                             <li class="navbar-search hidden-sm">
                                 <input id="search" type="text" placeholder="Search..">

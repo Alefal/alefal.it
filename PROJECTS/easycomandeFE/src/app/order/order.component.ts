@@ -166,6 +166,12 @@ export class OrderComponent implements OnInit {
       });
   }
 
+  refreshOrder(ordineId) {
+    console.log('refreshOrder');
+    //this.location.back();
+    this.router.navigateByUrl('/ordine/'+ordineId, { skipLocationChange: false });
+  }
+
   backToOrders(ordineId) {
     console.log('backToOrders');
     //this.location.back();
@@ -179,6 +185,156 @@ export class OrderComponent implements OnInit {
 
   printOrder(order) {
     console.log('printOrder',JSON.stringify(order));
+    let printContents, popupWin;
+    printContents = this.templateOrder(order);
+    popupWin = window.open('', '_blank', 'top=0,left=0,height=auto,width=auto');
+    popupWin.document.open();
+    popupWin.document.write(`
+      <html>
+        <head>
+          <title>Ordinazione</title>
+          <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css" />
+	        <link rel="stylesheet" type="text/css" href="../assets/css/main.css" />
+          <style>
+          //........Customized style.......
+          .printOrder {
+            text-align:center;
+            margin: 0 auto;
+          }
+          .printOrder .orderInfo {
+            text-align:center;
+          }
+          .printOrder .logo {
+            text-align:center;
+          }
+          .printOrder .logo img {
+            margin: 0 auto;
+            max-width: 150px;
+          }
+          .printOrder .deleteItem {
+            /*text-decoration: line-through;*/
+            display: none;
+          }
+          .printOrder .notesList {
+            padding: 15px;
+          }
+          </style>
+        </head>
+        <body onload="window.print();window.close()">${printContents}</body>
+      </html>`
+    );
+    popupWin.document.close();
+  }
+
+  templateOrder(order) {
+    //let template = '';
+    //template += '<div align="center">'+order.id+'</div>';
+
+    let template = ''+
+    '<div class="container printOrder">'+
+    '  <div class="logo"><img src="../assets/img/logo-small-print.png" /></div>'+
+    '  <hr />'+     
+    '  <div class="orderInfo">'+     
+    '     <h2>'+order.client+'</h2>'+
+    '     <h4>Date: '+order.date+'</h4>'+
+    '  </div>'+     
+    '  <hr />'+     
+    '  <table class="table table-hover">'+
+    '    <thead>'+
+    '      <tr>'+
+    '        <th>QTY</th>'+
+    '        <th>ITEM</th>'+
+    '        <th>PRICE</th>'+
+    '        <th>TOTAL</th>'+
+    '      </tr>'+
+    '    </thead>'+
+    '    <tbody>';
+
+    for (let item of order.items) {
+      let classItem = '';
+      if(item.state == 'pending') {
+        classItem = '';
+      } else {
+        classItem = 'deleteItem';
+      }
+      template += ''+
+      '      <tr class="'+classItem+'">'+
+      '        <td>'+item.quantity+'x </td>'+
+      '        <td>'+item.name+'<br /><em>('+item.note+')</em></td>'+
+      '        <td>&euro; '+item.price+'</td>'+
+      '        <td>&euro; '+item.total+'</td>'+
+      '      </tr>';
+    }
+
+    for (let special of order.specials) {
+      template += ''+
+      '      <tr>'+
+      '        <td>1x </td>';
+      if(special.note != '') {
+        template += '<td>'+special.name+'<br /><em>('+special.note+')</em></td>';
+      } else {
+        template += '<td>'+special.name+'</td>';        
+      }
+      template += ''+
+      '        <td></td>'+
+      '        <td>&euro; '+special.price+'</td>'+
+      '      </tr>';
+    }
+
+    template += ''+
+      '      <tr>'+
+      '        <td></td>'+
+      '        <td></td>'+
+      '        <td><strong>Total</strong></td>'+
+      '        <td><strong>&euro; '+order.totalorder+'</strong></td>'+
+      '      </tr>'+
+      '      <tr>'+
+      '        <td></td>'+
+      '        <td></td>'+
+      '        <td><strong>Service (10%)</td></strong>'+
+      '        <td><strong>&euro; '+order.totalservice+'</strong></td>'+
+      '      </tr>';
+
+    template += ''+
+    '    </tbody>'+
+    '  </table>';
+
+    for (let note of order.notes) {
+      template += ''+
+      '      <div class="notesList">'+
+      '        - <em>'+note.note+'</em>'+
+      '      </div>';
+    }
+
+    template += ''+
+    '  <hr />'+     
+    '  <div class="orderInfo">'+     
+    '     <h3>Thank you</h3>'+
+    '     <h3>Please come again!</h3>'+
+    '  </div>'+ 
+    '</div>';
+    return template;
+  }
+
+  checkItemState(prodId,orderId) {
+    console.log('checkItemState: ' + prodId);
+    this.loadingBarService.start();
+
+
+    this.httpService
+      .getCallHttp('getOrderChangeLineItemState', '', '', prodId, '')
+      .subscribe(res => {
+        console.log('res: ' + JSON.stringify(res));
+
+        if (res.results[0].operation == 'success') {
+          this.refreshOrder(orderId);
+        } else {
+          this.alertService.error('ITEM: Non è stato possibile modificare lo stato');
+        }
+      },
+      error => {
+        this.alertService.error('ITEM: Dati non disponibili! Si è verificato un errore.');
+      });
   }
 
   deleteOrder(id) {

@@ -1,7 +1,4 @@
 TODO:
 - authentication
 - print order
-
-//PRODOTTI
--> res: {"results":[{"id":"2","name":"Antipasto Misto","price":"8","priceoffer":"6","category_id":"3","category":"Antipasto","category_slug":"antipasto","description":"<p>Mozzarella, Prosciutto, Pomodoro</p>"},{"id":"3","name":"Caprese","price":"5","priceoffer":"","category_id":"3","category":"Antipasto","category_slug":"antipasto","description":null}]}
--> res: {"results":[{"id":"4","name":"Gnocchi alla sorrentina","price":"6","priceoffer":"","category_id":"4","category":"Primi","category_slug":"primi","description":null}]}
+- STATE anche per gli SPECIALI

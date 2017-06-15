@@ -140,7 +140,29 @@ class ItemsController extends Controller
             'state_id' => 'required'
         ]);
 
-        Item::find($id)->update($request->all());
+        $menu       = Menu::find($request->menu_id);
+        $quantity   = $request->quantity;
+        $total      = $menu->price * $quantity;
+        $service    = ($menu->price * $quantity) * 10 / 100;
+        
+        $item = Item::find($id);
+        $item->quantity     = $quantity;
+        $item->total        = $total;
+        $item->service      = $service;
+        $item->note         = $request->note;
+        $item->menu_id      = $request->menu_id;
+        $item->order_id     = $request->order_id;
+        $item->state_id     = $request->state_id;
+
+        $menuName   = Menu::find($item->menu_id)->name;
+        $stateName  = State::find($item->state_id)->state;
+
+        $item->menuname     = $menuName;
+        $item->statename    = $stateName;
+
+        $item->save();
+
+        //Item::find($id)->update($request->all());
         return redirect()->route('items.index')
                         ->with('success','Item updated successfully');
     }

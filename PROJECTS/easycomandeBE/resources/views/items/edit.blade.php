@@ -36,7 +36,7 @@
                     <div class="col-xs-6 col-md-4">
                         <div class="form-group">
                             <label for="menu_id">Menu</label>
-                            <select class="form-control" name="menu_id">
+                            <select class="form-control disabled" name="menu_id">
                                 @foreach($menu as $piatto)
                                     <option value="{{ $piatto->id }}" {{ $selectedMenu == $piatto->id ? 'selected="selected"' : '' }}>{{ $piatto->name }}</option>
                                 @endforeach

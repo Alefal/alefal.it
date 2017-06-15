@@ -537,6 +537,36 @@ function deleteOrder($orderId) {
 }
 
 /* ---------------------------------------------------------------------------
+ * Change state: ITEM
+ * --------------------------------------------------------------------------- */
+function changeStateItem($itemId) {
+    $json = '{ "results" : [';
+
+    try{
+        $itemChange = Item::find($itemId);
+        $itemChange->state_id   = 2;
+        $itemChange->statename  = 'completed';
+        $itemChange->save();
+        $json .= '{';
+            $json .= '"operation":"success",';
+            $json .= '"message":"'.$itemId.'"';
+        $json .='},';
+
+    }
+    catch(Exception $e){
+        $json .= '{';
+            $json .= '"operation":"error",';
+            $json .= '"message":"'.$e->getMessage().'"';
+        $json .='},';
+    }
+
+    $json = rtrim($json,',');
+    $json .= ']}';
+
+    return $json;
+    
+}
+/* ---------------------------------------------------------------------------
  * Delete: ITEM
  * --------------------------------------------------------------------------- */
 function deleteItem($itemId) {

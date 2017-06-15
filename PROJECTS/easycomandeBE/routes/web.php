@@ -99,6 +99,11 @@ Route::get('jsondata/order/save/{request}', function($request){
 Route::get('jsondata/order/delete/{orderId}', function($orderId){
     return deleteOrder($orderId);
 });
+
+/*** Change state ITEM from APP / WEBAPP ***/
+Route::get('/jsondata/item/change/state/{itemId}', function($itemId){
+    return changeStateItem($itemId);
+});
 /*** Delete ITEM from APP / WEBAPP ***/
 Route::get('jsondata/item/delete/{itemId}', function($itemId){
     return deleteItem($itemId);
