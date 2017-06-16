@@ -5,7 +5,7 @@
         <div class="card card-mini">
             <div class="card-header">
                 <h4 class="card-title">
-                    {{ $item->name }}
+                    Edit: {{ $item->name }}
                 </h4>
                 <div class="card-action">
                     <a href="{{ route('categories.index') }}">

@@ -23,10 +23,14 @@
                 </div>
             </div>
             <div class="card-body no-padding">
+                <h5 style="text-align:right;padding: 25px;">
+                    Gli stati di un ORDINE / ITEM devono essere: <strong><em>1 - pending</em></strong> | <strong><em>2 - completed</em></strong>
+                </h5>
                 <div class="table-responsive">
                     <table class="table card-table table-striped">
                         <thead>
                             <tr>
+                                <th>Id</th>
                                 <th>Name</th>
                                 <th></th>
                             </tr>
@@ -34,12 +38,15 @@
                         <tbody>
                             @foreach ($items as $key => $item)
                             <tr class="@if ($key > 0 && $key % 2) odd @else even @endif">
+                                <td>{{ $item->id }}</td>
                                 <td>{{ $item->state }}</td>
                                 <td align="right">
                                     <div class="btn-group">
+                                        <!--
                                         <a class="btn btn-default btn-xs" href="{{ route('state.show',$item->id) }}">
                                             <i class="fa fa-eye fa-1x fa-lg" aria-hidden="true"></i>
                                         </a>
+                                        -->
                                         <a class="btn btn-default btn-xs" href="{{ route('state.edit',$item->id) }}">
                                             <i class="fa fa-pencil fa-1x fa-lg" aria-hidden="true"></i>
                                         </a>

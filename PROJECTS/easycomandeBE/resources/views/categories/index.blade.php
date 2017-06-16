@@ -29,6 +29,7 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Count</th>
+                                <th>Slug</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -37,6 +38,7 @@
                             <tr class="@if ($key > 0 && $key % 2) odd @else even @endif">
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->count }}</td>
+                                <td>{{ $item->slug }}</td>
                                 <td align="right">
                                     <div class="btn-group">
                                         <a class="btn btn-default btn-xs" href="{{ route('categories.show',$item->id) }}">

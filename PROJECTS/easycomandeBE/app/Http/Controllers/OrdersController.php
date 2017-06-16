@@ -69,30 +69,39 @@ class OrdersController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $orderId
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($orderId)
     {
-        $item = Order::find($id);
-        $states = State::all();
-        return view('orders.show',compact('item','states'));
+        $order      = Order::find($orderId);
+        $items      = Order::find($orderId)->items;
+        $specials   = Order::find($orderId)->specials;
+        $notes      = Order::find($orderId)->notes;
+        $states     = State::all();
+
+        $selectedState   = Order::find($orderId)->state_id;
+
+        return view('orders.show',compact('order','items','specials','notes','states'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $orderId
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($orderId)
     {
-        $item  = Order::find($id);
-        $states = State::all();
+        $order      = Order::find($orderId);
+        $items      = Order::find($orderId)->items;
+        $specials   = Order::find($orderId)->specials;
+        $notes      = Order::find($orderId)->notes;
+        $states     = State::all();
 
-        $selectedState   = Order::find($id)->state_id;
+        $selectedState   = Order::find($orderId)->state_id;
 
-        return view('orders.edit',compact('item','states','selectedState'));
+        return view('orders.edit',compact('order','items','specials','notes','states','selectedState'));
     }
 
     /**

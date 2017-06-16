@@ -45,9 +45,11 @@
                                 </td>
                                 <td align="right">
                                     <div class="btn-group">
+                                        <!--
                                         <a class="btn btn-default btn-xs" href="{{ route('notes.show',$item->id) }}">
                                             <i class="fa fa-eye fa-1x fa-lg" aria-hidden="true"></i>
                                         </a>
+                                        -->
                                         <a class="btn btn-default btn-xs" href="{{ route('notes.edit',$item->id) }}">
                                             <i class="fa fa-pencil fa-1x fa-lg" aria-hidden="true"></i>
                                         </a>

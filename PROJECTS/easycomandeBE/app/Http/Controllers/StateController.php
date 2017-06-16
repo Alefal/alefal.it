@@ -26,7 +26,7 @@ class StateController extends Controller
      */
     public function index(Request $request)
     {
-        $items = State::orderBy('state.state','ASC')->paginate(100);
+        $items = State::orderBy('state.id','ASC')->paginate(100);
         return view('state.index',compact('items'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }

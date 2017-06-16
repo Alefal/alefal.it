@@ -5,7 +5,7 @@
         <div class="card card-mini">
             <div class="card-header">
                 <h4 class="card-title">
-                    {{ $item->id }}
+                    Edit: {{ $item->name }}
                 </h4>
                 <div class="card-action">
                     <a href="{{ route('menu.index') }}">
@@ -51,7 +51,7 @@
                     <div class="col-xs-6 col-md-12">
                         <div class="form-group">
                             <label for="categories">Categories</label>
-                            <select class="form-control" name="category_id">
+                            <select class="form-control disabled" name="category_id">
                                 @foreach($categories as $cat)
                                     <option value="{{ $cat->id }}" {{ $selectedCategory == $cat->id ? 'selected="selected"' : '' }}>{{ $cat->name }}</option>
                                 @endforeach

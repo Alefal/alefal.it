@@ -49,13 +49,13 @@
                     <li class="dropdown">
                         <a href="javascripot:void(0);">
                             <div class="icon">
-                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                <i class="fa fa-cogs" aria-hidden="true"></i>
                             </div>
-                            <div class="title">Add</div>
+                            <div class="title">Manage</div>
                         </a>
                         <div class="dropdown-menu">
                             <ul>
-                                <li class="section"><i class="fa fa-map-marker" aria-hidden="true"></i> POI</li>
+                                <li class="section"><i class="fa fa-cogs" aria-hidden="true"></i> Manage</li>
                                 <li class="line"></li>
                                 <li><a href="{{ url('/categories') }}">Categories</a></li>
                                 <li><a href="{{ url('/menu') }}">Menu</a></li>
@@ -119,7 +119,7 @@
                             </li>
                             <li class="logo">
                                 <a class="navbar-brand" href="{{ url('/') }}">
-                                    {{ config('app.name', 'Costa Eventi') }}
+                                    {{ config('app.name', 'EasyComande') }}
                                 </a>
                             </li>
                             <li>
@@ -228,10 +228,10 @@
         </script>
 
         <!-- Da eliminare e includere in webpack
-    <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
-    <script src="{{ asset('js/sweetalert-dev.js') }}"></script>
-    <script src="{{ asset('js/custom.js') }}"></script>
-    -->
+        <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+        <script src="{{ asset('js/sweetalert-dev.js') }}"></script>
+        -->
+        <script src="{{ asset('js/custom.js') }}"></script>
 
         <!-- Tutte le librerie JS sono incluse nel file app.js -->
 

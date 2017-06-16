@@ -5063,8 +5063,8 @@ div.section {
     font-size: 1.2em;
     font-weight: 200;
     padding-top: 15px;
-    padding-bottom: 15px;
-    margin-bottom: 30px;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
     color: #8d9293;
     border-bottom: 1px solid #dfe6e8; }
     div.section .section-title .icon {

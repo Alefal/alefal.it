@@ -4,9 +4,7 @@
     <div class="col-lg-12 margin-tb">
         <div class="card card-mini">
             <div class="card-header">
-                <h4 class="card-title">
-                    {{ $item->total }}
-                </h4>
+                <h4 class="card-title"></h4>
                 <div class="card-action">
                     <a href="{{ route('items.edit',$item->id) }}">
                         <i class="fa fa-pencil fa-3x fa-fw" aria-hidden="true"></i>
