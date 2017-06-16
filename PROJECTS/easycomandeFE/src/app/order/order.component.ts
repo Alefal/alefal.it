@@ -12,6 +12,7 @@ import { Product } from '../_models/product';
 import { Special } from '../_models/special';
 import { Note } from '../_models/note';
 
+import * as moment from 'moment';
 declare var jQuery: any;
 
 @Component({
@@ -47,7 +48,10 @@ export class OrderComponent implements OnInit {
     private httpService: HttpService,
     private alertService: AlertService,
     private loadingBarService: LoadingBarService
-  ) { }
+  ) { 
+    let now = moment().format('LLLL');
+    console.log('now: ' + now);
+  }
 
   ngOnInit(): void {
     this.route.params
@@ -183,144 +187,6 @@ export class OrderComponent implements OnInit {
     this.router.navigate(['/add', JSON.stringify(order)]);
   }
 
-  printOrder(order) {
-    console.log('printOrder',JSON.stringify(order));
-    let printContents, popupWin;
-    printContents = this.templateOrder(order);
-    popupWin = window.open('', '_blank', 'top=0,left=0,height=auto,width=auto');
-    popupWin.document.open();
-    popupWin.document.write(`
-      <html>
-        <head>
-          <title>Ordinazione</title>
-          <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css" />
-	        <link rel="stylesheet" type="text/css" href="../assets/css/main.css" />
-          <style>
-          //........Customized style.......
-          .printOrder {
-            text-align:center;
-            margin: 0 auto;
-          }
-          .printOrder .orderInfo {
-            text-align:center;
-          }
-          .printOrder .logo {
-            text-align:center;
-          }
-          .printOrder .logo img {
-            margin: 0 auto;
-            max-width: 150px;
-          }
-          .printOrder .deleteItem {
-            /*text-decoration: line-through;*/
-            display: none;
-          }
-          .printOrder .notesList {
-            padding: 15px;
-          }
-          </style>
-        </head>
-        <body onload="window.print();window.close()">${printContents}</body>
-      </html>`
-    );
-    popupWin.document.close();
-  }
-
-  templateOrder(order) {
-    //let template = '';
-    //template += '<div align="center">'+order.id+'</div>';
-
-    let template = ''+
-    '<div class="container printOrder">'+
-    '  <div class="logo"><img src="../assets/img/logo-small-print.png" /></div>'+
-    '  <hr />'+     
-    '  <div class="orderInfo">'+     
-    '     <h2>'+order.client+'</h2>'+
-    '     <h4>Date: '+order.date+'</h4>'+
-    '  </div>'+     
-    '  <hr />'+     
-    '  <table class="table table-hover">'+
-    '    <thead>'+
-    '      <tr>'+
-    '        <th>QTY</th>'+
-    '        <th>ITEM</th>'+
-    '        <th>PRICE</th>'+
-    '        <th>TOTAL</th>'+
-    '      </tr>'+
-    '    </thead>'+
-    '    <tbody>';
-
-    for (let item of order.items) {
-      let classItem = '';
-      if(item.state == 'pending') {
-        classItem = '';
-      } else {
-        classItem = 'deleteItem';
-      }
-      template += ''+
-      '      <tr class="'+classItem+'">'+
-      '        <td>'+item.quantity+'x </td>';
-      if(item.note != '') {
-        template += '<td>'+item.name+'<br /><em>('+item.note+')</em></td>';
-      } else {
-        template += '<td>'+item.name+'</td>';        
-      }
-      template += ''+
-      '        <td>&euro; '+item.price+'</td>'+
-      '        <td>&euro; '+item.total+'</td>'+
-      '      </tr>';
-    }
-
-    for (let special of order.specials) {
-      template += ''+
-      '      <tr>'+
-      '        <td>1x </td>';
-      if(special.note != '') {
-        template += '<td>'+special.name+'<br /><em>('+special.note+')</em></td>';
-      } else {
-        template += '<td>'+special.name+'</td>';        
-      }
-      template += ''+
-      '        <td></td>'+
-      '        <td>&euro; '+special.price+'</td>'+
-      '      </tr>';
-    }
-
-    template += ''+
-      '      <tr>'+
-      '        <td></td>'+
-      '        <td></td>'+
-      '        <td><strong>Total</strong></td>'+
-      '        <td><strong>&euro; '+order.totalorder+'</strong></td>'+
-      '      </tr>'+
-      '      <tr>'+
-      '        <td></td>'+
-      '        <td></td>'+
-      '        <td><strong>Service (10%)</td></strong>'+
-      '        <td><strong>&euro; '+order.totalservice+'</strong></td>'+
-      '      </tr>';
-
-    template += ''+
-    '    </tbody>'+
-    '  </table>';
-
-    for (let note of order.notes) {
-      template += ''+
-      '      <div class="notesList">'+
-      '        - <em>'+note.note+'</em>'+
-      '      </div>';
-    }
-
-    template += ''+
-    '  <hr />'+     
-    '  <div class="orderInfo">'+     
-    '     <h3>Thank you</h3>'+
-    '     <h3>Please come again!</h3>'+
-    '  </div>'+ 
-    '</div>';
-    return template;
-  }
-
   changeItemState(prodId,orderId) {
     console.log('changeItemState: ' + prodId);
     this.loadingBarService.start();
@@ -403,6 +269,197 @@ export class OrderComponent implements OnInit {
         this.loadingBarService.complete();
       });
 
+  }
+
+  printOrder(order,what) {
+    console.log('printOrder',JSON.stringify(order));
+    let printContents, popupWin;
+    if(what == 'ricevuta') {
+      printContents = this.templateOrderCompleted(order);
+    } else {
+      printContents = this.templateOrder(order);
+    }
+    popupWin = window.open('', '_blank', 'top=0,left=0,height=auto,width=auto');
+    popupWin.document.open();
+    popupWin.document.write(`
+      <html>
+        <head>
+          <title>Ordinazione</title>
+          <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css" />
+	        <link rel="stylesheet" type="text/css" href="../assets/css/main.css" />
+          <style>
+          //........Customized style.......
+          .printOrder {
+            text-align:center;
+            margin: 0 auto;
+          }
+          .printOrder .orderInfo {
+            text-align:center;
+          }
+          .printOrder .logo {
+            text-align:center;
+          }
+          .printOrder .logo img {
+            margin: 0 auto;
+            max-width: 150px;
+          }
+          .printOrder .deleteItem {
+            /*text-decoration: line-through;*/
+            display: none;
+          }
+          .printOrder .notesList {
+            padding: 15px;
+          }
+          </style>
+        </head>
+        <body onload="window.print();window.close()">${printContents}</body>
+      </html>`
+    );
+    popupWin.document.close();
+  }
+
+  templateOrder(order) {
+    //let template = '';
+    //template += '<div align="center">'+order.id+'</div>';
+
+    let template = ''+
+    '<div class="container printOrder">'+
+    '  <div class="orderInfo">'+     
+    '     <h2>'+order.client+'</h2>'+
+    '     <h4>Date: '+moment(order.date).format('MM DD, YYYY HH:mm A')+'</h4>'+
+    '  </div>'+     
+    '  <hr />'+     
+    '  <table class="table table-hover">'+
+    '    <thead>'+
+    '      <tr>'+
+    '        <th>QTY</th>'+
+    '        <th>ITEM</th>'+
+    '      </tr>'+
+    '    </thead>'+
+    '    <tbody>';
+
+    for (let item of order.items) {
+      let classItem = '';
+      if(item.state == 'pending') {
+        classItem = '';
+      } else {
+        classItem = 'deleteItem';
+      }
+      template += ''+
+      '      <tr class="'+classItem+'">'+
+      '        <td>'+item.quantity+'x </td>';
+      if(item.note != '') {
+        template += '<td>'+item.name+'<br /><em>('+item.note+')</em></td>';
+      } else {
+        template += '<td>'+item.name+'</td>';        
+      }
+      template += ''+
+      '      </tr>';
+    }
+
+    for (let special of order.specials) {
+      let classItem = '';
+      if(special.state == 'pending') {
+        classItem = '';
+      } else {
+        classItem = 'deleteItem';
+      }
+      template += ''+
+      '      <tr class="'+classItem+'">'+
+      '        <td>1x </td>';
+      if(special.note != '') {
+        template += '<td>'+special.name+'<br /><em>('+special.note+')</em></td>';
+      } else {
+        template += '<td>'+special.name+'</td>';        
+      }
+      template += ''+
+      '      </tr>';
+    }
+
+    template += ''+
+    '    </tbody>'+
+    '  </table>';
+
+    for (let note of order.notes) {
+      template += ''+
+      '      <div class="notesList">'+
+      '        - <em>'+note.note+'</em>'+
+      '      </div>';
+    }
+
+    return template;
+  }
+
+  templateOrderCompleted(order) {
+    //let template = '';
+    //template += '<div align="center">'+order.id+'</div>';
+
+    let template = ''+
+    '<div class="container printOrder">'+
+    '  <div class="logo"><img src="../assets/img/logo-small-print.png" /></div>'+
+    '  <hr />'+     
+    '  <div class="orderInfo">'+     
+    '     <h2>'+order.client+'</h2>'+
+    '     <h4>Date: '+moment(order.date).format('MM DD, YYYY HH:mm A')+'</h4>'+
+    '  </div>'+     
+    '  <hr />'+     
+    '  <table class="table table-hover">'+
+    '    <thead>'+
+    '      <tr>'+
+    '        <th>QTY</th>'+
+    '        <th>ITEM</th>'+
+    '        <th>PRICE</th>'+
+    '        <th>TOTAL</th>'+
+    '      </tr>'+
+    '    </thead>'+
+    '    <tbody>';
+
+    for (let item of order.items) {
+      template += ''+
+      '      <tr>'+
+      '        <td>'+item.quantity+'x </td>'+
+      '        <td>'+item.name+'</td>'+
+      '        <td>&euro; '+item.price+'</td>'+
+      '        <td>&euro; '+item.total+'</td>'+
+      '      </tr>';
+    }
+
+    for (let special of order.specials) {
+      template += ''+
+      '      <tr>'+
+      '        <td>1x </td>'+
+     '         <td>'+special.name+'</td>'+  
+      '        <td></td>'+
+      '        <td>&euro; '+special.price+'</td>'+
+      '      </tr>';
+    }
+
+    template += ''+
+      '      <tr>'+
+      '        <td></td>'+
+      '        <td></td>'+
+      '        <td><strong>Total</strong></td>'+
+      '        <td><strong>&euro; '+order.totalorder+'</strong></td>'+
+      '      </tr>'+
+      '      <tr>'+
+      '        <td></td>'+
+      '        <td></td>'+
+      '        <td><strong>Service (10%)</td></strong>'+
+      '        <td><strong>&euro; '+order.totalservice+'</strong></td>'+
+      '      </tr>';
+
+    template += ''+
+    '    </tbody>'+
+    '  </table>';
+
+    template += ''+
+    '  <hr />'+     
+    '  <div class="orderInfo">'+     
+    '     <h3>Thank you</h3>'+
+    '     <h3>Please come again!</h3>'+
+    '  </div>'+ 
+    '</div>';
+    return template;
   }
 
 }

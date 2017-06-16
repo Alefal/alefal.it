@@ -11,6 +11,7 @@ import { Product } from '../_models/product';
 import { Special } from '../_models/special';
 import { Note } from '../_models/note';
 
+import * as moment from 'moment';
 declare var jQuery: any;
 
 @Component({
@@ -442,12 +443,15 @@ export class AddComponent implements OnInit {
 
     console.log('todayFormatted:', todayFormatted);
 
+    let now = moment().format('YYYY-MM-DD HH:MM');
+    console.log('now: ' + now);
+
 
     console.log('-> '+today);
 
     let ordine = new Order(
       this.ordineId,        //id: number,
-      todayFormatted,       //date: string,
+      now,       //date: string,
       this.clienteOrdine,   //client: string,
       0,                    //totalorder: number,
       0,                    //totalservice: number,

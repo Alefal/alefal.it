@@ -14,8 +14,11 @@
 
 <div class="btn-floating btn-floating-print" id="help-actions">
   <div class="btn-bg"></div>
-  <button type="button" class="btn btn-default btn-toggle" data-toggle="toggle" (click)="printOrder(ordine)">
+  <button type="button" class="btn btn-default btn-toggle" data-toggle="toggle" (click)="printOrder(ordine,'comande')" *ngIf="ordine?.state != 'completed'">
     <i class="icon fa fa-print"></i>
+  </button>
+  <button type="button" class="btn btn-default btn-toggle" data-toggle="toggle" (click)="printOrder(ordine,'ricevuta')" *ngIf="ordine?.state == 'completed'">
+    <i class="icon fa fa-credit-card"></i>
   </button>
 </div>
 
@@ -81,7 +84,7 @@
             </div>
             <div class="icon fa fa-check-square-o fa-4x iconCheckItem" *ngIf="ordine.state != 'completed' && prod.state != 'completed'" (click)="changeItemState(prod.id,ordine.id)"></div>
             <!-- COMPLETED -->
-            <div class="icon fa fa-check fa-4x" *ngIf="prod.state == 'completed'"></div>
+            <div class="icon fa fa-check fa-4x" *ngIf="prod.state == 'completed' || ordine.state == 'completed'"></div>
 
             <div class="content">
               <div class="title"><em>{{prod.quantity}} x {{prod.name}}</em></div>

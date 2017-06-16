@@ -30,7 +30,7 @@ export class AppComponent {
     private router: Router,
     private route: ActivatedRoute,
   ) {
-    this.loadData('');
+    //this.loadData('');
   }
 
   loadData(orderIdSave) {
