@@ -69,14 +69,14 @@ export class MenuPage {
       .subscribe(res => {
         this.loading.dismiss();
         
-        if (res[0].response[0].result == 'OK') {
-          this.categories = res[0].output;
+       // if (res[0].response[0].result == 'OK') {
+          this.categories = res.results;
           localStorage.setItem('categories', JSON.stringify(this.categories));
 
           this.loadData(res[0].output[0].name);
-        } else {
-          this.nothing = 'Nessun dato! Riprovare più tardi.';
-        }
+        //} else {
+        //  this.nothing = 'Nessun dato! Riprovare più tardi.';
+        //}
       },
       error => {
         console.log('ERROR: ' + error);
@@ -101,12 +101,12 @@ export class MenuPage {
           .subscribe(res => {
             //console.log('res: '+JSON.stringify(res));
 
-            if (res[0].response[0].result == 'OK') {
-              this.products = res[0].output;
+            //if (res[0].response[0].result == 'OK') {
+              this.products = res.results;
               localStorage.setItem(categoriaNome, JSON.stringify(this.products));
-            } else {
-              this.nothing = 'Nessun dato! Riprovare più tardi.';
-            }
+            //} else {
+            //  this.nothing = 'Nessun dato! Riprovare più tardi.';
+            //}
             this.loading.dismiss();
           },
           error => {
@@ -140,7 +140,7 @@ export class MenuPage {
       .subscribe(
         res => {
           console.log('res: ' + JSON.stringify(res));
-          this.categories = res[0].output;
+          this.categories = res.results;
           console.log('this.categories: ' + this.categories);
           localStorage.setItem('categories', JSON.stringify(this.categories));
 
@@ -151,10 +151,10 @@ export class MenuPage {
               nameFirstCat = cat.name;
             }
             this.httpService
-              .getCallHttp('getProductsByCategory', '', '', '', cat.name)
+              .getCallHttp('getProductsByCategory', '', '', '', cat.id)
               .subscribe(res => {
                 console.log(' -> res: ' + JSON.stringify(res));
-                this.products = res[0].output;
+                this.products = res.results;
                 localStorage.setItem(cat.name, JSON.stringify(this.products));
 
                 if(index == this.categories.length - 1) {
@@ -166,24 +166,6 @@ export class MenuPage {
                 console.log('ERROR: ' + error);
               });
           });
-
-          /*
-          for (let cat of this.categories) {
-            this.httpService
-              .getCallHttp('getProductsByCategory', '', '', '', cat.name)
-              .subscribe(res => {
-                console.log(' -> res: ' + JSON.stringify(res));
-                this.products = res[0].output;
-                localStorage.setItem(cat.name, JSON.stringify(this.products));
-
-                //this.loadData(res[0].output[0].name);
-              },
-              error => {
-                console.log('ERROR: ' + error);
-              });
-          }
-          this.loading.dismiss();
-          */
         },
         error => {
           console.log('res: ' + JSON.stringify(<any>error));

@@ -13,11 +13,11 @@
 <ion-content>
 
   <ion-list inset *ngIf="products?.length > 0">
-    <ion-item *ngFor="let prod of products | orderBy:'title'">
+    <ion-item *ngFor="let prod of products | orderBy:'name'">
       <ion-icon name="information-circle" item-left (click)="infoProduct(prod)"></ion-icon>
 
       <h2 (click)="addProduct(prod)">
-        {{prod.title}}
+        {{prod.name}}
       </h2>
       <ion-note item-right *ngIf="prod.price != ''" (click)="addProduct(prod)">
         <em>&euro; {{prod.price}}</em>

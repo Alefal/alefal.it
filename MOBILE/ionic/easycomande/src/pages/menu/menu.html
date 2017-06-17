@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar color="dark">
-    <ion-title>Easy Comande (v.1.0.8)</ion-title>
+    <ion-title>Easy Comande (v.2.0.0)</ion-title>
 
     <ion-buttons end>
       <button ion-button icon-only *ngIf="connectivityService.connectivityFound" (click)="connectivityService.showConnectionInfo('Connessione ok')">
@@ -24,13 +24,14 @@
 
   <div *ngIf="products?.length > 0">
     <ion-list>
-      <ion-item><h3>{{categoryName}}</h3></ion-item>
+      <ion-item><h3 item-right>{{categoryName}}</h3></ion-item>
       <ion-item *ngFor="let prod of products | orderBy:'title'">
+        <!--
         <ion-thumbnail item-left>
           <img src="{{prod.images[0].src}}" />
         </ion-thumbnail>
-        <h2>{{prod.title}}
-          <ion-badge color="secondary">{{prod.category}}</ion-badge>
+        -->
+        <h2>{{prod.name}}
         </h2>
         <h3><i [innerHTML]="prod.description"></i></h3>
         <!--

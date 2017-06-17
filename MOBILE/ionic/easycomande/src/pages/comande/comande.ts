@@ -5,8 +5,9 @@ import { HttpService }          from '../../providers/http-service';
 import { ConnectivityService }  from '../../providers/connectivity-service';
 
 import { AddPage }          from '../add/add';
-import { Ordine }           from '../../models/ordine';
 import { OrdinePage }       from './ordini/ordine';
+
+import { Order }           from '../../models/order';
 
 //import { LoginPage }        from '../login/login';
 //import { AddPage }          from '../add/add'
@@ -22,7 +23,7 @@ export class ComandePage {
 
   orderIdSaved: any;
 
-  ordine: Ordine;
+  ordine: Order;
 
   nothing: string;
   loading: any;
@@ -101,12 +102,12 @@ export class ComandePage {
       .subscribe(res => {
         //console.log('res: '+JSON.stringify(res));
 
-        if(res[0].response[0].result == 'OK') {
-          this.orders = res[0].output;
-          this.ordersAll = res[0].output;
-        } else {
-          this.nothing = 'Nessun dato! Riprovare più tardi.';
-        }
+        //if(res[0].response[0].result == 'OK') {
+          this.orders = res.results;
+          this.ordersAll = res.results;
+        //} else {
+        //  this.nothing = 'Nessun dato! Riprovare più tardi.';
+        //}
         this.loading.dismiss();
       },
       error => {
@@ -142,9 +143,9 @@ export class ComandePage {
     this.orders = this.ordersAll;
   }
 
-  orderDetail(ordine) {
-    console.log(ordine);
-    let modal = this.modalCtrl.create(OrdinePage, { ordine: ordine });
+  orderDetail(ordineId) {
+    console.log(ordineId);
+    let modal = this.modalCtrl.create(OrdinePage, { ordineId: ordineId });
     modal.present();
     modal.onDidDismiss(data => {
       console.log('data.action -> '+JSON.stringify(data.action));

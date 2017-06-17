@@ -51,11 +51,11 @@ export class ProdottiModal {
           .subscribe(res => {
             //console.log('res: '+JSON.stringify(res));
 
-            if (res[0].response[0].result == 'OK') {
-              this.products = res[0].output;
-            } else {
-              this.nothing = 'Nessun dato! Riprovare più tardi.';
-            }
+            //if (res[0].response[0].result == 'OK') {
+              this.products = res.results;
+            //} else {
+            //  this.nothing = 'Nessun dato! Riprovare più tardi.';
+            //}
             this.loading.dismiss();
           },
           error => {
@@ -108,7 +108,7 @@ export class ProdottiModal {
   template: `
     <ion-card>
       <ion-card-header>
-        <h2>{{prod.title}}</h2>
+        <h2>{{prod.name}}</h2>
       </ion-card-header>
       <ion-card-content>
         <h3><i [innerHTML]="prod.description"></i></h3>

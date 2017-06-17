@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { Platform, NavParams, LoadingController, AlertController, NavController, ModalController, ViewController } from 'ionic-angular';
 
-import { Ordine }   from '../../../models/ordine';
-import { Prodotto } from '../../../models/prodotto';
-import { Ship }     from '../../../models/ship';
-import { Nota }     from '../../../models/nota';
+import { Order }    from '../../../models/order';
+import { Product }  from '../../../models/product';
+import { Special }  from '../../../models/special';
+import { Note }     from '../../../models/note';
 
 //import { ComandePage }    from '../comande';
 import { AddPage }    from '../../add/add';
@@ -17,7 +17,8 @@ import { HttpService } from '../../../providers/http-service';
 })
 export class OrdinePage {
 
-  ordine: Ordine;
+  ordine: Order;
+  ordineId: number;
 
   nothing: string;
   loading: any;
@@ -38,12 +39,35 @@ export class OrdinePage {
       console.log("Back button action called");
     }, 1);
 
-    this.ordine = params.get('ordine');
-    console.log('%o', this.ordine);
+    this.ordineId = params.get('ordineId');
+    console.log('%o', this.ordineId);
+    this.loadOrder(this.ordineId);
   }
 
   ionViewDidLoad() {
     console.log("ionViewDidLoad");
+  }
+
+  loadOrder(orderId) {
+    this.loading = this.loadingCtrl.create({
+      spinner: 'crescent',
+    });
+    this.loading.present();
+
+    this.httpService
+      .getCallHttp('getOrder','','',orderId,'')
+      .subscribe(res => {
+        //console.log('res: '+JSON.stringify(res));
+
+        this.ordine = res.results[0];
+        this.loading.dismiss();
+      },
+      error => {
+        console.log('ERROR: ' + error);
+        this.errorMessage = 'Error!';
+        this.errorMessageView = true;
+        this.loading.dismiss();
+      });
   }
 
   editOrder(ordine) {
@@ -57,7 +81,7 @@ export class OrdinePage {
       }
       */
       //Ricaricare ordine
-      this.showOrder(this.ordine.id,data.orderIdSave);
+      this.showOrder(this.ordineId,data.orderIdSave);
     });
     /*
     this.navCtrl.push(AddPage, {
@@ -120,7 +144,7 @@ export class OrdinePage {
               .subscribe(res => {
                 console.log('res: ' + JSON.stringify(res));
 
-                if (res[0].response[0].result == 'OK') {
+                if (res.results[0].operation == 'success') {
                   this.viewCtrl.dismiss({
                     action: 'reload'
                   });
@@ -144,53 +168,27 @@ export class OrdinePage {
 
   }
 
-  showNote(id) {
-    console.log(id);
-    this.loading = this.loadingCtrl.create({
-      spinner: 'crescent'
-    });
-    this.loading.present();
+  showNote(notes) {
+    let noteComplete: string = '';
 
-    this.httpService
-      .getCallHttp('getOrderNote', '', '', id, '')
-      .subscribe(res => {
-        console.log('res: ' + JSON.stringify(res));
+    if(notes.length == 0) {
+      noteComplete = 'Nessuna nota per l\'ordine'; 
+    } else {
+      for (let note of notes) {
+        let nMessage: string = note.note;
+        noteComplete += nMessage + '<br /><hr /><br />';
+      }
+    }
 
-        if (res[0].response[0].result == 'OK') {
-          let noteComplete: string = '';
-
-          if(res[0].output == '') {
-            noteComplete = 'Nessuna nota per l\'ordine'; 
-          } else {
-            for (let prod of res[0].output) {
-              //var d = new Date(prod['created_at']);
-              //var datestring = d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear() + " ore " + d.getHours() + ":" + d.getMinutes();
-              //let nData: string = datestring;
-              let nMessage: string = prod['note'];
-
-              //noteComplete += nData + '<br />' + nMessage + '<br /><hr /><br />';
-              noteComplete += nMessage + '<br /><hr /><br />';
-            }
-          }
-          
-          let alert = this.alertCtrl.create();
-          alert.setTitle('Note');
-          alert.setMessage(noteComplete);
-          alert.addButton('Chiudi');
-          alert.present();
-        } else {
-          this.nothing = 'Nessun dato! Riprovare più tardi.';
-        }
-        this.loading.dismiss();
-      },
-      error => {
-        console.log('ERROR: ' + error);
-        this.errorMessage = 'Error!';
-        this.errorMessageView = true;
-        this.loading.dismiss();
-      });
+    let alert = this.alertCtrl.create();
+    alert.setTitle('Note');
+    alert.setMessage(noteComplete);
+    alert.addButton('Chiudi');
+    alert.present();
   }
-
+  
+  //NON USATO
+  /*
   addNote(id) {
     let prompt = this.alertCtrl.create({
       title: 'Nota',
@@ -243,32 +241,10 @@ export class OrdinePage {
     });
     prompt.present();
   }
+  */
 
-  deleteProduct(ordineId,prod:Prodotto) {
-    console.log('deleteProduct ordine: '+ordineId);
-    console.log('%o',prod);
-
-    let prodotto = new Prodotto(prod.id,prod.product_id,prod.title,prod.price,false,false,false,prod.price,prod.description,prod.quantity,'');
-
-    let ordine = new Ordine(
-      ordineId,         //this.id
-      ordineId,         //this.order_number
-      '',               //this.created_at
-      '',               //this.updated_at
-      '',               //this.completed_at
-      '',               //this.status
-      0,                //this.total
-      0,                //this.subtotal
-      0,                //this.total_line_items_quantity
-      0,                //this.total_tax
-      0,                //this.total_shipping
-      0,                //this.cart_tax
-      0,                //this.shipping_tax
-      '',               //this.note
-      prodotto,         //this.line_items
-      0,                //this.shipping_lines
-      0                 //this.tax_lines
-    );
+  deleteProduct(productId,orderId) {
+    console.log('deleteProduct ordine: '+productId+' | '+orderId);
 
     let confirm = this.alertCtrl.create({
       title: 'Cancellazione!',
@@ -291,12 +267,12 @@ export class OrdinePage {
             this.loading.present();
 
             this.httpService
-              .getCallHttp('getOrderDeleteLineItem', '', '', '', ordine)
+              .getCallHttp('getOrderDeleteLineItem', '', '', productId, '')
               .subscribe(res => {
                 console.log('res: ' + JSON.stringify(res));
 
-                if (res[0].response[0].result == 'OK') {
-                  this.showOrder(ordineId,ordineId);
+                if (res.results[0].operation == 'success') {
+                  this.showOrder(orderId,orderId);
                 } else {
                   this.nothing = 'Nessun dato! Riprovare più tardi.';
                 }
@@ -316,31 +292,8 @@ export class OrdinePage {
     confirm.present();
   }
 
-  deleteShip(ordineId,ship) {
-    console.log('deleteShip ordine: '+ordineId);
-    console.log('%o',ship);
-
-    let shipping = new Ship(ship.id,null,'',0);
-
-    let ordine = new Ordine(
-      ordineId,         //this.id
-      ordineId,         //this.order_number
-      '',               //this.created_at
-      '',               //this.updated_at
-      '',               //this.completed_at
-      '',               //this.status
-      0,                //this.total
-      0,                //this.subtotal
-      0,                //this.total_line_items_quantity
-      0,                //this.total_tax
-      0,                //this.total_shipping
-      0,                //this.cart_tax
-      0,                //this.shipping_tax
-      '',               //this.note
-      '',               //this.line_items
-      shipping,         //this.shipping_lines
-      0                 //this.tax_lines
-    );
+  deleteSpecial(specialId,orderId) {
+    console.log('deleteSpecial ordine: '+specialId+' | '+orderId);
 
     let confirm = this.alertCtrl.create({
       title: 'Cancellazione!',
@@ -363,12 +316,12 @@ export class OrdinePage {
             this.loading.present();
 
             this.httpService
-              .getCallHttp('getOrderDeleteShipping', '', '', '', ordine)
+              .getCallHttp('getOrderDeleteSpecial', '', '', specialId, '')
               .subscribe(res => {
                 console.log('res: ' + JSON.stringify(res));
 
-                if (res[0].response[0].result == 'OK') {
-                  this.showOrder(ordineId,0);
+                if (res.results[0].operation == 'success') {
+                  this.showOrder(orderId,0);
                 } else {
                   this.nothing = 'Nessun dato! Riprovare più tardi.';
                 }
@@ -386,6 +339,56 @@ export class OrdinePage {
       ]
     });
     confirm.present();
+  }
+
+  deleteNote(noteId,orderId) {
+    console.log('deleteNote ordine: '+noteId+' | '+orderId);
+
+    let confirm = this.alertCtrl.create({
+      title: 'Cancellazione!',
+      message: 'Sei sicuro di voler cancellare la nota ?',
+      buttons: [
+        {
+          text: 'Annulla',
+          handler: () => {
+            console.log('Annulla');
+          }
+        },
+        {
+          text: 'Cancella',
+          handler: () => {
+            console.log('Conferma');
+            this.loading = this.loadingCtrl.create({
+              spinner: 'crescent',
+              //content: 'Please wait...'
+            });
+            this.loading.present();
+
+            this.httpService
+              .getCallHttp('getOrderNoteDelete', '', '', noteId, '')
+              .subscribe(res => {
+                console.log('res: ' + JSON.stringify(res));
+
+                if (res.results[0].operation == 'success') {
+                  this.showOrder(orderId,0);
+                } else {
+                  this.nothing = 'Nessun dato! Riprovare più tardi.';
+                }
+                this.loading.dismiss();
+              },
+              error => {
+                console.log('ERROR: ' + error);
+                this.errorMessage = 'Error!';
+                this.errorMessageView = true;
+                this.loading.dismiss();
+              });
+
+          }
+        }
+      ]
+    });
+    confirm.present();
+
   }
 
   dismiss() {

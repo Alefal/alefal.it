@@ -64,8 +64,8 @@
               <div class="row" *ngIf="ordineEdit">
                 <div class="col-md-12">
                   <h3>Ordine per <strong>{{ordine.client}}</strong></h3>
-                  <h4 *ngIf="ordine.total != 0">Totale <i>{{ordine.totalorder}} &euro;</i> di cui <i>{{ordine.totalservice}} &euro;</i> per servizio</h4>
-                  <h4 *ngIf="ordine.total == 0">Totale <i>{{ordine.totalorder}} &euro;</i></h4>
+                  <h4 *ngIf="ordine.totalorder != 0">Totale <i>{{ordine.totalorder}} &euro;</i> di cui <i>{{ordine.totalservice}} &euro;</i> per servizio</h4>
+                  <h4 *ngIf="ordine.totalorder == 0">Totale <i>{{ordine.totalorder}} &euro;</i></h4>
                 </div>
               </div>
 

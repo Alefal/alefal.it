@@ -6,7 +6,7 @@
       </button>
     </ion-buttons>
 
-    <ion-title>{{ordine.note}}</ion-title>
+    <ion-title>{{ordine?.client}}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -15,9 +15,11 @@
   <ion-fab top right edge>
     <button ion-fab mini color="dark"><ion-icon name="ios-arrow-down"></ion-icon></button>
     <ion-fab-list>
-      <button *ngIf="ordine.status != 'completed'" ion-fab (click)="editOrder(ordine)"><ion-icon name="create"></ion-icon></button>
-      <button *ngIf="ordine.status != 'completed'" ion-fab (click)="addNote(ordine.id)"><ion-icon name="list"></ion-icon></button>
-      <button ion-fab (click)="showNote(ordine.id)"><ion-icon name="eye"></ion-icon></button>
+      <button *ngIf="ordine?.state != 'completed'" ion-fab (click)="editOrder(ordine)"><ion-icon name="create"></ion-icon></button>
+      <!--
+      <button *ngIf="ordine?.state != 'completed'" ion-fab (click)="addNote(ordine.id)"><ion-icon name="list"></ion-icon></button>
+      -->
+      <button ion-fab (click)="showNote(ordine.notes)"><ion-icon name="eye"></ion-icon></button>
       <button ion-fab (click)="deleteOrder(ordine.id)"><ion-icon name="trash"></ion-icon></button>
     </ion-fab-list>
   </ion-fab>
@@ -25,48 +27,43 @@
   <ion-list>
 
     <ion-item>
-      <h3>Ordine per <strong>{{ordine.note}}</strong></h3>
+      <h3>Ordine per <strong>{{ ordine?.client }}</strong></h3>
     </ion-item>
 
     <ion-item>
       <p>Eseguito il</p>
-      <h2>{{ordine.created_at | date : 'dd/MM, HH:mm'}}</h2>
+      <h2>{{ ordine?.date | date : 'dd/MM, HH:mm' }}</h2>
     </ion-item>
 
     <ion-item>
-      <p>Totale (Servizio incluso)</p>
-      <h2>{{ordine.total}}</h2>
+      <p>Totale</p>
+      <h2>{{ ordine?.totalorder }}</h2>
     </ion-item>
 
-    <ion-item *ngIf="ordine.tax_lines[0]">
+    <ion-item *ngIf="ordine?.totalservice">
       <p>Servizio</p>
-      <h2>{{ordine.tax_lines[0].total}}</h2>
+      <h2>{{ ordine?.totalservice }}</h2>
     </ion-item>
 
-    <ion-item *ngIf="ordine.line_items[0]">
+    <ion-item *ngIf="ordine?.items.length > 0">
       <!--
       <p>Prodotti</p>
       <h3><strong>{{ordine.total_line_items_quantity}}</strong> prodotto/i acquistato/i</h3>
       -->
-      <p>Piatti da menu ({{ordine.total_line_items_quantity}})</p>
+      <p>Piatti da menu</p>
       <ion-icon name="menu" item-right></ion-icon>
     </ion-item>
 
-    <ion-item *ngFor="let prod of ordine.line_items">
-      <ion-icon *ngIf="ordine.status != 'completed'" name="remove-circle" color="danger" item-left (click)="deleteProduct(ordine.id,prod)"></ion-icon>
-      <ion-icon *ngIf="ordine.status == 'completed'" name="checkmark" color="secondary" item-left></ion-icon>
+    <ion-item *ngFor="let prod of ordine?.items">
+      <ion-icon *ngIf="ordine?.state != 'completed'" name="remove-circle" color="danger" item-left (click)="deleteProduct(prod.id,ordine.id)"></ion-icon>
+      <ion-icon *ngIf="ordine?.state == 'completed'" name="checkmark" color="secondary" item-left></ion-icon>
       <h2>{{prod.quantity}} x {{prod.name}}</h2>
 
-      <ion-card class="prodMetaCard" *ngFor="let meta of prod.meta">
-        <ion-card-content *ngIf="meta.value != ''">
+      <ion-card class="prodMetaCard" >
+        <ion-card-content *ngIf="prod.note != ''">
           <ion-row>
-            <ion-col col-11 class="prodMeta">
-              {{meta.value}}
-            </ion-col>
-            <ion-col col-1>
-              <!--
-              <ion-icon name="close" color="danger" item-left (click)="removeMetaProduct(prod)"></ion-icon>
-              -->
+            <ion-col class="prodMeta">
+              {{prod.note}}
             </ion-col>
           </ion-row>
         </ion-card-content>
@@ -77,17 +74,28 @@
       </ion-note>
     </ion-item>
 
-    <ion-item *ngIf="ordine.shipping_lines[0]">
+    <ion-item *ngIf="ordine?.specials.length > 0">
       <p>Piatti speciali</p>
       <ion-icon name="restaurant" item-right></ion-icon>
     </ion-item>
 
-    <ion-item *ngFor="let ship of ordine.shipping_lines">
-      <ion-icon *ngIf="ordine.status != 'completed'" name="remove-circle" color="danger" item-left (click)="deleteShip(ordine.id,ship)"></ion-icon>
-      <ion-icon *ngIf="ordine.status == 'completed'" name="checkmark" color="secondary" item-left></ion-icon>
-      <h2>{{ship.method_title}}</h2>
+    <ion-item *ngFor="let special of ordine?.specials">
+      <ion-icon *ngIf="ordine?.state != 'completed'" name="remove-circle" color="danger" item-left (click)="deleteSpecial(special.id,ordine.id)"></ion-icon>
+      <ion-icon *ngIf="ordine?.state == 'completed'" name="checkmark" color="secondary" item-left></ion-icon>
+      <h2>{{special.name}}</h2>
+
+      <ion-card class="prodMetaCard" >
+        <ion-card-content *ngIf="special.note != ''">
+          <ion-row>
+            <ion-col class="prodMeta">
+              {{special.note}}
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+
       <ion-note item-right>
-        <em>&euro; {{ship.total}}</em>
+        <em>&euro; {{special.price}}</em>
       </ion-note>
     </ion-item>
 

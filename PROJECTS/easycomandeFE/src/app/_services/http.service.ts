@@ -74,10 +74,6 @@ export class HttpService {
         }
         else if (call == 'getOrderChangeLineItemState') {
             url = '/jsondata/item/change/state/'+id;
-            /*
-            url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_delete_line_item.php';
-            body.set('order',JSON.stringify(object));
-            */
         }
         else if (call == 'getOrderDeleteLineItem') {
             url = '/jsondata/item/delete/'+id;

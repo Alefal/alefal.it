@@ -7,12 +7,14 @@ import { TabsPage }             from '../tabs/tabs';
 //import { HomePage }             from '../home/home';
 //import { ComandePage }          from '../comande/comande';
 
-import { ProdottiModal }        from './prodotti/prodotti-modal';
+import { ProdottiModal }      from './prodotti/prodotti-modal';
 
-import { Ordine }               from '../../models/ordine';
-import { Prodotto }             from '../../models/prodotto';
-import { Nota }                 from '../../models/nota';
-import { Ship }                 from '../../models/ship';
+import { Order }              from '../../models/order';
+import { Product }            from '../../models/product';
+import { Note }               from '../../models/note';
+import { Special }            from '../../models/special';
+
+import * as moment from 'moment';
 
 @Component({
   selector: 'page-add',
@@ -20,18 +22,18 @@ import { Ship }                 from '../../models/ship';
 })
 export class AddPage {
 
-  ordine: Ordine;
+  ordine: Order;
   ordineId: number = 0;
   ordineEdit: boolean = false;
 
-  products: Prodotto[] = new Array<Prodotto>();
-  notes: Nota[] = new Array<Nota>();
-  ships: Ship[] = new Array<Ship>();
+  products: Product[] = new Array<Product>();
+  notes: Note[] = new Array<Note>();
+  ships: Special[] = new Array<Special>();
 
   notaId: number = 1;
   shipId: number = 1;
   
-  notaOrdine: string = '';
+  clienteOrdine: string = '';
 
   numTavolo: string = '';
   numCoperti: number = 0;
@@ -46,6 +48,19 @@ export class AddPage {
   errorMessageView: any;
 
   categoryName: string = '';
+
+  //Nota al piatto
+  notaAlPiatto: string = '';
+  nomeSpeciale: string = '';
+  prodTmp: Product;
+  //Speciale
+  prezzoSpeciale: string = '';
+  notaSpeciale: string = '';
+  //Nota generica
+  notaGenerica: string = '';
+  //Extra
+  extra: any;
+  extras: any;
 
   constructor(
     public navCtrl: NavController,
@@ -66,23 +81,8 @@ export class AddPage {
 
       this.ordineEdit = true;
       this.ordineId = this.ordine.id;
-      this.notaOrdine = this.ordine.note;
+      //this.notaOrdine = this.ordine.note;
 
-      /***
-      this.totaleOrdine = this.ordine.subtotal;
-
-      for (let prod of this.ordine.line_items) {
-        let priceTotal = prod.price * prod.quantity;
-        let meta = '';
-        if(prod.meta.length > 0) {
-          meta = prod.meta[0].value;
-        }
-        //let meta = prod.meta[0].value ? prod.meta[0].value : '';
-        let prodotto = new Prodotto(prod.id,prod.product_id,prod.name,prod.price,priceTotal,'',prod.quantity,meta);
-        this.products.push(prodotto);
-
-      }
-      ***/
       console.log('%o',this.products);
     }
 
@@ -109,11 +109,11 @@ export class AddPage {
     this.httpService
       .getCallHttp('getProductsCategory', '', '', '', '')
       .subscribe(res => {
-        if (res[0].response[0].result == 'OK') {
-          this.categories = res[0].output;
-        } else {
-          this.nothing = 'Nessun dato! Riprovare più tardi.';
-        }
+        //if (res[0].response[0].result == 'OK') {
+          this.categories = res.results;
+        //} else {
+        //  this.nothing = 'Nessun dato! Riprovare più tardi.';
+        //}
         this.loading.dismiss();
       },
       error => {
@@ -124,6 +124,16 @@ export class AddPage {
       });
   }
 
+  /**
+   * Non usato per il calcolo in quanto viene calcolato il 10% di servizio sul TOTALE;
+   * utilizzato per aggiornare il numero di coperti
+   */
+  updateTotal(coperti:number) {
+    console.log('coperti -> '+coperti);
+    this.numCoperti = coperti;
+  }
+
+  //PRODUCT
   modalProducts(cat) {
     console.log(cat);
     let modal = this.modalCtrl.create(ProdottiModal, { categoryName: cat.name });
@@ -142,13 +152,29 @@ export class AddPage {
       if(data.action != '') {
         let pId             = 0;
         let pProdId         = data.action.id;
-        let pTitle          = data.action.title;
+        let pTitle          = data.action.name;
         let pPrice          = data.action.price ? data.action.price : 0;
         let pExistExtra     = false;        
         let pPriceTotal     = pPrice;
-        let pDescr          = data.action.description;
+        
+        let pPriceService = Number.parseFloat(pPriceTotal) * 10 / 100;
 
-        let prodotto = new Prodotto(pId,pProdId,pTitle,pPrice,pExistExtra,isExtra,hasExtra,pPriceTotal,pDescr,1,'');
+        let prodotto = new Product(
+          pId,
+          pProdId,          //menu_id
+          1,
+          pPriceTotal,
+          pPriceService,
+          '',
+          pTitle,
+          'pending',
+          pPrice,
+          pExistExtra,
+          isExtra,
+          hasExtra,
+          0,                //order_id
+          1                 //state_id -> pending
+        );
 
         this.products.push(prodotto);
         this.totaleOrdine = Number.parseFloat(this.totaleOrdine) + Number.parseFloat(pPrice);
@@ -157,30 +183,75 @@ export class AddPage {
       }
     });
   }
+  addQuantity(prod:any) {
+    console.log('%ò',prod);
+    let newQuantity = prod.quantity + 1;
+    let newPrice:number = prod.price * newQuantity;
+    console.log('newPrice -> ',newPrice);
 
-  /**
-   * Non usato per il calcolo in quanto viene calcolato il 10% di servizio sul TOTALE;
-   * utilizzato per aggiornare il numero di coperti
-   */
-  updateTotal(coperti:number) {
-    console.log('coperti -> '+coperti);
-    this.numCoperti = coperti;
-    /*
-    this.totCoperti = coperti * 1.5;
-    let totOrdine: any = 0;
+    prod.setQuantity(newQuantity);
+    prod.setPriceTotal(newPrice);
+    prod.setPriceServiceTotal(newPrice * 10 / 100);
 
-    for (let prod of this.products) {
-      let pPrice: any    = prod['price'];
-      console.log('pPrice -> '+pPrice);
-      totOrdine = parseFloat(pPrice) + parseFloat(totOrdine);
-      console.log('totOrdine -> '+totOrdine);
+    this.totaleOrdine = Number.parseFloat(this.totaleOrdine) + Number.parseFloat(prod.price);
+  }
+  removeQuantity(prod:any) {
+    console.log('%ò',prod);
+    let newQuantity = prod.quantity - 1;
+    let newPrice = prod.price * newQuantity;
+
+    prod.setPriceTotal(newPrice);
+    prod.setPriceServiceTotal(newPrice * 10 / 100);
+
+    if(newQuantity > 0) {
+      this.totaleOrdine = Number.parseFloat(this.totaleOrdine) - Number.parseFloat(prod.price);
+      prod.setQuantity(newQuantity);
+    } else {
+      this.removeProduct(prod);
     }
-    console.log('totCoperti -> '+this.totCoperti);
-    this.totaleOrdine = totOrdine + this.totCoperti;
-    */
+  }
+  removeProduct(prod) {
+    console.log('%ò',prod);
+
+    let confirm = this.alertCtrl.create({
+      title: 'Cancellazione!',
+      message: 'Sei sicuro di voler cancellare il prodotto ?',
+      buttons: [
+        {
+          text: 'Annulla',
+          handler: () => {
+            console.log('Annulla');
+          }
+        },
+        {
+          text: 'Conferma',
+          handler: () => {
+            console.log('Conferma');
+            console.log('%o',this.products);
+
+            let cont: number = 0;
+            for (let prodEl of this.products) {
+              console.log('Title: '+prodEl['menuname']+' | '+prod.menuname);
+              if(prodEl['menuname'] == prod.menuname && prodEl['quantity'] == prod.quantity && prodEl['note'] == prod.note) {
+                console.log('Elimino: '+prod.menuname);
+                this.products.splice(cont,1);
+                break;
+              }
+              cont++;
+            }
+
+            //Ricalcolo totale
+            console.log('Ricalcolo: '+this.totaleOrdine+' - '+prod.price);
+            this.totaleOrdine = Number.parseFloat(this.totaleOrdine) - Number.parseFloat(prod.price);
+          }
+        }
+      ]
+    });
+    confirm.present();
   }
 
-  addMetaProduct(prod:Prodotto) {
+  //META PRODUCT
+  addMetaProduct(prod:Product) {
     console.log('%ò',prod);
 
     let prompt = this.alertCtrl.create({
@@ -214,95 +285,65 @@ export class AddPage {
     prompt.present();
     
   }
-
-  addExtra(prod:Prodotto) {
-    let alert = this.alertCtrl.create();
-    alert.setTitle('Extra');
-    alert.setMessage('Aggiungi una extra al piatto');
-
-    let extras: any = JSON.parse(localStorage.getItem('Extra'));
-    console.log('%ò',extras);
-
-    for (let extra of extras) {
-      alert.addInput({
-          type: 'radio',
-          label: extra.title+' ('+extra.price+')',
-          value: extra.id+'|'+extra.title+'|'+extra.price
-        });
-    }
-
-    alert.addButton('Annulla');
-    alert.addButton({
-      text: 'Aggiungi',
-      handler: data => {
-        console.log(data);
-        prod.setExistExtra(true);
-
-        let splitted = data.split('|'); 
-        let eId     = splitted[0];
-        let eTitle  = splitted[1];
-        let ePrice  = splitted[2];
-
-        let pId             = 0;
-        let pProdId         = eId;
-        let pTitle          = eTitle;
-        let pPrice          = ePrice ? ePrice : 0;
-        let pExistExtra     = false;        
-        let pIsExtra        = true;
-        let pHasExtra       = false;
-        let pPriceTotal     = pPrice;
-        let pDescr          = '';
-
-        let prodotto = new Prodotto(pId,pProdId,pTitle,pPrice,pExistExtra,pIsExtra,pHasExtra,pPriceTotal,pDescr,1,'');
-
-        this.products.push(prodotto);
-        this.totaleOrdine = Number.parseFloat(this.totaleOrdine) + Number.parseFloat(pPrice);
-
-        prod.setExtra(eTitle);
-      }
-    });
-
-    alert.present();
-    
-  }
-
   removeMetaProduct(prod:any) {
     console.log('%ò',prod);
     prod.removeMeta('');
     prod.setExistExtra(false);
   }
 
-  addQuantity(prod:any) {
-    console.log('%ò',prod);
-    let newQuantity = prod.quantity + 1;
-    let newPrice:number = prod.price * newQuantity;
-    console.log('newPrice -> ',newPrice);
+  //SPECIAL
+  addSpecial() {
+    let prompt = this.alertCtrl.create({
+      title: 'Speciale',
+      message: 'Aggiungi un piatto fuori menu',
+      inputs: [
+        {
+          name: 'nomeSpeciale',
+          placeholder: 'Piatto',
+          type: 'text'
+        },
+        {
+          name: 'prezzoSpeciale',
+          placeholder: 'Prezzo',
+          type: 'number'
+        },
+        {
+          name: 'notaSpeciale',
+          placeholder: 'Nota',
+          type: 'text'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancella',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Salva',
+          handler: data => {
+            console.log('Piatto speciale: '+JSON.stringify(data));
+            let prezzoSpeciale: any = data.prezzoSpeciale ? data.prezzoSpeciale : 0;
+            let ship = new Special(this.shipId, data.nomeSpeciale, prezzoSpeciale,data.notaSpeciale,1,'pending');
+            this.ships.push(ship);
 
-    prod.setQuantity(newQuantity);
-    prod.setPriceTotal(newPrice);
-    this.totaleOrdine = Number.parseFloat(this.totaleOrdine) + Number.parseFloat(prod.price);
+            this.totaleOrdine = Number.parseFloat(this.totaleOrdine) + parseFloat(prezzoSpeciale);
+
+            this.shipId = this.shipId + 1;
+            console.log('this.shipId: '+this.shipId);
+          }
+        }
+      ]
+    });
+    prompt.present();
   }
-  removeQuantity(prod:any) {
-    console.log('%ò',prod);
-    let newQuantity = prod.quantity - 1;
-    let newPrice = prod.price * newQuantity;
-
-    prod.setPriceTotal(newPrice);
-
-    if(newQuantity > 0) {
-      this.totaleOrdine = Number.parseFloat(this.totaleOrdine) - Number.parseFloat(prod.price);
-      prod.setQuantity(newQuantity);
-    } else {
-      this.removeProduct(prod);
-    }
-  }
-
-  removeProduct(prod) {
-    console.log('%ò',prod);
+  removeSpecial(shipId,shipTotal) {
+    console.log(shipId);
 
     let confirm = this.alertCtrl.create({
       title: 'Cancellazione!',
-      message: 'Sei sicuro di voler cancellare il prodotto ?',
+      message: 'Sei sicuro di voler cancellare il piatto ?',
       buttons: [
         {
           text: 'Annulla',
@@ -311,25 +352,25 @@ export class AddPage {
           }
         },
         {
-          text: 'Conferma',
+          text: 'Cancella',
           handler: () => {
             console.log('Conferma');
-            console.log('%o',this.products);
-
+            
             let cont: number = 0;
-            for (let prodEl of this.products) {
-              console.log('Title: '+prodEl['title']+' | '+prod.title);
-              if(prodEl['title'] == prod.title && prodEl['quantity'] == prod.quantity && prodEl['meta'] == prod.meta) {
-                console.log('Elimino: '+prod.title);
-                this.products.splice(cont,1);
+            for (let ship of this.ships) {
+              console.log('Title: '+ship['id']+' | '+shipId);
+              if(ship['id'] == shipId) {
+                console.log('Elimino: '+cont);
+                this.ships.splice(cont,1);
                 break;
               }
               cont++;
             }
+            
+            this.totaleOrdine -= parseFloat(shipTotal);
 
-            //Ricalcolo totale
-            console.log('Ricalcolo: '+this.totaleOrdine+' - '+prod.price);
-            this.totaleOrdine = Number.parseFloat(this.totaleOrdine) - Number.parseFloat(prod.price);
+            this.shipId = this.shipId - 1;
+            console.log('this.shipId: '+this.shipId);
           }
         }
       ]
@@ -337,13 +378,14 @@ export class AddPage {
     confirm.present();
   }
 
+  //NOTE
   addNote() {
     let prompt = this.alertCtrl.create({
       title: 'Nota',
       message: 'Aggiungi una nota all\'ordine',
       inputs: [
         {
-          name: 'nota',
+          name: 'note',
           placeholder: 'Nota'
         },
       ],
@@ -357,8 +399,8 @@ export class AddPage {
         {
           text: 'Salva',
           handler: data => {
-            console.log('Saved clicked: '+data.nota);
-            let nota = new Nota(this.notaId,data.nota,true);
+            console.log('Saved clicked: '+data.note);
+            let nota = new Note(this.notaId,data.note);
             this.notes.push(nota);
 
             this.notaId = this.notaId + 1;
@@ -368,6 +410,26 @@ export class AddPage {
       ]
     });
     prompt.present();
+  }
+  //NON USATO
+  saveNote(orderIdSave,notes) {
+
+    this.httpService
+      .getCallHttp('getOrderNoteSave', '', '', orderIdSave, notes)
+      .subscribe(res => {
+        //console.log('res: ' + JSON.stringify(res));
+
+        if (res[0].response[0].result == 'OK') {
+          console.log('Nota creata');
+        } else {
+          this.nothing = 'Nessun dato! Riprovare più tardi.';
+        }
+      },
+      error => {
+        console.log('ERROR: ' + error);
+        this.errorMessage = 'Error!';
+        this.errorMessageView = true;
+      });
   }
   removeNote(notaId) {
     console.log(notaId);
@@ -409,90 +471,82 @@ export class AddPage {
     confirm.present();
   }
 
-  addShip() {
-    let prompt = this.alertCtrl.create({
-      title: 'Speciale',
-      message: 'Aggiungi un piatto fuori menu',
-      inputs: [
-        {
-          name: 'nomePiatto',
-          placeholder: 'Piatto',
-          type: 'text'
-        },
-        {
-          name: 'prezzoPiatto',
-          placeholder: 'Prezzo',
-          type: 'number'
-        },
-      ],
-      buttons: [
-        {
-          text: 'Cancella',
-          handler: data => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: 'Salva',
-          handler: data => {
-            console.log('Piatto speciale: '+JSON.stringify(data));
-            let prezzoPiatto: any = data.prezzoPiatto ? data.prezzoPiatto : 0;
-            let ship = new Ship(this.shipId,'flat_rate',data.nomePiatto,prezzoPiatto);
-            this.ships.push(ship);
+  //ADD EXTRA
+  addExtra(prod:Product) {
+    let alert = this.alertCtrl.create();
+    alert.setTitle('Extra');
+    alert.setMessage('Aggiungi una extra al piatto');
 
-            this.totaleOrdine = Number.parseFloat(this.totaleOrdine) + parseFloat(prezzoPiatto);
+    let extras: any = JSON.parse(localStorage.getItem('Extra'));
+    console.log('%ò',extras);
 
-            this.shipId = this.shipId + 1;
-            console.log('this.shipId: '+this.shipId);
-          }
-        }
-      ]
+    for (let extra of extras) {
+      alert.addInput({
+          type: 'radio',
+          label: extra.name,
+          value: extra.id+'|'+extra.name+'|'+extra.price
+        });
+    }
+
+    alert.addButton('Annulla');
+    alert.addButton({
+      text: 'Aggiungi',
+      handler: data => {
+        console.log(data);
+        prod.setExistExtra(true);
+
+        let splitted = data.split('|'); 
+        let eId     = splitted[0];
+        let eTitle  = splitted[1];
+        let ePrice  = splitted[2];
+
+        let pId             = 0;
+        let pProdId         = eId;
+        let pTitle          = eTitle;
+        let pPrice          = ePrice ? ePrice : 0;
+        let pExistExtra     = false;        
+        let pIsExtra        = true;
+        let pHasExtra       = false;
+        let pPriceTotal     = pPrice;
+
+        let pPriceService = Number.parseFloat(pPriceTotal) * 10 / 100;
+
+        let pDescr          = '';
+
+        //let prodotto = new Prodotto(pId,pProdId,pTitle,pPrice,pExistExtra,pIsExtra,pHasExtra,pPriceTotal,pDescr,1,'');
+
+        let prodotto = new Product(
+          pId,
+          pProdId,
+          1,
+          pPriceTotal,
+          pPriceService,
+          '',
+          pTitle,
+          'pending',
+          pPrice,
+          pExistExtra,
+          pIsExtra,
+          pHasExtra,
+          0,
+          1
+        );
+
+        this.products.push(prodotto);
+        this.totaleOrdine = Number.parseFloat(this.totaleOrdine) + Number.parseFloat(pPrice);
+
+        prod.setExtra(eTitle);
+      }
     });
-    prompt.present();
-  }
-  removeShip(shipId,shipTotal) {
-    console.log(shipId);
 
-    let confirm = this.alertCtrl.create({
-      title: 'Cancellazione!',
-      message: 'Sei sicuro di voler cancellare il piatto ?',
-      buttons: [
-        {
-          text: 'Annulla',
-          handler: () => {
-            console.log('Annulla');
-          }
-        },
-        {
-          text: 'Cancella',
-          handler: () => {
-            console.log('Conferma');
-            
-            let cont: number = 0;
-            for (let ship of this.ships) {
-              console.log('Title: '+ship['id']+' | '+shipId);
-              if(ship['id'] == shipId) {
-                console.log('Elimino: '+cont);
-                this.ships.splice(cont,1);
-                break;
-              }
-              cont++;
-            }
-            
-            this.totaleOrdine -= parseFloat(shipTotal);
-
-            this.shipId = this.shipId - 1;
-            console.log('this.shipId: '+this.shipId);
-          }
-        }
-      ]
-    });
-    confirm.present();
+    alert.present();
+    
   }
 
+  //SAVE ORDER
   saveOrder() {
-    console.log('PRODUCTS: '+JSON.stringify(this.products));
     console.log(this.numTavolo +'|'+ this.totCoperti +'|'+ this.numCoperti +'|'+ this.totaleOrdine);
+    console.log('PRODUCTS: '+JSON.stringify(this.products));
     console.log('SHIPS: '+JSON.stringify(this.ships));
     console.log('NOTES: '+JSON.stringify(this.notes));
 
@@ -521,27 +575,22 @@ export class AddPage {
     }
 
     if(!this.ordineEdit) {
-      this.notaOrdine = 'Tavolo '+this.numTavolo+', numero di coperti '+this.numCoperti;
+      this.clienteOrdine = 'Tavolo '+this.numTavolo+', numero di coperti '+this.numCoperti;
     }
 
-    let ordine = new Ordine(
-      this.ordineId,          //this.id
-      this.ordineId,          //this.order_number
-      '',                     //this.created_at
-      '',                     //this.updated_at
-      '',                     //this.completed_at
-      'pending',              //this.status -> deve essere 'pending' altrimenti non viene calcolato il totale,
-      this.totaleOrdine,      //this.total
-      0,                      //this.subtotal
-      this.products.length,   //this.total_line_items_quantity
-      0,                      //this.total_tax
-      0,                      //this.total_shipping
-      0,                      //this.cart_tax
-      0,                      //this.shipping_tax
-      this.notaOrdine,        //this.note
-      this.products,          //this.line_items
-      this.ships,             //this.shipping_lines
-      0                       //this.tax_lines
+    let now = moment().format('YYYY-MM-DD HH:MM');
+    console.log('now: ' + now);
+
+    let ordine = new Order(
+      this.ordineId,        //id: number,
+      now,                  //date: string,
+      this.clienteOrdine,   //client: string,
+      0,                    //totalorder: number,
+      0,                    //totalservice: number,
+      'pending',            //state: string,
+      this.products,        //items: any,
+      this.ships,           //specials: any,
+      this.notes,           //notes: string
     );
 
     console.log('ORDINE: '+JSON.stringify(ordine));
@@ -557,14 +606,9 @@ export class AddPage {
         console.log('res: ' + JSON.stringify(res));
 
         let orderIdSave: any;
-        if (res[0].response[0].result == 'OK') {
-          if(res[0].output[0]) {
-            orderIdSave = res[0].output[0].id;
-            //this.saveNote(orderIdSave,JSON.stringify(this.notes));
-
-            for (let note of this.notes) {
-              this.saveNote(orderIdSave,note);
-            }
+        //if (res[0].response[0].result == 'OK') {
+          if (res.results[0].operation == 'success') {
+            orderIdSave = res.results[0].message;
           } else {
             let alert = this.alertCtrl.create({
               title: 'Attenzione',
@@ -581,9 +625,9 @@ export class AddPage {
           } else {
             this.dismiss(orderIdSave);
           }
-        } else {
-          this.nothing = 'Nessun dato! Riprovare più tardi.';
-        }
+        //} else {
+        //  this.nothing = 'Nessun dato! Riprovare più tardi.';
+        //}
         this.loading.dismiss();
       },
       error => {
@@ -594,26 +638,6 @@ export class AddPage {
       });
   }
   
-  saveNote(orderIdSave,notes) {
-
-    this.httpService
-      .getCallHttp('getOrderNoteSave', '', '', orderIdSave, notes)
-      .subscribe(res => {
-        //console.log('res: ' + JSON.stringify(res));
-
-        if (res[0].response[0].result == 'OK') {
-          console.log('Nota creata');
-        } else {
-          this.nothing = 'Nessun dato! Riprovare più tardi.';
-        }
-      },
-      error => {
-        console.log('ERROR: ' + error);
-        this.errorMessage = 'Error!';
-        this.errorMessageView = true;
-      });
-  }
-
   dismiss(orderIdSave) {
     this.viewCtrl.dismiss({
       action: '', //closeAdd: per chiudere una sola modal ma non viene fatto il refresh degli ordini

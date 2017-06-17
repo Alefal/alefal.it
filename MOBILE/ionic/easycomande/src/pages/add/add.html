@@ -15,7 +15,7 @@
   <ion-fab top right edge>
     <button ion-fab mini color="dark"><ion-icon name="ios-arrow-down"></ion-icon></button>
     <ion-fab-list>
-      <button ion-fab (click)="addShip()"><ion-icon name="restaurant"></ion-icon></button>
+      <button ion-fab (click)="addSpecial()"><ion-icon name="restaurant"></ion-icon></button>
       <button ion-fab (click)="addNote()"><ion-icon name="list"></ion-icon></button>
     </ion-fab-list>
   </ion-fab>
@@ -23,9 +23,9 @@
   <ion-list padding>
 
     <ion-item *ngIf="ordineEdit" style="text-align:center" padding>
-      <h3>Ordine per <strong>{{ordine.note}}</strong></h3>
-      <h3 *ngIf="ordine.total != 0">Totale <i>{{ordine.total}} &euro;</i> di cui <i>{{ordine.tax_lines[0].total}} &euro;</i> per servizio</h3>
-      <h3 *ngIf="ordine.total == 0">Totale <i>{{ordine.total}} &euro;</i></h3>
+      <h3>Ordine per <strong>{{ordine.client}}</strong></h3>
+      <h3 *ngIf="ordine.totalorder != 0">Totale <i>{{ordine.totalorder}} &euro;</i> di cui <i>{{ordine.totalorder}} &euro;</i> per servizio</h3>
+      <h3 *ngIf="ordine.totalorder == 0">Totale <i>{{ordine.totalorder}} &euro;</i></h3>
     </ion-item>
 
     <ion-grid *ngIf="!ordineEdit">
@@ -59,64 +59,19 @@
       <p>Piatti da menu</p>
       <ion-icon name="menu" item-right></ion-icon>
     </ion-item>
-
-    <!--
-    <ion-item-sliding *ngFor="let prod of products | orderBy:'id'">
-      <ion-item-options side="left">
-        <button ion-button icon-only color="clear" (click)="removeQuantity(prod)">
-          <ion-icon name="remove-circle" color="danger"></ion-icon>
-        </button>
-        <button ion-button icon-only color="clear" (click)="addQuantity(prod)" *ngIf="!prod.isExtra">
-          <ion-icon name="add-circle" color="dark"></ion-icon>
-        </button>
-      </ion-item-options>
-
-      <ion-item [ngClass]="{'itemIsExtra': prod.isExtra}">
-        <h2 *ngIf="!prod.isExtra">{{prod.quantity}} x {{prod.title}}</h2>
-        <h4 *ngIf="prod.isExtra">{{prod.title}}</h4>
-
-        <ion-card class="prodMetaCard">
-          <ion-card-content *ngIf="prod.meta != ''">
-            <ion-row>
-              <ion-col col-11 class="prodMeta">
-                {{prod.meta}}
-              </ion-col>
-              <ion-col col-1>
-                <ion-icon name="close" color="danger" item-left (click)="removeMetaProduct(prod)"></ion-icon>
-              </ion-col>
-            </ion-row>
-          </ion-card-content>
-        </ion-card>
-
-        <ion-note item-right *ngIf="prod.price != ''">
-          <em>&euro; {{prod.priceTotal}}</em>
-        </ion-note>
-      </ion-item>
-
-      <ion-item-options side="right" *ngIf="!prod.isExtra">
-        <button ion-button icon-only color="clear" (click)="addMetaProduct(prod)">
-          <ion-icon name="create" color="primary"></ion-icon>
-        </button>
-        <button ion-button icon-only color="clear" (click)="addExtra(prod)" *ngIf="!prod.existExtra">
-          <ion-icon name="pizza" color="danger"></ion-icon>
-        </button>
-      </ion-item-options>
-    </ion-item-sliding>
-    -->
-
     
     <ion-item *ngFor="let prod of products | orderBy:'id'" [ngClass]="{'itemIsExtra': prod.isExtra}" class="itemProduct">
       <ion-icon item-left name="remove-circle" color="danger" (click)="removeQuantity(prod)"></ion-icon>
       <ion-icon item-left name="add-circle" color="dark" (click)="addQuantity(prod)" *ngIf="!prod.isExtra"></ion-icon>
       
-      <h4 *ngIf="!prod.isExtra">{{prod.quantity}} x {{prod.title}}</h4>
-      <h6 *ngIf="prod.isExtra">{{prod.title}}</h6>
+      <h4 *ngIf="!prod.isExtra">{{prod.quantity}} x {{prod.menuname}}</h4>
+      <h6 *ngIf="prod.isExtra">{{prod.menuname}}</h6>
 
       <ion-card class="prodMetaCard">
-        <ion-card-content *ngIf="prod.meta != ''">
+        <ion-card-content *ngIf="prod.note != ''">
           <ion-row>
             <ion-col col-11 class="prodMeta">
-              {{prod.meta}}
+              {{prod.note}}
             </ion-col>
             <ion-col col-1>
               <ion-icon name="close" color="danger" item-left (click)="removeMetaProduct(prod)"></ion-icon>
@@ -144,10 +99,21 @@
     </ion-item>
 
     <ion-item *ngFor="let ship of ships" style="border-top: 1px solid #f5f5f5;">
-      <ion-icon name="close" color="danger" item-left (click)="removeShip(ship.id,ship.total)"></ion-icon>
-      <h2>{{ship.method_title}}</h2>
-      <ion-note item-right *ngIf="ship.total != ''">
-        <em>&euro; {{ship.total}}</em>
+      <ion-icon name="close" color="danger" item-left (click)="removeShip(ship.id,ship.price)"></ion-icon>
+      <h2>1 x {{ship.special}}</h2>
+
+      <ion-card class="prodMetaCard">
+        <ion-card-content *ngIf="ship.note != ''">
+          <ion-row>
+            <ion-col class="prodMeta">
+              {{ship.note}}
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+      
+      <ion-note item-right *ngIf="ship.price != ''">
+        <em>&euro; {{ship.price}}</em>
       </ion-note>
     </ion-item>
 
@@ -170,10 +136,6 @@
             <ion-icon name="close" color="danger" item-left (click)="removeNote(nota.id)"></ion-icon>
           </ion-col>
         </ion-row>
-        <!--
-        <ion-icon name="close" color="danger" item-right (click)="removeNote(nota.id)"></ion-icon>
-        {{nota.nota}}
-        -->
       </ion-card-content>
     </ion-card>
   </div>

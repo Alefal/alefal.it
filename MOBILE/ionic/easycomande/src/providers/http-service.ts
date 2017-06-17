@@ -26,67 +26,92 @@ export class HttpService {
         //let host = 'http://192.168.1.100/easycomande';
         //let host = 'http://localhost/alefal.it/PROJECTS/easycomande';
         //let host = 'http://192.168.1.100/alefal.it/PROJECTS/easycomande';
-        let host = 'http://www.amalficoastapps.it/demo/easycomande';
+        //let host = 'http://www.amalficoastapps.it/demo/easycomande';
+
+        //New BackEnd
+        let host = 'http://localhost:8000';
 
         let url     = '';
-        let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+        //let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        
         let options = new RequestOptions({ headers: headers });
         let body    = new URLSearchParams();
 
-        //LOGIN
+        //LOGIN: NON USATA
         if (call == 'authentication') {
             url = '/api/user/generate_auth_cookie/?username=' + username + '&password=' + password + '&insecure=cool';
         }
         //CATEGORIES
         else if (call == 'getProductsCategory') {
-            url = '/wp-content/plugins/alefal_woocommerce/services/ece_products_cat.php';
+            url = '/jsondata/categories';
+            //url = '/wp-content/plugins/alefal_woocommerce/services/ece_products_cat.php';
         }
         else if (call == 'getProductsByCategory') {
-            //url = '/wp-content/plugins/alefal_woocommerce/services/ece_products_cat_filter.php?filterName=category&filterValue=' + object;
+            url = '/jsondata/menuforcat/'+object;
+            /*
             url = '/wp-content/plugins/alefal_woocommerce/services/ece_products_cat_filter.php';
             body.set('filterName','category');
             body.set('filterValue',object);
+            */
         }
 
-        //PRODUCTS
+        //PRODUCTS: NON USATA
         else if (call == 'getProducts') {
             url = '/wp-content/plugins/alefal_woocommerce/services/ece_products.php';
         }
 
         //ORDERS
         else if (call == 'getOrders') {
-            url = '/wp-content/plugins/alefal_woocommerce/services/ece_orders.php?id=' + id;
-            //url = '/wp-content/plugins/alefal_woocommerce/services/ece_orders.php';
-            //body.set('id',id);
+            url = '/jsondata/orders';
+            //url = '/wp-content/plugins/alefal_woocommerce/services/ece_orders.php?id=' + id;
+        }
+        else if (call == 'getOrder') {
+            url = '/jsondata/order/'+id;
         }
         else if (call == 'getOrderSave') {
-            //url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_save.php?order=' + JSON.stringify(object);
-            url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_save.php';
-            body.set('order',JSON.stringify(object));
+            url = '/jsondata/order/save/'+JSON.stringify(object);
+            //url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_save.php';
+            //body.set('order',JSON.stringify(object));
+        }
+        else if (call == 'getOrderChangeOrderState') {
+            url = '/jsondata/order/change/state/'+id;
         }
         else if (call == 'getOrderDelete') {
-            url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_delete.php?id=' + id;
-            //url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_delete.php';
-            //body.set('id',id);
+            url = '/jsondata/order/delete/'+id;
+            //url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_delete.php?id=' + id;
+        }
+        else if (call == 'getOrderChangeLineItemState') {
+            url = '/jsondata/item/change/state/'+id;
         }
         else if (call == 'getOrderDeleteLineItem') {
-            //url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_delete_line_item.php?order=' + JSON.stringify(object);
+            url = '/jsondata/item/delete/'+id;
+            /*
             url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_delete_line_item.php';
             body.set('order',JSON.stringify(object));
+            */
         }
-        else if (call == 'getOrderDeleteShipping') {
+
+        else if (call == 'getOrderChangeSpecialState') {
+            url = '/jsondata/special/change/state/'+id;
+        }
+        else if (call == 'getOrderDeleteSpecial') {
+            url = '/jsondata/special/delete/'+id;
+            /*
             console.log('%o', object);
-            //url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_delete_shipping.php?order=' + JSON.stringify(object);
             url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_delete_shipping.php';
             body.set('order',JSON.stringify(object));
+            */
         }
 
         //ORDER NOTES
+        //NON USATO
         else if (call == 'getOrderNote') {
             url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_note.php?id=' + id;
             //url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_note.php';
             //body.set('id',id);
         }
+        //NON USATO
         else if (call == 'getOrderNoteSave') {
             //url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_note_save.php?id=' + id + '&orderNotes=' + JSON.stringify(object);
             url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_note_save.php';
@@ -94,14 +119,19 @@ export class HttpService {
             body.set('orderNotes',JSON.stringify(object));
         }
         else if (call == 'getOrderNoteDelete') {
-            url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_note_delete.php?id=' + id;
-            //url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_note_delete.php';
-            //body.set('id',id);
+            url = '/jsondata/note/delete/'+id;
+            //url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_note_delete.php?id=' + id;
         }
 
         console.log('URL: ' + host + '' + url);
 
+        /*
         return this.http.post(host + '' + url, body.toString(), options)
+            .map(this.extractData)
+            .catch(this.handleError);
+        */
+
+        return this.http.get(host + '' + url)
             .map(this.extractData)
             .catch(this.handleError);
     }

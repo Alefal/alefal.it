@@ -51,17 +51,17 @@ export class EasyComandeApp {
       .subscribe(
         res => {
           console.log('res: ' + JSON.stringify(res));
-          this.categories = res[0].output;
+          this.categories = res.results;
           console.log('this.categories: ' + this.categories);
           localStorage.setItem('categories', JSON.stringify(this.categories));
 
           //Recupero i PRODOTTI di ogni CATEGORIE
           for (let cat of this.categories) {
             this.httpService
-              .getCallHttp('getProductsByCategory', '', '', '', cat.name)
+              .getCallHttp('getProductsByCategory', '', '', '', cat.id)
               .subscribe(res => {
                 console.log('res: ' + JSON.stringify(res));
-                this.products = res[0].output;
+                this.products = res.results;
                 localStorage.setItem(cat.name, JSON.stringify(this.products));
               },
               error => {

@@ -70,3 +70,6 @@ ionic-plugin-keyboard 2.2.1 "Keyboard"
 - Legare "piatto" a "extra":
   nelle note dare la possibilità di aggiungere un "extra" (select) che viene scritto nella nota e viene aggiunto il prodotto extra per il totale
 - Quando viene modificato un ordine e si torna alla lista delle ordinazioni, l'ultimo ordine modificato è evidenziato
+
+=== Vers. 2.0.0 ===
+- Nuovo BACKEND
