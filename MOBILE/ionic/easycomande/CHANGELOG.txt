@@ -73,3 +73,8 @@ ionic-plugin-keyboard 2.2.1 "Keyboard"
 
 === Vers. 2.0.0 ===
 - Nuovo BACKEND
+- Change state for ITEM 
+- Change state for 4SPECIAL
+- Change state for ORDER
+- Print
+- Add NOTE to EXTRA: "extra for..."

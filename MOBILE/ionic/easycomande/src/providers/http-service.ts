@@ -1,7 +1,7 @@
 import { Injectable }       from '@angular/core';
 import { AlertController }  from 'ionic-angular';
 
-import { Http, Response, Headers, RequestOptions }   from '@angular/http';
+import { Http, Response/*, Headers, RequestOptions*/ }   from '@angular/http';
 
 import { Observable }       from 'rxjs/Observable';
 //import { Observable }       from 'rxjs/Rx';
@@ -33,9 +33,9 @@ export class HttpService {
 
         let url     = '';
         //let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
-        let headers = new Headers({ 'Content-Type': 'application/json' });
+        //let headers = new Headers({ 'Content-Type': 'application/json' });
         
-        let options = new RequestOptions({ headers: headers });
+        //let options = new RequestOptions({ headers: headers });
         let body    = new URLSearchParams();
 
         //LOGIN: NON USATA

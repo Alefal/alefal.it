@@ -126,14 +126,14 @@
   </ion-list>
 
   <div>
-    <ion-card *ngFor="let nota of notes">
+    <ion-card *ngFor="let note of notes">
       <ion-card-content>
         <ion-row>
           <ion-col col-11>
-            {{nota.nota}}
+            {{note.note}}
           </ion-col>
           <ion-col col-1>
-            <ion-icon name="close" color="danger" item-left (click)="removeNote(nota.id)"></ion-icon>
+            <ion-icon name="close" color="danger" item-left (click)="removeNote(note.id)"></ion-icon>
           </ion-col>
         </ion-row>
       </ion-card-content>
@@ -141,7 +141,7 @@
   </div>
 
   <div>
-    <button ion-button full large color="danger" block [disabled]="totaleOrdine == 0" (click)="saveOrder()">
+    <button ion-button full large color="danger" block [disabled]="totaleOrdine == 0 && notes?.length == 0" (click)="saveOrder()">
       <span *ngIf="!ordineEdit">Salva</span>
       <span *ngIf="ordineEdit">Modifica</span>
     </button>

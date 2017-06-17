@@ -511,7 +511,7 @@ export class AddPage {
 
         let pPriceService = Number.parseFloat(pPriceTotal) * 10 / 100;
 
-        let pDescr          = '';
+        //let pDescr          = '';
 
         //let prodotto = new Prodotto(pId,pProdId,pTitle,pPrice,pExistExtra,pIsExtra,pHasExtra,pPriceTotal,pDescr,1,'');
 
@@ -563,7 +563,7 @@ export class AddPage {
       }
     } else {
       //In EDIT controllo solo totale per evitare di modificare un ordine cancellando TUTTI i prodotti
-      if(this.totaleOrdine == 0) {
+      if(this.totaleOrdine == 0 && this.notes.length == 0) {
         let alert = this.alertCtrl.create({
           title: 'Completa la tua ordinazione!',
           subTitle: 'I piatti sono necessari per l\'ordinazione!',

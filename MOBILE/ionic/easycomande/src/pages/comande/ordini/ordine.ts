@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { Platform, NavParams, LoadingController, AlertController, NavController, ModalController, ViewController } from 'ionic-angular';
 
 import { Order }    from '../../../models/order';
-import { Product }  from '../../../models/product';
-import { Special }  from '../../../models/special';
-import { Note }     from '../../../models/note';
+//import { Product }  from '../../../models/product';
+//import { Special }  from '../../../models/special';
+//import { Note }     from '../../../models/note';
 
 //import { ComandePage }    from '../comande';
 import { AddPage }    from '../../add/add';
@@ -116,6 +116,94 @@ export class OrdinePage {
       orderIdSave: orderIdSave
     });
   }
+
+  changeItemState(prodId,orderId) {
+    this.loading = this.loadingCtrl.create({
+      spinner: 'crescent',
+    });
+    this.loading.present();
+
+    this.httpService
+      .getCallHttp('getOrderChangeLineItemState', '', '', prodId, '')
+      .subscribe(res => {
+        //console.log('res: '+JSON.stringify(res));
+
+        if (res.results[0].operation == 'success') {
+          this.showOrder(orderId,orderId);
+        } else {
+          this.nothing = 'Nessun dato! Riprovare più tardi.';
+        }
+        this.loading.dismiss();
+
+        this.ordine = res.results[0];
+        this.loading.dismiss();
+      },
+      error => {
+        console.log('ERROR: ' + error);
+        this.errorMessage = 'Error!';
+        this.errorMessageView = true;
+        this.loading.dismiss();
+      });
+  }
+
+  changeSpecialState(specialId,orderId) {
+    this.loading = this.loadingCtrl.create({
+      spinner: 'crescent',
+    });
+    this.loading.present();
+
+    this.httpService
+      .getCallHttp('getOrderChangeSpecialState', '', '', specialId, '')
+      .subscribe(res => {
+        //console.log('res: '+JSON.stringify(res));
+
+        if (res.results[0].operation == 'success') {
+          this.showOrder(orderId,orderId);
+        } else {
+          this.nothing = 'Nessun dato! Riprovare più tardi.';
+        }
+        this.loading.dismiss();
+
+        this.ordine = res.results[0];
+        this.loading.dismiss();
+      },
+      error => {
+        console.log('ERROR: ' + error);
+        this.errorMessage = 'Error!';
+        this.errorMessageView = true;
+        this.loading.dismiss();
+      });
+  }
+
+  changeOrderState(orderId) {
+    this.loading = this.loadingCtrl.create({
+      spinner: 'crescent',
+    });
+    this.loading.present();
+
+    this.httpService
+      .getCallHttp('getOrderChangeOrderState', '', '', orderId, '')
+      .subscribe(res => {
+        //console.log('res: '+JSON.stringify(res));
+
+        if (res.results[0].operation == 'success') {
+          this.showOrder(orderId,orderId);
+        } else {
+          this.nothing = 'Nessun dato! Riprovare più tardi.';
+        }
+        this.loading.dismiss();
+
+        this.ordine = res.results[0];
+        this.loading.dismiss();
+      },
+      error => {
+        console.log('ERROR: ' + error);
+        this.errorMessage = 'Error!';
+        this.errorMessageView = true;
+        this.loading.dismiss();
+      });
+  }
+
   deleteOrder(id) {
     console.log(id);
 
@@ -176,7 +264,7 @@ export class OrdinePage {
     } else {
       for (let note of notes) {
         let nMessage: string = note.note;
-        noteComplete += nMessage + '<br /><hr /><br />';
+        noteComplete += nMessage + '<hr />';
       }
     }
 
