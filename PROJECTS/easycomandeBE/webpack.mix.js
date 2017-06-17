@@ -29,7 +29,7 @@ mix.scripts([
     'resources/assets/js/sweetalert-dev.js',
     //'resources/assets/js/tinymce.min.js',
     'resources/assets/js/moment.js',
-    //'resources/assets/js/custom.js'
+    'resources/assets/js/custom.js'
 ], 'public/js/all.js');
 
 mix.js('resources/assets/js/app.js', 'public/js')

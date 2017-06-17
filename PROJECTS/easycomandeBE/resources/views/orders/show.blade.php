@@ -100,15 +100,17 @@
                             </div>
                         </div>
 
-                        <div class="section">
-                            <div class="section-title"><strong>Notes:</strong></div>
-                            <div class="section-body">
-                                @foreach($notes as $note)
-                                    {{ $note->note }}
-                                    <br />
-                                @endforeach
+                        @if (count($notes) > 0)
+                            <div class="section">
+                                <div class="section-title"><strong>Notes:</strong></div>
+                                <div class="section-body">
+                                    @foreach($notes as $note)
+                                        {{ $note->note }}
+                                        <br />
+                                    @endforeach
+                                </div>
                             </div>
-                        </div>
+                        @endif
                     </div>
                 </div>
 

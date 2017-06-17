@@ -334,14 +334,14 @@ export class OrderComponent implements OnInit {
     '     <h2>'+order.client+'</h2>'+
     '     <h4>Date: '+moment(order.date).format('MM DD, YYYY HH:mm A')+'</h4>'+
     '  </div>'+     
-    '  <hr />'+     
+    //'  <hr />'+     
     '  <table class="table table-hover tableComande">'+
-    '    <thead>'+
-    '      <tr>'+
-    '        <th>QTY</th>'+
-    '        <th>ITEM</th>'+
-    '      </tr>'+
-    '    </thead>'+
+    //'    <thead>'+
+    //'      <tr>'+
+    //'        <th>QTY</th>'+
+    //'        <th>ITEM</th>'+
+    //'      </tr>'+
+    //'    </thead>'+
     '    <tbody>';
 
     for (let item of order.items) {
@@ -386,12 +386,21 @@ export class OrderComponent implements OnInit {
     '    </tbody>'+
     '  </table>';
 
-    for (let note of order.notes) {
+    if(order.notes.length > 0) {
       template += ''+
-      '      <div class="notesList">'+
-      '        - <em>'+note.note+'</em>'+
-      '      </div>';
+        ' <div class="notesList">'+
+        '     <strong>NOTE:</strong>'+
+        '     <br />';
+      for (let note of order.notes) {
+        template += ''+
+        '     <em>'+note.note+'</em>; ';
+      }
+      template += ''+
+        ' </div>';
     }
+    
+    template += ''+
+    '</div>';
 
     return template;
   }
@@ -403,7 +412,6 @@ export class OrderComponent implements OnInit {
     let template = ''+
     '<div class="container printOrder">'+
     '  <div class="logo"><img src="../assets/img/logo-small-print.png" /></div>'+
-    '  <hr />'+     
     '  <div class="orderInfo">'+     
     '     <h2>'+order.client+'</h2>'+
     '     <h4>Date: '+moment(order.date).format('MM DD, YYYY HH:mm A')+'</h4>'+

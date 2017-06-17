@@ -82,39 +82,61 @@ function printOrder(orderStateId,order,items,specials,notes){
     popupWin.document.write(`
       <html>
         <head>
-          <title>Ordinazione</title>
-          <link rel="stylesheet" type="text/css" href="{{ asset(\'css/bootstrap.css\' }}" />
-	        <link rel="stylesheet" type="text/css" href="{{ asset(\'assets/css/main.css\' }}" />
-          <style>
-          //........Customized style.......
-          .printOrder {
-            text-align:center;
-            margin: 0 auto;
-          }
-          .printOrder .orderInfo {
-            text-align:center;
-          }
-          .printOrder .logo {
-            text-align:center;
-          }
-          .printOrder .logo img {
-            margin: 0 auto;
-            max-width: 150px;
-          }
-          .printOrder .deleteItem {
-            /*text-decoration: line-through;*/
-            display: none;
-          }
-          .printOrder .notesList {
-            padding: 15px;
-          }
-          .printOrder .tableComande {
-            font-size: 1.5em;
-          }
-          .printOrder .tableRicevuta {
-            font-size: 1em;
-          }
-          </style>
+            <title>Ordinazione</title>
+            <style>
+            //........Customized style.......
+            .printOrder {
+                text-align:center;
+                margin: 0 auto;
+            }
+            .printOrder .orderInfo {
+                text-align:center;
+            }
+            .printOrder .logo {
+                text-align:center;
+            }
+            .printOrder .logo img {
+                margin: 0 auto;
+                max-width: 150px;
+            }
+            .printOrder .deleteItem {
+                /*text-decoration: line-through;*/
+                display: none;
+            }
+            .printOrder .notesList {
+                padding-top: 15px;
+            }
+
+            .printOrder .tableComande {
+                font-size: 1.5em;
+                width: 100%;
+                border-collapse: collapse; 
+            }
+            .printOrder .tableComande th {
+                text-align: left;
+                border-bottom: 1px solid #ccc;
+                padding: 5px;
+            }
+            .printOrder .tableComande td {
+                border-bottom: 1px solid #ddd;
+                padding: 5px;
+            }
+
+            .printOrder .tableRicevuta {
+                font-size: 1em;
+                width: 100%;
+                border-collapse: collapse; 
+            }
+            .printOrder .tableRicevuta th {
+                text-align: left;
+                border-bottom: 1px solid #ccc;
+                padding: 5px;
+            }
+            .printOrder .tableRicevuta td {
+                border-bottom: 1px solid #ddd;
+                padding: 5px;
+            }
+            </style>
         </head>
         <body onload="window.print();window.close()">${printContents}</body>
       </html>`
@@ -124,24 +146,19 @@ function printOrder(orderStateId,order,items,specials,notes){
 
 function templateOrder(order,items,specials,notes) {
     var template = ''+
-    '<div class="container printOrder">'+
+    '<div class="container printOrder">'+    
     '  <div class="orderInfo">'+     
     '     <h2>'+order.client+'</h2>'+
-    '     <h4>Date: '+moment(order.date).format('MM DD, YYYY HH:mm A')+'</h4>'+
+    '     <h4>Date: '+moment(order.date).format('DD MM, YYYY HH:mm A')+'</h4>'+
     '  </div>'+     
-    '  <hr />'+     
-    '  <table class="table table-hover tableComande">'+
-    '    <thead>'+
-    '      <tr>'+
-    '        <th>QTY</th>'+
-    '        <th>ITEM</th>'+
-    '      </tr>'+
-    '    </thead>'+
+    '  <hr />'+    
+    '  <strong>PIATTI:</strong>'+ 
+    '  <table class="table table-hover tableRicevuta">'+
     '    <tbody>';
 
     for (var item of items) {
       var classItem = '';
-      if(item.state == 'pending') {
+      if(item.statename == 'pending') {
         classItem = '';
       } else {
         classItem = 'deleteItem';
@@ -150,17 +167,17 @@ function templateOrder(order,items,specials,notes) {
       '      <tr class="'+classItem+'">'+
       '        <td>'+item.quantity+'x </td>';
       if(item.note != '') {
-        template += '<td>'+item.name+'<br /><em>('+item.note+')</em></td>';
+        template += '<td>'+item.menuname+'<br /><em>('+item.note+')</em></td>';
       } else {
-        template += '<td>'+item.name+'</td>';        
+        template += '<td>'+item.menuname+'</td>';        
       }
       template += ''+
       '      </tr>';
     }
-
+    
     for (var special of specials) {
       var classItem = '';
-      if(special.state == 'pending') {
+      if(special.statename == 'pending') {
         classItem = '';
       } else {
         classItem = 'deleteItem';
@@ -169,36 +186,44 @@ function templateOrder(order,items,specials,notes) {
       '      <tr class="'+classItem+'">'+
       '        <td>1x </td>';
       if(special.note != '') {
-        template += '<td>'+special.name+'<br /><em>('+special.note+')</em></td>';
+        template += '<td>'+special.special+'<br /><em>('+special.note+')</em></td>';
       } else {
-        template += '<td>'+special.name+'</td>';        
+        template += '<td>'+special.special+'</td>';        
       }
       template += ''+
       '      </tr>';
     }
-
+    
     template += ''+
     '    </tbody>'+
     '  </table>';
 
-    for (var note of notes) {
+    if(notes.length > 0){
       template += ''+
-      '      <div class="notesList">'+
-      '        - <em>'+note.note+'</em>'+
-      '      </div>';
+        ' <div class="notesList">'+
+        '     <strong>NOTE:</strong>'+
+        '     <br />';
+      for (var note of notes) {
+        template += ''+
+        '     <em>'+note.note+'</em>; ';
+      }
+      template += ''+
+        ' </div>';
     }
-
+    
+    template += ''+
+      '</div>';
+    
     return template;
   }
 
 function  templateOrderCompleted(order,items,specials,notes) {
     var template = ''+
     '<div class="container printOrder">'+
-    '  <div class="logo"><img src="{{ asset(\'img/logo-small.png\') }}" /></div>'+
-    '  <hr />'+     
+    '  <div class="logo"><img src="/img/logo-small.png" /></div>'+
     '  <div class="orderInfo">'+     
     '     <h2>'+order.client+'</h2>'+
-    '     <h4>Date: '+moment(order.date).format('MM DD, YYYY HH:mm A')+'</h4>'+
+    '     <h4>Date: '+moment(order.date).format('DD MM, YYYY HH:mm A')+'</h4>'+
     '  </div>'+     
     '  <hr />'+     
     '  <table class="table table-hover tableRicevuta">'+
@@ -212,7 +237,6 @@ function  templateOrderCompleted(order,items,specials,notes) {
     '    <tbody>';
 
     for (var item of items) {
-      console.log('%o',item);
       template += ''+
       '      <tr>'+
       '        <td>'+item.quantity+'x </td>'+
@@ -238,7 +262,6 @@ function  templateOrderCompleted(order,items,specials,notes) {
       '      </tr>'+
       '      <tr>'+
       '        <td></td>'+
-      '        <td></td>'+
       '        <td><strong>Service (10%)</td></strong>'+
       '        <td><strong>&euro; '+order.totalservice+'</strong></td>'+
       '      </tr>';
@@ -248,7 +271,6 @@ function  templateOrderCompleted(order,items,specials,notes) {
     '  </table>';
 
     template += ''+
-    '  <hr />'+     
     '  <div class="orderInfo">'+     
     '     <h3>Thank you</h3>'+
     '     <h3>Please come again!</h3>'+
