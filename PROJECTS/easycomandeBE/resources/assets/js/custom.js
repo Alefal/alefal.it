@@ -71,7 +71,7 @@ function printOrder(orderStateId,order,items,specials,notes){
     console.log('%o',notes);
 
     console.log('printOrder',JSON.stringify(order));
-    let printContents, popupWin;
+    var printContents, popupWin;
     if(orderStateId == '1') {
       printContents = this.templateOrder(order,items,specials,notes);
     } else {
@@ -108,6 +108,12 @@ function printOrder(orderStateId,order,items,specials,notes){
           .printOrder .notesList {
             padding: 15px;
           }
+          .printOrder .tableComande {
+            font-size: 1.5em;
+          }
+          .printOrder .tableRicevuta {
+            font-size: 1em;
+          }
           </style>
         </head>
         <body onload="window.print();window.close()">${printContents}</body>
@@ -124,7 +130,7 @@ function templateOrder(order,items,specials,notes) {
     '     <h4>Date: '+moment(order.date).format('MM DD, YYYY HH:mm A')+'</h4>'+
     '  </div>'+     
     '  <hr />'+     
-    '  <table class="table table-hover">'+
+    '  <table class="table table-hover tableComande">'+
     '    <thead>'+
     '      <tr>'+
     '        <th>QTY</th>'+
@@ -195,7 +201,7 @@ function  templateOrderCompleted(order,items,specials,notes) {
     '     <h4>Date: '+moment(order.date).format('MM DD, YYYY HH:mm A')+'</h4>'+
     '  </div>'+     
     '  <hr />'+     
-    '  <table class="table table-hover">'+
+    '  <table class="table table-hover tableRicevuta">'+
     '    <thead>'+
     '      <tr>'+
     '        <th>QTY</th>'+
@@ -206,6 +212,7 @@ function  templateOrderCompleted(order,items,specials,notes) {
     '    <tbody>';
 
     for (var item of items) {
+      console.log('%o',item);
       template += ''+
       '      <tr>'+
       '        <td>'+item.quantity+'x </td>'+

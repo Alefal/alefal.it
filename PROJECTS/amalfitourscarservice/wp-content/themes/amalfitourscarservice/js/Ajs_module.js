@@ -44,6 +44,9 @@ var lechicchedielena = angular.module('amalfitourscarservice', ['ngSanitize', 'p
 		MessageSendOK: 		'Email send',
 		MessageSendKO: 		'Email not send. Retry.',
 
+		PoliticheCancellazioneTitle: 	'Cancellation Policy',
+		PoliticheCancellazioneMsg: 		'Any cancellation of the Contract must be notified in writing by fax or e-mail addressed or to <strong>amalfitourscarservice@gmail.com</strong> or mobile number <strong>+39 339 177 43 87</strong>. You can cancel the previously booked "Transfer Services" separately as you cancel the entire Reservation. <br /><br />If we receive your cancellation request more than 48 hours before the scheduled time of withdrawal of the "Transfer Service" you wish to cancel, the amount paid for this transfer will be refunded in full. No refund will be made for cancellations received less than 48 hours from the scheduled time for the Transfer Service you wish to cancel. In such circumstances, we will send you an e-mail cancellation notice, which may be used to request a refund to the tour operator, airline, or travel insurance provider.',
+
 		/*
 		ServiceTitle_1: 	'Transfer',
 		ServiceContent_1: 	'to reach your destination (airport, railway station, port, hotel or restaurant) in a fast and comfortable way',
@@ -104,6 +107,9 @@ var lechicchedielena = angular.module('amalfitourscarservice', ['ngSanitize', 'p
 
 		MessageSendOK: 		'Email inviata correttamente',
 		MessageSendKO: 		'Problemi nell\'invio della mail. Riprovare piu\' tardi.',
+
+		PoliticheCancellazioneTitle: 	'Politiche di Cancellazione',
+		PoliticheCancellazioneMsg: 		'Qualsiasi cancellazione del Contratto dovrà essere notificata per iscritto via fax o e-mail indirizzata o ad <strong>amalfitourscarservice@gmail.com</strong> o telefono <strong>0039 339 177 43 87</strong>. E\' possibile cancellare separatamente "Servizi di Trasferimento" precedentemente prenotati come annullare l\'intera Prenotazione. <br /><br />Se riceviamo la Sua richiesta di cancellazione più di 48 ore prima dell\'orario previsto per il prelievo del "Servizio Transfer" che si desidera annullare, l\'importo versato  per questo transfer verrà rimborsato per intero. Non si elargirà alcun rimborso per cancellazioni ricevute meno di 48 ore dall\'orario programmato per il "Servizio Transfer" che si desidera annullare. In tali circostanze Le invieremo una nota di cancellazione via e-mail, che potrà essere usata per richiedere un rimborso al tour operator, compagnia aerea, o al fornitore di assicurazione di viaggio.',
 		
 		/*
 		ServiceTitle_1: 	'Transfer',

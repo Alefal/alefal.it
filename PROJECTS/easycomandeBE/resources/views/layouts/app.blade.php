@@ -231,7 +231,7 @@
         <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
         <script src="{{ asset('js/sweetalert-dev.js') }}"></script>
         -->
-        <script src="{{ asset('js/custom.js') }}"></script>
+        <script src="../js/custom.js"></script>
 
         <!-- Tutte le librerie JS sono incluse nel file app.js -->
 

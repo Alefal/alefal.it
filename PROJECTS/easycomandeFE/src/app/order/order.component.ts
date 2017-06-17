@@ -310,6 +310,12 @@ export class OrderComponent implements OnInit {
           .printOrder .notesList {
             padding: 15px;
           }
+          .printOrder .tableComande {
+            font-size: 1.5em;
+          }
+          .printOrder .tableRicevuta {
+            font-size: 1em;
+          }
           </style>
         </head>
         <body onload="window.print();window.close()">${printContents}</body>
@@ -329,7 +335,7 @@ export class OrderComponent implements OnInit {
     '     <h4>Date: '+moment(order.date).format('MM DD, YYYY HH:mm A')+'</h4>'+
     '  </div>'+     
     '  <hr />'+     
-    '  <table class="table table-hover">'+
+    '  <table class="table table-hover tableComande">'+
     '    <thead>'+
     '      <tr>'+
     '        <th>QTY</th>'+
@@ -403,7 +409,7 @@ export class OrderComponent implements OnInit {
     '     <h4>Date: '+moment(order.date).format('MM DD, YYYY HH:mm A')+'</h4>'+
     '  </div>'+     
     '  <hr />'+     
-    '  <table class="table table-hover">'+
+    '  <table class="table table-hover tableRicevuta">'+
     '    <thead>'+
     '      <tr>'+
     '        <th>QTY</th>'+

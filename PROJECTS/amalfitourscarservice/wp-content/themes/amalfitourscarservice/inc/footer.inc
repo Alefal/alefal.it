@@ -4,10 +4,11 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h2 class="section-heading" ng-bind="'ContactTitle' | translate">&nbsp;</h2>
-                <hr class="primary">
                 <p ng-bind-html="'ContactMsg' | translate">&nbsp;</p>
                 <hr class="primary">
             </div>
+
+            <br /><br />
 
             <div class="col-lg-12">
                 <br />
@@ -40,7 +41,17 @@
                     </div>
                 </form>
                 <hr class="primary">
+                <br /><br />
             </div>
+
+
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading" ng-bind="'PoliticheCancellazioneTitle' | translate">&nbsp;</h2>
+                <p ng-bind-html="'PoliticheCancellazioneMsg' | translate" style="text-align: justify;">&nbsp;</p>
+                <hr class="primary">
+                <br /><br />
+            </div>
+
 
             <div class="col-lg-4">
                 <div class="text-center">

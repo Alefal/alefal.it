@@ -88,7 +88,7 @@
                       <!-- If remove quantity -->
                       <div  class="icon fa fa-minus fa-4x" (click)="removeQuantity(prod)" *ngIf="prod.quantity > 1"></div>
                       <div class="icon fa fa-plus fa-4x iconAddQuantity" (click)="addQuantity(prod)" *ngIf="!prod.isExtra"></div>
-                      <div class="icon fa fa-pencil fa-4x iconAddNote" (click)="openModalAddMetaProduct(prod)" *ngIf="!prod.isExtra"></div>
+                      <div class="icon fa fa-pencil fa-4x iconAddNote" (click)="openModalAddMetaProduct(prod)"></div>
                       <div class="icon fa fa-cutlery fa-4x iconAddExtra" (click)="openModalAddExtra(prod)" *ngIf="!prod.existExtra && !prod.isExtra && prod.hasExtra"></div>                      
 
                       <div class="content itemProduct">

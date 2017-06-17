@@ -80,8 +80,6 @@ class OrdersController extends Controller
         $notes      = Order::find($orderId)->notes;
         $states     = State::all();
 
-        $selectedState   = Order::find($orderId)->state_id;
-
         return view('orders.show',compact('order','items','specials','notes','states'));
     }
 

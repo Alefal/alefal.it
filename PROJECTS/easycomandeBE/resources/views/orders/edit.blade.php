@@ -5,7 +5,7 @@
         <div class="card card-mini">
             <div class="card-header">
                 <h4 class="card-title">
-                    Edit: {{ $item->name }}
+                    Edit: {{ $order->name }}
                 </h4>
                 <div class="card-action">
                     <a href="{{ route('orders.index') }}">
@@ -24,7 +24,7 @@
                         @endforeach
                     </ul>
                 </div>
-                @endif {!! Form::model($item, ['method' => 'PATCH','route' => ['orders.update', $item->id]]) !!}
+                @endif {!! Form::model($order, ['method' => 'PATCH','route' => ['orders.update', $order->id]]) !!}
 
                 <div class="row">
                     <div class="col-xs-6 col-md-4">
