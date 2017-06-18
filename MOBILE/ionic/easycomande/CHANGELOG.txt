@@ -72,9 +72,9 @@ ionic-plugin-keyboard 2.2.1 "Keyboard"
 - Quando viene modificato un ordine e si torna alla lista delle ordinazioni, l'ultimo ordine modificato è evidenziato
 
 === Vers. 2.0.0 ===
-- Nuovo BACKEND
-- Change state for ITEM 
-- Change state for 4SPECIAL
-- Change state for ORDER
+OK -> Nuovo BACKEND
+OK -> Change state for ITEM 
+OK -> Change state for 4SPECIAL
+OK -> Change state for ORDER
 - Print
-- Add NOTE to EXTRA: "extra for..."
+OK -> Add NOTE to EXTRA: "extra for..."

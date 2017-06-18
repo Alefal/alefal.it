@@ -18,8 +18,9 @@
       <button *ngIf="ordine?.state != 'completed'" ion-fab (click)="editOrder(ordine)"><ion-icon name="create"></ion-icon></button>
       <!--
       <button *ngIf="ordine?.state != 'completed'" ion-fab (click)="addNote(ordine.id)"><ion-icon name="list"></ion-icon></button>
+      <button ion-fab (click)="printOrder(ordine.id)"><ion-icon name="print"></ion-icon></button>
       -->
-      <button ion-fab (click)="changeOrderState(ordine.notes)"><ion-icon name="checkbox-outline"></ion-icon></button>
+      <button *ngIf="ordine?.state != 'completed'" ion-fab (click)="changeOrderState(ordine.id)"><ion-icon name="checkbox-outline"></ion-icon></button>
       <button ion-fab (click)="showNote(ordine.notes)"><ion-icon name="eye"></ion-icon></button>
       <button ion-fab (click)="deleteOrder(ordine.id)"><ion-icon name="trash"></ion-icon></button>
     </ion-fab-list>
@@ -83,7 +84,7 @@
 
     <ion-item *ngFor="let special of ordine?.specials">
       <ion-icon *ngIf="ordine?.state != 'completed' && special.state != 'completed'" name="remove-circle" color="danger" item-left (click)="deleteSpecial(special.id,ordine.id)"></ion-icon>
-      <ion-icon *ngIf="ordine?.state != 'completed' && special.state != 'completed'" name="checkbox-outline" color="dark" item-left (click)="changeSpecialState(prod.id,ordine.id)"></ion-icon>
+      <ion-icon *ngIf="ordine?.state != 'completed' && special.state != 'completed'" name="checkbox-outline" color="dark" item-left (click)="changeSpecialState(special.id,ordine.id)"></ion-icon>
       <ion-icon *ngIf="ordine?.state == 'completed' || special.state == 'completed'" name="checkmark" color="secondary" item-left></ion-icon>
       <h2>{{special.name}}</h2>
 

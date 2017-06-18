@@ -55,7 +55,10 @@ export class Product {
     this.note += note;
   }
   public setExtra(extra) {
-    this.note += ' - Extra: '+extra+' - ';
+    this.note += ' | con extra \''+extra+'\' | ';
+  }
+  public setExtraRif(extra) {
+    this.note += ' | Extra per \''+extra+'\' | ';
   }
 
   public removeMeta(note) {

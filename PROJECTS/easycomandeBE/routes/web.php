@@ -49,7 +49,11 @@ use App\State;
 use App\User;
 
 use Illuminate\Http\Request;
-    
+
+Route::get('jsondata/auth/{email}/{password}', function($email,$password){
+    return manipulateJsonResponseAuth($email,$password);
+});
+
 Route::get('jsondata/categories', function(){
     return manipulateJsonResponseCategories(Category::all());
 });
@@ -124,4 +128,21 @@ Route::get('jsondata/special/delete/{specialId}', function($specialId){
 /*** Delete NOTE from APP / WEBAPP ***/
 Route::get('jsondata/note/delete/{noteId}', function($noteId){
     return deleteNote($noteId);
+});
+
+//Stampa il PDF: non funziona se la chiamata arriva da app
+Route::post('jsondata/order/print/{orderId}', function($orderId){
+    //end data
+    $pdf = App::make('dompdf.wrapper');
+    $pdf->loadHTML('
+        <style>
+        .page-break {
+            page-break-after: always;
+        }
+        </style>
+        <h1>Order '.$orderId.'</h1>
+        <div class="page-break"></div>
+        <h1>Page 2</h1>
+    ');
+    return $pdf->download('order_'.$orderId.'.pdf');
 });

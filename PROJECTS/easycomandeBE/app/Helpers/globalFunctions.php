@@ -8,6 +8,8 @@
 |
 */
 
+use Illuminate\Support\Facades\Auth;
+
 use App\Category;
 use App\Menu;
 use App\Order;
@@ -15,6 +17,7 @@ use App\Item;
 use App\Special;
 use App\Note;
 use App\State;
+use App\User;
 
 /* ---------------------------------------------------------------------------
  * SORT FUNCTIONS
@@ -39,6 +42,29 @@ function sortFullName($a,$b){
 
 function sortId($a, $b) {
     return strcmp($a['id'], $b['id']);
+}
+
+/* ---------------------------------------------------------------------------
+ * Manipulate Json Response: AUTH
+ * --------------------------------------------------------------------------- */
+function manipulateJsonResponseAuth($email,$password) {
+    $users = User::all();
+    $json = '';
+
+    if (Auth::attempt(['email' => $email, 'password' => $password])) {
+        $user = Auth::user();
+        $json .= '{';
+        $json .= '"logged":"autenticated",';
+        $json .= '"user":"'.$user['email'].'",';
+        $json .= '"name":"'.$user['name'].'"';
+        $json .='}';
+    } else {
+        $json .= '{';
+        $json .= '"logged":"failed"';
+        $json .='}';
+    }
+
+    return $json;
 }
 
 /* ---------------------------------------------------------------------------

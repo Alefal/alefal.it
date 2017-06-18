@@ -181,6 +181,9 @@ return [
         //File Explorer
         'Jasekz\Laradrop\LaradropServiceProvider',    
 
+        //PDF
+        Barryvdh\DomPDF\ServiceProvider::class,
+
     ],
 
     /*
@@ -232,6 +235,9 @@ return [
 
         'Form' => 'Collective\Html\FormFacade',
         'Html' => 'Collective\Html\HtmlFacade',
+
+        //PDF
+        'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],
 

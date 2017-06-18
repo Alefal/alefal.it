@@ -83,16 +83,12 @@
       <ion-note item-right *ngIf="prod.price != ''">
         <em>&euro; {{prod.price}}</em>
       </ion-note>
-      <img item-right width="44" src="assets/img/order.png" (click)="addMetaProduct(prod)" *ngIf="!prod.isExtra" />
+      <img item-right width="44" src="assets/img/order.png" (click)="addMetaProduct(prod)" />
       <img item-right width="44" src="assets/img/burger.png" (click)="addExtra(prod)" *ngIf="!prod.existExtra && !prod.isExtra && prod.hasExtra" />
-      <!--
-      <ion-icon item-right name="create" color="primary" (click)="addMetaProduct(prod)" *ngIf="!prod.isExtra"></ion-icon>
-      <ion-icon item-right name="pizza" color="danger" (click)="addExtra(prod)" *ngIf="!prod.existExtra && !prod.isExtra && prod.hasExtra"></ion-icon>
-      -->
     </ion-item>
     
 
-    <!-- SHIPPING -->
+    <!-- SPECIALS -->
     <ion-item *ngIf="ships.length > 0">
       <p>Piatti speciali</p>
       <ion-icon name="restaurant" item-right></ion-icon>

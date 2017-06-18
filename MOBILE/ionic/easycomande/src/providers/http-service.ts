@@ -32,6 +32,7 @@ export class HttpService {
         let host = 'http://localhost:8000';
 
         let url     = '';
+        //let headers = new Headers({ 'Content-Type': 'text/html; charset=UTF-8' });
         //let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
         //let headers = new Headers({ 'Content-Type': 'application/json' });
         
@@ -80,6 +81,10 @@ export class HttpService {
         else if (call == 'getOrderDelete') {
             url = '/jsondata/order/delete/'+id;
             //url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_delete.php?id=' + id;
+        }
+        //NOT WORK
+        else if (call == 'getOrderPrint') {
+            url = '/jsondata/order/print/'+id;                
         }
         else if (call == 'getOrderChangeLineItemState') {
             url = '/jsondata/item/change/state/'+id;

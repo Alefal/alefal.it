@@ -81,7 +81,7 @@ export class OrdinePage {
       }
       */
       //Ricaricare ordine
-      this.showOrder(this.ordineId,data.orderIdSave);
+      this.showOrder(data.orderIdSave);
     });
     /*
     this.navCtrl.push(AddPage, {
@@ -90,27 +90,7 @@ export class OrdinePage {
     */
   }
 
-  showOrder(id,orderIdSave) {
-    /* NON MI AGGIORNA L'ARRAY 'orders' NEL TEMPLATE
-    this.httpService
-      .getCallHttp('getOrders', '', '', id, '')
-      .subscribe(res => {
-        console.log('res: ' + JSON.stringify(res));
-
-        if (res[0].response[0].result == 'OK') {
-          this.ordine = res[0].output;
-          console.log('%ò',this.ordine);
-        } else {
-          this.nothing = 'Nessun dato! Riprovare più tardi.';
-        }
-      },
-      error => {
-        console.log('ERROR: ' + error);
-        this.errorMessage = 'Error!';
-        this.errorMessageView = true;
-      });
-    */
-
+  showOrder(orderIdSave) {
     this.viewCtrl.dismiss({
       action: 'reload',
       orderIdSave: orderIdSave
@@ -129,13 +109,10 @@ export class OrdinePage {
         //console.log('res: '+JSON.stringify(res));
 
         if (res.results[0].operation == 'success') {
-          this.showOrder(orderId,orderId);
+          this.showOrder(orderId);
         } else {
           this.nothing = 'Nessun dato! Riprovare più tardi.';
         }
-        this.loading.dismiss();
-
-        this.ordine = res.results[0];
         this.loading.dismiss();
       },
       error => {
@@ -158,13 +135,10 @@ export class OrdinePage {
         //console.log('res: '+JSON.stringify(res));
 
         if (res.results[0].operation == 'success') {
-          this.showOrder(orderId,orderId);
+          this.showOrder(orderId);
         } else {
           this.nothing = 'Nessun dato! Riprovare più tardi.';
         }
-        this.loading.dismiss();
-
-        this.ordine = res.results[0];
         this.loading.dismiss();
       },
       error => {
@@ -187,13 +161,10 @@ export class OrdinePage {
         //console.log('res: '+JSON.stringify(res));
 
         if (res.results[0].operation == 'success') {
-          this.showOrder(orderId,orderId);
+          this.showOrder(orderId);
         } else {
           this.nothing = 'Nessun dato! Riprovare più tardi.';
         }
-        this.loading.dismiss();
-
-        this.ordine = res.results[0];
         this.loading.dismiss();
       },
       error => {
@@ -360,7 +331,7 @@ export class OrdinePage {
                 console.log('res: ' + JSON.stringify(res));
 
                 if (res.results[0].operation == 'success') {
-                  this.showOrder(orderId,orderId);
+                  this.showOrder(orderId);
                 } else {
                   this.nothing = 'Nessun dato! Riprovare più tardi.';
                 }
@@ -409,7 +380,7 @@ export class OrdinePage {
                 console.log('res: ' + JSON.stringify(res));
 
                 if (res.results[0].operation == 'success') {
-                  this.showOrder(orderId,0);
+                  this.showOrder(orderId);
                 } else {
                   this.nothing = 'Nessun dato! Riprovare più tardi.';
                 }
@@ -458,7 +429,7 @@ export class OrdinePage {
                 console.log('res: ' + JSON.stringify(res));
 
                 if (res.results[0].operation == 'success') {
-                  this.showOrder(orderId,0);
+                  this.showOrder(orderId);
                 } else {
                   this.nothing = 'Nessun dato! Riprovare più tardi.';
                 }
@@ -477,6 +448,33 @@ export class OrdinePage {
     });
     confirm.present();
 
+  }
+
+  //NOT WORK
+  printOrder(orderId) {
+    this.loading = this.loadingCtrl.create({
+      spinner: 'crescent',
+    });
+    this.loading.present();
+
+    this.httpService
+      .getCallHttp('getOrderPrint', '', '', orderId, '')
+      .subscribe(res => {
+        //console.log('res: '+JSON.stringify(res));
+
+        if (res.results[0].operation == 'success') {
+          //this.showOrder(orderId);
+        } else {
+          this.nothing = 'Nessun dato! Riprovare più tardi.';
+        }
+        this.loading.dismiss();
+      },
+      error => {
+        console.log('ERROR: ' + error);
+        this.errorMessage = 'Error!';
+        this.errorMessageView = true;
+        this.loading.dismiss();
+      });
   }
 
   dismiss() {

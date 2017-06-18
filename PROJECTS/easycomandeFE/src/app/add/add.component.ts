@@ -355,7 +355,7 @@ export class AddComponent implements OnInit {
   }
   addExtra() {
     console.log('%ò',this.extra);
-    this.prodTmp.setExistExtra(true);
+    
 
     let splitted = this.extra.split('|');
     let eId = splitted[0];
@@ -392,9 +392,11 @@ export class AddComponent implements OnInit {
         1
       );
 
+    prodotto.setExtraRif(this.prodTmp.menuname);
     this.products.push(prodotto);
     this.totaleOrdine = Number.parseFloat(this.totaleOrdine) + Number.parseFloat(pPrice);
 
+    this.prodTmp.setExistExtra(true);
     this.prodTmp.setExtra(eTitle);
 
     jQuery('#genericAddModal').modal('hide');

@@ -26,49 +26,30 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     // reset login status
     this.authenticationService.logout();
-    this.model.username = 'manager';
-    this.model.password = 'manager';
+    this.model.username = '';
+    this.model.password = '';
     
   }
 
   login() {
-    //this.loading = true;
-
     this.loadingBarService.start();
 
-    /*
-    if (this.model.username == 'admin' && this.model.password == 'admin') {
-      localStorage.setItem('currentUser', 'admin/admin');
-      this.router.navigate(['/home']);
-    } else {
-      this.alertService.error('Authentication failed!');
-      this.loading = false;
-    }
-    */
-    
-    this.authenticationService.login(this.model.username, this.model.password);
-    this.router.navigate(['/home']);
-    /*
+    this.authenticationService.login(this.model.username, this.model.password)
       .subscribe(data => {
-        console.log('res: '+JSON.stringify(data));
+        console.log('res -> '+data.logged);
 
-        if(data.status == 'error') {
-          this.alertService.error(data.error);
-          this.loadingBarService.complete();
-          //this.loading = false;
-        } else if(data.status == 'ok') {
+        if(data.logged == 'autenticated') {
           this.router.navigate(['/home']);
         } else {
           this.alertService.error('Authentication failed!');
           this.loadingBarService.complete();
-          //this.loading = false;
         }
+
       },
       error => {
         this.alertService.error(error);
         this.loadingBarService.complete();
-        //this.loading = false;
-      });*/
+      });
     
   }
 

@@ -493,8 +493,7 @@ export class AddPage {
       text: 'Aggiungi',
       handler: data => {
         console.log(data);
-        prod.setExistExtra(true);
-
+        
         let splitted = data.split('|'); 
         let eId     = splitted[0];
         let eTitle  = splitted[1];
@@ -511,10 +510,7 @@ export class AddPage {
 
         let pPriceService = Number.parseFloat(pPriceTotal) * 10 / 100;
 
-        //let pDescr          = '';
-
-        //let prodotto = new Prodotto(pId,pProdId,pTitle,pPrice,pExistExtra,pIsExtra,pHasExtra,pPriceTotal,pDescr,1,'');
-
+        //Prodotto EXTRA
         let prodotto = new Product(
           pId,
           pProdId,
@@ -532,9 +528,12 @@ export class AddPage {
           1
         );
 
+        prodotto.setExtraRif(prod.menuname);
         this.products.push(prodotto);
         this.totaleOrdine = Number.parseFloat(this.totaleOrdine) + Number.parseFloat(pPrice);
 
+        //Prodotto a cui stiamo aggiungengo l'extra
+        prod.setExistExtra(true);
         prod.setExtra(eTitle);
       }
     });
