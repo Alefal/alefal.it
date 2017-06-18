@@ -39,12 +39,12 @@ return [
             'prefix' => '',
         ],
 
-        /*** REMOTE 
+        /*** REMOTE ***/
         'mysql' => [
             'driver' => 'mysql',
             'host' => env('DB_HOST', '62.149.150.236'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'Sql879752_5'),
+            'database' => env('DB_DATABASE', 'Sql879752_1'),
             'username' => env('DB_USERNAME', 'Sql879752'),
             'password' => env('DB_PASSWORD', '3r22nw0etv'),
             'unix_socket' => env('DB_SOCKET', ''),
@@ -54,9 +54,8 @@ return [
             'strict' => true,
             'engine' => null,
         ],
-        ***/
 
-        /*** LOCALE ***/
+        /*** LOCALE
         'mysql' => [
             'driver' => 'mysql',
             'host' => env('DB_HOST', '127.0.0.1'),
@@ -71,7 +70,8 @@ return [
             'strict' => true,
             'engine' => null,
         ],
-        
+        ***/
+
         'pgsql' => [
             'driver' => 'pgsql',
             'host' => env('DB_HOST', '127.0.0.1'),

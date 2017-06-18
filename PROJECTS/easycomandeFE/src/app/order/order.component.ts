@@ -22,7 +22,7 @@ declare var jQuery: any;
 })
 export class OrderComponent implements OnInit {
 
-  placements: string[] = ['top']; //not work
+  placements: string[] = ['top','bottom']; //not work
   title: string = 'Sei sicuro?';
   message: string = 'Sei sicuro di voler eliminare il piatto selezionato ?';
   messageOrder: string = 'Sei sicuro di voler eliminare l\'ordine selezionato ?';

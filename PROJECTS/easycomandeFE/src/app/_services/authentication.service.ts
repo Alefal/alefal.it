@@ -9,7 +9,9 @@ export class AuthenticationService {
     constructor(private http: Http) { }
 
     login(username: string, password: string) {
-        let host    = 'http://localhost:8000';
+        //let host    = 'http://localhost:8000';        
+        let host    = 'http://www.amalficoastapps.it/easycomande/BE/public';
+
         let url     = '/jsondata/auth/'+username+'/'+password;
 
         return this.http.get(host + '' + url)
