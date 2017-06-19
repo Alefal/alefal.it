@@ -39,7 +39,7 @@ return [
             'prefix' => '',
         ],
 
-        /*** REMOTE ***/
+        /*** REMOTE 
         'mysql' => [
             'driver' => 'mysql',
             'host' => env('DB_HOST', '62.149.150.236'),
@@ -54,8 +54,9 @@ return [
             'strict' => true,
             'engine' => null,
         ],
+        ***/
 
-        /*** LOCALE
+        /*** LOCALE ***/
         'mysql' => [
             'driver' => 'mysql',
             'host' => env('DB_HOST', '127.0.0.1'),
@@ -70,7 +71,6 @@ return [
             'strict' => true,
             'engine' => null,
         ],
-        ***/
 
         'pgsql' => [
             'driver' => 'pgsql',

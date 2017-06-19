@@ -113,8 +113,8 @@ Route::get('/jsondata/item/change/state/{itemId}', function($itemId){
     return changeStateItem($itemId);
 });
 /*** Delete ITEM from APP / WEBAPP ***/
-Route::get('jsondata/item/delete/{itemId}', function($itemId){
-    return deleteItem($itemId);
+Route::get('jsondata/item/delete/{itemId}/{orderId}', function($itemId,$orderId){
+    return deleteItem($itemId,$orderId);
 });
 
 /*** Change state SPECIAL from APP / WEBAPP ***/
@@ -122,8 +122,8 @@ Route::get('/jsondata/special/change/state/{itemId}', function($itemId){
     return changeStateSpecial($itemId);
 });
 /*** Delete SPECIAL from APP / WEBAPP ***/
-Route::get('jsondata/special/delete/{specialId}', function($specialId){
-    return deleteSpecial($specialId);
+Route::get('jsondata/special/delete/{specialId}/{orderId}', function($specialId,$orderId){
+    return deleteSpecial($specialId,$orderId);
 });
 /*** Delete NOTE from APP / WEBAPP ***/
 Route::get('jsondata/note/delete/{noteId}', function($noteId){

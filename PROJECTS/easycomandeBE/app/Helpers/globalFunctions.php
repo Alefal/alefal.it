@@ -529,6 +529,9 @@ function saveOrder($request) {
         $json .='},';
     }
 
+    //Recalculate TOTAL ORDER
+    recalculateTotalOrder($lastInsertedOrderId);
+
     $json = rtrim($json,',');
     $json .= ']}';
 
@@ -626,7 +629,7 @@ function changeStateItem($itemId) {
 /* ---------------------------------------------------------------------------
  * Delete: ITEM
  * --------------------------------------------------------------------------- */
-function deleteItem($itemId) {
+function deleteItem($itemId,$orderId) {
     $json = '{ "results" : [';
 
     try{
@@ -644,6 +647,9 @@ function deleteItem($itemId) {
             $json .= '"message":"'.$e->getMessage().'"';
         $json .='},';
     }
+
+    //Recalculate TOTAL ORDER
+    recalculateTotalOrder($orderId);
 
     $json = rtrim($json,',');
     $json .= ']}';
@@ -685,7 +691,7 @@ function changeStateSpecial($itemId) {
 /* ---------------------------------------------------------------------------
  * Delete: SPECIAL
  * --------------------------------------------------------------------------- */
-function deleteSpecial($specialId) {
+function deleteSpecial($specialId,$orderId) {
     $json = '{ "results" : [';
 
     try{
@@ -703,6 +709,9 @@ function deleteSpecial($specialId) {
             $json .= '"message":"'.$e->getMessage().'"';
         $json .='},';
     }
+
+    //Recalculate TOTAL ORDER
+    recalculateTotalOrder($orderId);
 
     $json = rtrim($json,',');
     $json .= ']}';
@@ -738,4 +747,31 @@ function deleteNote($noteId) {
 
     return $json;
     
+}
+
+/* ---------------------------------------------------------------------------
+ * Recalculate TOTAL ORDER
+ * --------------------------------------------------------------------------- */
+function recalculateTotalOrder($orderId) {
+    $order      = Order::find($orderId);
+    $items      = Order::find($orderId)->items;
+    $specials   = Order::find($orderId)->specials;
+
+    $totalOrder = 0;
+
+    foreach ($items as $item) {
+        //print $item['total'].'<br />';
+        $totalOrder += $item['total'];
+    };
+
+    foreach ($specials as $item) {
+        //print $item['price'].'<br />';
+        $totalOrder += $item['price'];
+    };
+
+    $order->totalorder      = $totalOrder;
+    $order->totalservice    = $totalOrder * 10 / 100;
+
+    //Save ORDER
+    $order->save();
 }

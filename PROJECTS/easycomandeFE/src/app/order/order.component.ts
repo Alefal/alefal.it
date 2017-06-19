@@ -113,7 +113,7 @@ export class OrderComponent implements OnInit {
     console.log('deleteProduct: ' + productId);
 
     this.httpService
-      .getCallHttp('getOrderDeleteLineItem', '', '', productId, '')
+      .getCallHttp('getOrderDeleteLineItem', '', '', productId, orderId)
       .subscribe(res => {
         console.log('res: ' + JSON.stringify(res));
 
@@ -134,7 +134,7 @@ export class OrderComponent implements OnInit {
     console.log('deleteSpecial: ' + specialId);
 
     this.httpService
-      .getCallHttp('getOrderDeleteSpecial', '', '', specialId, '')
+      .getCallHttp('getOrderDeleteSpecial', '', '', specialId, orderId)
       .subscribe(res => {
         console.log('res: ' + JSON.stringify(res));
 

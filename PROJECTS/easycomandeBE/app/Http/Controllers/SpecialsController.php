@@ -71,7 +71,11 @@ class SpecialsController extends Controller
         $stateName  = State::find($item->state_id)->state;
         $item->statename    = $stateName;
 
+        //Save ITEM
         $item->save();
+
+        //Save ORDER
+        recalculateTotalOrder($request->order_id);
 
         //Special::create($request->all());
         return redirect()->route('specials.index')
@@ -132,7 +136,11 @@ class SpecialsController extends Controller
         $stateName  = State::find($item->state_id)->state;
         $item->statename    = $stateName;
 
+        //Save ITEM
         $item->save();
+        
+        //Save ORDER
+        recalculateTotalOrder($request->order_id);
 
         //Special::find($id)->update($request->all());
         return redirect()->route('specials.index')

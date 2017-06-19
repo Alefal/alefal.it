@@ -182,7 +182,7 @@ return [
         'Jasekz\Laradrop\LaradropServiceProvider',    
 
         //PDF
-        Barryvdh\DomPDF\ServiceProvider::class,
+        //Barryvdh\DomPDF\ServiceProvider::class,
 
     ],
 
@@ -237,7 +237,7 @@ return [
         'Html' => 'Collective\Html\HtmlFacade',
 
         //PDF
-        'PDF' => Barryvdh\DomPDF\Facade::class,
+        //'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],
 

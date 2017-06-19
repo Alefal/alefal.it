@@ -21,8 +21,8 @@ export class HttpService {
         console.log('getCallHttp: ' + call + ' | ' + username + ' | ' + password);
 
         //////////New BackEnd
-        //let host    = 'http://localhost:8000';
-        let host    = 'http://www.amalficoastapps.it/easycomande/BE/public';
+        let host    = 'http://localhost:8000';
+        //let host    = 'http://www.amalficoastapps.it/easycomande/BE/public';
         let url     = '';
 
         //LOGIN
@@ -57,14 +57,14 @@ export class HttpService {
             url = '/jsondata/item/change/state/'+id;
         }
         else if (call == 'getOrderDeleteLineItem') {
-            url = '/jsondata/item/delete/'+id;
+            url = '/jsondata/item/delete/'+id+'/'+object;
         }
 
         else if (call == 'getOrderChangeSpecialState') {
             url = '/jsondata/special/change/state/'+id;
         }
         else if (call == 'getOrderDeleteSpecial') {
-            url = '/jsondata/special/delete/'+id;
+            url = '/jsondata/special/delete/'+id+'/'+object;
         }
 
         //ORDER NOTES

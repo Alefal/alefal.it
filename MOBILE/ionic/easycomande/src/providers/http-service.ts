@@ -91,7 +91,7 @@ export class HttpService {
             url = '/jsondata/item/change/state/'+id;
         }
         else if (call == 'getOrderDeleteLineItem') {
-            url = '/jsondata/item/delete/'+id;
+            url = '/jsondata/item/delete/'+id+'/'+object;
             /*
             url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_delete_line_item.php';
             body.set('order',JSON.stringify(object));
@@ -102,7 +102,7 @@ export class HttpService {
             url = '/jsondata/special/change/state/'+id;
         }
         else if (call == 'getOrderDeleteSpecial') {
-            url = '/jsondata/special/delete/'+id;
+            url = '/jsondata/special/delete/'+id+'/'+object;
             /*
             console.log('%o', object);
             url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_delete_shipping.php';

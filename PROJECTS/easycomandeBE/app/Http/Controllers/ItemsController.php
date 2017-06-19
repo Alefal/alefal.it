@@ -85,7 +85,11 @@ class ItemsController extends Controller
         $item->menuname     = $menuName;
         $item->statename    = $stateName;
 
+        //Save ITEM
         $item->save();
+
+        //Save ORDER
+        recalculateTotalOrder($request->order_id);
 
         //Item::create($item);
         return redirect()->route('items.index')
@@ -160,7 +164,11 @@ class ItemsController extends Controller
         $item->menuname     = $menuName;
         $item->statename    = $stateName;
 
+        //Save ITEM
         $item->save();
+        
+        //Save ORDER
+        recalculateTotalOrder($request->order_id);
 
         //Item::find($id)->update($request->all());
         return redirect()->route('items.index')
