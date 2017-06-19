@@ -17,7 +17,7 @@
 <ion-content>
 
   <ion-segment *ngIf="categories?.length > 0">
-    <ion-segment-button *ngFor="let cat of categories  | orderBy:'id'" (click)="loadData(cat.name)" [class.active]="cat.name == categoryName">
+    <ion-segment-button *ngFor="let cat of categories  | orderBy:'id'" (click)="loadData(cat.name)" [class.active]="cat.name == categoryName" value="{{cat.name}}">
       {{cat.name}}
     </ion-segment-button>
   </ion-segment>

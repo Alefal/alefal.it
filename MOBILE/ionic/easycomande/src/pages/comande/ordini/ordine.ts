@@ -34,18 +34,18 @@ export class OrdinePage {
     private platform: Platform,
     public viewCtrl: ViewController,
     public modalCtrl: ModalController
-  ) {
-    platform.registerBackButtonAction(() => {
+  ) {}
+
+  ionViewDidLoad() {
+    console.log("ionViewDidLoad ORDINE");
+
+    this.platform.registerBackButtonAction(() => {
       console.log("Back button action called");
     }, 1);
 
-    this.ordineId = params.get('ordineId');
+    this.ordineId = this.params.get('ordineId');
     console.log('%o', this.ordineId);
     this.loadOrder(this.ordineId);
-  }
-
-  ionViewDidLoad() {
-    console.log("ionViewDidLoad");
   }
 
   loadOrder(orderId) {

@@ -72,10 +72,14 @@ export class AddPage {
     public alertCtrl: AlertController,
   ) { 
     console.log('constructor Add');
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad ADD');
 
     //Order edit: go from ordinePage
-    if(params.get('ordine')) {
-      this.ordine = params.get('ordine');
+    if(this.params.get('ordine')) {
+      this.ordine = this.params.get('ordine');
       console.log('%o',this.ordine);
       //console.log(this.ordine.shipping_lines.total);
 
@@ -94,10 +98,6 @@ export class AddPage {
     }
     //this.loadCategories();
     //this.loadData(this.categoriaNome);
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad Add');
   }
 
   loadCategories() {

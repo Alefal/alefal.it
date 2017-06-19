@@ -30,8 +30,12 @@ export class MenuPage {
     public loadingCtrl: LoadingController,
     public modalCtrl: ModalController,
     public connectivityService: ConnectivityService
-  ) { 
-    this.categoryName = params.get('categoriaNome');
+  ) { }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad MENU');
+
+    this.categoryName = this.params.get('categoriaNome');
 
     //Dati NON presenti in memoria: li recupero dal server
     //console.log('localStorage -> '+localStorage.getItem('categories').length);
@@ -52,10 +56,6 @@ export class MenuPage {
     }
     //this.loadCategories();
     //this.loadData(this.categoriaNome);
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad Menu');
   }
 
   loadCategories() {

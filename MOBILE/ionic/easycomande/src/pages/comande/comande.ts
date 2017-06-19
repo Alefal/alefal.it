@@ -47,8 +47,7 @@ export class ComandePage {
   ) {}
 
   ionViewDidLoad() {
-    console.log("ionViewDidLoad");
-
+    console.log("ionViewDidLoad COMANDE");
 
     if(this.connectivityService.connectivityFound) {
       this.loadData('');

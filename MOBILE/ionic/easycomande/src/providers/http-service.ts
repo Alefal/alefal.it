@@ -38,7 +38,7 @@ export class HttpService {
         //let headers = new Headers({ 'Content-Type': 'application/json' });
         
         //let options = new RequestOptions({ headers: headers });
-        let body    = new URLSearchParams();
+        //let body    = new URLSearchParams();
 
         //LOGIN: NON USATA
         if (call == 'authentication') {
@@ -118,12 +118,14 @@ export class HttpService {
             //body.set('id',id);
         }
         //NON USATO
+        /*
         else if (call == 'getOrderNoteSave') {
             //url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_note_save.php?id=' + id + '&orderNotes=' + JSON.stringify(object);
             url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_note_save.php';
             body.set('id',id);
             body.set('orderNotes',JSON.stringify(object));
         }
+        */
         else if (call == 'getOrderNoteDelete') {
             url = '/jsondata/note/delete/'+id+'/'+object;
             //url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_note_delete.php?id=' + id;

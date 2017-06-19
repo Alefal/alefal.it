@@ -27,13 +27,12 @@ export class ProdottiModal {
     private viewCtrl: ViewController,
     public toastCtrl: ToastController,
     public popoverCtrl: PopoverController
-  ) { 
-    this.categoryName = params.get('categoryName');
-    this.loadData(this.categoryName);
-  }
+  ) { }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ProdottiModal');
+    console.log('ionViewDidLoad PRODOTTI MODAL');
+    this.categoryName = this.params.get('categoryName');
+    this.loadData(this.categoryName);
   }
 
   loadData(categoriaNome) {
