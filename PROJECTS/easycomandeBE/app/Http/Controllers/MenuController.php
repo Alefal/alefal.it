@@ -59,7 +59,15 @@ class MenuController extends Controller
             'category_id' => 'required'
         ]);
 
-        Menu::create($request->all());
+        $menu           = Menu::create($request->all());
+        $category_id    = $menu->category_id;
+
+        /*
+        $category = Category::find($category_id);
+        $category->count = $category->count + 1;
+        $category->save;
+        */
+
         return redirect()->route('menu.index')
                         ->with('success','Item created successfully');
     }

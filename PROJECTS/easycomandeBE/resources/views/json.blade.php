@@ -23,6 +23,19 @@
                         </thead>
                         <tbody>
                             <tr>
+                                <td>auth</td>
+                                <td>
+                                    <i class="fa fa-code fa-lg" aria-hidden="true"></i> jsondata/auth/{email}/{password}
+                                </td>
+                                <td align="right">
+                                    <div class="btn-group">
+                                        <a class="btn btn-default btn-xs" target="_blank" href="jsondata/auth/alefal@hotmail.it/Abc123def">
+                                            <i class="fa fa-eye fa-1x fa-lg" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
                                 <td>categories</td>
                                 <td>
                                     <i class="fa fa-code fa-lg" aria-hidden="true"></i> jsondata/categories
@@ -150,6 +163,35 @@
                                     </div>
                                 </td>
                             </tr>
+
+                            <tr>
+                                <td>OTHERS</td>
+                                <td> 
+                                    <i class="fa fa-code fa-lg" aria-hidden="true"></i> jsondata/notifications
+                                    <br />
+                                    <i class="fa fa-code fa-lg" aria-hidden="true"></i> jsondata/notifications/check/{orderId}
+                                    <br />
+                                    <i class="fa fa-code fa-lg" aria-hidden="true"></i> jsondata/order/save/{request}
+                                    <br />
+                                    <i class="fa fa-code fa-lg" aria-hidden="true"></i> jsondata/order/change/state/{itemId}
+                                    <br />
+                                    <i class="fa fa-code fa-lg" aria-hidden="true"></i> jsondata/order/delete/{orderId}
+                                    <br />
+                                    <i class="fa fa-code fa-lg" aria-hidden="true"></i> jsondata/item/change/state/{itemId}/{orderId}
+                                    <br />
+                                    <i class="fa fa-code fa-lg" aria-hidden="true"></i> jsondata/item/delete/{itemId}/{orderId}
+                                    <br />
+                                    <i class="fa fa-code fa-lg" aria-hidden="true"></i> jsondata/special/change/state/{itemId}/{orderId}
+                                    <br />
+                                    <i class="fa fa-code fa-lg" aria-hidden="true"></i> jsondata/special/delete/{specialId}/{orderId}
+                                    <br />
+                                    <i class="fa fa-code fa-lg" aria-hidden="true"></i> jsondata/note/delete/{noteId}/{orderId}
+                                    <br />
+                                    <i class="fa fa-code fa-lg" aria-hidden="true"></i> jsondata/order/print/{orderId}
+                                </td>
+                                <td align="right"></td>
+                            </tr>
+
                         </tbody>
                     </table>
                 </div>

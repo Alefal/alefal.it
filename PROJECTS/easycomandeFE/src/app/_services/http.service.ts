@@ -21,8 +21,8 @@ export class HttpService {
         //console.log('getCallHttp: ' + call + ' | ' + username + ' | ' + password);
 
         //////////New BackEnd
-        let host    = 'http://localhost:8000';
-        //let host    = 'http://www.amalficoastapps.it/easycomande/BE/public';
+        //let host    = 'http://localhost:8000';
+        let host    = 'http://www.amalficoastapps.it/easycomande/BE/public';
         let url     = '';
 
         //LOGIN

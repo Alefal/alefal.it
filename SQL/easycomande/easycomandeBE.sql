@@ -11,16 +11,12 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- Schema easycomandeBE
 -- -----------------------------------------------------
 
--- -----------------------------------------------------
--- Schema easycomandeBE
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `easycomandeBE` DEFAULT CHARACTER SET utf8 ;
-USE `easycomandeBE` ;
+
 
 -- -----------------------------------------------------
--- Table `easycomandeBE`.`categories`
+-- Table `categories`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `easycomandeBE`.`categories` (
+CREATE TABLE IF NOT EXISTS `categories` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `description` VARCHAR(500) NULL,
@@ -33,9 +29,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `easycomandeBE`.`menu`
+-- Table `menu`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `easycomandeBE`.`menu` (
+CREATE TABLE IF NOT EXISTS `menu` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `description` VARCHAR(500) NULL,
@@ -48,16 +44,16 @@ CREATE TABLE IF NOT EXISTS `easycomandeBE`.`menu` (
   INDEX `fk_menu_categories_idx` (`category_id` ASC),
   CONSTRAINT `fk_menu_categories`
     FOREIGN KEY (`category_id`)
-    REFERENCES `easycomandeBE`.`categories` (`id`)
+    REFERENCES `categories` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `easycomandeBE`.`state`
+-- Table `state`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `easycomandeBE`.`state` (
+CREATE TABLE IF NOT EXISTS `state` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `state` VARCHAR(45) NOT NULL,
   `created_at` DATETIME NOT NULL,
@@ -67,9 +63,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `easycomandeBE`.`orders`
+-- Table `orders`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `easycomandeBE`.`orders` (
+CREATE TABLE IF NOT EXISTS `orders` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `date` DATETIME NOT NULL,
   `client` VARCHAR(200) NOT NULL,
@@ -82,16 +78,16 @@ CREATE TABLE IF NOT EXISTS `easycomandeBE`.`orders` (
   INDEX `fk_orders_state1_idx` (`state_id` ASC),
   CONSTRAINT `fk_orders_state1`
     FOREIGN KEY (`state_id`)
-    REFERENCES `easycomandeBE`.`state` (`id`)
+    REFERENCES `state` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `easycomandeBE`.`items`
+-- Table `items`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `easycomandeBE`.`items` (
+CREATE TABLE IF NOT EXISTS `items` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `quantity` INT NOT NULL DEFAULT 1,
   `total` DOUBLE NOT NULL DEFAULT 0,
@@ -110,26 +106,26 @@ CREATE TABLE IF NOT EXISTS `easycomandeBE`.`items` (
   INDEX `fk_items_state1_idx` (`state_id` ASC),
   CONSTRAINT `fk_items_menu1`
     FOREIGN KEY (`menu_id`)
-    REFERENCES `easycomandeBE`.`menu` (`id`)
+    REFERENCES `menu` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_items_orders1`
     FOREIGN KEY (`order_id`)
-    REFERENCES `easycomandeBE`.`orders` (`id`)
+    REFERENCES `orders` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `fk_items_state1`
     FOREIGN KEY (`state_id`)
-    REFERENCES `easycomandeBE`.`state` (`id`)
+    REFERENCES `state` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `easycomandeBE`.`notes`
+-- Table `notes`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `easycomandeBE`.`notes` (
+CREATE TABLE IF NOT EXISTS `notes` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `note` VARCHAR(500) NOT NULL,
   `order_id` INT NOT NULL,
@@ -139,16 +135,16 @@ CREATE TABLE IF NOT EXISTS `easycomandeBE`.`notes` (
   INDEX `fk_notes_orders1_idx` (`order_id` ASC),
   CONSTRAINT `fk_notes_orders1`
     FOREIGN KEY (`order_id`)
-    REFERENCES `easycomandeBE`.`orders` (`id`)
+    REFERENCES `orders` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `easycomandeBE`.`specials`
+-- Table `specials`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `easycomandeBE`.`specials` (
+CREATE TABLE IF NOT EXISTS `specials` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `special` VARCHAR(45) NOT NULL,
   `price` DOUBLE NOT NULL DEFAULT 0,
@@ -163,21 +159,21 @@ CREATE TABLE IF NOT EXISTS `easycomandeBE`.`specials` (
   INDEX `fk_specials_state1_idx` (`state_id` ASC),
   CONSTRAINT `fk_specials_orders1`
     FOREIGN KEY (`order_id`)
-    REFERENCES `easycomandeBE`.`orders` (`id`)
+    REFERENCES `orders` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `fk_specials_state1`
     FOREIGN KEY (`state_id`)
-    REFERENCES `easycomandeBE`.`state` (`id`)
+    REFERENCES `state` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `easycomandeBE`.`extra`
+-- Table `extra`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `easycomandeBE`.`extra` (
+CREATE TABLE IF NOT EXISTS `extra` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `description` VARCHAR(500) NULL,
@@ -191,9 +187,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `easycomandeBE`.`users`
+-- Table `users`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `easycomandeBE`.`users` (
+CREATE TABLE IF NOT EXISTS `users` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(255) NOT NULL,
   `password` VARCHAR(255) NOT NULL,
@@ -206,9 +202,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `easycomandeBE`.`notifications`
+-- Table `notifications`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `easycomandeBE`.`notifications` (
+CREATE TABLE IF NOT EXISTS `notifications` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `client` VARCHAR(255) NOT NULL,
   `message` VARCHAR(500) NOT NULL,
@@ -221,7 +217,7 @@ CREATE TABLE IF NOT EXISTS `easycomandeBE`.`notifications` (
   INDEX `fk_notes_orders1_idx` (`order_id` ASC),
   CONSTRAINT `fk_notes_orders10`
     FOREIGN KEY (`order_id`)
-    REFERENCES `easycomandeBE`.`orders` (`id`)
+    REFERENCES `orders` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;

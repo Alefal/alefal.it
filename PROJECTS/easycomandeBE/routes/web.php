@@ -109,7 +109,7 @@ Route::get('jsondata/order/save/{request}', function($request){
     return saveOrder($request);
 });
 /*** Change state ORDER from APP / WEBAPP ***/
-Route::get('/jsondata/order/change/state/{itemId}', function($itemId){
+Route::get('jsondata/order/change/state/{itemId}', function($itemId){
     return changeStateOrder($itemId);
 });
 /*** Delete ORDER from APP / WEBAPP ***/
@@ -118,7 +118,7 @@ Route::get('jsondata/order/delete/{orderId}', function($orderId){
 });
 
 /*** Change state ITEM from APP / WEBAPP ***/
-Route::get('/jsondata/item/change/state/{itemId}/{orderId}', function($itemId,$orderId){
+Route::get('jsondata/item/change/state/{itemId}/{orderId}', function($itemId,$orderId){
     return changeStateItem($itemId,$orderId);
 });
 /*** Delete ITEM from APP / WEBAPP ***/
@@ -127,7 +127,7 @@ Route::get('jsondata/item/delete/{itemId}/{orderId}', function($itemId,$orderId)
 });
 
 /*** Change state SPECIAL from APP / WEBAPP ***/
-Route::get('/jsondata/special/change/state/{itemId}/{orderId}', function($itemId,$orderId){
+Route::get('jsondata/special/change/state/{itemId}/{orderId}', function($itemId,$orderId){
     return changeStateSpecial($itemId,$orderId);
 });
 /*** Delete SPECIAL from APP / WEBAPP ***/

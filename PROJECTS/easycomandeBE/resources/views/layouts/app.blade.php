@@ -71,16 +71,6 @@
                         </div>
                     </li>
 
-                    <!-- Users -->
-                    <li class="dropdown">
-                        <a href="{{ url('/filegator') }}">
-                            <div class="icon">
-                                <i class="fa fa-upload" aria-hidden="true"></i>
-                            </div>
-                            <div class="title">File Manager</div>
-                        </a>
-                    </li>
-
                     <!-- JSON -->
                     <li class="dropdown">
                         <a href="{{ url('/json') }}">
