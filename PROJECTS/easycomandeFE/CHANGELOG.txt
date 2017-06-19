@@ -1,4 +1,4 @@
 TODO:
-- authentication
+OK -> authentication
 OK -> print order
 OK -> change ORDER state

@@ -32,6 +32,7 @@ Route::resource('notes','NotesController');
 Route::resource('extra','ExtraController');
 Route::resource('state','StateController');
 Route::resource('users','UsersController');
+Route::resource('notifications','NotificationsController');
 
 //JSON response
 Route::get('/json', function () {
@@ -47,6 +48,7 @@ use App\Note;
 use App\Extra;
 use App\State;
 use App\User;
+use App\Notification;
 
 use Illuminate\Http\Request;
 
@@ -89,6 +91,9 @@ Route::get('jsondata/extra', function(){
 Route::get('jsondata/state', function(){
     return manipulateJsonResponseState(State::all());
 });
+Route::get('jsondata/notifications', function(){
+    return manipulateJsonResponseNotifications(Notification::all());
+});
 Route::get('jsondata/users', function(){
     return response()->json([
         'results'=>User::all()
@@ -109,8 +114,8 @@ Route::get('jsondata/order/delete/{orderId}', function($orderId){
 });
 
 /*** Change state ITEM from APP / WEBAPP ***/
-Route::get('/jsondata/item/change/state/{itemId}', function($itemId){
-    return changeStateItem($itemId);
+Route::get('/jsondata/item/change/state/{itemId}/{orderId}', function($itemId,$orderId){
+    return changeStateItem($itemId,$orderId);
 });
 /*** Delete ITEM from APP / WEBAPP ***/
 Route::get('jsondata/item/delete/{itemId}/{orderId}', function($itemId,$orderId){
@@ -118,16 +123,16 @@ Route::get('jsondata/item/delete/{itemId}/{orderId}', function($itemId,$orderId)
 });
 
 /*** Change state SPECIAL from APP / WEBAPP ***/
-Route::get('/jsondata/special/change/state/{itemId}', function($itemId){
-    return changeStateSpecial($itemId);
+Route::get('/jsondata/special/change/state/{itemId}/{orderId}', function($itemId,$orderId){
+    return changeStateSpecial($itemId,$orderId);
 });
 /*** Delete SPECIAL from APP / WEBAPP ***/
 Route::get('jsondata/special/delete/{specialId}/{orderId}', function($specialId,$orderId){
     return deleteSpecial($specialId,$orderId);
 });
 /*** Delete NOTE from APP / WEBAPP ***/
-Route::get('jsondata/note/delete/{noteId}', function($noteId){
-    return deleteNote($noteId);
+Route::get('jsondata/note/delete/{noteId}/{orderId}', function($noteId,$orderId){
+    return deleteNote($noteId,$orderId);
 });
 
 //Stampa il PDF: non funziona se la chiamata arriva da app

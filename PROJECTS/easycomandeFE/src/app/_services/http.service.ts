@@ -18,7 +18,7 @@ export class HttpService {
     https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en
     */
     getCallHttp(call, username, password, id, object) {
-        console.log('getCallHttp: ' + call + ' | ' + username + ' | ' + password);
+        //console.log('getCallHttp: ' + call + ' | ' + username + ' | ' + password);
 
         //////////New BackEnd
         let host    = 'http://localhost:8000';
@@ -54,14 +54,14 @@ export class HttpService {
             url = '/jsondata/order/delete/'+id;
         }
         else if (call == 'getOrderChangeLineItemState') {
-            url = '/jsondata/item/change/state/'+id;
+            url = '/jsondata/item/change/state/'+id+'/'+object;
         }
         else if (call == 'getOrderDeleteLineItem') {
             url = '/jsondata/item/delete/'+id+'/'+object;
         }
 
         else if (call == 'getOrderChangeSpecialState') {
-            url = '/jsondata/special/change/state/'+id;
+            url = '/jsondata/special/change/state/'+id+'/'+object;
         }
         else if (call == 'getOrderDeleteSpecial') {
             url = '/jsondata/special/delete/'+id+'/'+object;
@@ -77,10 +77,15 @@ export class HttpService {
         else if (call == 'getOrderNoteSave') {
         }
         else if (call == 'getOrderNoteDelete') {
-            url = '/jsondata/note/delete/'+id;
+            url = '/jsondata/note/delete/'+id+'/'+object;
         }
 
-        console.log('URL: ' + host + '' + url);
+        //NOTIFICATIONS: only FE
+        else if (call == 'getNotifications') {
+            url = '/jsondata/notifications';
+        }
+
+        //console.log('URL: ' + host + '' + url);
 
         return this.http.get(host + '' + url)
                     .map(this.extractData)

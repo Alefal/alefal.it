@@ -66,6 +66,7 @@
                                 <li><a href="{{ url('/extra') }}">Extra</a></li>
                                 <li><a href="{{ url('/state') }}">States</a></li>
                                 <li><a href="{{ url('/users') }}">Users</a></li>
+                                <li><a href="{{ url('/notifications') }}">Notifications</a></li>
                             </ul>
                         </div>
                     </li>

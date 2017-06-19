@@ -73,7 +73,7 @@ export class MenuPage {
           this.categories = res.results;
           localStorage.setItem('categories', JSON.stringify(this.categories));
 
-          this.loadData(res[0].output[0].name);
+          this.loadData(res.results[0].name);
         //} else {
         //  this.nothing = 'Nessun dato! Riprovare più tardi.';
         //}

@@ -66,7 +66,7 @@
         </div>
         <div class="sidebar-footer">
             <div class="appVersion">
-                <span class="badge badge-danger">Version 1.0.8</span>
+                <span class="badge badge-danger">Version 2.0.0</span>
             </div>
         </div>
     </aside>
@@ -117,12 +117,11 @@
                                     <li class="dropdown-header">Ordinazioni</li>
                                     <li class="dropdown-empty" *ngIf="orderPendingLength == 0">No New Ordered</li>
                                     <li *ngFor="let order of orders">
-                                        <div *ngIf="order.status == 'pending'" (click)="orderDetail(order)" class="dropdownContent">
-                                            <span class="badge badge-warning pull-right">{{order.total}}</span>
+                                        <div *ngIf="order.state == 'pending'" (click)="orderDetail(order.id)" class="dropdownContent">
+                                            <span class="badge badge-warning pull-right">{{order.totalorder}}</span>
                                             <div class="message">
                                                 <div class="content">
-                                                <div class="title">{{order.note}}</div>
-                                                <div class="description">Alan Anderson</div>
+                                                    <div class="title">{{order.client}}</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -144,12 +143,11 @@
                                     <li class="dropdown-header">Completate</li>
                                     <li class="dropdown-empty" *ngIf="orderSuccessLength == 0">No New Ordered</li>
                                     <li *ngFor="let order of orders">
-                                        <div *ngIf="order.status == 'completed'" (click)="orderDetail(order)" class="dropdownContent">
-                                            <span class="badge badge-success pull-right">{{order.total}}</span>
+                                        <div *ngIf="order.state == 'completed'" (click)="orderDetail(order.id)" class="dropdownContent">
+                                            <span class="badge badge-success pull-right">{{order.totalorder}}</span>
                                             <div class="message">
                                                 <div class="content">
-                                                <div class="title">{{order.note}}</div>
-                                                <div class="description">Alan Anderson</div>
+                                                    <div class="title">{{order.client}}</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -163,37 +161,22 @@
                         <li class="dropdown notification danger">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <div class="icon"><i class="fa fa-bell" aria-hidden="true"></i></div>
-                                <div class="title">System Notifications</div>
-                                <div class="count">10</div>
+                                <div class="title">Notifications</div>
+                                <div class="count">{{notificationsCount}}</div>
                             </a>
                             <div class="dropdown-menu">
                                 <ul>
                                     <li class="dropdown-header">Notification</li>
-                                    <li>
-                                        <a href="#">
-                                            <span class="badge badge-danger pull-right">8</span>
+                                    <li *ngFor="let not of notifications">
+                                        <a (click)="orderDetail(not.order_id)">
+                                            <span class="badge badge-danger pull-right">{{not.state}}</span>
                                             <div class="message">
                                                 <div class="content">
-                                                <div class="title">New Order</div>
-                                                <div class="description">$400 total</div>
+                                                    <div class="title">{{not.client}}</div>
+                                                    <div class="description">{{not.message}}</div>
                                                 </div>
                                             </div>
                                         </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <span class="badge badge-danger pull-right">14</span>
-                                            Inbox
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <span class="badge badge-danger pull-right">5</span>
-                                            Issues Report
-                                        </a>
-                                    </li>
-                                    <li class="dropdown-footer">
-                                        <a href="#">View All <i class="fa fa-angle-right" aria-hidden="true"></i></a>
                                     </li>
                                 </ul>
                             </div>
@@ -210,7 +193,9 @@
                                 <ul class="action">
                                     <li>
                                         <a [routerLink]="['/home']">
+                                            <!--
                                             <span class="badge badge-danger pull-right">5</span>
+                                            -->
                                             Ordini
                                         </a>
                                     </li>

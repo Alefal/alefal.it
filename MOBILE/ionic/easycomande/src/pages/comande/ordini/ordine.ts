@@ -104,7 +104,7 @@ export class OrdinePage {
     this.loading.present();
 
     this.httpService
-      .getCallHttp('getOrderChangeLineItemState', '', '', prodId, '')
+      .getCallHttp('getOrderChangeLineItemState', '', '', prodId, orderId)
       .subscribe(res => {
         //console.log('res: '+JSON.stringify(res));
 
@@ -130,7 +130,7 @@ export class OrdinePage {
     this.loading.present();
 
     this.httpService
-      .getCallHttp('getOrderChangeSpecialState', '', '', specialId, '')
+      .getCallHttp('getOrderChangeSpecialState', '', '', specialId, orderId)
       .subscribe(res => {
         //console.log('res: '+JSON.stringify(res));
 
@@ -424,7 +424,7 @@ export class OrdinePage {
             this.loading.present();
 
             this.httpService
-              .getCallHttp('getOrderNoteDelete', '', '', noteId, '')
+              .getCallHttp('getOrderNoteDelete', '', '', noteId, orderId)
               .subscribe(res => {
                 console.log('res: ' + JSON.stringify(res));
 

@@ -38,15 +38,15 @@ export class HomeComponent implements OnInit {
         }
       });
 
-    this.loadData('');
+      this.loadData();
+      setInterval(this.loadData.bind(this), 60000)
   }
 
-  ionViewDidLoad() {
-    console.log("ionViewDidLoad");
-    this.loadData('');
-  }
+  ionViewDidLoad() {}
 
-  loadData(orderIdSave) {
+  loadData() {
+    console.log('loadData');
+
     this.httpService
       .getCallHttp('getOrders','','',0,'')
       .subscribe(res => {

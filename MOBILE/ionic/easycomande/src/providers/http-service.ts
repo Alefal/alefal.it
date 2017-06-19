@@ -29,8 +29,8 @@ export class HttpService {
         //let host = 'http://www.amalficoastapps.it/demo/easycomande';
 
         //New BackEnd
-        //let host = 'http://localhost:8000';
-        let host    = 'http://www.amalficoastapps.it/easycomande/BE/public';
+        let host = 'http://localhost:8000';
+        //let host    = 'http://www.amalficoastapps.it/easycomande/BE/public';
 
         let url     = '';
         //let headers = new Headers({ 'Content-Type': 'text/html; charset=UTF-8' });
@@ -88,7 +88,7 @@ export class HttpService {
             url = '/jsondata/order/print/'+id;                
         }
         else if (call == 'getOrderChangeLineItemState') {
-            url = '/jsondata/item/change/state/'+id;
+            url = '/jsondata/item/change/state/'+id+'/'+object;
         }
         else if (call == 'getOrderDeleteLineItem') {
             url = '/jsondata/item/delete/'+id+'/'+object;
@@ -99,7 +99,7 @@ export class HttpService {
         }
 
         else if (call == 'getOrderChangeSpecialState') {
-            url = '/jsondata/special/change/state/'+id;
+            url = '/jsondata/special/change/state/'+id+'/'+object;
         }
         else if (call == 'getOrderDeleteSpecial') {
             url = '/jsondata/special/delete/'+id+'/'+object;
@@ -125,7 +125,7 @@ export class HttpService {
             body.set('orderNotes',JSON.stringify(object));
         }
         else if (call == 'getOrderNoteDelete') {
-            url = '/jsondata/note/delete/'+id;
+            url = '/jsondata/note/delete/'+id+'/'+object;
             //url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_note_delete.php?id=' + id;
         }
 
