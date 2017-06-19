@@ -9,13 +9,13 @@ import { OrderComponent }       from './order/order.component';
 import { MenuComponent }        from './menu/menu.component';
 
 const appRoutes: Routes = [
-    { path: '',                 component: LoginComponent },
-    { path: 'login',            component: LoginComponent },
-    { path: 'home',             component: HomeComponent, canActivate: [AuthGuard] },
-    { path: 'add',              component: AddComponent, canActivate: [AuthGuard] },
-    { path: 'add/:order',       component: AddComponent, canActivate: [AuthGuard] },
-    { path: 'menu',             component: MenuComponent, canActivate: [AuthGuard] },
-    { path: 'ordine/:order',    component: OrderComponent },
+    { path: '',                                 component: LoginComponent },
+    { path: 'login',                            component: LoginComponent },
+    { path: 'home',                             component: HomeComponent, canActivate: [AuthGuard] },
+    { path: 'add',                              component: AddComponent, canActivate: [AuthGuard] },
+    { path: 'add/:order',                       component: AddComponent, canActivate: [AuthGuard] },
+    { path: 'menu',                             component: MenuComponent, canActivate: [AuthGuard] },
+    { path: 'ordine/:order/:check',             component: OrderComponent },
 
     // otherwise redirect to home
     { path: '**', redirectTo: '' }

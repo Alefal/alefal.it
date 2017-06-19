@@ -60,6 +60,12 @@ export class OrderComponent implements OnInit {
           let ordineId = params['order'];
           this.loadOrder(ordineId);
           //this.getNote(ordine.id);
+
+          if (params['check'] && params['check'] == 'checkNotification') {
+            let ordineId = params['order'];
+            this.checkNotification(ordineId);
+            //this.getNote(ordine.id);
+          }
         }
       });
   }
@@ -75,6 +81,20 @@ export class OrderComponent implements OnInit {
         //} else {
         //  this.alertService.error('Nessun dato! Riprovare più tardi.');
         //}
+        this.loadingBarService.complete();
+      },
+      error => {
+        this.alertService.error('ORDINI: Dati non disponibili! Si è verificato un errore.');
+        this.loadingBarService.complete();
+      });
+  }
+
+  checkNotification(orderId) {
+    this.httpService
+      .getCallHttp('checkNotification','','',orderId,'')
+      .subscribe(res => {
+        //console.log('res: '+JSON.stringify(res));
+
         this.loadingBarService.complete();
       },
       error => {

@@ -84,6 +84,9 @@ export class HttpService {
         else if (call == 'getNotifications') {
             url = '/jsondata/notifications';
         }
+        else if (call == 'checkNotification') {
+            url = '/jsondata/notifications/check/'+id;
+        }
 
         //console.log('URL: ' + host + '' + url);
 

@@ -406,10 +406,40 @@ function manipulateJsonResponseNotifications($jsonData) {
         $json .= '"id":"'.$notifications[$i]['id'].'",';
         $json .= '"client":"'.$notifications[$i]['client'].'",';
         $json .= '"message":"'.$notifications[$i]['message'].'",';
+        $json .= '"read":"'.$notifications[$i]['read'].'",';
         $json .= '"state":"'.$notifications[$i]['state'].'",';
         $json .= '"order_id":"'.$notifications[$i]['order_id'].'"';
         $json .='},';
     }
+    $json = rtrim($json,',');
+    $json .= ']}';
+
+    return $json;
+}
+
+/* ---------------------------------------------------------------------------
+ * Check NOTIFICATIONS
+ * --------------------------------------------------------------------------- */
+function manipulateJsonResponseNotificationsCheck($orderId) {
+    $json = '{ "results" : [';
+
+    try{
+        $notification = Notification::where('order_id', '=', $orderId)->first();
+        $notification->read = 1;
+        $notification->save();
+        $json .= '{';
+            $json .= '"operation":"success",';
+            $json .= '"message":"'.$orderId.'"';
+        $json .='},';
+
+    }
+    catch(Exception $e){
+        $json .= '{';
+            $json .= '"operation":"error",';
+            $json .= '"message":"'.$e->getMessage().'"';
+        $json .='},';
+    }
+
     $json = rtrim($json,',');
     $json .= ']}';
 
@@ -565,9 +595,15 @@ function saveOrder($request) {
         $notification->state    = 'new'; //new | update | delete | change
     } else {
         $notification = Notification::where('order_id', '=', $lastInsertedOrderId)->first();
+        if($notification == '') {
+            $notification = new Notification();
+            $notification->client  = 'Client';
+            $notification->order_id  = $lastInsertedOrderId;
+        }
         $notification->message  = 'Ordinazione aggiornata';
         $notification->state    = 'update'; //new | update | delete | change
     }
+    $notification->read    = 0;
     $notification->save();
 
     $json = rtrim($json,',');
@@ -600,8 +636,14 @@ function changeStateOrder($orderId) {
     }
 
     $notification = Notification::where('order_id', '=', $orderId)->first();
+    if($notification == '') {
+        $notification = new Notification();
+        $notification->client  = 'Client';
+        $notification->order_id  = $orderId;
+    }
     $notification->message  = 'Ordinazione: stato modificato';
     $notification->state    = 'change'; //new | update | delete | change
+    $notification->read     = 0;
     $notification->save();
 
     $json = rtrim($json,',');
@@ -664,8 +706,14 @@ function changeStateItem($itemId,$orderId) {
     }
 
     $notification = Notification::where('order_id', '=', $orderId)->first();
+    if($notification == '') {
+        $notification = new Notification();
+        $notification->client  = 'Client';
+        $notification->order_id  = $orderId;
+    }
     $notification->message  = 'Ordinazione: stato piatto cambiato';
     $notification->state    = 'change'; //new | update | delete | change
+    $notification->read     = 0;
     $notification->save();
 
     $json = rtrim($json,',');
@@ -700,8 +748,14 @@ function deleteItem($itemId,$orderId) {
     recalculateTotalOrder($orderId);
 
     $notification = Notification::where('order_id', '=', $orderId)->first();
+    if($notification == '') {
+        $notification = new Notification();
+        $notification->client  = 'Client';
+        $notification->order_id  = $orderId;
+    }
     $notification->message  = 'Ordinazione: prodotto eliminato';
     $notification->state    = 'delete'; //new | update | delete | change
+    $notification->read     = 0;
     $notification->save();
 
     $json = rtrim($json,',');
@@ -736,8 +790,14 @@ function changeStateSpecial($itemId,$orderId) {
     }
 
     $notification = Notification::where('order_id', '=', $orderId)->first();
+    if($notification == '') {
+        $notification = new Notification();
+        $notification->client  = 'Client';
+        $notification->order_id  = $orderId;
+    }
     $notification->message  = 'Ordinazione: stato speciale cambiato';
     $notification->state    = 'change'; //new | update | delete | change
+    $notification->read     = 0;
     $notification->save();
 
     $json = rtrim($json,',');
@@ -772,8 +832,14 @@ function deleteSpecial($specialId,$orderId) {
     recalculateTotalOrder($orderId);
 
     $notification = Notification::where('order_id', '=', $orderId)->first();
+    if($notification == '') {
+        $notification = new Notification();
+        $notification->client  = 'Client';
+        $notification->order_id  = $orderId;
+    }
     $notification->message  = 'Ordinazione: speciale eliminato';
     $notification->state    = 'delete'; //new | update | delete | change
+    $notification->read     = 0;
     $notification->save();
 
     $json = rtrim($json,',');
@@ -806,8 +872,14 @@ function deleteNote($noteId,$orderId) {
     }
 
     $notification = Notification::where('order_id', '=', $orderId)->first();
+    if($notification == '') {
+        $notification = new Notification();
+        $notification->client  = 'Client';
+        $notification->order_id  = $orderId;
+    }
     $notification->message  = 'Ordinazione: nota eliminata';
     $notification->state    = 'delete'; //new | update | delete | change
+    $notification->read     = 0;
     $notification->save();
 
     $json = rtrim($json,',');

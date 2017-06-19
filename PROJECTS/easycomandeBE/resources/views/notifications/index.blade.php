@@ -31,6 +31,7 @@
                                 <th>Client</th>
                                 <th>Message</th>
                                 <th>State</th>
+                                <th>Read</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -41,6 +42,7 @@
                                 <td>{{ $item->client }}</td>
                                 <td>{{ $item->message }}</td>
                                 <td>{{ $item->state }}</td>
+                                <td>{{ $item->read }}</td>
                                 <td align="right">
                                     <div class="btn-group">
                                         {!! Form::open(['method' => 'DELETE','route' => ['notifications.destroy', $item->id],'style'=>'display:inline']) !!} 

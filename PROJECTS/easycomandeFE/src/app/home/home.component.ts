@@ -71,7 +71,7 @@ export class HomeComponent implements OnInit {
   }
 
   orderDetail(orderId) {
-    this.router.navigate(['/ordine', orderId]);
+    this.router.navigate(['/ordine', orderId, '']);
   }
 
 }

@@ -13,6 +13,7 @@ class Notification extends Model
         'client',
         'message',
         'state',
+        'read',
         'order_id'
     ];
 }

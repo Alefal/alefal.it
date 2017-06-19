@@ -7,6 +7,8 @@ import { AlertService, HttpService } from './_services/index';
 
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { Notification } from './_models/notification';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -18,12 +20,12 @@ export class AppComponent {
   runInterval = 250;
 
   orders: any;
-  notifications: any;
+
+  notifications: Notification[] = new Array<Notification>();
+  notificationsCount: number = 0;
 
   orderPendingLength: number = 0;
   orderSuccessLength: number = 0;
-
-  notificationsCount: number = 0;
 
   constructor(
     public authenticationService: AuthenticationService,
@@ -34,7 +36,7 @@ export class AppComponent {
     private route: ActivatedRoute,
   ) {
     this.loadData();
-    setInterval(this.repeatLoadData.bind(this), 60000)
+    setInterval(this.loadData.bind(this), 60000)
   }
 
   loadData() {
@@ -79,84 +81,24 @@ export class AppComponent {
       this.httpService
         .getCallHttp('getNotifications','','','','')
         .subscribe(res => {
-          //console.log('%ò',res);
-          //this.notifications = res.results;
-          //this.notificationsCount = res.results.length;
+          console.log('%ò',res);
 
-          localStorage.setItem('notifications', JSON.stringify(res.results));
-          localStorage.setItem('notificationsCount', res.results.length);
-        },
-        error => {
-          this.alertService.error('ORDINI: Dati non disponibili! Si è verificato un errore.');
-        });
-  }
+          this.notifications = [];
 
-  repeatLoadData() {
-    console.log('repeatLoadData');
-
-    //ORDERS
-    this.httpService
-      .getCallHttp('getOrders','','',0,'')
-      .subscribe(res => {
-        this.orders = res.results;
-
-        let orderPendingLengthTmp = 0;
-        let orderSuccessLengthTmp = 0;
-
-        for (let order of this.orders) {
-          if(order.state == 'pending') {
-            orderPendingLengthTmp += 1;
-          } else if(order.state == 'completed') {
-            orderSuccessLengthTmp += 1;
-          } else {
-            //nothing: case not defined
-          }
-        }
-
-        this.orderPendingLength = orderPendingLengthTmp;
-        this.orderSuccessLength = orderSuccessLengthTmp;
-        
-        this.loadingBarService.complete();
-      },
-      error => {
-        this.alertService.error('ORDINI: Dati non disponibili! Si è verificato un errore.');
-        this.loadingBarService.complete();
-      });
-
-      //NOTIFICATIONS
-      /***
-      this.httpService
-        .getCallHttp('getNotifications','','','','')
-        .subscribe(res => {
-          this.notifications = res.results;
-          //this.notificationsCount = res.results.length;
-
-          let notifHistory    = JSON.parse(localStorage.getItem('notifications'));
-          let notifCountSaved = parseInt(localStorage.getItem('notificationsCount'));
-
-          if(res.results.length > notifCountSaved) {
-            this.notificationsCount = res.results.length - notifCountSaved;
-
-            for (let newNotif of res.results) {
-              for (let histNotif of notifHistory) {
-                //console.log('%ò',histNotif);
-                if(histNotif.order_id == newNotif.order_id) {
-                  ///EXIST
-                } else {
-                  this.notifications.push(newNotif); 
-                }
-              }
+          for (let notification of res.results) {
+            if(notification.read == 0) {
+              this.notifications.push(notification);
             }
           }
 
+          this.notificationsCount = this.notifications.length;
         },
         error => {
           this.alertService.error('ORDINI: Dati non disponibili! Si è verificato un errore.');
         });
-        ***/
   }
 
   orderDetail(orderId) {
-    this.router.navigate(['/ordine', orderId]);
+    this.router.navigate(['/ordine', orderId, 'checkNotification']);
   }
 }

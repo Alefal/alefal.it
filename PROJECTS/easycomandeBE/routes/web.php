@@ -91,15 +91,19 @@ Route::get('jsondata/extra', function(){
 Route::get('jsondata/state', function(){
     return manipulateJsonResponseState(State::all());
 });
-Route::get('jsondata/notifications', function(){
-    return manipulateJsonResponseNotifications(Notification::all());
-});
 Route::get('jsondata/users', function(){
     return response()->json([
         'results'=>User::all()
     ]);
 });
 
+/*** NOTIFICATIONS from APP / WEBAPP ***/
+Route::get('jsondata/notifications', function(){
+    return manipulateJsonResponseNotifications(Notification::all());
+});
+Route::get('jsondata/notifications/check/{orderId}', function($orderId){
+    return manipulateJsonResponseNotificationsCheck($orderId);
+});
 /*** Save/Update ORDER from APP / WEBAPP ***/
 Route::get('jsondata/order/save/{request}', function($request){
     return saveOrder($request);
