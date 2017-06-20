@@ -15,14 +15,12 @@ export class AuthenticationService {
         let url     = '/jsondata/auth/'+username+'/'+password;
 
         return this.http.get(host + '' + url)
-            .map((response: Response) => {
-                console.log('%ò',response);
-                let user = response.json();
-                if (user.logged == 'autenticated') {
-                    localStorage.setItem('currentUser', user.name);
-                }
-                return user;
-            });
+            .map(this.extractData);
+    }
+
+    private extractData(res: Response) {
+        let body = res.json();
+        return body || {};
     }
 
     logout() {

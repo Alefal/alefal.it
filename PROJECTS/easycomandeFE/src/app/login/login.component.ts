@@ -34,11 +34,13 @@ export class LoginComponent implements OnInit {
   login() {
     this.loadingBarService.start();
 
-    this.authenticationService.login(this.model.username, this.model.password)
-      .subscribe(data => {
-        console.log('res -> '+data.logged);
+    this.authenticationService
+      .login(this.model.username, this.model.password)
+      .subscribe(user => {
+        console.log('res -> '+JSON.stringify(user));
 
-        if(data.logged == 'autenticated') {
+        if(user.logged == 'autenticated') {
+          localStorage.setItem('currentUser', user.name);
           this.router.navigate(['/home']);
         } else {
           this.alertService.error('Authentication failed!');
