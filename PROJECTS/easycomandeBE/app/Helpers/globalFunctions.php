@@ -58,6 +58,7 @@ function manipulateJsonResponseAuth($email,$password) {
         $json .= '"logged":"autenticated",';
         $json .= '"user":"'.$user['email'].'",';
         $json .= '"name":"'.$user['name'].'"';
+        $json .= '"role":"'.$user['role'].'"';
         $json .='}';
     } else {
         $json .= '{';

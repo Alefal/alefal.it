@@ -15,4 +15,5 @@ INSERT INTO `menu` (`id`, `name`, `description`, `price`, `priceoffer`, `categor
 INSERT INTO `state` (`state`) VALUES ('pending');
 INSERT INTO `state` (`state`) VALUES ('completed');
 
-INSERT INTO `users` (`email`,`password`,`name`) VALUES ('alefal@hotmail.it','$2y$10$cJ9T9QZaf9qmX3ktGiVyT./xL1XiGQruNUcIPE/3el21MzXnaiZ/y','Alessandro Falcone');
+INSERT INTO `users` (`email`,`password`,`name`,`role`) VALUES ('alefalwebmaster@gmail.com','$2y$10$cJ9T9QZaf9qmX3ktGiVyT./xL1XiGQruNUcIPE/3el21MzXnaiZ/y','alefalwebmaster','admin');
+INSERT INTO `users` (`email`,`password`,`name`,`role`) VALUES ('alefal@hotmail.it','$2y$10$cJ9T9QZaf9qmX3ktGiVyT./xL1XiGQruNUcIPE/3el21MzXnaiZ/y','alefal','manager');

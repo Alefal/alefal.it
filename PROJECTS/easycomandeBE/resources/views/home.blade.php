@@ -71,7 +71,7 @@
 
     <!-- numSpecials -->
     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-        <a class="card card-banner card-green-light" href="{{ url('/specials') }}">
+        <a class="card card-banner card-yellow-light" href="{{ url('/specials') }}">
             <div class="card-body">
                 <i class="icon fa fa-th-list fa-4x"></i>
                 <div class="content">
@@ -95,31 +95,33 @@
         </a>
     </div>
 
-    <!-- numStates -->
-    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-        <a class="card card-banner card-orange-light" href="{{ url('/state') }}">
-            <div class="card-body">
-                <i class="icon fa fa-th-list fa-4x"></i>
-                <div class="content">
-                    <div class="title">States</div>
-                    <div class="value">{{ $numStates }}</div>
+    @if(Auth::user()->role == 'admin')
+        <!-- numStates -->
+        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+            <a class="card card-banner card-orange-light" href="{{ url('/state') }}">
+                <div class="card-body">
+                    <i class="icon fa fa-th-list fa-4x"></i>
+                    <div class="content">
+                        <div class="title">States</div>
+                        <div class="value">{{ $numStates }}</div>
+                    </div>
                 </div>
-            </div>
-        </a>
-    </div>    
+            </a>
+        </div>    
 
-   <!-- numUsers -->
-   <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-        <a class="card card-banner card-yellow-light" href="{{ url('/users') }}">
-            <div class="card-body">
-                <i class="icon fa fa-users fa-4x"></i>
-                <div class="content">
-                    <div class="title">Users</div>
-                    <div class="value">{{ $numUsers }}</div>
+    <!-- numUsers -->
+    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+            <a class="card card-banner card-yellow-light" href="{{ url('/users') }}">
+                <div class="card-body">
+                    <i class="icon fa fa-users fa-4x"></i>
+                    <div class="content">
+                        <div class="title">Users</div>
+                        <div class="value">{{ $numUsers }}</div>
+                    </div>
                 </div>
-            </div>
-        </a>
-    </div>
+            </a>
+        </div>
+    @endif
 
 </div>
 

@@ -27,6 +27,8 @@
                                 <br />
                                 <label class="control-label">Email</label> {{ $item->email }}
                                 <br />
+                                <label class="control-label">Role</label> {{ $item->role }}
+                                <br />
                                 <label class="control-label">Created At:</label> {{ $item->created_at }}
                                 <br />
                                 <label class="control-label">Updated At:</label> {{ $item->updated_at }}

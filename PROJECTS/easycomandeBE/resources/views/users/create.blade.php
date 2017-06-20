@@ -54,6 +54,19 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Role</label>
+                            <div class="col-md-9">
+                                <div class="input-group">
+                                    <span class="input-group-addon">*</span>
+                                    <select name="role">
+                                        <option value="admin">Administrator</option>
+                                        <option value="manager">Manager</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="row padding">

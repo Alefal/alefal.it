@@ -64,22 +64,26 @@
                                 <li><a href="{{ url('/notes') }}">Notes</a></li>
                                 <li><a href="{{ url('/specials') }}">Specials</a></li>
                                 <li><a href="{{ url('/extra') }}">Extra</a></li>
-                                <li><a href="{{ url('/state') }}">States</a></li>
-                                <li><a href="{{ url('/users') }}">Users</a></li>
-                                <li><a href="{{ url('/notifications') }}">Notifications</a></li>
+                                @if(Auth::user()->role == 'admin')
+                                    <li><a href="{{ url('/state') }}">States</a></li>
+                                    <li><a href="{{ url('/users') }}">Users</a></li>
+                                    <li><a href="{{ url('/notifications') }}">Notifications</a></li>
+                                @endif
                             </ul>
                         </div>
                     </li>
 
-                    <!-- JSON -->
-                    <li class="dropdown">
-                        <a href="{{ url('/json') }}">
-                            <div class="icon">
-                                <i class="fa fa-code" aria-hidden="true"></i>
-                            </div>
-                            <div class="title">JSON</div>
-                        </a>
-                    </li>
+                    @if(Auth::user()->role == 'admin')
+                        <!-- JSON -->
+                        <li class="dropdown">
+                            <a href="{{ url('/json') }}">
+                                <div class="icon">
+                                    <i class="fa fa-code" aria-hidden="true"></i>
+                                </div>
+                                <div class="title">JSON</div>
+                            </a>
+                        </li>
+                    @endif
 
                 </ul>
             </div>
@@ -121,33 +125,8 @@
                         </ul>
                         <ul class="nav navbar-nav navbar-left">
                             <li class="navbar-title">AMMINISTRAZIONE</li>
-                            <!-- TODO
-                            <li class="navbar-search hidden-sm">
-                                <input id="search" type="text" placeholder="Search..">
-                                <button class="btn-search"><i class="fa fa-search"></i></button>
-                            </li>
-                            -->
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                            <!-- TODO
-                            <li class="dropdown notification">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <div class="icon"><i class="fa fa-shopping-basket" aria-hidden="true"></i></div>
-                                    <div class="title">New Orders</div>
-                                    <div class="count">0</div>
-                                </a>
-                                <div class="dropdown-menu">
-                                    <ul>
-                                        <li class="dropdown-header">Ordering</li>
-                                        <li class="dropdown-empty">No New Ordered</li>
-                                        <li class="dropdown-footer">
-                                            <a href="#">View All <i class="fa fa-angle-right" aria-hidden="true"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            -->
-
                             <li class="dropdown profile">
                                 <a href="/html/pages/profile.html" class="dropdown-toggle" data-toggle="dropdown">
                                     <img class="profile-img" src="{{ asset('img/flat-avatar.png') }}">
@@ -158,19 +137,13 @@
                                         <h4 class="username">{{ Auth::user()->name }}</h4>
                                     </div>
                                     <ul class="action">
-                                        <!-- TODO
                                         <li>
-                                            <a href="#">
-                                                <span class="badge badge-danger pull-right">5</span> My Inbox
-                                            </a>
+                                            <span class="badge badge-danger pull-right">{{ Auth::user()->role }}</span>
                                         </li>
-                                        -->
                                         <li>
-                                            <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                        document.getElementById('logout-form').submit();">
+                                            <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                                 Logout
                                             </a>
-
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                                 {{ csrf_field() }}
                                             </form>
