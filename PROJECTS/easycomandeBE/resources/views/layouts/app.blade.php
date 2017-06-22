@@ -57,14 +57,17 @@
                             <ul>
                                 <li class="section"><i class="fa fa-cogs" aria-hidden="true"></i> Manage</li>
                                 <li class="line"></li>
+                                @if(Auth::user()->role == 'admin')
+                                    <li><a href="{{ url('/configurations') }}">Configurations</a></li>
+                                @endif
                                 <li><a href="{{ url('/categories') }}">Categories</a></li>
                                 <li><a href="{{ url('/menu') }}">Menu</a></li>
                                 <li><a href="{{ url('/orders') }}">Orders</a></li>
                                 <li><a href="{{ url('/items') }}">Items</a></li>
                                 <li><a href="{{ url('/notes') }}">Notes</a></li>
                                 <li><a href="{{ url('/specials') }}">Specials</a></li>
-                                <li><a href="{{ url('/extra') }}">Extra</a></li>
                                 @if(Auth::user()->role == 'admin')
+                                    <li><a href="{{ url('/extra') }}">Extra</a></li>
                                     <li><a href="{{ url('/state') }}">States</a></li>
                                     <li><a href="{{ url('/users') }}">Users</a></li>
                                     <li><a href="{{ url('/notifications') }}">Notifications</a></li>

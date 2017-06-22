@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Configuration;
 use App\Category;
 use App\Menu;
 use App\Order;
@@ -33,6 +34,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $numConfigurations      = Configuration::count();
         $numCategories          = Category::count();
         $numMenu                = Menu::count();
         $numOrders              = Order::count();
@@ -44,6 +46,7 @@ class HomeController extends Controller
         $numUsers               = User::count();
 
         return view('home',compact([
+            'numConfigurations',
             'numCategories',
             'numMenu',
             'numOrders',

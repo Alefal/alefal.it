@@ -29,8 +29,8 @@ export class HttpService {
         //let host = 'http://www.amalficoastapps.it/demo/easycomande';
 
         //New BackEnd
-        //let host = 'http://localhost:8000';
-        let host    = 'http://www.amalficoastapps.it/easycomande/BE/public';
+        let host = 'http://localhost:8000';
+        //let host    = 'http://www.amalficoastapps.it/easycomande/BE/public';
 
         let url     = '';
         //let headers = new Headers({ 'Content-Type': 'text/html; charset=UTF-8' });
@@ -43,6 +43,10 @@ export class HttpService {
         //LOGIN: NON USATA
         if (call == 'authentication') {
             url = '/api/user/generate_auth_cookie/?username=' + username + '&password=' + password + '&insecure=cool';
+        }
+        //CONFIGURATIONS
+        else if (call == 'getConfigurations') {
+            url = '/jsondata/configurations';
         }
         //CATEGORIES
         else if (call == 'getProductsCategory') {

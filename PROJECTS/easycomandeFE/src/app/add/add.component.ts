@@ -159,7 +159,14 @@ export class AddComponent implements OnInit {
 
     prod.setQuantity(newQuantity);
     prod.setPriceTotal(newPrice);
-    prod.setPriceServiceTotal(newPrice * 10 / 100);
+
+    if(localStorage.getItem('serviceenablepercent')) {
+      let serviceenablepercent = localStorage.getItem('serviceenablepercent');
+      prod.setPriceServiceTotal(newPrice * parseInt(serviceenablepercent) / 100);
+    } else if(localStorage.getItem('coveredenablevalue')) {
+      let coveredenablevalue = localStorage.getItem('coveredenablevalue');
+      prod.setPriceServiceTotal(this.numCoperti * parseInt(coveredenablevalue));
+    }
 
     this.totaleOrdine = Number.parseFloat(this.totaleOrdine) + Number.parseFloat(prod.price);
   }
@@ -169,7 +176,14 @@ export class AddComponent implements OnInit {
     let newPrice = prod.price * newQuantity;
 
     prod.setPriceTotal(newPrice);
-    prod.setPriceServiceTotal(newPrice * 10 / 100);
+    //prod.setPriceServiceTotal(newPrice * 10 / 100);
+    if(localStorage.getItem('serviceenablepercent')) {
+      let serviceenablepercent = localStorage.getItem('serviceenablepercent');
+      prod.setPriceServiceTotal(newPrice * parseInt(serviceenablepercent) / 100);
+    } else if(localStorage.getItem('coveredenablevalue')) {
+      let coveredenablevalue = localStorage.getItem('coveredenablevalue');
+      prod.setPriceServiceTotal(this.numCoperti * parseInt(coveredenablevalue));
+    }
 
     if (newQuantity > 0) {
       this.totaleOrdine = Number.parseFloat(this.totaleOrdine) - Number.parseFloat(prod.price);
@@ -187,7 +201,7 @@ export class AddComponent implements OnInit {
     if (cat.slug == 'extra') {
       isExtra = true;
     }
-    if (cat.slug == 'i-panini' || cat.slug == 'panini') {
+    if(cat.hasextra == 1) {
       hasExtra = true;
     }
     if (prod != '') {
@@ -198,7 +212,15 @@ export class AddComponent implements OnInit {
       let pExistExtra = false;
       let pPriceTotal = pPrice;
 
-      let pPriceService = Number.parseFloat(pPriceTotal) * 10 / 100;
+      //let pPriceService = Number.parseFloat(pPriceTotal) * 10 / 100;
+      let pPriceService;
+      if(localStorage.getItem('serviceenablepercent')) {
+        let serviceenablepercent = localStorage.getItem('serviceenablepercent');
+        pPriceService = Number.parseFloat(pPriceTotal) * parseInt(serviceenablepercent) / 100;
+      } else if(localStorage.getItem('coveredenablevalue')) {
+        let coveredenablevalue = localStorage.getItem('coveredenablevalue');
+        pPriceService = this.numCoperti * parseInt(coveredenablevalue);
+      }
 
       let product = new Product(
         pId,
@@ -371,7 +393,15 @@ export class AddComponent implements OnInit {
     let pHasExtra = false;
     let pPriceTotal = pPrice;
 
-    let pPriceService = Number.parseFloat(pPriceTotal) * 10 / 100;
+    //let pPriceService = Number.parseFloat(pPriceTotal) * 10 / 100;
+    let pPriceService;
+      if(localStorage.getItem('serviceenablepercent')) {
+        let serviceenablepercent = localStorage.getItem('serviceenablepercent');
+        pPriceService = Number.parseFloat(pPriceTotal) * parseInt(serviceenablepercent) / 100;
+      } else if(localStorage.getItem('coveredenablevalue')) {
+        let coveredenablevalue = localStorage.getItem('coveredenablevalue');
+        pPriceService = this.numCoperti * parseInt(coveredenablevalue);
+      }
 
     let pDescr = '';
 

@@ -23,6 +23,7 @@ Route::get('/logout', function () {
     return redirect('');
 });
 
+Route::resource('configurations','ConfigurationsController');
 Route::resource('categories','CategoriesController');
 Route::resource('menu','MenuController');
 Route::resource('orders','OrdersController');
@@ -39,6 +40,7 @@ Route::get('/json', function () {
     return view('json');
 });
 
+use App\Configuration;
 use App\Category;
 use App\Menu;
 use App\Order;
@@ -54,6 +56,10 @@ use Illuminate\Http\Request;
 
 Route::get('jsondata/auth/{email}/{password}', function($email,$password){
     return manipulateJsonResponseAuth($email,$password);
+});
+
+Route::get('jsondata/configurations', function(){
+    return manipulateJsonResponseConfigurations(Configuration::all());
 });
 
 Route::get('jsondata/categories', function(){

@@ -5,13 +5,13 @@
         <div class="card card-mini">
             <div class="card-header">
                 <h4 class="card-title">
-                    {{ $item->name }}
+                    {{ $item->key }}
                 </h4>
                 <div class="card-action">
-                    <a href="{{ route('categories.edit',$item->id) }}">
+                    <a href="{{ route('configurations.edit',$item->id) }}">
                         <i class="fa fa-pencil fa-3x fa-fw" aria-hidden="true"></i>
                     </a>
-                    <a href="{{ route('categories.index') }}">
+                    <a href="{{ route('configurations.index') }}">
                         <i class="fa fa-arrow-circle-o-left fa-3x fa-fw" aria-hidden="true"></i>
                     </a>
                 </div>
@@ -23,29 +23,18 @@
                         <div class="section">
                             <div class="section-title">Information</div>
                             <div class="section-body">
-                                <label class="control-label">Name:</label> {{ $item->name }}
+                                <label class="control-label">Key:</label> {{ $item->key }}
                                 <br />
-                                <label class="control-label">Slug:</label> {{ $item->slug }}
+                                <label class="control-label">Label:</label> {{ $item->label }}
                                 <br />
-                                <label class="control-label">Count:</label> {{ $item->count }}
+                                <label class="control-label">Value:</label> {{ $item->value }}
                                 <br />
-                                <label class="control-label">Has Extra:</label> 
-                                @if ($item->hasextra)
+                                <label class="control-label">Enable:</label> 
+                                @if ($item->enable)
                                     SI
                                 @else
                                     NO
                                 @endif
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12 col-sm-12">
-                        <div class="section">
-                            <div class="section-title">Description</div>
-                            <div class="section-body">
-                                {!! $item->description !!}
                             </div>
                         </div>
                     </div>

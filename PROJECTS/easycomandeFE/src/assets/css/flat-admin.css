@@ -3120,10 +3120,11 @@ aside.app-sidebar {
               font-size: 0.9em;
               color: #FFF; }
       .app-login .app-body .app-block .app-form {
+        /*
         padding: 4rem;
         position: relative;
         -ms-flex: 1;
-            flex: 1; }
+            flex: 1; */}
         .app-login .app-body .app-block .app-form .form-header {
           display: -ms-flexbox;
           display: flex;

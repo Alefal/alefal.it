@@ -146,7 +146,7 @@ export class AddPage {
       if(cat.slug == 'extra') {
         isExtra = true;
       }
-      if(cat.slug == 'i-panini' || cat.slug == 'panini') {
+      if(cat.hasextra == 1) {
         hasExtra = true;
       }
       if(data.action != '') {

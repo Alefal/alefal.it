@@ -4,6 +4,21 @@
 
 <div class="row homeSectionCount">
 
+    @if(Auth::user()->role == 'admin')
+        <!-- numConfigurations -->
+        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+            <a class="card card-banner card-green-light" href="{{ url('/configurations') }}">
+                <div class="card-body">
+                    <i class="icon fa fa-th-list fa-4x"></i>
+                    <div class="content">
+                        <div class="title">Configurations</div>
+                        <div class="value">{{ $numConfigurations }}</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    @endif
+
     <!-- numCategories -->
     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
         <a class="card card-banner card-orange-light" href="{{ url('/categories') }}">
@@ -109,8 +124,8 @@
             </a>
         </div>    
 
-    <!-- numUsers -->
-    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+        <!-- numUsers -->
+        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
             <a class="card card-banner card-yellow-light" href="{{ url('/users') }}">
                 <div class="card-body">
                     <i class="icon fa fa-users fa-4x"></i>

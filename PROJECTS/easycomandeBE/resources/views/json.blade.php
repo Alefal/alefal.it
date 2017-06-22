@@ -36,6 +36,19 @@
                                 </td>
                             </tr>
                             <tr>
+                                <td>configurations</td>
+                                <td>
+                                    <i class="fa fa-code fa-lg" aria-hidden="true"></i> jsondata/configurations
+                                </td>
+                                <td align="right">
+                                    <div class="btn-group">
+                                        <a class="btn btn-default btn-xs" target="_blank" href="jsondata/configurations">
+                                            <i class="fa fa-eye fa-1x fa-lg" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
                                 <td>categories</td>
                                 <td>
                                     <i class="fa fa-code fa-lg" aria-hidden="true"></i> jsondata/categories

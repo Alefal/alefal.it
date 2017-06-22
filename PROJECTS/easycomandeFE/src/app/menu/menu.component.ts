@@ -143,6 +143,27 @@ export class MenuComponent implements OnInit {
           this.alertService.error('ERROR: '+JSON.stringify(<any>error));
         }
       );
+
+    //Recupero di tutte le configurazioni
+    this.httpService
+      .getCallHttp('getConfigurations', '', '', '', '')
+      .subscribe(res => {
+        //console.log('res: '+JSON.stringify(res));
+
+        localStorage.removeItem('serviceenablepercent');
+        localStorage.removeItem('coveredenablevalue');
+        for (let conf of res.results) {
+          //console.log('%ò',conf)
+          if(conf.key == 'serviceenable' && conf.enable == 1) {
+            localStorage.setItem('serviceenablepercent',conf.value)
+          } else if(conf.key == 'coveredenable' && conf.enable == 1) {
+            localStorage.setItem('coveredenablevalue',conf.value)
+          }
+        }
+      },
+      error => {
+        this.alertService.error('CONFIGURATIONS: Dati non disponibili! Si è verificato un errore.');
+      });
   }
 
 }

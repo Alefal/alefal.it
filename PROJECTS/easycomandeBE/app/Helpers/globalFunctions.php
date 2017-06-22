@@ -70,6 +70,30 @@ function manipulateJsonResponseAuth($email,$password) {
 }
 
 /* ---------------------------------------------------------------------------
+ * Manipulate Json Response: CONFIGURATIONS
+ * --------------------------------------------------------------------------- */
+function manipulateJsonResponseConfigurations($jsonData) {
+    //$jsonData = str_replace("\\","", $jsonData);
+    $categories = json_decode($jsonData, true);
+    
+    $json = '{ "results" : [';
+    for ($i=0; $i<count($categories); $i++) {
+
+        $json .= '{';
+        $json .= '"id":"'.$categories[$i]['id'].'",';
+        $json .= '"key":"'.$categories[$i]['key'].'",';
+        $json .= '"label":"'.$categories[$i]['label'].'",';
+        $json .= '"value":"'.$categories[$i]['value'].'",';
+        $json .= '"enable":"'.$categories[$i]['enable'].'"';
+        $json .='},';
+    }
+    $json = rtrim($json,',');
+    $json .= ']}';
+
+    return $json;
+}
+
+/* ---------------------------------------------------------------------------
  * Manipulate Json Response: CATEGORIES
  * --------------------------------------------------------------------------- */
 function manipulateJsonResponseCategories($jsonData) {
@@ -86,6 +110,7 @@ function manipulateJsonResponseCategories($jsonData) {
         $json .= '"name":"'.$categories[$i]['name'].'",';
         $json .= '"slug":"'.$categories[$i]['slug'].'",';
         $json .= '"count":"'.$categories[$i]['count'].'",';
+        $json .= '"hasextra":"'.$categories[$i]['hasextra'].'",';
         $json .= '"description":'.json_encode($descr,JSON_UNESCAPED_SLASHES).'';
         $json .='},';
     }
@@ -911,6 +936,7 @@ function recalculateTotalOrder($orderId) {
     };
 
     $order->totalorder      = $totalOrder;
+    //TODO: calcolare SERVIZIO o COPERTI
     $order->totalservice    = $totalOrder * 10 / 100;
 
     //Save ORDER

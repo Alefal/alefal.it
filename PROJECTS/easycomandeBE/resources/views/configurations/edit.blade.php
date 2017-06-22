@@ -8,7 +8,7 @@
                     Edit: {{ $item->name }}
                 </h4>
                 <div class="card-action">
-                    <a href="{{ route('categories.index') }}">
+                    <a href="{{ route('configurations.index') }}">
                         <i class="fa fa-arrow-circle-o-left fa-3x fa-fw" aria-hidden="true"></i>
                     </a>
                 </div>
@@ -24,35 +24,29 @@
                         @endforeach
                     </ul>
                 </div>
-                @endif {!! Form::model($item, ['method' => 'PATCH','route' => ['categories.update', $item->id]]) !!}
+                @endif {!! Form::model($item, ['method' => 'PATCH','route' => ['configurations.update', $item->id]]) !!}
 
                 <div class="row">
                     <div class="col-xs-6 col-md-6">
                         <div class="form-group">
-                            <label for="name">Name</label>
-                            {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+                            <label for="Key">Key</label>
+                            {!! Form::text('key', null, array('placeholder' => 'Key','class' => 'form-control')) !!}
                         </div>
                     </div>
                     <div class="col-xs-6 col-md-6">
                         <div class="form-group">
-                            <label for="name">Slug</label>
-                            {!! Form::text('slug', null, array('placeholder' => 'Slug','class' => 'form-control')) !!}
+                            <label for="name">Label</label>
+                            {!! Form::text('label', null, array('placeholder' => 'Label','class' => 'form-control')) !!}
                         </div>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-xs-6 col-md-6">
+                     <div class="col-xs-6 col-md-6">
                         <div class="form-group">
-                            <label for="city">Count</label>
-                             {!! Form::number('count', null, array('placeholder' => 'Count','class' => 'form-control')) !!}
-                        </div>
-                    </div>
-                    <div class="col-xs-6 col-md-6">
-                        <div class="form-group">
-                            <label for="city">Has Extra</label>
-                            <select class="form-control" name="hasextra">
-                                @if ($item->hasextra)
+                            <label for="enable">Enable</label>
+                            <select class="form-control" name="enable">
+                                @if ($item->enable)
                                     <option value="0">NO</option>
                                     <option value="1" selected="selected">SI</option>
                                 @else
@@ -62,13 +56,10 @@
                             </select>
                         </div>
                     </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12 col-xs-12">
+                    <div class="col-xs-6 col-md-6">
                         <div class="form-group">
-                            <label for="desc">Description:</label>
-                            {!! Form::textarea('description', null, array('placeholder' => 'Description','class' => 'form-control')) !!}
+                            <label for="city">Value</label>
+                             {!! Form::text('value', null, array('placeholder' => 'Value','class' => 'form-control')) !!}
                         </div>
                     </div>
                 </div>

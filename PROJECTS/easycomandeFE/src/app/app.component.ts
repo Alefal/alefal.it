@@ -27,6 +27,8 @@ export class AppComponent {
   orderPendingLength: number = 0;
   orderSuccessLength: number = 0;
 
+  labelTypeService = '';
+
   constructor(
     public authenticationService: AuthenticationService,
     private loadingBarService: LoadingBarService,
@@ -35,6 +37,7 @@ export class AppComponent {
     private router: Router,
     private route: ActivatedRoute,
   ) {
+    this.loadConfigurations();
     this.loadData();
     setInterval(this.loadData.bind(this), 60000)
   }
@@ -96,6 +99,30 @@ export class AppComponent {
         error => {
           this.alertService.error('ORDINI: Dati non disponibili! Si è verificato un errore.');
         });
+  }
+
+  loadConfigurations() {
+    this.httpService
+      .getCallHttp('getConfigurations', '', '', '', '')
+      .subscribe(res => {
+        //console.log('res: '+JSON.stringify(res));
+
+        localStorage.removeItem('serviceenablepercent');
+        localStorage.removeItem('coveredenablevalue');
+        for (let conf of res.results) {
+          //console.log('%ò',conf)
+          if(conf.key == 'serviceenable' && conf.enable == 1) {
+            localStorage.setItem('serviceenablepercent',conf.value);
+            this.labelTypeService = conf.label;
+          } else if(conf.key == 'coveredenable' && conf.enable == 1) {
+            localStorage.setItem('coveredenablevalue',conf.value);
+            this.labelTypeService = conf.label;
+          }
+        }
+      },
+      error => {
+        this.alertService.error('CONFIGURATIONS: Dati non disponibili! Si è verificato un errore.');
+      });
   }
 
   orderDetail(orderId) {

@@ -76,5 +76,9 @@ OK -> Nuovo BACKEND
 OK -> Change state for ITEM 
 OK -> Change state for 4SPECIAL
 OK -> Change state for ORDER
-- Print
 OK -> Add NOTE to EXTRA: "extra for..."
+
+=== Vers. 2.0.1 ===
+- Configuration (servizio | coperto)
+- Login
+OK -> Category with Extra

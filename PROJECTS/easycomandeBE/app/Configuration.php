@@ -4,16 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Configuration extends Model
 {
     protected $primaryKey = 'id';
 
     protected $fillable=[
         'id',
-        'name', 
-        'description', 
-        'slug', 
-        'count',
-        'hasextra'
+        'key', 
+        'enable', 
+        'label', 
+        'value'
     ];
 }
