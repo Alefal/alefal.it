@@ -82,9 +82,11 @@
                             <div class="section-title"><strong>Totals:</strong></div>
                             <div class="section-body">
                                 <h4>
+                                    <label class="control-label">Coperti:</label> {{ $order->covered }}
+                                    <br />
                                     <label class="control-label">Order:</label> {{ $order->totalorder }}
                                     <br />
-                                    <label class="control-label">Service:</label> {{ $order->totalservice }}
+                                    <label class="control-label">Service / Covered:</label> {{ $order->totalservice }}
                                 </h4>
                             </div>
                         </div>

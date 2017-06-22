@@ -14,6 +14,7 @@ class Order extends Model
         'id',
         'date', 
         'client', 
+        'covered', 
         'totalorder', 
         'totalservice',
         'state_id'

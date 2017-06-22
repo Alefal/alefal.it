@@ -39,12 +39,12 @@
 
     <ion-item>
       <p>Totale</p>
-      <h2>{{ ordine?.totalorder }}</h2>
+      <h2> &euro; {{ ordine?.totalorder }}</h2>
     </ion-item>
 
     <ion-item *ngIf="ordine?.totalservice">
-      <p>Servizio</p>
-      <h2>{{ ordine?.totalservice }}</h2>
+      <p>{{ serviceOrCovered }}</p>
+      <h2> &euro; {{ ordine?.totalservice }}</h2>
     </ion-item>
 
     <ion-item *ngIf="ordine?.items.length > 0">

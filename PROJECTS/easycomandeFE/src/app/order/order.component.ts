@@ -41,6 +41,8 @@ export class OrderComponent implements OnInit {
   color = "#4092F1";
   runInterval = 300;
 
+  serviceOrCovered: string = '';
+
   constructor(
     private location: Location,
     private router: Router,
@@ -51,6 +53,12 @@ export class OrderComponent implements OnInit {
   ) { 
     let now = moment().format('LLLL');
     console.log('now: ' + now);
+
+    if(localStorage.getItem('serviceenablepercent')) {
+      this.serviceOrCovered = 'Servizio';
+    } else if(localStorage.getItem('coveredenablevalue')) {
+      this.serviceOrCovered = 'Coperti';
+    }
   }
 
   ngOnInit(): void {

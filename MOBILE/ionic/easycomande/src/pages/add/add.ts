@@ -157,7 +157,15 @@ export class AddPage {
         let pExistExtra     = false;        
         let pPriceTotal     = pPrice;
         
-        let pPriceService = Number.parseFloat(pPriceTotal) * 10 / 100;
+        ////////// Service or Covered
+        let pPriceService;
+        if(localStorage.getItem('serviceenablepercent')) {
+          let serviceenablepercent = localStorage.getItem('serviceenablepercent');
+          pPriceService = Number.parseFloat(pPriceTotal) * parseInt(serviceenablepercent) / 100;
+        } else if(localStorage.getItem('coveredenablevalue')) {
+          let coveredenablevalue = localStorage.getItem('coveredenablevalue');
+          pPriceService = this.numCoperti * parseFloat(coveredenablevalue);
+        }
 
         let prodotto = new Product(
           pId,
@@ -191,7 +199,15 @@ export class AddPage {
 
     prod.setQuantity(newQuantity);
     prod.setPriceTotal(newPrice);
-    prod.setPriceServiceTotal(newPrice * 10 / 100);
+    
+    ////////// Service or Covered
+    if(localStorage.getItem('serviceenablepercent')) {
+      let serviceenablepercent = localStorage.getItem('serviceenablepercent');
+      prod.setPriceServiceTotal(newPrice * parseInt(serviceenablepercent) / 100);
+    } else if(localStorage.getItem('coveredenablevalue')) {
+      let coveredenablevalue = localStorage.getItem('coveredenablevalue');
+      prod.setPriceServiceTotal(this.numCoperti * parseFloat(coveredenablevalue));
+    }
 
     this.totaleOrdine = Number.parseFloat(this.totaleOrdine) + Number.parseFloat(prod.price);
   }
@@ -201,7 +217,15 @@ export class AddPage {
     let newPrice = prod.price * newQuantity;
 
     prod.setPriceTotal(newPrice);
-    prod.setPriceServiceTotal(newPrice * 10 / 100);
+    
+    ////////// Service or Covered
+    if(localStorage.getItem('serviceenablepercent')) {
+      let serviceenablepercent = localStorage.getItem('serviceenablepercent');
+      prod.setPriceServiceTotal(newPrice * parseInt(serviceenablepercent) / 100);
+    } else if(localStorage.getItem('coveredenablevalue')) {
+      let coveredenablevalue = localStorage.getItem('coveredenablevalue');
+      prod.setPriceServiceTotal(this.numCoperti * parseFloat(coveredenablevalue));
+    }
 
     if(newQuantity > 0) {
       this.totaleOrdine = Number.parseFloat(this.totaleOrdine) - Number.parseFloat(prod.price);
@@ -508,7 +532,15 @@ export class AddPage {
         let pHasExtra       = false;
         let pPriceTotal     = pPrice;
 
-        let pPriceService = Number.parseFloat(pPriceTotal) * 10 / 100;
+        ////////// Service or Covered
+        let pPriceService;
+        if(localStorage.getItem('serviceenablepercent')) {
+          let serviceenablepercent = localStorage.getItem('serviceenablepercent');
+          pPriceService = Number.parseFloat(pPriceTotal) * parseInt(serviceenablepercent) / 100;
+        } else if(localStorage.getItem('coveredenablevalue')) {
+          let coveredenablevalue = localStorage.getItem('coveredenablevalue');
+          pPriceService = this.numCoperti * parseFloat(coveredenablevalue);
+        }
 
         //Prodotto EXTRA
         let prodotto = new Product(
@@ -584,6 +616,7 @@ export class AddPage {
       this.ordineId,        //id: number,
       now,                  //date: string,
       this.clienteOrdine,   //client: string,
+      this.numCoperti,      //covered: number
       0,                    //totalorder: number,
       0,                    //totalservice: number,
       'pending',            //state: string,

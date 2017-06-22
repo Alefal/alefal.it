@@ -19,6 +19,8 @@ export class EasyComandeApp {
   categories: any;
   products: any;
 
+  labelTypeService = '';
+
   constructor(
     private statusBar: StatusBar,
     private _platform: Platform,
@@ -28,6 +30,8 @@ export class EasyComandeApp {
     this._platform.ready().then(() => {
       console.log('EasyComandeApp');
 
+      this.loadConfigurations();
+    
       if(localStorage.getItem('categories') === null) {
         this.setDataToLocalStorage();
       } else {
@@ -73,5 +77,29 @@ export class EasyComandeApp {
           console.log('res: ' + JSON.stringify(<any>error));
         }
       );
+  }
+
+  loadConfigurations() {
+    this.httpService
+      .getCallHttp('getConfigurations', '', '', '', '')
+      .subscribe(res => {
+        //console.log('res: '+JSON.stringify(res));
+
+        localStorage.removeItem('serviceenablepercent');
+        localStorage.removeItem('coveredenablevalue');
+        for (let conf of res.results) {
+          //console.log('%ò',conf)
+          if(conf.key == 'serviceenable' && conf.enable == 1) {
+            localStorage.setItem('serviceenablepercent',conf.value);
+            this.labelTypeService = conf.label;
+          } else if(conf.key == 'coveredenable' && conf.enable == 1) {
+            localStorage.setItem('coveredenablevalue',conf.value);
+            this.labelTypeService = conf.label;
+          }
+        }
+      },
+      error => {
+        console.log('res: ' + JSON.stringify(<any>error));
+      });
   }
 }

@@ -25,6 +25,8 @@ export class OrdinePage {
   errorMessage: string;
   errorMessageView: any;
 
+  serviceOrCovered: string = '';
+
   constructor(
     public navCtrl: NavController,
     private params: NavParams,
@@ -46,6 +48,12 @@ export class OrdinePage {
     this.ordineId = this.params.get('ordineId');
     console.log('%o', this.ordineId);
     this.loadOrder(this.ordineId);
+
+    if(localStorage.getItem('serviceenablepercent')) {
+      this.serviceOrCovered = 'Servizio';
+    } else if(localStorage.getItem('coveredenablevalue')) {
+      this.serviceOrCovered = 'Coperti';
+    }
   }
 
   loadOrder(orderId) {

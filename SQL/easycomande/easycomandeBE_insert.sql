@@ -15,5 +15,8 @@ INSERT INTO `menu` (`id`, `name`, `description`, `price`, `priceoffer`, `categor
 INSERT INTO `state` (`state`) VALUES ('pending');
 INSERT INTO `state` (`state`) VALUES ('completed');
 
-INSERT INTO `users` (`email`,`password`,`name`,`role`) VALUES ('alefalwebmaster@gmail.com','$2y$10$cJ9T9QZaf9qmX3ktGiVyT./xL1XiGQruNUcIPE/3el21MzXnaiZ/y','alefalwebmaster','admin');
-INSERT INTO `users` (`email`,`password`,`name`,`role`) VALUES ('alefal@hotmail.it','$2y$10$cJ9T9QZaf9qmX3ktGiVyT./xL1XiGQruNUcIPE/3el21MzXnaiZ/y','alefal','manager');
+INSERT INTO `configurations` (`key`,`enable`,`label`,`value`) VALUES ('serviceenable','1','Servizio 10% del totale','10');
+INSERT INTO `configurations` (`key`,`enable`,`label`,`value`) VALUES ('coveredenable','0','Calcolo dei coperti','1,5');
+
+INSERT INTO `users` (`email`,`password`,`name`,`role`) VALUES ('admin@easycomande.it','$2y$10$cJ9T9QZaf9qmX3ktGiVyT./xL1XiGQruNUcIPE/3el21MzXnaiZ/y','admin','admin');
+INSERT INTO `users` (`email`,`password`,`name`,`role`) VALUES ('manager@easycomande.it','$2y$10$cJ9T9QZaf9qmX3ktGiVyT./xL1XiGQruNUcIPE/3el21MzXnaiZ/y','manager','manager');

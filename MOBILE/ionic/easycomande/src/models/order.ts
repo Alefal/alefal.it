@@ -3,6 +3,7 @@ export class Order {
   public id: number;
   public date: string;
   public client: string;
+  public covered: number;
   public totalorder: number;
   public totalservice: number;
   public state: string;
@@ -14,6 +15,7 @@ export class Order {
     id: number,
     date: string,
     client: string,
+    covered: number,
     totalorder: number,
     totalservice: number,
     state: string,
@@ -25,6 +27,7 @@ export class Order {
     this.id             = id;
     this.date           = date;
     this.client         = client;
+    this.covered        = covered;
     this.totalorder     = totalorder;
     this.totalservice   = totalservice;
     this.state          = state;

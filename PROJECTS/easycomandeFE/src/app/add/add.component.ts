@@ -160,12 +160,13 @@ export class AddComponent implements OnInit {
     prod.setQuantity(newQuantity);
     prod.setPriceTotal(newPrice);
 
+    ////////// Service or Covered
     if(localStorage.getItem('serviceenablepercent')) {
       let serviceenablepercent = localStorage.getItem('serviceenablepercent');
       prod.setPriceServiceTotal(newPrice * parseInt(serviceenablepercent) / 100);
     } else if(localStorage.getItem('coveredenablevalue')) {
       let coveredenablevalue = localStorage.getItem('coveredenablevalue');
-      prod.setPriceServiceTotal(this.numCoperti * parseInt(coveredenablevalue));
+      prod.setPriceServiceTotal(this.numCoperti * parseFloat(coveredenablevalue));
     }
 
     this.totaleOrdine = Number.parseFloat(this.totaleOrdine) + Number.parseFloat(prod.price);
@@ -176,13 +177,14 @@ export class AddComponent implements OnInit {
     let newPrice = prod.price * newQuantity;
 
     prod.setPriceTotal(newPrice);
-    //prod.setPriceServiceTotal(newPrice * 10 / 100);
+
+    ////////// Service or Covered
     if(localStorage.getItem('serviceenablepercent')) {
       let serviceenablepercent = localStorage.getItem('serviceenablepercent');
       prod.setPriceServiceTotal(newPrice * parseInt(serviceenablepercent) / 100);
     } else if(localStorage.getItem('coveredenablevalue')) {
       let coveredenablevalue = localStorage.getItem('coveredenablevalue');
-      prod.setPriceServiceTotal(this.numCoperti * parseInt(coveredenablevalue));
+      prod.setPriceServiceTotal(this.numCoperti * parseFloat(coveredenablevalue));
     }
 
     if (newQuantity > 0) {
@@ -212,14 +214,14 @@ export class AddComponent implements OnInit {
       let pExistExtra = false;
       let pPriceTotal = pPrice;
 
-      //let pPriceService = Number.parseFloat(pPriceTotal) * 10 / 100;
+      ////////// Service or Covered
       let pPriceService;
       if(localStorage.getItem('serviceenablepercent')) {
         let serviceenablepercent = localStorage.getItem('serviceenablepercent');
         pPriceService = Number.parseFloat(pPriceTotal) * parseInt(serviceenablepercent) / 100;
       } else if(localStorage.getItem('coveredenablevalue')) {
         let coveredenablevalue = localStorage.getItem('coveredenablevalue');
-        pPriceService = this.numCoperti * parseInt(coveredenablevalue);
+        pPriceService = this.numCoperti * parseFloat(coveredenablevalue);
       }
 
       let product = new Product(
@@ -393,15 +395,15 @@ export class AddComponent implements OnInit {
     let pHasExtra = false;
     let pPriceTotal = pPrice;
 
-    //let pPriceService = Number.parseFloat(pPriceTotal) * 10 / 100;
+    ////////// Service or Covered
     let pPriceService;
-      if(localStorage.getItem('serviceenablepercent')) {
-        let serviceenablepercent = localStorage.getItem('serviceenablepercent');
-        pPriceService = Number.parseFloat(pPriceTotal) * parseInt(serviceenablepercent) / 100;
-      } else if(localStorage.getItem('coveredenablevalue')) {
-        let coveredenablevalue = localStorage.getItem('coveredenablevalue');
-        pPriceService = this.numCoperti * parseInt(coveredenablevalue);
-      }
+    if(localStorage.getItem('serviceenablepercent')) {
+      let serviceenablepercent = localStorage.getItem('serviceenablepercent');
+      pPriceService = Number.parseFloat(pPriceTotal) * parseInt(serviceenablepercent) / 100;
+    } else if(localStorage.getItem('coveredenablevalue')) {
+      let coveredenablevalue = localStorage.getItem('coveredenablevalue');
+      pPriceService = this.numCoperti * parseFloat(coveredenablevalue);
+    }
 
     let pDescr = '';
 
@@ -483,8 +485,9 @@ export class AddComponent implements OnInit {
 
     let ordine = new Order(
       this.ordineId,        //id: number,
-      now,       //date: string,
+      now,                  //date: string,
       this.clienteOrdine,   //client: string,
+      this.numCoperti,      //covered: number
       0,                    //totalorder: number,
       0,                    //totalservice: number,
       'pending',            //state: string,

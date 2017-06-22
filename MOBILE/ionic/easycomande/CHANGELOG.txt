@@ -79,6 +79,6 @@ OK -> Change state for ORDER
 OK -> Add NOTE to EXTRA: "extra for..."
 
 === Vers. 2.0.1 ===
-- Configuration (servizio | coperto)
+OK -> Configuration (servizio | coperto)
 - Login
 OK -> Category with Extra

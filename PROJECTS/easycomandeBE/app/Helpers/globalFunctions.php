@@ -10,6 +10,7 @@
 
 use Illuminate\Support\Facades\Auth;
 
+use App\Configuration;
 use App\Category;
 use App\Menu;
 use App\Order;
@@ -216,6 +217,7 @@ function manipulateJsonResponseOrders($jsonData,$states) {
         $json .= '"id":"'.$orders[$i]['id'].'",';
         $json .= '"date":"'.$orders[$i]['date'].'",';
         $json .= '"client":"'.$orders[$i]['client'].'",';
+        $json .= '"covered":"'.$orders[$i]['covered'].'",';
         $json .= '"totalorder":"'.$orders[$i]['totalorder'].'",';
         $json .= '"totalservice":"'.$orders[$i]['totalservice'].'",';
         $json .= '"state":"'.$state.'"';
@@ -245,6 +247,7 @@ function manipulateJsonResponseOrder($jsonData,$items,$specials,$notes,$states) 
     $json .= '"id":"'.$order['id'].'",';
     $json .= '"date":"'.$order['date'].'",';
     $json .= '"client":"'.$order['client'].'",';
+    $json .= '"covered":"'.$order['covered'].'",';
     $json .= '"totalorder":"'.$order['totalorder'].'",';
     $json .= '"totalservice":"'.$order['totalservice'].'",';
     $json .= '"state":"'.$state.'",';
@@ -523,6 +526,7 @@ function saveOrder($request) {
             $orderSave = new Order();
             $orderSave->date            = $order['date']; 
             $orderSave->client          = $order['client']; 
+            $orderSave->covered         = $order['covered']; 
             $orderSave->totalorder      = $order['totalorder']; 
             $orderSave->totalservice    = $order['totalservice']; 
 
@@ -594,6 +598,28 @@ function saveOrder($request) {
                 $json .= '"message":"'.$lastInsertedOrderId.'"';
             $json .='},';
 
+            //Recalculate TOTAL ORDER
+            recalculateTotalOrder($lastInsertedOrderId);
+
+            if($order['id'] == 0) {
+                $notification = new Notification();
+                $notification->order_id = $lastInsertedOrderId;
+                $notification->client  = $order['client'];
+                $notification->message  = 'Nuova ordinazione';
+                $notification->state    = 'new'; //new | update | delete | change
+            } else {
+                $notification = Notification::where('order_id', '=', $lastInsertedOrderId)->first();
+                if($notification == '') {
+                    $notification = new Notification();
+                    $notification->client  = 'Client';
+                    $notification->order_id  = $lastInsertedOrderId;
+                }
+                $notification->message  = 'Ordinazione aggiornata';
+                $notification->state    = 'update'; //new | update | delete | change
+            }
+            $notification->read    = 0;
+            $notification->save();
+
         }
         catch(Exception $e){
             $json .= '{';
@@ -609,28 +635,6 @@ function saveOrder($request) {
             $json .= '"message":"'.$e->getMessage().'"';
         $json .='},';
     }
-
-    //Recalculate TOTAL ORDER
-    recalculateTotalOrder($lastInsertedOrderId);
-
-    if($order['id'] == 0) {
-        $notification = new Notification();
-        $notification->order_id = $lastInsertedOrderId;
-        $notification->client  = $order['client'];
-        $notification->message  = 'Nuova ordinazione';
-        $notification->state    = 'new'; //new | update | delete | change
-    } else {
-        $notification = Notification::where('order_id', '=', $lastInsertedOrderId)->first();
-        if($notification == '') {
-            $notification = new Notification();
-            $notification->client  = 'Client';
-            $notification->order_id  = $lastInsertedOrderId;
-        }
-        $notification->message  = 'Ordinazione aggiornata';
-        $notification->state    = 'update'; //new | update | delete | change
-    }
-    $notification->read    = 0;
-    $notification->save();
 
     $json = rtrim($json,',');
     $json .= ']}';
@@ -924,6 +928,7 @@ function recalculateTotalOrder($orderId) {
     $specials   = Order::find($orderId)->specials;
 
     $totalOrder = 0;
+    $covered = $order['covered'];
 
     foreach ($items as $item) {
         //print $item['total'].'<br />';
@@ -935,9 +940,31 @@ function recalculateTotalOrder($orderId) {
         $totalOrder += $item['price'];
     };
 
-    $order->totalorder      = $totalOrder;
-    //TODO: calcolare SERVIZIO o COPERTI
-    $order->totalservice    = $totalOrder * 10 / 100;
+    $order->totalorder = $totalOrder;
+    
+    //Calcolo SERVICE o COVERED
+    $serviceCalculate   = false;
+    $serviceValue       = 0;
+    $coveredCalculate   = false;
+    $coveredValue       = 0;
+
+    $configurations = Configuration::all();
+    foreach ($configurations as $conf) {
+        if($conf['key'] == 'serviceenable' && $conf['enable']) {
+            $serviceCalculate = true;
+            $serviceValue = $conf['value'];
+        } else if($conf['key'] == 'coveredenable' && $conf['enable']) {
+            $coveredCalculate = true;
+            $coveredValue = $conf['value'];
+        }
+    };
+    
+    if($serviceCalculate) {
+        $order->totalservice = ($totalOrder * intval($serviceValue) / 100);
+    }
+    if($coveredCalculate) {
+        $order->totalservice = (intval($covered) * floatval($coveredValue));
+    }    
 
     //Save ORDER
     $order->save();

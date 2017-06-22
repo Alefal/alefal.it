@@ -123,6 +123,28 @@ export class MenuPage {
     }
   }
   
+  loadConfigurations() {
+    this.httpService
+      .getCallHttp('getConfigurations', '', '', '', '')
+      .subscribe(res => {
+        //console.log('res: '+JSON.stringify(res));
+
+        localStorage.removeItem('serviceenablepercent');
+        localStorage.removeItem('coveredenablevalue');
+        for (let conf of res.results) {
+          //console.log('%ò',conf)
+          if(conf.key == 'serviceenable' && conf.enable == 1) {
+            localStorage.setItem('serviceenablepercent',conf.value);
+          } else if(conf.key == 'coveredenable' && conf.enable == 1) {
+            localStorage.setItem('coveredenablevalue',conf.value);
+          }
+        }
+      },
+      error => {
+        console.log('res: ' + JSON.stringify(<any>error));
+      });
+  }
+
   /**
    * Fa il refresh dei dati in memoria:
    * - getProductsCategory
@@ -172,5 +194,7 @@ export class MenuPage {
           this.loading.dismiss();
         }
       );
+
+    this.loadConfigurations();
   }
 }

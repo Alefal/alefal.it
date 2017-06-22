@@ -56,6 +56,7 @@ class OrdersController extends Controller
         $this->validate($request, [
             'client' => 'required',
             'date' => 'required',
+            'covered' => 'required',
             'totalorder' => 'required',
             'totalservice' => 'required',
             'state_id' => 'required'
@@ -114,6 +115,7 @@ class OrdersController extends Controller
         $this->validate($request, [
             'client' => 'required',
             'date' => 'required',
+            'covered' => 'required',
             'totalorder' => 'required',
             'totalservice' => 'required',
             'state_id' => 'required'

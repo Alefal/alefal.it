@@ -27,22 +27,28 @@
                 @endif {!! Form::model($order, ['method' => 'PATCH','route' => ['orders.update', $order->id]]) !!}
 
                 <div class="row">
-                    <div class="col-xs-6 col-md-4">
+                    <div class="col-xs-6 col-md-3">
                         <div class="form-group">
                             <label for="name">Client</label>
                             {!! Form::text('client', null, array('placeholder' => 'Client','class' => 'form-control')) !!}
                         </div>
                     </div>
-                    <div class="col-xs-6 col-md-4">
+                    <div class="col-xs-6 col-md-3">
                         <div class="form-group">
-                            <label for="name">Total Order</label>
-                            {!! Form::number('totalorder', null, array('placeholder' => 'Total Order','class' => 'form-control')) !!}
+                            <label for="city">Covered</label>
+                             {!! Form::number('covered', 0, array('placeholder' => 'Covered','class' => 'form-control')) !!}
                         </div>
                     </div>
-                    <div class="col-xs-6 col-md-4">
+                    <div class="col-xs-6 col-md-3">
+                        <div class="form-group">
+                            <label for="name">Total Order</label>
+                            {!! Form::number('totalorder', 0, array('placeholder' => 'Total Order','class' => 'form-control')) !!}
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
                         <div class="form-group">
                             <label for="city">Total Service</label>
-                             {!! Form::number('totalservice', null, array('placeholder' => 'Total Service','class' => 'form-control')) !!}
+                             {!! Form::number('totalservice', 0, array('placeholder' => 'Total Service','class' => 'form-control')) !!}
                         </div>
                     </div>
                 </div>
