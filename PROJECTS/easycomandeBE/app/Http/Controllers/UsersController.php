@@ -57,6 +57,9 @@ class UsersController extends Controller
         ]);
 
         User::create($request->all());
+        //TODO
+        //$user->api_token = str_random(60);
+ 
         return redirect()->route('users.index')
                         ->with('success','Item created successfully');
     }

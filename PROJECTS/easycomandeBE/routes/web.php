@@ -57,107 +57,110 @@ use Illuminate\Http\Request;
 Route::get('jsondata/auth/{email}/{password}', function($email,$password){
     return manipulateJsonResponseAuth($email,$password);
 });
-
 Route::get('jsondata/configurations', function(){
     return manipulateJsonResponseConfigurations(Configuration::all());
-});
-
-Route::get('jsondata/categories', function(){
-    return manipulateJsonResponseCategories(Category::all());
-});
-Route::get('jsondata/menu', function(){
-    return manipulateJsonResponseMenu(Menu::all(),Category::all());
-});
-Route::get('jsondata/menuforcat/{catId}', function($catId){
-    $menus = Menu::where('category_id',$catId)->get();
-    return manipulateJsonResponseMenuForCategory($menus,Category::all(),$catId);
 });
 Route::get('jsondata/orders', function(){
     return manipulateJsonResponseOrders(Order::all(),State::all());
 });
-Route::get('jsondata/order/{orderId}', function($orderId){
-    $order      = Order::find($orderId);
-    $items      = Order::find($orderId)->items;
-    $specials   = Order::find($orderId)->specials;
-    $notes      = Order::find($orderId)->notes;
-
-    return manipulateJsonResponseOrder($order,$items,$specials,$notes,State::all());
-});
-Route::get('jsondata/specialsfororder/{orderId}', function($orderId){
-    $specials = Special::where('order_id',$orderId)->get();
-    return manipulateJsonResponseSpecialsForOrder($specials,Order::all(),$orderId);
-});
-Route::get('jsondata/notesfororder/{orderId}', function($orderId){
-    $notes = Note::where('order_id',$orderId)->get();
-    return manipulateJsonResponseNotesForOrder($notes,Order::all(),$orderId);
-});
-Route::get('jsondata/extra', function(){
-    return manipulateJsonResponseExtra(Extra::all());
-});
-Route::get('jsondata/state', function(){
-    return manipulateJsonResponseState(State::all());
-});
-Route::get('jsondata/users', function(){
-    return response()->json([
-        'results'=>User::all()
-    ]);
-});
-
-/*** NOTIFICATIONS from APP / WEBAPP ***/
 Route::get('jsondata/notifications', function(){
     return manipulateJsonResponseNotifications(Notification::all());
 });
-Route::get('jsondata/notifications/check/{orderId}', function($orderId){
-    return manipulateJsonResponseNotificationsCheck($orderId);
-});
-/*** Save/Update ORDER from APP / WEBAPP ***/
-Route::get('jsondata/order/save/{request}', function($request){
-    return saveOrder($request);
-});
-/*** Change state ORDER from APP / WEBAPP ***/
-Route::get('jsondata/order/change/state/{itemId}', function($itemId){
-    return changeStateOrder($itemId);
-});
-/*** Delete ORDER from APP / WEBAPP ***/
-Route::get('jsondata/order/delete/{orderId}', function($orderId){
-    return deleteOrder($orderId);
-});
 
-/*** Change state ITEM from APP / WEBAPP ***/
-Route::get('jsondata/item/change/state/{itemId}/{orderId}', function($itemId,$orderId){
-    return changeStateItem($itemId,$orderId);
-});
-/*** Delete ITEM from APP / WEBAPP ***/
-Route::get('jsondata/item/delete/{itemId}/{orderId}', function($itemId,$orderId){
-    return deleteItem($itemId,$orderId);
-});
+Route::group(['middleware' => ['auth:api']], function () { 
 
-/*** Change state SPECIAL from APP / WEBAPP ***/
-Route::get('jsondata/special/change/state/{itemId}/{orderId}', function($itemId,$orderId){
-    return changeStateSpecial($itemId,$orderId);
-});
-/*** Delete SPECIAL from APP / WEBAPP ***/
-Route::get('jsondata/special/delete/{specialId}/{orderId}', function($specialId,$orderId){
-    return deleteSpecial($specialId,$orderId);
-});
-/*** Delete NOTE from APP / WEBAPP ***/
-Route::get('jsondata/note/delete/{noteId}/{orderId}', function($noteId,$orderId){
-    return deleteNote($noteId,$orderId);
-});
+    Route::get('jsondata/categories', function(){
+        return manipulateJsonResponseCategories(Category::all());
+    });
+    Route::get('jsondata/menu', function(){
+        return manipulateJsonResponseMenu(Menu::all(),Category::all());
+    });
+    Route::get('jsondata/menuforcat/{catId}', function($catId){
+        $menus = Menu::where('category_id',$catId)->get();
+        return manipulateJsonResponseMenuForCategory($menus,Category::all(),$catId);
+    });
+    
+    Route::get('jsondata/order/{orderId}', function($orderId){
+        $order      = Order::find($orderId);
+        $items      = Order::find($orderId)->items;
+        $specials   = Order::find($orderId)->specials;
+        $notes      = Order::find($orderId)->notes;
 
-//Stampa il PDF: non funziona se la chiamata arriva da app
-Route::post('jsondata/order/print/{orderId}', function($orderId){
-    //end data
-    $pdf = App::make('dompdf.wrapper');
-    $pdf->loadHTML('
-        <style>
-        .page-break {
-            page-break-after: always;
-        }
-        </style>
-        <h1>Order '.$orderId.'</h1>
-        <div class="page-break"></div>
-        <h1>Page 2</h1>
-    ');
-    return $pdf->download('order_'.$orderId.'.pdf');
+        return manipulateJsonResponseOrder($order,$items,$specials,$notes,State::all());
+    });
+    Route::get('jsondata/specialsfororder/{orderId}', function($orderId){
+        $specials = Special::where('order_id',$orderId)->get();
+        return manipulateJsonResponseSpecialsForOrder($specials,Order::all(),$orderId);
+    });
+    Route::get('jsondata/notesfororder/{orderId}', function($orderId){
+        $notes = Note::where('order_id',$orderId)->get();
+        return manipulateJsonResponseNotesForOrder($notes,Order::all(),$orderId);
+    });
+    Route::get('jsondata/extra', function(){
+        return manipulateJsonResponseExtra(Extra::all());
+    });
+    Route::get('jsondata/state', function(){
+        return manipulateJsonResponseState(State::all());
+    });
+    Route::get('jsondata/users', function(){
+        return response()->json([
+            'results'=>User::all()
+        ]);
+    });
+
+    /*** NOTIFICATIONS from APP / WEBAPP ***/
+    Route::get('jsondata/notifications/check/{orderId}', function($orderId){
+        return manipulateJsonResponseNotificationsCheck($orderId);
+    });
+    /*** Save/Update ORDER from APP / WEBAPP ***/
+    Route::get('jsondata/order/save/{request}', function($request){
+        return saveOrder($request);
+    });
+    /*** Change state ORDER from APP / WEBAPP ***/
+    Route::get('jsondata/order/change/state/{itemId}', function($itemId){
+        return changeStateOrder($itemId);
+    });
+    /*** Delete ORDER from APP / WEBAPP ***/
+    Route::get('jsondata/order/delete/{orderId}', function($orderId){
+        return deleteOrder($orderId);
+    });
+
+    /*** Change state ITEM from APP / WEBAPP ***/
+    Route::get('jsondata/item/change/state/{itemId}/{orderId}', function($itemId,$orderId){
+        return changeStateItem($itemId,$orderId);
+    });
+    /*** Delete ITEM from APP / WEBAPP ***/
+    Route::get('jsondata/item/delete/{itemId}/{orderId}', function($itemId,$orderId){
+        return deleteItem($itemId,$orderId);
+    });
+
+    /*** Change state SPECIAL from APP / WEBAPP ***/
+    Route::get('jsondata/special/change/state/{itemId}/{orderId}', function($itemId,$orderId){
+        return changeStateSpecial($itemId,$orderId);
+    });
+    /*** Delete SPECIAL from APP / WEBAPP ***/
+    Route::get('jsondata/special/delete/{specialId}/{orderId}', function($specialId,$orderId){
+        return deleteSpecial($specialId,$orderId);
+    });
+    /*** Delete NOTE from APP / WEBAPP ***/
+    Route::get('jsondata/note/delete/{noteId}/{orderId}', function($noteId,$orderId){
+        return deleteNote($noteId,$orderId);
+    });
+
+    //Stampa il PDF: non funziona se la chiamata arriva da app
+    Route::post('jsondata/order/print/{orderId}', function($orderId){
+        //end data
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadHTML('
+            <style>
+            .page-break {
+                page-break-after: always;
+            }
+            </style>
+            <h1>Order '.$orderId.'</h1>
+            <div class="page-break"></div>
+            <h1>Page 2</h1>
+        ');
+        return $pdf->download('order_'.$orderId.'.pdf');
+    });
 });

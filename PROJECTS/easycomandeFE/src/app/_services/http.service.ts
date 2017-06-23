@@ -25,6 +25,8 @@ export class HttpService {
         //let host    = 'http://www.amalficoastapps.it/easycomande/BE/public';
         let url     = '';
 
+        let api_token = localStorage.getItem('api_token');
+
         //LOGIN
         if (call == 'authentication') {
             url = 'jsondata/auth/'+username+'/'+password;
@@ -94,7 +96,7 @@ export class HttpService {
 
         //console.log('URL: ' + host + '' + url);
 
-        return this.http.get(host + '' + url)
+        return this.http.get(host + '' + url+'?api_token='+api_token)
                     .map(this.extractData)
                     .catch(this.handleError);
     }

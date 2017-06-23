@@ -57,7 +57,8 @@ function manipulateJsonResponseAuth($email,$password) {
         $user = Auth::user();
         $json .= '{';
         $json .= '"logged":"autenticated",';
-        $json .= '"user":"'.$user['email'].'",';
+        $json .= '"email":"'.$email.'",';
+        $json .= '"api_token":"'.$user['api_token'].'",';
         $json .= '"name":"'.$user['name'].'",';
         $json .= '"role":"'.$user['role'].'"';
         $json .='}';

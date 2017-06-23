@@ -158,14 +158,7 @@ export class AddPage {
         let pPriceTotal     = pPrice;
         
         ////////// Service or Covered
-        let pPriceService;
-        if(localStorage.getItem('serviceenablepercent')) {
-          let serviceenablepercent = localStorage.getItem('serviceenablepercent');
-          pPriceService = Number.parseFloat(pPriceTotal) * parseInt(serviceenablepercent) / 100;
-        } else if(localStorage.getItem('coveredenablevalue')) {
-          let coveredenablevalue = localStorage.getItem('coveredenablevalue');
-          pPriceService = this.numCoperti * parseFloat(coveredenablevalue);
-        }
+        let pPriceService = this.calculateServiceOrCovered(pPriceTotal);
 
         let prodotto = new Product(
           pId,
@@ -201,13 +194,7 @@ export class AddPage {
     prod.setPriceTotal(newPrice);
     
     ////////// Service or Covered
-    if(localStorage.getItem('serviceenablepercent')) {
-      let serviceenablepercent = localStorage.getItem('serviceenablepercent');
-      prod.setPriceServiceTotal(newPrice * parseInt(serviceenablepercent) / 100);
-    } else if(localStorage.getItem('coveredenablevalue')) {
-      let coveredenablevalue = localStorage.getItem('coveredenablevalue');
-      prod.setPriceServiceTotal(this.numCoperti * parseFloat(coveredenablevalue));
-    }
+    prod.setPriceServiceTotal(this.calculateServiceOrCovered(newPrice));
 
     this.totaleOrdine = Number.parseFloat(this.totaleOrdine) + Number.parseFloat(prod.price);
   }
@@ -219,13 +206,7 @@ export class AddPage {
     prod.setPriceTotal(newPrice);
     
     ////////// Service or Covered
-    if(localStorage.getItem('serviceenablepercent')) {
-      let serviceenablepercent = localStorage.getItem('serviceenablepercent');
-      prod.setPriceServiceTotal(newPrice * parseInt(serviceenablepercent) / 100);
-    } else if(localStorage.getItem('coveredenablevalue')) {
-      let coveredenablevalue = localStorage.getItem('coveredenablevalue');
-      prod.setPriceServiceTotal(this.numCoperti * parseFloat(coveredenablevalue));
-    }
+    prod.setPriceServiceTotal(this.calculateServiceOrCovered(newPrice));
 
     if(newQuantity > 0) {
       this.totaleOrdine = Number.parseFloat(this.totaleOrdine) - Number.parseFloat(prod.price);
@@ -533,14 +514,7 @@ export class AddPage {
         let pPriceTotal     = pPrice;
 
         ////////// Service or Covered
-        let pPriceService;
-        if(localStorage.getItem('serviceenablepercent')) {
-          let serviceenablepercent = localStorage.getItem('serviceenablepercent');
-          pPriceService = Number.parseFloat(pPriceTotal) * parseInt(serviceenablepercent) / 100;
-        } else if(localStorage.getItem('coveredenablevalue')) {
-          let coveredenablevalue = localStorage.getItem('coveredenablevalue');
-          pPriceService = this.numCoperti * parseFloat(coveredenablevalue);
-        }
+        let pPriceService = this.calculateServiceOrCovered(pPriceTotal);
 
         //Prodotto EXTRA
         let prodotto = new Product(
@@ -675,6 +649,20 @@ export class AddPage {
       action: '', //closeAdd: per chiudere una sola modal ma non viene fatto il refresh degli ordini
       orderIdSave: orderIdSave
     });
+  }
+
+  calculateServiceOrCovered(price:any) {
+    let pPriceService;
+
+    if(localStorage.getItem('serviceenablepercent')) {
+      let serviceenablepercent = localStorage.getItem('serviceenablepercent');
+      pPriceService = Number.parseFloat(price) * parseInt(serviceenablepercent) / 100;
+    } else if(localStorage.getItem('coveredenablevalue')) {
+      let coveredenablevalue = localStorage.getItem('coveredenablevalue');
+      pPriceService = this.numCoperti * parseFloat(coveredenablevalue);
+    }
+
+    return pPriceService;
   }
 
 }

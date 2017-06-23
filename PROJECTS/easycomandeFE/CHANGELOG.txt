@@ -2,3 +2,7 @@ TODO:
 OK -> authentication
 OK -> print order
 OK -> change ORDER state
+
+
+http://localhost:8000/jsondata/order/38?api_token=Pwbo7CmLtqAP5TvIHYFZPqkmetJFTi9UZIfxE1GLeBFFJgzZ8DvhdTEiGFxf
+http://bootstrapdojo.com/rest-api-laravel-5-4-with-token-authentication/

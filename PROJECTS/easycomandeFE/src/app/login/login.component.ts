@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit {
 
         if(user.logged == 'autenticated') {
           localStorage.setItem('currentUser', user.name);
+          localStorage.setItem('api_token', user.api_token);
           this.router.navigate(['/home']);
         } else {
           this.alertService.error('Authentication failed!');

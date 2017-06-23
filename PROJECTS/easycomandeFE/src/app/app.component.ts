@@ -76,7 +76,7 @@ export class AppComponent {
         this.loadingBarService.complete();
       },
       error => {
-        this.alertService.error('ORDINI: Dati non disponibili! Si è verificato un errore.');
+        //this.alertService.error('ORDINI: Dati non disponibili! Si è verificato un errore.');
         this.loadingBarService.complete();
       });
 
@@ -97,7 +97,7 @@ export class AppComponent {
           this.notificationsCount = this.notifications.length;
         },
         error => {
-          this.alertService.error('ORDINI: Dati non disponibili! Si è verificato un errore.');
+          //this.alertService.error('NOTIFICATIONS: Dati non disponibili! Si è verificato un errore.');
         });
   }
 
@@ -121,7 +121,7 @@ export class AppComponent {
         }
       },
       error => {
-        this.alertService.error('CONFIGURATIONS: Dati non disponibili! Si è verificato un errore.');
+        //this.alertService.error('CONFIGURATIONS: Dati non disponibili! Si è verificato un errore.');
       });
   }
 
