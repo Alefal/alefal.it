@@ -9,7 +9,7 @@
         <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
             <a class="card card-banner card-green-light" href="{{ url('/configurations') }}">
                 <div class="card-body">
-                    <i class="icon fa fa-th-list fa-4x"></i>
+                    <i class="icon fa fa-cogs fa-4x"></i>
                     <div class="content">
                         <div class="title">Configurations</div>
                         <div class="value">{{ $numConfigurations }}</div>
@@ -36,7 +36,7 @@
     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
         <a class="card card-banner card-blue-light" href="{{ url('/menu') }}">
             <div class="card-body">
-                <i class="icon fa fa-th-list fa-4x"></i>
+                <i class="icon fa fa-book fa-4x"></i>
                 <div class="content">
                     <div class="title">Menu</div>
                     <div class="value">{{ $numMenu }}</div>
@@ -49,7 +49,7 @@
    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
         <a class="card card-banner card-yellow-light" href="{{ url('/orders') }}">
             <div class="card-body">
-                <i class="icon fa fa-th-list fa-4x"></i>
+                <i class="icon fa fa-pencil fa-4x"></i>
                 <div class="content">
                     <div class="title">Orders</div>
                     <div class="value">{{ $numOrders }}</div>
@@ -62,7 +62,7 @@
     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
         <a class="card card-banner card-orange-light" href="{{ url('/items') }}">
             <div class="card-body">
-                <i class="icon fa fa-th-list fa-4x"></i>
+                <i class="icon fa fa-list-ol fa-4x"></i>
                 <div class="content">
                     <div class="title">Items</div>
                     <div class="value">{{ $numItems }}</div>
@@ -75,7 +75,7 @@
     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
         <a class="card card-banner card-green-light" href="{{ url('/extra') }}">
             <div class="card-body">
-                <i class="icon fa fa-th-list fa-4x"></i>
+                <i class="icon fa fa-asterisk fa-4x"></i>
                 <div class="content">
                     <div class="title">Extras</div>
                     <div class="value">{{ $numExtras }}</div>
@@ -88,7 +88,7 @@
     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
         <a class="card card-banner card-yellow-light" href="{{ url('/specials') }}">
             <div class="card-body">
-                <i class="icon fa fa-th-list fa-4x"></i>
+                <i class="icon fa fa-star fa-4x"></i>
                 <div class="content">
                     <div class="title">Specials</div>
                     <div class="value">{{ $numSpecials }}</div>
@@ -101,7 +101,7 @@
     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
         <a class="card card-banner card-blue-light" href="{{ url('/notes') }}">
             <div class="card-body">
-                <i class="icon fa fa-th-list fa-4x"></i>
+                <i class="icon fa fa-sticky-note-o fa-4x"></i>
                 <div class="content">
                     <div class="title">Notes</div>
                     <div class="value">{{ $numNotes }}</div>
@@ -115,7 +115,7 @@
         <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
             <a class="card card-banner card-orange-light" href="{{ url('/state') }}">
                 <div class="card-body">
-                    <i class="icon fa fa-th-list fa-4x"></i>
+                    <i class="icon fa fa-clock-o fa-4x"></i>
                     <div class="content">
                         <div class="title">States</div>
                         <div class="value">{{ $numStates }}</div>

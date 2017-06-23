@@ -313,8 +313,8 @@ export class OrderComponent implements OnInit {
       <html>
         <head>
           <title>Ordinazione</title>
-          <link rel="stylesheet" type="text/css" href="/easycomande/FE/assets/css/bootstrap.css" />
-	        <link rel="stylesheet" type="text/css" href="/easycomande/FE/assets/css/main.css" />
+          <link rel="stylesheet" type="text/css" href="../../assets/css/bootstrap.css" />
+	        <link rel="stylesheet" type="text/css" href="../../easycomande/FE/assets/css/main.css" />
           <style>
           //........Customized style.......
           .printOrder {
@@ -439,7 +439,7 @@ export class OrderComponent implements OnInit {
 
     let template = ''+
     '<div class="container printOrder">'+
-    '  <div class="logo"><img src="/easycomande/FE/assets/img/logo-small-print.png" /></div>'+
+    '  <div class="logo"><img src="../../assets/img/logo-small-print.png" /></div>'+
     '  <div class="orderInfo">'+     
     '     <h2>'+order.client+'</h2>'+
     '     <h4>Date: '+moment(order.date).format('MM DD, YYYY HH:mm A')+'</h4>'+
