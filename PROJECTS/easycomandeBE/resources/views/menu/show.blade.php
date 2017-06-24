@@ -19,12 +19,12 @@
             <div class="card-body">
 
                 <div class="section">
-                    <div class="section-title">Information</div>
+                    <div class="section-title">Informazioni</div>
                     <div class="section-body">
 
                         <div class="row">
                             <div class="col-md-6 col-sm-6">
-                                <label class="control-label">Name:</label> {{ $item->name }}
+                                <label class="control-label">Nome:</label> {{ $item->name }}
                                 <br />
                                 <label class="control-label">Category:</label> 
                                 @foreach($categories as $cat)
@@ -34,20 +34,9 @@
                                 @endforeach
                             </div>
                              <div class="col-md-6 col-sm-6">
-                                <label class="control-label">Price:</label> {{ $item->price }}
+                                <label class="control-label">Prezzo:</label> {{ $item->price }}
                                 <br />
-                                <label class="control-label">Price Offer:</label> {{ $item->priceoffer }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6 col-sm-12">
-                        <div class="section">
-                            <div class="section-title">Description</div>
-                            <div class="section-body">
-                                {!! $item->description !!}
+                                <label class="control-label">Prezzo Offerta:</label> {{ $item->priceoffer }}
                             </div>
                         </div>
                     </div>

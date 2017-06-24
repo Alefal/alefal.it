@@ -21,13 +21,13 @@
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
                         <div class="section">
-                            <div class="section-title">Information</div>
+                            <div class="section-title">Informazioni</div>
                             <div class="section-body">
-                                <label class="control-label">Name:</label> {{ $item->name }}
+                                <label class="control-label">Nome:</label> {{ $item->name }}
                                 <br />
                                 <label class="control-label">Email</label> {{ $item->email }}
                                 <br />
-                                <label class="control-label">Role</label> {{ $item->role }}
+                                <label class="control-label">Ruolo</label> {{ $item->role }}
                                 <br />
                                 <label class="control-label">Created At:</label> {{ $item->created_at }}
                                 <br />

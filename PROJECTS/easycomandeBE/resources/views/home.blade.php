@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <i class="icon fa fa-cogs fa-4x"></i>
                     <div class="content">
-                        <div class="title">Configurations</div>
+                        <div class="title">Configurazioni</div>
                         <div class="value">{{ $numConfigurations }}</div>
                     </div>
                 </div>
@@ -25,7 +25,7 @@
             <div class="card-body">
                 <i class="icon fa fa-th-list fa-4x"></i>
                 <div class="content">
-                    <div class="title">Categories</div>
+                    <div class="title">Categorie</div>
                     <div class="value">{{ $numCategories }}</div>
                 </div>
             </div>
@@ -51,7 +51,7 @@
             <div class="card-body">
                 <i class="icon fa fa-pencil fa-4x"></i>
                 <div class="content">
-                    <div class="title">Orders</div>
+                    <div class="title">Ordinazioni</div>
                     <div class="value">{{ $numOrders }}</div>
                 </div>
             </div>
@@ -64,7 +64,7 @@
             <div class="card-body">
                 <i class="icon fa fa-list-ol fa-4x"></i>
                 <div class="content">
-                    <div class="title">Items</div>
+                    <div class="title">Prodotti</div>
                     <div class="value">{{ $numItems }}</div>
                 </div>
             </div>
@@ -77,7 +77,7 @@
             <div class="card-body">
                 <i class="icon fa fa-asterisk fa-4x"></i>
                 <div class="content">
-                    <div class="title">Extras</div>
+                    <div class="title">Extra</div>
                     <div class="value">{{ $numExtras }}</div>
                 </div>
             </div>
@@ -90,7 +90,7 @@
             <div class="card-body">
                 <i class="icon fa fa-star fa-4x"></i>
                 <div class="content">
-                    <div class="title">Specials</div>
+                    <div class="title">Speciali</div>
                     <div class="value">{{ $numSpecials }}</div>
                 </div>
             </div>
@@ -103,7 +103,7 @@
             <div class="card-body">
                 <i class="icon fa fa-sticky-note-o fa-4x"></i>
                 <div class="content">
-                    <div class="title">Notes</div>
+                    <div class="title">Note</div>
                     <div class="value">{{ $numNotes }}</div>
                 </div>
             </div>
@@ -117,7 +117,7 @@
                 <div class="card-body">
                     <i class="icon fa fa-clock-o fa-4x"></i>
                     <div class="content">
-                        <div class="title">States</div>
+                        <div class="title">Stati</div>
                         <div class="value">{{ $numStates }}</div>
                     </div>
                 </div>
@@ -130,7 +130,7 @@
                 <div class="card-body">
                     <i class="icon fa fa-users fa-4x"></i>
                     <div class="content">
-                        <div class="title">Users</div>
+                        <div class="title">Utenti</div>
                         <div class="value">{{ $numUsers }}</div>
                     </div>
                 </div>

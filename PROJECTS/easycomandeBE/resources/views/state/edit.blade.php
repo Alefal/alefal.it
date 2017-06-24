@@ -5,7 +5,7 @@
         <div class="card card-mini">
             <div class="card-header">
                 <h4 class="card-title">
-                    Edit: {{ $item->state }}
+                    Modifica: {{ $item->state }}
                 </h4>
                 <div class="card-action">
                     <a href="{{ route('state.index') }}">
@@ -17,7 +17,7 @@
 
                 @if (count($errors) > 0)
                 <div class="alert alert-danger">
-                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                    <strong>Attenzione!</strong> Ci sono problemi con i dati inseriti.<br><br>
                     <ul>
                         @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -35,8 +35,8 @@
                     </div>
                     <div class="col-xs-6 col-md-6">
                         <div class="form-group">
-                            <label for="name">Name</label>
-                            {!! Form::text('state', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+                            <label for="name">Nome</label>
+                            {!! Form::text('state', null, array('placeholder' => 'Nome','class' => 'form-control')) !!}
                         </div>
                     </div>
                 </div>
@@ -45,7 +45,7 @@
                     <div class="col-md-12 col-xs-12 center">
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary btn-lg btn-block">
-                                <i class="fa fa-floppy-o" aria-hidden="true"></i> Edit
+                                <i class="fa fa-floppy-o" aria-hidden="true"></i> Modifica
                             </button>
                         </div>
                     </div>

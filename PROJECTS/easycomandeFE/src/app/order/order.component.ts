@@ -497,8 +497,8 @@ export class OrderComponent implements OnInit {
     template += ''+
     '  <hr />'+     
     '  <div class="orderInfo">'+     
-    '     <h3>Thank you</h3>'+
-    '     <h3>Please come again!</h3>'+
+    '     <h3>Grazie per averci preferito</h3>'+
+    '     <h3>Tornate presto!</h3>'+
     '  </div>'+ 
     '</div>';
     return template;

@@ -14,7 +14,7 @@
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">
-                    Notes
+                    Note
                 </h4>
                 <div class="card-action">
                     <a href="{{ route('notes.create') }}">
@@ -27,8 +27,8 @@
                     <table class="table card-table table-striped">
                         <thead>
                             <tr>
-                                <th>Note</th>
-                                <th>Client</th>
+                                <th>Nota</th>
+                                <th>Cliente</th>
                                 <th></th>
                             </tr>
                         </thead>

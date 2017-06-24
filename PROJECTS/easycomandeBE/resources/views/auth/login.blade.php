@@ -39,7 +39,7 @@
                         @endif
 
                         <div class="text-center">
-                            <button class="btn btn-success btn-submit btn-large" type="submit">Login</button>
+                            <button class="btn btn-success btn-submit btn-large" type="submit">Accedi</button>
                         </div>
 
                         <!--

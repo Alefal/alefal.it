@@ -39,8 +39,8 @@
                                     <thead>
                                         <tr>
                                             <th>QTY</th>
-                                            <th>ITEM</th>
-                                            <th>TOTAL</th>
+                                            <th>PIATTO</th>
+                                            <th>TOTALE</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -79,20 +79,20 @@
 
                     <div class="col-md-3 col-sm-12">
                         <div class="section">
-                            <div class="section-title"><strong>Totals:</strong></div>
+                            <div class="section-title"><strong>Totali:</strong></div>
                             <div class="section-body">
                                 <h4>
                                     <label class="control-label">Coperti:</label> {{ $order->covered }}
                                     <br />
-                                    <label class="control-label">Order:</label> {{ $order->totalorder }}
+                                    <label class="control-label">Ordinazioni:</label> {{ $order->totalorder }}
                                     <br />
-                                    <label class="control-label">Service / Covered:</label> {{ $order->totalservice }}
+                                    <label class="control-label">Servizio / Coperti:</label> {{ $order->totalservice }}
                                 </h4>
                             </div>
                         </div>
 
                         <div class="section">
-                            <div class="section-title"><strong>State:</strong></div>
+                            <div class="section-title"><strong>Stato:</strong></div>
                             <div class="section-body">
                                 @foreach($states as $state)
                                     @if ($item->state_id == $state->id) 
@@ -104,7 +104,7 @@
 
                         @if (count($notes) > 0)
                             <div class="section">
-                                <div class="section-title"><strong>Notes:</strong></div>
+                                <div class="section-title"><strong>Note:</strong></div>
                                 <div class="section-body">
                                     @foreach($notes as $note)
                                         {{ $note->note }}

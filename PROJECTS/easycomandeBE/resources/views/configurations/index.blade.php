@@ -14,7 +14,7 @@
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">
-                    Configurations
+                    Configurazioni
                 </h4>
                 <div class="card-action">
                     <a href="{{ route('configurations.create') }}">
@@ -27,10 +27,10 @@
                     <table class="table card-table table-striped">
                         <thead>
                             <tr>
-                                <th>Key</th>
-                                <th>Label</th>
-                                <th>Value</th>
-                                <th>Enable</th>
+                                <th>Chiave</th>
+                                <th>Descrizione</th>
+                                <th>Valore</th>
+                                <th>Abilitato</th>
                                 <th></th>
                             </tr>
                         </thead>

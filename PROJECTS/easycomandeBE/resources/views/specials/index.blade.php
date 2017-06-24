@@ -27,9 +27,9 @@
                     <table class="table card-table table-striped">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Price</th>
-                                <th>Client</th>
+                                <th>Nome</th>
+                                <th>Prezzo</th>
+                                <th>Cliente</th>
                                 <th></th>
                             </tr>
                         </thead>

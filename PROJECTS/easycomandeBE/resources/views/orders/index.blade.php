@@ -14,7 +14,7 @@
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">
-                    Orders
+                    Ordinazioni
                 </h4>
                 <div class="card-action">
                     <a href="{{ route('orders.create') }}">
@@ -27,9 +27,9 @@
                     <table class="table card-table table-striped">
                         <thead>
                             <tr>
-                                <th>Client</th>
-                                <th>Total</th>
-                                <th>State</th>
+                                <th>Cliente</th>
+                                <th>Totale</th>
+                                <th>Stato</th>
                                 <th></th>
                             </tr>
                         </thead>

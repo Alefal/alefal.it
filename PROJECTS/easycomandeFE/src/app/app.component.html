@@ -36,7 +36,7 @@
                         <div class="icon">
                             <i class="fa fa-plus" aria-hidden="true"></i>
                         </div>
-                        <div class="title">New Order</div>
+                        <div class="title">Aggiungi</div>
                     </a>
                 </li>
                 <li>
@@ -52,7 +52,7 @@
                         <div class="icon">
                             <i class="fa fa-cogs" aria-hidden="true"></i>
                         </div>
-                        <div class="title">Settings</div>
+                        <div class="title">Configurazioni</div>
                     </a>
                     <div class="dropdown-menu">
                         <ul>
@@ -129,7 +129,7 @@
                                         </div>
                                     </li>
                                     <li class="dropdown-footer">
-                                        <a [routerLink]="['/home']">View All <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                        <a [routerLink]="['/home']">Vedi tutte <i class="fa fa-angle-right" aria-hidden="true"></i></a>
                                     </li>
                                 </ul>
                             </div>
@@ -143,7 +143,7 @@
                             <div class="dropdown-menu">
                                 <ul>
                                     <li class="dropdown-header">Completate</li>
-                                    <li class="dropdown-empty" *ngIf="orderSuccessLength == 0">No New Ordered</li>
+                                    <li class="dropdown-empty" *ngIf="orderSuccessLength == 0">Nessun ordinazione</li>
                                     <li *ngFor="let order of orders">
                                         <div *ngIf="order.state == 'completed'" (click)="orderDetail(order.id)" class="dropdownContent">
                                             <span class="badge badge-success pull-right">{{order.totalorder}}</span>
@@ -155,7 +155,7 @@
                                         </div>
                                     </li>
                                     <li class="dropdown-footer">
-                                        <a [routerLink]="['/home']">View All <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                        <a [routerLink]="['/home']">Vedi tutte <i class="fa fa-angle-right" aria-hidden="true"></i></a>
                                     </li>
                                 </ul>
                             </div>
@@ -163,12 +163,12 @@
                         <li class="dropdown notification danger">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <div class="icon"><i class="fa fa-bell" aria-hidden="true"></i></div>
-                                <div class="title">Notifications</div>
+                                <div class="title">Notifiche</div>
                                 <div class="count">{{notificationsCount}}</div>
                             </a>
                             <div class="dropdown-menu">
                                 <ul>
-                                    <li class="dropdown-header">Notification</li>
+                                    <li class="dropdown-header">Notifiche</li>
                                     <li *ngFor="let not of notifications">
                                         <a (click)="orderDetail(not.order_id)">
                                             <span class="badge badge-danger pull-right">{{not.state}}</span>
@@ -190,7 +190,7 @@
                             </a>
                             <div class="dropdown-menu">
                                 <div class="profile-info">
-                                    <h4 class="username">Manager Manager</h4>
+                                    <h4 class="username">{{currentUser}}</h4>
                                 </div>
                                 <ul class="action">
                                     <li>

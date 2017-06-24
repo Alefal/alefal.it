@@ -7,7 +7,7 @@
         <div class="card card-mini">
             <div class="card-header">
                 <h4 class="card-title">
-                    Create New Item
+                    Aggiungi nuovo
                 </h4>
                 <div class="card-action">
                     <a href="{{ route('menu.index') }}">
@@ -19,7 +19,7 @@
 
                 @if (count($errors) > 0)
                     <div class="alert alert-danger">
-                        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                        <strong>Attenzione!</strong> Ci sono problemi con i dati inseriti.<br><br>
                         <ul>
                             @foreach ($errors->all() as $error)
                                 <li>{{ $error }}</li>
@@ -33,20 +33,20 @@
                 <div class="row">
                     <div class="col-xs-6 col-md-4">
                         <div class="form-group">
-                            <label for="name">Name</label>
-                            {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+                            <label for="name">Nome</label>
+                            {!! Form::text('name', null, array('placeholder' => 'Nome','class' => 'form-control')) !!}
                         </div>
                     </div>
                     <div class="col-xs-6 col-md-4">
                         <div class="form-group">
-                            <label for="id">Price</label>
-                            {!! Form::text('price', null, array('placeholder' => 'Price','class' => 'form-control')) !!}
+                            <label for="Prezzo">Prezzo</label>
+                            {!! Form::text('price', null, array('placeholder' => 'Prezzo','class' => 'form-control')) !!}
                         </div>
                     </div>
                     <div class="col-xs-6 col-md-4">
                         <div class="form-group">
-                            <label for="id">Price Offer</label>
-                            {!! Form::text('priceoffer', null, array('placeholder' => 'Price Offer','class' => 'form-control')) !!}
+                            <label for="id">Prezzo Offerta</label>
+                            {!! Form::text('priceoffer', null, array('placeholder' => 'Prezzo Offerta','class' => 'form-control')) !!}
                         </div>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                 <div class="row">
                     <div class="col-xs-6 col-md-12">
                         <div class="form-group">
-                            <label for="categories">Categories</label>
+                            <label for="categories">Categorie</label>
                             <select class="form-control" name="category_id">
                                 @foreach($categories as $cat)
                                     <option value="{{$cat->id}}">{{$cat->name}}</option>
@@ -77,7 +77,7 @@
                     <div class="col-md-12 col-xs-12 center">
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary btn-lg btn-block">
-                                <i class="fa fa-floppy-o" aria-hidden="true"></i> Save
+                                <i class="fa fa-floppy-o" aria-hidden="true"></i> Salva
                             </button>
                         </div>
                     </div>

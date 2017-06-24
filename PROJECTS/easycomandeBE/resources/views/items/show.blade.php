@@ -17,7 +17,7 @@
             <div class="card-body">
 
                 <div class="section">
-                    <div class="section-title">Information</div>
+                    <div class="section-title">Informazioni</div>
                     <div class="section-body">
 
                         <div class="row">
@@ -25,9 +25,9 @@
                                 <label class="control-label">Qnt:</label> {{ $item->quantity }}
                             </div>
                              <div class="col-md-6 col-sm-6">
-                                <label class="control-label">Total:</label> {{ $item->total }}
+                                <label class="control-label">Totale:</label> {{ $item->total }}
                                 <br />
-                                <label class="control-label">Service:</label> {{ $item->service }}
+                                <label class="control-label">Servizio:</label> {{ $item->service }}
                             </div>
                         </div>
                     </div>

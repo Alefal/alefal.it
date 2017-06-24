@@ -31,7 +31,7 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Name</th>
+                                <th>Nome</th>
                                 <th></th>
                             </tr>
                         </thead>

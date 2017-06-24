@@ -19,15 +19,15 @@
             <div class="card-body">
 
                 <div class="section">
-                    <div class="section-title">Information</div>
+                    <div class="section-title">Informazioni</div>
                     <div class="section-body">
 
                         <div class="row">
                             <div class="col-md-6 col-sm-6">
-                                <label class="control-label">Note:</label> {{ $item->note }}
+                                <label class="control-label">Nota:</label> {{ $item->note }}
                             </div>
                              <div class="col-md-6 col-sm-6">
-                                <label class="control-label">Order for:</label> 
+                                <label class="control-label">Ordine per:</label> 
                                 @foreach($orders as $order)
                                     @if ($item->order_id == $order->id) 
                                         {{ $order->client }}

@@ -5,7 +5,7 @@
         <div class="card card-mini">
             <div class="card-header">
                 <h4 class="card-title">
-                    Edit: {{ $item->name }}
+                    Modifica: {{ $item->name }}
                 </h4>
                 <div class="card-action">
                     <a href="{{ route('configurations.index') }}">
@@ -17,7 +17,7 @@
 
                 @if (count($errors) > 0)
                 <div class="alert alert-danger">
-                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                    <strong>Attenzione!</strong> Ci sono problemi con i dati inseriti.<br><br>
                     <ul>
                         @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -29,14 +29,14 @@
                 <div class="row">
                     <div class="col-xs-6 col-md-6">
                         <div class="form-group">
-                            <label for="Key">Key</label>
-                            {!! Form::text('key', null, array('placeholder' => 'Key','class' => 'form-control')) !!}
+                            <label for="Chiave">Chiave</label>
+                            {!! Form::text('key', null, array('placeholder' => 'Chiave','class' => 'form-control')) !!}
                         </div>
                     </div>
                     <div class="col-xs-6 col-md-6">
                         <div class="form-group">
-                            <label for="name">Label</label>
-                            {!! Form::text('label', null, array('placeholder' => 'Label','class' => 'form-control')) !!}
+                            <label for="Descrizione">Descrizione</label>
+                            {!! Form::text('label', null, array('placeholder' => 'Descrizione','class' => 'form-control')) !!}
                         </div>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                 <div class="row">
                      <div class="col-xs-6 col-md-6">
                         <div class="form-group">
-                            <label for="enable">Enable</label>
+                            <label for="Abilitato">Abilitato</label>
                             <select class="form-control" name="enable">
                                 @if ($item->enable)
                                     <option value="0">NO</option>
@@ -58,8 +58,8 @@
                     </div>
                     <div class="col-xs-6 col-md-6">
                         <div class="form-group">
-                            <label for="city">Value</label>
-                             {!! Form::text('value', null, array('placeholder' => 'Value','class' => 'form-control')) !!}
+                            <label for="Valore">Valore</label>
+                             {!! Form::text('value', null, array('placeholder' => 'Valore','class' => 'form-control')) !!}
                         </div>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                     <div class="col-md-12 col-xs-12 center">
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary btn-lg btn-block">
-                                <i class="fa fa-floppy-o" aria-hidden="true"></i> Edit
+                                <i class="fa fa-floppy-o" aria-hidden="true"></i> Modifica
                             </button>
                         </div>
                     </div>

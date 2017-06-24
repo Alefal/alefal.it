@@ -27,6 +27,8 @@ export class AppComponent {
   orderPendingLength: number = 0;
   orderSuccessLength: number = 0;
 
+  currentUser: string;
+
   labelTypeService = '';
 
   constructor(
@@ -39,7 +41,9 @@ export class AppComponent {
   ) {
     this.loadConfigurations();
     this.loadData();
-    setInterval(this.loadData.bind(this), 60000)
+    setInterval(this.loadData.bind(this), 60000);
+
+    this.currentUser = localStorage.getItem('currentUser');
   }
 
   loadData() {

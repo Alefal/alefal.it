@@ -28,9 +28,9 @@
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>Name</th>
-                                <th>Price</th>
-                                <th>Category</th>
+                                <th>Nome</th>
+                                <th>Prezzo</th>
+                                <th>Categoria</th>
                                 <th></th>
                             </tr>
                         </thead>

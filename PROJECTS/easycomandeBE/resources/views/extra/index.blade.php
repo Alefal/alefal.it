@@ -28,8 +28,8 @@
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>Name</th>
-                                <th>Price</th>
+                                <th>Nome</th>
+                                <th>Prezzo</th>
                                 <th></th>
                             </tr>
                         </thead>

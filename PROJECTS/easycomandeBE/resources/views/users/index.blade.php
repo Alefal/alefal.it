@@ -27,9 +27,9 @@
                     <table class="table card-table table-striped">
                         <thead>
                             <tr>
-                                <th>Name</th>
+                                <th>Nome</th>
                                 <th>Email</th>
-                                <th>Role</th>
+                                <th>Ruolo</th>
                                 <th></th>
                             </tr>
                         </thead>

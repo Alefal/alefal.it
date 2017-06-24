@@ -5746,13 +5746,13 @@ $(function() {
     $('.buttonDelete').click(function(){
         var form = $(this).parents('form');
         swal({
-            title: "Are you sure?",
-            text: "Do you want delete selected item!",
+            title: "Sei sicuro?",
+            text: "Vuoi eliminare il prodotto selezionato!",
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Yes, delete it!",
-            cancelButtonText: "No, cancel plx!",
+            confirmButtonText: "SI",
+            cancelButtonText: "NO",
             closeOnConfirm: false,
             closeOnCancel: false
         },
@@ -5760,7 +5760,7 @@ $(function() {
             if (isConfirm) {
                 form.submit()
             } else {
-                swal("Cancelled", "Your it is safe :)", "error");
+                swal("Cancellazione", "La cancellazione è stata annullata :)", "error");
             }
         });
     });
@@ -5949,7 +5949,7 @@ function templateOrder(order,items,specials,notes) {
 function  templateOrderCompleted(order,items,specials,notes) {
     var template = ''+
     '<div class="container printOrder">'+
-    '  <div class="logo"><img src="/img/logo-small.png" /></div>'+
+    '  <div class="logo"><img src="../img/logo-small.png" /></div>'+
     '  <div class="orderInfo">'+     
     '     <h2>'+order.client+'</h2>'+
     '     <h4>Date: '+moment(order.date).format('DD MM, YYYY HH:mm A')+'</h4>'+

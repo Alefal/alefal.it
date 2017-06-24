@@ -19,12 +19,12 @@
             <div class="card-body">
 
                 <div class="section">
-                    <div class="section-title">Information</div>
+                    <div class="section-title">Informazioni</div>
                     <div class="section-body">
 
                         <div class="row">
                             <div class="col-md-6 col-sm-6">
-                                <label class="control-label">Name:</label> {{ $item->state }}
+                                <label class="control-label">Nome:</label> {{ $item->state }}
                             </div>
                         </div>
                     </div>

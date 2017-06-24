@@ -5,7 +5,7 @@
         <div class="card card-mini">
             <div class="card-header">
                 <h4 class="card-title">
-                    Edit: {{ $item->name }}
+                    Modifica: {{ $item->name }}
                 </h4>
                 <div class="card-action">
                     <a href="{{ route('users.index') }}">
@@ -17,7 +17,7 @@
 
                 @if (count($errors) > 0)
                 <div class="alert alert-danger">
-                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                    <strong>Attenzione!</strong> Ci sono problemi con i dati inseriti.<br><br>
                     <ul>
                         @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -28,9 +28,9 @@
 
                 <div class="section-body">
                     <div class="form-group">
-                        <label class="col-md-3 control-label">Name</label>
+                        <label class="col-md-3 control-label">Nome</label>
                         <div class="col-md-9">
-                            {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+                            {!! Form::text('name', null, array('placeholder' => 'Nome','class' => 'form-control')) !!}
                         </div>
                     </div>
                     <div class="form-group">
@@ -52,7 +52,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-3 control-label">Role</label>
+                        <label class="col-md-3 control-label">Ruolo</label>
                         <div class="col-md-9">
                             <div class="input-group">
                                 <span class="input-group-addon">*</span>
@@ -69,7 +69,7 @@
                     <div class="col-md-12 col-xs-12 center">
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary btn-lg btn-block">
-                                <i class="fa fa-floppy-o" aria-hidden="true"></i> Edit
+                                <i class="fa fa-floppy-o" aria-hidden="true"></i> Modifica
                             </button>
                         </div>
                     </div>

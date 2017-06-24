@@ -21,15 +21,15 @@
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
                         <div class="section">
-                            <div class="section-title">Information</div>
+                            <div class="section-title">Informazioni</div>
                             <div class="section-body">
-                                <label class="control-label">Key:</label> {{ $item->key }}
+                                <label class="control-label">Chiave:</label> {{ $item->key }}
                                 <br />
-                                <label class="control-label">Label:</label> {{ $item->label }}
+                                <label class="control-label">Descrizione:</label> {{ $item->label }}
                                 <br />
-                                <label class="control-label">Value:</label> {{ $item->value }}
+                                <label class="control-label">Valore:</label> {{ $item->value }}
                                 <br />
-                                <label class="control-label">Enable:</label> 
+                                <label class="control-label">Abilitato:</label> 
                                 @if ($item->enable)
                                     SI
                                 @else

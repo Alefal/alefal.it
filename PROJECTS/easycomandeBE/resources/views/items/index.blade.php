@@ -28,9 +28,9 @@
                         <thead>
                             <tr>
                                 <th>Qnt</th>
-                                <th>Total</th>
-                                <th>Service</th>
-                                <th>Order</th>
+                                <th>Totale</th>
+                                <th>Servizio</th>
+                                <th>Ordinazione</th>
                                 <th></th>
                             </tr>
                         </thead>

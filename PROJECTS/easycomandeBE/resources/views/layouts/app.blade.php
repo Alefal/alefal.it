@@ -51,26 +51,26 @@
                             <div class="icon">
                                 <i class="fa fa-cogs" aria-hidden="true"></i>
                             </div>
-                            <div class="title">Manage</div>
+                            <div class="title">Gestione</div>
                         </a>
                         <div class="dropdown-menu">
                             <ul>
-                                <li class="section"><i class="fa fa-cogs" aria-hidden="true"></i> Manage</li>
+                                <li class="section"><i class="fa fa-cogs" aria-hidden="true"></i> Gestione</li>
                                 <li class="line"></li>
                                 @if(Auth::user()->role == 'admin')
-                                    <li><a href="{{ url('/configurations') }}">Configurations</a></li>
+                                    <li><a href="{{ url('/configurations') }}">Configurarazioni</a></li>
                                 @endif
-                                <li><a href="{{ url('/categories') }}">Categories</a></li>
+                                <li><a href="{{ url('/categories') }}">Categorie</a></li>
                                 <li><a href="{{ url('/menu') }}">Menu</a></li>
-                                <li><a href="{{ url('/orders') }}">Orders</a></li>
-                                <li><a href="{{ url('/items') }}">Items</a></li>
-                                <li><a href="{{ url('/notes') }}">Notes</a></li>
-                                <li><a href="{{ url('/specials') }}">Specials</a></li>
+                                <li><a href="{{ url('/orders') }}">Ordinazioni</a></li>
+                                <li><a href="{{ url('/items') }}">Piatti</a></li>
+                                <li><a href="{{ url('/notes') }}">Note</a></li>
+                                <li><a href="{{ url('/specials') }}">Speciali</a></li>
                                 @if(Auth::user()->role == 'admin')
                                     <li><a href="{{ url('/extra') }}">Extra</a></li>
-                                    <li><a href="{{ url('/state') }}">States</a></li>
-                                    <li><a href="{{ url('/users') }}">Users</a></li>
-                                    <li><a href="{{ url('/notifications') }}">Notifications</a></li>
+                                    <li><a href="{{ url('/state') }}">Stati</a></li>
+                                    <li><a href="{{ url('/users') }}">Utenti</a></li>
+                                    <li><a href="{{ url('/notifications') }}">Notifiche</a></li>
                                 @endif
                             </ul>
                         </div>
@@ -145,7 +145,7 @@
                                         </li>
                                         <li>
                                             <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                                Logout
+                                                Esci
                                             </a>
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                                 {{ csrf_field() }}

@@ -14,7 +14,7 @@
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">
-                    Categories
+                    Categorie
                 </h4>
                 <div class="card-action">
                     <a href="{{ route('categories.create') }}">
@@ -27,10 +27,10 @@
                     <table class="table card-table table-striped">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Count</th>
-                                <th>Slug</th>
-                                <th>Has Extra</th>
+                                <th>Nome</th>
+                                <th>Conteggio</th>
+                                <th>Etichetta</th>
+                                <th>Ha Extra ?</th>
                                 <th></th>
                             </tr>
                         </thead>

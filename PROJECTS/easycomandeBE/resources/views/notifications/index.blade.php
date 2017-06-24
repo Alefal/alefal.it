@@ -14,7 +14,7 @@
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">
-                    Notifications
+                    Notifiche
                 </h4>
                 <div class="card-action">
                     <a href="{{ route('notifications.create') }}">
@@ -27,11 +27,11 @@
                     <table class="table card-table table-striped">
                         <thead>
                             <tr>
-                                <th>OrderId</th>
-                                <th>Client</th>
-                                <th>Message</th>
-                                <th>State</th>
-                                <th>Read</th>
+                                <th>OrdineId</th>
+                                <th>Cliente</th>
+                                <th>Messaggio</th>
+                                <th>Stata</th>
+                                <th>Letto</th>
                                 <th></th>
                             </tr>
                         </thead>

@@ -21,15 +21,15 @@
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
                         <div class="section">
-                            <div class="section-title">Information</div>
+                            <div class="section-title">Informazioni</div>
                             <div class="section-body">
-                                <label class="control-label">Name:</label> {{ $item->name }}
+                                <label class="control-label">Nome:</label> {{ $item->name }}
                                 <br />
-                                <label class="control-label">Slug:</label> {{ $item->slug }}
+                                <label class="control-label">Etichetta:</label> {{ $item->slug }}
                                 <br />
-                                <label class="control-label">Count:</label> {{ $item->count }}
+                                <label class="control-label">Conteggio:</label> {{ $item->count }}
                                 <br />
-                                <label class="control-label">Has Extra:</label> 
+                                <label class="control-label">Ha Extra ?</label> 
                                 @if ($item->hasextra)
                                     SI
                                 @else
@@ -43,7 +43,7 @@
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
                         <div class="section">
-                            <div class="section-title">Description</div>
+                            <div class="section-title">Descrizione</div>
                             <div class="section-body">
                                 {!! $item->description !!}
                             </div>
