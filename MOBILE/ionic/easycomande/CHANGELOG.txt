@@ -81,9 +81,9 @@ OK -> Add NOTE to EXTRA: "extra for..."
 === Vers. 2.0.1 ===
 OK -> Configuration (servizio | coperto)
 OK -> Category with Extra
-- Login
-- Call API with api token
-- Traduzioni
+OK -> Login
+OK -> Call API with api token
+OK -> Traduzioni
 - TEST:
   - coperti / servizio
   - has extra

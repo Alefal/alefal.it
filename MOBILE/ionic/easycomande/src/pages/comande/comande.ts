@@ -1,13 +1,14 @@
 import { Component, ViewChild  } from '@angular/core';
-import { NavController, NavParams, LoadingController, ModalController, Content, AlertController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, ModalController, Content, AlertController, App } from 'ionic-angular';
 
 import { HttpService }          from '../../providers/http-service';
 import { ConnectivityService }  from '../../providers/connectivity-service';
 
+import { LoginPage }        from '../login/login';
 import { AddPage }          from '../add/add';
 import { OrdinePage }       from './ordini/ordine';
 
-import { Order }           from '../../models/order';
+import { Order }            from '../../models/order';
 
 //import { LoginPage }        from '../login/login';
 //import { AddPage }          from '../add/add'
@@ -43,7 +44,8 @@ export class ComandePage {
     public loadingCtrl: LoadingController,
     public modalCtrl: ModalController,
     public connectivityService: ConnectivityService,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    public app: App
   ) {}
 
   ionViewDidLoad() {
@@ -165,6 +167,17 @@ export class ComandePage {
     let modal = this.modalCtrl.create(AddPage);
     modal.present();
     modal.onDidDismiss(data => {});
+  }
+
+  logout() {
+    localStorage.removeItem('currentUserEmail');        
+    localStorage.removeItem('currentUserPass');        
+    localStorage.removeItem('currentUserRemeberMe');        
+    localStorage.removeItem('api_token');   
+
+    //this.navCtrl.setRoot(LoginPage); //Mostra i TABS
+    //window.location.reload();
+    this.app.getRootNav().setRoot(LoginPage);
   }
 
 }

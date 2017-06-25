@@ -12,7 +12,7 @@ import { ConnectivityService }  from '../providers/connectivity-service';
 
 import { EasyComandeApp }   from './app.component';
 import { TabsPage }         from '../pages/tabs/tabs';
-//import { LoginPage }        from '../pages/login/login';
+import { LoginPage }        from '../pages/login/login';
 //import { HomePage }         from '../pages/home/home';
 import { ComandePage }      from '../pages/comande/comande';
 import { OrdinePage }       from '../pages/comande/ordini/ordine';
@@ -29,7 +29,7 @@ import { OrderByPipe }      from '../pipes/order-by-pipe';
   declarations: [
     EasyComandeApp,
     TabsPage,
-    //LoginPage,
+    LoginPage,
     //HomePage,
     ComandePage,
     MenuPage,
@@ -48,7 +48,7 @@ import { OrderByPipe }      from '../pipes/order-by-pipe';
   entryComponents: [
     EasyComandeApp,
     TabsPage,
-    //LoginPage,
+    LoginPage,
     //HomePage,
     ComandePage,
     MenuPage,

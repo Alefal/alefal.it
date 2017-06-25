@@ -29,10 +29,12 @@ export class HttpService {
         //let host = 'http://www.amalficoastapps.it/demo/easycomande';
 
         //New BackEnd
-        let host = 'http://localhost:8000';
-        //let host    = 'http://www.amalficoastapps.it/easycomande/BE/public';
+        let host        = 'http://localhost:8000';
+        //let host      = 'http://www.amalficoastapps.it/easycomande/BE/public';
 
-        let url     = '';
+        let url         = '';
+        let api_token   = localStorage.getItem('api_token');
+
         //let headers = new Headers({ 'Content-Type': 'text/html; charset=UTF-8' });
         //let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
         //let headers = new Headers({ 'Content-Type': 'application/json' });
@@ -40,9 +42,9 @@ export class HttpService {
         //let options = new RequestOptions({ headers: headers });
         //let body    = new URLSearchParams();
 
-        //LOGIN: NON USATA
+        //LOGIN
         if (call == 'authentication') {
-            url = '/api/user/generate_auth_cookie/?username=' + username + '&password=' + password + '&insecure=cool';
+            url = '/jsondata/auth/'+username+'/'+password;
         }
         //CONFIGURATIONS
         else if (call == 'getConfigurations') {
@@ -135,7 +137,7 @@ export class HttpService {
             //url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_note_delete.php?id=' + id;
         }
 
-        console.log('URL: ' + host + '' + url);
+        console.log('URL: ' + host + '' + url + '?api_token=' + api_token);
 
         /*
         return this.http.post(host + '' + url, body.toString(), options)
@@ -143,7 +145,7 @@ export class HttpService {
             .catch(this.handleError);
         */
 
-        return this.http.get(host + '' + url)
+        return this.http.get(host + '' + url+'?api_token='+api_token)
             .map(this.extractData)
             .catch(this.handleError);
     }
