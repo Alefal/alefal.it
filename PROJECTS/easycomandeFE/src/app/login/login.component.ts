@@ -13,7 +13,7 @@ import { User } from '../_models/user';
 })
 export class LoginComponent implements OnInit {
 
-  model: User = new User();
+  user: User = new User();
   loading = false;
 
   constructor(
@@ -24,23 +24,50 @@ export class LoginComponent implements OnInit {
     private alertService: AlertService) { }
 
   ngOnInit() {
-    // reset login status
-    this.authenticationService.logout();
-    this.model.username = '';
-    this.model.password = '';
+    this.route.params
+      .subscribe(params => {
+        if (params['logout']) {
+          console.log('logout!');
+          this.authenticationService.logout();
+          this.router.navigate(['/']);
+        }
+      });
     
+    if(localStorage.getItem('currentUserRemeberMe')) {
+      this.user.username    = localStorage.getItem('currentUserEmail');
+      this.user.password    = localStorage.getItem('currentUserPass');
+      this.user.rememberme  = localStorage.getItem('currentUserRemeberMe');
+      this.autologin();
+    } else {
+      // reset login status
+      this.user.username = '';
+      this.user.password = '';
+      this.user.rememberme = '';
+    }
   }
 
+  //Login
   login() {
+    console.log('username -> '+this.user.username);
+    console.log('password -> '+this.user.password);
+    console.log('rememberme -> '+this.user.rememberme);
+    
     this.loadingBarService.start();
 
     this.authenticationService
-      .login(this.model.username, this.model.password)
+      .login(this.user.username, this.user.password)
       .subscribe(user => {
         console.log('res -> '+JSON.stringify(user));
 
         if(user.logged == 'autenticated') {
           localStorage.setItem('currentUser', user.name);
+          
+          if(this.user.rememberme) {
+            localStorage.setItem('currentUserEmail', this.user.username);
+            localStorage.setItem('currentUserPass', this.user.password);
+            localStorage.setItem('currentUserRemeberMe', this.user.rememberme);
+          }
+
           localStorage.setItem('api_token', user.api_token);
           this.router.navigate(['/home']);
         } else {
@@ -56,4 +83,27 @@ export class LoginComponent implements OnInit {
     
   }
 
+  //Login: remember me
+  autologin() {
+    this.loadingBarService.start();
+
+    this.authenticationService
+      .login(this.user.username, this.user.password)
+      .subscribe(user => {
+        console.log('res -> '+JSON.stringify(user));
+
+        if(user.logged == 'autenticated') {
+          this.router.navigate(['/home']);
+        } else {
+          this.alertService.error('Authentication failed!');
+          this.loadingBarService.complete();
+        }
+
+      },
+      error => {
+        this.alertService.error(error);
+        this.loadingBarService.complete();
+      });
+    
+  }
 }

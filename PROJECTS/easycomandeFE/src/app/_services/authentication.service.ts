@@ -26,6 +26,10 @@ export class AuthenticationService {
     logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');        
+        localStorage.removeItem('currentUserEmail');        
+        localStorage.removeItem('currentUserPass');        
+        localStorage.removeItem('currentUserRemeberMe');        
+        localStorage.removeItem('api_token');        
     }
 
     checkUserLogged() {

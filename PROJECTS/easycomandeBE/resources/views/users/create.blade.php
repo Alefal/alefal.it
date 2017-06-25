@@ -30,37 +30,38 @@
 
                     {!! Form::hidden('remember_token', 'no', array('placeholder' => 'remember_token','class' => 'form-control')) !!}
                 
-                    <div class="section-body">
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">Nome</label>
-                            <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6">
+                            <div class="form-group">
+                                <label for="name">Nome</label>
                                 {!! Form::text('name', null, array('placeholder' => 'Nome','class' => 'form-control')) !!}
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="col-md-3">
-                                <label class="control-label">Email</label>
-                            </div>
-                            <div class="col-md-9">
+                        <div class="col-xs-6 col-md-6">
+                            <div class="form-group">
+                                <label for="Prezzo">Email</label>
                                 {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control')) !!}
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">Password</label>
-                            <div class="col-md-9">
-                                <div class="input-group">
-                                    <span class="input-group-addon">*</span>
-                                    {!! Form::text('password', null, array('placeholder' => 'Password','class' => 'form-control')) !!}
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 center">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Password</label>
+                                <div class="col-md-9">
+                                    {!! Form::text('password', null, array('placeholder'  => 'Password','class' => 'form-control')) !!}
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">Ruolo</label>
-                            <div class="col-md-9">
-                                <div class="input-group">
-                                    <span class="input-group-addon">*</span>
-                                    <select name="role">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 center">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Ruolo</label>
+                                <div class="col-md-9">
+                                    <select name="role" class="form-control">
                                         <option value="admin">Administrator</option>
                                         <option value="manager">Manager</option>
                                     </select>

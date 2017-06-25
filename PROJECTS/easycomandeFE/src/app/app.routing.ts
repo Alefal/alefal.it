@@ -11,6 +11,7 @@ import { MenuComponent }        from './menu/menu.component';
 const appRoutes: Routes = [
     { path: '',                                 component: LoginComponent },
     { path: 'login',                            component: LoginComponent },
+    { path: 'login/:logout',                    component: LoginComponent },
     { path: 'home',                             component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'add',                              component: AddComponent, canActivate: [AuthGuard] },
     { path: 'add/:order',                       component: AddComponent, canActivate: [AuthGuard] },

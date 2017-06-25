@@ -56,9 +56,15 @@ class UsersController extends Controller
             'password' => 'required'
         ]);
 
-        User::create($request->all());
-        //TODO
-        //$user->api_token = str_random(60);
+        //User::create($request->all());
+        
+        User::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'role' => $request['role'],
+            'password' => bcrypt($request['password']),
+            'api_token' => str_random(60),
+        ]);
  
         return redirect()->route('users.index')
                         ->with('success','Item created successfully');
@@ -104,7 +110,15 @@ class UsersController extends Controller
             'password' => 'required'
         ]);
 
-        User::find($id)->update($request->all());
+        User::find($id)->update([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'role' => $request['role'],
+            'password' => bcrypt($request['password']),
+            'api_token' => str_random(60),
+        ]);
+
+        //User::find($id)->update($request->all());
         return redirect()->route('users.index')
                         ->with('success','Item updated successfully');
     }
