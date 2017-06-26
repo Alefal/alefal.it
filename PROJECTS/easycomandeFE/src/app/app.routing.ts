@@ -19,7 +19,7 @@ const appRoutes: Routes = [
     { path: 'ordine/:order/:check',             component: OrderComponent },
 
     // otherwise redirect to home
-    { path: '**', redirectTo: '' }
+    { path: '**', redirectTo: 'home' }
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);

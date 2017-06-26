@@ -339,10 +339,10 @@ export class OrderComponent implements OnInit {
             padding: 15px;
           }
           .printOrder .tableComande {
-            font-size: 1.5em;
+            font-size: 1.8em;
           }
           .printOrder .tableRicevuta {
-            font-size: 1em;
+            font-size: 1.2em;
           }
           </style>
         </head>

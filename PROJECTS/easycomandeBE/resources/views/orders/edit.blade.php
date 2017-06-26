@@ -36,19 +36,19 @@
                     <div class="col-xs-6 col-md-3">
                         <div class="form-group">
                             <label for="city">Coperti</label>
-                             {!! Form::number('covered', 0, array('placeholder' => 'Coperti','class' => 'form-control')) !!}
+                             {!! Form::number('covered', null, array('placeholder' => 'Coperti','class' => 'form-control')) !!}
                         </div>
                     </div>
                     <div class="col-xs-6 col-md-3">
                         <div class="form-group">
                             <label for="name">Totale Ordine</label>
-                            {!! Form::number('totalorder', 0, array('placeholder' => 'Totale Ordine','class' => 'form-control')) !!}
+                            {!! Form::number('totalorder', null, array('placeholder' => 'Totale Ordine','class' => 'form-control')) !!}
                         </div>
                     </div>
                     <div class="col-xs-6 col-md-3">
                         <div class="form-group">
                             <label for="city">Totale Servizio</label>
-                             {!! Form::number('totalservice', 0, array('placeholder' => 'Totale Servizio','class' => 'form-control')) !!}
+                             {!! Form::number('totalservice', null, array('placeholder' => 'Totale Servizio','class' => 'form-control')) !!}
                         </div>
                     </div>
                 </div>
