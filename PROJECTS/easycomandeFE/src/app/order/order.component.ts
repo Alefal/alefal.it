@@ -381,7 +381,7 @@ export class OrderComponent implements OnInit {
       }
       template += ''+
       '      <tr class="'+classItem+'">'+
-      '        <td>'+item.quantity+'x </td>';
+      '        <td width="10%">'+item.quantity+'x </td>';
       if(item.note != '') {
         template += '<td>'+item.name+'<br /><em>('+item.note+')</em></td>';
       } else {
@@ -400,7 +400,7 @@ export class OrderComponent implements OnInit {
       }
       template += ''+
       '      <tr class="'+classItem+'">'+
-      '        <td>1x </td>';
+      '        <td width="10%">1x </td>';
       if(special.note != '') {
         template += '<td>'+special.name+'<br /><em>('+special.note+')</em></td>';
       } else {
@@ -448,7 +448,7 @@ export class OrderComponent implements OnInit {
     '  <table class="table table-hover tableRicevuta">'+
     '    <thead>'+
     '      <tr>'+
-    '        <th>QTY</th>'+
+    '        <th width="10%">QTY</th>'+
     '        <th>ITEM</th>'+
     '        <th>PRICE</th>'+
     '        <th>TOTAL</th>'+
@@ -459,7 +459,7 @@ export class OrderComponent implements OnInit {
     for (let item of order.items) {
       template += ''+
       '      <tr>'+
-      '        <td>'+item.quantity+'x </td>'+
+      '        <td width="10%">'+item.quantity+'x </td>'+
       '        <td>'+item.name+'</td>'+
       '        <td>&euro; '+item.price+'</td>'+
       '        <td>&euro; '+item.total+'</td>'+
