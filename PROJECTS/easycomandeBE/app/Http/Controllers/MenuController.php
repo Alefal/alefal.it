@@ -27,7 +27,7 @@ class MenuController extends Controller
      */
     public function index(Request $request)
     {
-        $items = Menu::orderBy('menu.category_id','ASC')->paginate(100);
+        $items = Menu::orderBy('menu.category_id','ASC')->paginate(25);
         $categories = Category::all();
 
         return view('menu.index',compact('items','categories'))
