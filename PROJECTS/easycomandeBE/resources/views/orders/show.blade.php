@@ -17,12 +17,12 @@
                         <i class="fa fa-arrow-circle-o-left fa-3x fa-fw" aria-hidden="true"></i>
                     </a>
                     @if ($order->state_id == 1) <!-- PENDING -->
-                        <a id="" href="javascript:printOrder('1','{{ $order }}','{{ $items }}','{{ $specials }}','{{ $notes }}');" click="">
+                        <a id="" href="javascript:printOrder('1','{{ str_replace("'","",$order) }}','{{ str_replace("'","",$items) }}','{{ str_replace("'","",$specials) }}','{{ str_replace("'","",$notes) }}');" click="">
                             <i class="fa fa-print fa-3x fa-fw" aria-hidden="true"></i>
                         </a>
                      @endif
-                    @if ($order->state_id == 1) <!-- COMPLETED -->
-                        <a id="" href="javascript:printOrder('2','{{ $order }}','{{ $items }}','{{ $specials }}','{{ $notes }}');" click="">
+                    @if ($order->state_id == 2) <!-- COMPLETED -->
+                        <a id="" href="javascript:printOrder('2','{{ str_replace("'","",$order) }}','{{ str_replace("'","",$items) }}','{{ str_replace("'","",$specials) }}','{{ str_replace("'","",$notes) }}');" click="">
                             <i class="fa fa-credit-card fa-3x fa-fw" aria-hidden="true"></i>
                         </a>
                     @endif

@@ -57,7 +57,7 @@
                     <div class="col-md-6 col-xs-12">
                         <div class="form-group">
                             <label for="date">Data</label>
-                            {!! Form::date('date', Carbon\Carbon::parse('now')->format('D/M/Y'), array('placeholder' => 'Data','class' => 'form-control')) !!}
+                            {!! Form::text('date', null, array('placeholder' => 'Data','class' => 'form-control')) !!}
                         </div>
                     </div>
                     <div class="col-md-6 col-xs-12">
