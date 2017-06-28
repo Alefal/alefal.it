@@ -41,7 +41,7 @@ app/main.ts
 	platformBrowserDynamic().bootstrapModule(AppModule);
 </code>
 
-$ ionic build android --prod --release
+$ ionic cordova build android --prod --release
 
 === Optimize Angular for Production ===
 # these are equivalent
