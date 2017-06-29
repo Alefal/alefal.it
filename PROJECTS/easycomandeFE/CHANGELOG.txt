@@ -1,7 +1,7 @@
-TODO:
-OK -> authentication
-OK -> print order
-OK -> change ORDER state
+=== Vers. 2.0.2 ===
+OK -> Order Alphabethic for Categoried and Products
+OK -> Remain in order for change state / order and delete product / special
+- FE test print for "pending" order; With "completed" printing works well
 
 
 http://localhost:8000/jsondata/order/38?api_token=Pwbo7CmLtqAP5TvIHYFZPqkmetJFTi9UZIfxE1GLeBFFJgzZ8DvhdTEiGFxf

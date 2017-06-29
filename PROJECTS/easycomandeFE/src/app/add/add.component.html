@@ -140,7 +140,7 @@
 
   <div class="col-md-4">
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" *ngIf="categories?.length > 0">
-      <div class="panel panel-default" *ngFor="let cat of categories | orderBy:'id'" (click)="loadData(cat.name)" [class.active]="cat.name == categoryName">
+      <div class="panel panel-default" *ngFor="let cat of categories | orderBy:'name'" (click)="loadData(cat.name)" [class.active]="cat.name == categoryName">
         <div class="panel-heading" role="tab" id="heading{{cat.id}}">
           <h4 class="panel-title">
             <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{cat.id}}" aria-expanded="true" attr.aria-controls="collapse{{cat.id}}">

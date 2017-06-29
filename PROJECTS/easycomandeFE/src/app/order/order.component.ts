@@ -135,6 +135,7 @@ export class OrderComponent implements OnInit {
       });
   }
 
+  //Rimango nella pagina dell'ordine
   deleteProduct(productId,orderId) {
     this.loadingBarService.start();
 
@@ -146,7 +147,7 @@ export class OrderComponent implements OnInit {
         console.log('res: ' + JSON.stringify(res));
 
         if (res.results[0].operation == 'success') {
-          this.backToOrders(orderId);
+          this.refreshOrder(orderId);
         } else {
           this.alertService.error('PRODUCT: Non è stato possibile cancellare il piatto');
         }
@@ -156,6 +157,7 @@ export class OrderComponent implements OnInit {
       });
   }
 
+  //Rimango nella pagina dell'ordine
   deleteSpecial(specialId,orderId) {
     this.loadingBarService.start();
 
@@ -167,7 +169,7 @@ export class OrderComponent implements OnInit {
         console.log('res: ' + JSON.stringify(res));
 
         if (res.results[0].operation == 'success') {
-          this.backToOrders(orderId);
+          this.refreshOrder(orderId);
         } else {
           this.alertService.error('SPECIALI: Non è stato possibile cancellare il piatto');
         }
@@ -177,6 +179,7 @@ export class OrderComponent implements OnInit {
       });
   }
 
+  //Rimango nella pagina dell'ordine
   deleteNote(noteId,orderId) {
     this.loadingBarService.start();
 
@@ -188,7 +191,7 @@ export class OrderComponent implements OnInit {
         console.log('res: ' + JSON.stringify(res));
 
         if (res.results[0].operation == 'success') {
-          this.backToOrders(orderId);
+          this.refreshOrder(orderId);
         } else {
           this.alertService.error('NOTE: Non è stato possibile cancellare il piatto');
         }
@@ -199,9 +202,12 @@ export class OrderComponent implements OnInit {
   }
 
   refreshOrder(ordineId) {
-    console.log('refreshOrder');
+    console.log('refreshOrder: '+ordineId);
     //this.location.back();
-    this.router.navigateByUrl('/ordine/'+ordineId, { skipLocationChange: false });
+    //this.router.navigateByUrl('/ordine/'+ordineId, { skipLocationChange: false });
+    //this.router.navigate(['/ordine/'+ordineId+'?refresh=1']);
+    this.loadOrder(ordineId);
+    
   }
 
   backToOrders(ordineId) {
@@ -215,6 +221,7 @@ export class OrderComponent implements OnInit {
     this.router.navigate(['/add', JSON.stringify(order)]);
   }
 
+  //Rimango nella pagina dell'ordine
   changeItemState(prodId,orderId) {
     console.log('changeItemState: ' + prodId);
     this.loadingBarService.start();
@@ -226,7 +233,7 @@ export class OrderComponent implements OnInit {
         console.log('res: ' + JSON.stringify(res));
 
         if (res.results[0].operation == 'success') {
-          this.backToOrders(orderId);
+          this.refreshOrder(orderId);
         } else {
           this.alertService.error('ITEM: Non è stato possibile modificare lo stato');
         }
@@ -236,6 +243,7 @@ export class OrderComponent implements OnInit {
       });
   }
 
+  //Rimango nella pagina dell'ordine
   changeSpecialState(specialId,orderId) {
     console.log('changeSpecialState: ' + specialId);
     this.loadingBarService.start();
@@ -247,7 +255,7 @@ export class OrderComponent implements OnInit {
         console.log('res: ' + JSON.stringify(res));
 
         if (res.results[0].operation == 'success') {
-          this.backToOrders(orderId);
+          this.refreshOrder(orderId);
         } else {
           this.alertService.error('SPECIAL: Non è stato possibile modificare lo stato');
         }
@@ -267,7 +275,7 @@ export class OrderComponent implements OnInit {
         console.log('res: ' + JSON.stringify(res));
 
         if (res.results[0].operation == 'success') {
-          this.backToOrders(orderId);
+          this.refreshOrder(orderId);
         } else {
           this.alertService.error('ORDER: Non è stato possibile modificare lo stato');
         }

@@ -50,7 +50,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let cat of categories  | orderBy:'id'" (click)="loadData(cat.name)" [class.active]="cat.name == categoryName">
+            <tr *ngFor="let cat of categories  | orderBy:'name'" (click)="loadData(cat.name)" [class.active]="cat.name == categoryName">
               <td>{{cat.name}}</td>
               <td class="right">{{cat.count}}</td>
               <td>

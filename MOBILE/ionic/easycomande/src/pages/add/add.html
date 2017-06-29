@@ -48,7 +48,7 @@
   </ion-list>
 
   <ion-segment *ngIf="categories && categories.length > 0">
-    <ion-segment-button *ngFor="let cat of categories | orderBy:'id'" (click)="modalProducts(cat)" [class.active]="cat.name == categoryName" value="{{cat.name}}">
+    <ion-segment-button *ngFor="let cat of categories | orderBy:'name'" (click)="modalProducts(cat)" [class.active]="cat.name == categoryName" value="{{cat.name}}">
       {{cat.name}}
     </ion-segment-button>
   </ion-segment>
@@ -60,7 +60,7 @@
       <ion-icon name="menu" item-right></ion-icon>
     </ion-item>
     
-    <ion-item *ngFor="let prod of products | orderBy:'id'" [ngClass]="{'itemIsExtra': prod.isExtra}" class="itemProduct">
+    <ion-item *ngFor="let prod of products" [ngClass]="{'itemIsExtra': prod.isExtra}" class="itemProduct">
       <ion-icon item-left name="remove-circle" color="danger" (click)="removeQuantity(prod)"></ion-icon>
       <ion-icon item-left name="add-circle" color="dark" (click)="addQuantity(prod)" *ngIf="!prod.isExtra"></ion-icon>
       

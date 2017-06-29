@@ -84,8 +84,7 @@ OK -> Category with Extra
 OK -> Login
 OK -> Call API with api token
 OK -> Traduzioni
-- TEST:
-  - coperti / servizio
-  - has extra
-  - api token
-  - login remember me
+
+=== Vers. 2.0.2 ===
+OK -> Order Alphabethic for Categoried and Products
+OK -> Remain in order for change state / order and delete product / special

@@ -98,6 +98,10 @@ export class OrdinePage {
     */
   }
 
+  refreshOrder(orderIdSave) {
+    this.loadOrder(orderIdSave);
+  }
+
   showOrder(orderIdSave) {
     this.viewCtrl.dismiss({
       action: 'reload',
@@ -116,12 +120,12 @@ export class OrdinePage {
       .subscribe(res => {
         //console.log('res: '+JSON.stringify(res));
 
+        this.loading.dismiss();
         if (res.results[0].operation == 'success') {
-          this.showOrder(orderId);
+          this.refreshOrder(orderId);
         } else {
           this.nothing = 'Nessun dato! Riprovare più tardi.';
         }
-        this.loading.dismiss();
       },
       error => {
         console.log('ERROR: ' + error);
@@ -142,12 +146,12 @@ export class OrdinePage {
       .subscribe(res => {
         //console.log('res: '+JSON.stringify(res));
 
+        this.loading.dismiss();
         if (res.results[0].operation == 'success') {
-          this.showOrder(orderId);
+          this.refreshOrder(orderId);
         } else {
           this.nothing = 'Nessun dato! Riprovare più tardi.';
         }
-        this.loading.dismiss();
       },
       error => {
         console.log('ERROR: ' + error);
@@ -168,12 +172,12 @@ export class OrdinePage {
       .subscribe(res => {
         //console.log('res: '+JSON.stringify(res));
 
+        this.loading.dismiss();
         if (res.results[0].operation == 'success') {
-          this.showOrder(orderId);
+          this.refreshOrder(orderId);
         } else {
           this.nothing = 'Nessun dato! Riprovare più tardi.';
         }
-        this.loading.dismiss();
       },
       error => {
         console.log('ERROR: ' + error);
@@ -338,12 +342,12 @@ export class OrdinePage {
               .subscribe(res => {
                 console.log('res: ' + JSON.stringify(res));
 
+                this.loading.dismiss();
                 if (res.results[0].operation == 'success') {
-                  this.showOrder(orderId);
+                  this.refreshOrder(orderId);
                 } else {
                   this.nothing = 'Nessun dato! Riprovare più tardi.';
                 }
-                this.loading.dismiss();
               },
               error => {
                 console.log('ERROR: ' + error);
@@ -387,12 +391,12 @@ export class OrdinePage {
               .subscribe(res => {
                 console.log('res: ' + JSON.stringify(res));
 
+                this.loading.dismiss();
                 if (res.results[0].operation == 'success') {
-                  this.showOrder(orderId);
+                  this.refreshOrder(orderId);
                 } else {
                   this.nothing = 'Nessun dato! Riprovare più tardi.';
                 }
-                this.loading.dismiss();
               },
               error => {
                 console.log('ERROR: ' + error);
@@ -436,12 +440,12 @@ export class OrdinePage {
               .subscribe(res => {
                 console.log('res: ' + JSON.stringify(res));
 
+                this.loading.dismiss();
                 if (res.results[0].operation == 'success') {
-                  this.showOrder(orderId);
+                  this.refreshOrder(orderId);
                 } else {
                   this.nothing = 'Nessun dato! Riprovare più tardi.';
                 }
-                this.loading.dismiss();
               },
               error => {
                 console.log('ERROR: ' + error);
@@ -487,7 +491,7 @@ export class OrdinePage {
 
   dismiss() {
     this.viewCtrl.dismiss({
-      action: ''
+      action: 'reload'
     });
   }
 

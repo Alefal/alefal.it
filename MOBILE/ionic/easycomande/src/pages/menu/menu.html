@@ -17,7 +17,7 @@
 <ion-content>
 
   <ion-segment *ngIf="categories?.length > 0">
-    <ion-segment-button *ngFor="let cat of categories  | orderBy:'id'" (click)="loadData(cat.name)" [class.active]="cat.name == categoryName" value="{{cat.name}}">
+    <ion-segment-button *ngFor="let cat of categories | orderBy:'name'" (click)="loadData(cat.name)" [class.active]="cat.name == categoryName" value="{{cat.name}}">
       {{cat.name}}
     </ion-segment-button>
   </ion-segment>
@@ -25,7 +25,7 @@
   <div *ngIf="products?.length > 0">
     <ion-list>
       <ion-item><h3 item-right>{{categoryName}}</h3></ion-item>
-      <ion-item *ngFor="let prod of products | orderBy:'title'">
+      <ion-item *ngFor="let prod of products | orderBy:'name'">
         <!--
         <ion-thumbnail item-left>
           <img src="{{prod.images[0].src}}" />
