@@ -147,8 +147,14 @@ INSERT INTO `state` (`state`) VALUES ('pending');
 INSERT INTO `state` (`state`) VALUES ('completed');
 
 #CONFIGURAZIONI
-INSERT INTO `configurations` (`key`,`enable`,`label`,`value`) VALUES ('serviceenable','1','Servizio 10% del totale','10');
-#INSERT INTO `configurations` (`key`,`enable`,`label`,`value`) VALUES ('coveredenable','0','Calcolo dei coperti','1.5');
+INSERT INTO `configurations` (`id`, `key`, `enable`, `label`, `value`, `created_at`, `updated_at`) VALUES
+(1, 'serviceenable', 1, 'Servizio 10% del totale', '10', NULL, NULL),
+(2, 'coveredenable','0','Calcolo dei coperti','1.5', NULL, NULL),
+(3, 'printtitle', 0, 'Titolo della stampa', 'Easy Comande', '2017-06-29 16:15:44', '2017-06-29 16:39:30'),
+(4, 'printmessageline1', 1, 'Primo messaggio nella stampa della ricevuta', 'Grazie per averci preferitoooooo', '2017-06-29 16:21:47', '2017-06-29 16:34:23'),
+(5, 'printmessageline2', 1, 'Secondo messaggio nella stampa della ricevuta', 'Tornate prestooooooooo!', '2017-06-29 16:22:19', '2017-06-29 16:34:17'),
+(6, 'printtablecomandefont', 1, 'Font per la stampa della comanda per la cucina', '38px', '2017-06-29 16:29:07', '2017-06-29 16:33:21'),
+(7, 'printtablericevutafont', 1, 'Font per la stampa della comanda per il cliente', '16px', '2017-06-29 16:29:38', '2017-06-29 16:29:38');
 
 #UTENTI
 INSERT INTO `users` (`email`,`password`,`name`,`role`,`api_token`) VALUES ('admin@easycomande.it','$2y$10$cJ9T9QZaf9qmX3ktGiVyT./xL1XiGQruNUcIPE/3el21MzXnaiZ/y','admin','admin','Pwbo7CmLtqAP5TvIHYFZPqkmetJFTi9UZIfxE1GLeBFFJgzZ8DvhdTEiGFxf');

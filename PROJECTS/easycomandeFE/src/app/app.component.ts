@@ -27,6 +27,7 @@ export class AppComponent {
   orderPendingLength: number = 0;
   orderSuccessLength: number = 0;
 
+  //Label CONFIGURATION
   labelTypeService = '';
   currentUser: string;
 
@@ -116,12 +117,36 @@ export class AppComponent {
         localStorage.removeItem('coveredenablevalue');
         for (let conf of res.results) {
           //console.log('%ò',conf)
+
+          //Servizio 10% del total
           if(conf.key == 'serviceenable' && conf.enable == 1) {
             localStorage.setItem('serviceenablepercent',conf.value);
             this.labelTypeService = conf.label;
-          } else if(conf.key == 'coveredenable' && conf.enable == 1) {
+          } 
+          //Prezzo per coperto
+          else if(conf.key == 'coveredenable' && conf.enable == 1) {
             localStorage.setItem('coveredenablevalue',conf.value);
             this.labelTypeService = conf.label;
+          }
+          //Titolo della stampa 
+          else if(conf.key == 'printtitle' && conf.enable == 1) {
+            localStorage.setItem('printtitle',conf.value);
+          }
+          //Primo messaggio nella stampa della ricevuta 
+          else if(conf.key == 'printmessageline1' && conf.enable == 1) {
+            localStorage.setItem('printmessageline1',conf.value);
+          }
+          //Secondo messaggio nella stampa della ricevuta
+          else if(conf.key == 'printmessageline2' && conf.enable == 1) {
+            localStorage.setItem('printmessageline2',conf.value);
+          }
+          //Font per la stampa della comanda per la cucina 
+          else if(conf.key == 'printtablecomandefont' && conf.enable == 1) {
+            localStorage.setItem('printtablecomandefont',conf.value);
+          }
+          //Font per la stampa della comanda per il cliente
+          else if(conf.key == 'printtablericevutafont' && conf.enable == 1) {
+            localStorage.setItem('printtablericevutafont',conf.value);
           }
         }
       },

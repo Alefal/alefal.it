@@ -310,6 +310,18 @@ export class OrderComponent implements OnInit {
   printOrder(order,what) {
     console.log('printOrder',JSON.stringify(order));
     let printContents, popupWin;
+
+    let printtablecomandefont = '1.8em';
+    let printtablericevutafont = '1.2em';
+
+    if(localStorage.getItem('printtablecomandefont')) {
+      printtablecomandefont = localStorage.getItem('printtablecomandefont');
+    }
+
+    if(localStorage.getItem('printtablericevutafont')) {
+      printtablericevutafont = localStorage.getItem('printtablericevutafont');
+    }
+
     if(what == 'ricevuta') {
       printContents = this.templateOrderCompleted(order);
     } else {
@@ -337,7 +349,7 @@ export class OrderComponent implements OnInit {
           }
           .printOrder .logo img {
             margin: 0 auto;
-            max-width: 150px;
+            max-width: 50%;
           }
           .printOrder .deleteItem {
             /*text-decoration: line-through;*/
@@ -347,10 +359,10 @@ export class OrderComponent implements OnInit {
             padding: 15px;
           }
           .printOrder .tableComande {
-            font-size: 1.8em;
+            font-size: `+printtablecomandefont+`;
           }
           .printOrder .tableRicevuta {
-            font-size: 1.2em;
+            font-size: `+printtablericevutafont+`;
           }
           </style>
         </head>
@@ -367,8 +379,7 @@ export class OrderComponent implements OnInit {
     let template = ''+
     '<div class="container printOrder">'+
     '  <div class="orderInfo">'+     
-    '     <h2>'+order.client+'</h2>'+
-    '     <h4>Date: '+moment(order.date).format('MM DD, YYYY HH:mm A')+'</h4>'+
+    '     <h4>'+order.client+'</h4>'+
     '  </div>'+     
     //'  <hr />'+     
     '  <table class="table table-hover tableComande">'+
@@ -445,11 +456,34 @@ export class OrderComponent implements OnInit {
     //let template = '';
     //template += '<div align="center">'+order.id+'</div>';
 
+    let printtitle = '';
+    let printmessageline1 = '';
+    let printmessageline2 = '';
+
+    if(localStorage.getItem('printtitle')) {
+      printtitle = '<h2>'+localStorage.getItem('printtitle')+'</h2>';
+    } else {
+      printtitle = '<img src="../../assets/img/logo-small-print.png" />';
+    }
+
+    if(localStorage.getItem('printmessageline1')) {
+      printmessageline1 = localStorage.getItem('printmessageline1');
+    } else {
+      printmessageline1 = 'Arrivederci';
+    }
+
+    if(localStorage.getItem('printmessageline2')) {
+      printmessageline2 = localStorage.getItem('printmessageline2');
+    } else {
+      printmessageline2 = 'A presto...';
+    }
+
+
     let template = ''+
     '<div class="container printOrder">'+
-    '  <div class="logo"><img src="../../assets/img/logo-small-print.png" /></div>'+
+    '  <div class="logo">'+printtitle+'</div>'+
     '  <div class="orderInfo">'+     
-    '     <h2>'+order.client+'</h2>'+
+    '     <h3>'+order.client+'</h3>'+
     '     <h4>Date: '+moment(order.date).format('MM DD, YYYY HH:mm A')+'</h4>'+
     '  </div>'+     
     '  <hr />'+     
@@ -505,8 +539,8 @@ export class OrderComponent implements OnInit {
     template += ''+
     '  <hr />'+     
     '  <div class="orderInfo">'+     
-    '     <h3>Grazie per averci preferito</h3>'+
-    '     <h3>Tornate presto!</h3>'+
+    '     <h3>'+printmessageline1+'</h3>'+
+    '     <h3>'+printmessageline2+'</h3>'+
     '  </div>'+ 
     '</div>';
     return template;

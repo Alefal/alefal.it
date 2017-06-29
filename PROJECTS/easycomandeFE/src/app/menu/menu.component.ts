@@ -152,12 +152,42 @@ export class MenuComponent implements OnInit {
 
         localStorage.removeItem('serviceenablepercent');
         localStorage.removeItem('coveredenablevalue');
+        localStorage.removeItem('printtitle');
+        localStorage.removeItem('printmessageline1');
+        localStorage.removeItem('printmessageline2');
+        localStorage.removeItem('printtablecomandefont');
+        localStorage.removeItem('printtablericevutafont');
+
         for (let conf of res.results) {
           //console.log('%ò',conf)
+          
+          //Servizio 10% del total
           if(conf.key == 'serviceenable' && conf.enable == 1) {
-            localStorage.setItem('serviceenablepercent',conf.value)
-          } else if(conf.key == 'coveredenable' && conf.enable == 1) {
-            localStorage.setItem('coveredenablevalue',conf.value)
+            localStorage.setItem('serviceenablepercent',conf.value);
+          } 
+          //Prezzo per coperto
+          else if(conf.key == 'coveredenable' && conf.enable == 1) {
+            localStorage.setItem('coveredenablevalue',conf.value);
+          }
+          //Titolo della stampa 
+          else if(conf.key == 'printtitle' && conf.enable == 1) {
+            localStorage.setItem('printtitle',conf.value);
+          }
+          //Primo messaggio nella stampa della ricevuta 
+          else if(conf.key == 'printmessageline1' && conf.enable == 1) {
+            localStorage.setItem('printmessageline1',conf.value);
+          }
+          //Secondo messaggio nella stampa della ricevuta
+          else if(conf.key == 'printmessageline2' && conf.enable == 1) {
+            localStorage.setItem('printmessageline2',conf.value);
+          }
+          //Font per la stampa della comanda per la cucina 
+          else if(conf.key == 'printtablecomandefont' && conf.enable == 1) {
+            localStorage.setItem('printtablecomandefont',conf.value);
+          }
+          //Font per la stampa della comanda per il cliente
+          else if(conf.key == 'printtablericevutafont' && conf.enable == 1) {
+            localStorage.setItem('printtablericevutafont',conf.value);
           }
         }
       },
