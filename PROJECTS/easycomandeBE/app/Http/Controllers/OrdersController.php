@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use App\State;
+use App\Configuration;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -81,7 +82,9 @@ class OrdersController extends Controller
         $notes      = Order::find($orderId)->notes;
         $states     = State::all();
 
-        return view('orders.show',compact('order','items','specials','notes','states'));
+        $configurations = Configuration::all();
+
+        return view('orders.show',compact('order','items','specials','notes','states','configurations'));
     }
 
     /**

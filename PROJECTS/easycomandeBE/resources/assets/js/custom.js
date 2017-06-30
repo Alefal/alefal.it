@@ -60,22 +60,44 @@ $(function() {
     }); 
 });
 
-function printOrder(orderStateId,order,items,specials,notes){
-    var order       = JSON.parse(order);
-    var items       = JSON.parse(items);
-    var specials    = JSON.parse(specials);
-    var notes       = JSON.parse(notes);
-    console.log('%o',order);
-    console.log('%o',items);
-    console.log('%o',specials);
-    console.log('%o',notes);
+function printOrder(orderStateId,order,items,specials,notes,configurations){
+    var order           = JSON.parse(order);
+    var items           = JSON.parse(items);
+    var specials        = JSON.parse(specials);
+    var notes           = JSON.parse(notes);
+    var configurations  = JSON.parse(configurations);
 
-    console.log('printOrder',JSON.stringify(order));
+    //console.log('%o',order);
+    //console.log('%o',items);
+    //console.log('%o',specials);
+    //console.log('%o',notes);
+    //console.log('%o',configurations);
+    //console.log('printOrder',JSON.stringify(order));
+
+    var printtablecomandefont   = '1.8em';
+    var printtablericevutafont  = '1.2em';
+
+    for (var conf of configurations) {
+        console.log('->',conf.key+' | '+conf.enable+' | '+conf.value);
+
+        //Font per la stampa della comanda per la cucina 
+        if(conf.key == 'printtablecomandefont' && conf.enable == 1) {
+            printtablecomandefont = conf.value;
+        }
+        //Font per la stampa della comanda per il cliente
+        if(conf.key == 'printtablericevutafont' && conf.enable == 1) {
+            printtablericevutafont = conf.value;
+        }
+    }
+
+    console.log('-> ',printtablecomandefont);
+    console.log('-> ',printtablericevutafont);
+    
     var printContents, popupWin;
     if(orderStateId == '1') {
       printContents = this.templateOrder(order,items,specials,notes);
     } else {
-      printContents = this.templateOrderCompleted(order,items,specials,notes);
+      printContents = this.templateOrderCompleted(order,items,specials,notes,configurations);
     }
     popupWin = window.open('', '_blank', 'top=0,left=0,height=auto,width=auto');
     popupWin.document.open();
@@ -108,7 +130,7 @@ function printOrder(orderStateId,order,items,specials,notes){
             }
 
             .printOrder .tableComande {
-                font-size: 1.5em;
+                font-size: `+printtablecomandefont+`;
                 width: 100%;
                 border-collapse: collapse; 
             }
@@ -123,7 +145,7 @@ function printOrder(orderStateId,order,items,specials,notes){
             }
 
             .printOrder .tableRicevuta {
-                font-size: 1em;
+                font-size: `+printtablericevutafont+`;
                 width: 100%;
                 border-collapse: collapse; 
             }
@@ -148,12 +170,9 @@ function templateOrder(order,items,specials,notes) {
     var template = ''+
     '<div class="container printOrder">'+    
     '  <div class="orderInfo">'+     
-    '     <h2>'+order.client+'</h2>'+
-    '     <h4>Date: '+moment(order.date).format('DD MM, YYYY HH:mm A')+'</h4>'+
+    '     <h3>'+order.client+'</h3>'+
     '  </div>'+     
-    '  <hr />'+    
-    '  <strong>PIATTI:</strong>'+ 
-    '  <table class="table table-hover tableRicevuta">'+
+    '  <table class="table table-hover tableComande">'+
     '    <tbody>';
 
     for (var item of items) {
@@ -202,13 +221,13 @@ function templateOrder(order,items,specials,notes) {
       template += ''+
         ' <div class="notesList">'+
         '     <strong>NOTE:</strong>'+
-        '     <br />';
+        '     <br /><h3>';
       for (var note of notes) {
         template += ''+
         '     <em>'+note.note+'</em>; ';
       }
-      template += ''+
-        ' </div>';
+       template += ''+
+        ' </h3></div>';
     }
     
     template += ''+
@@ -217,20 +236,56 @@ function templateOrder(order,items,specials,notes) {
     return template;
   }
 
-function  templateOrderCompleted(order,items,specials,notes) {
+function  templateOrderCompleted(order,items,specials,notes,configurations) {
+
+    var serviceenable       = false;
+    var coveredenable       = false;
+    var printtitle          = '<img src="/img/logo-small-print.png" />';
+    var printmessageline1   = 'Arrivederci';
+    var printmessageline2   = 'A presto...';
+
+    console.log('%o',items);
+    console.log('%o',configurations);
+
+    for (var conf of configurations) {
+        console.log('->',conf.key+' | '+conf.enable);
+
+        //Servizio 10% del total
+        if(conf.key == 'serviceenable' && conf.enable == 1) {
+            serviceenable = true;
+        } 
+        //Prezzo per coperto
+        else if(conf.key == 'coveredenable' && conf.enable == 1) {
+            coveredenable = true;
+        }
+        //Titolo della stampa 
+        else if(conf.key == 'printtitle' && conf.enable == 1) {
+            printtitle = '<h2>'+conf.value+'</h2>';
+        }
+        //Primo messaggio nella stampa della ricevuta 
+        else if(conf.key == 'printmessageline1' && conf.enable == 1) {
+            printmessageline1 = conf.value;
+        }
+        //Secondo messaggio nella stampa della ricevuta
+        else if(conf.key == 'printmessageline2' && conf.enable == 1) {
+            printmessageline2 = conf.value;
+        }
+    }
+
     var template = ''+
     '<div class="container printOrder">'+
-    '  <div class="logo"><img src="../img/logo-small.png" /></div>'+
+    '  <div class="logo">'+printtitle+'</div>'+
     '  <div class="orderInfo">'+     
-    '     <h2>'+order.client+'</h2>'+
+    '     <h3>'+order.client+'</h3>'+
     '     <h4>Date: '+moment(order.date).format('DD MM, YYYY HH:mm A')+'</h4>'+
     '  </div>'+     
     '  <hr />'+     
     '  <table class="table table-hover tableRicevuta">'+
     '    <thead>'+
     '      <tr>'+
-    '        <th>QTY</th>'+
+    '        <th width="10%">QTY</th>'+
     '        <th>ITEM</th>'+
+    '        <th>PRICE</th>'+
     '        <th>TOTAL</th>'+
     '      </tr>'+
     '    </thead>'+
@@ -239,8 +294,9 @@ function  templateOrderCompleted(order,items,specials,notes) {
     for (var item of items) {
       template += ''+
       '      <tr>'+
-      '        <td>'+item.quantity+'x </td>'+
+      '        <td width="10%">'+item.quantity+'x </td>'+
       '        <td>'+item.menuname+'</td>'+
+      '        <td>&euro; '+parseFloat(item.total) / parseInt(item.quantity)+'</td>'+
       '        <td>&euro; '+item.total+'</td>'+
       '      </tr>';
     }
@@ -249,7 +305,8 @@ function  templateOrderCompleted(order,items,specials,notes) {
       template += ''+
       '      <tr>'+
       '        <td>1x </td>'+
-     '         <td>'+special.special+'</td>'+ 
+     '         <td>'+special.special+'</td>'+   
+      '        <td></td>'+
       '        <td>&euro; '+special.price+'</td>'+
       '      </tr>';
     }
@@ -257,12 +314,21 @@ function  templateOrderCompleted(order,items,specials,notes) {
     template += ''+
       '      <tr>'+
       '        <td></td>'+
+      '        <td></td>'+
       '        <td><strong>Total</strong></td>'+
       '        <td><strong>&euro; '+order.totalorder+'</strong></td>'+
       '      </tr>'+
       '      <tr>'+
       '        <td></td>'+
-      '        <td><strong>Service (10%)</td></strong>'+
+      '        <td></td>';
+    
+    if(serviceenable)
+        template += '<td><strong>Servizio (10%)</td></strong>';
+    
+    if(coveredenable)
+        template += '<td><strong>Coperti</td></strong>';
+
+    template += ''+
       '        <td><strong>&euro; '+order.totalservice+'</strong></td>'+
       '      </tr>';
 
@@ -271,9 +337,10 @@ function  templateOrderCompleted(order,items,specials,notes) {
     '  </table>';
 
     template += ''+
+    '  <hr />'+     
     '  <div class="orderInfo">'+     
-    '     <h3>Thank you</h3>'+
-    '     <h3>Please come again!</h3>'+
+    '     <h3>'+printmessageline1+'</h3>'+
+    '     <h3>'+printmessageline2+'</h3>'+
     '  </div>'+ 
     '</div>';
     return template;

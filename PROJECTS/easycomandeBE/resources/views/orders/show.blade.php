@@ -17,12 +17,12 @@
                         <i class="fa fa-arrow-circle-o-left fa-3x fa-fw" aria-hidden="true"></i>
                     </a>
                     @if ($order->state_id == 1) <!-- PENDING -->
-                        <a id="" href="javascript:printOrder('1','{{ str_replace("'","",$order) }}','{{ str_replace("'","",$items) }}','{{ str_replace("'","",$specials) }}','{{ str_replace("'","",$notes) }}');" click="">
+                        <a id="" href="javascript:printOrder('1','{{ str_replace("'","",$order) }}','{{ str_replace("'","",$items) }}','{{ str_replace("'","",$specials) }}','{{ str_replace("'","",$notes) }}','{{ str_replace("'","",$configurations) }}');" click="">
                             <i class="fa fa-print fa-3x fa-fw" aria-hidden="true"></i>
                         </a>
                      @endif
                     @if ($order->state_id == 2) <!-- COMPLETED -->
-                        <a id="" href="javascript:printOrder('2','{{ str_replace("'","",$order) }}','{{ str_replace("'","",$items) }}','{{ str_replace("'","",$specials) }}','{{ str_replace("'","",$notes) }}');" click="">
+                        <a id="" href="javascript:printOrder('2','{{ str_replace("'","",$order) }}','{{ str_replace("'","",$items) }}','{{ str_replace("'","",$specials) }}','{{ str_replace("'","",$notes) }}','{{ str_replace("'","",$configurations) }}');" click="">
                             <i class="fa fa-credit-card fa-3x fa-fw" aria-hidden="true"></i>
                         </a>
                     @endif
@@ -82,11 +82,21 @@
                             <div class="section-title"><strong>Totali:</strong></div>
                             <div class="section-body">
                                 <h4>
-                                    <label class="control-label">Coperti:</label> {{ $order->covered }}
-                                    <br />
                                     <label class="control-label">Ordinazioni:</label> {{ $order->totalorder }}
                                     <br />
-                                    <label class="control-label">Servizio / Coperti:</label> {{ $order->totalservice }}
+
+                                    @if (count($configurations) > 0)
+                                        @foreach($configurations as $conf)
+                                            @if ($conf->key == 'serviceenable' && $conf->enable)
+                                                <label class="control-label">Servizio (10%):</label> {{ $order->totalservice }}
+                                            @endif
+                                            @if ($conf->key == 'coveredenable' && $conf->enable)
+                                                <label class="control-label">Num. Coperti:</label> {{ $order->covered }}
+                                                <br />
+                                                <label class="control-label">Coperti:</label> {{ $order->totalservice }}
+                                            @endif
+                                        @endforeach
+                                    @endif
                                 </h4>
                             </div>
                         </div>

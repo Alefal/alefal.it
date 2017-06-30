@@ -360,9 +360,11 @@ export class OrderComponent implements OnInit {
           }
           .printOrder .tableComande {
             font-size: `+printtablecomandefont+`;
+            width: 100%;
           }
           .printOrder .tableRicevuta {
             font-size: `+printtablericevutafont+`;
+            width: 100%;
           }
           </style>
         </head>
