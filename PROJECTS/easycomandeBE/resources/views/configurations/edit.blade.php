@@ -30,7 +30,7 @@
                     <div class="col-xs-6 col-md-6">
                         <div class="form-group">
                             <label for="Chiave">Chiave</label>
-                            {!! Form::text('key', null, array('placeholder' => 'Chiave','class' => 'form-control')) !!}
+                            {!! Form::text('key', null, array('placeholder' => 'Chiave','class' => 'form-control disabled')) !!}
                         </div>
                     </div>
                     <div class="col-xs-6 col-md-6">

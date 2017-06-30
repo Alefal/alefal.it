@@ -24,7 +24,7 @@ html {
 .disabled {
     pointer-events: none;
     cursor: not-allowed;
-    background: #eaeaea;
+    background: #eaeaea !important;
 }
 
 .sweet-overlay {

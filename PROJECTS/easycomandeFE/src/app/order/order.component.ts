@@ -379,7 +379,7 @@ export class OrderComponent implements OnInit {
     let template = ''+
     '<div class="container printOrder">'+
     '  <div class="orderInfo">'+     
-    '     <h4>'+order.client+'</h4>'+
+    '     <h3>'+order.client+'</h3>'+
     '  </div>'+     
     //'  <hr />'+     
     '  <table class="table table-hover tableComande">'+
@@ -437,13 +437,13 @@ export class OrderComponent implements OnInit {
       template += ''+
         ' <div class="notesList">'+
         '     <strong>NOTE:</strong>'+
-        '     <br />';
+        '     <br /><h3>';
       for (let note of order.notes) {
         template += ''+
         '     <em>'+note.note+'</em>; ';
       }
       template += ''+
-        ' </div>';
+        ' </h3></div>';
     }
     
     template += ''+
