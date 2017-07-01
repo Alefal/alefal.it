@@ -45,7 +45,7 @@
                     <div class="col-xs-6 col-md-6">
                         <div class="form-group">
                             <label for="city">Conteggio</label>
-                             {!! Form::number('count', null, array('placeholder' => 'Conteggio','class' => 'form-control')) !!}
+                             {!! Form::number('count', null, array('placeholder' => 'Conteggio','class' => 'form-control','step' => '1')) !!}
                         </div>
                     </div>
                     <div class="col-xs-6 col-md-6">

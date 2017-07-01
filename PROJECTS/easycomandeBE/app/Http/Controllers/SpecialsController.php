@@ -130,11 +130,10 @@ class SpecialsController extends Controller
         ]);
 
         $item = Special::find($id);
+        $item->special      = $request->special;
+        $item->price        = $request->price;
         $item->note         = $request->note;
         $item->state_id     = $request->state_id;
-
-        $stateName  = State::find($item->state_id)->state;
-        $item->statename    = $stateName;
 
         //Save ITEM
         $item->save();
@@ -155,7 +154,15 @@ class SpecialsController extends Controller
      */
     public function destroy($id)
     {
-        Special::find($id)->delete();
+        //Special::find($id)->delete();
+
+        $item = Special::find($id);
+        $orderId = $item->order_id;
+        $item->delete();
+
+        //Save ORDER
+        recalculateTotalOrder($orderId);
+
         return redirect()->route('specials.index')
                         ->with('success','Item deleted successfully');
     }

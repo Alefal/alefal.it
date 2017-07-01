@@ -36,13 +36,13 @@
                     <div class="col-xs-6 col-md-4">
                         <div class="form-group">
                             <label for="Prezzo">Prezzo</label>
-                            {!! Form::text('price', null, array('placeholder' => 'Prezzo','class' => 'form-control')) !!}
+                            {!! Form::number('price', null, array('placeholder' => 'Prezzo','class' => 'form-control','step' => '0.1')) !!}
                         </div>
                     </div>
                     <div class="col-xs-6 col-md-4">
                         <div class="form-group">
                             <label for="Prezzo">Prezzo Offerta</label>
-                            {!! Form::text('priceoffer', null, array('placeholder' => 'Prezzo Offerta','class' => 'form-control')) !!}
+                            {!! Form::number('priceoffer', null, array('placeholder' => 'Prezzo Offerta','class' => 'form-control','step' => '0.1')) !!}
                         </div>
                     </div>
                 </div>

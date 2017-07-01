@@ -30,7 +30,7 @@
                     <div class="col-xs-6 col-md-6">
                         <div class="form-group">
                             <label for="name">Id</label>
-                            {!! Form::number('id', null, array('placeholder' => 'Id','class' => 'form-control')) !!}
+                            {!! Form::number('id', null, array('placeholder' => 'Id','class' => 'form-control','step' => '1')) !!}
                         </div>
                     </div>
                     <div class="col-xs-6 col-md-6">

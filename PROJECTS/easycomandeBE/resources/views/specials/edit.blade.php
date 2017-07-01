@@ -36,13 +36,13 @@
                     <div class="col-xs-6 col-md-4">
                         <div class="form-group">
                             <label for="name">Prezzo</label>
-                            {!! Form::number('price', null, array('placeholder' => 'Prezzo','class' => 'form-control')) !!}
+                            {!! Form::number('price', null, array('placeholder' => 'Prezzo','class' => 'form-control','step' => '0.1')) !!}
                         </div>
                     </div>
                     <div class="col-xs-6 col-md-4">
                         <div class="form-group">
                             <label for="categories">Ordinazioni</label>
-                            <select class="form-control" name="order_id">
+                            <select class="form-control disabled" name="order_id">
                                 @foreach($orders as $order)
                                     <option value="{{$order->id}}">{{$order->client}}</option>
                                 @endforeach

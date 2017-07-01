@@ -183,7 +183,15 @@ class ItemsController extends Controller
      */
     public function destroy($id)
     {
-        Item::find($id)->delete();
+        //Item::find($id)->delete();
+
+        $item = Item::find($id);
+        $orderId = $item->order_id;
+        $item->delete();
+
+        //Save ORDER
+        recalculateTotalOrder($orderId);
+        
         return redirect()->route('items.index')
                         ->with('success','Item deleted successfully');
     }

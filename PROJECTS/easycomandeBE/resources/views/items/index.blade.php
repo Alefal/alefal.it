@@ -27,19 +27,17 @@
                     <table class="table card-table table-striped">
                         <thead>
                             <tr>
+                                <th>Ordinazione</th>
                                 <th>Qnt</th>
+                                <th>Piatto</th>
                                 <th>Totale</th>
                                 <th>Servizio</th>
-                                <th>Ordinazione</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($items as $key => $item)
                             <tr class="@if ($key > 0 && $key % 2) odd @else even @endif">
-                                <td>{{ $item->quantity }}</td>
-                                <td>{{ $item->total }}</td>
-                                <td>{{ $item->service }}</td>
                                 <td>
                                     @foreach($orders as $order)
                                         @if ($item->order_id == $order->id) 
@@ -47,6 +45,10 @@
                                         @endif
                                     @endforeach
                                 </td>
+                                <td>{{ $item->quantity }}</td>
+                                <td>{{ $item->menuname }}</td>
+                                <td>{{ $item->total }}</td>
+                                <td>{{ $item->service }}</td>
                                 <td align="right">
                                     <div class="btn-group">
                                         <a class="btn btn-default btn-xs" href="{{ route('items.show',$item->id) }}">

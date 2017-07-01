@@ -105,7 +105,7 @@
                             <div class="section-title"><strong>Stato:</strong></div>
                             <div class="section-body">
                                 @foreach($states as $state)
-                                    @if ($item->state_id == $state->id) 
+                                    @if ($order->state_id == $state->id) 
                                         <em>{{ $state->state }}</em>
                                     @endif
                                 @endforeach
@@ -124,6 +124,7 @@
                             </div>
                         @endif
                     </div>
+
                 </div>
 
             </div>

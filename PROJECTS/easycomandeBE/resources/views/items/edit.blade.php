@@ -28,7 +28,7 @@
                     <div class="col-xs-6 col-md-4">
                         <div class="form-group">
                             <label for="quantity">Qnt</label>
-                            {!! Form::number('quantity', null, array('placeholder' => 'Qnt','class' => 'form-control')) !!}
+                            {!! Form::number('quantity', null, array('placeholder' => 'Qnt','class' => 'form-control','step' => '1')) !!}
                         </div>
                     </div>
                     <div class="col-xs-6 col-md-4">
