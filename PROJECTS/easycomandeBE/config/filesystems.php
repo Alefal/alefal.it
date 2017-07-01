@@ -52,8 +52,8 @@ return [
             'driver' => 'local',
             'root' => storage_path('app/public'),
             ////////// Alefal: change for local / production
-            'url' => env('APP_URL').'/storage',                           //local
-            //'url' => env('APP_URL').'/costaeventi/storage/app/public',      //production
+            //'url' => env('APP_URL').'/storage',                           //local
+            'url' => env('APP_URL').'/rianna/BE/storage/app/public/',      //production
             'visibility' => 'public',
         ],
 
@@ -65,11 +65,6 @@ return [
             'bucket' => env('AWS_BUCKET'),
         ],
 
-    ],
-
-    'laradrop' => [
-        'driver' => 'public',
-        'root' => storage_path('storage'), // will put files in 'public/upload' directory
-    ],
+    ]
 
 ];

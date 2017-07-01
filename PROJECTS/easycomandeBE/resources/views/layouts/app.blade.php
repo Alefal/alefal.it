@@ -15,8 +15,6 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/all.css') }}" rel="stylesheet">
 
-    <link href="{{ asset('/vendor/jasekz/laradrop/css/styles.css') }}" rel="stylesheet" type="text/css">
-
 </head>
 
 <body>
@@ -90,15 +88,10 @@
 
                 </ul>
             </div>
-            <div class="sidebar-footer">
-                <ul class="menu">
-                    <li>
-                        <a href="/" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-cogs" aria-hidden="true"></i>
-                        </a>
-                    </li>
-                    <li><a href="#"><span class="flag-icon flag-icon-th flag-icon-squared"></span></a></li>
-                </ul>
+            <div class="sidebar-footer" style="padding: 25px !important;text-align: center;">
+                <div class="appVersion">
+                    <span class="badge badge-danger">Version 2.0.2</span>
+                </div>
             </div>
         </aside>
         @endif
@@ -161,21 +154,6 @@
 
             </div>
 
-                <!-- Modal LARADROP -->
-                <div class="modal fade" id="modalLaradrop" tabindex="-1" role="dialog" aria-labelledby="modalLaradropLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                <h4 class="modal-title" id="modalLaradropLabel">Upload Image</h4>
-                            </div>
-                            <div class="modal-body">
-                                <div class="laradrop" laradrop-csrf-token="{{ csrf_token() }}"></div>
-                                <div class="clearfix"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
         </div>
 
         <!-- Scripts -->
@@ -183,8 +161,6 @@
         <script src="{{ asset('js/all.js') }}"></script>
 
         <script src="{{ asset('js/jquery-ui.min.js') }}" ></script>
-        <script src="{{ asset('vendor/jasekz/laradrop/js/enyo.dropzone.js') }}"></script>
-        <script src="{{ asset('vendor/jasekz/laradrop/js/laradrop.js') }}"></script>
 
         <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=hohsbo3zqb8d3y3c1i7323r4ite25f3mnjzg4imjf7zknhxa"></script>
         <script>

@@ -5770,23 +5770,7 @@ $(function() {
     jQuery('.modal-btn').click(function(){
         currentModalBtn = jQuery(this);
     });
-        
-    jQuery('.laradrop').laradrop({
-        onInsertCallback: function (obj){
-            // Populate our id and src
-            currentModalBtn.closest('.imageUpload').find('.file-id').text(obj.id);
-            currentModalBtn.closest('.imageUpload').find('input.file-src').val(obj.src);
-            
-            $('#modalLaradrop').modal('toggle');
-        },
-        onErrorCallback: function(jqXHR,textStatus,errorThrown){
-            // if you need an error status indicator, implement here
-            alert('An error occured: '+ errorThrown);
-        },
-        onSuccessCallback: function(serverData){
-            // if you need a success status indicator, implement here
-        }
-    }); 
+    
 });
 
 function printOrder(orderStateId,order,items,specials,notes,configurations){

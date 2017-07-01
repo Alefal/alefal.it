@@ -22,15 +22,10 @@ export class HttpService {
     getCallHttp(call, username, password, id, object) {
         console.log('getCallHttp: ' + call + ' | ' + username + ' | ' + password);
 
-        //////////Official release
-        //let host = 'http://192.168.1.100/easycomande';
-        //let host = 'http://localhost/alefal.it/PROJECTS/easycomande';
-        //let host = 'http://192.168.1.100/alefal.it/PROJECTS/easycomande';
-        //let host = 'http://www.amalficoastapps.it/demo/easycomande';
-
-        //New BackEnd
-        let host    = 'http://localhost:8000';
+        //New BackEnd: LARAVEL
+        //let host    = 'http://localhost:8000';
         //let host    = 'http://192.168.1.100/cicos/BE/public';
+        let host    = 'http://www.easycomande.it/rianna/BE/public';
 
         let url         = '';
         let api_token   = localStorage.getItem('api_token');

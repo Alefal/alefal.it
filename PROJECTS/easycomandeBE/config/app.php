@@ -177,9 +177,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        'Collective\Html\HtmlServiceProvider',
-        //File Explorer
-        'Jasekz\Laradrop\LaradropServiceProvider',    
+        'Collective\Html\HtmlServiceProvider',  
 
         //PDF
         //Barryvdh\DomPDF\ServiceProvider::class,
