@@ -1,0 +1,17 @@
+/*
+.containerWithShadow {
+	behavior: url(css/PIE.htc);
+}
+
+.hero-unit {
+	behavior: url(css/PIE.htc);
+}
+
+.btn {
+	behavior: url(css/PIE.htc);
+}
+*/
+
+.paddingTop {
+	height: 1px !important;
+}
