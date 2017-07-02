@@ -1,7 +1,12 @@
 === Vers. 2.0.2 ===
 OK -> Order Alphabethic for Categoried and Products
 OK -> Remain in order for change state / order and delete product / special
-- FE test print for "pending" order; With "completed" printing works well
+OK -> FE test print for "pending" order; With "completed" printing works well
+OK -> Configuration for print:
+    - title 
+    - line text 1
+    - line text 2
+    - font size for order PENDING and COMPLETED
 
 
 http://localhost:8000/jsondata/order/38?api_token=Pwbo7CmLtqAP5TvIHYFZPqkmetJFTi9UZIfxE1GLeBFFJgzZ8DvhdTEiGFxf

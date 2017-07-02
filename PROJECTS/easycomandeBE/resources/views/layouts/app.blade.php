@@ -56,8 +56,8 @@
                                 <li class="section"><i class="fa fa-cogs" aria-hidden="true"></i> Gestione</li>
                                 <li class="line"></li>
                                 @if(Auth::user()->role == 'admin')
-                                    <li><a href="{{ url('/configurations') }}">Configurazioni</a></li>
                                 @endif
+                                <li><a href="{{ url('/configurations') }}">Configurazioni</a></li>
                                 <li><a href="{{ url('/categories') }}">Categorie</a></li>
                                 <li><a href="{{ url('/menu') }}">Menu</a></li>
                                 <li><a href="{{ url('/orders') }}">Ordinazioni</a></li>

@@ -5953,7 +5953,7 @@ function  templateOrderCompleted(order,items,specials,notes,configurations) {
 
     var serviceenable       = false;
     var coveredenable       = false;
-    var printtitle          = '<img src="/img/logo-small-print.png" />';
+    var printtitle          = '<img src="../img/logo-small-print.png" />';
     var printmessageline1   = 'Arrivederci';
     var printmessageline2   = 'A presto...';
 

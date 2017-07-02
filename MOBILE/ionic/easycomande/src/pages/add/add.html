@@ -84,7 +84,11 @@
         <em>&euro; {{prod.price}}</em>
       </ion-note>
       <img item-right width="44" src="assets/img/order.png" (click)="addMetaProduct(prod)" />
+      <!-- CICOS
       <img item-right width="44" src="assets/img/burger.png" (click)="addExtra(prod)" *ngIf="!prod.existExtra && !prod.isExtra && prod.hasExtra" />
+      -->
+      <!-- RIANNA -->
+      <img item-right width="44" src="assets/img/pizza.png" (click)="addExtra(prod)" *ngIf="!prod.existExtra && !prod.isExtra && prod.hasExtra" />
     </ion-item>
     
 

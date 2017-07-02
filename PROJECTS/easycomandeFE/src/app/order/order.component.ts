@@ -458,28 +458,31 @@ export class OrderComponent implements OnInit {
     //let template = '';
     //template += '<div align="center">'+order.id+'</div>';
 
-    let printtitle = '';
+    let serviceenable     = false;
+    let coveredenable     = false;
+    let printtitle        = '<img src="../../assets/img/logo-small-print.png" />';
     let printmessageline1 = '';
     let printmessageline2 = '';
 
-    if(localStorage.getItem('printtitle')) {
-      printtitle = '<h2>'+localStorage.getItem('printtitle')+'</h2>';
-    } else {
-      printtitle = '<img src="../../assets/img/logo-small-print.png" />';
+    if(localStorage.getItem('serviceenablepercent')) {
+      serviceenable = true;
+    } 
+    else if(localStorage.getItem('coveredenablevalue')) {
+      coveredenable = true;
     }
-
+    else if(localStorage.getItem('printtitle')) {
+      printtitle = '<h2>'+localStorage.getItem('printtitle')+'</h2>';
+    } 
     if(localStorage.getItem('printmessageline1')) {
       printmessageline1 = localStorage.getItem('printmessageline1');
     } else {
       printmessageline1 = 'Arrivederci';
-    }
-
+    } 
     if(localStorage.getItem('printmessageline2')) {
       printmessageline2 = localStorage.getItem('printmessageline2');
     } else {
       printmessageline2 = 'A presto...';
     }
-
 
     let template = ''+
     '<div class="container printOrder">'+
@@ -529,8 +532,15 @@ export class OrderComponent implements OnInit {
       '      </tr>'+
       '      <tr>'+
       '        <td></td>'+
-      '        <td></td>'+
-      '        <td><strong>Service (10%)</td></strong>'+
+      '        <td></td>';
+
+    if(serviceenable)
+        template += '<td><strong>Servizio (10%)</td></strong>';
+    
+    if(coveredenable)
+        template += '<td><strong>Coperti</td></strong>';
+
+    template += ''+
       '        <td><strong>&euro; '+order.totalservice+'</strong></td>'+
       '      </tr>';
 
