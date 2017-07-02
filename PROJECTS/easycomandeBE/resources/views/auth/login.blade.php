@@ -70,6 +70,9 @@
                      <div class="form-line">
                         <div class="title">&nbsp;</div>
                     </div>
+                    <div class="form-footer">
+                        Version 2.0.2
+                    </div>
                     <!--
                     <div class="form-footer">
                         <a href="{{ route('register') }}">Register</a>

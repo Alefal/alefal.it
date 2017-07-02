@@ -14,7 +14,7 @@
         <style>
             html {
                 height: 100%;
-                background: #ffffff url(http://www.amalficoastevents.it/wp-content/uploads/background-landing.jpg) no-repeat center top fixed;
+                background: #ffffff url(img/background-landing.jpg) no-repeat center top fixed;
                 -webkit-background-size: cover;
                 -moz-background-size: cover;
                 -o-background-size: cover;
