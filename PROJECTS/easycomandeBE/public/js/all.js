@@ -6024,25 +6024,30 @@ function  templateOrderCompleted(order,items,specials,notes,configurations) {
       '      </tr>';
     }
 
+    //SERVICE or COVERED
+    template += '<tr>';
+    if(serviceenable) {
+        template += ''+
+        '   <td></td>'+
+        '   <td>Servizio (10%)</td>';
+    }
+    if(coveredenable) {
+        template += ''+
+        '   <td> '+order.covered+'x</td>'+
+        '   <td>Coperti</td>';
+    }
+    template += ''+
+      '        <td></td>'+
+      '        <td>&euro; '+order.totalservice+'</td>'+
+      '      </tr>';
+
+    //TOTAL
     template += ''+
       '      <tr>'+
       '        <td></td>'+
       '        <td></td>'+
       '        <td><strong>Total</strong></td>'+
-      '        <td><strong>&euro; '+order.totalorder+'</strong></td>'+
-      '      </tr>'+
-      '      <tr>'+
-      '        <td></td>'+
-      '        <td></td>';
-    
-    if(serviceenable)
-        template += '<td><strong>Servizio (10%)</td></strong>';
-    
-    if(coveredenable)
-        template += '<td><strong>Coperti</td></strong>';
-
-    template += ''+
-      '        <td><strong>&euro; '+order.totalservice+'</strong></td>'+
+      '        <td><strong>&euro; '+(parseFloat(order.totalorder) + parseFloat(order.totalservice)).toFixed(2)+'</strong></td>'+
       '      </tr>';
 
     template += ''+

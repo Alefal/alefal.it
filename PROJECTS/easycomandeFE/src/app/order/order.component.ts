@@ -460,19 +460,21 @@ export class OrderComponent implements OnInit {
 
     let serviceenable     = false;
     let coveredenable     = false;
-    let printtitle        = '<img src="../../assets/img/logo-small-print.png" />';
+    let printtitle        = '';
     let printmessageline1 = '';
     let printmessageline2 = '';
 
     if(localStorage.getItem('serviceenablepercent')) {
       serviceenable = true;
     } 
-    else if(localStorage.getItem('coveredenablevalue')) {
+    if(localStorage.getItem('coveredenablevalue')) {
       coveredenable = true;
     }
-    else if(localStorage.getItem('printtitle')) {
+    if(localStorage.getItem('printtitle')) {
       printtitle = '<h2>'+localStorage.getItem('printtitle')+'</h2>';
-    } 
+    } else {
+       printtitle = '<img src="../../assets/img/logo-small-print.png" />';
+    }
     if(localStorage.getItem('printmessageline1')) {
       printmessageline1 = localStorage.getItem('printmessageline1');
     } else {
@@ -517,32 +519,38 @@ export class OrderComponent implements OnInit {
       template += ''+
       '      <tr>'+
       '        <td>1x </td>'+
-     '         <td>'+special.name+'</td>'+  
+      '        <td>'+special.name+'</td>'+  
       '        <td></td>'+
       '        <td>&euro; '+special.price+'</td>'+
       '      </tr>';
     }
+
+    template += '<tr>';
+
+    if(serviceenable) {
+        template += ''+
+        '   <td></td>'+
+        '   <td>Servizio (10%)</td>';
+    }
+
+    if(coveredenable) {
+        template += ''+
+        '   <td> '+order.covered+'x</td>'+
+        '   <td>Coperti</td>';
+    }
+
+    template += ''+
+      '        <td></td>'+
+      '        <td>&euro; '+order.totalservice+'</td>'+
+      '      </tr>';
 
     template += ''+
       '      <tr>'+
       '        <td></td>'+
       '        <td></td>'+
       '        <td><strong>Total</strong></td>'+
-      '        <td><strong>&euro; '+order.totalorder+'</strong></td>'+
-      '      </tr>'+
-      '      <tr>'+
-      '        <td></td>'+
-      '        <td></td>';
-
-    if(serviceenable)
-        template += '<td><strong>Servizio (10%)</td></strong>';
-    
-    if(coveredenable)
-        template += '<td><strong>Coperti</td></strong>';
-
-    template += ''+
-      '        <td><strong>&euro; '+order.totalservice+'</strong></td>'+
-      '      </tr>';
+      '        <td><strong>&euro; '+(parseFloat(order.totalorder) + parseFloat(order.totalservice)).toFixed(2)+'</strong></td>'+
+      '      </tr>';      
 
     template += ''+
     '    </tbody>'+

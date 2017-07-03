@@ -22,8 +22,8 @@ export class HttpService {
 
         //////////New BackEnd
         //let host    = 'http://localhost:8000';
-        //let host    = 'http://192.168.1.100/cicos/BE/public';
-        let host    = 'http://www.easycomande.it/rianna/BE/public';
+        let host    = 'http://192.168.1.100/cicos/BE/public';
+        //let host    = 'http://www.easycomande.it/rianna/BE/public';
         let url     = '';
 
         let api_token = localStorage.getItem('api_token');
