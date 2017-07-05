@@ -39,6 +39,15 @@
                                 <label class="control-label">Prezzo Offerta:</label> {{ $item->priceoffer }}
                             </div>
                         </div>
+
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12">
+                                <label class="control-label">Descrizione:</label>
+                                <br />
+                                {{ $item->description }}
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 

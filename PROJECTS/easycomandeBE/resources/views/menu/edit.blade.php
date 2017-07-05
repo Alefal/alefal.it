@@ -61,6 +61,15 @@
                 </div>
 
                 <div class="row">
+                    <div class="col-md-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="desc">Description:</label>
+                            {!! Form::textarea('description', null, array('placeholder' => 'Description','class' => 'form-control')) !!}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
                     <div class="col-md-12 col-xs-12 center">
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary btn-lg btn-block">
