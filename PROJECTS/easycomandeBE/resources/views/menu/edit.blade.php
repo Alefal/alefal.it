@@ -6,6 +6,13 @@
             <div class="card-header">
                 <h4 class="card-title">
                     Modifica: {{ $item->name }}
+
+                    <img src="{{ $selectedPhoto }}" class="img-thumbnail imgThumbBig" />
+
+                    <img src="/cicos/photos/{{$item->photo}}" />
+
+                    <img src="{{ asset($selectedPhoto) }}" />
+
                 </h4>
                 <div class="card-action">
                     <a href="{{ route('menu.index') }}">
@@ -24,7 +31,9 @@
                         @endforeach
                     </ul>
                 </div>
-                @endif {!! Form::model($item, ['method' => 'PATCH','route' => ['menu.update', $item->id]]) !!}
+                @endif 
+                
+                {!! Form::model($item, ['method' => 'PATCH','files'=>true,'route' => ['menu.update', $item->id]]) !!}
 
                 <div class="row">
                     <div class="col-xs-6 col-md-4">
@@ -48,14 +57,21 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-xs-6 col-md-12">
+                    <div class="col-xs-6 col-md-6">
                         <div class="form-group">
                             <label for="categories">Categorie</label>
-                            <select class="form-control disabled" name="category_id">
+                            <select class="form-control" name="category_id">
                                 @foreach($categories as $cat)
-                                    <option value="{{ $cat->id }}" {{ $selectedCategory == $cat->id ? 'selected="selected"' : '' }}>{{ $cat->name }}</option>
+                                    <option value="{{$cat->id}}">{{$cat->name}}</option>
                                 @endforeach
                             </select>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6 col-md-6">
+                        <div class="form-group">
+                            <label for="categories">Foto ({{$selectedPhoto}})</label>
+                            {{Form::file('photo', null, array('class' => 'form-control'))}}
                         </div>
                     </div>
                 </div>

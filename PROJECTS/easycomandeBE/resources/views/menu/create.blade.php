@@ -28,7 +28,7 @@
                     </div>
                 @endif
 
-                {!! Form::open(array('route' => 'menu.store','method'=>'POST')) !!}
+                {!! Form::open(array('route' => 'menu.store','method'=>'POST','files'=>true)) !!}
                 
                 <div class="row">
                     <div class="col-xs-6 col-md-4">
@@ -52,7 +52,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-xs-6 col-md-12">
+                    <div class="col-xs-6 col-md-6">
                         <div class="form-group">
                             <label for="categories">Categorie</label>
                             <select class="form-control" name="category_id">
@@ -60,6 +60,13 @@
                                     <option value="{{$cat->id}}">{{$cat->name}}</option>
                                 @endforeach
                             </select>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6 col-md-6">
+                        <div class="form-group">
+                            <label for="categories">Foto</label>
+                            {{Form::file('photo', array('class' => 'form-control'))}}
                         </div>
                     </div>
                 </div>

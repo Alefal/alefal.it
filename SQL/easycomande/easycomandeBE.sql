@@ -32,6 +32,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `menu` (
   `id` INT NOT NULL AUTO_INCREMENT,
+  `photo` VARCHAR(200) NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   `description` VARCHAR(500) NULL,
   `price` DOUBLE NOT NULL DEFAULT 0,

@@ -54,15 +54,34 @@ class MenuController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'price' => 'required',
-            'category_id' => 'required'
+            'photo'         => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'name'          => 'required',
+            'price'         => 'required',
+            'category_id'   => 'required'
         ]);
 
+        $menu       = new Menu();
+        if($request->file('photo') != null || $request->file('photo') != '') {
+            $image = $request->file('photo');
+            $photoName = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = storage_path(env('PUBLIC_PATH'));
+            $image->move($destinationPath, $photoName);
+        
+            $menu->photo        = $photoName;
+        }
+
+        $menu->name         = $request->name;
+        $menu->description  = $request->description;
+        $menu->price        = $request->price;
+        $menu->priceoffer   = $request->priceoffer;
+        $menu->category_id  = $request->category_id;
+
+        $menu->save();
+
+        /* UPDATE COUNT
         $menu           = Menu::create($request->all());
         $category_id    = $menu->category_id;
 
-        /*
         $category = Category::find($category_id);
         $category->count = $category->count + 1;
         $category->save;
@@ -98,8 +117,9 @@ class MenuController extends Controller
         $categories = Category::all();
 
         $selectedCategory   = Menu::find($id)->category_id;
+        $selectedPhoto      = env('PUBLIC_PATH').'/'.Menu::find($id)->photo;
         
-        return view('menu.edit',compact('item','categories','selectedCategory'));
+        return view('menu.edit',compact('item','categories','selectedCategory','selectedPhoto'));
     }
 
     /**
@@ -112,12 +132,33 @@ class MenuController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'price' => 'required',
-            'category_id' => 'required'
+            'photo'         => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'name'          => 'required',
+            'price'         => 'required',
+            'category_id'   => 'required'
         ]);
 
-        Menu::find($id)->update($request->all());
+        $menu       = Menu::find($id);
+        if($request->file('photo') != null || $request->file('photo') != '') {
+            $image = $request->file('photo');
+            $photoName = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = storage_path(env('PUBLIC_PATH'));
+            $image->move($destinationPath, $photoName);
+        
+            $menu->photo        = $photoName;
+        } else {
+            $menu->photo        = '';
+        }
+
+        $menu->name         = $request->name;
+        $menu->description  = $request->description;
+        $menu->price        = $request->price;
+        $menu->priceoffer   = $request->priceoffer;
+        $menu->category_id  = $request->category_id;
+
+        $menu->update();
+
+        //Menu::find($id)->update($request->all());
         return redirect()->route('menu.index')
                         ->with('success','Item updated successfully');
     }
