@@ -5,7 +5,11 @@
         <div class="card card-mini">
             <div class="card-header">
                 <h4 class="card-title">
-                    {{ $item->name }}
+                    @if ($item->photo == "") 
+                        <img src="{{ asset('img/no_image.jpg') }}" class="img-thumbnail imgThumbBig" />
+                    @else 
+                        <img src="{{ asset('/resources/cicos/photos\/').$item->photo }}" class="img-thumbnail imgThumbBig" />
+                    @endif
                 </h4>
                 <div class="card-action">
                     <a href="{{ route('menu.edit',$item->id) }}">

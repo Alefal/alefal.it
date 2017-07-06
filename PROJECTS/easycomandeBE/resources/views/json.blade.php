@@ -29,7 +29,7 @@
                                 </td>
                                 <td align="right">
                                     <div class="btn-group">
-                                        <a class="btn btn-default btn-xs" target="_blank" href="jsondata/auth/alefal@hotmail.it/Abc123def">
+                                        <a class="btn btn-default btn-xs" target="_blank" href="jsondata/auth/admin@easycomande.it/Abc123def">
                                             <i class="fa fa-eye fa-1x fa-lg" aria-hidden="true"></i>
                                         </a>
                                     </div>
@@ -55,7 +55,7 @@
                                 </td>
                                 <td align="right">
                                     <div class="btn-group">
-                                        <a class="btn btn-default btn-xs" target="_blank" href="jsondata/categories">
+                                        <a class="btn btn-default btn-xs" target="_blank" href="jsondata/categories?api_token=Pwbo7CmLtqAP5TvIHYFZPqkmetJFTi9UZIfxE1GLeBFFJgzZ8DvhdTEiGFxf">
                                             <i class="fa fa-eye fa-1x fa-lg" aria-hidden="true"></i>
                                         </a>
                                     </div>
@@ -68,7 +68,7 @@
                                 </td>
                                 <td align="right">
                                     <div class="btn-group">
-                                        <a class="btn btn-default btn-xs" target="_blank" href="jsondata/menu">
+                                        <a class="btn btn-default btn-xs" target="_blank" href="jsondata/menu?api_token=Pwbo7CmLtqAP5TvIHYFZPqkmetJFTi9UZIfxE1GLeBFFJgzZ8DvhdTEiGFxf">
                                             <i class="fa fa-eye fa-1x fa-lg" aria-hidden="true"></i>
                                         </a>
                                     </div>
@@ -81,7 +81,7 @@
                                 </td>
                                 <td align="right">
                                     <div class="btn-group">
-                                        <a class="btn btn-default btn-xs" target="_blank" href="jsondata/menuforcat/1">
+                                        <a class="btn btn-default btn-xs" target="_blank" href="jsondata/menuforcat/1?api_token=Pwbo7CmLtqAP5TvIHYFZPqkmetJFTi9UZIfxE1GLeBFFJgzZ8DvhdTEiGFxf">
                                             <i class="fa fa-eye fa-1x fa-lg" aria-hidden="true"></i>
                                         </a>
                                     </div>
@@ -94,7 +94,7 @@
                                 </td>
                                 <td align="right">
                                     <div class="btn-group">
-                                        <a class="btn btn-default btn-xs" target="_blank" href="jsondata/orders">
+                                        <a class="btn btn-default btn-xs" target="_blank" href="jsondata/orders?api_token=Pwbo7CmLtqAP5TvIHYFZPqkmetJFTi9UZIfxE1GLeBFFJgzZ8DvhdTEiGFxf">
                                             <i class="fa fa-eye fa-1x fa-lg" aria-hidden="true"></i>
                                         </a>
                                     </div>
@@ -107,7 +107,7 @@
                                 </td>
                                 <td align="right">
                                     <div class="btn-group">
-                                        <a class="btn btn-default btn-xs" target="_blank" href="jsondata/order/1">
+                                        <a class="btn btn-default btn-xs" target="_blank" href="jsondata/order/7?api_token=Pwbo7CmLtqAP5TvIHYFZPqkmetJFTi9UZIfxE1GLeBFFJgzZ8DvhdTEiGFxf">
                                             <i class="fa fa-eye fa-1x fa-lg" aria-hidden="true"></i>
                                         </a>
                                     </div>
@@ -120,7 +120,7 @@
                                 </td>
                                 <td align="right">
                                     <div class="btn-group">
-                                        <a class="btn btn-default btn-xs" target="_blank" href="jsondata/specialsfororder/1">
+                                        <a class="btn btn-default btn-xs" target="_blank" href="jsondata/specialsfororder/7?api_token=Pwbo7CmLtqAP5TvIHYFZPqkmetJFTi9UZIfxE1GLeBFFJgzZ8DvhdTEiGFxf">
                                             <i class="fa fa-eye fa-1x fa-lg" aria-hidden="true"></i>
                                         </a>
                                     </div>
@@ -133,7 +133,7 @@
                                 </td>
                                 <td align="right">
                                     <div class="btn-group">
-                                        <a class="btn btn-default btn-xs" target="_blank" href="jsondata/notesfororder/1">
+                                        <a class="btn btn-default btn-xs" target="_blank" href="jsondata/notesfororder/7?api_token=Pwbo7CmLtqAP5TvIHYFZPqkmetJFTi9UZIfxE1GLeBFFJgzZ8DvhdTEiGFxf">
                                             <i class="fa fa-eye fa-1x fa-lg" aria-hidden="true"></i>
                                         </a>
                                     </div>
@@ -146,7 +146,7 @@
                                 </td>
                                 <td align="right">
                                     <div class="btn-group">
-                                        <a class="btn btn-default btn-xs" target="_blank" href="jsondata/extra">
+                                        <a class="btn btn-default btn-xs" target="_blank" href="jsondata/extra?api_token=Pwbo7CmLtqAP5TvIHYFZPqkmetJFTi9UZIfxE1GLeBFFJgzZ8DvhdTEiGFxf">
                                             <i class="fa fa-eye fa-1x fa-lg" aria-hidden="true"></i>
                                         </a>
                                     </div>
@@ -159,7 +159,7 @@
                                 </td>
                                 <td align="right">
                                     <div class="btn-group">
-                                        <a class="btn btn-default btn-xs" target="_blank" href="jsondata/state">
+                                        <a class="btn btn-default btn-xs" target="_blank" href="jsondata/state?api_token=Pwbo7CmLtqAP5TvIHYFZPqkmetJFTi9UZIfxE1GLeBFFJgzZ8DvhdTEiGFxf">
                                             <i class="fa fa-eye fa-1x fa-lg" aria-hidden="true"></i>
                                         </a>
                                     </div>
@@ -170,7 +170,7 @@
                                 <td> <i class="fa fa-code fa-lg" aria-hidden="true"></i> jsondata/users</td>
                                 <td align="right">
                                     <div class="btn-group">
-                                        <a class="btn btn-default btn-xs" target="_blank" href="jsondata/users">
+                                        <a class="btn btn-default btn-xs" target="_blank" href="jsondata/users?api_token=Pwbo7CmLtqAP5TvIHYFZPqkmetJFTi9UZIfxE1GLeBFFJgzZ8DvhdTEiGFxf">
                                             <i class="fa fa-eye fa-1x fa-lg" aria-hidden="true"></i>
                                         </a>
                                     </div>

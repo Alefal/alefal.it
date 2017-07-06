@@ -52,7 +52,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-xs-6 col-md-6">
+                    <div class="col-xs-6 col-md-4">
                         <div class="form-group">
                             <label for="categories">Categorie</label>
                             <select class="form-control" name="category_id">
@@ -63,10 +63,16 @@
                         </div>
                     </div>
 
-                    <div class="col-xs-6 col-md-6">
+                    <div class="col-xs-6 col-md-4">
                         <div class="form-group">
-                            <label for="categories">Foto</label>
-                            {{Form::file('photo', array('class' => 'form-control'))}}
+                            <label for="photo">Foto</label>
+                            {{Form::file('photo', array('class' => 'form-control', 'id' => 'photoMenu'))}}
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-4">
+                        <div class="form-group">
+                            <label for="photo">&nbsp;</label>
+                            {!! Form::text('photoname', null, array('placeholder' => 'Path foto','class' => 'form-control photoMenuPath', 'readonly' => 'true')) !!}
                         </div>
                     </div>
                 </div>

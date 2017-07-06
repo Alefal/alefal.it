@@ -5765,6 +5765,11 @@ $(function() {
         });
     });
 
+    $('#photoMenu').change(function(ev) {
+        console.log('-> '+$(this).val());
+        $('.photoMenuPath').val($(this).val());
+    });
+
     /** Keep track of which modal button was clicked. **/
     var currentModalBtn;
     jQuery('.modal-btn').click(function(){

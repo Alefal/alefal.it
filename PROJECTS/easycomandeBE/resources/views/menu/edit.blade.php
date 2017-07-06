@@ -5,14 +5,11 @@
         <div class="card card-mini">
             <div class="card-header">
                 <h4 class="card-title">
-                    Modifica: {{ $item->name }}
-
-                    <img src="{{ $selectedPhoto }}" class="img-thumbnail imgThumbBig" />
-
-                    <img src="/cicos/photos/{{$item->photo}}" />
-
-                    <img src="{{ asset($selectedPhoto) }}" />
-
+                    @if ($item->photo == "") 
+                        <img src="{{ asset('img/no_image.jpg') }}" class="img-thumbnail imgThumbBig" />
+                    @else 
+                        <img src="{{ asset('/resources/cicos/photos\/').$item->photo }}" class="img-thumbnail imgThumbBig" />
+                    @endif
                 </h4>
                 <div class="card-action">
                     <a href="{{ route('menu.index') }}">
@@ -57,7 +54,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-xs-6 col-md-6">
+                    <div class="col-xs-6 col-md-4">
                         <div class="form-group">
                             <label for="categories">Categorie</label>
                             <select class="form-control" name="category_id">
@@ -68,10 +65,16 @@
                         </div>
                     </div>
 
-                    <div class="col-xs-6 col-md-6">
+                    <div class="col-xs-6 col-md-4">
                         <div class="form-group">
-                            <label for="categories">Foto ({{$selectedPhoto}})</label>
-                            {{Form::file('photo', null, array('class' => 'form-control'))}}
+                            <label for="photo">Foto</label>
+                            {{Form::file('photo', array('class' => 'form-control', 'id' => 'photoMenu'))}}
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-4">
+                        <div class="form-group">
+                            <label for="photo">Path: {{$selectedPhoto}}</label>
+                            {!! Form::text('photo', null, array('placeholder' => 'Path foto','class' => 'form-control photoMenuPath')) !!}
                         </div>
                     </div>
                 </div>

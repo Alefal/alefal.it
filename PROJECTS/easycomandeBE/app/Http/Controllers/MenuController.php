@@ -64,7 +64,7 @@ class MenuController extends Controller
         if($request->file('photo') != null || $request->file('photo') != '') {
             $image = $request->file('photo');
             $photoName = time().'.'.$image->getClientOriginalExtension();
-            $destinationPath = storage_path(env('PUBLIC_PATH'));
+            $destinationPath = base_path(env('PUBLIC_PATH_PHOTOS'));
             $image->move($destinationPath, $photoName);
         
             $menu->photo        = $photoName;
@@ -117,7 +117,7 @@ class MenuController extends Controller
         $categories = Category::all();
 
         $selectedCategory   = Menu::find($id)->category_id;
-        $selectedPhoto      = env('PUBLIC_PATH').'/'.Menu::find($id)->photo;
+        $selectedPhoto      = env('PUBLIC_PATH_PHOTOS').'/'.Menu::find($id)->photo;
         
         return view('menu.edit',compact('item','categories','selectedCategory','selectedPhoto'));
     }
@@ -132,7 +132,7 @@ class MenuController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'photo'         => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            //'photo'         => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'name'          => 'required',
             'price'         => 'required',
             'category_id'   => 'required'
@@ -140,14 +140,18 @@ class MenuController extends Controller
 
         $menu       = Menu::find($id);
         if($request->file('photo') != null || $request->file('photo') != '') {
-            $image = $request->file('photo');
-            $photoName = time().'.'.$image->getClientOriginalExtension();
-            $destinationPath = storage_path(env('PUBLIC_PATH'));
+            $image              = $request->file('photo');
+            $photoName          = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath    = base_path(env('PUBLIC_PATH_PHOTOS'));
             $image->move($destinationPath, $photoName);
         
             $menu->photo        = $photoName;
         } else {
-            $menu->photo        = '';
+            if($request->photo != '') {
+                $menu->photo = $request->photo;
+            } else {
+                $menu->photo = '';                
+            }
         }
 
         $menu->name         = $request->name;

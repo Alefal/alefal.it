@@ -52,7 +52,7 @@ return [
             'driver' => 'local',
             'root' => storage_path('app/public'),
             ////////// Alefal: change for local / production
-            'url' => env('APP_URL').'/storage',                           //local
+            //'url' => env('APP_URL').'/storage',                           //local
             'visibility' => 'public',
         ],
 

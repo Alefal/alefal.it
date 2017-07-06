@@ -1,3 +1,4 @@
 ########## CHANGELOG ##########
-OK -> quando cancello gli items di un ordine non viene aggiornato il totale
-- per gli speciali non si aggiorna il prezzo
+
+=== Vers. 2.0.3: TODO ===
+- Aggiungere immagine al piatto (campo PHOTO)

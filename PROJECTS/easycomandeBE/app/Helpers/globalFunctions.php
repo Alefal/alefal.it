@@ -145,6 +145,7 @@ function manipulateJsonResponseMenu($jsonData,$categories) {
 
         $json .= '{';
         $json .= '"id":"'.$menu[$i]['id'].'",';
+        $json .= '"photo":"'.$menu[$i]['photo'].'",';
         $json .= '"name":"'.$menu[$i]['name'].'",';
         $json .= '"price":"'.$menu[$i]['price'].'",';
         $json .= '"priceoffer":"'.$menu[$i]['priceoffer'].'",';
@@ -181,6 +182,7 @@ function manipulateJsonResponseMenuForCategory($jsonData,$categories,$catId) {
 
         $json .= '{';
         $json .= '"id":"'.$menu[$i]['id'].'",';
+        $json .= '"photo":"'.$menu[$i]['photo'].'",';
         $json .= '"name":"'.$menu[$i]['name'].'",';
         $json .= '"price":"'.$menu[$i]['price'].'",';
         $json .= '"priceoffer":"'.$menu[$i]['priceoffer'].'",';

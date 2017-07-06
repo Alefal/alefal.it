@@ -16,11 +16,13 @@
                 <h4 class="card-title">
                     Notifiche
                 </h4>
+                <!--
                 <div class="card-action">
                     <a href="{{ route('notifications.create') }}">
                         <i class="fa fa-plus-circle fa-3x fa-fw" aria-hidden="true"></i>
                     </a>
                 </div>
+                -->
             </div>
             <div class="card-body no-padding">
                 <div class="table-responsive">
