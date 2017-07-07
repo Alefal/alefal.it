@@ -43,6 +43,10 @@ export class OrderComponent implements OnInit {
 
   serviceOrCovered: string = '';
 
+  itemIdChangeSortOrder: number = 0;
+  itemOrderIdChangeSortOrder: number = 0;
+  itemSortOrder: number = 0;
+
   constructor(
     private location: Location,
     private router: Router,
@@ -226,7 +230,6 @@ export class OrderComponent implements OnInit {
     console.log('changeItemState: ' + prodId);
     this.loadingBarService.start();
 
-
     this.httpService
       .getCallHttp('getOrderChangeLineItemState', '', '', prodId, orderId)
       .subscribe(res => {
@@ -234,6 +237,34 @@ export class OrderComponent implements OnInit {
 
         if (res.results[0].operation == 'success') {
           this.refreshOrder(orderId);
+        } else {
+          this.alertService.error('ITEM: Non è stato possibile modificare lo stato');
+        }
+      },
+      error => {
+        this.alertService.error('ITEM: Dati non disponibili! Si è verificato un errore.');
+      });
+  }
+
+  changeItemOrderModal(prodId,orderId) {
+    console.log('changeItemOrderModal: '+ prodId + ' | ' + orderId);
+    this.itemIdChangeSortOrder = prodId;
+    this.itemOrderIdChangeSortOrder = orderId;
+    jQuery('#changeItemOrderModal').modal();
+  }
+  changeItemOrder() {
+    console.log('itemSortOrder: '+ this.itemIdChangeSortOrder + ' | ' + this.itemSortOrder);
+    jQuery('#changeItemOrderModal').modal('hide');
+
+    this.loadingBarService.start();
+
+    this.httpService
+      .getCallHttp('getOrderChangeLineItemSortOrder', '', '', this.itemIdChangeSortOrder, this.itemSortOrder)
+      .subscribe(res => {
+        console.log('res: ' + JSON.stringify(res));
+
+        if (res.results[0].operation == 'success') {
+          this.refreshOrder(this.itemOrderIdChangeSortOrder);
         } else {
           this.alertService.error('ITEM: Non è stato possibile modificare lo stato');
         }
@@ -381,7 +412,7 @@ export class OrderComponent implements OnInit {
     let template = ''+
     '<div class="container printOrder">'+
     '  <div class="orderInfo">'+     
-    '     <h3>'+order.client+'</h3>'+
+    '     <h2>'+order.client+'</h2>'+
     '  </div>'+     
     //'  <hr />'+     
     '  <table class="table table-hover tableComande">'+
@@ -393,6 +424,8 @@ export class OrderComponent implements OnInit {
     //'    </thead>'+
     '    <tbody>';
 
+    let initialItemOrder:number = 1;
+
     for (let item of order.items) {
       let classItem = '';
       if(item.state == 'pending') {
@@ -400,6 +433,15 @@ export class OrderComponent implements OnInit {
       } else {
         classItem = 'deleteItem';
       }
+      
+      if(item.order > initialItemOrder) {
+        initialItemOrder = item.order;
+        template += ''+
+      '      <tr>'+
+      '      <td colspan="2" align="center"><em>-------- segue --------</em-></td>'+
+      '      </tr>';
+      }
+      
       template += ''+
       '      <tr class="'+classItem+'">'+
       '        <td width="10%">'+item.quantity+'x </td>';
@@ -408,6 +450,7 @@ export class OrderComponent implements OnInit {
       } else {
         template += '<td>'+item.name+'</td>';        
       }
+
       template += ''+
       '      </tr>';
     }

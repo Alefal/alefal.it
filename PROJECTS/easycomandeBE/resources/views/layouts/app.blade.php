@@ -65,7 +65,9 @@
                                 <li><a href="{{ url('/notes') }}">Note</a></li>
                                 <li><a href="{{ url('/specials') }}">Speciali</a></li>
                                 @if(Auth::user()->role == 'admin')
+                                    <!-- tabella EXTRA per le gestione degli extra; al momento viene utilizzata la categoria EXTRA per i menu
                                     <li><a href="{{ url('/extra') }}">Extra</a></li>
+                                    -->
                                     <li><a href="{{ url('/state') }}">Stati</a></li>
                                     <li><a href="{{ url('/users') }}">Utenti</a></li>
                                     <li><a href="{{ url('/notifications') }}">Notifiche</a></li>

@@ -129,6 +129,10 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('jsondata/item/change/state/{itemId}/{orderId}', function($itemId,$orderId){
         return changeStateItem($itemId,$orderId);
     });
+    /*** Change sort ITEM from APP / WEBAPP ***/    
+    Route::get('jsondata/item/change/sort/{itemId}/{sort}', function($itemId,$sort){
+        return changeSortItem($itemId,$sort);
+    });
     /*** Delete ITEM from APP / WEBAPP ***/
     Route::get('jsondata/item/delete/{itemId}/{orderId}', function($itemId,$orderId){
         return deleteItem($itemId,$orderId);

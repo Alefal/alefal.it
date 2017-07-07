@@ -28,6 +28,7 @@
                         <thead>
                             <tr>
                                 <th>Ordinazione</th>
+                                <th>Uscita</th>
                                 <th>Qnt</th>
                                 <th>Piatto</th>
                                 <th>Totale</th>
@@ -45,15 +46,18 @@
                                         @endif
                                     @endforeach
                                 </td>
+                                <td>{{ $item->order }}</td>
                                 <td>{{ $item->quantity }}</td>
                                 <td>{{ $item->menuname }}</td>
                                 <td>{{ $item->total }}</td>
                                 <td>{{ $item->service }}</td>
                                 <td align="right">
                                     <div class="btn-group">
+                                        <!--
                                         <a class="btn btn-default btn-xs" href="{{ route('items.show',$item->id) }}">
                                             <i class="fa fa-eye fa-1x fa-lg" aria-hidden="true"></i>
                                         </a>
+                                        -->
                                         <a class="btn btn-default btn-xs" href="{{ route('items.edit',$item->id) }}">
                                             <i class="fa fa-pencil fa-1x fa-lg" aria-hidden="true"></i>
                                         </a>

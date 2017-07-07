@@ -27,6 +27,12 @@
                <div class="row">
                     <div class="col-xs-6 col-md-4">
                         <div class="form-group">
+                            <label for="quantity">Uscita</label>
+                            {!! Form::number('order', null, array('placeholder' => 'Ordine Uscita','class' => 'form-control','step' => '1')) !!}
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-4">
+                        <div class="form-group">
                             <label for="quantity">Qnt</label>
                             {!! Form::number('quantity', null, array('placeholder' => 'Qnt','class' => 'form-control','step' => '1')) !!}
                         </div>
@@ -41,6 +47,9 @@
                             </select>
                         </div>
                     </div>
+                </div>
+
+                <div class="row">
                     <div class="col-xs-6 col-md-4">
                         <div class="form-group">
                             <label for="order_id">Ordinazione</label>
@@ -51,10 +60,7 @@
                             </select>
                         </div>
                     </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6 col-xs-8 center">
+                    <div class="col-md-6 col-xs-6">
                         <div class="form-group">
                             <label for="note">Note</label>
                             {!! Form::text('note', null, array('placeholder' => 'Note','class' => 'form-control')) !!}

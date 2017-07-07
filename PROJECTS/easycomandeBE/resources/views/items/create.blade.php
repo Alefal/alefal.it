@@ -33,6 +33,12 @@
                 <div class="row">
                     <div class="col-xs-6 col-md-4">
                         <div class="form-group">
+                            <label for="quantity">Uscita</label>
+                            {!! Form::number('order', null, array('placeholder' => 'Ordine Uscita','class' => 'form-control','step' => '1')) !!}
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-4">
+                        <div class="form-group">
                             <label for="quantity">Qnt</label>
                             {!! Form::number('quantity', null, array('placeholder' => 'Qnt','class' => 'form-control','step' => '1')) !!}
                         </div>
@@ -47,7 +53,10 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-xs-6 col-md-4">
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-6 col-md-5">
                         <div class="form-group">
                             <label for="order_id">Ordinazione</label>
                             <select class="form-control" name="order_id">
@@ -57,16 +66,13 @@
                             </select>
                         </div>
                     </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-xs-6 col-md-8">
+                    <div class="col-xs-6 col-md-5">
                         <div class="form-group">
                             <label for="note">Note</label>
                             {!! Form::text('note', null, array('placeholder' => 'Note','class' => 'form-control')) !!}
                         </div>
                     </div>
-                    <div class="col-xs-6 col-md-4">
+                    <div class="col-xs-6 col-md-2">
                         <div class="form-group">
                             <label for="state_id">Stato</label>
                             <select class="form-control" name="state_id">

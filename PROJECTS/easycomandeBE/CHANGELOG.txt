@@ -1,4 +1,10 @@
 ########## CHANGELOG ##########
 
 === Vers. 2.0.3: TODO ===
-- Aggiungere immagine al piatto (campo PHOTO)
+OK -> Aggiungere immagine al piatto (campo PHOTO)
+- Aggiungere ORDER ad ogni ITEM di un ORDER:
+    - FE: al salvataggio passare anche "order" per ogni ITEM
+    - APP: al salvataggio passare anche "order" per ogni ITEM
+- Aggiungere ORDER ad ogni SPECIAL di un ORDER:
+    - FE: al salvataggio passare anche "order" per ogni ITEM
+    - APP: al salvataggio passare anche "order" per ogni ITEM

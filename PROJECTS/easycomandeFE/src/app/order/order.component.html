@@ -80,13 +80,21 @@
               *ngIf="ordine.state != 'completed' && prod.state != 'completed'">
             </div>
             <div class="icon fa fa-check-square-o fa-4x iconCheckItem" *ngIf="ordine.state != 'completed' && prod.state != 'completed'" (click)="changeItemState(prod.id,ordine.id)"></div>
+            <!-- CHANGE ITEM ORDER -->
+            <div class="icon fa fa-sort fa-4x iconChangeItemOrder" (click)="changeItemOrderModal(prod.id,ordine.id)" *ngIf="ordine.state != 'completed' && prod.state != 'completed'"></div>
             <!-- COMPLETED -->
             <div class="icon fa fa-check fa-4x" *ngIf="prod.state == 'completed' || ordine.state == 'completed'"></div>
 
             <div class="content">
-              <div class="title"><em>{{prod.quantity}} x {{prod.name}}</em></div>
+              <div class="title">
+                <em>{{prod.quantity}} x {{prod.name}}</em>
+                <hr />
+                <span class="badge badge-info" *ngIf="ordine.state != 'completed'">
+                  ordine uscita: {{prod.order}}
+                </span>
+              </div>
               
-              <div *ngIf="prod.note != ''">
+              <div *ngIf="prod.note != '' && ordine.state != 'completed'">
                 <span class="badge badge-warning">{{prod.note}}</span>
               </div>
 
@@ -168,4 +176,41 @@
 
   </div>
 
+</div>
+
+<!-- MODAL -->
+<div class="modal fade" id="changeItemOrderModal" tabindex="-1" role="dialog" aria-labelledby="changeItemOrderModal" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title">Modifica ordine uscita</h4>
+      </div>
+      <div class="modal-body">
+
+        <div class="modalContent">
+          <h5>Modifica l'ordine di uscita del piatto</h5>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-sort" aria-hidden="true"></i></span>
+            <select class="form-control" [(ngModel)]="itemSortOrder">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+              <option>9</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Chiudi</button>
+        <button type="button" class="btn btn-sm btn-success" (click)="changeItemOrder()">Modifica Ordine</button>
+      </div>
+    </div>
+  </div>
 </div>

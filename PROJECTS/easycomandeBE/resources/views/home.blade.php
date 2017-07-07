@@ -71,7 +71,7 @@
         </a>
     </div>
 
-    <!-- numExtras -->
+    <!-- numExtras: tabella EXTRA per le gestione degli extra; al momento viene utilizzata la categoria EXTRA per i menu
     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
         <a class="card card-banner card-green-light" href="{{ url('/extra') }}">
             <div class="card-body">
@@ -83,6 +83,7 @@
             </div>
         </a>
     </div>
+    -->
 
     <!-- numSpecials -->
     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">

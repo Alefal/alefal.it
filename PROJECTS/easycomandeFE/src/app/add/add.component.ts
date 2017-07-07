@@ -35,6 +35,7 @@ export class AddComponent implements OnInit {
 
   productsMenu: Product[] = new Array<Product>();
   products: Product[] = new Array<Product>();
+  productExitOrder: number = 1;
 
   notes: Note[] = new Array<Note>();
   ships: Special[] = new Array<Special>();
@@ -115,7 +116,6 @@ export class AddComponent implements OnInit {
         this.loadingBarService.complete();
       });
   }
-
   loadData(categoriaNome) {
     this.categoryName = categoriaNome;
 
@@ -144,13 +144,15 @@ export class AddComponent implements OnInit {
       this.productsMenu = JSON.parse(localStorage.getItem(this.categoryName));
     }
   }
-
   updateTotal(coperti: number) {
     //console.log('coperti -> '+coperti);
     this.numCoperti = coperti;
   }
 
   //PRODUCT
+  followOrder() {
+    this.productExitOrder = this.productExitOrder + 1;
+  }
   addQuantity(prod: any) {
     console.log('%ò', prod);
     let newQuantity = prod.quantity + 1;
@@ -197,6 +199,7 @@ export class AddComponent implements OnInit {
     if (prod != '') {
       let pId         = 0;
       let pProdId     = prod.id;
+      let pOrder      = this.productExitOrder;
       let pTitle      = prod.name;
       let pPrice      = prod.price ? prod.price : 0;
       let pExistExtra = false;
@@ -207,7 +210,8 @@ export class AddComponent implements OnInit {
 
       let product = new Product(
         pId,
-        pProdId,          //menu_id
+        pProdId,            //menu_id
+        pOrder,             //product order
         1,
         pPriceTotal,
         pPriceService,
@@ -218,8 +222,8 @@ export class AddComponent implements OnInit {
         pExistExtra,
         isExtra,
         hasExtra,
-        0,                //order_id
-        1                 //state_id -> pending
+        0,                  //order_id
+        1                   //state_id -> pending
       );
 
       this.products.push(product);
@@ -368,12 +372,13 @@ export class AddComponent implements OnInit {
     let ePrice = splitted[2];
 
     let pId = 0;
-    let pProdId = eId;
-    let pTitle = eTitle;
-    let pPrice = ePrice ? ePrice : 0;
+    let pProdId     = eId;
+    let pOrder      = this.productExitOrder;
+    let pTitle      = eTitle;
+    let pPrice      = ePrice ? ePrice : 0;
     let pExistExtra = false;
-    let pIsExtra = true;
-    let pHasExtra = false;
+    let pIsExtra    = true;
+    let pHasExtra   = false;
     let pPriceTotal = pPrice;
 
     ////////// Service or Covered
@@ -384,6 +389,7 @@ export class AddComponent implements OnInit {
     let prodotto = new Product(
         pId,
         pProdId,
+        pOrder,       //product order
         1,
         pPriceTotal,
         pPriceService,

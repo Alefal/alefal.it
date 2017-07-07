@@ -16,6 +16,8 @@
               <button type="submit" class="btn btn-warning btn-lg" (click)="openModalAddNote()"><i class="fa fa-pencil-square-o fa-1x"></i> Nota Generica</button>
               
               <span style="margin: 0 30px"></span>
+              <button type="submit" class="btn btn-default btn-lg" (click)="followOrder()"><i class="fa fa-arrows-h fa-1x"></i> Segue</button>
+              <span style="margin: 0 30px"></span>
 
               <a class="btn btn-danger btn-lg" [routerLink]="['/home']"><i class="fa fa-close fa-1x"></i> Annulla</a>
               <button type="submit" class="btn btn-primary btn-lg" [disabled]="totaleOrdine == 0 && !ordineEdit" (click)="saveOrder()">
@@ -92,7 +94,11 @@
                       <div class="icon fa fa-cutlery fa-4x iconAddExtra" (click)="openModalAddExtra(prod)" *ngIf="!prod.existExtra && !prod.isExtra && prod.hasExtra"></div>                      
 
                       <div class="content itemProduct">
-                        <div class="title"><em>{{prod.quantity}} x {{prod.menuname}}</em></div>
+                        <div class="title">
+                          <em>{{prod.quantity}} x {{prod.menuname}}</em>
+                          <hr />
+                          <span class="badge badge-info">ordine uscita: {{prod.order}}</span>
+                        </div>
 
                         <div class="alert alert-danger alert-dismissable fade in" *ngIf="prod.note != ''">
                           <a href="javascript:void(0);" (click)="removeMetaProduct(prod)" class="close" data-dismiss="alert" aria-label="close">&times;</a>

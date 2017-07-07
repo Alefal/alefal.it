@@ -12,6 +12,7 @@ class Item extends Model
     protected $fillable=[
         'id',
         'menu_id',
+        'order',
         'quantity',
         'total',
         'service',

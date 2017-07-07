@@ -22,6 +22,8 @@
 
                         <div class="row">
                             <div class="col-md-6 col-sm-6">
+                                <label class="control-label">Uscita:</label> {{ $item->order }}
+                                <br />
                                 <label class="control-label">Qnt:</label> {{ $item->quantity }}
                             </div>
                              <div class="col-md-6 col-sm-6">

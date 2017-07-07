@@ -29,7 +29,10 @@ class ItemsController extends Controller
      */
     public function index(Request $request)
     {
-        $items = Item::orderBy('items.id','ASC')->paginate(100);
+        $items = Item::orderBy('items.order_id','ASC')
+                        ->orderBy('items.order','ASC')
+                        ->orderBy('items.menuname','ASC')
+                        ->paginate(50);
         $orders = Order::all();
 
         return view('items.index',compact('items','orders'))
@@ -71,6 +74,7 @@ class ItemsController extends Controller
         $service    = ($menu->price * $quantity) * 10 / 100;
         
         $item = new Item();
+        $item->order        = $request->order;
         $item->quantity     = $quantity;
         $item->total        = $total;
         $item->service      = $service;
@@ -150,6 +154,7 @@ class ItemsController extends Controller
         $service    = ($menu->price * $quantity) * 10 / 100;
         
         $item = Item::find($id);
+        $item->order        = $request->order;
         $item->quantity     = $quantity;
         $item->total        = $total;
         $item->service      = $service;

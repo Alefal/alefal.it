@@ -63,6 +63,9 @@ export class HttpService {
         else if (call == 'getOrderChangeLineItemState') {
             url = '/jsondata/item/change/state/'+id+'/'+object;
         }
+        else if (call == 'getOrderChangeLineItemSortOrder') {
+            url = '/jsondata/item/change/sort/'+id+'/'+object;
+        }
         else if (call == 'getOrderDeleteLineItem') {
             url = '/jsondata/item/delete/'+id+'/'+object;
         }

@@ -2,6 +2,14 @@
     font-size: 1em;
     padding: 10px;
 }
+
+.title {
+    text-align: right;
+}
+.title hr {
+    margin: 5px;
+}
+
 .listProductByCategory {
     padding: 0 !important;
 }
