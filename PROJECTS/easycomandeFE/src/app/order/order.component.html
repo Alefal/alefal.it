@@ -81,7 +81,7 @@
             </div>
             <div class="icon fa fa-check-square-o fa-4x iconCheckItem" *ngIf="ordine.state != 'completed' && prod.state != 'completed'" (click)="changeItemState(prod.id,ordine.id)"></div>
             <!-- CHANGE ITEM ORDER -->
-            <div class="icon fa fa-sort fa-4x iconChangeItemOrder" (click)="changeItemOrderModal(prod.id,ordine.id)" *ngIf="ordine.state != 'completed' && prod.state != 'completed'"></div>
+            <div class="icon fa fa-sort fa-4x iconChangeItemOrder" (click)="changeItemOrderModal('product',prod.id,ordine.id)" *ngIf="ordine.state != 'completed' && prod.state != 'completed'"></div>
             <!-- COMPLETED -->
             <div class="icon fa fa-check fa-4x" *ngIf="prod.state == 'completed' || ordine.state == 'completed'"></div>
 
@@ -90,7 +90,7 @@
                 <em>{{prod.quantity}} x {{prod.name}}</em>
                 <hr />
                 <span class="badge badge-info" *ngIf="ordine.state != 'completed'">
-                  ordine uscita: {{prod.order}}
+                  ordine uscita: {{prod.sort}}
                 </span>
               </div>
               
@@ -125,10 +125,18 @@
               *ngIf="ordine.state != 'completed' && special.state != 'completed'">
             </div>
             <div class="icon fa fa-check-square-o fa-4x iconCheckItem" *ngIf="ordine.state != 'completed' && special.state != 'completed'" (click)="changeSpecialState(special.id,ordine.id)"></div>
+            <!-- CHANGE ITEM ORDER -->
+            <div class="icon fa fa-sort fa-4x iconChangeItemOrder" (click)="changeItemOrderModal('special',special.id,ordine.id)" *ngIf="ordine.state != 'completed' && special.state != 'completed'"></div>
             <!-- COMPLETED -->
             <div class="icon fa fa-check fa-4x" *ngIf="special.state == 'completed'"></div>
             <div class="content">
-              <div class="title"><em>1 x {{special.name}}</em></div>
+              <div class="title">
+                <em>1 x {{special.name}}</em>
+                <hr />
+                <span class="badge badge-info" *ngIf="ordine.state != 'completed'">
+                  ordine uscita: {{special.sort}}
+                </span>
+              </div>
 
               <div *ngIf="special.note != ''">
                 <span class="badge badge-warning">{{special.note}}</span>

@@ -73,6 +73,9 @@ export class HttpService {
         else if (call == 'getOrderChangeSpecialState') {
             url = '/jsondata/special/change/state/'+id+'/'+object;
         }
+        else if (call == 'getOrderChangeLineSpecialSortOrder') {
+            url = '/jsondata/special/change/sort/'+id+'/'+object;
+        }
         else if (call == 'getOrderDeleteSpecial') {
             url = '/jsondata/special/delete/'+id+'/'+object;
         }

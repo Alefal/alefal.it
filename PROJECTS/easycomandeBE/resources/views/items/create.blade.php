@@ -34,7 +34,7 @@
                     <div class="col-xs-6 col-md-4">
                         <div class="form-group">
                             <label for="quantity">Uscita</label>
-                            {!! Form::number('order', null, array('placeholder' => 'Ordine Uscita','class' => 'form-control','step' => '1')) !!}
+                            {!! Form::number('sort', null, array('placeholder' => 'Ordine Uscita','class' => 'form-control','step' => '1')) !!}
                         </div>
                     </div>
                     <div class="col-xs-6 col-md-4">

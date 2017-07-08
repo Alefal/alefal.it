@@ -12,6 +12,7 @@ class Special extends Model
     protected $fillable=[
         'id',
         'special',
+        'sort',
         'price',
         'note',
         'order_id',

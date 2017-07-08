@@ -270,7 +270,7 @@ function manipulateJsonResponseOrder($jsonData,$items,$specials,$notes,$states) 
         $json .= '"id": "'.$items[$j]['id'].'",';
         //$json .= '"name": "'.$items[$j]['menuname'].'",';
         $json .= '"name": "'.$menu[0]['name'].'",';
-        $json .= '"order": "'.$items[$j]['order'].'",';
+        $json .= '"sort": "'.$items[$j]['sort'].'",';
         $json .= '"quantity": "'.$items[$j]['quantity'].'",';
         $json .= '"price": "'.$menu[0]['price'].'",';
         $json .= '"total": "'.$items[$j]['total'].'",';
@@ -292,6 +292,7 @@ function manipulateJsonResponseOrder($jsonData,$items,$specials,$notes,$states) 
 
         $json .= '"id": "'.$specials[$j]['id'].'",';
         $json .= '"name": "'.$specials[$j]['special'].'",';
+        $json .= '"sort": "'.$specials[$j]['sort'].'",';
         $json .= '"price": "'.$specials[$j]['price'].'",';
         $json .= '"note": "'.$specials[$j]['note'].'",';
         $json .= '"state": "'.$specials[$j]['statename'].'",';
@@ -563,7 +564,7 @@ function saveOrder($request) {
                 $product = new Item();
                 //$product->id        = $item['id'];          
                 $product->menu_id   = $item['menu_id'];
-                $product->order     = $item['order'];
+                $product->sort      = $item['sort'];
                 $product->quantity  = $item['quantity'];
                 $product->total     = $item['total'];
                 $product->service   = $item['service'];
@@ -580,6 +581,7 @@ function saveOrder($request) {
                 $special = new Special();
                 //$special->id        = $item['id'];
                 $special->special   = $item['special'];
+                $special->sort      = $item['sort'];
                 $special->price     = $item['price'];
                 $special->note      = $item['note'];
                 $special->order_id  = $lastInsertedOrderId;
@@ -757,7 +759,6 @@ function changeStateItem($itemId,$orderId) {
     return $json;
     
 }
-
 /* ---------------------------------------------------------------------------
  * Change sort: ITEM
  * --------------------------------------------------------------------------- */
@@ -766,7 +767,7 @@ function changeSortItem($itemId,$sort) {
 
     try{
         $itemChange = Item::find($itemId);
-        $itemChange->order   = $sort;
+        $itemChange->sort   = $sort;
         $itemChange->save();
         $json .= '{';
             $json .= '"operation":"success",';
@@ -864,6 +865,35 @@ function changeStateSpecial($itemId,$orderId) {
     $notification->state    = 'change'; //new | update | delete | change
     $notification->read     = 0;
     $notification->save();
+
+    $json = rtrim($json,',');
+    $json .= ']}';
+
+    return $json;
+    
+}
+/* ---------------------------------------------------------------------------
+ * Change sort: SPECIAL
+ * --------------------------------------------------------------------------- */
+function changeSortSpecial($itemId,$sort) {
+    $json = '{ "results" : [';
+
+    try{
+        $itemChange = Special::find($itemId);
+        $itemChange->sort   = $sort;
+        $itemChange->save();
+        $json .= '{';
+            $json .= '"operation":"success",';
+            $json .= '"message":"'.$itemId.'"';
+        $json .='},';
+
+    }
+    catch(Exception $e){
+        $json .= '{';
+            $json .= '"operation":"error",';
+            $json .= '"message":"'.$e->getMessage().'"';
+        $json .='},';
+    }
 
     $json = rtrim($json,',');
     $json .= ']}';

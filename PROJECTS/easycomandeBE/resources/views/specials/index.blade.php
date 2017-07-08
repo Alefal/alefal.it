@@ -27,6 +27,7 @@
                     <table class="table card-table table-striped">
                         <thead>
                             <tr>
+                                <th>Uscita</th>
                                 <th>Nome</th>
                                 <th>Prezzo</th>
                                 <th>Cliente</th>
@@ -36,6 +37,7 @@
                         <tbody>
                             @foreach ($items as $key => $item)
                             <tr class="@if ($key > 0 && $key % 2) odd @else even @endif">
+                                <td>{{ $item->sort }}</td>
                                 <td>{{ $item->special }}</td>
                                 <td>{{ $item->price }}</td>
                                 <td>
@@ -47,9 +49,11 @@
                                 </td>
                                 <td align="right">
                                     <div class="btn-group">
+                                        <!--
                                         <a class="btn btn-default btn-xs" href="{{ route('specials.show',$item->id) }}">
                                             <i class="fa fa-eye fa-1x fa-lg" aria-hidden="true"></i>
                                         </a>
+                                        -->
                                         <a class="btn btn-default btn-xs" href="{{ route('specials.edit',$item->id) }}">
                                             <i class="fa fa-pencil fa-1x fa-lg" aria-hidden="true"></i>
                                         </a>

@@ -159,10 +159,12 @@ function templateOrder(order,items,specials,notes) {
     var template = ''+
     '<div class="container printOrder">'+    
     '  <div class="orderInfo">'+     
-    '     <h3>'+order.client+'</h3>'+
+    '     <h2>'+order.client+'</h2>'+
     '  </div>'+     
     '  <table class="table table-hover tableComande">'+
     '    <tbody>';
+
+    var initialItemOrder = 1;
 
     for (var item of items) {
       var classItem = '';
@@ -171,9 +173,18 @@ function templateOrder(order,items,specials,notes) {
       } else {
         classItem = 'deleteItem';
       }
+
+      if(item.sort > initialItemOrder) {
+        initialItemOrder = item.sort;
+        template += ''+
+      '      <tr>'+
+      '      <td colspan="2" align="center"><em>----- segue -----</em-></td>'+
+      '      </tr>';
+      }
+    
       template += ''+
       '      <tr class="'+classItem+'">'+
-      '        <td>'+item.quantity+'x </td>';
+      '        <td width="35%">['+item.sort+'°] '+item.quantity+'x</td>';
       if(item.note != '') {
         template += '<td>'+item.menuname+'<br /><em>('+item.note+')</em></td>';
       } else {
@@ -183,6 +194,13 @@ function templateOrder(order,items,specials,notes) {
       '      </tr>';
     }
     
+    if(specials.length > 0) {
+      template += ''+
+        '      <tr>'+
+        '      <td colspan="2" align="center"><em>--- SPECIALI ---</em-></td>'+
+        '      </tr>';
+    }
+
     for (var special of specials) {
       var classItem = '';
       if(special.statename == 'pending') {
@@ -192,7 +210,7 @@ function templateOrder(order,items,specials,notes) {
       }
       template += ''+
       '      <tr class="'+classItem+'">'+
-      '        <td>1x </td>';
+      '        <td width="35%">['+special.sort+'°] 1x</td>';
       if(special.note != '') {
         template += '<td>'+special.special+'<br /><em>('+special.note+')</em></td>';
       } else {

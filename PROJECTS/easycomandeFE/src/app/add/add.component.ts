@@ -284,7 +284,15 @@ export class AddComponent implements OnInit {
   addSpecial() {
     console.log('Piatto speciale: ' + this.nomeSpeciale + ' | ' + this.prezzoSpeciale);
     let prezzoPiatto: any = this.prezzoSpeciale ? this.prezzoSpeciale : 0;
-    let ship = new Special(this.shipId, this.nomeSpeciale, prezzoPiatto,this.notaSpeciale,1,'pending');
+    let ship = new Special(
+      this.shipId, 
+      this.nomeSpeciale, 
+      this.productExitOrder,
+      prezzoPiatto,
+      this.notaSpeciale,
+      1,
+      'pending'
+    );
     this.ships.push(ship);
 
     this.totaleOrdine = Number.parseFloat(this.totaleOrdine) + parseFloat(prezzoPiatto);

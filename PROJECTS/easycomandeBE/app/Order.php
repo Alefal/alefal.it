@@ -26,7 +26,7 @@ class Order extends Model
     public function items()
     {
         return $this->hasMany('App\Item')
-                    ->orderBy('order','ASC')
+                    ->orderBy('sort','ASC')
                     ->orderBy('id','ASC');
     }
 
@@ -43,6 +43,8 @@ class Order extends Model
      */
     public function specials()
     {
-        return $this->hasMany('App\Special');
+        return $this->hasMany('App\Special')
+                    ->orderBy('sort','ASC')
+                    ->orderBy('id','ASC');
     }
 }

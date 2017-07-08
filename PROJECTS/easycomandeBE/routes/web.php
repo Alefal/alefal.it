@@ -142,6 +142,10 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('jsondata/special/change/state/{itemId}/{orderId}', function($itemId,$orderId){
         return changeStateSpecial($itemId,$orderId);
     });
+    /*** Change sort ITEM from APP / WEBAPP ***/    
+    Route::get('jsondata/special/change/sort/{itemId}/{sort}', function($itemId,$sort){
+        return changeSortSpecial($itemId,$sort);
+    });
     /*** Delete SPECIAL from APP / WEBAPP ***/
     Route::get('jsondata/special/delete/{specialId}/{orderId}', function($specialId,$orderId){
         return deleteSpecial($specialId,$orderId);

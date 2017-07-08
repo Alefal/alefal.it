@@ -1,7 +1,8 @@
 export class Special {
   public id: number;
   public special: string;
-  public price: number;
+  public sort: number; 
+  public price: number;   
   public note: string;
   public state_id: number; 
   public statename: string;
@@ -9,6 +10,7 @@ export class Special {
   constructor(
       id: number,
       special: string,
+      sort: number,
       price: number,
       note: string,
       state_id: number,
@@ -17,6 +19,7 @@ export class Special {
 
     this.id = id;
     this.special = special;
+    this.sort = sort;
     this.price = price;
     this.note = note;  
     this.state_id = state_id;

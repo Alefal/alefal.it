@@ -33,6 +33,12 @@
                 <div class="row">
                     <div class="col-xs-6 col-md-4">
                         <div class="form-group">
+                            <label for="name">Ordine Uscita</label>
+                            {!! Form::number('sort', null, array('placeholder' => 'Ordine Uscita','class' => 'form-control','step' => '1')) !!}
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-4">
+                        <div class="form-group">
                             <label for="name">Speciale</label>
                             {!! Form::text('special', null, array('placeholder' => 'Speciale','class' => 'form-control')) !!}
                         </div>
@@ -43,20 +49,20 @@
                             {!! Form::number('price', null, array('placeholder' => 'Prezzo','class' => 'form-control','step' => '0.1')) !!}
                         </div>
                     </div>
+                </div>
+
+                <div class="row">
                     <div class="col-xs-6 col-md-4">
                         <div class="form-group">
                             <label for="categories">Ordinazioni</label>
-                            <select class="form-control" name="order_id">
+                            <select class="form-control disabled" name="order_id">
                                 @foreach($orders as $order)
                                     <option value="{{$order->id}}">{{$order->client}}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6 col-xs-8 center">
+                    <div class="col-xs-6 col-md-4">
                         <div class="form-group">
                             <label for="note">Nota</label>
                             {!! Form::text('note', null, array('placeholder' => 'Nota','class' => 'form-control')) !!}

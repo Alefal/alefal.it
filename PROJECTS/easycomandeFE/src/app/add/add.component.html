@@ -97,7 +97,7 @@
                         <div class="title">
                           <em>{{prod.quantity}} x {{prod.menuname}}</em>
                           <hr />
-                          <span class="badge badge-info">ordine uscita: {{prod.order}}</span>
+                          <span class="badge badge-info">ordine uscita: {{prod.sort}}</span>
                         </div>
 
                         <div class="alert alert-danger alert-dismissable fade in" *ngIf="prod.note != ''">
@@ -126,7 +126,11 @@
                         [appendToBody]="true" class="icon fa fa-times fa-4x">
                       </div>
                       <div class="content itemProduct">
-                        <div class="title"><em>1 x {{ship.special}}</em></div>
+                        <div class="title">
+                          <em>1 x {{ship.special}}</em>
+                          <hr />
+                          <span class="badge badge-info">ordine uscita: {{ship.sort}}</span>
+                        </div>
                         <div *ngIf="ship.note != ''">
                           <span class="badge badge-warning">{{ship.note}}</span>
                         </div>

@@ -46,7 +46,7 @@
                                         @endif
                                     @endforeach
                                 </td>
-                                <td>{{ $item->order }}</td>
+                                <td>{{ $item->sort }}</td>
                                 <td>{{ $item->quantity }}</td>
                                 <td>{{ $item->menuname }}</td>
                                 <td>{{ $item->total }}</td>

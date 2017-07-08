@@ -28,7 +28,10 @@ class SpecialsController extends Controller
      */
     public function index(Request $request)
     {
-        $items = Special::orderBy('specials.special','ASC')->paginate(100);
+        $items = Special::orderBy('specials.special','ASC')
+                        ->orderBy('specials.sort','ASC')
+                        ->paginate(50);
+
         $orders = Order::all();
 
         return view('specials.index',compact('items','orders'))
@@ -63,6 +66,7 @@ class SpecialsController extends Controller
 
         $item = new Special();
         $item->special      = $request->special;
+        $item->sort         = $request->sort;
         $item->price        = $request->price;
         $item->note         = $request->note;
         $item->order_id     = $request->order_id;
@@ -131,6 +135,7 @@ class SpecialsController extends Controller
 
         $item = Special::find($id);
         $item->special      = $request->special;
+        $item->sort         = $request->sort;
         $item->price        = $request->price;
         $item->note         = $request->note;
         $item->state_id     = $request->state_id;

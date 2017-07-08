@@ -43,6 +43,7 @@ export class OrderComponent implements OnInit {
 
   serviceOrCovered: string = '';
 
+  whatChangeSortOrder: string = '';
   itemIdChangeSortOrder: number = 0;
   itemOrderIdChangeSortOrder: number = 0;
   itemSortOrder: number = 0;
@@ -246,20 +247,30 @@ export class OrderComponent implements OnInit {
       });
   }
 
-  changeItemOrderModal(prodId,orderId) {
+  changeItemOrderModal(what,prodId,orderId) {
     console.log('changeItemOrderModal: '+ prodId + ' | ' + orderId);
-    this.itemIdChangeSortOrder = prodId;
+    this.whatChangeSortOrder        = what;
+    this.itemIdChangeSortOrder      = prodId;
     this.itemOrderIdChangeSortOrder = orderId;
     jQuery('#changeItemOrderModal').modal();
   }
   changeItemOrder() {
-    console.log('itemSortOrder: '+ this.itemIdChangeSortOrder + ' | ' + this.itemSortOrder);
+    console.log('itemSortOrder: '+ ' | ' + this.whatChangeSortOrder +' | '+ this.itemIdChangeSortOrder + ' | ' + this.itemSortOrder);
     jQuery('#changeItemOrderModal').modal('hide');
 
     this.loadingBarService.start();
 
+    let callChange = '';
+    if(this.whatChangeSortOrder == 'product') {
+      callChange = 'getOrderChangeLineItemSortOrder';
+    } else if(this.whatChangeSortOrder == 'special') {
+      callChange = 'getOrderChangeLineSpecialSortOrder';
+    } else {
+      callChange = 'getOrderChangeLineItemSortOrder';
+    }
+
     this.httpService
-      .getCallHttp('getOrderChangeLineItemSortOrder', '', '', this.itemIdChangeSortOrder, this.itemSortOrder)
+      .getCallHttp(callChange, '', '', this.itemIdChangeSortOrder, this.itemSortOrder)
       .subscribe(res => {
         console.log('res: ' + JSON.stringify(res));
 
@@ -412,14 +423,14 @@ export class OrderComponent implements OnInit {
     let template = ''+
     '<div class="container printOrder">'+
     '  <div class="orderInfo">'+     
-    '     <h2>'+order.client+'</h2>'+
+    '     <h3>'+order.client+'</h3>'+
     '  </div>'+     
     //'  <hr />'+     
     '  <table class="table table-hover tableComande">'+
     //'    <thead>'+
     //'      <tr>'+
-    //'        <th>QTY</th>'+
-    //'        <th>ITEM</th>'+
+    //'        <th>USCITA</th>'+
+    //'        <th>PIATTO</th>'+
     //'      </tr>'+
     //'    </thead>'+
     '    <tbody>';
@@ -434,17 +445,17 @@ export class OrderComponent implements OnInit {
         classItem = 'deleteItem';
       }
       
-      if(item.order > initialItemOrder) {
-        initialItemOrder = item.order;
+      if(item.sort > initialItemOrder) {
+        initialItemOrder = item.sort;
         template += ''+
       '      <tr>'+
-      '      <td colspan="2" align="center"><em>-------- segue --------</em-></td>'+
+      '      <td colspan="2" align="center"><em>----- segue -----</em-></td>'+
       '      </tr>';
       }
       
       template += ''+
       '      <tr class="'+classItem+'">'+
-      '        <td width="10%">'+item.quantity+'x </td>';
+      '        <td width="25%">['+item.sort+'°] '+item.quantity+'x</td>';
       if(item.note != '') {
         template += '<td>'+item.name+'<br /><em>('+item.note+')</em></td>';
       } else {
@@ -455,6 +466,13 @@ export class OrderComponent implements OnInit {
       '      </tr>';
     }
 
+    if(order.specials.length > 0) {
+      template += ''+
+        '      <tr>'+
+        '      <td colspan="2" align="center"><em>--- SPECIALI ---</em-></td>'+
+        '      </tr>';
+    }
+
     for (let special of order.specials) {
       let classItem = '';
       if(special.state == 'pending') {
@@ -462,9 +480,10 @@ export class OrderComponent implements OnInit {
       } else {
         classItem = 'deleteItem';
       }
+      
       template += ''+
       '      <tr class="'+classItem+'">'+
-      '        <td width="10%">1x </td>';
+      '        <td width="25%">['+special.sort+'°] 1x</td>';
       if(special.note != '') {
         template += '<td>'+special.name+'<br /><em>('+special.note+')</em></td>';
       } else {

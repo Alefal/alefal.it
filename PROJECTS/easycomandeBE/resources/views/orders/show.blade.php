@@ -38,6 +38,7 @@
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
+                                            <th>USCITA</th>
                                             <th>QTY</th>
                                             <th>PIATTO</th>
                                             <th>TOTALE</th>
@@ -46,6 +47,7 @@
                                     <tbody>
                                         @foreach($items as $item)
                                             <tr>
+                                                <td>{{$item->sort}}°</td>
                                                 <td>{{$item->quantity}}x</td>
                                                 <td>
                                                     {{$item->menuname}}
@@ -58,19 +60,25 @@
                                             </tr>
                                         @endforeach
 
-                                        @foreach($specials as $special)
+                                        @if (count($specials) > 0)
                                             <tr>
-                                                <td>1x</td>
-                                                <td>
-                                                    {{$special->special}}
-                                                    <br />
-                                                    @if ($special->note != '') 
-                                                        <em>({{ $special->note }})</em>
-                                                    @endif
-                                                </td>
-                                                <td>{{$special->price}}</td>
+                                                <td colspan="4" align="center"><em>--- SPECIALI ---</em-></td>
                                             </tr>
-                                        @endforeach
+                                            @foreach($specials as $special)
+                                                <tr>
+                                                    <td>{{$special->sort}}°</td>
+                                                    <td>1x</td>
+                                                    <td>
+                                                        {{$special->special}}
+                                                        <br />
+                                                        @if ($special->note != '') 
+                                                            <em>({{ $special->note }})</em>
+                                                        @endif
+                                                    </td>
+                                                    <td>{{$special->price}}</td>
+                                                </tr>
+                                            @endforeach
+                                        @endif
                                     </tbody>
                                 </table>
                             </div>
