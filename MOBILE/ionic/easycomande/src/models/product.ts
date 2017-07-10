@@ -1,6 +1,7 @@
 export class Product {
   public id: number;
-  public menu_id: number;   
+  public menu_id: number;
+  public sort: number; 
   public quantity: number; 
   public total: number;
   public service: number;
@@ -17,6 +18,7 @@ export class Product {
   constructor(
       id: number,
       menu_id: number,
+      sort: number,
       quantity: number,
       total: number,
       service: number,
@@ -33,6 +35,7 @@ export class Product {
 
     this.id         = id;
     this.menu_id    = menu_id;
+    this.sort       = sort;
     this.quantity   = quantity;
     this.total      = total;
     this.service    = service;

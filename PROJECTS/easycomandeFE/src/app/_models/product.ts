@@ -1,6 +1,6 @@
 export class Product {
   public id: number;
-  public menu_id: number;   
+  public menu_id: number;
   public sort: number; 
   public quantity: number; 
   public total: number;

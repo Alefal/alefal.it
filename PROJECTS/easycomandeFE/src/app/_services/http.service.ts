@@ -26,6 +26,9 @@ export class HttpService {
         //let host    = 'http://www.easycomande.it/rianna/BE/public';
         let url     = '';
 
+        let hostImage = host+'/resources/easycomande/photos';
+        localStorage.setItem('hostImage',hostImage);
+
         let api_token = localStorage.getItem('api_token');
 
         //LOGIN
@@ -60,6 +63,8 @@ export class HttpService {
         else if (call == 'getOrderDelete') {
             url = '/jsondata/order/delete/'+id;
         }
+
+        //ITEMS
         else if (call == 'getOrderChangeLineItemState') {
             url = '/jsondata/item/change/state/'+id+'/'+object;
         }
@@ -70,6 +75,7 @@ export class HttpService {
             url = '/jsondata/item/delete/'+id+'/'+object;
         }
 
+        //SPECIALS
         else if (call == 'getOrderChangeSpecialState') {
             url = '/jsondata/special/change/state/'+id+'/'+object;
         }

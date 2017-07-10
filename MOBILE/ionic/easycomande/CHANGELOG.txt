@@ -88,3 +88,10 @@ OK -> Traduzioni
 === Vers. 2.0.2 ===
 OK -> Order Alphabethic for Categoried and Products
 OK -> Remain in order for change state / order and delete product / special
+
+=== Vers. 2.0.3: TODO ===
+- Server information in Login Page (10 TAP on title)
+- Aggiungere SORT ad ogni ITEM di un ORDER:
+    - al salvataggio passare anche "sort" per ogni ITEM
+- Aggiungere SORT ad ogni SPECIAL di un ORDER:
+    - al salvataggio passare anche "sort" per ogni ITEM

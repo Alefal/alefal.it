@@ -60,7 +60,11 @@
       <ion-icon *ngIf="ordine?.state != 'completed' && prod.state != 'completed'" name="remove-circle" color="danger" item-left (click)="deleteProduct(prod.id,ordine.id)"></ion-icon>
       <ion-icon *ngIf="ordine?.state != 'completed' && prod.state != 'completed'" name="checkbox-outline" color="dark" item-left (click)="changeItemState(prod.id,ordine.id)"></ion-icon>
       <ion-icon *ngIf="ordine?.state == 'completed' || prod.state == 'completed'" name="checkmark" color="secondary" item-left></ion-icon>
-      <h2>{{prod.quantity}} x {{prod.name}}</h2>
+      <h2>
+        {{prod.quantity}} x {{prod.name}}
+        <br />
+        <em><ion-badge color="light">ordine uscita: {{prod.sort}}</ion-badge></em>
+      </h2>
 
       <ion-card class="prodMetaCard" >
         <ion-card-content *ngIf="prod.note != ''">
@@ -86,7 +90,11 @@
       <ion-icon *ngIf="ordine?.state != 'completed' && special.state != 'completed'" name="remove-circle" color="danger" item-left (click)="deleteSpecial(special.id,ordine.id)"></ion-icon>
       <ion-icon *ngIf="ordine?.state != 'completed' && special.state != 'completed'" name="checkbox-outline" color="dark" item-left (click)="changeSpecialState(special.id,ordine.id)"></ion-icon>
       <ion-icon *ngIf="ordine?.state == 'completed' || special.state == 'completed'" name="checkmark" color="secondary" item-left></ion-icon>
-      <h2>{{special.name}}</h2>
+      <h2>
+        1 x {{special.name}}
+        <br />
+        <em><ion-badge color="light">ordine uscita: {{special.sort}}</ion-badge></em>
+      </h2>
 
       <ion-card class="prodMetaCard" >
         <ion-card-content *ngIf="special.note != ''">

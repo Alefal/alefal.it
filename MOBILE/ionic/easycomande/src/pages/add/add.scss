@@ -21,6 +21,20 @@ page-add {
         }
     }
 
+    ion-title {
+        top: 8px;
+        position: absolute;
+    }
+    .toolbar-title {
+        overflow: visible;
+        position: relative;
+        .subtitle {
+            position: absolute;
+            top: 12px;
+            font-size: 65%;
+        }
+    }
+
     .item-md p {
         white-space: initial;
     }

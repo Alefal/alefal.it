@@ -399,6 +399,7 @@ export class OrderComponent implements OnInit {
           }
           .printOrder .notesList {
             padding: 15px;
+            font-size: 20px;
           }
           .printOrder .tableComande {
             font-size: `+printtablecomandefont+`;
@@ -501,7 +502,7 @@ export class OrderComponent implements OnInit {
       template += ''+
         ' <div class="notesList">'+
         '     <strong>NOTE:</strong>'+
-        '     <br /><h3>';
+        '     <h3>';
       for (let note of order.notes) {
         template += ''+
         '     <em>'+note.note+'</em>; ';

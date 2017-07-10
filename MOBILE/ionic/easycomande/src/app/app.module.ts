@@ -6,6 +6,7 @@ import { HttpModule }                                 from '@angular/http';
 import { Network }              from '@ionic-native/network';
 import { StatusBar }            from '@ionic-native/status-bar';
 import { SplashScreen }         from '@ionic-native/splash-screen';
+import { Printer }              from '@ionic-native/printer';
 
 import { HttpService }          from '../providers/http-service';
 import { ConnectivityService }  from '../providers/connectivity-service';
@@ -62,6 +63,7 @@ import { OrderByPipe }      from '../pipes/order-by-pipe';
     ConnectivityService,
     StatusBar,
     SplashScreen,
+    Printer,
     Network,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

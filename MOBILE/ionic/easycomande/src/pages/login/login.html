@@ -2,7 +2,7 @@
 
   <div class="loginBox">
 
-    <div align="center">
+    <div align="center" (tap)="tapEvent($event)">
       <img src="assets/img/logo.png" class="logo" />
       <div class="errorMessage" *ngIf="errorMessageView">{{errorMessage}}</div>
     </div>

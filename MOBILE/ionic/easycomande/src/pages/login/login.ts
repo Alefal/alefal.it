@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 
 import { User }         from '../../models/user';
 import { TabsPage }     from '../tabs/tabs';
@@ -18,11 +18,15 @@ export class LoginPage {
   errorMessage: string;
   errorMessageView: any;
 
+  //SERVER INFORMATION
+  public tap: number = 0;
+
   constructor(
     public navCtrl: NavController,
     public params: NavParams, 
     private httpService: HttpService,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    public alertCtrl: AlertController,
   ) { }
 
   ionViewDidLoad() {
@@ -75,6 +79,43 @@ export class LoginPage {
         this.errorMessageView = true;
         this.loading.dismiss();
       });
+  }
+
+  tapEvent(e) {
+    this.tap++;
+    if(this.tap == 10) {
+      this.getServerInformation();
+    }
+  }
+
+  getServerInformation() {
+    let template = ''+
+      '<u>Server</u>'+
+      '<br />'+
+      '<em>'+localStorage.getItem('server_host')+'</em>'+
+      '<hr />'+
+      '<u>User</u>'+
+      '<br />'+
+      '<em>'+localStorage.getItem('currentUserEmail')+'</em>'+
+      '<hr />'+
+      '<u>API Token</u>'+
+      '<br />'+
+      '<em>'+localStorage.getItem('api_token')+'</em>'+
+      '<hr />'+
+      '<u>Service</u>'+
+      '<br />'+
+      '<em>'+localStorage.getItem('serviceenablepercent')+'</em>'+
+      '<hr />'+
+      '<u>Covered</u>'+
+      '<br />'+
+      '<em>'+localStorage.getItem('coveredenablevalue')+'</em>';
+    this.tap = 0;
+    let alert = this.alertCtrl.create({
+      title: 'Server Info!',
+      subTitle: template,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
 }

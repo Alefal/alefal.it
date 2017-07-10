@@ -6,7 +6,10 @@
       </button>
     </ion-buttons>
 
-    <ion-title>Ordinazione</ion-title>
+    <ion-title>
+      Ordinazione
+      <p class="subtitle"><em>(Uscita Piatti: {{productExitOrder}}°)</em></p>
+    </ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -17,6 +20,7 @@
     <ion-fab-list>
       <button ion-fab (click)="addSpecial()"><ion-icon name="restaurant"></ion-icon></button>
       <button ion-fab (click)="addNote()"><ion-icon name="list"></ion-icon></button>
+      <button ion-fab (click)="followOrder()"><ion-icon name="repeat"></ion-icon></button>
     </ion-fab-list>
   </ion-fab>
 
@@ -64,8 +68,16 @@
       <ion-icon item-left name="remove-circle" color="danger" (click)="removeQuantity(prod)"></ion-icon>
       <ion-icon item-left name="add-circle" color="dark" (click)="addQuantity(prod)" *ngIf="!prod.isExtra"></ion-icon>
       
-      <h4 *ngIf="!prod.isExtra">{{prod.quantity}} x {{prod.menuname}}</h4>
-      <h6 *ngIf="prod.isExtra">{{prod.menuname}}</h6>
+      <h4 *ngIf="!prod.isExtra">
+        {{prod.quantity}} x {{prod.menuname}}
+        <br />
+        <em><ion-badge color="light">ordine uscita: {{prod.sort}}</ion-badge></em>
+      </h4>
+      <h6 *ngIf="prod.isExtra">
+        {{prod.menuname}}
+        <br />
+        <em><ion-badge color="light">ordine uscita: {{prod.sort}}</ion-badge></em>
+      </h6>
 
       <ion-card class="prodMetaCard">
         <ion-card-content *ngIf="prod.note != ''">
@@ -100,7 +112,11 @@
 
     <ion-item *ngFor="let ship of ships" style="border-top: 1px solid #f5f5f5;">
       <ion-icon name="close" color="danger" item-left (click)="removeShip(ship.id,ship.price)"></ion-icon>
-      <h2>1 x {{ship.special}}</h2>
+      <h2>
+        1 x {{ship.special}}
+        <br />
+        <em><ion-badge color="light">ordine uscita: {{ship.sort}}</ion-badge></em>
+      </h2>
 
       <ion-card class="prodMetaCard">
         <ion-card-content *ngIf="ship.note != ''">

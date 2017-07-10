@@ -29,6 +29,8 @@ export class AddPage {
   products: Product[] = new Array<Product>();
   notes: Note[] = new Array<Note>();
   ships: Special[] = new Array<Special>();
+  
+  productExitOrder: number = 1;
 
   notaId: number = 1;
   shipId: number = 1;
@@ -134,6 +136,9 @@ export class AddPage {
   }
 
   //PRODUCT
+  followOrder() {
+    this.productExitOrder = this.productExitOrder + 1;
+  }
   modalProducts(cat) {
     console.log(cat);
     let modal = this.modalCtrl.create(ProdottiModal, { categoryName: cat.name });
@@ -152,6 +157,7 @@ export class AddPage {
       if(data.action != '') {
         let pId             = 0;
         let pProdId         = data.action.id;
+        let pOrder          = this.productExitOrder;
         let pTitle          = data.action.name;
         let pPrice          = data.action.price ? data.action.price : 0;
         let pExistExtra     = false;        
@@ -163,6 +169,7 @@ export class AddPage {
         let prodotto = new Product(
           pId,
           pProdId,          //menu_id
+          pOrder,           //product order
           1,
           pPriceTotal,
           pPriceService,
@@ -330,7 +337,15 @@ export class AddPage {
           handler: data => {
             console.log('Piatto speciale: '+JSON.stringify(data));
             let prezzoSpeciale: any = data.prezzoSpeciale ? data.prezzoSpeciale : 0;
-            let ship = new Special(this.shipId, data.nomeSpeciale, prezzoSpeciale,data.notaSpeciale,1,'pending');
+            let ship = new Special(
+              this.shipId, 
+              data.nomeSpeciale, 
+              this.productExitOrder, 
+              prezzoSpeciale,
+              data.notaSpeciale,
+              1,
+              'pending'
+            );
             this.ships.push(ship);
 
             this.totaleOrdine = Number.parseFloat(this.totaleOrdine) + parseFloat(prezzoSpeciale);
@@ -506,6 +521,7 @@ export class AddPage {
 
         let pId             = 0;
         let pProdId         = eId;
+        let pOrder          = this.productExitOrder;
         let pTitle          = eTitle;
         let pPrice          = ePrice ? ePrice : 0;
         let pExistExtra     = false;        
@@ -520,6 +536,7 @@ export class AddPage {
         let prodotto = new Product(
           pId,
           pProdId,
+          pOrder,       //product order
           1,
           pPriceTotal,
           pPriceService,

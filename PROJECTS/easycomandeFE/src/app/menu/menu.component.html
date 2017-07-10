@@ -17,11 +17,10 @@
       </div>
       <div class="card-body" *ngIf="products?.length > 0">
         <div class="media social-post" *ngFor="let prod of products | orderBy:'name'">
-          <!--
           <div class="media-left">
-            <img src="{{prod.images[0].src}}" />
+            <img src="./assets/img/no_image.jpg" *ngIf="prod.photo == ''" class="img-thumbnail" />
+            <img src="{{hostImage}}/{{prod.photo}}" *ngIf="prod.photo != ''" class="img-thumbnail" />
           </div>
-          -->
           <div class="media-body">
             <div class="media-heading">
               <h4 class="title">{{prod.name}} <span *ngIf="prod.price != ''" class="badge badge-warning pull-right">&euro; {{prod.price}}</span></h4>

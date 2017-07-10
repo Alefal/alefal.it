@@ -21,6 +21,8 @@ export class MenuComponent implements OnInit {
   categoryName: string = '';
   categories: any;
 
+  hostImage: string = '';
+
   constructor(
     private httpService: HttpService, 
     private alertService: AlertService,
@@ -30,6 +32,7 @@ export class MenuComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.hostImage = localStorage.getItem('hostImage');
     //Dati NON presenti in memoria: li recupero dal server
     console.log('localStorage -> '+localStorage.getItem('categories').length);
     if(localStorage.getItem('categories') === null || localStorage.getItem('categories').length == 2) {

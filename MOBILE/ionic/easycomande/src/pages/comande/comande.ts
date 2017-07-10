@@ -1,6 +1,8 @@
 import { Component, ViewChild  } from '@angular/core';
 import { NavController, NavParams, LoadingController, ModalController, Content, AlertController, App } from 'ionic-angular';
 
+import { Printer, PrintOptions } from '@ionic-native/printer';
+
 import { HttpService }          from '../../providers/http-service';
 import { ConnectivityService }  from '../../providers/connectivity-service';
 
@@ -45,7 +47,8 @@ export class ComandePage {
     public modalCtrl: ModalController,
     public connectivityService: ConnectivityService,
     public alertCtrl: AlertController,
-    public app: App
+    public app: App,
+    private printer: Printer
   ) {}
 
   ionViewDidLoad() {
@@ -167,6 +170,36 @@ export class ComandePage {
     let modal = this.modalCtrl.create(AddPage);
     modal.present();
     modal.onDidDismiss(data => {});
+  }
+
+  printOrder(order) {
+    this.printer.isAvailable().then(
+      function(){
+        console.log('isAvailable -> SUCCESS');
+      }, 
+      function(err) {
+        console.log('isAvailable -> ERROR'+err);
+      }
+    );
+
+    let options: PrintOptions = {
+      name: 'MyDocument',
+      printerId: 'printer007',
+      duplex: true,
+      landscape: true,
+      grayscale: true
+    };
+
+    let template = 'Print template; '+JSON.stringify(order);
+
+    this.printer.print(template, options).then(
+      function(){
+        console.log('isAvailable -> SUCCESS');
+      }, 
+      function(err) {
+        console.log('isAvailable -> ERROR'+err);
+      }
+    );
   }
 
   logout() {

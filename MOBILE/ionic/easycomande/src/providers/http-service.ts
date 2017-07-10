@@ -23,9 +23,11 @@ export class HttpService {
         console.log('getCallHttp: ' + call + ' | ' + username + ' | ' + password);
 
         //New BackEnd: LARAVEL
-        //let host    = 'http://localhost:8000';
-        let host    = 'http://192.168.1.100/cicos/BE/public';
+        let host    = 'http://localhost:8000';
+        //let host    = 'http://192.168.1.100/cicos/BE/public';
         //let host    = 'http://www.easycomande.it/rianna/BE/public';
+        
+        localStorage.setItem('server_host',host);
 
         let url         = '';
         let api_token   = localStorage.getItem('api_token');
@@ -88,8 +90,13 @@ export class HttpService {
         else if (call == 'getOrderPrint') {
             url = '/jsondata/order/print/'+id;                
         }
+
+        //ITEMS
         else if (call == 'getOrderChangeLineItemState') {
             url = '/jsondata/item/change/state/'+id+'/'+object;
+        }
+        else if (call == 'getOrderChangeLineItemSortOrder') {
+            url = '/jsondata/item/change/sort/'+id+'/'+object;
         }
         else if (call == 'getOrderDeleteLineItem') {
             url = '/jsondata/item/delete/'+id+'/'+object;
@@ -99,8 +106,12 @@ export class HttpService {
             */
         }
 
+        //SPECIALS
         else if (call == 'getOrderChangeSpecialState') {
             url = '/jsondata/special/change/state/'+id+'/'+object;
+        }
+        else if (call == 'getOrderChangeLineSpecialSortOrder') {
+            url = '/jsondata/special/change/sort/'+id+'/'+object;
         }
         else if (call == 'getOrderDeleteSpecial') {
             url = '/jsondata/special/delete/'+id+'/'+object;

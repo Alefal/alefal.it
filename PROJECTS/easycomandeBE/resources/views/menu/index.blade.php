@@ -41,7 +41,7 @@
                                     @if ($item->photo == "") 
                                         <img src="{{ asset('img/no_image.jpg') }}" class="img-thumbnail imgThumbSmall" />
                                     @else 
-                                        <img src="{{ asset('/resources/cicos/photos\/').$item->photo }}" class="img-thumbnail imgThumbSmall" />
+                                        <img src="{{ asset(env('PUBLIC_PATH_PHOTOS_GET'))."\/".$item->photo }}" class="img-thumbnail imgThumbSmall" />
                                     @endif
                                 </td>
                                 <td>{{ $item->name }}</td>

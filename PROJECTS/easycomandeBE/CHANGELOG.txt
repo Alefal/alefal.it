@@ -2,9 +2,9 @@
 
 === Vers. 2.0.3: TODO ===
 OK -> Aggiungere immagine al piatto (campo PHOTO)
-- Aggiungere ORDER ad ogni ITEM di un ORDER:
-    - FE: al salvataggio passare anche "order" per ogni ITEM
-    - APP: al salvataggio passare anche "order" per ogni ITEM
-- Aggiungere ORDER ad ogni SPECIAL di un ORDER:
-    - FE: al salvataggio passare anche "order" per ogni ITEM
-    - APP: al salvataggio passare anche "order" per ogni ITEM
+- Aggiungere SORT ad ogni ITEM di un ORDER:
+    - FE: al salvataggio passare anche "sort" per ogni ITEM
+    - APP: al salvataggio passare anche "sort" per ogni ITEM
+- Aggiungere SORT ad ogni SPECIAL di un ORDER:
+    - FE: al salvataggio passare anche "sort" per ogni ITEM
+    - APP: al salvataggio passare anche "sort" per ogni ITEM

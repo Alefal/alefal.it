@@ -5808,7 +5808,7 @@ footer.app-footer {
   .media.social-post .media-left {
     margin-right: 7.5px; }
     .media.social-post .media-left img {
-      border-radius: 50%; }
+      border-radius: none; }
   .media.social-post .media-body .media-heading {
     margin-bottom: 10px; }
     .media.social-post .media-body .media-heading .title {

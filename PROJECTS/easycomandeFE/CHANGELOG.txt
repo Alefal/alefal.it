@@ -8,6 +8,12 @@ OK -> Configuration for print:
     - line text 2
     - font size for order PENDING and COMPLETED
 
+=== Vers. 2.0.3: TODO ===
+OK -> Aggiungere immagine al piatto (campo PHOTO)
+OK -> Aggiungere SORT ad ogni ITEM di un ORDER:
+    - al salvataggio passare anche "sort" per ogni ITEM
+OK -> Aggiungere SORT ad ogni SPECIAL di un ORDER:
+    - al salvataggio passare anche "sort" per ogni ITEM
 
 http://localhost:8000/jsondata/order/38?api_token=Pwbo7CmLtqAP5TvIHYFZPqkmetJFTi9UZIfxE1GLeBFFJgzZ8DvhdTEiGFxf
 http://bootstrapdojo.com/rest-api-laravel-5-4-with-token-authentication/
