@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController, ModalController, ViewController, AlertController } from 'ionic-angular';
 
 import { HttpService }          from '../../providers/http-service';
+import { ConnectivityService }  from '../../providers/connectivity-service';
 
 import { TabsPage }             from '../tabs/tabs';
 //import { HomePage }             from '../home/home';
@@ -68,6 +69,7 @@ export class AddPage {
     public navCtrl: NavController,
     public params: NavParams,
     private httpService: HttpService,
+    public connectivityService: ConnectivityService,
     public loadingCtrl: LoadingController,
     public modalCtrl: ModalController,
     public viewCtrl: ViewController,
@@ -119,9 +121,13 @@ export class AddPage {
         this.loading.dismiss();
       },
       error => {
-        console.log('ERROR: ' + error);
-        this.errorMessage = 'Error!';
-        this.errorMessageView = true;
+        console.log('ERROR: ' + JSON.stringify(<any>error));
+        let alert = this.alertCtrl.create({
+          title: 'Categorie',
+          subTitle: 'Problemi di comunicazione con il server',
+          buttons: ['OK']
+        });
+        alert.present();
         this.loading.dismiss();
       });
   }
@@ -446,9 +452,13 @@ export class AddPage {
         }
       },
       error => {
-        console.log('ERROR: ' + error);
-        this.errorMessage = 'Error!';
-        this.errorMessageView = true;
+        console.log('ERROR: ' + JSON.stringify(<any>error));
+        let alert = this.alertCtrl.create({
+          title: 'Note',
+          subTitle: 'Problemi di comunicazione con il server',
+          buttons: ['OK']
+        });
+        alert.present();
       });
   }
   removeNote(notaId) {
@@ -654,9 +664,13 @@ export class AddPage {
         this.loading.dismiss();
       },
       error => {
-        console.log('ERROR: ' + error);
-        this.errorMessage = 'Error!';
-        this.errorMessageView = true;
+        console.log('ERROR: ' + JSON.stringify(<any>error));
+        let alert = this.alertCtrl.create({
+          title: 'Salvataggio Ordine',
+          subTitle: 'Problemi di comunicazione con il server',
+          buttons: ['OK']
+        });
+        alert.present();
         this.loading.dismiss();
       });
   }

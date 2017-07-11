@@ -89,9 +89,13 @@ OK -> Traduzioni
 OK -> Order Alphabethic for Categoried and Products
 OK -> Remain in order for change state / order and delete product / special
 
-=== Vers. 2.0.3: TODO ===
-- Server information in Login Page (10 TAP on title)
-- Aggiungere SORT ad ogni ITEM di un ORDER:
-    - al salvataggio passare anche "sort" per ogni ITEM
-- Aggiungere SORT ad ogni SPECIAL di un ORDER:
-    - al salvataggio passare anche "sort" per ogni ITEM
+=== Vers. 2.1.0 ===
+OK -> Server information in LOGIN PAGE (10 TAP on title) e nella pagina MENU
+OK -> Nascosti bottoni operativi se OFFLINE
+OK -> Aggiunto SORT ad ogni ITEM di un ORDER
+OK -> Aggiunto SORT ad ogni SPECIAL di un ORDER
+OK -> Aggiunto plugin "@ionic-native/printer": "^3.14.0"
+OK -> Aggiunta funzionalità di stampa nella pagina COMANDE
+- Memorizzare ORDINI in memoria nel caso il salvataggio non va a buon fine
+- Aggiungere bottone nella pagina COMANDE per visualizzare gli ordini in memoria
+- Stampare su stampante WIFI

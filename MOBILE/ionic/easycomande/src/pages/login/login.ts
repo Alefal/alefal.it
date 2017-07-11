@@ -67,7 +67,7 @@ export class LoginPage {
           localStorage.setItem('api_token', user.api_token);
           this.navCtrl.setRoot(TabsPage);
         } else {
-          this.errorMessage = 'Authentication failed!';
+          this.errorMessage = 'Username o Password errati!';
           this.errorMessageView = true;
         }
 
@@ -75,7 +75,7 @@ export class LoginPage {
       },
       error => {
         console.log('ERROR: ' + error);
-        this.errorMessage = 'Authentication failed!';
+        this.errorMessage = 'LOGIN: problemi di comunicazione col server';
         this.errorMessageView = true;
         this.loading.dismiss();
       });
@@ -84,38 +84,9 @@ export class LoginPage {
   tapEvent(e) {
     this.tap++;
     if(this.tap == 10) {
-      this.getServerInformation();
+      this.httpService.getServerInformation();
+      this.tap = 0;
     }
-  }
-
-  getServerInformation() {
-    let template = ''+
-      '<u>Server</u>'+
-      '<br />'+
-      '<em>'+localStorage.getItem('server_host')+'</em>'+
-      '<hr />'+
-      '<u>User</u>'+
-      '<br />'+
-      '<em>'+localStorage.getItem('currentUserEmail')+'</em>'+
-      '<hr />'+
-      '<u>API Token</u>'+
-      '<br />'+
-      '<em>'+localStorage.getItem('api_token')+'</em>'+
-      '<hr />'+
-      '<u>Service</u>'+
-      '<br />'+
-      '<em>'+localStorage.getItem('serviceenablepercent')+'</em>'+
-      '<hr />'+
-      '<u>Covered</u>'+
-      '<br />'+
-      '<em>'+localStorage.getItem('coveredenablevalue')+'</em>';
-    this.tap = 0;
-    let alert = this.alertCtrl.create({
-      title: 'Server Info!',
-      subTitle: template,
-      buttons: ['OK']
-    });
-    alert.present();
   }
 
 }

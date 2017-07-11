@@ -157,7 +157,7 @@
   </div>
 
   <div>
-    <button ion-button full large color="danger" block [disabled]="totaleOrdine == 0 && notes?.length == 0" (click)="saveOrder()">
+    <button *ngIf="connectivityService.connectivityFound" ion-button full large color="danger" block [disabled]="totaleOrdine == 0 && notes?.length == 0" (click)="saveOrder()">
       <span *ngIf="!ordineEdit">Salva</span>
       <span *ngIf="ordineEdit">Modifica</span>
     </button>

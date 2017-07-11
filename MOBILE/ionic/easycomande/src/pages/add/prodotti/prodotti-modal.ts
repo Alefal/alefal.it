@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController, ViewController, ToastController, PopoverController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, ViewController, ToastController, PopoverController, AlertController } from 'ionic-angular';
 
 import { HttpService }          from '../../../providers/http-service';
 
@@ -26,6 +26,7 @@ export class ProdottiModal {
     public loadingCtrl: LoadingController,
     private viewCtrl: ViewController,
     public toastCtrl: ToastController,
+    public alertCtrl: AlertController,
     public popoverCtrl: PopoverController
   ) { }
 
@@ -58,9 +59,13 @@ export class ProdottiModal {
             this.loading.dismiss();
           },
           error => {
-            console.log('ERROR: ' + error);
-            this.errorMessage = 'Error!';
-            this.errorMessageView = true;
+            console.log('ERROR: ' + JSON.stringify(<any>error));
+            let alert = this.alertCtrl.create({
+              title: 'Menu',
+              subTitle: 'Problemi di comunicazione con il server',
+              buttons: ['OK']
+            });
+            alert.present();
             this.loading.dismiss();
           });
       } else {

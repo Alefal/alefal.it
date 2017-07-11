@@ -12,7 +12,7 @@
 
 <ion-content>
 
-  <ion-fab top right edge>
+  <ion-fab top right edge *ngIf="connectivityService.connectivityFound">
     <button ion-fab mini color="dark"><ion-icon name="ios-arrow-down"></ion-icon></button>
     <ion-fab-list>
       <button *ngIf="ordine?.state != 'completed'" ion-fab (click)="editOrder(ordine)"><ion-icon name="create"></ion-icon></button>
@@ -57,8 +57,8 @@
     </ion-item>
 
     <ion-item *ngFor="let prod of ordine?.items">
-      <ion-icon *ngIf="ordine?.state != 'completed' && prod.state != 'completed'" name="remove-circle" color="danger" item-left (click)="deleteProduct(prod.id,ordine.id)"></ion-icon>
-      <ion-icon *ngIf="ordine?.state != 'completed' && prod.state != 'completed'" name="checkbox-outline" color="dark" item-left (click)="changeItemState(prod.id,ordine.id)"></ion-icon>
+      <ion-icon *ngIf="ordine?.state != 'completed' && prod.state != 'completed' && connectivityService.connectivityFound" name="remove-circle" color="danger" item-left (click)="deleteProduct(prod.id,ordine.id)"></ion-icon>
+      <ion-icon *ngIf="ordine?.state != 'completed' && prod.state != 'completed' && connectivityService.connectivityFound" name="checkbox-outline" color="dark" item-left (click)="changeItemState(prod.id,ordine.id)"></ion-icon>
       <ion-icon *ngIf="ordine?.state == 'completed' || prod.state == 'completed'" name="checkmark" color="secondary" item-left></ion-icon>
       <h2>
         {{prod.quantity}} x {{prod.name}}
@@ -87,8 +87,8 @@
     </ion-item>
 
     <ion-item *ngFor="let special of ordine?.specials">
-      <ion-icon *ngIf="ordine?.state != 'completed' && special.state != 'completed'" name="remove-circle" color="danger" item-left (click)="deleteSpecial(special.id,ordine.id)"></ion-icon>
-      <ion-icon *ngIf="ordine?.state != 'completed' && special.state != 'completed'" name="checkbox-outline" color="dark" item-left (click)="changeSpecialState(special.id,ordine.id)"></ion-icon>
+      <ion-icon *ngIf="ordine?.state != 'completed' && special.state != 'completed' && connectivityService.connectivityFound" name="remove-circle" color="danger" item-left (click)="deleteSpecial(special.id,ordine.id)"></ion-icon>
+      <ion-icon *ngIf="ordine?.state != 'completed' && special.state != 'completed' && connectivityService.connectivityFound" name="checkbox-outline" color="dark" item-left (click)="changeSpecialState(special.id,ordine.id)"></ion-icon>
       <ion-icon *ngIf="ordine?.state == 'completed' || special.state == 'completed'" name="checkmark" color="secondary" item-left></ion-icon>
       <h2>
         1 x {{special.name}}

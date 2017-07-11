@@ -37,14 +37,14 @@ export class ConnectivityService {
   load() {
     this.network.onDisconnect().subscribe(() => {
       console.log('network was disconnected :-( ');
-      //this.showConnectionInfo('Nessuna connessione di rete :-( ');
+      this.showConnectionInfo('Nessuna connessione di rete :-( ');
       this.connectivityFound = false;
     });
 
     // watch network for a connection
     this.network.onConnect().subscribe(() => {
       console.log('network connected!');
-      //this.showConnectionInfo('Connesso alla rete :-) ');
+      this.showConnectionInfo('Connesso alla rete :-) ');
 
       if(localStorage.getItem('liveEventsArray') === null) {
         console.log('Nessun evento da sincronizzare!');
@@ -64,6 +64,15 @@ export class ConnectivityService {
       duration: 3000
     });
     toast.present();
+  }
+
+  showMessageInfo(message) {
+    let alert = this.alertCtrl.create({
+      title: 'Attenzione',
+      subTitle: message,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
 }

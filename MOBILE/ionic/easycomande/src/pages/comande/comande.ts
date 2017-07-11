@@ -115,16 +115,13 @@ export class ComandePage {
         this.loading.dismiss();
       },
       error => {
+        console.log('ERROR: ' + error);
         let alert = this.alertCtrl.create({
-          title: 'Attenzione',
+          title: 'Lista Ordini',
           subTitle: 'Problemi di comunicazione con il server',
           buttons: ['OK']
         });
         alert.present();
-
-        console.log('ERROR: ' + error);
-        this.errorMessage = 'Error!';
-        this.errorMessageView = true;
         this.loading.dismiss();
       });
   }
@@ -149,16 +146,22 @@ export class ComandePage {
 
   orderDetail(ordineId) {
     console.log(ordineId);
-    let modal = this.modalCtrl.create(OrdinePage, { ordineId: ordineId });
-    modal.present();
-    modal.onDidDismiss(data => {
-      console.log('data.action -> '+JSON.stringify(data.action));
-      if(data.action == 'reload') {
-        //Ricaricare ordine
-        console.log('Ricaricare ordine');
-        this.loadData(data.orderIdSave);
-      }
-    });
+
+    if(this.connectivityService.connectivityFound) {
+      let modal = this.modalCtrl.create(OrdinePage, { ordineId: ordineId });
+      modal.present();
+      modal.onDidDismiss(data => {
+        console.log('data.action -> '+JSON.stringify(data.action));
+        if(data.action == 'reload') {
+          //Ricaricare ordine
+          console.log('Ricaricare ordine');
+          this.loadData(data.orderIdSave);
+        }
+      });
+    } else {
+      this.connectivityService.showMessageInfo('Problemi di comunicazione con il server, verificare la connessione del device!');
+    }
+
     /*
     this.navCtrl.push(OrdinePage, {
       ordine: ordine

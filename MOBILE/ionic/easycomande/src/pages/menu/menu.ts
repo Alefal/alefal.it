@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController, ModalController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, ModalController, AlertController } from 'ionic-angular';
 
 import { HttpService }          from '../../providers/http-service';
 import { ConnectivityService }  from '../../providers/connectivity-service';
@@ -29,6 +29,7 @@ export class MenuPage {
     private httpService: HttpService,
     public loadingCtrl: LoadingController,
     public modalCtrl: ModalController,
+    public alertCtrl: AlertController,
     public connectivityService: ConnectivityService
   ) { }
 
@@ -80,8 +81,12 @@ export class MenuPage {
       },
       error => {
         console.log('ERROR: ' + error);
-        this.errorMessage = 'Error!';
-        this.errorMessageView = true;
+        let alert = this.alertCtrl.create({
+          title: 'Categorie',
+          subTitle: 'Problemi di comunicazione con il server',
+          buttons: ['OK']
+        });
+        alert.present();
         this.loading.dismiss();
       });
   }
@@ -111,8 +116,12 @@ export class MenuPage {
           },
           error => {
             console.log('ERROR: ' + error);
-            this.errorMessage = 'Error!';
-            this.errorMessageView = true;
+            let alert = this.alertCtrl.create({
+              title: categoriaNome,
+              subTitle: 'Problemi di comunicazione con il server',
+              buttons: ['OK']
+            });
+            alert.present();
             this.loading.dismiss();
           });
       } else {
@@ -141,7 +150,14 @@ export class MenuPage {
         }
       },
       error => {
-        console.log('res: ' + JSON.stringify(<any>error));
+        console.log('ERROR: ' + JSON.stringify(<any>error));
+        let alert = this.alertCtrl.create({
+          title: 'Configurazioni',
+          subTitle: 'Problemi di comunicazione con il server',
+          buttons: ['OK']
+        });
+        alert.present();
+        this.loading.dismiss();
       });
   }
 
@@ -186,11 +202,23 @@ export class MenuPage {
               },
               error => {
                 console.log('ERROR: ' + error);
+                let alert = this.alertCtrl.create({
+                  title: 'Menu',
+                  subTitle: 'Problemi di comunicazione con il server',
+                  buttons: ['OK']
+                });
+                alert.present();
               });
           });
         },
         error => {
-          console.log('res: ' + JSON.stringify(<any>error));
+          console.log('ERROR: ' + JSON.stringify(<any>error));
+          let alert = this.alertCtrl.create({
+            title: 'Categorie',
+            subTitle: 'Problemi di comunicazione con il server',
+            buttons: ['OK']
+          });
+          alert.present();
           this.loading.dismiss();
         }
       );

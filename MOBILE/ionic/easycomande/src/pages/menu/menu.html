@@ -3,12 +3,17 @@
     <ion-title>Easy Comande (v.2.0.2)</ion-title>
 
     <ion-buttons end>
+      <button ion-button icon-only (click)="httpService.getServerInformation()">
+        <ion-icon name="ios-wifi"></ion-icon>
+      </button>
+      <!--
       <button ion-button icon-only *ngIf="connectivityService.connectivityFound" (click)="connectivityService.showConnectionInfo('Connessione ok')">
         <ion-icon name="ios-wifi"></ion-icon>
       </button>
       <button ion-button icon-only *ngIf="!connectivityService.connectivityFound" (click)="connectivityService.showConnectionInfo('Connessione assente. Alcune operazioni non sono disponibili!')">
         <ion-icon name="warning"></ion-icon>
       </button>
+      -->
     </ion-buttons>
 
   </ion-navbar>

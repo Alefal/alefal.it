@@ -9,7 +9,8 @@ import { Order }    from '../../../models/order';
 //import { ComandePage }    from '../comande';
 import { AddPage }    from '../../add/add';
 
-import { HttpService } from '../../../providers/http-service';
+import { HttpService }          from '../../../providers/http-service';
+import { ConnectivityService }  from '../../../providers/connectivity-service';
 
 @Component({
   selector: 'ordine-modal',
@@ -31,11 +32,12 @@ export class OrdinePage {
     public navCtrl: NavController,
     private params: NavParams,
     private httpService: HttpService,
+    public connectivityService: ConnectivityService,
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
     private platform: Platform,
     public viewCtrl: ViewController,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController,
   ) {}
 
   ionViewDidLoad() {
@@ -71,9 +73,19 @@ export class OrdinePage {
         this.loading.dismiss();
       },
       error => {
-        console.log('ERROR: ' + error);
-        this.errorMessage = 'Error!';
-        this.errorMessageView = true;
+        console.log('ERROR: ' + JSON.stringify(<any>error));
+        let alert = this.alertCtrl.create({
+          title: 'Visualizza Ordine',
+          subTitle: 'Problemi di comunicazione con il server',
+          buttons: [{
+            text: 'Ok',
+            handler: () => {
+              this.dismiss();
+            }
+          }]
+        });
+        alert.present();
+
         this.loading.dismiss();
       });
   }
@@ -128,9 +140,13 @@ export class OrdinePage {
         }
       },
       error => {
-        console.log('ERROR: ' + error);
-        this.errorMessage = 'Error!';
-        this.errorMessageView = true;
+        console.log('ERROR: ' + JSON.stringify(<any>error));
+        let alert = this.alertCtrl.create({
+          title: 'Piatto',
+          subTitle: 'Problemi di comunicazione con il server',
+          buttons: ['OK']
+        });
+        alert.present();
         this.loading.dismiss();
       });
   }
@@ -154,9 +170,13 @@ export class OrdinePage {
         }
       },
       error => {
-        console.log('ERROR: ' + error);
-        this.errorMessage = 'Error!';
-        this.errorMessageView = true;
+        console.log('ERROR: ' + JSON.stringify(<any>error));
+        let alert = this.alertCtrl.create({
+          title: 'Speciale',
+          subTitle: 'Problemi di comunicazione con il server',
+          buttons: ['OK']
+        });
+        alert.present();
         this.loading.dismiss();
       });
   }
@@ -180,9 +200,13 @@ export class OrdinePage {
         }
       },
       error => {
-        console.log('ERROR: ' + error);
-        this.errorMessage = 'Error!';
-        this.errorMessageView = true;
+        console.log('ERROR: ' + JSON.stringify(<any>error));
+        let alert = this.alertCtrl.create({
+          title: 'Ordine',
+          subTitle: 'Problemi di comunicazione con il server',
+          buttons: ['OK']
+        });
+        alert.present();
         this.loading.dismiss();
       });
   }
@@ -225,9 +249,13 @@ export class OrdinePage {
                 this.loading.dismiss();
               },
               error => {
-                console.log('ERROR: ' + error);
-                this.errorMessage = 'Error!';
-                this.errorMessageView = true;
+                console.log('ERROR: ' + JSON.stringify(<any>error));
+                let alert = this.alertCtrl.create({
+                  title: 'Cancellazione Ordine',
+                  subTitle: 'Problemi di comunicazione con il server',
+                  buttons: ['OK']
+                });
+                alert.present();
                 this.loading.dismiss();
               });
 
@@ -350,9 +378,13 @@ export class OrdinePage {
                 }
               },
               error => {
-                console.log('ERROR: ' + error);
-                this.errorMessage = 'Error!';
-                this.errorMessageView = true;
+                console.log('ERROR: ' + JSON.stringify(<any>error));
+                let alert = this.alertCtrl.create({
+                  title: 'Cancellazione Piatto',
+                  subTitle: 'Problemi di comunicazione con il server',
+                  buttons: ['OK']
+                });
+                alert.present();
                 this.loading.dismiss();
               });
 
@@ -399,9 +431,13 @@ export class OrdinePage {
                 }
               },
               error => {
-                console.log('ERROR: ' + error);
-                this.errorMessage = 'Error!';
-                this.errorMessageView = true;
+                console.log('ERROR: ' + JSON.stringify(<any>error));
+                let alert = this.alertCtrl.create({
+                  title: 'Cancellazione Speciale',
+                  subTitle: 'Problemi di comunicazione con il server',
+                  buttons: ['OK']
+                });
+                alert.present();
                 this.loading.dismiss();
               });
 
@@ -448,9 +484,13 @@ export class OrdinePage {
                 }
               },
               error => {
-                console.log('ERROR: ' + error);
-                this.errorMessage = 'Error!';
-                this.errorMessageView = true;
+                console.log('ERROR: ' + JSON.stringify(<any>error));
+                let alert = this.alertCtrl.create({
+                  title: 'Concellazione Nota',
+                  subTitle: 'Problemi di comunicazione con il server',
+                  buttons: ['OK']
+                });
+                alert.present();
                 this.loading.dismiss();
               });
 
@@ -482,9 +522,13 @@ export class OrdinePage {
         this.loading.dismiss();
       },
       error => {
-        console.log('ERROR: ' + error);
-        this.errorMessage = 'Error!';
-        this.errorMessageView = true;
+        console.log('ERROR: ' + JSON.stringify(<any>error));
+        let alert = this.alertCtrl.create({
+          title: 'printOrder',
+          subTitle: 'Problemi di comunicazione con il server',
+          buttons: ['OK']
+        });
+        alert.present();
         this.loading.dismiss();
       });
   }

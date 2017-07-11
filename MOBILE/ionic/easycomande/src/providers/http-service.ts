@@ -23,9 +23,9 @@ export class HttpService {
         console.log('getCallHttp: ' + call + ' | ' + username + ' | ' + password);
 
         //New BackEnd: LARAVEL
-        //let host    = 'http://localhost:8000';
+        let host    = 'http://localhost:8000';
         //let host    = 'http://192.168.1.100/cicos/BE/public';
-        let host    = 'http://www.easycomande.it/rianna/BE/public';
+        //let host    = 'http://www.easycomande.it/rianna/BE/public';
         
         localStorage.setItem('server_host',host);
 
@@ -179,5 +179,35 @@ export class HttpService {
         alert.present();
         console.error(errMsg);
         return Observable.throw(errMsg);
+    }
+
+    getServerInformation() {
+        let template = ''+
+        '<u>Server</u>'+
+        '<br />'+
+        '<em>'+localStorage.getItem('server_host')+'</em>'+
+        '<hr />'+
+        '<u>User</u>'+
+        '<br />'+
+        '<em>'+localStorage.getItem('currentUserEmail')+'</em>'+
+        '<hr />'+
+        '<u>API Token</u>'+
+        '<br />'+
+        '<em>'+localStorage.getItem('api_token')+'</em>'+
+        '<hr />'+
+        '<u>Service</u>'+
+        '<br />'+
+        '<em>'+localStorage.getItem('serviceenablepercent')+'</em>'+
+        '<hr />'+
+        '<u>Covered</u>'+
+        '<br />'+
+        '<em>'+localStorage.getItem('coveredenablevalue')+'</em>';
+        
+        let alert = this.alertCtrl.create({
+        title: 'Server Info!',
+        subTitle: template,
+        buttons: ['OK']
+        });
+        alert.present();
     }
 }
