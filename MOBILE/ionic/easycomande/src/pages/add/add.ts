@@ -27,6 +27,9 @@ export class AddPage {
   ordineId: number = 0;
   ordineEdit: boolean = false;
 
+  //If SAVE not work: saved order
+  ordersTemp: Order[] = new Array<Order>();
+  
   products: Product[] = new Array<Product>();
   notes: Note[] = new Array<Note>();
   ships: Special[] = new Array<Special>();
@@ -577,6 +580,11 @@ export class AddPage {
 
   //SAVE ORDER
   saveOrder() {
+    //If SAVE not work: saved order
+    if(localStorage.getItem('listOrdersNotSaved')) {
+      this.ordersTemp = JSON.parse(localStorage.getItem('listOrdersNotSaved'));
+    }
+
     console.log(this.numTavolo +'|'+ this.totCoperti +'|'+ this.numCoperti +'|'+ this.totaleOrdine);
     console.log('PRODUCTS: '+JSON.stringify(this.products));
     console.log('SHIPS: '+JSON.stringify(this.ships));
@@ -664,11 +672,20 @@ export class AddPage {
         this.loading.dismiss();
       },
       error => {
+        //If SAVE not work: saved order
+        this.ordersTemp.push(ordine);
+        localStorage.setItem('listOrdersNotSaved', JSON.stringify(this.ordersTemp));
+
         console.log('ERROR: ' + JSON.stringify(<any>error));
         let alert = this.alertCtrl.create({
           title: 'Salvataggio Ordine',
-          subTitle: 'Problemi di comunicazione con il server',
-          buttons: ['OK']
+          subTitle: 'Problemi di comunicazione con il server. L\'ordine è stato memorizzato in memoria.',
+          buttons: [{
+            text: 'Ok',
+            handler: () => {
+              this.dismiss(0);
+            }
+          }]
         });
         alert.present();
         this.loading.dismiss();

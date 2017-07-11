@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar color="dark">
+    <ion-buttons left>
+      <button ion-button icon-only (click)="dismiss()">
+        <ion-icon ios="ios-close" md="md-close"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title>Ordini non salvati</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="deleteOrdersNotSaved()">
+        <ion-icon name="remove-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list *ngIf="ordersTemp?.length > 0">
+    <ion-item *ngFor="let order of ordersTemp">
+      <h2>Ordine per</h2>
+      <h3><strong>{{order.client}}</strong></h3>
+      <div *ngFor="let prod of order?.items">
+        {{prod.quantity}} x {{prod.menuname}}
+      </div>
+      <div *ngFor="let special of order?.specials">
+        1 x {{special.special}}
+      </div>
+      
+      <ion-icon name="md-cloud-upload" item-right color="dark" (click)="saveOrder(order)"></ion-icon>
+    </ion-item>
+  </ion-list>
+
+  <h5 *ngIf="ordersTemp?.length == 0" padding>
+    Nessuna ordinazione presente
+  </h5>
+
+</ion-content>

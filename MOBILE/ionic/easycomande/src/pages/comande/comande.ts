@@ -9,6 +9,7 @@ import { ConnectivityService }  from '../../providers/connectivity-service';
 import { LoginPage }        from '../login/login';
 import { AddPage }          from '../add/add';
 import { OrdinePage }       from './ordini/ordine';
+import { NotSavedPage }     from './notsaved/notsaved';
 
 import { Order }            from '../../models/order';
 
@@ -33,6 +34,10 @@ export class ComandePage {
   errorMessage: string;
   errorMessageView: any;
 
+  //If SAVE not work: saved order
+  ordersTemp: Order[] = new Array<Order>();
+  ordersTempExist: boolean = false;
+
   @ViewChild(Content) content: Content;
 
   //private tabbarHeight: string;
@@ -53,6 +58,8 @@ export class ComandePage {
 
   ionViewDidLoad() {
     console.log("ionViewDidLoad COMANDE");
+
+    this.listOrdersNotSaved();
 
     if(this.connectivityService.connectivityFound) {
       this.loadData('');
@@ -88,12 +95,14 @@ export class ComandePage {
   ***/
 
   doRefresh(refresher) {
-    console.log("ionViewDidLoad");
+    this.listOrdersNotSaved();
     this.loadData('');
     refresher.complete();
   }
 
   loadData(orderIdSave) {
+    this.listOrdersNotSaved();
+
     this.orderIdSaved = orderIdSave;
     this.loading = this.loadingCtrl.create({
       spinner: 'crescent',
@@ -172,7 +181,9 @@ export class ComandePage {
   addOrder() {
     let modal = this.modalCtrl.create(AddPage);
     modal.present();
-    modal.onDidDismiss(data => {});
+    modal.onDidDismiss(data => {
+      this.loadData(0);
+    });
   }
 
   printOrder(order) {
@@ -214,6 +225,31 @@ export class ComandePage {
     //this.navCtrl.setRoot(LoginPage); //Mostra i TABS
     //window.location.reload();
     this.app.getRootNav().setRoot(LoginPage);
+  }
+
+  listOrdersNotSaved() {
+    if(localStorage.getItem('listOrdersNotSaved')) {
+      this.ordersTemp = JSON.parse(localStorage.getItem('listOrdersNotSaved'));
+      if(this.ordersTemp.length > 0) {
+        this.ordersTempExist = true;
+      } else {
+        this.ordersTempExist = false;
+      }
+    } else {
+        this.ordersTempExist = false;      
+    }
+  }
+  viewOrdersNotSaved() {
+    let modal = this.modalCtrl.create(NotSavedPage);
+    modal.present();
+    modal.onDidDismiss(data => {
+      console.log('data.action -> '+JSON.stringify(data.action));
+      if(data.action == 'reload') {
+        //Ricaricare ordine
+        console.log('Ricaricare ordine');
+        this.loadData(data.orderIdSave);
+      }
+    });
   }
 
 }

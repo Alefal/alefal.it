@@ -62,6 +62,7 @@
   -->
 
   <ion-fab right bottom *ngIf="connectivityService.connectivityFound">
+    <button padding ion-fab (click)="viewOrdersNotSaved()" *ngIf="ordersTempExist" color="danger" style="margin-bottom:15px;"><ion-icon name="eye"></ion-icon></button>
     <button padding ion-fab (click)="addOrder()" color="dark" style="margin-bottom:15px;"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
 

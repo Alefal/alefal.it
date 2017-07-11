@@ -17,6 +17,7 @@ import { LoginPage }        from '../pages/login/login';
 //import { HomePage }         from '../pages/home/home';
 import { ComandePage }      from '../pages/comande/comande';
 import { OrdinePage }       from '../pages/comande/ordini/ordine';
+import { NotSavedPage }     from '../pages/comande/notsaved/notsaved';
 import { MenuPage }         from '../pages/menu/menu';
 import { AddPage }          from '../pages/add/add';
 
@@ -36,6 +37,7 @@ import { OrderByPipe }      from '../pipes/order-by-pipe';
     MenuPage,
     AddPage,
     OrdinePage,
+    NotSavedPage,
     ProdottiModal,
     PopoverPage,
     OrderByPipe
@@ -55,6 +57,7 @@ import { OrderByPipe }      from '../pipes/order-by-pipe';
     MenuPage,
     AddPage,
     OrdinePage,
+    NotSavedPage,
     ProdottiModal,
     PopoverPage
   ],
