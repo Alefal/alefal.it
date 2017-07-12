@@ -647,35 +647,35 @@ export class AddPage {
         console.log('res: ' + JSON.stringify(res));
 
         let orderIdSave: any;
-        //if (res[0].response[0].result == 'OK') {
-          if (res.results[0].operation == 'success') {
-            orderIdSave = res.results[0].message;
-          } else {
-            let alert = this.alertCtrl.create({
-              title: 'Attenzione',
-              subTitle: 'L\'ordinazione non è stata salvata! Prova ad aggiornare i menu e rifai l\'ordinazione',
-              buttons: ['OK']
-            });
-            alert.present();
-            this.loading.dismiss();
-            return false;
-          }
 
-          if(!this.ordineEdit) {
-            this.navCtrl.setRoot(TabsPage);
-          } else {
-            this.dismiss(orderIdSave);
-          }
-        //} else {
-        //  this.nothing = 'Nessun dato! Riprovare più tardi.';
-        //}
+        if (res.results[0].operation == 'success') {
+          orderIdSave = res.results[0].message;
+        } else {
+          let alert = this.alertCtrl.create({
+            title: 'Attenzione',
+            subTitle: 'L\'ordinazione non è stata salvata! Prova ad aggiornare i menu e rifai l\'ordinazione',
+            buttons: ['OK']
+          });
+          alert.present();
+          this.loading.dismiss();
+          return false;
+        }
+
         this.loading.dismiss();
+
+        if(!this.ordineEdit) {
+          this.navCtrl.setRoot(TabsPage);
+        } else {
+          this.dismiss(orderIdSave);
+        }
       },
       error => {
         //If SAVE not work: saved order
         this.ordersTemp.push(ordine);
         localStorage.setItem('listOrdersNotSaved', JSON.stringify(this.ordersTemp));
 
+        this.loading.dismiss();
+        
         console.log('ERROR: ' + JSON.stringify(<any>error));
         let alert = this.alertCtrl.create({
           title: 'Salvataggio Ordine',
@@ -688,7 +688,6 @@ export class AddPage {
           }]
         });
         alert.present();
-        this.loading.dismiss();
       });
   }
   

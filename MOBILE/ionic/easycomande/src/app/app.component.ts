@@ -92,9 +92,19 @@ export class EasyComandeApp {
           if(conf.key == 'serviceenable' && conf.enable == 1) {
             localStorage.setItem('serviceenablepercent',conf.value);
             this.labelTypeService = conf.label;
-          } else if(conf.key == 'coveredenable' && conf.enable == 1) {
+          } 
+          //Prezzo per coperto
+          else if(conf.key == 'coveredenable' && conf.enable == 1) {
             localStorage.setItem('coveredenablevalue',conf.value);
             this.labelTypeService = conf.label;
+          }
+          //Font per la stampa della comanda per la cucina 
+          else if(conf.key == 'printtablecomandefont' && conf.enable == 1) {
+            localStorage.setItem('printtablecomandefont',conf.value);
+          }
+          //Font per la stampa della comanda per il cliente
+          else if(conf.key == 'printtablericevutafont' && conf.enable == 1) {
+            localStorage.setItem('printtablericevutafont',conf.value);
           }
         }
       },

@@ -140,14 +140,30 @@ export class MenuPage {
 
         localStorage.removeItem('serviceenablepercent');
         localStorage.removeItem('coveredenablevalue');
+        localStorage.removeItem('printtablecomandefont');
+        localStorage.removeItem('printtablericevutafont');
+
         for (let conf of res.results) {
           //console.log('%ò',conf)
+          
+          //Servizio 10% del total
           if(conf.key == 'serviceenable' && conf.enable == 1) {
             localStorage.setItem('serviceenablepercent',conf.value);
-          } else if(conf.key == 'coveredenable' && conf.enable == 1) {
+          } 
+          //Prezzo per coperto
+          else if(conf.key == 'coveredenable' && conf.enable == 1) {
             localStorage.setItem('coveredenablevalue',conf.value);
           }
+          //Font per la stampa della comanda per la cucina 
+          else if(conf.key == 'printtablecomandefont' && conf.enable == 1) {
+            localStorage.setItem('printtablecomandefont',conf.value);
+          }
+          //Font per la stampa della comanda per il cliente
+          else if(conf.key == 'printtablericevutafont' && conf.enable == 1) {
+            localStorage.setItem('printtablericevutafont',conf.value);
+          }
         }
+       
       },
       error => {
         console.log('ERROR: ' + JSON.stringify(<any>error));

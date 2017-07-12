@@ -57,7 +57,7 @@ export class ComandePage {
   ) {}
 
   ionViewDidLoad() {
-    console.log("ionViewDidLoad COMANDE");
+    console.log('ionViewDidLoad COMANDE');
 
     this.listOrdersNotSaved();
 
@@ -113,14 +113,8 @@ export class ComandePage {
     this.httpService
       .getCallHttp('getOrders','','',0,'')
       .subscribe(res => {
-        //console.log('res: '+JSON.stringify(res));
-
-        //if(res[0].response[0].result == 'OK') {
-          this.orders = res.results;
-          this.ordersAll = res.results;
-        //} else {
-        //  this.nothing = 'Nessun dato! Riprovare più tardi.';
-        //}
+        this.orders = res.results;
+        this.ordersAll = res.results;
         this.loading.dismiss();
       },
       error => {
@@ -154,8 +148,6 @@ export class ComandePage {
   }
 
   orderDetail(ordineId) {
-    console.log(ordineId);
-
     if(this.connectivityService.connectivityFound) {
       let modal = this.modalCtrl.create(OrdinePage, { ordineId: ordineId });
       modal.present();
@@ -182,38 +174,8 @@ export class ComandePage {
     let modal = this.modalCtrl.create(AddPage);
     modal.present();
     modal.onDidDismiss(data => {
-      this.loadData(0);
+      //this.loadData(0);
     });
-  }
-
-  printOrder(order) {
-    this.printer.isAvailable().then(
-      function(){
-        console.log('isAvailable -> SUCCESS');
-      }, 
-      function(err) {
-        console.log('isAvailable -> ERROR'+err);
-      }
-    );
-
-    let options: PrintOptions = {
-      name: 'MyDocument',
-      printerId: 'printer007',
-      duplex: true,
-      landscape: true,
-      grayscale: true
-    };
-
-    let template = 'Print template; '+JSON.stringify(order);
-
-    this.printer.print(template, options).then(
-      function(){
-        console.log('isAvailable -> SUCCESS');
-      }, 
-      function(err) {
-        console.log('isAvailable -> ERROR'+err);
-      }
-    );
   }
 
   logout() {
@@ -250,6 +212,205 @@ export class ComandePage {
         this.loadData(data.orderIdSave);
       }
     });
+  }
+
+  /*** PRINT ORDER ***/
+  printOrder(orderId) {
+    let options: PrintOptions = {
+      /*
+      name: 'MyDocument',
+      printerId: 'printer007',
+      duplex: true,
+      landscape: true,
+      grayscale: true
+      */
+    };
+
+    this.loading = this.loadingCtrl.create({
+      spinner: 'crescent',
+    });
+    this.loading.present();
+
+    this.httpService
+      .getCallHttp('getOrder','','',orderId,'')
+      .subscribe(res => {
+        //console.log('res: '+JSON.stringify(res));
+
+        this.ordine = res.results[0];
+        let template = this.templateOrder(this.ordine);
+
+        this.printer.print(template, options).then(
+          function(){
+            console.log('isAvailable -> SUCCESS');
+          }, 
+          function(err) {
+            console.log('isAvailable -> ERROR'+err);
+          }
+        );
+        
+        this.loading.dismiss();
+      },
+      error => {
+        console.log('ERROR: ' + JSON.stringify(<any>error));
+        let alert = this.alertCtrl.create({
+          title: 'Visualizza Ordine',
+          subTitle: 'Problemi di comunicazione con il server',
+          buttons: ['Ok']
+        });
+        alert.present();
+
+        this.loading.dismiss();
+      });
+
+    
+    
+    /*
+    this.printer.isAvailable().then(
+      function(){
+        console.log('isAvailable -> SUCCESS');
+      }, 
+      function(err) {
+        console.log('isAvailable -> ERROR: '+err);
+      }
+    );
+    */
+  }
+
+  templateOrder(order) {
+    let printtablecomandefont = '1.8em';
+    let printtablericevutafont = '1.2em';
+
+    if(localStorage.getItem('printtablecomandefont')) {
+      printtablecomandefont = localStorage.getItem('printtablecomandefont');
+    }
+
+    if(localStorage.getItem('printtablericevutafont')) {
+      printtablericevutafont = localStorage.getItem('printtablericevutafont');
+    }
+
+    let template = ''+
+    '<style>'+
+    '//........Customized style.......'+
+    '.printOrder {'+
+    '  text-align:center;'+
+    '  margin: 0 auto;'+
+    '}'+
+    '.printOrder .orderInfo {'+
+    '  text-align:center;'+
+    '}'+
+    '.printOrder .logo {'+
+    '  text-align:center;'+
+    '}'+
+    '.printOrder .logo img {'+
+    '  margin: 0 auto;'+
+    '  max-width: 50%;'+
+    '}'+
+    '.printOrder .deleteItem {'+
+    '  /*text-decoration: line-through;*/'+
+    '  display: none;'+
+    '}'+
+    '.printOrder .notesList {'+
+    '  padding: 15px;'+
+    '  font-size: 15px;'+
+    '}'+
+    '.printOrder .tableComande {'+
+    '  font-size: '+printtablecomandefont+';'+
+    '  width: 100%;'+
+    '}'+
+    '.printOrder .tableRicevuta {'+
+    '  font-size: '+printtablericevutafont+';'+
+    '  width: 100%;'+
+    '}'+
+    'td.dividerline {'+
+    ' border-bottom:1pt solid black;'+
+    '}'+
+    '</style>'+
+    '<div class="container printOrder">'+
+    '  <div class="orderInfo">'+     
+    '     <h5>'+order.client+'</h5>'+
+    '  </div>'+       
+    '  <table class="table table-hover tableComande">'+
+    '    <tbody>';
+
+    let initialItemOrder:number = 1;
+
+    for (let item of order.items) {
+      let classItem = '';
+      if(item.state == 'pending') {
+        classItem = '';
+      } else {
+        classItem = 'deleteItem';
+      }
+      
+      if(item.sort > initialItemOrder) {
+        initialItemOrder = item.sort;
+        template += ''+
+      '      <tr>'+
+      '      <td colspan="2" align="center"><em>---------- segue ----------</em-></td>'+
+      '      </tr>';
+      }
+      
+      template += ''+
+      '      <tr class="'+classItem+'">'+
+      '        <td width="25%" class="dividerline">['+item.sort+'°] '+item.quantity+'x</td>';
+      if(item.note != '') {
+        template += '<td class="dividerline">'+item.name+'<br /><em>('+item.note+')</em></td>';
+      } else {
+        template += '<td class="dividerline">'+item.name+'</td>';        
+      }
+
+      template += ''+
+      '      </tr>';
+    }
+
+    if(order.specials.length > 0) {
+      template += ''+
+        '      <tr>'+
+        '      <td colspan="2" align="center"><em>----- SPECIALI -----</em-></td>'+
+        '      </tr>';
+    }
+
+    for (let special of order.specials) {
+      let classItem = '';
+      if(special.state == 'pending') {
+        classItem = '';
+      } else {
+        classItem = 'deleteItem';
+      }
+      
+      template += ''+
+      '      <tr class="'+classItem+'">'+
+      '        <td width="25%" class="dividerline">['+special.sort+'°] 1x</td>';
+      if(special.note != '') {
+        template += '<td class="dividerline">'+special.name+'<br /><em>('+special.note+')</em></td>';
+      } else {
+        template += '<td class="dividerline">'+special.name+'</td>';        
+      }
+      template += ''+
+      '      </tr>';
+    }
+
+    template += ''+
+    '    </tbody>'+
+    '  </table>';
+
+    if(order.notes.length > 0) {
+      template += ''+
+        ' <div class="notesList">'+
+        '     <strong>NOTE:</strong>'+
+        '     <h5>';
+      for (let note of order.notes) {
+        template += ''+
+        '     <em>'+note.note+'</em>; ';
+      }
+      template += ''+
+        ' </h5></div>';
+    }
+    
+    template += ''+
+    '</div>';
+
+    return template;
   }
 
 }
