@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Platform, NavParams, LoadingController, AlertController, NavController, ModalController, ViewController } from 'ionic-angular';
+import { Platform, LoadingController, AlertController, NavController, ModalController, ViewController } from 'ionic-angular';
 
 import { Order }    from '../../../models/order';
 
@@ -23,7 +23,6 @@ export class NotSavedPage {
 
   constructor(
     public navCtrl: NavController,
-    private params: NavParams,
     private httpService: HttpService,
     public connectivityService: ConnectivityService,
     private loadingCtrl: LoadingController,

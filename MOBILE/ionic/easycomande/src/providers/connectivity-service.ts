@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { Platform, AlertController, ToastController, NavController, App } from 'ionic-angular';
 import { Network } from '@ionic-native/network';
 
-import { HttpService }          from './http-service';
-
 @Injectable()
 export class ConnectivityService {
  
@@ -14,7 +12,6 @@ export class ConnectivityService {
  
   constructor(
     private platform: Platform,
-    private httpService: HttpService,
     public alertCtrl: AlertController,
     public toastCtrl: ToastController,
     private app:App,

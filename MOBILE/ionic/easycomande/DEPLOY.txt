@@ -1,3 +1,12 @@
+=== Update ionic-angular@3.5.2 ===
+Cancellare node_modules
+
+$ npm install ionic-angular@3.5.2 --save-dev --save-exact
+$ npm install @ionic/app-scripts@2.0.2 --save-dev --save-exact
+$ npm install @angular/tsc-wrapped
+
+$ npm install
+
 === Optimize Ionic 2 App for Production ===
 app/main.ts
 
