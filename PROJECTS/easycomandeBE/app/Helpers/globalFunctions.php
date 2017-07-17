@@ -514,8 +514,15 @@ function saveState($request) {
 /* ---------------------------------------------------------------------------
  * Save: ORDER
  * --------------------------------------------------------------------------- */
-function saveOrder($request) {
-    $order = json_decode($request, true);
+function saveOrder() {
+
+    if(Request::wantsJson())
+    {
+        $orderToSave = json_encode(Request::input('orderToSave'));
+        //print_r($orderToSave);
+    }
+
+    $order = json_decode($orderToSave, true);
 
     /*
     print '<pre>';

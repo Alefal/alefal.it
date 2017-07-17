@@ -116,8 +116,8 @@ Route::group(['middleware' => ['auth:api']], function () {
         return manipulateJsonResponseNotificationsCheck($orderId);
     });
     /*** Save/Update ORDER from APP / WEBAPP ***/
-    Route::get('jsondata/order/save/{request}', function($request){
-        return saveOrder($request);
+    Route::post('jsondata/order/save', function(){
+       return saveOrder();
     });
     /*** Change state ORDER from APP / WEBAPP ***/
     Route::get('jsondata/order/change/state/{itemId}', function($itemId){

@@ -21,17 +21,18 @@ export class HttpService {
         //console.log('getCallHttp: ' + call + ' | ' + username + ' | ' + password);
 
         //////////New BackEnd
-        //let host    = 'http://localhost:8000';
+        let host    = 'http://localhost:8000';
         //let host    = 'http://192.168.1.100/cicos/BE/public';
         //let host    = 'http://www.easycomande.it/rianna/BE/public';
         //////////DEMO
-        let host    = 'http://www.amalficoastapps.it/easycomande/BE/public';
+        //let host    = 'http://www.amalficoastapps.it/easycomande/BE/public';
         let url     = '';
 
         let hostImage = host+'/resources/easycomande/photos';
         localStorage.setItem('hostImage',hostImage);
 
         let api_token = localStorage.getItem('api_token');
+        let orderToSave;
 
         //LOGIN
         if (call == 'authentication') {
@@ -57,7 +58,8 @@ export class HttpService {
             url = '/jsondata/order/'+id;
         }
         else if (call == 'getOrderSave') {
-            url = '/jsondata/order/save/'+JSON.stringify(object);
+            url = '/jsondata/order/save';
+            orderToSave = object;
         }
         else if (call == 'getOrderChangeOrderState') {
             url = '/jsondata/order/change/state/'+id;
@@ -111,9 +113,27 @@ export class HttpService {
 
         //console.log('URL: ' + host + '' + url);
 
-        return this.http.get(host + '' + url+'?api_token='+api_token)
-                    .map(this.extractData)
-                    .catch(this.handleError);
+        if (call == 'getOrderSave') {
+            //POST: http error 414, the request url is too long
+            let headers = new Headers(
+            {
+                'Content-Type' : 'application/json',
+                //'api_token': api_token
+            });
+            let options = new RequestOptions({ headers: headers });
+
+            let data = JSON.stringify({
+                orderToSave: orderToSave
+            });
+
+            return this.http.post(host + '' + url+'?api_token='+api_token, data, options)
+                .map(this.extractData)
+                .catch(this.handleError);
+        } else {
+            return this.http.get(host + '' + url+'?api_token='+api_token)
+                .map(this.extractData)
+                .catch(this.handleError);
+        }
     }
 
     private extractData(res: Response) {

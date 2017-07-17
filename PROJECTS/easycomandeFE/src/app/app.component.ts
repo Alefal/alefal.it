@@ -41,7 +41,7 @@ export class AppComponent {
   ) {
     this.loadConfigurations();
     this.loadData();
-    setInterval(this.loadData.bind(this), 30000);
+    setInterval(this.loadData.bind(this), 60000);
 
     localStorage.removeItem('currentUser');
   }

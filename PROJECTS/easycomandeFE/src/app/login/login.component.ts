@@ -14,6 +14,7 @@ import { User } from '../_models/user';
 export class LoginComponent implements OnInit {
 
   user: User = new User();
+
   loading = false;
 
   constructor(
@@ -44,6 +45,9 @@ export class LoginComponent implements OnInit {
       this.user.password = '';
       this.user.rememberme = '';
     }
+
+    this.user.username = 'admin@easycomande.it';
+    this.user.password = 'Abc123def';
   }
 
   //Login
