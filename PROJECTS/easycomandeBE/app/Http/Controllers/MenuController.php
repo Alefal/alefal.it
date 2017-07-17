@@ -29,9 +29,23 @@ class MenuController extends Controller
     {
         $items = Menu::orderBy('menu.category_id','ASC')->paginate(50);
         $categories = Category::all();
+        $categoryId = '';
 
-        return view('menu.index',compact('items','categories'))
+        return view('menu.index',compact('items','categories','categoryId'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
+    }
+
+    /**
+     * Display a filter listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function filter($categoryId)
+    {
+        $items      = Menu::where('category_id', 'LIKE', $categoryId)->get();
+        $categories = Category::all();
+
+        return view('menu.index',compact('items','categories','categoryId'));
     }
 
     /**

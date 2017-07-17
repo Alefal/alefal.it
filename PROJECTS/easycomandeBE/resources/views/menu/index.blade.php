@@ -8,6 +8,10 @@
 </div>
 @endif
 
+<script type="text/javascript">
+var APP_URL = {!! json_encode(url('/')) !!}
+</script>
+
 <div class="row">
     <div class="col-lg-12 margin-tb">
 
@@ -20,6 +24,19 @@
                     <a href="{{ route('menu.create') }}">
                         <i class="fa fa-plus-circle fa-3x fa-fw" aria-hidden="true"></i>
                     </a>
+                </div>
+            </div>
+            <div class="card-header">
+                <h4 class="card-title">
+                    Filtra per categoria:
+                </h4>
+                <div class="card-action">
+                    <select class="form-control" name="category_id" onchange="filter(this.value)">
+                        <option value="">--- Scegli ---</option>
+                        @foreach($categories as $cat)
+                            <option value="{{$cat->id}}" {{ $categoryId == $cat->id ? 'selected="selected"' : '' }}>{{$cat->name}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <div class="card-body no-padding">
@@ -75,7 +92,5 @@
         </div>
     </div>
 </div>
-
-{!! $items->render() !!} 
 
 @endsection

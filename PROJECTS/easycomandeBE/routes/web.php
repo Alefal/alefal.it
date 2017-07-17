@@ -25,7 +25,10 @@ Route::get('/logout', function () {
 
 Route::resource('configurations','ConfigurationsController');
 Route::resource('categories','CategoriesController');
+
+Route::get('menu/filter/{categoryId}', 'MenuController@filter');
 Route::resource('menu','MenuController');
+
 Route::resource('orders','OrdersController');
 Route::resource('items','ItemsController');
 Route::resource('specials','SpecialsController');

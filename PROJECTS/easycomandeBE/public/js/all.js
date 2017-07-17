@@ -5778,6 +5778,15 @@ $(function() {
     
 });
 
+function filter(category_id) {
+    console.log(APP_URL);
+    if(category_id == '') {
+        window.location.href = APP_URL+'/menu';
+    } else {
+        window.location.href = APP_URL+'/menu/filter/'+category_id;        
+    }
+}
+
 function printOrder(orderStateId,order,items,specials,notes,configurations){
     var order           = JSON.parse(order);
     var items           = JSON.parse(items);
