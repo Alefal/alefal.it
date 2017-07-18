@@ -1,7 +1,7 @@
 import { Injectable }       from '@angular/core';
 import { AlertController }  from 'ionic-angular';
 
-import { Http, Response/*, Headers, RequestOptions*/ }   from '@angular/http';
+import { Http, Response, Headers, RequestOptions }   from '@angular/http';
 
 import { Observable }       from 'rxjs/Observable';
 //import { Observable }       from 'rxjs/Rx';
@@ -33,6 +33,7 @@ export class HttpService {
 
         let url         = '';
         let api_token   = localStorage.getItem('api_token');
+        let orderToSave;
 
         //let headers = new Headers({ 'Content-Type': 'text/html; charset=UTF-8' });
         //let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
@@ -77,9 +78,8 @@ export class HttpService {
             url = '/jsondata/order/'+id;
         }
         else if (call == 'getOrderSave') {
-            url = '/jsondata/order/save/'+JSON.stringify(object);
-            //url = '/wp-content/plugins/alefal_woocommerce/services/ece_order_save.php';
-            //body.set('order',JSON.stringify(object));
+            url = '/jsondata/order/save';
+            orderToSave = object;
         }
         else if (call == 'getOrderChangeOrderState') {
             url = '/jsondata/order/change/state/'+id;
@@ -147,15 +147,27 @@ export class HttpService {
 
         console.log('URL: ' + host + '' + url + '?api_token=' + api_token);
 
-        /*
-        return this.http.post(host + '' + url, body.toString(), options)
-            .map(this.extractData)
-            .catch(this.handleError);
-        */
+        if (call == 'getOrderSave') {
+            //POST: http error 414, the request url is too long
+            let headers = new Headers(
+            {
+                'Content-Type' : 'application/json',
+                //'api_token': api_token
+            });
+            let options = new RequestOptions({ headers: headers });
 
-        return this.http.get(host + '' + url+'?api_token='+api_token)
-            .map(this.extractData)
-            .catch(this.handleError);
+            let data = JSON.stringify({
+                orderToSave: orderToSave
+            });
+
+            return this.http.post(host + '' + url+'?api_token='+api_token, data, options)
+                .map(this.extractData)
+                .catch(this.handleError);
+        } else {
+            return this.http.get(host + '' + url+'?api_token='+api_token)
+                .map(this.extractData)
+                .catch(this.handleError);
+        }
     }
 
     private extractData(res: Response) {

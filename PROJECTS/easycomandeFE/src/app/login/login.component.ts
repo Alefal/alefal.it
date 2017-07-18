@@ -45,9 +45,6 @@ export class LoginComponent implements OnInit {
       this.user.password = '';
       this.user.rememberme = '';
     }
-
-    this.user.username = 'admin@easycomande.it';
-    this.user.password = 'Abc123def';
   }
 
   //Login
