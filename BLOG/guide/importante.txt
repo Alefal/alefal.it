@@ -2,10 +2,12 @@
 https://code.tutsplus.com/articles/visual-database-creation-with-mysql-workbench--net-10975
 
 
+
 === gradle ===
 \Android\sdk\tools\templates\gradle\wrapper NOT FOUND quando viene lanciata l'app sul devices...
 
-estrarre il file templates.zip nella directory
+
+estrarre il file https://services.gradle.org/distributions/gradle-3.5-bin.zip nella directory
 \Android\sdk\tools\
 
 Per l'errore:
@@ -17,6 +19,8 @@ Looked here: D:\Development\Android\sdk\tools\templates\gradle\wrapper
 è necessario aggiornare cordova alla versione 7 e lanciare il comando
 $ cordova platform update android
 
+
+
 === ionic native ===
 Se ci sono problemi con plugins NATIVE ciò dipende dalle versioni:
 npm uninstall --save @ionic-native/core
@@ -25,6 +29,8 @@ npm install --save @ionic-native/core@latest
 La prima volta che si crea un'app è sempre necessario installare ionic-native
 
 Ogni provider di ionic-native deve essere inserito in app.module.ts in "providers"
+
+
 
 === Optimize Ionic 2 App for Production ===
 app/main.ts
@@ -43,6 +49,8 @@ app/main.ts
 
 $ ionic cordova build android --prod --release
 
+
+
 === Optimize Angular for Production ===
 # these are equivalent
 ng build --target=production --environment=prod
@@ -53,6 +61,8 @@ ng build --target=development --environment=dev
 ng build --dev --e=dev
 ng build --dev
 ng build
+
+
 
 === START APP IONIC ANGULAR ===
 $ ionic start ravelloBirraCup sidemenu --type=ionic-angular

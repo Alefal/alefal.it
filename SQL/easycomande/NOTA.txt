@@ -1,5 +1,0 @@
-Eseguire:
-
-1) easycomandeBE.sql
-2) laradrop_files.sql
-3) easycomandeBE_insert.sql
