@@ -1,9 +1,0 @@
-Modificato il plugin woocommerce-delivery-notes per stampare anche le note dell'ordine:
-- \wp-content\plugins\woocommerce-delivery-notes\templates\print-order\print-content.php (145 a 162)
-- \wp-content\plugins\woocommerce-delivery-notes\includes\wcdn-template-functions.php (460)
-
-I plugins
-- woocommerce-exporter
-- woocommerce-store-exporter-deluxe
-
-possono essere cancellati.
