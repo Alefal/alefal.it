@@ -1,8 +1,0 @@
-########## CHANGELOG ##########
-
-=== Vers. 2.1.0 ===
-OK -> Aggiunta immagine al piatto (campo PHOTO)
-OK -> Aggiunto SORT ad ogni ITEM di un ORDER
-OK -> Aggiunto SORT ad ogni SPECIAL di un ORDER
-OK -> Nella sezione "Menu" aggiunto filtro per "Categoria"
-OK -> Nella stampa cambiato bg per "Extra" per metterlo più in evidenza
