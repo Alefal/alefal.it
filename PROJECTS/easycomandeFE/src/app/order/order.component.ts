@@ -48,6 +48,8 @@ export class OrderComponent implements OnInit {
   itemOrderIdChangeSortOrder: number = 0;
   itemSortOrder: number = 0;
 
+  templateprinting: string = '';
+
   constructor(
     private location: Location,
     private router: Router,
@@ -369,6 +371,9 @@ export class OrderComponent implements OnInit {
     } else {
       printContents = this.templateOrder(order);
     }
+
+    //this.templateprinting = printContents;
+    
     popupWin = window.open('', '_blank', 'top=0,left=0,height=auto,width=auto');
     popupWin.document.open();
     popupWin.document.write(`
@@ -394,7 +399,6 @@ export class OrderComponent implements OnInit {
             max-width: 50%;
           }
           .printOrder .deleteItem {
-            /*text-decoration: line-through;*/
             display: none;
           }
           .printOrder .notesList {
@@ -408,6 +412,10 @@ export class OrderComponent implements OnInit {
           .printOrder .tableRicevuta {
             font-size: `+printtablericevutafont+`;
             width: 100%;
+          }
+          .printOrder .isExtra {
+              background: #e6e6e6 !important;
+              font-weight: bold;
           }
           </style>
         </head>
@@ -441,10 +449,16 @@ export class OrderComponent implements OnInit {
     for (let item of order.items) {
       let classItem = '';
       if(item.state == 'pending') {
-        classItem = '';
+        classItem += '';
       } else {
-        classItem = 'deleteItem';
+        classItem += 'deleteItem';
       }
+
+      let classItemExtra = '';
+      if(item.isExtra) {
+        classItemExtra += 'isExtra';
+      }
+      
       
       if(item.sort > initialItemOrder) {
         initialItemOrder = item.sort;
@@ -455,9 +469,9 @@ export class OrderComponent implements OnInit {
       }
       
       template += ''+
-      '      <tr class="'+classItem+'">'+
+      '      <tr class="'+classItem+' '+classItemExtra+'">'+
       '        <td width="25%">['+item.sort+'°] '+item.quantity+'x</td>';
-      if(item.note != '') {
+      if(item.note != '' && item.note != null) {
         template += '<td>'+item.name+'<br /><em>('+item.note+')</em></td>';
       } else {
         template += '<td>'+item.name+'</td>';        
@@ -485,7 +499,7 @@ export class OrderComponent implements OnInit {
       template += ''+
       '      <tr class="'+classItem+'">'+
       '        <td width="25%">['+special.sort+'°] 1x</td>';
-      if(special.note != '') {
+      if(special.note != '' && special.note != null) {
         template += '<td>'+special.name+'<br /><em>('+special.note+')</em></td>';
       } else {
         template += '<td>'+special.name+'</td>';        

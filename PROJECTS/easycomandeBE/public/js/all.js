@@ -5923,7 +5923,7 @@ function templateOrder(order,items,specials,notes) {
       template += ''+
       '      <tr class="'+classItem+'">'+
       '        <td width="35%">['+item.sort+'°] '+item.quantity+'x</td>';
-      if(item.note != '') {
+      if(item.note != '' && item.note != null) {
         template += '<td>'+item.menuname+'<br /><em>('+item.note+')</em></td>';
       } else {
         template += '<td>'+item.menuname+'</td>';        

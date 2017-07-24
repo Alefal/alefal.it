@@ -15,5 +15,7 @@ OK -> Aggiungere SORT ad ogni ITEM di un ORDER:
 OK -> Aggiungere SORT ad ogni SPECIAL di un ORDER:
     - al salvataggio passare anche "sort" per ogni ITEM
 
-http://localhost:8000/jsondata/order/38?api_token=Pwbo7CmLtqAP5TvIHYFZPqkmetJFTi9UZIfxE1GLeBFFJgzZ8DvhdTEiGFxf
-http://bootstrapdojo.com/rest-api-laravel-5-4-with-token-authentication/
+=== Vers. 2.1.0 ===
+OK -> Aggiunto SORT ad ogni ITEM di un ORDER
+OK -> Aggiunto SORT ad ogni SPECIAL di un ORDER
+OK -> Nella stampa cambiato bg per "Extra" per metterlo più in evidenza

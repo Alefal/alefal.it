@@ -95,7 +95,8 @@ OK -> Nascosti bottoni operativi se OFFLINE
 OK -> Aggiunto SORT ad ogni ITEM di un ORDER
 OK -> Aggiunto SORT ad ogni SPECIAL di un ORDER
 OK -> Aggiunto plugin "@ionic-native/printer": "^3.14.0"
-OK -> Aggiunta funzionalità di stampa nella pagina COMANDE
-OK -> Memorizzare ORDINI in memoria nel caso il salvataggio non va a buon fine
-OK -> Aggiungere bottone nella pagina COMANDE per visualizzare gli ordini in memoria
-- Stampare su stampante WIFI
+OK -> Memorizzato ORDINI in memoria nel caso il salvataggio non va a buon fine
+OK -> Aggiunto bottone nella pagina COMANDE per visualizzare gli ordini in memoria
+OK -> Aggiunta funzionalità di stampa nella pagina COMANDE che stampa su una stampante riconosciuta del device
+OK -> se l'ordine è completo il bottone "stampa" non viene visualizzato
+OK -> Nella stampa cambiato bg per "Extra" per metterlo più in evidenza

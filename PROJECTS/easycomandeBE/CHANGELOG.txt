@@ -1,10 +1,8 @@
 ########## CHANGELOG ##########
 
-=== Vers. 2.0.3: TODO ===
-OK -> Aggiungere immagine al piatto (campo PHOTO)
-- Aggiungere SORT ad ogni ITEM di un ORDER:
-    - FE: al salvataggio passare anche "sort" per ogni ITEM
-    - APP: al salvataggio passare anche "sort" per ogni ITEM
-- Aggiungere SORT ad ogni SPECIAL di un ORDER:
-    - FE: al salvataggio passare anche "sort" per ogni ITEM
-    - APP: al salvataggio passare anche "sort" per ogni ITEM
+=== Vers. 2.1.0 ===
+OK -> Aggiunta immagine al piatto (campo PHOTO)
+OK -> Aggiunto SORT ad ogni ITEM di un ORDER
+OK -> Aggiunto SORT ad ogni SPECIAL di un ORDER
+OK -> Nella sezione "Menu" aggiunto filtro per "Categoria"
+OK -> Nella stampa cambiato bg per "Extra" per metterlo più in evidenza

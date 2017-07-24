@@ -321,8 +321,12 @@ export class ComandePage {
     '  font-size: '+printtablericevutafont+';'+
     '  width: 100%;'+
     '}'+
+    '.printOrder .isExtra {'+
+    '    background: #e6e6e6;'+
+    '    font-weight: bold;'+
+    '}'+
     'td.dividerline {'+
-    ' border-bottom:1pt solid black;'+
+    ' border-bottom:1pt solid #e6e6e6;'+
     '}'+
     '</style>'+
     '<div class="container printOrder">'+
@@ -341,6 +345,11 @@ export class ComandePage {
       } else {
         classItem = 'deleteItem';
       }
+
+      let classItemExtra = '';
+      if(item.isExtra) {
+        classItemExtra += 'isExtra';
+      }
       
       if(item.sort > initialItemOrder) {
         initialItemOrder = item.sort;
@@ -351,9 +360,9 @@ export class ComandePage {
       }
       
       template += ''+
-      '      <tr class="'+classItem+'">'+
+      '      <tr class="'+classItem+' '+classItemExtra+'">'+
       '        <td width="25%" class="dividerline">['+item.sort+'°] '+item.quantity+'x</td>';
-      if(item.note != '') {
+      if(item.note != '' && item.note != null) {
         template += '<td class="dividerline">'+item.name+'<br /><em>('+item.note+')</em></td>';
       } else {
         template += '<td class="dividerline">'+item.name+'</td>';        
@@ -381,7 +390,7 @@ export class ComandePage {
       template += ''+
       '      <tr class="'+classItem+'">'+
       '        <td width="25%" class="dividerline">['+special.sort+'°] 1x</td>';
-      if(special.note != '') {
+      if(special.note != '' && special.note != null) {
         template += '<td class="dividerline">'+special.name+'<br /><em>('+special.note+')</em></td>';
       } else {
         template += '<td class="dividerline">'+special.name+'</td>';        

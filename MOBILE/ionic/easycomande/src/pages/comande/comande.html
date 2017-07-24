@@ -44,10 +44,9 @@
       <h2 (click)="orderDetail(order.id)">Ordine per</h2>
       <h3 (click)="orderDetail(order.id)"><strong>{{order.client}}</strong></h3>
       <h3 (click)="orderDetail(order.id)">Totale <strong>{{order.totalorder}} &euro;</strong></h3>
-      <!--
-      <ion-icon name="eye" item-right color="primary"></ion-icon>
-      -->
-      <ion-icon name="print" item-right color="dark" (click)="printOrder(order.id)"></ion-icon>
+      
+      <ion-icon name="eye" item-right color="primary" (click)="orderDetail(order.id)"   *ngIf="order.state == 'completed'"></ion-icon>
+      <ion-icon name="print" item-right color="dark"  (click)="printOrder(order.id)"    *ngIf="order.state == 'pending'"></ion-icon>
     </ion-item>
   </ion-list>
 
