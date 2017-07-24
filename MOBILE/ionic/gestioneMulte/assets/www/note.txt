@@ -1,7 +1,0 @@
-### SCALA ###
-PizzoferroRAF / 12345
-Matricola 2
-
-### RAVELLO ###
-CalifanoANNA / 12345
-Matricola 3
