@@ -1,8 +1,0 @@
-05/08/2017
-$ ionic serve
-Error: Cannot find module angular tsc-wrapped
-
-1) Cancellare node_modules
-2) npm install
-3) npm install @angular/tsc-wrapped autoprefixer
-4) ionic serve
