@@ -15,6 +15,8 @@ export class LoginFlat {
 
     public isUsernameValid: boolean;
     public isPasswordValid: boolean;
+
+    param = {value: 'world'};
     
     constructor() { 
         this.isUsernameValid= true;
