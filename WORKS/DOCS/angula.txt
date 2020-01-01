@@ -1,0 +1,23 @@
+### Error ###
+npm i -> Error: Can't find Python executable "python"
+
+### Solution ###
+$ npm --add-python-to-path='true' --debug install --global windows-build-tools
+$ npm install -g --production windows-build-tools
+$ npm config set python "C:\Users\Alessandro\.windows-build-tools\python27\python.exe"
+
+---
+
+### Error ###
+Schema validation failed with the following errors:   Data path ".builders['app-shell']" should have required property 'class'.
+
+### Solution ###
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+Remove ng.ps1 from the directory C:\Users\< username >\AppData\Roaming\npm\ then try clearing the npm cache at C:\Users\< username >\AppData\Roaming\npm-cache\
+
+npm install node-sass
+npm uninstall @angular-devkit/build-angular
+npm install @angular-devkit/build-angular@0.13.9
+
+npm uninstall @angular/compiler-cli
+npm install @angular/compiler-cli@6.0.8
