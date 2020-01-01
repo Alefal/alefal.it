@@ -1,0 +1,7 @@
+=== Compile SASS ===
+Se non è installato:
+$ npm install -g node-sass less
+
+Per compilar eun file SCSS:
+$ node-sass --output-style compressed .\_assets\css\_bootstrap.scss > .\_assets\css\bootstrap.css
+$ node-sass --output-style compressed .\_assets\css\style.scss > .\_assets\css\style.css

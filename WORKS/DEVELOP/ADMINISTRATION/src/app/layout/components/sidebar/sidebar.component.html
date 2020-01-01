@@ -1,0 +1,52 @@
+<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive, collapsed: collapsed}">
+    <div class="list-group">
+        <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item" title="{{ 'Dashboard' | translate }}">
+            <i class="fa fa-fw fa-dashboard"></i>&nbsp;
+            <span>{{ 'Dashboard' | translate }}</span>
+        </a>
+        <a [routerLink]="['/test']" [routerLinkActive]="['router-link-active']" class="list-group-item" title="Test">
+            <i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;
+            <span>TEST</span>
+        </a>
+        <a [routerLink]="['/testslickgrid']" [routerLinkActive]="['router-link-active']" class="list-group-item" title="SLICK GRID">
+            <i class="fa fa-th" aria-hidden="true"></i>&nbsp;
+            <span>SLICK GRID</span>
+        </a>
+        <a [routerLink]="['/calendar']" [routerLinkActive]="['router-link-active']" class="list-group-item" title="Calendar">
+            <i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;
+            <span>Calendar</span>
+        </a>
+        <a [routerLink]="['/users']" [routerLinkActive]="['router-link-active']" class="list-group-item" title="Users">
+            <i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;
+            <span>Users</span>
+        </a>
+        <a [routerLink]="['/userssg']" [routerLinkActive]="['router-link-active']" class="list-group-item" title="Users">
+            <i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;
+            <span>Users SG</span>
+        </a>
+        <a [routerLink]="['/externalapp']" [routerLinkActive]="['router-link-active']" class="list-group-item" title="External App">
+            <i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;
+            <span>External</span>
+        </a>
+        <!-- <div class="header-fields">
+            <div class="nested-menu">
+                <a class="list-group-item" (click)="addExpandClass('profile')">
+                    <span><i class="fa fa-user"></i>&nbsp; John Smith</span>
+                </a>
+                <li class="nested" [class.expand]="showMenu === 'profile'">
+                    <ul class="submenu">
+                        <li>
+                            <a href="javascript:void(0)">
+                                <span><i class="fa fa-fw fa-user"></i> {{ 'Profile' | translate }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </div>
+        </div> -->
+    </div>
+    <div class="toggle-button" [ngClass]="{collapsed: collapsed}" (click)="toggleCollapsed()">
+        <i class="fa fa-fw fa-angle-double-{{collapsed?'right':'left'}}"></i>&nbsp;
+        <span>{{ 'CollapseSidebar' | translate }}</span>
+    </div>
+</nav>

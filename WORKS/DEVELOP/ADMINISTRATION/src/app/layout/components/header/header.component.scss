@@ -1,0 +1,49 @@
+$topnav-background-color: #3f51b5;
+$startColor: #1462c5;
+$endColor: #0b203b;
+
+:host {
+    .navbar {
+        background: $startColor;
+        background: -moz-linear-gradient(left, $startColor 0%, $endColor 100%);
+        background: -webkit-gradient(left top, right top, color-stop(0%, $startColor), color-stop(100%, $endColor));
+        background: -webkit-linear-gradient(left, $startColor 0%, $endColor 100%);
+        background: -o-linear-gradient(left, $startColor 0%, $endColor 100%);
+        background: -ms-linear-gradient(left, $startColor 0%, $endColor 100%);
+        background: linear-gradient(to right, $startColor 0%, $endColor 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=$startColor, endColorstr=$endColor, GradientType=1 );
+
+        .navbar-brand {
+            color: #fff;
+        }
+        .nav-item > a {
+            color: #e4e4e4;
+            &:hover {
+                color: #fff;
+            }
+        }
+    }
+    .messages {
+        width: 300px;
+        .media {
+            border-bottom: 1px solid #ddd;
+            padding: 5px 10px;
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+        .media-body {
+            h5 {
+                font-size: 13px;
+                font-weight: 600;
+            }
+            .small {
+                margin: 0;
+            }
+            .last {
+                font-size: 12px;
+                margin: 0;
+            }
+        }
+    }
+}

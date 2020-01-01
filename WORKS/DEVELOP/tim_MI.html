@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="en" class="h-100">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>TIM - Market Insight</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/sticky-footer-navbar/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="lib/css/bootstrap.min.css" rel="stylesheet">
+    <link href="lib/css/jquery.bxslider.css" rel="stylesheet">
+    <link rel="stylesheet" href="lib/css/font-awesome.min.css">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'TimSansWeb', sans-serif;
+            color: #222222;
+            font-size: 13px;
+            background: #ECECEC;
+        }
+
+        .wrapper {
+            /* width: 1000px;
+            display: table; */
+
+            max-width: 1000px;
+
+            min-height: 100%;
+            padding: 30px 30px 0 30px;
+            margin: 0px auto 20px;
+            background: #FFFFFF;
+            overflow: visible;
+        }
+
+        .div-wp {
+            /* height: 315px;
+            width: 300px;
+            border: 1px solid #E5E5E5;
+            margin-bottom: 20px;
+            float: left; */
+            height: 315px;
+            border: 1px solid #E5E5E5;
+            margin-right: 32px;
+        }
+
+        .focus-header {
+            height: 60px;
+            line-height: 60px;
+            border-bottom: 1px solid #E5E5E5;
+        }
+
+        .focus-icon {
+            height: 60px;
+            width: 60px;
+            background: url(lib/img/TIM/wp-focus.png) 50% 50% no-repeat;
+            position: absolute;
+            border-right: 1px solid #E5E5E5;
+        }
+
+        .people-icon {
+            height: 60px;
+            width: 60px;
+            background: url(lib/img/TIM/wp-people.png) 50% 50% no-repeat;
+            position: absolute;
+            border-right: 1px solid #E5E5E5;
+        }
+
+        .focus-title {
+            font-family: 'TimSansWeb', Arial sans-serif !important;
+            font-size: 23px;
+            /*25px*/
+            color: #004691;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+        }
+
+        ul.focusslider,
+        ul.peopleslider {
+            margin-top: 0;
+            padding-top: 0;
+            display: none;
+        }
+
+        ul.focusslider li.focus-item,
+        ul.peopleslider li.focus-item {
+            list-style: none;
+            border-bottom: 1px solid #E5E5E5;
+            left: 0;
+            height: 200px;
+        }
+
+        .focus-box-item-title {
+            margin: 0;
+            width: auto;
+            height: 75px;
+            font-family: 'TimSansWeb', Arial sans-serif !important;
+            font-size: 16px;
+            color: #FF0000 !important;
+            text-overflow: ellipsis;
+            padding: 20px 0 0 0;
+            line-height: 16px;
+        }
+
+        .focus-box-item-abstract {
+            line-height: 18px;
+            height: 90px;
+            font-family: 'TimSansWeb', Arial sans-serif !important;
+            font-size: 12px;
+        }
+
+        .focus-box-item-detail {
+            font-family: 'TimSansWeb', Arial sans-serif !important;
+            font-size: 14px;
+        }
+
+        .focus-detail-app {
+            height: 15px;
+            font-family: 'TimSansWeb', Arial sans-serif !important;
+            font-size: 14px;
+            color: #004691;
+        }
+
+        .focus-icon-detail {
+            margin: 5px;
+            width: 13px;
+            height: 13px;
+            background-image: url(lib/img/TIM/wp-link.png);
+            background-repeat: no-repeat;
+        }
+
+        .err-mess {
+            display: none;
+            color: #FF0000;
+            padding: 5px;
+        }
+
+        .breakingnews,
+        .wide-news-wrapper {
+            margin-left: -30px;
+            margin-right: -30px;
+            display: block;
+            font-family: 'TIMSansWeb' !important;
+            width: 1060px;
+            height: 310px;
+            position: relative;
+        }
+
+        .main-news {
+            width: 65%;
+            height: 100%;
+            overflow: hidden;
+            float: left;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: #00468C;
+            background-size: cover;
+            position: relative;
+        }
+
+        .main-news a.breaknews-title {
+            font-size: 36px;
+            font-family: 'TIMSansWeb'sans-serif !important;
+            font-family: 'TIMSansWeb' !important;
+            color: #fff !important;
+            font-weight: 200;
+            padding-top: 50px;
+            margin: 0 auto;
+            width: 65%;
+            display: block;
+            text-align: left;
+            top: 50px;
+            position: absolute;
+            z-index: 4;
+            margin-left: 60px;
+            margin-right: 5%;
+            line-height: 35px;
+        }
+
+        .main-news .breaknews-abstract {
+            margin: 10px 5% 0 60px;
+            padding-top: 5px;
+            position: absolute;
+            top: 183px;
+            width: 40%;
+            display: block;
+            text-align: left;
+            z-index: 4;
+            font-family: 'TIMSansWeb', Arial, sans-serif !important;
+            font-size: 14px;
+            color: #fff !important;
+            line-height: normal;
+        }
+
+        .breaknews-icon {
+            height: 48px;
+            width: 48px;
+            background-image: url(lib/img/TIM/wp-megafono.png);
+            background-repeat: no-repeat;
+            background-position: center;
+            top: 40px;
+            left: 60px;
+            position: absolute;
+            z-index: 4;
+        }
+
+        .vela-left {
+            background-image: url(lib/img/TIM/wp-velalunga-left.png);
+            height: 310px;
+            width: 500px;
+            float: left;
+            top: 0;
+            left: 0px;
+            position: absolute;
+            z-index: 3;
+        }
+
+        .pulsante-leggi {
+            position: relative;
+            height: 30px;
+            width: 120px;
+            background-image: url(lib/img/TIM/wp-pulsante-leggi.png);
+            top: 254px;
+            left: 60px;
+            position: absolute;
+            z-index: 4;
+            font-family: 'TIMSansWeb'sans-serif !important;
+            font-family: 'TIMSansWeb' !important;
+            color: #fff !important;
+            text-align: center;
+            line-height: 30px;
+        }
+
+        .boxed {
+            width: 35%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .boxed ul {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        .box-news {
+            width: 50%;
+            height: 50%;
+            float: left;
+            list-style: none;
+            background-color: #00468C;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: #00468C;
+            position: relative;
+        }
+
+        .box-news-image {
+            height: 100%;
+            width: 100%;
+            background-position: center;
+            background-size: cover;
+            z-index: 1;
+            border: 1px solid #222;
+        }
+
+        .box-news a {
+            font-family: 'TIMSansWeb'sans-serif !important;
+            font-family: 'TIMSansWeb' !important;
+            font-size: 14px;
+            color: #fff !important;
+            font-weight: 200;
+            margin: 0 auto;
+            width: 90%;
+            margin-left: 5%;
+            margin-right: 5%;
+            display: block;
+            text-align: left;
+            position: absolute;
+            z-index: 4;
+            bottom: 10px;
+            line-height: 18px;
+        }
+
+        .vele-right-1 {
+            background-image: url(lib/img/TIM/wp-vele-right-1.png);
+            background-repeat: no-repeat;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 1px;
+            position: absolute;
+            z-index: 3;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+
+        <app-test-1></app-test-1>
+        <app-test-2></app-test-2>
+
+            <div class="row mb-4">
+                <div class="col-12">
+                    <button type="button" class="btn btn-primary btn-sm rounded-0">
+                        <i class="fa fa-chevron-right" aria-hidden="true"></i> BRAND E ADV
+                    </button>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-6">
+                    <h3>Brand e ADV</h3>
+                    <ul>
+                        <li><b>Reputazione</b> del <b>gruppo TIM</b></li>
+                        <li><b>Monitoraggio della presenza dei brand</b> sui media tradizionali e non TIM e competitor</li>
+                    </ul>
+                </div>
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-6">
+                            <button type="button" class="btn btn-light btn-lg w-100 border rounded-0 text-left">
+                                <i class="fa fa-folder-open-o" aria-hidden="true"></i> Brand
+                            </button>
+                        </div>
+                        <div class="col-6">
+                            <button type="button" class="btn btn-light btn-lg w-100 border rounded-0 text-left">
+                                <i class="fa fa-folder-open-o" aria-hidden="true"></i> ADV
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        <div class="row mb-4">
+            <div class="col-2">
+                <div id="AjaxDeltaImageLogoLeft">
+                    <a href="#"><img class="img-responsive" name="onetidHeadbnnrRight"
+                            src="lib/img/TIM/logo-TIM-people-net.png" alt="vai all" url=""
+                            dell'utente="" loggato'=""></a>
+                </div>
+            </div>
+            <div class="col-8" alt="none">
+            </div>
+            <div class="col-2">
+                <div id="AjaxDeltaImageLogoRight" class="right">
+                    <a id="ctl00_SPSimpleSiteLinkLeft" href="http://www.telecomitalia.com">
+                        <img id="ctl00_SiteLogoImageLeft" class="img-responsive" name="onetidHeadbnnrLeft"
+                            src="lib/img/TIM/logo-TIM.png" alt="Intranet TIM">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row m-0 mb-4">
+            <div class="breakingnews">
+                <div class="main-news"
+                    style="background-image: url('lib/img/TIM/ce224b82-fc36-4947-8730-3919849e5e3d.jpg?Width=690&amp;Height=310');">
+                    <a class="breaknews-title" href="#">TIMVISION<br>presenta</a>
+                    <span class="breaknews-abstract">Le novità di settembre<br>con un film girato in azienda</span>
+                    <div class="breaknews-icon"></div>
+                    <div class="vela-left"></div>
+                    <a class="plus-wrapper-major" href="#">
+                        <div class="pulsante-leggi">LEGGI</div>
+                    </a>
+                </div>
+                <div class="boxed">
+                    <ul>
+                        <li class="box-news">
+                            <div class="box-news-image"
+                                style="background-image:url(lib/img/TIM/382fd9bd-5805-49cc-a5c1-b9bd7e47a8d8.jpg?Width=185&amp;Height=155);">
+                                <a class="breaknews-title-small" href="#">Nord Sud Ovest Est<br>tappa 4</a>
+                                <div class="vele-right-1"></div>
+                                <a class="plus-wrapper" href="#"></a>
+                            </div>
+                        </li>
+                        <li class="box-news">
+                            <div class="box-news-image"
+                                style="background-image:url(lib/img/TIM/Vela-News-185x155.png?Width=185&amp;Height=155);">
+                                <a class="breaknews-title-small" href="#">Idea Sharing<br>Vince TIM Finde...</a>
+                                <div class="vele-right-1"></div>
+                                <a class="plus-wrapper" href="#"></a>
+                            </div>
+                        </li>
+                        <li class="box-news">
+                            <div class="box-news-image"
+                                style="background-image:url(lib/img/TIM/185x155-ES.png?Width=185&amp;Height=155);">
+                                <a class="breaknews-title-small" href="#">Engagement<br>Survey 2019</a>
+                                <div class="vele-right-1"></div>
+                                <a class="plus-wrapper" href="#"></a>
+                            </div>
+                        </li>
+                        <li class="box-news">
+                            <div class="box-news-image"
+                                style="background-image:url(lib/img/TIM/cf3f0ec5-d6fa-4b37-97b0-8a775996db97.jpg?Width=185&amp;Height=155);">
+                                <a class="breaknews-title-small" href="#">Risultati Q2 2019</a>
+                                <div class="vele-right-1"></div>
+                                <a class="plus-wrapper" href="#"></a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row m-0 mb-4 pb-4">
+            <!-- Focus On -->
+            <div class="col-4 p-0 div-wp">
+                <div class="wp-focus">
+                    <div class="focus-header">
+                        <div class="focus-icon"></div>
+                        <div class="focus-title">
+                            <span>Focus On</span>
+                        </div>
+                    </div>
+                    <div class="focus-box">
+                        <ul class="focusslider">
+
+                            <li class="focus-item">
+                                <div class="pl-2 pr-2">
+                                    <div class="focus-box-item-title">
+                                        <a>TIMMUSIC presenta: le novità di settembre</a>
+                                    </div>
+                                    <div class="focus-box-item-abstract">
+                                        Scopri le nuove offerteTIMMUSIC & GIGA!Milioni di brani, interviste esclusive,
+                                        classifiche e tantissime playlist
+                                    </div>
+                                    <div class="d-flex">
+                                        <div>
+                                            <a class="focus-detail-app">Approfondisci</a>
+                                        </div>
+                                        <div class="focus-icon-detail"></div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="focus-item">
+                                <div class="pl-2 pr-2">
+                                    <div class="focus-box-item-title">
+                                        <a>Cyber Monday replay 4</a>
+                                    </div>
+                                    <div class="focus-box-item-abstract">
+                                        Replica della quarta puntata che affronta l'importante tematica del navigare con
+                                        cautela. La rete è un mare di opportunità, ma attenti alle correnti e alle
+                                        tempeste!
+                                    </div>
+                                    <div class="d-flex">
+                                        <div>
+                                            <a class="focus-detail-app">Approfondisci</a>
+                                        </div>
+                                        <div class="focus-icon-detail"></div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="focus-item">
+                                <div class="pl-2 pr-2">
+                                    <div class="focus-box-item-title">
+                                        <a>Il progetto E2E per una migliore Customer Satisfaction</a>
+                                    </div>
+                                    <div class="focus-box-item-abstract">
+                                        Alla scoperta delle azioni progettate e messe in campo per l’incremento della
+                                        One
+                                        Call Solution e della soddisfazione del cliente, nell’ambito del Customer
+                                        Service
+                                        Consumer
+                                    </div>
+                                    <div class="d-flex">
+                                        <div>
+                                            <a class="focus-detail-app">Approfondisci</a>
+                                        </div>
+                                        <div class="focus-icon-detail"></div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="focus-item">
+                                <div class="pl-2 pr-2">
+                                    <div class="focus-box-item-title">
+                                        <a>TIM al Meeting dell'Amicizia tra i Popoli</a>
+                                    </div>
+                                    <div class="focus-box-item-abstract">
+                                        TIM, main sponsor del Meeting di Rimini, in corso dal 18 al 24 agosto, è
+                                        presente
+                                        con un’area interamente dedicata alle soluzioni 5G già disponibili.
+                                    </div>
+                                    <div class="d-flex">
+                                        <div>
+                                            <a class="focus-detail-app">Approfondisci</a>
+                                        </div>
+                                        <div class="focus-icon-detail"></div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="focus-item">
+                                <div class="pl-2 pr-2">
+                                    <div class="focus-box-item-title">
+                                        <a>Intelligenza Artificiale e 5G</a>
+                                    </div>
+                                    <div class="focus-box-item-abstract">
+                                        Nel nuovo numero del Notiziario Tecnico TIM i colleghi ne approfondiscono le
+                                        possibili sinergie per l'innovazione della rete
+                                    </div>
+                                    <div class="d-flex">
+                                        <div>
+                                            <a class="focus-detail-app">Approfondisci</a>
+                                        </div>
+                                        <div class="focus-icon-detail"></div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- People News -->
+            <div class="col-4 p-0 div-wp">
+                <div class="wp-focus">
+                    <div class="focus-header">
+                        <div class="people-icon"></div>
+                        <div class="focus-title">
+                            <span>People News</span>
+                        </div>
+                    </div>
+                    <div class="focus-box">
+                        <ul class="peopleslider">
+                            <li class="focus-item">
+                                <div class="pl-2 pr-2">
+                                    <div class="focus-box-item-title">
+                                        <a>TIMMUSIC presenta: le novità di settembre</a>
+                                    </div>
+                                    <div class="focus-box-item-abstract">
+                                        Scopri le nuove offerteTIMMUSIC & GIGA!Milioni di brani, interviste esclusive,
+                                        classifiche e tantissime playlist
+                                    </div>
+                                    <div class="d-flex">
+                                        <div>
+                                            <a class="focus-detail-app">Approfondisci</a>
+                                        </div>
+                                        <div class="focus-icon-detail"></div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="focus-item">
+                                <div class="pl-2 pr-2">
+                                    <div class="focus-box-item-title">
+                                        <a>Cyber Monday replay 4</a>
+                                    </div>
+                                    <div class="focus-box-item-abstract">
+                                        Replica della quarta puntata che affronta l'importante tematica del navigare con
+                                        cautela. La rete è un mare di opportunità, ma attenti alle correnti e alle
+                                        tempeste!
+                                    </div>
+                                    <div class="d-flex">
+                                        <div>
+                                            <a class="focus-detail-app">Approfondisci</a>
+                                        </div>
+                                        <div class="focus-icon-detail"></div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="focus-item">
+                                <div class="pl-2 pr-2">
+                                    <div class="focus-box-item-title">
+                                        <a>Il progetto E2E per una migliore Customer Satisfaction</a>
+                                    </div>
+                                    <div class="focus-box-item-abstract">
+                                        Alla scoperta delle azioni progettate e messe in campo per l’incremento della
+                                        One
+                                        Call Solution e della soddisfazione del cliente, nell’ambito del Customer
+                                        Service
+                                        Consumer
+                                    </div>
+                                    <div class="d-flex">
+                                        <div>
+                                            <a class="focus-detail-app">Approfondisci</a>
+                                        </div>
+                                        <div class="focus-icon-detail"></div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="focus-item">
+                                <div class="pl-2 pr-2">
+                                    <div class="focus-box-item-title">
+                                        <a>TIM al Meeting dell'Amicizia tra i Popoli</a>
+                                    </div>
+                                    <div class="focus-box-item-abstract">
+                                        TIM, main sponsor del Meeting di Rimini, in corso dal 18 al 24 agosto, è
+                                        presente
+                                        con un’area interamente dedicata alle soluzioni 5G già disponibili.
+                                    </div>
+                                    <div class="d-flex">
+                                        <div>
+                                            <a class="focus-detail-app">Approfondisci</a>
+                                        </div>
+                                        <div class="focus-icon-detail"></div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="focus-item">
+                                <div class="pl-2 pr-2">
+                                    <div class="focus-box-item-title">
+                                        <a>Intelligenza Artificiale e 5G</a>
+                                    </div>
+                                    <div class="focus-box-item-abstract">
+                                        Nel nuovo numero del Notiziario Tecnico TIM i colleghi ne approfondiscono le
+                                        possibili sinergie per l'innovazione della rete
+                                    </div>
+                                    <div class="d-flex">
+                                        <div>
+                                            <a class="focus-detail-app">Approfondisci</a>
+                                        </div>
+                                        <div class="focus-icon-detail"></div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+
+    <script src="lib/js/jquery-3.2.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="lib/js/jquery-3.2.1.min.js"><\/script>')</script>
+    <script src="lib/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/js/jquery.bxslider.js"></script>
+    <script src="scripts.js"></script>
+
+    <script src="lib/multiApps/polyfills-es5.js" nomodule defer></script>
+    <script src="lib/multiApps/polyfills-es2015.js" type="module"></script>
+    <script src="lib/multiApps/scripts.js" defer></script>
+    <script src="lib/multiApps/main-es2015.js" type="module"></script>
+    <script src="lib/multiApps/main-es5.js" nomodule defer></script>
+
+</body>
+
+</html>

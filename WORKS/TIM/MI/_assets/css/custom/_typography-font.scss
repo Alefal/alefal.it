@@ -1,0 +1,40 @@
+// Fontface
+@font-face {
+    font-family: 'Tim Sans';
+    src: url("../fonts/TIMSans/TIMSansWeb-Bold.eot");
+    src: url("../fonts/TIMSans/TIMSansWeb-Bold.eot?#iefix") format("embedded-opentype"), url("../fonts/TIMSans/TIMSansWeb-Bold.woff") format("woff"), url("../fonts/TIMSans/TIMSansWeb-Bold.svg#tim_sansbold") format("svg");
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Tim Sans';
+    src: url("../fonts/TIMSans/TIMSansWeb-Italic.eot");
+    src: url("../fonts/TIMSans/TIMSansWeb-Italic.eot?#iefix") format("embedded-opentype"), url("../fonts/TIMSans/TIMSansWeb-Italic.woff") format("woff"), url("../fonts/TIMSans/TIMSansWeb-Italic.svg#tim_sansitalic") format("svg");
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Tim Sans';
+    src: url("../fonts/TIMSans/TIMSansWeb-Light.eot");
+    src: url("../fonts/TIMSans/TIMSansWeb-Light.eot?#iefix") format("embedded-opentype"), url("../fonts/TIMSans/TIMSansWeb-Light.woff") format("woff"), url("../fonts/TIMSans/TIMSansWeb-Light.svg#tim_sanslight") format("svg");
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Tim Sans';
+    src: url("../fonts/TIMSans/TIMSansWeb-Regular.eot");
+    src: url("../fonts/TIMSans/TIMSansWeb-Regular.eot?#iefix") format("embedded-opentype"), url("../fonts/TIMSans/TIMSansWeb-Regular.woff") format("woff"), url("../fonts/TIMSans/TIMSansWeb-Regular.svg#tim_sansregular") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Tim Sans';
+    src: url("../fonts/TIMSans/TIMSansWeb-Thin.eot");
+    src: url("../fonts/TIMSans/TIMSansWeb-Thin.eot?#iefix") format("embedded-opentype"), url("../fonts/TIMSans/TIMSansWeb-Thin.woff") format("woff"), url("../fonts/TIMSans/TIMSansWeb-Thin.svg#tim_sansthin") format("svg");
+    font-weight: 200;
+    font-style: normal;
+}

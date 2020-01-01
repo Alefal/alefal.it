@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>PDFObject Example: PDF.js fallback</title>
+
+<style>
+.pdfobject-container {
+	width: 100%;
+	max-width: 600px;
+	height: 600px;
+	margin: 2em 0;
+}
+</style>
+</head>
+
+<body>
+<div id="pdfContainer"></div>
+
+<script src="https://pdfobject.com/js/pdfobject.min.js"></script>
+<script>
+var options = {
+	pdfOpenParams: {
+		navpanes: 0,
+		toolbar: 0,
+		statusbar: 0,
+		pagemode: "thumbs",
+		view: "FitV"
+	},
+	PDFJS_URL: "https://pdfobject.com//pdfjs/web/viewer.html"
+};
+
+PDFObject.embed("https://pdfobject.com/pdf/sample-3pp.pdf", "#pdfContainer", options);
+
+</script>
+
+</body>
+</html>

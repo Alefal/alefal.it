@@ -1,0 +1,23 @@
+@import "custom/typography-font";
+.marketInsights {
+    @import "variables";
+    // @import "bootstrap";
+    
+    @import "custom/mixins";
+    @import "custom/typography-styles";
+    @import "custom/modal";
+    @import "custom/section-hero";
+    @import "custom/section-docs";
+    @import "custom/section-news-ticker";
+}
+
+// .marketInsights {
+//     @include media-breakpoint-up(md) {
+//         padding-left: 4.375rem;
+//         padding-right: 4.375rem;        
+//     } 
+// }
+
+.marketInsights {
+    font-family: "TIM Sans", Arial, sans-serif;
+}

@@ -1,0 +1,61 @@
+<div class='app'>
+
+  <button (click)="updateEvents()" id="updateEvents">Update events</button>
+  <button (click)="updateHeader()" id="updateHeader">Update header</button>
+  <full-calendar
+    *ngIf="options"
+    #fullcalendar
+    [editable]="true"
+    [events]="eventsModel"
+    [header]="options.header"
+    [customButtons]="options.customButtons"
+    (dateClick)="dateClick($event)"
+    (eventDragStop)="eventDragStop($event)"
+    [plugins]="options.plugins"
+    (eventClick)="eventClick($event)"
+    (eventRender)="eventRender($event)"
+    (eventDoubleClick)="eventDoubleClick($event)"
+  ></full-calendar>
+
+  <!-- <div class='app-top'>
+    <button (click)='toggleVisible()'>toggle visible</button>
+    <button (click)='toggleWeekends()'>toggle weekends</button>
+    <button (click)='gotoPast()'>go to a date in the past</button>
+    (also, click a date/time to add an event)
+  </div>
+  
+  <div class='app-calendar' *ngIf="calendarVisible">
+    <full-calendar
+      #calendarAngular
+      defaultView="dayGridMonth"
+      [customButtons]="customButtons"
+      [header]="{
+        left: 'filter,prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+      }"
+      [footer]="{
+          left: 'custom1,custom2',
+          center: '',
+          right: 'prev,next'
+      }"
+      [plugins]="calendarPlugins"
+      [weekends]="calendarWeekends"
+      [events]="calendarEvents"
+      (dateClick)="handleDateClick($event)"
+    ></full-calendar>
+  </div> -->
+
+</div>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modal</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    This is a modal.
+  </div>
+</ng-template>

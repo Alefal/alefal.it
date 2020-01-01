@@ -1,0 +1,168 @@
+<div [@routerTransition]>
+    <app-page-header 
+        [key]="'users'"
+        [heading]="'nav.menu.users' | translate" 
+        [icon]="'fa-users'"
+        [title]="'nav.menu.users' | translate"
+        (onClick)="addItem()"></app-page-header>
+
+    <div class="row centralContent">
+        <div class="col col-xl-12 col-lg-12">
+            <table class="table table-hover table-striped table-sm" cellspacing="0" datatable [dtOptions]="dtOptions">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>{{ 'generic.field.lastName' | translate }}</th>
+                        <th>{{ 'generic.field.name' | translate }}</th>
+                        <th>{{ 'generic.field.username' | translate }}</th>
+                        <th>{{ 'generic.field.role' | translate }}</th>
+                        <th style="width:250px"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of users">
+                        <td>
+                            <i class="fa fa-fw fa-check text-success" *ngIf="user.enabled" placement="bottom" ngbTooltip="{{'generic.tooltip.enabled' | translate}}"></i>
+                            <i class="fa fa-fw fa-ban text-danger" *ngIf="!user.enabled" placement="bottom" ngbTooltip="{{'generic.tooltip.disabled' | translate}}"></i>
+                        </td>
+                        <td>{{user.lastname}}</td>
+                        <td>{{user.firstname}}</td>
+                        <td>{{user.lastname}}</td>
+                        <td>{{user.role}}</td>
+                        <td class="text-right">
+                            <div class="btn-toolbar justify-content-end" role="toolbar" aria-label="Toolbar with button groups">
+                                <div class="btn-group mr-2" role="group">
+                                    <button type="button" class="btn btn-primary btn-sm" (click)="open('editUser',content,user)" placement="bottom" ngbTooltip="{{'generic.tooltip.edit' | translate}}">
+                                        <i class="fa fa-fw fa-pencil"></i>
+                                    </button>
+                                    <!-- Change Password -->
+                                    <button *ngIf="!sharedService.ldapAuthentication" type="button" class="btn btn-primary btn-sm" (click)="open('changePsw',content,user)" placement="bottom" ngbTooltip="{{'nav.user.changePsw' | translate}}">
+                                        <i class="fa fa-fw fa-key"></i>
+                                    </button>
+                                    <!-- ENABLED / DISABLED User -->
+                                    <button type="button" class="btn btn-primary btn-sm" *ngIf="!user.enabled" (click)="enableUser(user,'enable')" placement="bottom" ngbTooltip="{{'generic.tooltip.enable' | translate}}">
+                                        <i class="fa fa-fw fa-check"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-primary btn-sm" *ngIf="user.enabled" (click)="enableUser(user,'disable')" placement="bottom" ngbTooltip="{{'generic.tooltip.disable' | translate}}">
+                                        <i class="fa fa-fw fa-ban"></i>
+                                    </button>
+                                </div>
+                                <div class="btn-group mr-2" role="group">
+                                    <button type="button" class="btn btn-danger btn-sm" (click)="delete(user.idUser)" placement="bottom" ngbTooltip="{{'generic.tooltip.delete' | translate}}">
+                                        <i class="fa fa-fw fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<ng-template #content let-modal>
+    <div class="modal-header bg-light">
+        <h4 class="modal-title" id="modal-basic-title">{{modalTitle}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        
+        <!-- <form *ngIf="showAddEditUser" (ngSubmit)="saveUser(userForm)" #userForm="ngForm" autocomplete="off">
+            <input type="hidden" [(ngModel)]="user.idUser" name="idUser">
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">{{ 'generic.field.username' | translate }} *</label>
+                <div class="col-sm-10">
+                    <input required 
+                        type="text" class="form-control" 
+                        [ngClass]="{
+                            'alert alert-danger m-0': username.invalid && (username.dirty || username.touched),
+                            'has-success': username.valid && (username.dirty || username.touched)
+                        }"
+                        [(ngModel)]="user.username" name="username" #username="ngModel">
+                    <div *ngIf="!username.valid && submitted" class="m-0 mt-1">
+                        <span class="badge badge-danger">{{ 'generic.field.username' | translate }} {{ 'generic.label.required' | translate }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row" *ngIf="!showEditUser && !sharedService.ldapAuthentication">
+                <label class="col-sm-2 col-form-label">{{ 'generic.field.password' | translate }} *</label>
+                <div class="col-sm-10">
+                    <input required minlength="8" [type]="sharedService.showPassword ? 'text' : 'password'" class="form-control" [(ngModel)]="user.password" name="password" #password="ngModel">
+                    <span (click)="sharedService.showHidePassword()" class="fa fa-lg fa-eye field-icon-text-password"></span>
+                    <div *ngIf="!password.valid && submitted" class="m-0 mt-1">
+                        <span class="badge badge-danger" *ngIf="password.errors.required">{{ 'generic.field.password' | translate }} {{ 'generic.label.required' | translate }}</span>
+                        <span class="badge badge-danger" *ngIf="password.errors.minlength">{{ 'generic.field.password' | translate }} {{ 'generic.label.minLength.8' | translate }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">{{ 'generic.field.name' | translate }} *</label>
+                <div class="col-sm-10">
+                    <input required type="text" class="form-control" [(ngModel)]="user.name" name="name" #name="ngModel">
+                    <div *ngIf="!name.valid && submitted" class="m-0 mt-1">
+                        <span class="badge badge-danger" *ngIf="name.errors.required">{{ 'generic.field.name' | translate }} {{ 'generic.label.required' | translate }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">{{ 'generic.field.lastName' | translate }} *</label>
+                <div class="col-sm-10">
+                    <input required type="text" class="form-control" [(ngModel)]="user.surname" name="surname" #surname="ngModel">
+                    <div *ngIf="!surname.valid && submitted" class="m-0 mt-1">
+                        <span class="badge badge-danger" *ngIf="surname.errors.required">{{ 'generic.field.lastName' | translate }} {{ 'generic.label.required' | translate }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">{{ 'generic.field.email' | translate }} *</label>
+                <div class="col-sm-10">
+                    <input required pattern="[^ @]*@[^ @]*" type="text" class="form-control" [(ngModel)]="user.email" name="email" #email="ngModel">
+                    <div *ngIf="!email.valid && submitted" class="m-0 mt-1">
+                        <span class="badge badge-danger" *ngIf="email.errors.required">{{ 'generic.field.email' | translate }} {{ 'generic.label.required' | translate }}</span>
+                        <span class="badge badge-danger" *ngIf="email.errors.pattern">{{ 'generic.field.email' | translate }} {{ 'generic.label.validEmail' | translate }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">{{ 'generic.field.role' | translate }} *</label>
+                <div class="col-sm-10">
+                    <select required [compareWith]="compareByRoleId" class="custom-select custom-select-sm" name="userRole" #userRole="ngModel" (ngModelChange)="setRole($event)" [(ngModel)]="user.roles[0]">
+                        <option *ngFor="let role of roles" [ngValue]="role">{{role.roleName}}</option>
+                    </select>
+                    <div *ngIf="!userRole.valid && submitted" class="m-0 mt-1">
+                        <span class="badge badge-danger" *ngIf="userRole.errors.required">{{ 'generic.field.role' | translate }} {{ 'generic.label.required' | translate }}</span>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="text-right">
+                <button type="submit" class="btn btn-primary">
+                    {{ 'generic.button.save' | translate }}
+                </button>
+            </div>
+        </form> -->
+
+        <div *ngIf="showChangePsw">
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">{{ 'generic.field.newPsw' | translate }}</label>
+                <div class="col-sm-8">
+                    <input required minlength="8" [type]="sharedService.showPassword ? 'text' : 'password'" class="form-control" [(ngModel)]="user.password" name="password">
+                    <span (click)="sharedService.showHidePassword()" class="fa fa-lg fa-eye field-icon-text-password"></span>
+                    <div *ngIf="newPswRequired || newPswMinlength" class="invalid-feedback">
+                        <div *ngIf="newPswRequired">{{ 'generic.field.message.password.required' | translate }}</div>
+                        <div *ngIf="newPswMinlength">{{ 'generic.field.message.password.length' | translate }}</div>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="text-right">
+                <button type="submit" class="btn btn-primary" (click)="changePassword()">
+                    {{ 'generic.button.save' | translate }}
+                </button>
+            </div>
+        </div>
+    </div>
+</ng-template>

@@ -1,0 +1,15 @@
+.close {
+    outline: none;
+}
+::ng-deep .modal-xlg .modal-dialog {
+    max-width: 80%;
+}
+.has-danger {
+    border: 1px solid #f97f8a;
+}
+
+/***
+:host o [_nghost-c0] -> APP-ROOT
+:host-context
+::ng-deep
+***/
