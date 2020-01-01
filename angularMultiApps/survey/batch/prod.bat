@@ -1,0 +1,1 @@
+﻿ng build --prod --extra-webpack-config webpack.extra.js --single-bundle
