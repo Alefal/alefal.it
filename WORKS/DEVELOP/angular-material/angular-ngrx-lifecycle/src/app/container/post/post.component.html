@@ -1,0 +1,37 @@
+<app-post-collection
+    *ngIf="section == 'collection'"
+    [postsCollection]="postsCollection"
+    [errorsCollection]="errorsCollection"
+    (refreshPostsPrepare)="loadPosts()"
+    (postCreationPrepare)="postCreationPrepare($event)"
+    (postDetail)="postDetail($event)"
+    (postDelete)="postDelete($event)"></app-post-collection>
+
+<app-post-detail
+    *ngIf="section == 'detail'"
+    [postTitle]="postTitle"
+    [postSelected]="postSelected"
+    (postCreate)="postCreate($event)"
+    (postEdit)="postEdit($event)"></app-post-detail>
+
+<!-- <div>
+    <div *ngIf="errorsCollection?.message">
+        <div class="alert alert-danger" role="alert" id="errorsCollection">
+            Some error occurred. Please try again
+        </div>
+    </div>
+
+    <ul class="list-group sidebarContainer">
+        <li *ngFor="let post of postsCollection" class="list-group-item d-flex justify-content-between">
+            <div>
+                <span class="badge badge-primary">#{{ post.id }}</span> - <small>{{ post.createdAt | date }}</small>
+                <h6 (click)="getDetail(post)">
+                    {{ post.title }}
+                </h6>
+            </div>
+            <div style="line-height: 50px; cursor: pointer;" class="align-middle">
+                <i class="fa fa-trash text-danger" (click)=deletePost(post)></i>
+            </div>
+        </li>
+    </ul>
+</div> -->

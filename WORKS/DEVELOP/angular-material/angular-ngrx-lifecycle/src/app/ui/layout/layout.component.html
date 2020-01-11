@@ -1,0 +1,11 @@
+<app-left></app-left>
+<div id="wrapper">
+    <app-header></app-header>
+    <div id="container" class="m-4">
+        <ng-content></ng-content>
+        <!-- Post Detail -->
+        <app-post [section]="'detail'"></app-post>
+    </div>
+    <app-footer></app-footer>
+</div>
+<app-right></app-right>

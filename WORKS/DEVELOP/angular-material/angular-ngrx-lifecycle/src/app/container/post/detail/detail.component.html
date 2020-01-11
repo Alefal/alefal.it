@@ -1,0 +1,63 @@
+<div *ngIf="postSelected && postSelected != null">
+    <div class="text-right">
+        <h1 class="badge badge-warning">{{postTitle}}</h1>
+    </div>
+    <hr />
+    <form>
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <img [src]="postSelected.avatar" class="img-thumbnail" />
+            </div>
+            <div class="form-group col-md-10">
+                <h6 class="text-right">
+                    Post <span class="badge badge-dark">#{{postSelected.id}}</span>
+                    - <small>{{ postSelected.createdAt | date }}</small>
+                </h6>
+                <hr />
+                <label><i class="fa fa-star" aria-hidden="true"></i> Title</label>
+                <input name="postTitle" type="text" class="form-control" [(ngModel)]="postSelected.title">
+            </div>
+        </div>
+        <div class="form-group">
+            <label><i class="fa fa-file-text-o" aria-hidden="true"></i> Description</label>
+            <textarea name="postDescription" class="form-control" rows="3" [(ngModel)]="postSelected.description"></textarea>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-8">
+                <label><i class="fa fa-link" aria-hidden="true"></i> Link</label>
+                <input name="postLink" type="text" class="form-control" [(ngModel)]="postSelected.link">
+            </div>
+            <div class="form-group col-md-4">
+                <label><i class="fa fa-user" aria-hidden="true"></i> Author</label>
+                <input name="postAuthor" type="text" class="form-control" [(ngModel)]="postSelected.author">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label><i class="fa fa-comments-o" aria-hidden="true"></i> Comments</label>
+                <input name="postComments" type="number" class="form-control" [(ngModel)]="postSelected.comments">
+            </div>
+            <div class="form-group col-md-4">
+                <label><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Like</label>
+                <input name="postLike" type="number" class="form-control" [(ngModel)]="postSelected.like">
+            </div>
+            <div class="form-group col-md-4">
+                <label><i class="fa fa-share-alt" aria-hidden="true"></i> Shared</label>
+                <input name="postShared" type="number" class="form-control" [(ngModel)]="postSelected.shared">
+            </div>
+        </div>
+        <div class="text-right">
+            <button *ngIf="postSelected.id > 0" type="submit" class="btn btn-outline-success rounded-0" (click)="postEdit(postSelected)">
+                <i class="fa fa-pencil" aria-hidden="true"></i> Edit
+            </button>
+            <button *ngIf="postSelected.id == 0" type="submit" class="btn btn-outline-success rounded-0" (click)="postCreate(postSelected)">
+                <i class="fa fa-cloud" aria-hidden="true"></i> Save
+            </button>
+        </div>
+    </form>
+
+</div>
+
+<div *ngIf="!postSelected || postSelected == null">
+    CREATE
+</div>

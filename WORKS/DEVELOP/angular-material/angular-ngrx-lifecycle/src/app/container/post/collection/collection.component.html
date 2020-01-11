@@ -1,0 +1,35 @@
+<div class="sidebar-header d-flex justify-content-between">
+    <h5>
+        <i class="fa fa-list-ul"></i> Posts
+    </h5>
+    <div class="btn-group" role="group">
+        <button type="button" class="btn btn-sm btn-primary">
+            <i class="fa fa-refresh" (click)="refreshPosts()"></i>
+        </button>
+        <button type="button" class="btn btn-sm btn-success">
+            <i class="fa fa-plus" (click)="postCreationPrepare()"></i>
+        </button>
+    </div>
+</div>
+<hr />
+<div>
+    <div *ngIf="errorsCollection?.message">
+        <div class="alert alert-danger" role="alert" id="errorsCollection">
+            Some error occurred. Please try again
+        </div>
+    </div>
+
+    <ul class="list-group sidebarContainer">
+        <li *ngFor="let post of postsCollection" class="list-group-item d-flex justify-content-between">
+            <div>
+                <span class="badge badge-primary">#{{ post.id }}</span> - <small>{{ post.createdAt | date }}</small>
+                <h6 class="c-pointer" (click)="postDetail(post)">
+                    {{ post.title }}
+                </h6>
+            </div>
+            <div style="line-height: 50px;" class="align-middle c-pointer">
+                <i class="fa fa-trash text-danger" (click)="postDelete(post)"></i>
+            </div>
+        </li>
+    </ul>
+</div>

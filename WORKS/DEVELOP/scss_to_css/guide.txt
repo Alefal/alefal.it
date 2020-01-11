@@ -1,0 +1,7 @@
+Link:
+https://code.visualstudio.com/docs/languages/css
+
+$ npm install -g node-sass less
+
+$ node-sass --output-style compressed style.scss > dist/style.css
+$ node-sass style.scss > dist/style.css
