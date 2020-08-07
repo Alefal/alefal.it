@@ -1,0 +1,26 @@
+<div class="user-profile" style="background: url(assets/images/background/user-info.jpg) no-repeat;">
+    <div class="profile-img"> 
+        <!-- <img src="assets/images/users/profile.png" alt="user"> -->
+        <img src="{{ (userLogged$ | async).avatar }}" alt="user">
+    </div>
+    <div class="profile-text">
+        <a [matMenuTriggerFor]="sdprofile" class=""> 
+            {{ (userLogged$ | async).lastname }} {{ (userLogged$ | async).firstname }}
+        </a>
+    </div>
+    <mat-menu #sdprofile="matMenu" class="mymegamenu">
+        <app-profile 
+            [appConfig$]="appConfig$"
+            (callFunction)="callFunction($event)"></app-profile>
+    </mat-menu>
+</div>
+<mat-nav-list appAccordion>
+    <mat-list-item appAccordionLink *ngFor="let menuitem of (appConfig$ | async).features.dashboard" routerLinkActive="selected">
+        <a class="" appAccordionToggle [routerLink]="['/', menuitem.state]" *ngIf="menuitem.type === 'link' && menuitem.enabled">
+            <mat-icon>{{ menuitem.icon }}</mat-icon>
+            <span>{{ menuitem.name }}</span>
+            <span fxFlex></span>
+            <span class="label label-{{ badge.type }}" *ngFor="let badge of menuitem.badge">{{ badge.value }}</span>
+        </a>
+    </mat-list-item>
+</mat-nav-list>

@@ -1,0 +1,28 @@
+<div fxLayout="row wrap">
+    <!-- column -->
+    <div fxFlex="100">
+        <mat-card>
+            <mat-card-content>
+                <!-- <div class="d-flex flex-wrap">
+                    <div>
+                        <mat-card-title>{{ 'dashBoard.title' | translate }}</mat-card-title>
+                         <mat-card-subtitle>New OPC</mat-card-subtitle>
+                     </div>
+                    <div class="ml-auto">
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-secondary">Left</button>
+                            <button type="button" class="btn btn-secondary">Middle</button>
+                            <button type="button" class="btn btn-secondary">Right</button>
+                        </div>
+                    </div>
+                </div> -->
+
+                <div class="mb-4">
+                    <app-cards-collection
+                        [cardsCollection]="cardsCollection"
+                        [errorsCollection]="errorsCollection"></app-cards-collection>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

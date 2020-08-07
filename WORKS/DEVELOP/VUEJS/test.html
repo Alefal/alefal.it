@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en" class="h-100">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>vue.js</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/sticky-footer-navbar/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../lib/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="d-flex flex-column h-100 bg-primary">
+    <!-- Begin page content -->
+    <main role="main" class="flex-shrink-0">
+        <div class="container">
+            <div class="content p-4">
+
+                <div id="app1">
+                    {{ message }}
+                </div>
+
+                <div id="app2">
+                    <span v-bind:title="message">
+                        Hover your mouse over me for a few seconds
+                        to see my dynamically bound title!
+                    </span>
+                </div>
+
+                <div id="app3">
+                    <span v-if="seen">Now you see me</span>
+                </div>
+
+                <div id="app4">
+                    <ol>
+                        <li v-for="todo in todos">
+                            {{ todo.text }}
+                        </li>
+                    </ol>
+                </div>
+
+                <div id="app5">
+                    <p>{{ message }}</p>
+                    <button v-on:click="reverseMessage">Reverse Message</button>
+                </div>
+
+                <div id="app6">
+                    <p>{{ message }}</p>
+                    <input v-model="message">
+                </div>
+
+                <div id="app7">
+                    <ol>
+                        <!--
+                        Now we provide each todo-item with the todo object
+                        it's representing, so that its content can be dynamic.
+                        We also need to provide each component with a "key",
+                        which will be explained later.
+                      -->
+                        <todo-item v-for="item in groceryList" v-bind:todo="item" v-bind:key="item.id"></todo-item>
+                    </ol>
+                </div>
+
+                <div id="app8">
+                    <p>{{ foo }}</p>
+                    <!-- this will no longer update `foo`! -->
+                    <button v-on:click="foo = 'baz'">Change it</button>
+                </div>
+
+                <div id="app9">
+                    <p>{{ a }}</p>
+                    <!-- this will no longer update `foo`! -->
+                    <a href="">Change it</a>
+                </div>
+
+                <div id="app10">{{ fullName }}</div>
+
+            </div>
+        </div>
+    </main>
+
+    <script src="../lib/js/jquery-3.2.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../lib/js/jquery-3.2.1.min.js"><\/script>')</script>
+    <script src="../lib/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="dev.js"></script>
+</body>
+
+</html>

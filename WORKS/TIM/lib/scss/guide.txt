@@ -1,4 +1,0 @@
-$ npm install -g node-sass less
-$ node-sass -o dist .\styles.scss
-
-node-sass --output-style compressed styles.scss > dist/styles.css

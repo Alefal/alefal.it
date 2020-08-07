@@ -1,0 +1,40 @@
+<div class="container h-100" [@routerTransition]>
+    <div class="row h-100">
+        <div class="col-sm-10 col-md-8 col-lg-6 mx-auto my-auto">
+            <div class="card card-signin my-5">
+                <div class="card-body">
+                    <div class="text-center m-2 mb-4">
+                        <img src="{{ (appConfig$ | async).settings.logo }}" class="w-100" style="max-width: 100px;" />
+                        <hr />
+                        <h3>{{ (appConfig$ | async).settings.title }}</h3>
+                    </div>
+                    <form class="form-signin">
+                        <div class="form-label-group">
+                            <input type="email" id="username" class="form-control" placeholder="Email address"
+                                required [(ngModel)]="auth.authenticate.username" name="username">
+                            <label for="username">Email address</label>
+                        </div>
+
+                        <div class="form-label-group">
+                            <input type="password" id="password" class="form-control" placeholder="Password"
+                                required [(ngModel)]="auth.authenticate.password" name="password">
+                            <label for="password">Password</label>
+                        </div>
+
+                        <div class="custom-control custom-checkbox m-4">
+                            <input type="checkbox" class="custom-control-input" id="rememberme" name="rememberme" [(ngModel)]="auth.authenticate.rememberme">
+                            <label class="custom-control-label" for="rememberme">Remember Me</label>
+                        </div>
+                        <button type="button" class="btn btn-raised btn-info btn-block text-uppercase" (click)="onLoggedIn(auth)">
+                            <h6><i class="fa fa-unlock-alt fa-2x" aria-hidden="true"></i> Sign in</h6>
+                        </button>
+                        <hr class="my-4">
+                        <div class="text-center text-muted">
+                            <small>version <em>{{ (appConfig$ | async).settings.version }}</em></small>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

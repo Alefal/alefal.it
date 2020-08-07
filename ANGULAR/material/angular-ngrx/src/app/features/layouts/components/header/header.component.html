@@ -1,0 +1,8 @@
+<button [matMenuTriggerFor]="profile" mat-icon-button class="m-r-5"> 
+    <img src="{{ (userLogged$ | async).avatar }}" alt="user" class="profile-pic"> 
+</button>
+<mat-menu #profile="matMenu" class="mymegamenu">
+    <app-profile 
+        [appConfig$]="appConfig$"
+        (callFunction)="callFunction($event)"></app-profile>
+</mat-menu>

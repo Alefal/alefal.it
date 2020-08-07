@@ -1,0 +1,19 @@
+<br class="m-4" />
+<h3 class="pb-4">Wizard <b>OPERATION</b></h3>
+<mat-form-field>
+    <mat-label>operation</mat-label>
+    <input matInput name="operation" [(ngModel)]="createService.opcObject.operation" required />
+    <mat-hint *ngIf="createService.stepOperationError">
+        <div class="text-danger">{{ 'generic.message.field.required' | translate }}</div>
+    </mat-hint>
+</mat-form-field>
+<hr />
+<div class="button-row mt-4">
+    <div class="d-flex justify-content-between">
+        <button mat-button matStepperPrevious>Back</button>
+        <!-- [disabled]="!createService.stepOperationComplete" -->
+        <button mat-button class="text-white" 
+            [ngClass]="createService.stepOperationComplete ? 'bg-success' : 'bg-secondary'"
+            (click)="createService.checkOperationStep()">Next</button>
+    </div>
+</div>

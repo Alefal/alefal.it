@@ -1,0 +1,53 @@
+{
+    "env": {
+        "name": "DEV"
+    },
+    "settings": {
+        "title": "PLC Service",
+        "logo": "./assets/images/logo.svg",
+        "version": "1.0.4",
+        "language": "en",
+        "intervalTime": 5000,
+        "showDashboard": false,
+        "apiServer": {
+          "host": "http://5bce1f21a0c99b001337a9e5.mockapi.io",
+          "endPoint": "/_vti_bin/marketInsights/endpoint.svc"
+        },
+        "apiList": {
+            "survey":"/survey",
+            "exportSurvey":"/survey/download?parameters=method=EXPORTSURVEYCOLLECTION",
+            "watermark":"/watermark",
+            "trace": "/trace",
+            "session": "/session"
+        }
+    },
+    "features": {
+        "dashboard": [
+            { "state": "dashboard", "name": "Dashboard", "type": "link", "icon": "av_timer", "enabled": true },
+            { "state": "users", "name": "Users", "type": "link", "icon": "people", "enabled": true },
+            { "state": "button", "type": "link", "name": "Buttons", "icon": "crop_7_5", "enabled": false },
+            { "state": "grid", "type": "link", "name": "Grid List", "icon": "view_comfy", "enabled": false },
+            { "state": "lists", "type": "link", "name": "Lists", "icon": "view_list", "enabled": false },
+            { "state": "menu", "type": "link", "name": "Menu", "icon": "view_headline", "enabled": false },
+            { "state": "tabs", "type": "link", "name": "Tabs", "icon": "tab", "enabled": false },
+            { "state": "stepper", "type": "link", "name": "Stepper", "icon": "web", "enabled": false },
+            { "state": "expansion", "type": "link", "name": "Expansion Panel", "icon": "vertical_align_center", "enabled": false },
+            { "state": "chips", "type": "link", "name": "Chips", "icon": "vignette", "enabled": false },
+            { "state": "toolbar", "type": "link", "name": "Toolbar", "icon": "voicemail", "enabled": false },
+            { "state": "progress-snipper", "type": "link", "name": "Progress snipper", "icon": "border_horizontal", "enabled": false },
+            { "state": "progress", "type": "link", "name": "Progress Bar", "icon": "blur_circular", "enabled": false },
+            { "state": "dialog", "type": "link", "name": "Dialog", "icon": "assignment_turned_in", "enabled": false },
+            { "state": "tooltip", "type": "link", "name": "Tooltip", "icon": "assistant", "enabled": false },
+            { "state": "snackbar", "type": "link", "name": "Snackbar", "icon": "adb", "enabled": false },
+            { "state": "slider", "type": "link", "name": "Slider", "icon": "developer_mode", "enabled": false },
+            { "state": "slide-toggle", "type": "link", "name": "Slide Toggle", "icon": "all_inclusive", "enabled": false }
+        ],
+        "profile": [
+            { "state": "settings", "name": "Settings", "type": "link", "icon": "settings", "enabled": true, "action":"hi" },
+            { "state": "changePassword", "name": "Change Password", "type": "link", "icon": "lock", "enabled": true, "action":"changePassword" },
+            { "state": "account_box", "name": "Profile", "type": "link", "icon": "account_box", "enabled": false, "action":"hi" },
+            { "state": "notifications_off", "name": "Disable notifications", "type": "link", "icon": "notifications_off", "enabled": false, "action":"hi" },
+            { "state": "exit_to_app", "name": "Sign Out", "type": "link", "icon": "exit_to_app", "enabled": true, "action":"logout" }
+        ]
+    }
+}

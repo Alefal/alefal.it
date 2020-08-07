@@ -1,0 +1,18 @@
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+    <mat-step>
+        <ng-template matStepLabel>correlation</ng-template>
+        <wizard-correlation></wizard-correlation>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>introduction</ng-template>
+        <wizard-introduction></wizard-introduction>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>operation</ng-template>
+        <wizard-operation></wizard-operation>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>summary</ng-template>
+        <wizard-summary></wizard-summary>
+    </mat-step>
+</mat-horizontal-stepper>

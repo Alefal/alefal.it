@@ -1,0 +1,18 @@
+<br class="m-4" />
+<h3 class="pb-4">Wizard <b>CORRELATION</b></h3>
+
+<mat-form-field>
+    <mat-label>correlation</mat-label>
+    <input matInput name="correlation" [(ngModel)]="createService.opcObject.correlation" required />
+    <mat-hint *ngIf="createService.stepCorrelationError">
+        <div class="text-danger">{{ 'generic.message.field.required' | translate }}</div>
+    </mat-hint>
+</mat-form-field>
+
+<hr />
+<div class="text-right">
+    <!-- [disabled]="!createService.stepCorrelationComplete" -->
+    <button mat-button class="text-white" 
+        [ngClass]="createService.stepCorrelationComplete ? 'bg-success' : 'bg-secondary'"
+        (click)="createService.checkCorrelationStep()">Next</button>
+</div>

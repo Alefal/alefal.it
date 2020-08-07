@@ -1,0 +1,109 @@
+::ng-deep #boxState {
+  border-radius: 25px;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+}
+::ng-deep .elementState {
+  font-size: 0.75rem;
+  font-weight: bold;
+  line-height: 1.2rem;
+}
+
+::ng-deep .attribuireBoxState {
+  background: #ffc600;
+}
+::ng-deep .attribuireState {
+  color: #fff;
+}
+
+::ng-deep .autoccBoxState {
+  background: #ffc600;
+}
+::ng-deep .autoccState {
+  color: #fff;
+}
+
+::ng-deep .autocmBoxState {
+  background: #ffc600;
+}
+::ng-deep .autocmState {
+  color: #fff;
+}
+
+::ng-deep .autorizzataBoxState {
+  background: #12981b;
+}
+::ng-deep .autorizzataState {
+  color: #fff;
+}
+
+::ng-deep .bozzaBoxState {
+  background: #ffc600;
+}
+::ng-deep .bozzaState {
+  color: #fff;
+}
+
+::ng-deep .chiusaBoxState {
+  background: #bfbfbe;
+}
+::ng-deep .chiusaState {
+  color: #FFF;
+}
+
+::ng-deep .chiusanegativoBoxState {
+  background: #bfbfbe;
+}
+::ng-deep .chiusanegativoState {
+  color: #000;
+}
+
+::ng-deep .confermataBoxState {
+  background: #12981b;
+}
+::ng-deep .confermataState {
+  color: #fff;
+}
+
+::ng-deep .daautorizzareBoxState {
+  background: #ffc600;
+}
+::ng-deep .daautorizzareState {
+  color: #fff;
+}
+
+::ng-deep .invalutazioneBoxState {
+  background: #ffc600;
+}
+::ng-deep .invalutazioneState {
+  color: #fff;
+}
+
+::ng-deep .negativoBoxState {
+  background: #ec0b20;
+}
+::ng-deep .negativoState {
+  color: #fff;
+}
+
+::ng-deep .nonautorizzatoBoxState {
+  background: #ec0b20;
+}
+::ng-deep .nonautorizzatoState {
+  color: #fff;
+}
+
+::ng-deep .positivoBoxState {
+  background: #ffc600;
+}
+::ng-deep .positivoState {
+  color: #fff;
+}
+
+::ng-deep .verificataBoxState {
+  background: #ffc600;
+}
+::ng-deep .verificataState {
+  color: #fff;
+}

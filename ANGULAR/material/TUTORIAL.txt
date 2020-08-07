@@ -1,0 +1,196 @@
+########## NG Model and Component ##########
+ng g m expired --routing=true
+ng g c expired --spec=false 
+
+
+
+########## NGRX ##########
+=== Installation ===
+$ npm install @ngrx/core @ngrx/store @ngrx/effects @ngrx/store-devtools @ngrx/router-store --save
+$ npm install @ngrx/schematics --save-dev
+
+=== setting the default schematics ===
+$ ng config cli.defaultCollection @ngrx/schematics
+
+=== Initial Setup ===
+$ ng generate @ngrx/schematics:store State --root --module app.module.ts
+
+=== State ===
+$ ng generate store State --root --statePath store --module app.module.ts
+
+=== Actions ===
+$ ng generate action store/User --group
+=== Reducers ===
+$ ng generate reducer store/User --group --spec false --module app.module.ts
+
+=== Interface ===
+$ ng g i models/user interface
+
+=== State Element ===
+Create store/state/*.ts
+
+=== BASTA SOLO QUESTO: Container ===
+$ ng generate container container/Posts --state ../store/reducers/post.reducer.ts --spec false ////////// --stateInterface UserState 
+
+=== BASTA SOLO QUESTO: Feature ===
+$ ng generate feature store/User --group --spec false  --module app.module.ts
+
+
+
+########## STYLING ##########
+$ npm install jquery --save
+
+Go to the ./angular-cli.json:
+"scripts": [ "../node_modules/jquery/dist/jquery.min.js" ]
+
+import * as $ from 'jquery';
+
+$ npm install bootstrap font-awesome
+
+In src/styles.css and adding the following lines:
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~font-awesome/css/font-awesome.css";
+
+$ ng generate module ui --module app.module
+$ ng generate component ui/layout
+$ ng generate component ui/header
+$ ng generate component ui/footer
+
+In src/app/ui/layout/layout.component.html in your IDE and update the content with the following code:
+<app-header></app-header>
+<div class="container">
+  <ng-content></ng-content>
+</div>
+<app-footer></app-footer>
+
+Open src/app/ui/ui.module.ts and add
+exports: [LayoutComponent]
+
+Open the file src/app/app.component.html and remove replace all the content with the code below:
+<app-layout>
+  <div class="jumbotron">
+    <h1>Angular CLI v6 + Bootstrap & FontAwesome</h1>
+    <p>
+      In this tutorial you learn how to use Angular CLI v6 with Bootstrap and FontAwesome!
+    </p>
+  </div>
+</app-layout>
+
+Header component
+<nav class="navbar navbar-dark bg-dark mb-5">
+  <a class="navbar-brand" href="/">Angular & Bootstrap</a>
+  <div class="navbar-expand mr-auto">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="#">Home</a>
+      <a class="nav-item nav-link" href="#">About</a>
+      <a class="nav-item nav-link" href="#">Contact</a>
+    </div>
+  </div>
+  <div class="navbar-expand ml-auto navbar-nav">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" href="https://github.com/beeman" target="_blank">
+        <i class="fa fa-github"></i>
+      </a>
+      <a class="nav-item nav-link" href="https://twitter.com/beeman_nl" target="_blank">
+        <i class="fa fa-twitter"></i>
+      </a>
+      <a class="nav-item nav-link" href="https://medium.com/@beeman" target="_blank">
+        <i class="fa fa-medium"></i>
+      </a>
+    </div>
+  </div>
+</nav>
+
+Open the file src/app/ui/footer/footer.component.html and replace the content with the following code:
+<nav class="navbar navbar-dark bg-dark mt-5 fixed-bottom">
+  <div class="navbar-expand m-auto navbar-text">
+    Made with <i class="fa fa-heart"></i> by <a href="https://twitter.com/beeman_nl">beeman</a>
+  </div>
+</nav>
+
+.fa-heart {
+  color: hotpink;
+}
+
+
+
+########## ERRORS ##########
+=== Module not found: Error: Can't resolve 'stream' in jszip\lib'
+
+Modificare tsconfig.app.json:
+
+"types": [],
+"paths": {
+  "jszip": [
+    "../node_modules/jszip/dist/jszip.min.js"
+  ]
+}
+
+
+
+########## How to fix node-sass: gyp ERR! Can't find Python executable 'python' on Windows
+$ npm install --global --production windows-build-tools
+$ npm install node-gyp
+
+########## Install packages
+$ npm i
+
+########## Build Prod
+$ ng build --prod --output-hashing none
+
+########## ERROR in runtime.82c6613acef8f7246fe8.js from Terser
+$ npm install --save-exact --save terser@3.14
+
+########## Administration DEBUG
+ng build --watch --output-hashing none --output-path="..\\..\\layouts\\TIM.OPC.Components\\debug\\Administration"
+########## Administration PROD
+ng build --prod --output-hashing none --output-path="..\\..\\layouts\\TIM.OPC.Components\\Administration"
+
+########## GGU DEBUG
+ng build --watch --output-hashing none --output-path="..\\..\\layouts\\TIM.OPC.Components\\debug\\GGU"
+########## GGU PROD
+ng build --prod --output-hashing none --output-path="..\\..\\layouts\\TIM.OPC.Components\\GGU"
+
+########## Search DEBUG
+ng build --watch --output-hashing none --output-path="..\\..\\layouts\\TIM.OPC.Components\\debug\\Search"
+########## Search PROD
+ng build --prod --output-hashing none --output-path="..\\..\\layouts\\TIM.OPC.Components\\Search"
+$ npm install --save-exact --save terser@3.14
+
+########## SlickGrid e IE11
+https://github.com/ghiscoding/Angular-Slickgrid/wiki/Internet-Explorer-11---Polyfills
+
+Installation Steps
+
+1. open and modify the file located at src/polyfills.ts, uncomment all the IE9, IE10 and IE11 polyfills like so
+/** IE9, IE10 and IE11 requires all of the following polyfills. **/
+import 'core-js/es6/symbol';
+import 'core-js/es6/object';
+import 'core-js/es6/function';
+import 'core-js/es6/parse-int';
+import 'core-js/es6/parse-float';
+import 'core-js/es6/number';
+import 'core-js/es6/math';
+import 'core-js/es6/string';
+import 'core-js/es6/date';
+import 'core-js/es6/array';
+import 'core-js/es6/regexp';
+import 'core-js/es6/map';
+import 'core-js/es6/weak-map';
+import 'core-js/es6/set';
+
+2. Add a couple more Polyfills
+/** IE11 was throwing console errors without these (cannot find "includes") */
+import 'core-js/es7/array';
+
+/** Evergreen browsers require these. **/
+import 'core-js/es6/reflect';
+import 'core-js/es7/reflect';
+
+/** Support Custom Event */
+import 'custom-event-polyfill'; // npm install custom-event-polyfill
+
+3. The last line of previous step adds the custom-event-polyfill, and you need to install it with NPM (see the commented section)
+npm install custom-event-polyfill # OR yarn add custom-event-polyfill
+
+4. Enjoy Angular-Slickgrid with the super slow IE11

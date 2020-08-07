@@ -1,0 +1,19 @@
+<br class="m-4" />
+<h3 class="pb-4">Wizard <b>INTRODUCTION</b></h3>
+<mat-form-field>
+    <mat-label>introduction</mat-label>
+    <input matInput name="introduction" [(ngModel)]="createService.opcObject.introduction" required />
+    <mat-hint *ngIf="createService.stepIntroductionError">
+        <div class="text-danger">{{ 'generic.message.field.required' | translate }}</div>
+    </mat-hint>
+</mat-form-field>
+<hr />
+<div class="button-row mt-4">
+    <div class="d-flex justify-content-between">
+        <button mat-button matStepperPrevious>Back</button>
+        <!-- [disabled]="!createService.stepIntroductionComplete" -->
+        <button mat-button class="text-white" 
+            [ngClass]="createService.stepIntroductionComplete ? 'bg-success' : 'bg-secondary'"
+            (click)="createService.checkIntroductionStep()">Next</button>
+    </div>
+</div>

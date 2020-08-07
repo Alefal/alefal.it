@@ -1,0 +1,3 @@
+##### CREATE new MODULE with COMPONENT #####
+$ ng g m features/layouts --routing=true
+$ ng g c features/layouts --spec=false

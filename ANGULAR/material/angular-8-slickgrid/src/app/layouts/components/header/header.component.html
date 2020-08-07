@@ -1,0 +1,13 @@
+<!-- <small class="pr-4">
+    <span class="c-pointer langLabel" (click)="setLanguage('it')" [ngClass]="(langInUse$ | async) == 'it' ? 'langActive' : ''">IT</span>
+    <span class="pl-2 pr-2">|</span>
+    <span class="c-pointer langLabel" (click)="setLanguage('en')" [ngClass]="(langInUse$ | async) == 'en' ? 'langActive' : ''">EN</span>
+</small> -->
+<small class="pr-4">
+    Name Lastname
+</small>        
+<button [matMenuTriggerFor]="profile" mat-icon-button class="m-r-5"> <img src="assets/images/avatar.png" alt="user" class="profile-pic"> </button>
+<mat-menu #profile="matMenu" class="mymegamenu">
+    <app-profile></app-profile>
+</mat-menu>
+

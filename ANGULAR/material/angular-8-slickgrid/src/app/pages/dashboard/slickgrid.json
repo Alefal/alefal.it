@@ -1,0 +1,91 @@
+{
+  "columns":[
+     {
+        "id":"title",
+        "name":"CIO",
+        "field":"title",
+        "sortable":true,
+        "type":"FieldType.string",
+        "filterable":true,
+        "excludeFromExport": true
+     },
+     {
+        "id":"start",
+        "name":"Data/Ora",
+        "field":"start",
+        "formatter":"Formatters.dateIso",
+        "sortable":true,
+        "filterable":true,
+        "type":"FieldType.date",
+        "minWidth":90
+     },
+     {
+        "id":"phone",
+        "name":"Responsabile",
+        "field":"phone",
+        "sortable":true,
+        "type":"FieldType.number",
+        "minWidth":100,
+        "formatter":"Formatters.mask",
+        "params":{
+           "mask":"(000) 000-0000"
+        }
+     },
+     {
+        "id":"duration",
+        "name":"Contraente",
+        "field":"duration",
+        "sortable":true,
+        "filterable":true
+     },
+     {
+        "id":"complete",
+        "name":"% Complete",
+        "field":"percentComplete",
+        "formatter":"Formatters.percentCompleteBar",
+        "type":"FieldType.number",
+        "sortable":true,
+        "minWidth":100,
+        "exportWithFormatter": false
+        
+     },
+     {
+        "id":"percent2",
+        "name":"% Complete",
+        "field":"percentComplete2",
+        "formatter":"Formatters.progressBar",
+        "type":"FieldType.number",
+        "sortable":true,
+        "filterable":true,
+        "minWidth":100
+     },
+     {
+        "id":"duration",
+        "name":"Controparte",
+        "field":"duration",
+        "sortable":true,
+        "filterable":true
+     },
+     {
+        "id":"state",
+        "name":"Stato OPC",
+        "field":"state",
+        "sortable":true,
+        "exportWithFormatter":false,
+        "formatter":"stateFormatter"
+     },
+     {
+        "id":"duration",
+        "name":"Competenza",
+        "field":"duration",
+        "sortable":true,
+        "filterable":true
+     },
+     {
+        "id":"attachments",
+        "name":"N. Allegati",
+        "field":"attachments",
+        "sortable":true
+     }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+    "dashBoard" : {
+        "title": "PLC Service"
+    },
+    "cookie": {
+        "header": "Cookies used on the website!",
+        "message": "This website uses cookies to ensure you get the best experience on our website.",
+        "dismiss": "Got it!",
+        "allow": "Allow cookies",
+        "deny": "Decline",
+        "link": "Learn more",
+        "policy": "Cookie Policy"
+    },
+
+    "generic.button.login": "Login",
+    "generic.button.register": "Register",
+    "generic.button.save": "Save",
+    "generic.button.change": "Change",
+    "generic.button.done": "Done",
+    "generic.button.close": "Close",
+    "generic.button.yes": "YES",
+    "generic.button.no": "NO",
+
+    "generic.field.oldPsw": "Password",
+    "generic.field.newPsw": "New Password",
+    "generic.field.repeatPsw": "Repeat Password",
+    "generic.field.message.password.required": "Password is required",
+    "generic.field.message.password.length": "Password must contain 6 characters",
+    "generic.field.message.password.notMatch": "Passwords not match"
+}

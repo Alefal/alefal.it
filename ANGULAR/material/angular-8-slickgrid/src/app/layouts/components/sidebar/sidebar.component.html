@@ -1,0 +1,78 @@
+ <div class="user-profile" style="background: url(assets/images/background/bgSEARCH.jpg) no-repeat; background-size: cover;">
+    <!-- User profile image -->
+    <div class="profile-img"> <img src="assets/images/avatar.png" alt="user"> </div>
+    <div class="profile-text"><a [matMenuTriggerFor]="sdprofile" class=""> Name Lastname <i class="ti-angle-down font-12 m-l-5"></i></a></div>
+    <mat-menu #sdprofile="matMenu" class="mymegamenu">
+        <app-profile></app-profile>
+    </mat-menu>
+</div>
+<!-- <mat-nav-list appAccordion>
+    <mat-list-item appAccordionLink *ngFor="let menuitem of menuItems.getMenuitem()" routerLinkActive="selected">
+        <a class="" appAccordionToggle [routerLink]="['/', menuitem.state]" *ngIf="menuitem.type === 'link'">
+            <mat-icon>{{ menuitem.icon }}</mat-icon> 
+            <span>{{ menuitem.name }}</span> 
+            <span fxFlex></span> 
+            <span class="label label-{{ badge.type }}" *ngFor="let badge of menuitem.badge">{{ badge.value }}</span> 
+        </a>
+    </mat-list-item>
+</mat-nav-list> -->
+
+<mat-nav-list appAccordion>
+    <mat-list-item appAccordionLink routerLinkActive="selected">
+        <a class="" appAccordionToggle [routerLink]="['/', dashboard]">
+            <mat-icon>av_timer</mat-icon> 
+            <span>OPC</span> 
+        </a>
+    </mat-list-item>
+    <mat-list-item appAccordionLink routerLinkActive="selected">
+        <a appAccordionToggle (click)="openModalCreate()">
+            <mat-icon>check_circle</mat-icon> 
+            <span>Correlazione</span> 
+        </a>
+    </mat-list-item>
+    <mat-list-item appAccordionLink routerLinkActive="selected">
+        <a class="" appAccordionToggle [routerLink]="['/', dashboard]">
+            <mat-icon>search</mat-icon> 
+            <span>Ricerca</span> 
+        </a>
+    </mat-list-item>
+    <mat-list-item appAccordionLink routerLinkActive="selected">
+        <a class="" appAccordionToggle [routerLink]="['/', dashboard]">
+            <mat-icon>account_circle</mat-icon> 
+            <span>Le Tue OPC</span> 
+        </a>
+    </mat-list-item>
+    <mat-list-item appAccordionLink routerLinkActive="selected">
+        <a class="" appAccordionToggle [routerLink]="['/', dashboard]">
+            <mat-icon>import_export</mat-icon> 
+            <span>Export dati su Excel</span> 
+        </a>
+    </mat-list-item>
+    <mat-list-item appAccordionLink routerLinkActive="selected">
+        <a class="" appAccordionToggle [routerLink]="['/', dashboard]">
+            <mat-icon>cloud_upload</mat-icon> 
+            <span>Caricamento Excel modificato</span> 
+        </a>
+    </mat-list-item>
+    <mat-list-item appAccordionLink routerLinkActive="selected">
+        <a class="" appAccordionToggle [routerLink]="['/', dashboard]">
+            <mat-icon>description</mat-icon> 
+            <span>Visualizza prenotazioni attuali</span> 
+        </a>
+    </mat-list-item>
+</mat-nav-list>
+
+<ng-template #templateCreate>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">
+            <mat-icon>filter_none</mat-icon> Create
+        </h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRefCreate.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <!-- Creazione SCHEDA OPC -->
+        <app-create></app-create>
+    </div>
+</ng-template>

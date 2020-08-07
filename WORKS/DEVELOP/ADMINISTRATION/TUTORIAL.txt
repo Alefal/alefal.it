@@ -1,3 +1,0 @@
-##### CREATE new MODULE with COMPONENT #####
-$ ng g m layout/usersSlickGrid --routing=true
-$ ng g c layout/usersSlickGrid --spec=false
