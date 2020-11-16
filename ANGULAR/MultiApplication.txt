@@ -1,0 +1,12 @@
+https://octoperf.com/blog/2019/08/22/kraken-angular-workspace-multi-application-project/
+
+$ ng new EasyComande --createApplication=false --directory=EasyComandeMultiApplication --interactive=false
+
+The --createApplication=false 
+parameter avoids the creation of an initial application (default value is true). Otherwise, the Angular CLI creates an application in the src folder of the new workspace. It’s cleaner to generate all applications in the sub-folder projects of the workspace.
+
+The --interactive=false 
+parameter is just here to avoid being prompted for useless parameter values such as whether the initial app (which we don’t generate) should include a routing module or what CSS preprocessor to use.
+
+The --directory=frontend 
+parameter is the directory name to create the workspace in. It defaults to the workspace name.
