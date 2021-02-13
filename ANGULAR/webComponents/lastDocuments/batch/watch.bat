@@ -1,1 +1,0 @@
-ng build --watch --extra-webpack-config webpack.extra.js --single-bundle

@@ -1,0 +1,52 @@
+### Android Studio Dart And Flutter Plugin is not installed ###
+$ flutter channel stable 
+$ flutter upgrade
+$ flutter config --android-studio-dir="D:\Development\Android\Android Studio"
+$ flutter doctor -v
+
+$ flutter pub get // per le dipendenze
+
+Flutter has four release channels: stable, beta, dev, and master. We recommend using the stable channel unless you need a more recent release.
+
+To fix it, go to android studio → preferences → plugins → installed → update your installed flutter plugin
+
+### Installare un pacchetto ###
+1. Depend on it
+Add this to your package's pubspec.yaml file:
+
+dependencies:
+  flutter_slidable: ^0.5.7
+
+2. Install it
+You can install packages from the command line:
+
+$ flutter pub get
+
+3. Import it
+Now in your Dart code, you can use:
+
+import 'package:flutter_slidable/flutter_slidable.dart';
+
+### Windows 10 APP ###
+$ flutter channel master
+$ flutter upgrade
+$ flutter config --enable-windows-desktop
+$ flutter devices
+
+Android SDK built for x86 (mobile) • emulator-5554 • android-x86    • Android 10 (API 29) (emulator)
+Windows (desktop)                  • windows       • windows-x64    • Microsoft Windows [Version 10.0.18363.1256]
+Chrome (web)                       • chrome        • web-javascript • Google Chrome 87.0.4280.141
+Edge (web)                         • edge          • web-javascript • Microsoft Edge 87.0.664.66
+
+To add desktop support to an existing Flutter project, run the following command in a terminal from the root project directory:
+$ flutter create .
+
+Run Desktop App
+$ flutter run -d windows
+
+If there are problems with run, execute:
+$ flutter run --no-sound-null-safety -d windows
+
+Please enable Developer Mode in your system settings. Run
+  start ms-settings:developers
+to open settings.
